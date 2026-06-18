@@ -20,12 +20,16 @@ type Client struct {
 	graphs structures.Set[*Graph]
 }
 
-func New(ctx context.Context) (*Client, error) {
-	g, err := graphviz.New(ctx)
-	return &Client{
-		gv:     g,
-		graphs: make(structures.Set[*Graph]),
-	}, err
+func New(ctx context.Context) (c *Client, err error) {
+	c = new(Client)
+
+	if c.gv, err = graphviz.New(ctx); err != nil {
+		return nil, err
+	}
+	c.gv.SetLayout(graphviz.DOT)
+
+	c.graphs = make(structures.Set[*Graph])
+	return c, nil
 }
 
 func (c *Client) Close() error {
@@ -113,3 +117,26 @@ func (g *Graph) SVG(ctx context.Context) ([]byte, error) {
 	}
 	return buf.Bytes(), nil
 }
+
+// func (g *Graph) PNG(ctx context.Context) (r []byte, err error) {
+// 	// Note: go-graphviz's PNG renderer is broken. For visual examples, see
+// 	// https://github.com/goccy/go-graphviz/issues/106 . In the meantime, we render the SVG to PNG.
+// 	if r, err = g.SVG(ctx); err != nil {
+// 		return nil, err
+// 	}
+//
+// 	svgctx, err := resvg.NewContext(ctx)
+// 	defer func() {
+// 		err = svgctx.Close()
+// 	}()
+// 	renderer, err := svgctx.NewRenderer()
+// 	defer func() {
+// 		err = renderer.Close()
+// 	}()
+//
+// 	// Note: fonts are broken in resvg-go!
+// 	if err = renderer.LoadSystemFonts(); err != nil {
+// 		return nil, err
+// 	}
+// 	return renderer.Render(r)
+// }
