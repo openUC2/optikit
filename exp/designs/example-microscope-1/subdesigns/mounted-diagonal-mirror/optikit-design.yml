@@ -1,0 +1,9 @@
+optikit-version: v0.0.0-alpha.1
+
+design:
+  description: A diagonal mirror mounted in a cube
+  tags:
+    - cube-mounted
+    - mirror
+    - mirror/single-sided
+    - mirror/flat

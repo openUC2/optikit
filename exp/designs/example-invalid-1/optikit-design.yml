@@ -1,0 +1,13 @@
+optikit-version: v0.0.0-alpha.1
+
+design:
+  description: An instrument with a missing component
+
+components:
+  light-source:
+    type: design
+    geometry:
+      position:
+        anchor: sample-holder
+        units: cm
+        offset: {x: -8}

@@ -1,0 +1,6 @@
+optikit-version: v0.0.0-alpha.1
+
+design:
+  description: A microscope slide holder mounted in a cube
+  tags:
+    - sample-holder

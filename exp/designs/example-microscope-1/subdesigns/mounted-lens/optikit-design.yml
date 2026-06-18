@@ -1,0 +1,8 @@
+optikit-version: v0.0.0-alpha.1
+
+design:
+  description: A lens mounted in a cube
+  tags:
+    - cube-mounted
+    - lens
+    - lens/convex

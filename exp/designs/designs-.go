@@ -5,7 +5,6 @@ package designs
 import (
 	"cmp"
 	"fmt"
-	"io/fs"
 	"os"
 	"path"
 	"path/filepath"
@@ -116,16 +115,6 @@ func (p *FSDesign) Exists() bool {
 // Remove deletes the cache from the OS's filesystem, if it exists.
 func (p *FSDesign) Remove() error {
 	return os.RemoveAll(p.FS.Path())
-}
-
-// LoadReadme loads the readme file defined by the design.
-func (p *FSDesign) LoadReadme() ([]byte, error) {
-	readmePath := p.Decl.Design.ReadmeFile
-	bytes, err := fs.ReadFile(p.FS, readmePath)
-	if err != nil {
-		return nil, errors.Wrapf(err, "couldn't read design readme %s/%s", p.FS.Path(), readmePath)
-	}
-	return bytes, nil
 }
 
 // Path returns either the design's path (if specified) or its path on the filesystem.
