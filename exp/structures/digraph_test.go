@@ -12,16 +12,16 @@ type edge struct {
 	to   int
 }
 
-var checkDigraphAddTests = map[string]struct {
+var checkAdjDigraphAddTests = map[string]struct {
 	nodes []int
 	edges []edge
-	out   Digraph[int]
+	out   AdjDigraph[int]
 	non   []edge
 }{
 	"{} {}": {},
 	"{1} {}": {
 		nodes: []int{1},
-		out:   Digraph[int]{1: nil},
+		out:   AdjDigraph[int]{1: nil},
 		non: []edge{
 			{from: 1, to: 1},
 			{from: 1, to: 2},
@@ -31,7 +31,7 @@ var checkDigraphAddTests = map[string]struct {
 	},
 	"{1 1} {}": {
 		nodes: []int{1, 1},
-		out:   Digraph[int]{1: nil},
+		out:   AdjDigraph[int]{1: nil},
 		non: []edge{
 			{from: 1, to: 1},
 			{from: 1, to: 2},
@@ -42,7 +42,7 @@ var checkDigraphAddTests = map[string]struct {
 	"{1} {1->1}": {
 		nodes: []int{1},
 		edges: []edge{{from: 1, to: 1}},
-		out:   Digraph[int]{1: Set[int]{1: o}},
+		out:   AdjDigraph[int]{1: Set[int]{1: o}},
 		non: []edge{
 			{from: 1, to: 2},
 			{from: 2, to: 1},
@@ -52,7 +52,7 @@ var checkDigraphAddTests = map[string]struct {
 	"{1} {1->1 1->1}": {
 		nodes: []int{1},
 		edges: []edge{{from: 1, to: 1}, {from: 1, to: 1}},
-		out:   Digraph[int]{1: Set[int]{1: o}},
+		out:   AdjDigraph[int]{1: Set[int]{1: o}},
 		non: []edge{
 			{from: 1, to: 2},
 			{from: 2, to: 1},
@@ -61,7 +61,7 @@ var checkDigraphAddTests = map[string]struct {
 	},
 	"{} {1->1}": {
 		edges: []edge{{from: 1, to: 1}},
-		out:   Digraph[int]{1: Set[int]{1: o}},
+		out:   AdjDigraph[int]{1: Set[int]{1: o}},
 		non: []edge{
 			{from: 1, to: 2},
 			{from: 2, to: 1},
@@ -70,7 +70,7 @@ var checkDigraphAddTests = map[string]struct {
 	},
 	"{1 2} {}": {
 		nodes: []int{1, 2},
-		out:   Digraph[int]{1: nil, 2: nil},
+		out:   AdjDigraph[int]{1: nil, 2: nil},
 		non: []edge{
 			{from: 1, to: 1},
 			{from: 1, to: 2},
@@ -81,7 +81,7 @@ var checkDigraphAddTests = map[string]struct {
 	"{1 2} {1->1}": {
 		nodes: []int{1, 2},
 		edges: []edge{{from: 1, to: 1}},
-		out:   Digraph[int]{1: Set[int]{1: o}, 2: nil},
+		out:   AdjDigraph[int]{1: Set[int]{1: o}, 2: nil},
 		non: []edge{
 			{from: 1, to: 2},
 			{from: 2, to: 1},
@@ -91,7 +91,7 @@ var checkDigraphAddTests = map[string]struct {
 	"{2} {1->1}": {
 		nodes: []int{2},
 		edges: []edge{{from: 1, to: 1}},
-		out:   Digraph[int]{1: Set[int]{1: o}, 2: nil},
+		out:   AdjDigraph[int]{1: Set[int]{1: o}, 2: nil},
 		non: []edge{
 			{from: 1, to: 2},
 			{from: 2, to: 1},
@@ -101,7 +101,7 @@ var checkDigraphAddTests = map[string]struct {
 	"{1 2} {1->2}": {
 		nodes: []int{1, 2},
 		edges: []edge{{from: 1, to: 2}},
-		out:   Digraph[int]{1: Set[int]{2: o}, 2: nil},
+		out:   AdjDigraph[int]{1: Set[int]{2: o}, 2: nil},
 		non: []edge{
 			{from: 1, to: 1},
 			{from: 2, to: 1},
@@ -111,7 +111,7 @@ var checkDigraphAddTests = map[string]struct {
 	"{1} {1->2}": {
 		nodes: []int{1},
 		edges: []edge{{from: 1, to: 2}},
-		out:   Digraph[int]{1: Set[int]{2: o}, 2: nil},
+		out:   AdjDigraph[int]{1: Set[int]{2: o}, 2: nil},
 		non: []edge{
 			{from: 1, to: 1},
 			{from: 2, to: 1},
@@ -121,7 +121,7 @@ var checkDigraphAddTests = map[string]struct {
 	"{2} {1->2}": {
 		nodes: []int{2},
 		edges: []edge{{from: 1, to: 2}},
-		out:   Digraph[int]{1: Set[int]{2: o}, 2: nil},
+		out:   AdjDigraph[int]{1: Set[int]{2: o}, 2: nil},
 		non: []edge{
 			{from: 1, to: 1},
 			{from: 2, to: 1},
@@ -130,7 +130,7 @@ var checkDigraphAddTests = map[string]struct {
 	},
 	"{} {1->2}": {
 		edges: []edge{{from: 1, to: 2}},
-		out:   Digraph[int]{1: Set[int]{2: o}, 2: nil},
+		out:   AdjDigraph[int]{1: Set[int]{2: o}, 2: nil},
 		non: []edge{
 			{from: 1, to: 1},
 			{from: 2, to: 1},
@@ -139,7 +139,7 @@ var checkDigraphAddTests = map[string]struct {
 	},
 	"{} {1->2 1->2}": {
 		edges: []edge{{from: 1, to: 2}, {from: 1, to: 2}},
-		out:   Digraph[int]{1: Set[int]{2: o}, 2: nil},
+		out:   AdjDigraph[int]{1: Set[int]{2: o}, 2: nil},
 		non: []edge{
 			{from: 1, to: 1},
 			{from: 2, to: 1},
@@ -149,7 +149,7 @@ var checkDigraphAddTests = map[string]struct {
 	"{3} {1->2 2->1}": {
 		nodes: []int{3},
 		edges: []edge{{from: 1, to: 2}, {from: 2, to: 1}},
-		out:   Digraph[int]{1: Set[int]{2: o}, 2: Set[int]{1: o}, 3: nil},
+		out:   AdjDigraph[int]{1: Set[int]{2: o}, 2: Set[int]{1: o}, 3: nil},
 		non: []edge{
 			{from: 1, to: 1},
 			{from: 2, to: 2},
@@ -162,14 +162,14 @@ var checkDigraphAddTests = map[string]struct {
 	},
 }
 
-func TestDigraphAdd(t *testing.T) {
+func TestAdjDigraphAdd(t *testing.T) {
 	t.Parallel()
-	for name, test := range checkDigraphAddTests {
+	for name, test := range checkAdjDigraphAddTests {
 		t.Run(name, func(t *testing.T) {
 			t.Parallel()
 
 			t.Logf("%s (add nodes first)", name)
-			g := make(Digraph[int])
+			g := make(AdjDigraph[int])
 			for _, elem := range test.nodes {
 				g.AddNode(elem)
 			}
@@ -197,14 +197,14 @@ func TestDigraphAdd(t *testing.T) {
 	}
 }
 
-func TestDigraphAddCommutativity(t *testing.T) {
+func TestAdjDigraphAddCommutativity(t *testing.T) {
 	t.Parallel()
-	for name, test := range checkDigraphAddTests {
+	for name, test := range checkAdjDigraphAddTests {
 		t.Run(name, func(t *testing.T) {
 			t.Parallel()
 
 			t.Logf("%s (add nodes first)", name)
-			g := make(Digraph[int])
+			g := make(AdjDigraph[int])
 			for _, elem := range test.nodes {
 				g.AddNode(elem)
 			}
@@ -216,7 +216,7 @@ func TestDigraphAddCommutativity(t *testing.T) {
 			}
 
 			t.Logf("%s (add edges first)", name)
-			gg := make(Digraph[int])
+			gg := make(AdjDigraph[int])
 			for _, elem := range test.edges {
 				gg.AddEdge(elem.from, elem.to)
 			}
@@ -230,48 +230,48 @@ func TestDigraphAddCommutativity(t *testing.T) {
 	}
 }
 
-var checkDigraphInvertTests = map[string]struct {
+var checkAdjDigraphInvertTests = map[string]struct {
 	nodes []int
 	edges []edge
-	out   Digraph[int]
+	out   AdjDigraph[int]
 }{
 	"{} {}": {},
 	"{1} {}": {
 		nodes: []int{1},
-		out:   Digraph[int]{1: nil},
+		out:   AdjDigraph[int]{1: nil},
 	},
 	"{} {1->1}": {
 		edges: []edge{{from: 1, to: 1}},
-		out:   Digraph[int]{1: Set[int]{1: o}},
+		out:   AdjDigraph[int]{1: Set[int]{1: o}},
 	},
 	"{} {1->2}": {
 		edges: []edge{{from: 1, to: 2}},
-		out:   Digraph[int]{1: nil, 2: Set[int]{1: o}},
+		out:   AdjDigraph[int]{1: nil, 2: Set[int]{1: o}},
 	},
 	"{3} {1->2}": {
 		nodes: []int{3},
 		edges: []edge{{from: 1, to: 2}},
-		out:   Digraph[int]{1: nil, 2: Set[int]{1: o}, 3: nil},
+		out:   AdjDigraph[int]{1: nil, 2: Set[int]{1: o}, 3: nil},
 	},
 	"{} {1->2 1->3}": {
 		edges: []edge{{from: 1, to: 2}, {from: 1, to: 3}},
-		out:   Digraph[int]{1: nil, 2: Set[int]{1: o}, 3: Set[int]{1: o}},
+		out:   AdjDigraph[int]{1: nil, 2: Set[int]{1: o}, 3: Set[int]{1: o}},
 	},
 	"{} {1->2 2->3}": {
 		edges: []edge{{from: 1, to: 2}, {from: 2, to: 3}},
-		out:   Digraph[int]{1: nil, 2: Set[int]{1: o}, 3: Set[int]{2: o}},
+		out:   AdjDigraph[int]{1: nil, 2: Set[int]{1: o}, 3: Set[int]{2: o}},
 	},
 }
 
-func TestDigraphInvert(t *testing.T) {
+func TestAdjDigraphInvert(t *testing.T) {
 	t.Parallel()
-	for name, test := range checkDigraphInvertTests {
+	for name, test := range checkAdjDigraphInvertTests {
 		t.Run(name, func(t *testing.T) {
 			t.Parallel()
 
 			t.Log(name)
-			g := make(Digraph[int])
-			gg := make(Digraph[int])
+			g := make(AdjDigraph[int])
+			gg := make(AdjDigraph[int])
 			for _, elem := range test.nodes {
 				g.AddNode(elem)
 				gg.AddNode(elem)
@@ -297,72 +297,72 @@ func TestDigraphInvert(t *testing.T) {
 	}
 }
 
-var checkDigraphTCTRTests = map[string]struct {
+var checkAdjDigraphTCTRTests = map[string]struct {
 	nodes []int
 	edges []edge
 	out   TransitiveClosure[int]
 	cyc   [][]int
 	inv   TransitiveClosure[int]
-	red   Digraph[int]
+	red   AdjDigraph[int]
 }{
 	"{} {}": {},
 	"{1} {}": {
 		nodes: []int{1},
 		out:   TransitiveClosure[int]{1: nil},
-		red:   Digraph[int]{1: nil},
+		red:   AdjDigraph[int]{1: nil},
 	},
 	"{} {1->1}": {
 		edges: []edge{{from: 1, to: 1}},
 		out:   TransitiveClosure[int]{1: Set[int]{1: o}},
 		cyc:   [][]int{{1}},
-		red:   Digraph[int]{1: Set[int]{1: o}},
+		red:   AdjDigraph[int]{1: Set[int]{1: o}},
 	},
 	"{} {1->2}": {
 		edges: []edge{{from: 1, to: 2}},
 		out:   TransitiveClosure[int]{1: Set[int]{2: o}, 2: nil},
-		red:   Digraph[int]{1: Set[int]{2: o}, 2: nil},
+		red:   AdjDigraph[int]{1: Set[int]{2: o}, 2: nil},
 	},
 	"{3} {1->2 1->1}": {
 		nodes: []int{3},
 		edges: []edge{{from: 1, to: 2}, {from: 1, to: 1}},
 		out:   TransitiveClosure[int]{1: Set[int]{1: o, 2: o}, 2: nil, 3: nil},
 		cyc:   [][]int{{1}},
-		red:   Digraph[int]{1: Set[int]{1: o, 2: o}, 2: nil, 3: nil},
+		red:   AdjDigraph[int]{1: Set[int]{1: o, 2: o}, 2: nil, 3: nil},
 	},
 	"{3} {1->2 2->2}": {
 		nodes: []int{3},
 		edges: []edge{{from: 1, to: 2}, {from: 2, to: 2}},
 		out:   TransitiveClosure[int]{1: Set[int]{2: o}, 2: Set[int]{2: o}, 3: nil},
 		cyc:   [][]int{{2}},
-		red:   Digraph[int]{1: Set[int]{2: o}, 2: Set[int]{2: o}, 3: nil},
+		red:   AdjDigraph[int]{1: Set[int]{2: o}, 2: Set[int]{2: o}, 3: nil},
 	},
 	"{3} {1->2 1->2}": {
 		nodes: []int{3},
 		edges: []edge{{from: 1, to: 2}, {from: 1, to: 2}},
 		out:   TransitiveClosure[int]{1: Set[int]{2: o}, 2: nil, 3: nil},
-		red:   Digraph[int]{1: Set[int]{2: o}, 2: nil, 3: nil},
+		red:   AdjDigraph[int]{1: Set[int]{2: o}, 2: nil, 3: nil},
 	},
 	"{3} {1->2 2->1}": {
 		nodes: []int{3},
 		edges: []edge{{from: 1, to: 2}, {from: 2, to: 1}},
 		out:   TransitiveClosure[int]{1: Set[int]{1: o, 2: o}, 2: Set[int]{1: o, 2: o}, 3: nil},
 		cyc:   [][]int{{1, 2}},
-		red:   Digraph[int]{1: Set[int]{2: o}, 2: Set[int]{1: o}, 3: nil},
+		red:   AdjDigraph[int]{1: Set[int]{2: o}, 2: Set[int]{1: o}, 3: nil},
 	},
 	"{} {1->2 1->3}": {
 		edges: []edge{{from: 1, to: 2}, {from: 1, to: 3}},
 		out:   TransitiveClosure[int]{1: Set[int]{2: o, 3: o}, 2: nil, 3: nil},
-		red:   Digraph[int]{1: Set[int]{2: o, 3: o}, 2: nil, 3: nil},
+		red:   AdjDigraph[int]{1: Set[int]{2: o, 3: o}, 2: nil, 3: nil},
 	},
 	"{} {1->2 2->3}": {
 		edges: []edge{{from: 1, to: 2}, {from: 2, to: 3}},
 		out:   TransitiveClosure[int]{1: Set[int]{2: o, 3: o}, 2: Set[int]{3: o}, 3: nil},
-		red:   Digraph[int]{1: Set[int]{2: o}, 2: Set[int]{3: o}, 3: nil},
+		red:   AdjDigraph[int]{1: Set[int]{2: o}, 2: Set[int]{3: o}, 3: nil},
 	},
 	"{} {1->2 2->3 1->3}": {
 		edges: []edge{{from: 1, to: 2}, {from: 2, to: 3}, {from: 1, to: 3}},
 		out:   TransitiveClosure[int]{1: Set[int]{2: o, 3: o}, 2: Set[int]{3: o}, 3: nil},
-		red:   Digraph[int]{1: Set[int]{2: o}, 2: Set[int]{3: o}, 3: nil},
+		red:   AdjDigraph[int]{1: Set[int]{2: o}, 2: Set[int]{3: o}, 3: nil},
 	},
 	"{} {1->2 2->1 3->1}": {
 		nodes: []int{},
@@ -373,7 +373,7 @@ var checkDigraphTCTRTests = map[string]struct {
 			3: Set[int]{1: o, 2: o},
 		},
 		cyc: [][]int{{1, 2}},
-		red: Digraph[int]{1: Set[int]{2: o}, 2: Set[int]{1: o}, 3: Set[int]{1: o}},
+		red: AdjDigraph[int]{1: Set[int]{2: o}, 2: Set[int]{1: o}, 3: Set[int]{1: o}},
 	},
 	"{} {1->2 2->1 1->3}": {
 		nodes: []int{},
@@ -384,7 +384,7 @@ var checkDigraphTCTRTests = map[string]struct {
 			3: nil,
 		},
 		cyc: [][]int{{1, 2}},
-		red: Digraph[int]{1: Set[int]{2: o, 3: o}, 2: Set[int]{1: o}, 3: nil},
+		red: AdjDigraph[int]{1: Set[int]{2: o, 3: o}, 2: Set[int]{1: o}, 3: nil},
 	},
 	"{} {1->2 2->1 1->3 3->1}": {
 		nodes: []int{},
@@ -395,7 +395,7 @@ var checkDigraphTCTRTests = map[string]struct {
 			3: Set[int]{1: o, 2: o, 3: o},
 		},
 		cyc: [][]int{{1, 2, 3}},
-		red: Digraph[int]{1: Set[int]{2: o, 3: o}, 2: Set[int]{1: o}, 3: Set[int]{1: o}},
+		red: AdjDigraph[int]{1: Set[int]{2: o, 3: o}, 2: Set[int]{1: o}, 3: Set[int]{1: o}},
 	},
 	"{} {1->2 2->3 3->1}": {
 		edges: []edge{{from: 1, to: 2}, {from: 2, to: 3}, {from: 3, to: 1}},
@@ -405,7 +405,7 @@ var checkDigraphTCTRTests = map[string]struct {
 			3: Set[int]{1: o, 2: o, 3: o},
 		},
 		cyc: [][]int{{1, 2, 3}},
-		red: Digraph[int]{1: Set[int]{2: o}, 2: Set[int]{3: o}, 3: Set[int]{1: o}},
+		red: AdjDigraph[int]{1: Set[int]{2: o}, 2: Set[int]{3: o}, 3: Set[int]{1: o}},
 	},
 	"{} {1->2 2->3 1->4}": {
 		edges: []edge{{from: 1, to: 2}, {from: 2, to: 3}, {from: 1, to: 4}},
@@ -415,7 +415,7 @@ var checkDigraphTCTRTests = map[string]struct {
 			3: nil,
 			4: nil,
 		},
-		red: Digraph[int]{1: Set[int]{2: o, 4: o}, 2: Set[int]{3: o}, 3: nil, 4: nil},
+		red: AdjDigraph[int]{1: Set[int]{2: o, 4: o}, 2: Set[int]{3: o}, 3: nil, 4: nil},
 	},
 	"{} {1->2 2->3 3->4 1->4}": {
 		edges: []edge{{from: 1, to: 2}, {from: 2, to: 3}, {from: 3, to: 4}, {from: 1, to: 4}},
@@ -425,7 +425,7 @@ var checkDigraphTCTRTests = map[string]struct {
 			3: Set[int]{4: o},
 			4: nil,
 		},
-		red: Digraph[int]{1: Set[int]{2: o}, 2: Set[int]{3: o}, 3: Set[int]{4: o}, 4: nil},
+		red: AdjDigraph[int]{1: Set[int]{2: o}, 2: Set[int]{3: o}, 3: Set[int]{4: o}, 4: nil},
 	},
 	"{} {1->2 2->3 3->4 1->3}": {
 		edges: []edge{{from: 1, to: 2}, {from: 2, to: 3}, {from: 3, to: 4}, {from: 1, to: 3}},
@@ -435,7 +435,7 @@ var checkDigraphTCTRTests = map[string]struct {
 			3: Set[int]{4: o},
 			4: nil,
 		},
-		red: Digraph[int]{1: Set[int]{2: o}, 2: Set[int]{3: o}, 3: Set[int]{4: o}, 4: nil},
+		red: AdjDigraph[int]{1: Set[int]{2: o}, 2: Set[int]{3: o}, 3: Set[int]{4: o}, 4: nil},
 	},
 	"{} {1->2 2->3 3->4 1->3 1->4}": {
 		edges: []edge{
@@ -447,7 +447,7 @@ var checkDigraphTCTRTests = map[string]struct {
 			3: Set[int]{4: o},
 			4: nil,
 		},
-		red: Digraph[int]{1: Set[int]{2: o}, 2: Set[int]{3: o}, 3: Set[int]{4: o}, 4: nil},
+		red: AdjDigraph[int]{1: Set[int]{2: o}, 2: Set[int]{3: o}, 3: Set[int]{4: o}, 4: nil},
 	},
 	"{} {1->2 2->3 3->4 1->4 2->4}": {
 		edges: []edge{
@@ -459,7 +459,7 @@ var checkDigraphTCTRTests = map[string]struct {
 			3: Set[int]{4: o},
 			4: nil,
 		},
-		red: Digraph[int]{1: Set[int]{2: o}, 2: Set[int]{3: o}, 3: Set[int]{4: o}, 4: nil},
+		red: AdjDigraph[int]{1: Set[int]{2: o}, 2: Set[int]{3: o}, 3: Set[int]{4: o}, 4: nil},
 	},
 	"{} {1->2 2->3 2->4}": {
 		edges: []edge{{from: 1, to: 2}, {from: 2, to: 3}, {from: 2, to: 4}},
@@ -469,7 +469,7 @@ var checkDigraphTCTRTests = map[string]struct {
 			3: nil,
 			4: nil,
 		},
-		red: Digraph[int]{
+		red: AdjDigraph[int]{
 			1: Set[int]{2: o},
 			2: Set[int]{3: o, 4: o},
 			3: nil,
@@ -485,7 +485,12 @@ var checkDigraphTCTRTests = map[string]struct {
 			4: Set[int]{3: o, 4: o},
 		},
 		cyc: [][]int{{1, 2}, {3, 4}},
-		red: Digraph[int]{1: Set[int]{2: o}, 2: Set[int]{1: o}, 3: Set[int]{4: o}, 4: Set[int]{3: o}},
+		red: AdjDigraph[int]{
+			1: Set[int]{2: o},
+			2: Set[int]{1: o},
+			3: Set[int]{4: o},
+			4: Set[int]{3: o},
+		},
 	},
 	"{} {1->2 2->1 1->3 3->2}": {
 		nodes: []int{},
@@ -496,7 +501,7 @@ var checkDigraphTCTRTests = map[string]struct {
 			3: Set[int]{1: o, 2: o, 3: o},
 		},
 		cyc: [][]int{{1, 2, 3}},
-		red: Digraph[int]{1: Set[int]{2: o, 3: o}, 2: Set[int]{1: o}, 3: Set[int]{2: o}},
+		red: AdjDigraph[int]{1: Set[int]{2: o, 3: o}, 2: Set[int]{1: o}, 3: Set[int]{2: o}},
 	},
 	"{} {1->2 2->1 1->3 3->4 4->3}": {
 		nodes: []int{},
@@ -514,7 +519,7 @@ var checkDigraphTCTRTests = map[string]struct {
 			4: Set[int]{3: o, 4: o},
 		},
 		cyc: [][]int{{1, 2}, {3, 4}},
-		red: Digraph[int]{
+		red: AdjDigraph[int]{
 			1: Set[int]{2: o, 3: o},
 			2: Set[int]{1: o},
 			3: Set[int]{4: o},
@@ -538,7 +543,7 @@ var checkDigraphTCTRTests = map[string]struct {
 			4: Set[int]{1: o, 2: o, 3: o, 4: o},
 		},
 		cyc: [][]int{{1, 2, 3, 4}},
-		red: Digraph[int]{
+		red: AdjDigraph[int]{
 			1: Set[int]{2: o, 3: o},
 			2: Set[int]{1: o},
 			3: Set[int]{4: o},
@@ -562,7 +567,7 @@ var checkDigraphTCTRTests = map[string]struct {
 			4: Set[int]{1: o, 2: o, 3: o, 4: o},
 		},
 		cyc: [][]int{{1, 2}, {3, 4}},
-		red: Digraph[int]{
+		red: AdjDigraph[int]{
 			1: Set[int]{2: o},
 			2: Set[int]{1: o},
 			3: Set[int]{1: o, 4: o},
@@ -585,7 +590,7 @@ var checkDigraphTCTRTests = map[string]struct {
 			4: Set[int]{1: o, 2: o, 3: o, 4: o},
 		},
 		cyc: [][]int{{1, 2, 3, 4}},
-		red: Digraph[int]{
+		red: AdjDigraph[int]{
 			1: Set[int]{2: o, 4: o},
 			2: Set[int]{3: o},
 			3: Set[int]{1: o},
@@ -594,15 +599,15 @@ var checkDigraphTCTRTests = map[string]struct {
 	},
 }
 
-func TestDigraphTransClosure(t *testing.T) {
+func TestAdjDigraphTransClosure(t *testing.T) {
 	t.Parallel()
-	for name, test := range checkDigraphTCTRTests {
+	for name, test := range checkAdjDigraphTCTRTests {
 		t.Run(name, func(t *testing.T) {
 			t.Parallel()
 
 			t.Log(name)
-			g := make(Digraph[int])
-			gg := make(Digraph[int])
+			g := make(AdjDigraph[int])
+			gg := make(AdjDigraph[int])
 			for _, elem := range test.nodes {
 				g.AddNode(elem)
 				gg.AddNode(elem)
@@ -622,7 +627,7 @@ func TestDigraphTransClosure(t *testing.T) {
 			}
 
 			t.Logf("%s (double-transclosure)", name)
-			if got, want := Digraph[int](tc).ComputeTransitiveClosure(), tc; !cmp.Equal(
+			if got, want := AdjDigraph[int](tc).ComputeTransitiveClosure(), tc; !cmp.Equal(
 				got, want, cmpopts.EquateEmpty(),
 			) {
 				t.Errorf("diff (-want +got):\n%+v", cmp.Diff(want, got, cmpopts.EquateEmpty()))
@@ -634,7 +639,7 @@ func TestDigraphTransClosure(t *testing.T) {
 			}
 
 			t.Logf("%s (inverse)", name)
-			if got, want := tc.Invert(), TransitiveClosure[int](Digraph[int](tc).Invert()); !cmp.Equal(
+			if got, want := tc.Invert(), TransitiveClosure[int](AdjDigraph[int](tc).Invert()); !cmp.Equal(
 				got, want, cmpopts.EquateEmpty(),
 			) {
 				t.Errorf("diff (-want +got):\n%+v", cmp.Diff(want, got, cmpopts.EquateEmpty()))
@@ -643,14 +648,14 @@ func TestDigraphTransClosure(t *testing.T) {
 	}
 }
 
-func TestDigraphTransClosureHasEdge(t *testing.T) {
+func TestAdjDigraphTransClosureHasEdge(t *testing.T) {
 	t.Parallel()
-	for name, test := range checkDigraphTCTRTests {
+	for name, test := range checkAdjDigraphTCTRTests {
 		t.Run(name, func(t *testing.T) {
 			t.Parallel()
 
 			t.Log(name)
-			g := make(Digraph[int])
+			g := make(AdjDigraph[int])
 			for _, elem := range test.nodes {
 				g.AddNode(elem)
 			}
@@ -661,12 +666,12 @@ func TestDigraphTransClosureHasEdge(t *testing.T) {
 			if got, want := tc, test.out; !cmp.Equal(got, want, cmpopts.EquateEmpty()) {
 				t.Errorf("diff (-want +got):\n%+v", cmp.Diff(want, got, cmpopts.EquateEmpty()))
 			}
-			tcg := Digraph[int](tc)
+			tcg := AdjDigraph[int](tc)
 
 			for _, a := range []int{1, 2, 3, 4} {
 				for _, b := range []int{1, 2, 3, 4} {
 					if got, want := tc.HasEdge(a, b), tcg.HasEdge(a, b); got != want {
-						t.Errorf("TransitiveClosure.HasEdge != Digraph.HasEdge: %d->%d", a, b)
+						t.Errorf("TransitiveClosure.HasEdge != AdjDigraph.HasEdge: %d->%d", a, b)
 					}
 				}
 			}
@@ -674,15 +679,15 @@ func TestDigraphTransClosureHasEdge(t *testing.T) {
 	}
 }
 
-func TestDigraphTransReduction(t *testing.T) {
+func TestAdjDigraphTransReduction(t *testing.T) {
 	t.Parallel()
-	for name, test := range checkDigraphTCTRTests {
+	for name, test := range checkAdjDigraphTCTRTests {
 		t.Run(name, func(t *testing.T) {
 			t.Parallel()
 
 			t.Log(name)
-			g := make(Digraph[int])
-			gg := make(Digraph[int])
+			g := make(AdjDigraph[int])
+			gg := make(AdjDigraph[int])
 			for _, elem := range test.nodes {
 				g.AddNode(elem)
 				gg.AddNode(elem)

@@ -43,7 +43,7 @@ func LoadFSDesign(fsys ffs.PathedFS, subdirPath string) (p *FSDesign, err error)
 			err, "couldn't enter directory %s from fs at %s", subdirPath, fsys.Path(),
 		)
 	}
-	if p.Design.Decl, err = loadDesignDecl(p.FS, DesignDeclFile); err != nil {
+	if p.Design.Decl, err = LoadDesignDecl(p.FS, DesignDeclFile); err != nil {
 		return nil, errors.Errorf("couldn't load design declaration")
 	}
 	return p, nil

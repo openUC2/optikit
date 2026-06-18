@@ -6,13 +6,62 @@ import (
 	"slices"
 )
 
-// Digraph
+// StrictEdgeDigraph
 
-// Digraph is an adjacency matrix.
-type Digraph[Node comparable] map[Node]Set[Node]
+// StrictEdgeDigraph is a diagraph represented as a list of nodes and edges.
+
+type StrictEdgeDigraph[Node comparable, Edge comparable] map[Node]map[Node]Edge
+
+// AdjDigraph copies the graph as a AdjDigraph.
+func (g StrictEdgeDigraph[Node, Edge]) AdjDigraph() AdjDigraph[Node] {
+	adjG := make(AdjDigraph[Node])
+	for from, edges := range g {
+		for to := range edges {
+			adjG.AddEdge(from, to)
+		}
+	}
+	return adjG
+}
 
 // AddNode adds the node to the graph. If the node was already in the graph, nothing changes.
-func (g Digraph[Node]) AddNode(n Node) {
+func (g StrictEdgeDigraph[Node, Edge]) AddNode(n Node) {
+	if _, ok := g[n]; ok {
+		return
+	}
+	g[n] = make(map[Node]Edge)
+}
+
+// AddEdge adds an edge from the first node to the second node. If the edge was already in the
+// graph, nothing changes.
+func (g StrictEdgeDigraph[Node, Edge]) AddEdge(from, to Node, edge Edge) {
+	g.AddNode(from)
+	g.AddNode(to)
+	g[from][to] = edge
+}
+
+// AddEdge removes any edge from the first node to the second node. If the edge already wasn't in
+// the graph, nothing changes.
+func (g StrictEdgeDigraph[Node, Edge]) RemoveEdge(from, to Node) {
+	delete(g[from], to)
+}
+
+// HasEdge checks whether an edge exists from the first node to the second node.
+func (g StrictEdgeDigraph[Node, Edge]) HasEdge(from, to Node) bool {
+	targetNodes, ok := g[from]
+	if !ok {
+		return false
+	}
+	_, has := targetNodes[to]
+	return has
+}
+
+// AdjDigraph
+
+// AdjDigraph is a digraph represented as an adjacency list.
+type AdjDigraph[Node comparable] map[Node]Set[Node]
+
+// AddNode adds the node to the graph. If the node was already in the graph, nothing changes.
+func (g AdjDigraph[Node]) AddNode(n Node) {
 	if _, ok := g[n]; ok {
 		return
 	}
@@ -21,7 +70,7 @@ func (g Digraph[Node]) AddNode(n Node) {
 
 // AddEdge adds an edge from the first node to the second node. If the edge was already in the
 // graph, nothing changes.
-func (g Digraph[Node]) AddEdge(from, to Node) {
+func (g AdjDigraph[Node]) AddEdge(from, to Node) {
 	g.AddNode(from)
 	g.AddNode(to)
 	g[from].Add(to)
@@ -29,12 +78,12 @@ func (g Digraph[Node]) AddEdge(from, to Node) {
 
 // AddEdge removes any edge from the first node to the second node. If the edge already wasn't in
 // the graph, nothing changes.
-func (g Digraph[Node]) RemoveEdge(from, to Node) {
+func (g AdjDigraph[Node]) RemoveEdge(from, to Node) {
 	g[from].Remove(to)
 }
 
 // HasEdge checks whether an edge exists from the first node to the second node.
-func (g Digraph[Node]) HasEdge(from, to Node) bool {
+func (g AdjDigraph[Node]) HasEdge(from, to Node) bool {
 	targetNodes, ok := g[from]
 	if !ok {
 		return false
@@ -44,8 +93,8 @@ func (g Digraph[Node]) HasEdge(from, to Node) bool {
 
 // Invert converts a digraph of children pointing to parents into a new digraph of parents pointing
 // to children.
-func (g Digraph[Node]) Invert() Digraph[Node] {
-	inverted := make(Digraph[Node])
+func (g AdjDigraph[Node]) Invert() AdjDigraph[Node] {
+	inverted := make(AdjDigraph[Node])
 	for node := range g {
 		inverted.AddNode(node)
 	}
@@ -62,12 +111,12 @@ func (g Digraph[Node]) Invert() Digraph[Node] {
 // ComputeTransitiveClosure removes edges between every pair of nodes which are connected by some
 // other longer path of directed edges. For DAGs, this is just the transitive reduction of the
 // relation expressed by the digraph. Note: edges in any cycles will be kept.
-func (g Digraph[Node]) ComputeTransitiveReduction() (
-	tr Digraph[Node], tc TransitiveClosure[Node], cycles [][]Node,
+func (g AdjDigraph[Node]) ComputeTransitiveReduction() (
+	tr AdjDigraph[Node], tc TransitiveClosure[Node], cycles [][]Node,
 ) {
 	tc = g.ComputeTransitiveClosure()
 	cycles = tc.IdentifyCycles()
-	tr = make(Digraph[Node])
+	tr = make(AdjDigraph[Node])
 	for node := range g {
 		tr.AddNode(node)
 		for parent := range g[node] {
@@ -97,7 +146,7 @@ func (g Digraph[Node]) ComputeTransitiveReduction() (
 // by some path of directed edges. This is just the transitive closure of the relation expressed by
 // the digraph. Iff the digraph isn't a DAG (i.e. iff it has cycles), then each node in the cycle
 // will have an edge directed to itself.
-func (g Digraph[Node]) ComputeTransitiveClosure() TransitiveClosure[Node] {
+func (g AdjDigraph[Node]) ComputeTransitiveClosure() TransitiveClosure[Node] {
 	// Seed the transitive closure with the initial digraph
 	closure := make(TransitiveClosure[Node])
 	prevChangedNodes := make(map[Node]bool)
@@ -144,7 +193,8 @@ func (g Digraph[Node]) ComputeTransitiveClosure() TransitiveClosure[Node] {
 
 // Transitive closure
 
-type TransitiveClosure[Node comparable] Digraph[Node]
+// TransitiveClosure is a digraph's transitive closure, represented as an adjacency list.
+type TransitiveClosure[Node comparable] AdjDigraph[Node]
 
 // addNode adds the node to the graph. If the node was already in the graph, nothing changes.
 // This method is private because it should only be used to create a new TransitiveClosure, e.g. as

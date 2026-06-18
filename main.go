@@ -8,8 +8,8 @@ import (
 	"github.com/carlmjohnson/versioninfo"
 	"github.com/urfave/cli/v2"
 
-	"github.com/openUC2/optikit/cmd/optikit/dev"
-	"github.com/openUC2/optikit/internal/app/optikit"
+	"github.com/openUC2/optikit/cmd/dev"
+	"github.com/openUC2/optikit/internal/optikit"
 )
 
 func main() {

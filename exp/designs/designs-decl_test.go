@@ -13,13 +13,13 @@ import (
 )
 
 var loadDesignDeclTests = map[string][]error{
-	"example-microscope-1":                                    nil,
-	"example-microscope-1/subdesigns/flashlight":              nil,
-	"example-microscope-1/subdesigns/mounted-diagonal-mirror": nil,
-	"example-microscope-1/subdesigns/mounted-lens":            nil,
-	"example-microscope-1/subdesigns/mounted-slide-holder":    nil,
-	"example-microscope-1/subdesigns/projector-screen":        nil,
-	"example-invalid-1": {
+	"microscope-1":                                    nil,
+	"microscope-1/subdesigns/flashlight":              nil,
+	"microscope-1/subdesigns/mounted-diagonal-mirror": nil,
+	"microscope-1/subdesigns/mounted-lens":            nil,
+	"microscope-1/subdesigns/mounted-slide-holder":    nil,
+	"microscope-1/subdesigns/projector-screen":        nil,
+	"invalid-1": {
 		fmt.Errorf(
 			"invalid components spec: component light-source depends on nonexistent position anchor " +
 				"sample-holder",
@@ -33,13 +33,18 @@ func TestSetAdd(t *testing.T) {
 	if err != nil {
 		t.Error(err)
 	}
+	examplesRoot, err := os.OpenRoot(path.Join(path.Dir(path.Dir(cwd)), "examples"))
+	if err != nil {
+		t.Error(err)
+	}
+	examplesFS := fs.AttachPath(examplesRoot.FS(), cwd)
+
 	for p, errs := range loadDesignDeclTests {
 		t.Run(p, func(t *testing.T) {
 			t.Parallel()
 
 			t.Logf("load %s", p)
-			fsys := fs.AttachPath(os.DirFS(path.Join(cwd, p)), p)
-			designDecl, err := loadDesignDecl(fsys, DesignDeclFile)
+			designDecl, err := LoadDesignDecl(examplesFS, path.Join("designs", p, DesignDeclFile))
 			if err != nil {
 				t.Error(err)
 			}

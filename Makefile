@@ -80,7 +80,7 @@ release: install
 
 .PHONY: run
 run: ## go run
-	@go run -race ./cmd/optikit
+	@go run -race .
 
 .PHONY: go-clean
 go-clean: ## go clean build, test and modules caches

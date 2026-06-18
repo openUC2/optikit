@@ -9,7 +9,7 @@ before:
 
 builds:
 - id: optikit
-  main: ./cmd/optikit
+  main: .
   binary: optikit
   mod_timestamp: "{{ .CommitTimestamp }}"
   flags:

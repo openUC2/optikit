@@ -1,18 +1,21 @@
 package designs
 
 import (
+	"fmt"
 	"io/fs"
+	"math"
 
 	"github.com/goccy/go-yaml"
 	"github.com/pkg/errors"
 
 	ffs "github.com/openUC2/optikit/exp/fs"
+	"github.com/openUC2/optikit/exp/structures"
 )
 
 // DesignDeclFile is the name of the file defining each Optikit design.
 const DesignDeclFile = "optikit-design.yml"
 
-// A DesignDecl defines an Optikit design.
+// A DesignDecl declares an Optikit design.
 type DesignDecl struct {
 	// Optikit indicates that the design was written assuming the semantics of a given version
 	// of Optikit. The version must be a valid Optikit version, and it sets the minimum version of
@@ -37,7 +40,10 @@ type DesignSpec struct {
 	Tags []string `yaml:"tags,omitempty"`
 }
 
-type CompsSpec map[string]CompSpec
+type (
+	CompID    string
+	CompsSpec map[CompID]CompSpec
+)
 
 // CompSpec declares a component of an Optikit design.
 type CompSpec struct {
@@ -65,7 +71,7 @@ type CompGeomPositionSpec struct {
 	// Anchor is the ID of the component whose position will be the relative reference point for
 	// setting the position of the "target" component. If empty, it will be the origin of the overall
 	// design's coordinate axes.
-	Anchor string `yaml:"anchor,omitempty"`
+	Anchor CompID `yaml:"anchor,omitempty"`
 	// Units is the length unit for the offset. It can be `cm` or empty. If empty (i.e. unitless), it
 	// will be in UC2 grid units.
 	Units string `yaml:"units,omitempty"`
@@ -83,8 +89,8 @@ type Coordinates struct {
 
 // DesignDecl
 
-// loadDesignDecl loads a DesignDecl from the specified file path in the provided base filesystem.
-func loadDesignDecl(fsys ffs.PathedFS, filePath string) (DesignDecl, error) {
+// LoadDesignDecl loads a DesignDecl from the specified file path in the provided base filesystem.
+func LoadDesignDecl(fsys ffs.PathedFS, filePath string) (DesignDecl, error) {
 	bytes, err := fs.ReadFile(fsys, filePath)
 	if err != nil {
 		return DesignDecl{}, errors.Wrapf(
@@ -125,4 +131,40 @@ func (s CompsSpec) Check() (errs []error) {
 		}
 	}
 	return errs
+}
+
+// PositionDigraph returns a StrictEdgeDigraph of the position relationships between components.
+// It assumes that the CompsSpec does not have any errors such as a nonexistent position anchor
+// required by a CompGeomPositionSpec.
+func (s CompsSpec) PositionDigraph() structures.StrictEdgeDigraph[CompID, CompGeomPositionSpec] {
+	g := make(structures.StrictEdgeDigraph[CompID, CompGeomPositionSpec])
+	g.AddNode("") // origin
+	for compName, comp := range s {
+		g.AddNode(compName)
+		anchor := comp.Geometry.Position.Anchor
+		g.AddEdge(anchor, compName, comp.Geometry.Position)
+	}
+	return g
+}
+
+// CompGeomPositionSpec
+
+func (s CompGeomPositionSpec) String() string {
+	if s.Offset == (Coordinates{}) {
+		return ""
+	}
+
+	if s.Units == "" {
+		return fmt.Sprintf(
+			"(%d, %d, %d)",
+			int(math.Round(s.Offset.X)), int(math.Round(s.Offset.Y)), int(math.Round(s.Offset.Z)),
+		)
+	}
+	return fmt.Sprintf("%s %s", s.Offset, s.Units)
+}
+
+// Coordinates
+
+func (s Coordinates) String() string {
+	return fmt.Sprintf("(%.2f, %.2f, %.2f)", s.X, s.Y, s.Z)
 }
