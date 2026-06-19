@@ -12,7 +12,8 @@ components:
     design: /subdesigns/flashlight
     pose:
       rotation:
-        type: uc2
+        type: grid
+        grid: {z: +x, x: -z}
       translation:
         anchor: sample-holder
         offset-cm: {x: -8}
@@ -67,8 +68,8 @@ components:
     design: /subdesigns/projector-screen
     pose:
       rotation:
-        type: uc2
-        grid: {x: +y}
+        type: grid
+        grid: {z: -x, x: +z}
       translation:
         anchor: tube-lens
         offset-cm: {x: 10}
