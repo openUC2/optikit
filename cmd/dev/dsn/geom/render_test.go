@@ -9,7 +9,7 @@ import (
 )
 
 var renderDesignDeclTests = map[string][]error{
-	"microscope-1": nil,
+	"microscope-relative-translation-anchors": nil,
 }
 
 func TestRenderPositionGraph(t *testing.T) {

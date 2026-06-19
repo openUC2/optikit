@@ -191,7 +191,7 @@ func (g AdjDigraph[Node]) ComputeTransitiveClosure() TransitiveClosure[Node] {
 	}
 }
 
-// Transitive closure
+// TransitiveClosure
 
 // TransitiveClosure is a digraph's transitive closure, represented as an adjacency list.
 type TransitiveClosure[Node comparable] AdjDigraph[Node]

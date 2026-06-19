@@ -6,8 +6,10 @@ design:
 components:
   light-source:
     type: design
-    geometry:
-      position:
+    pose:
+      rotation:
+        type: grid
+      translation:
         anchor: sample-holder
         units: cm
         offset: {x: -8}

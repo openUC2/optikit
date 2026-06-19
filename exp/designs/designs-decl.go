@@ -1,12 +1,13 @@
 package designs
 
 import (
+	"cmp"
 	"fmt"
 	"io/fs"
-	"math"
 
 	"github.com/goccy/go-yaml"
 	"github.com/pkg/errors"
+	"github.com/ungerik/go3d/float64/mat4"
 
 	ffs "github.com/openUC2/optikit/exp/fs"
 	"github.com/openUC2/optikit/exp/structures"
@@ -53,38 +54,66 @@ type CompSpec struct {
 	// specified as an absolute path, then it will be relative to the root directory of the Optikits
 	// design.
 	Design string `yaml:"design,omitempty"`
-	// Geometry declares the geometry of the component.
-	Geometry CompGeomSpec `yaml:"geometry,omitempty"`
+	// Pose declares the geometry of the component.
+	Pose CompPoseSpec `yaml:"pose,omitempty"`
 	// Tags is a list of human-readable string tags for describing the component to software.
 	Tags []string `yaml:"tags,omitempty"`
 }
 
-// CompGeomSpec defines declares a Optikit design's component's geometry.
-type CompGeomSpec struct {
-	// Position declares the position of the component.
-	Position CompGeomPositionSpec `yaml:"position,omitempty"`
+// CompPoseSpec defines declares a Optikit design's component's geometry.
+// A zero value indicates that the component has no geometric pose.
+type CompPoseSpec struct {
+	// Rotation declares the orientation of the component as a rotation.
+	Rotation CompPoseRotSpec `yaml:"rotation,omitempty"`
+	// Translation declares the position of the component as a linear translation.
+	Translation CompPoseTranslSpec `yaml:"translation,omitempty"`
 }
 
-// CompGeomPositionSpec declares the position of the component as an offset relative to an
-// "anchor" component, as an x-y-z offset along the design's coordinate axes.
-type CompGeomPositionSpec struct {
-	// Anchor is the ID of the component whose position will be the relative reference point for
-	// setting the position of the "target" component. If empty, it will be the origin of the overall
-	// design's coordinate axes.
+// CompPoseRotSpec declares the orientation of the component as a rotation relative to the overall
+// design's orientation.
+type CompPoseRotSpec struct {
+	// Type is the type of orientation of the component. It can be either `` (implying a component
+	// without any spatial geometry), `uc2` (implying a UC2 cube), or `grid` (for any orientation
+	// aligned with the design's axes, even if violating UC2 cube orientation constraints).
+	// If the type is uc2, then Grid.Z is only allowed to be +z or -z, and Grid.X is not allowed to
+	// be +z or -z.
+	Type string `yaml:"type"`
+	// Grid declares the orientation parameters of the component if its rotation type is `uc2` or
+	// `grid`.
+	Grid CompPoseRotGridSpec `yaml:"grid,omitempty"`
+}
+
+const (
+	RotTypeUC2  = "uc2"
+	RotTypeGrid = "grid"
+)
+
+// CompPoseRotGridSpec specifies the component's orientation relative to the design's orientation by
+// two discrete parameters: the orientation of the component's z-axis, and the orientation of the
+// component's x-axis.
+// The component's y-axis is derived from the component's x- and z-axes via the right-hand rule.
+type CompPoseRotGridSpec struct {
+	// Z specifies the axis of the design's coordinate system which the component's coordinate
+	// system's +z direction should point in. The zero value is interpreted as +z.
+	Z string `yaml:"z,omitempty"`
+	// X specifies the axis of the design's coordinate system which the component's coordinate
+	// system's +x direction should point in. The zero value is interpreted as +x.
+	X string `yaml:"x,omitempty"`
+}
+
+// CompPoseTranslSpec declares the position of the component as linear translation relative to an
+// "anchor" component, as an x-y-z offset along the overall design's coordinate axes.
+type CompPoseTranslSpec struct {
+	// Anchor is the ID of the component whose position will be linearly translated by the specified
+	// offsets in order to determine the position of this component.
+	// If empty, it will be the origin of the overall design's coordinate axes.
 	Anchor CompID `yaml:"anchor,omitempty"`
-	// Units is the length unit for the offset. It can be `cm` or empty. If empty (i.e. unitless), it
-	// will be in UC2 grid units.
-	Units string `yaml:"units,omitempty"`
-	// Offset is the difference between the component's position and the anchor's position, in the
-	// specified units.
-	Offset Coordinates `yaml:"offset,omitempty"`
-}
-
-// Coordinates is a 3-component vector in an X-Y-Z coordinate system.
-type Coordinates struct {
-	X float64 `yaml:"x,omitempty"`
-	Y float64 `yaml:"y,omitempty"`
-	Z float64 `yaml:"z,omitempty"`
+	// OffsetGrid is an offset from the anchor's position towards the component's position, in the
+	// design's coordinate axes.
+	OffsetGrid DiscreteXYZ[int] `yaml:"offset-grid,omitempty"`
+	// OffsetCM is an additional offset from the anchor's position towards the component's position,
+	// in centimeters, after first applying the grid offset.
+	OffsetCM ContinuousXYZ[float64] `yaml:"offset-cm,omitempty"`
 }
 
 // DesignDecl
@@ -123,48 +152,109 @@ func (s DesignSpec) Check() (errs []error) {
 // Check looks for errors in the construction of the components spec.
 func (s CompsSpec) Check() (errs []error) {
 	for id, component := range s {
-		anchor := component.Geometry.Position.Anchor
+		anchor := component.Pose.Translation.Anchor
 		if _, exists := s[anchor]; anchor != "" && !exists {
 			errs = append(errs, errors.Errorf(
-				"component %s depends on nonexistent position anchor %s", id, anchor,
+				"component %s depends on nonexistent translation anchor %s", id, anchor,
 			))
 		}
 	}
 	return errs
 }
 
-// PositionDigraph returns a StrictEdgeDigraph of the position relationships between components.
-// It assumes that the CompsSpec does not have any errors such as a nonexistent position anchor
-// required by a CompGeomPositionSpec.
-func (s CompsSpec) PositionDigraph() structures.StrictEdgeDigraph[CompID, CompGeomPositionSpec] {
-	g := make(structures.StrictEdgeDigraph[CompID, CompGeomPositionSpec])
+// TranslDigraph returns a StrictEdgeDigraph of the translation relationships between components.
+// It assumes that the CompsSpec does not have any errors such as a nonexistent translation anchor
+// required by a CompPosesTranslSpec.
+func (s CompsSpec) TranslDigraph() structures.StrictEdgeDigraph[CompID, CompPoseTranslSpec] {
+	g := make(structures.StrictEdgeDigraph[CompID, CompPoseTranslSpec])
 	g.AddNode("") // origin
 	for compName, comp := range s {
 		g.AddNode(compName)
-		anchor := comp.Geometry.Position.Anchor
-		g.AddEdge(anchor, compName, comp.Geometry.Position)
+		anchor := comp.Pose.Translation.Anchor
+		g.AddEdge(anchor, compName, comp.Pose.Translation)
 	}
 	return g
 }
 
-// CompGeomPositionSpec
+// CompPoseSpec
 
-func (s CompGeomPositionSpec) String() string {
-	if s.Offset == (Coordinates{}) {
+// TransfMat returns a homogeneous affine transformation matrix representing the pose of the
+// component relative to the frame of the overall design, but only if everything is specified with
+// the overall design's coordinate system as the anchor. If anything else is the anchor, then this
+// method returns an error instead.
+// This is the matrix H^a_b for homogeneous pose vectors p^a_h and p^b_h, which are homogeneous
+// representations of vectors p^a and p^b, where p^b is in the frame of the component and p^b is in
+// the frame of the overall design. In other words, this matrix can be multiplied with a point in
+// the frame of the component to get the position of that point in the frame of the overall design.
+func (s CompPoseSpec) TransfMat() error {
+	return errors.New("unimplemented!")
+}
+
+// CompPoseRotSpec
+
+// Check looks for errors in the construction of the component orientation spec.
+func (s CompPoseRotSpec) Check() (errs []error) {
+	switch s.Type {
+	default:
+		return []error{errors.Errorf("invalid rotation type: %s", s.Type)}
+	case "":
+		return nil
+	case RotTypeUC2:
+		switch s.Grid.Z {
+		case "", DirZPos, DirZNeg:
+		default:
+			errs = append(errs, errors.Errorf("invalid value for component's z-axis: %s", s.Grid.Z))
+		}
+		switch s.Grid.X {
+		case "", DirXPos, DirYPos, DirXNeg, DirYNeg:
+		default:
+			errs = append(errs, errors.Errorf("invalid value for component's x-axis: %s", s.Grid.X))
+		}
+		return append(errs, s.Grid.Check()...)
+	case RotTypeGrid:
+		return s.Grid.Check()
+	}
+}
+
+// CompPoseRotGridSpec
+
+func (s CompPoseRotGridSpec) Check() (errs []error) {
+	if s.Z[1] == s.X[1] {
+		errs = append(errs, errors.Errorf("component's z and x axes are coaxial: z=%s, x=%s", s.Z, s.X))
+	}
+	return errs
+}
+
+// TransfMat returns a homogeneous transformation matrix representing the orientation of the
+// component relative to the frame of the design. If the rotation type is empty, then it'll return
+// a zero matrix; otherwise, it assumes that the component orientation spec is valid.
+// The first column is the component's x-axis, represented in the coordinate system of the overall
+// design. The second and third columns are the y- and z-axes, respectively.
+func (s CompPoseRotSpec) TransfMat() mat4.T {
+	switch s.Type {
+	default:
+		return mat4.T{}
+	case RotTypeUC2, RotTypeGrid:
+		return GridRotMats[cmp.Or(s.Grid.Z, DirZPos)][cmp.Or(s.Grid.X, DirXPos)]
+	}
+}
+
+// CompPoseTranslSpec
+
+func (s CompPoseTranslSpec) String() string {
+	switch {
+	case s.OffsetGrid == gridZero && s.OffsetCM == cmZero:
 		return ""
+	case s.OffsetGrid == gridZero:
+		return fmt.Sprintf("%s cm", s.OffsetCM.String())
+	case s.OffsetCM == cmZero:
+		return s.OffsetGrid.String()
+	default:
+		return fmt.Sprintf("%s + %s cm", s.OffsetGrid.String(), s.OffsetCM.String())
 	}
-
-	if s.Units == "" {
-		return fmt.Sprintf(
-			"(%d, %d, %d)",
-			int(math.Round(s.Offset.X)), int(math.Round(s.Offset.Y)), int(math.Round(s.Offset.Z)),
-		)
-	}
-	return fmt.Sprintf("%s %s", s.Offset, s.Units)
 }
 
-// Coordinates
-
-func (s Coordinates) String() string {
-	return fmt.Sprintf("(%.2f, %.2f, %.2f)", s.X, s.Y, s.Z)
-}
+var (
+	gridZero DiscreteXYZ[int]
+	cmZero   ContinuousXYZ[float64]
+)

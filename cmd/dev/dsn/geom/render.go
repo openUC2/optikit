@@ -61,7 +61,7 @@ func renderPositionGraph(
 	}()
 
 	gg := make(structures.StrictEdgeDigraph[string, string])
-	for fromID, from := range designDecl.Components.PositionDigraph() {
+	for fromID, from := range designDecl.Components.TranslDigraph() {
 		gg.AddNode(string(fromID))
 		for toID, edge := range from {
 			gg.AddEdge(string(fromID), string(toID), edge.String())
