@@ -31,7 +31,7 @@ components:
         type: uc2
         grid: {x: -y}
       translation:
-        offset:-grid {x: 1}
+        offset-grid: {x: 1}
   periscope-mirror-1:
     type: design
     design: /subdesigns/mounted-diagonal-mirror
