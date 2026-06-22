@@ -2,7 +2,7 @@
 package geom
 
 import (
-	"github.com/urfave/cli/v2"
+	"github.com/urfave/cli/v3"
 
 	"github.com/openUC2/optikit/internal/optikit"
 )
@@ -12,7 +12,7 @@ func MakeCmd(_ optikit.Versions) *cli.Command {
 		Name:    "geom",
 		Aliases: []string{"geometry"},
 		Usage:   "Facilitates development and maintenance of the design's geometry",
-		Subcommands: []*cli.Command{
+		Commands: []*cli.Command{
 			{
 				Name:      "render-pos-g",
 				Aliases:   []string{"render-positions-graph"},

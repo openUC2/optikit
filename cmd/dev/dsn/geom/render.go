@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/urfave/cli/v2"
+	"github.com/urfave/cli/v3"
 
 	"github.com/openUC2/optikit/exp/designs"
 	"github.com/openUC2/optikit/exp/fs"
@@ -14,13 +14,13 @@ import (
 	"github.com/openUC2/optikit/internal/clients/graphviz"
 )
 
-func renderPosGA(c *cli.Context) (err error) {
+func renderPosGA(ctx context.Context, c *cli.Command) (err error) {
 	designDecl, err := loadDesignDecl(c.String("cwd"))
 	if err != nil {
 		return err
 	}
 
-	result, err := renderPositionGraph(c.Context, designDecl, c.String("format"))
+	result, err := renderPositionGraph(ctx, designDecl, c.String("format"))
 	if err != nil {
 		return err
 	}

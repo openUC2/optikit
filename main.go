@@ -1,19 +1,20 @@
 package main
 
 import (
+	"context"
 	"log"
 	"os"
 	"runtime/debug"
 
 	"github.com/carlmjohnson/versioninfo"
-	"github.com/urfave/cli/v2"
+	"github.com/urfave/cli/v3"
 
 	"github.com/openUC2/optikit/cmd/dev"
 	"github.com/openUC2/optikit/internal/optikit"
 )
 
 func main() {
-	if err := app.Run(os.Args); err != nil {
+	if err := app.Run(context.Background(), os.Args); err != nil {
 		log.Fatal(err)
 	}
 }
@@ -25,7 +26,7 @@ var ocliVersions optikit.Versions = optikit.Versions{
 	MinSupportedDesign: dsnMinVersion,
 }
 
-var app = &cli.App{
+var app = &cli.Command{
 	Name:    "optikit",
 	Version: toolVersion,
 	Usage:   "Manages pallets and package deployments",
@@ -38,23 +39,24 @@ var app = &cli.App{
 			Aliases: []string{"ws"},
 			Value:   defaultWorkspaceBase,
 			Usage:   "Path of the optikit workspace",
-			EnvVars: []string{"OPTIKIT_WORKSPACE"},
+			Sources: cli.EnvVars("OPTIKIT_WORKSPACE"),
 		},
 		&cli.BoolFlag{
 			Name:    "ignore-tool-version",
 			Value:   false,
 			Usage:   "Ignore the version of the optikit tool in version compatibility checks",
-			EnvVars: []string{"OPTIKIT_IGNORE_TOOL_VERSION"},
+			Sources: cli.EnvVars("OPTIKIT_IGNORE_TOOL_VERSION"),
 		},
 		&cli.BoolFlag{
 			Name:  "parallel",
 			Value: true,
 			Usage: "Allow parallel execution of I/O-bound tasks, such as downloading container images " +
 				"or starting containers",
-			EnvVars: []string{"OPTIKIT_PARALLEL"},
+			Sources: cli.EnvVars("OPTIKIT_PARALLEL"),
 		},
 	},
-	Suggest: true,
+	EnableShellCompletion: true,
+	Suggest:               true,
 }
 
 // Versioning

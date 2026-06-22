@@ -4,7 +4,7 @@ package dev
 import (
 	"os"
 
-	"github.com/urfave/cli/v2"
+	"github.com/urfave/cli/v3"
 
 	"github.com/openUC2/optikit/cmd/dev/dsn"
 	"github.com/openUC2/optikit/internal/optikit"
@@ -17,7 +17,7 @@ func MakeCmd(versions optikit.Versions) *cli.Command {
 		Name:    "dev",
 		Aliases: []string{"development"},
 		Usage:   "Facilitates development and maintenance in the current working directory",
-		Subcommands: []*cli.Command{
+		Commands: []*cli.Command{
 			dsn.MakeCmd(versions),
 		},
 		Flags: []cli.Flag{
@@ -25,7 +25,7 @@ func MakeCmd(versions optikit.Versions) *cli.Command {
 				Name:    "cwd",
 				Value:   defaultWorkingDir,
 				Usage:   "Path of the current working directory",
-				EnvVars: []string{"OPTIKIT_CWD"},
+				Sources: cli.EnvVars("OPTIKIT_CWD"),
 			},
 		},
 	}
