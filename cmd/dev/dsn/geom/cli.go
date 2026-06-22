@@ -16,7 +16,7 @@ func MakeCmd(_ optikit.Versions) *cli.Command {
 			{
 				Name:      "render-pos-g",
 				Aliases:   []string{"render-positions-graph"},
-				Usage:     "Render the a graph of the position relationships between components",
+				Usage:     "Render a graph of the position relationships between the components",
 				ArgsUsage: "output_file",
 				Flags: []cli.Flag{
 					&cli.StringFlag{
@@ -26,6 +26,13 @@ func MakeCmd(_ optikit.Versions) *cli.Command {
 					},
 				},
 				Action: renderPosGA,
+			},
+			{
+				Name:      "render-pos-p",
+				Aliases:   []string{"render-positions-plot"},
+				Usage:     "Render a scatterplot of the positions of the components, into an HTML file",
+				ArgsUsage: "output_file",
+				Action:    renderPosPA,
 			},
 		},
 	}

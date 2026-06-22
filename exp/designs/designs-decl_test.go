@@ -22,6 +22,7 @@ var loadDesignDeclTests = map[string][]error{
 	"subdesigns/projector-screen":             nil,
 	"microscope-relative-translation-anchors": nil,
 	"microscope-absolute-translation-anchors": nil,
+	"microscope-3d":                           nil,
 	"invalid-missing-translation-anchor": {
 		errors.New(
 			"invalid components spec: component light-source depends on nonexistent translation anchor " +
@@ -72,6 +73,7 @@ func renderErrors(errs []error) string {
 // CompsSpec
 
 var designFlattenTests = map[string]string{
+	"microscope-absolute-translation-anchors": "microscope-absolute-translation-anchors",
 	"microscope-relative-translation-anchors": "microscope-absolute-translation-anchors",
 }
 

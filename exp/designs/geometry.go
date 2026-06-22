@@ -22,6 +22,14 @@ type ContinuousXYZ[Number ~float32 | ~float64] struct {
 	Z Number `yaml:"z,omitempty"`
 }
 
+// UC2GridSpacings indicates the distance between the center of each UC2 grid space along each axis,
+// in units of centimeters.
+var UC2GridSpacings = ContinuousXYZ[float64]{
+	X: 5,   //nolint:mnd
+	Y: 5,   //nolint:mnd
+	Z: 5.5, //nolint:mnd
+}
+
 const (
 	DirXPos = "+x"
 	DirXNeg = "-x"

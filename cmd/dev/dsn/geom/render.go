@@ -11,6 +11,7 @@ import (
 	"github.com/openUC2/optikit/exp/designs"
 	"github.com/openUC2/optikit/exp/fs"
 	"github.com/openUC2/optikit/exp/structures"
+	"github.com/openUC2/optikit/internal/clients/echarts"
 	"github.com/openUC2/optikit/internal/clients/graphviz"
 )
 
@@ -86,4 +87,39 @@ func renderPositionGraph(
 		}
 	}
 	return result, nil
+}
+
+func renderPosPA(ctx context.Context, c *cli.Command) (err error) {
+	designDecl, err := loadDesignDecl(c.String("cwd"))
+	if err != nil {
+		return err
+	}
+
+	result, err := renderPositionPlot(designDecl)
+	if err != nil {
+		return err
+	}
+
+	outputPath := c.Args().First()
+	if outputPath == "" {
+		fmt.Println(string(result))
+		return nil
+	}
+	const perms = 0o644
+	return os.WriteFile(outputPath, result, perms)
+}
+
+func renderPositionPlot(designDecl designs.DesignDecl) ([]byte, error) {
+	c := echarts.NewChart3D()
+
+	for id, cdecl := range designDecl.Components.Flattened() {
+		mat, err := cdecl.Pose.TransfMat(designs.UC2GridSpacings)
+		if err != nil {
+			return nil, err
+		}
+		c.AddObject(string(id), mat, designs.UC2GridSpacings.X/2) //nolint:mnd
+	}
+	c.MakeAxesIsometric()
+
+	return c.Render(), nil
 }

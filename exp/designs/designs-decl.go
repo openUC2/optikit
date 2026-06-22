@@ -185,7 +185,7 @@ func (s CompsSpec) TranslDigraph() TranslDigraph {
 		anchor := comp.Pose.Translation.Anchor
 		g.AddEdge(anchor, compName, comp.Pose.Translation)
 	}
-	return TranslDigraph(g)
+	return g
 }
 
 // Flattened returns a new CompsSpec in which each non-origin component's translation anchor is just

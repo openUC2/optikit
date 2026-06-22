@@ -5,6 +5,7 @@ go 1.26.3
 require (
 	github.com/bmatcuk/doublestar/v4 v4.9.1
 	github.com/carlmjohnson/versioninfo v0.22.5
+	github.com/go-echarts/go-echarts/v2 v2.7.2
 	github.com/goccy/go-graphviz v0.2.10
 	github.com/goccy/go-yaml v1.19.2
 	github.com/google/go-cmp v0.7.0
