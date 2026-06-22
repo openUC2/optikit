@@ -12,6 +12,8 @@ import (
 	"github.com/openUC2/optikit/exp/fs"
 )
 
+// Design Decl
+
 var loadDesignDeclTests = map[string][]error{
 	"subdesigns/flashlight":                   nil,
 	"subdesigns/mounted-diagonal-mirror":      nil,
@@ -28,7 +30,7 @@ var loadDesignDeclTests = map[string][]error{
 	},
 }
 
-func TestSetAdd(t *testing.T) {
+func TestDesignDecls(t *testing.T) {
 	t.Parallel()
 	cwd, err := os.Getwd()
 	if err != nil {
@@ -66,6 +68,50 @@ func renderErrors(errs []error) string {
 	}
 	return fmt.Sprintf("%s", errors.Join(errs...))
 }
+
+// CompsSpec
+
+var designFlattenTests = map[string]string{
+	"microscope-relative-translation-anchors": "microscope-absolute-translation-anchors",
+}
+
+func TestDesignFlatten(t *testing.T) {
+	t.Parallel()
+	cwd, err := os.Getwd()
+	if err != nil {
+		t.Error(err)
+	}
+	examplesRoot, err := os.OpenRoot(path.Join(path.Dir(path.Dir(cwd)), "examples"))
+	if err != nil {
+		t.Error(err)
+	}
+	examplesFS := fs.AttachPath(examplesRoot.FS(), cwd)
+
+	for in, out := range designFlattenTests {
+		t.Run(in, func(t *testing.T) {
+			t.Parallel()
+
+			t.Logf("load %s", in)
+			inDecl, err := LoadDesignDecl(examplesFS, path.Join("designs", in, DesignDeclFile))
+			if err != nil {
+				t.Error(err)
+			}
+
+			t.Logf("load %s", out)
+			outDecl, err := LoadDesignDecl(examplesFS, path.Join("designs", out, DesignDeclFile))
+			if err != nil {
+				t.Error(err)
+			}
+
+			t.Logf("check %s", in)
+			if got, want := inDecl.Components.Flattened(), outDecl.Components; !cmp.Equal(got, want) {
+				t.Errorf("diff (-want +got):\n%+v", cmp.Diff(want, got))
+			}
+		})
+	}
+}
+
+// CompPoseRotSpec
 
 var compPoseRotUC2Tests = []struct {
 	in   CompPoseRotSpec

@@ -228,6 +228,22 @@ func (s DiscreteXYZ[Number]) String() string {
 	}
 }
 
+func (s DiscreteXYZ[Number]) AsCM(gridSpacings ContinuousXYZ[float64]) ContinuousXYZ[float64] {
+	return ContinuousXYZ[float64]{
+		X: float64(s.X) * gridSpacings.X,
+		Y: float64(s.Y) * gridSpacings.Y,
+		Z: float64(s.Z) * gridSpacings.Z,
+	}
+}
+
+func (s DiscreteXYZ[Number]) Added(t DiscreteXYZ[Number]) DiscreteXYZ[Number] {
+	return DiscreteXYZ[Number]{
+		X: s.X + t.X,
+		Y: s.Y + t.Y,
+		Z: s.Z + t.Z,
+	}
+}
+
 // ContinuousXYZ
 
 func (s ContinuousXYZ[Number]) String() string {
@@ -240,5 +256,17 @@ func (s ContinuousXYZ[Number]) String() string {
 		return fmt.Sprintf("[z%+.2f]", s.Z)
 	default:
 		return fmt.Sprintf("+[%.2f %.2f %.2f]", s.X, s.Y, s.Z)
+	}
+}
+
+func (s ContinuousXYZ[Number]) AsVec3() vec3.T {
+	return vec3.T{float64(s.X), float64(s.Y), float64(s.Z)}
+}
+
+func (s ContinuousXYZ[Number]) Added(t ContinuousXYZ[Number]) ContinuousXYZ[Number] {
+	return ContinuousXYZ[Number]{
+		X: s.X + t.X,
+		Y: s.Y + t.Y,
+		Z: s.Z + t.Z,
 	}
 }

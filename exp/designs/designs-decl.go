@@ -8,6 +8,7 @@ import (
 	"github.com/goccy/go-yaml"
 	"github.com/pkg/errors"
 	"github.com/ungerik/go3d/float64/mat4"
+	"github.com/ungerik/go3d/float64/vec3"
 
 	ffs "github.com/openUC2/optikit/exp/fs"
 	"github.com/openUC2/optikit/exp/structures"
@@ -162,32 +163,76 @@ func (s CompsSpec) Check() (errs []error) {
 	return errs
 }
 
+// Poses returns a map from component IDs to their poses.
+func (s CompsSpec) Poses() map[CompID]CompPoseSpec {
+	poses := make(map[CompID]CompPoseSpec)
+	for id, component := range s {
+		poses[id] = component.Pose
+	}
+	return poses
+}
+
+type TranslDigraph = structures.StrictEdgeDigraph[CompID, CompPoseTranslSpec]
+
 // TranslDigraph returns a StrictEdgeDigraph of the translation relationships between components.
 // It assumes that the CompsSpec does not have any errors such as a nonexistent translation anchor
 // required by a CompPosesTranslSpec.
-func (s CompsSpec) TranslDigraph() structures.StrictEdgeDigraph[CompID, CompPoseTranslSpec] {
-	g := make(structures.StrictEdgeDigraph[CompID, CompPoseTranslSpec])
+func (s CompsSpec) TranslDigraph() TranslDigraph {
+	g := make(TranslDigraph)
 	g.AddNode("") // origin
 	for compName, comp := range s {
 		g.AddNode(compName)
 		anchor := comp.Pose.Translation.Anchor
 		g.AddEdge(anchor, compName, comp.Pose.Translation)
 	}
-	return g
+	return TranslDigraph(g)
+}
+
+// Flattened returns a new CompsSpec in which each non-origin component's translation anchor is just
+// the root (origin) node.
+// It assumes that the CompsSpec does not have any errors such as a nonexistent translation anchor
+// required by a CompPosesTranslSpec.
+func (s CompsSpec) Flattened() CompsSpec {
+	flattened := make(CompsSpec)
+	g := s.TranslDigraph()
+	nextParents := make([]CompID, 0, len(g))
+	nextParents = append(nextParents, "") // add the root node
+	for len(nextParents) > 0 {
+		parent := nextParents[0]
+		parentPos := flattened[parent].Pose.Translation
+		nextParents = nextParents[1:]
+		for child := range g[parent] {
+			nextParents = append(nextParents, child)
+			c := s[child]
+			c.Pose.Translation = c.Pose.Translation.Added(parentPos)
+			c.Pose.Translation.Anchor = ""
+			flattened[child] = c
+		}
+	}
+	return flattened
 }
 
 // CompPoseSpec
 
 // TransfMat returns a homogeneous affine transformation matrix representing the pose of the
-// component relative to the frame of the overall design, but only if everything is specified with
-// the overall design's coordinate system as the anchor. If anything else is the anchor, then this
-// method returns an error instead.
+// component relative to the frame of the overall design, but only if the pose's translation is
+// specified with the overall design's coordinate system's origin as the anchor. If anything else is
+// the anchor, then this method returns an error instead.
+// The translation component of the matrix is in cm.
 // This is the matrix H^a_b for homogeneous pose vectors p^a_h and p^b_h, which are homogeneous
 // representations of vectors p^a and p^b, where p^b is in the frame of the component and p^b is in
 // the frame of the overall design. In other words, this matrix can be multiplied with a point in
 // the frame of the component to get the position of that point in the frame of the overall design.
-func (s CompPoseSpec) TransfMat() error {
-	return errors.New("unimplemented!")
+func (s CompPoseSpec) TransfMat(gridSpacings ContinuousXYZ[float64]) (mat4.T, error) {
+	if s.Translation.Anchor != "" {
+		return mat4.Zero, errors.New("translation anchor is not the overall design's origin!")
+	}
+	m := s.Rotation.TransfMat()
+	offsetGrid := s.Translation.OffsetGrid.AsCM(gridSpacings).AsVec3()
+	offsetCM := s.Translation.OffsetCM.AsVec3()
+	translation := vec3.Add(&offsetGrid, &offsetCM)
+	m.SetTranslation(&translation)
+	return m, nil
 }
 
 // CompPoseRotSpec
@@ -258,3 +303,11 @@ var (
 	gridZero DiscreteXYZ[int]
 	cmZero   ContinuousXYZ[float64]
 )
+
+func (s CompPoseTranslSpec) Added(t CompPoseTranslSpec) CompPoseTranslSpec {
+	return CompPoseTranslSpec{
+		Anchor:     s.Anchor,
+		OffsetGrid: s.OffsetGrid.Added(t.OffsetGrid),
+		OffsetCM:   s.OffsetCM.Added(t.OffsetCM),
+	}
+}
