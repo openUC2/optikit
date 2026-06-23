@@ -7,3 +7,29 @@ design:
     - mirror
     - mirror/single-sided
     - mirror/flat
+
+components:
+  skeleton:
+    type: design
+    design: ./subdesigns/cube-skeleton
+
+variants:
+  xy:
+    description: Normal vector of mirror surface in the x-y plane
+    components:
+      insert:
+        type: primitive
+        model: SUB - 0022 - MIR45TH2 - virt ass.stp
+        pose:
+          rotation:
+            type: grid
+  z:
+    description: Normal vector of mirror surface in the y-z plane
+    components:
+      insert:
+        type: primitive
+        model: SUB - 0022 - MIR45TH2 - virt ass.stp
+        pose:
+          rotation:
+            type: grid
+            grid: {z: +y}

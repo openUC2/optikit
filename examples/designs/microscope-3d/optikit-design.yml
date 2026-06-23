@@ -20,6 +20,8 @@ components:
   sample-holder:
     type: design
     design: /subdesigns/mounted-slide-holder
+    instantiation:
+      variant: x
     pose:
       rotation:
         type: uc2
@@ -27,6 +29,8 @@ components:
   objective-lens:
     type: design
     design: /subdesigns/mounted-lens
+    instantiation:
+      variant: x
     pose:
       rotation:
         type: uc2
@@ -37,6 +41,8 @@ components:
   periscope-mirror-1:
     type: design
     design: /subdesigns/mounted-diagonal-mirror
+    instantiation:
+      variant: z
     pose:
       rotation:
         type: uc2
@@ -46,6 +52,8 @@ components:
   periscope-mirror-2:
     type: design
     design: /subdesigns/mounted-diagonal-mirror
+    instantiation:
+      variant: z
     pose:
       rotation:
         type: uc2
@@ -56,10 +64,11 @@ components:
   tube-lens:
     type: design
     design: /subdesigns/mounted-lens
+    instantiation:
+      variant: z
     pose:
       rotation:
         type: uc2
-        grid: {x: -y}
       translation:
         anchor: periscope-mirror-2
         offset-grid: {z: 3}
@@ -69,7 +78,6 @@ components:
     pose:
       rotation:
         type: grid
-        grid: {z: -x, x: +z}
       translation:
         anchor: tube-lens
         offset-cm: {z: 10}

@@ -1,0 +1,19 @@
+optikit-version: v0.0.0-alpha.1
+
+design:
+  description: A two-piece injection-molded cube-shaped UC2 module skeleton
+
+  components:
+    lower-half:
+      type: primitive
+      model: PRT - 1003 - CUBHLF111 - V04.stp
+      pose:
+        rotation:
+          type: grid
+    upper-half:
+      type: primitive
+      model: PRT - 1003 - CUBHLF111 - V04.stp
+      pose:
+        rotation:
+          type: grid
+          grid: {z: -z}
