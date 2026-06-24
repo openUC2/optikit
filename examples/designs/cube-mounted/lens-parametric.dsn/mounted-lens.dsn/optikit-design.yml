@@ -1,0 +1,34 @@
+optikit-version: v0.0.0-alpha.1
+
+design:
+  description: A parameterized lens mounted on a procedurally-generated insert
+  tags:
+    - cube-mounted
+    - lens
+    - lens/convex
+
+components:
+  lens:
+    type: design
+    design: ./lens.dsn
+    instantiation:
+      optiland-model: '{{get inputs "lens-model"}}'
+    pose:
+      rotation:
+        type: grid
+      translation:
+        # TODO: do we need any offset-mm?
+  insert:
+    type: computed-primitive
+    computation:
+      function: ./compute-insert-geometry.py
+      inputs:
+        lens: '{{get inputs "lens-model"}}'
+        # TODO: do we need to specify notched vs. unnotched?
+    pose:
+      rotation:
+        type: grid
+
+inputs:
+  lens-model:
+    type: string

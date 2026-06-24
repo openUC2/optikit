@@ -1,0 +1,30 @@
+optikit-version: v0.0.0-alpha.1
+
+design:
+  description: A parameterized lens mounted on a procedurally-generated insert
+  tags:
+    - cube-mounted
+    - lens
+    - lens/convex
+
+components:
+  optical:
+    type: primitive
+    model: '{{get inputs "optiland-model"}}'
+    pose:
+      rotation:
+        type: grid
+      translation:
+  mechanical:
+    type: computed-primitive
+    computation:
+      function: ./compute-geometry.py
+      inputs:
+        lens: '{{get inputs "optiland-model"}}'
+    pose:
+      rotation:
+        type: grid
+
+inputs:
+  optiland-model:
+    type: string

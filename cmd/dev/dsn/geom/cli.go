@@ -12,6 +12,12 @@ func MakeCmd(_ optikit.Versions) *cli.Command {
 		Name:    "geom",
 		Aliases: []string{"geometry"},
 		Usage:   "Facilitates development and maintenance of the design's geometry",
+		Flags: []cli.Flag{
+			&cli.StringFlag{
+				Name:  "variant",
+				Usage: "Select design variant",
+			},
+		},
 		Commands: []*cli.Command{
 			{
 				Name:      "render-pos-g",

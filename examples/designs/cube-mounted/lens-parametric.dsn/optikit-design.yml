@@ -1,0 +1,103 @@
+optikit-version: v0.0.0-alpha.1
+
+design:
+  description: A parameterized lens mounted in a cube
+  tags:
+    - cube-mounted
+    - lens
+    - lens/convex
+
+components:
+  skeleton:
+    type: design
+    design: ./primitives/cube-skeleton.dsn
+    pose:
+      rotation:
+        type: grid
+  mounted-lens:
+    type: design
+    design: ./mounted-lens.dsn
+    instantiation:
+      lens: '{{get inputs "lens"}}'
+    pose:
+      rotation:
+        type: grid
+      translation:
+        offset-mm:
+          lens-offset-x: '{{get inputs "lens-offset-x"}}'
+          lens-offset-y: '{{get inputs "lens-offset-y"}}'
+          lens-offset-z: '{{get inputs "lens-offset-z"}}'
+
+inputs:
+  lens:
+    type: string
+  lens-offset-x:
+    type: mm
+    range:
+      min: -40
+      max: 40
+  lens-offset-y:
+    type: mm
+    range:
+      min: -40
+      max: 40
+  lens-offset-z:
+    type: mm
+    range:
+      min: -40
+      max: 40
+
+variants:
+  z:
+    description: Normal vector of lens is z-axis
+    components:
+      mounted-lens:
+  y:
+    description: Normal vector of lens is y-axis; position is discretized.
+    components:
+      mounted-lens:
+        pose:
+          rotation:
+            grid: {z: +y}
+  x:
+    description: Normal vector of lens is x-axis
+    components:
+      mounted-lens:
+        pose:
+          rotation:
+            grid: {z: +x, x: -z}
+  axis:
+    description: Normal vector of lens is some other axis
+    components:
+      mounted-lens:
+        pose:
+          rotation:
+            type: z-spherical
+            z-spherical:
+              # Lens's normal vector (its z-axis) is specified in spherical coordinates relative to
+              # the design's axes, and then an angle is specified for rotation of the lens about its
+              # normal vector.
+              # precession is the angle from the design's z-axis down to the lens's z-axis.
+              precession: '{{get inputs "lens-precession"}}'
+              # ascension is the angle from the design's x-z plane to the lens's z-axis. in other
+              # words, if we project the lens's z-axis vector down to the design's x-y plane, it's
+              # the angle from the design's +x axis to the projected vector.
+              ascension: '{{get inputs "lens-ascension"}}'
+              # rotation is the rotation of the lens's x-axis about the lens's z-axis.
+              rotation: '{{get inputs "lens-rotation"}}'
+    inputs:
+      lens-precession:
+        type: deg
+        range:
+          min: 0
+          max: 180
+      lens-ascension:
+        type: deg
+        range:
+          min: 0
+          max: 360
+      lens-rotation:
+        type: deg
+        range:
+          min: 0
+          max: 360

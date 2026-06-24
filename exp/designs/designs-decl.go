@@ -4,6 +4,7 @@ import (
 	"cmp"
 	"fmt"
 	"io/fs"
+	"maps"
 
 	"github.com/goccy/go-yaml"
 	"github.com/pkg/errors"
@@ -27,12 +28,18 @@ type DesignDecl struct {
 	Optikit string `yaml:"optikit-version"`
 	// Design defines the basic metadata for the design.
 	Design DesignSpec `yaml:"design,omitempty"`
+	// Instantiation concretizes the design's abstract inputs, such as design variants, feature flags,
+	// and input variables.
+	Instantiation InstSpec `yaml:"instantiation,omitempty"`
 	// Components declares the design's constituent components as a mapping from the ID of each
 	// component to the declaration of that component.
 	Components CompsSpec `yaml:"components,omitempty"`
+	// Variants declares the design's variants as a mapping from the ID of each variant to the
+	// declaration of that variant.
+	Variants VariantsSpec `yaml:"variants,omitempty"`
 }
 
-// DesignSpec defines the basic metadata for an Optikit design.
+// DesignSpec declares the basic metadata for an Optikit design.
 type DesignSpec struct {
 	// Path is the design path, which acts as the canonical name for the design.
 	Path string `yaml:"path,omitempty"`
@@ -40,6 +47,13 @@ type DesignSpec struct {
 	Description string `yaml:"description,omitempty"`
 	// Tags is a list of human-readable string tags for describing the design to software.
 	Tags []string `yaml:"tags,omitempty"`
+}
+
+// InstSpec declares how an indeterminate design is made determinate by specifying a particular
+// design variant, particular values of input variables, and particular feature flags.
+type InstSpec struct {
+	// Variant declares which design variant (if any) of a design will be used.
+	Variant VariantID `yaml:"variant,omitempty"`
 }
 
 type (
@@ -57,8 +71,6 @@ type CompSpec struct {
 	Design string `yaml:"design,omitempty"`
 	// Pose declares the geometry of the component.
 	Pose CompPoseSpec `yaml:"pose,omitempty"`
-	// Tags is a list of human-readable string tags for describing the component to software.
-	Tags []string `yaml:"tags,omitempty"`
 }
 
 // CompPoseSpec defines declares a Optikit design's component's geometry.
@@ -117,6 +129,21 @@ type CompPoseTranslSpec struct {
 	OffsetCM ContinuousXYZ[float64] `yaml:"offset-cm,omitempty"`
 }
 
+type (
+	VariantID    string
+	VariantsSpec map[VariantID]VariantSpec
+)
+
+// A VariantSpec declares a design variant.
+type VariantSpec struct {
+	// Description is a short description of the variant to be shown to users.
+	Description string `yaml:"description,omitempty"`
+	// Components declares any modifications to the design's components. Non-zero values here will
+	// overwrite non-zero values in the design's components; new components here will also be added to
+	// the design.
+	Components CompsSpec `yaml:"components,omitempty"`
+}
+
 // DesignDecl
 
 // LoadDesignDecl loads a DesignDecl from the specified file path in the provided base filesystem.
@@ -141,6 +168,22 @@ func (d DesignDecl) Check() (errs []error) {
 	return errs
 }
 
+// NeedsInstantiation checks whether the DesignDecl needs instantiation parameters to be provided
+// to obtain a usable CompsSPec.
+func (d DesignDecl) NeedsInstantiation() bool {
+	return len(d.Variants) > 0
+}
+
+// Instantiate returns a CompsSpec which has been modified with design variants, input variables,
+// and feature flags, as specified by the provided instantiation parameters.
+func (d DesignDecl) Instantiate(instantiation InstSpec) (s CompsSpec, err error) {
+	v, has := d.Variants[instantiation.Variant]
+	if !has {
+		return s, errors.Errorf("requested variant not found: %s", instantiation.Variant)
+	}
+	return d.Components.Merged(v.Components), nil
+}
+
 // DesignSpec
 
 // Check looks for errors in the construction of the design spec.
@@ -159,6 +202,7 @@ func (s CompsSpec) Check() (errs []error) {
 				"component %s depends on nonexistent translation anchor %s", id, anchor,
 			))
 		}
+		// TODO: check for validity of instantiation...or maybe we must do this in FSDesign
 	}
 	return errs
 }
@@ -188,6 +232,22 @@ func (s CompsSpec) TranslDigraph() TranslDigraph {
 	return g
 }
 
+// Merged returns a new CompsSpec created by applying the specified overlay, without modifying
+// this current CompsSpec or the overlay.
+func (s CompsSpec) Merged(overlay CompsSpec) CompsSpec {
+	merged := maps.Clone(s)
+	for id, o := range overlay {
+		already, alreadyHas := merged[id]
+		if !alreadyHas {
+			merged[id] = o
+			continue
+		}
+
+		merged[id] = already.Merged(o)
+	}
+	return merged
+}
+
 // Flattened returns a new CompsSpec in which each non-origin component's translation anchor is just
 // the root (origin) node.
 // It assumes that the CompsSpec does not have any errors such as a nonexistent translation anchor
@@ -212,7 +272,28 @@ func (s CompsSpec) Flattened() CompsSpec {
 	return flattened
 }
 
+// CompSpec
+
+// Merged returns a new CompSpec created by applying the specified overlay, without modifying this
+// current CompsSpec or the overlay.
+func (s CompSpec) Merged(overlay CompSpec) CompSpec {
+	return CompSpec{
+		Type:   cmp.Or(overlay.Type, s.Type),
+		Design: cmp.Or(overlay.Design, s.Design),
+		Pose:   s.Pose.Merged(overlay.Pose),
+	}
+}
+
 // CompPoseSpec
+
+// Merged returns a new CompPoseSpec created by applying the specified overlay, without modifying
+// this current CompsPoseSpec or the overlay.
+func (s CompPoseSpec) Merged(overlay CompPoseSpec) CompPoseSpec {
+	return CompPoseSpec{
+		Rotation:    s.Rotation.Merged(overlay.Rotation),
+		Translation: s.Translation.Merged(overlay.Translation),
+	}
+}
 
 // TransfMat returns a homogeneous affine transformation matrix representing the pose of the
 // component relative to the frame of the overall design, but only if the pose's translation is
@@ -261,6 +342,15 @@ func (s CompPoseRotSpec) Check() (errs []error) {
 	}
 }
 
+// Merged returns a new CompPoseRotSpec created by applying the specified overlay, without modifying
+// this current CompsPoseSpec or the overlay.
+func (s CompPoseRotSpec) Merged(overlay CompPoseRotSpec) CompPoseRotSpec {
+	return CompPoseRotSpec{
+		Type: cmp.Or(overlay.Type, s.Type),
+		Grid: s.Grid.Merged(overlay.Grid),
+	}
+}
+
 // CompPoseRotGridSpec
 
 func (s CompPoseRotGridSpec) Check() (errs []error) {
@@ -268,6 +358,15 @@ func (s CompPoseRotGridSpec) Check() (errs []error) {
 		errs = append(errs, errors.Errorf("component's z and x axes are coaxial: z=%s, x=%s", s.Z, s.X))
 	}
 	return errs
+}
+
+// Merged returns a new CompPoseRotGridSpec created by applying the specified overlay, without
+// modifying this current CompsPoseSpec or the overlay.
+func (s CompPoseRotGridSpec) Merged(overlay CompPoseRotGridSpec) CompPoseRotGridSpec {
+	return CompPoseRotGridSpec{
+		Z: cmp.Or(overlay.Z, s.Z),
+		X: cmp.Or(overlay.X, s.X),
+	}
 }
 
 // TransfMat returns a homogeneous transformation matrix representing the orientation of the
@@ -285,6 +384,16 @@ func (s CompPoseRotSpec) TransfMat() mat4.T {
 }
 
 // CompPoseTranslSpec
+
+// Merged returns a new CompPoseTranslSpec created by applying the specified overlay, without modifying
+// this current CompsPoseSpec or the overlay.
+func (s CompPoseTranslSpec) Merged(overlay CompPoseTranslSpec) CompPoseTranslSpec {
+	return CompPoseTranslSpec{
+		Anchor:     cmp.Or(overlay.Anchor, s.Anchor),
+		OffsetGrid: s.OffsetGrid.Merged(overlay.OffsetGrid),
+		OffsetCM:   s.OffsetCM.Merged(overlay.OffsetCM),
+	}
+}
 
 func (s CompPoseTranslSpec) String() string {
 	switch {

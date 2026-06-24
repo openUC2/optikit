@@ -1,0 +1,42 @@
+optikit-version: v0.0.0-alpha.1
+
+design:
+  # Note: see also https://github.com/openUC2/openUC2-optikit-modules-references/blob/main/modules/lenses/lens-pos-50mm/module.yaml
+  description: A lens mounted in a cube
+  tags:
+    - cube-mounted
+    - lens
+    - lens/convex
+    - in/core-box
+
+components:
+  skeleton:
+    type: design
+    design: ./primitives/cube-skeleton.dsn
+    pose:
+      rotation:
+        type: grid
+  mounted-lens:
+    type: primitive
+    model: SUB - 0023 - LEND40F50 - V04 - virt ass.stp
+    pose:
+      rotation:
+        type: grid
+
+variants:
+    z:
+      description: Normal vector of lens is z-axis
+    y:
+      description: Normal vector of lens is y-axis; position is discretized.
+      components:
+        mounted-lens:
+          pose:
+            rotation:
+              grid: {z: +y}
+    x:
+      description: Normal vector of lens is x-axis
+      components:
+        mounted-lens:
+          pose:
+            rotation:
+              grid: {z: +x, x: -z}

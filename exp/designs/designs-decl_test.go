@@ -3,6 +3,7 @@ package designs
 import (
 	"errors"
 	"fmt"
+	"maps"
 	"os"
 	"path"
 	"testing"
@@ -15,15 +16,16 @@ import (
 // Design Decl
 
 var loadDesignDeclTests = map[string][]error{
-	"subdesigns/flashlight":                   nil,
-	"subdesigns/mounted-diagonal-mirror":      nil,
-	"subdesigns/mounted-lens":                 nil,
-	"subdesigns/mounted-slide-holder":         nil,
-	"subdesigns/projector-screen":             nil,
-	"microscope-relative-translation-anchors": nil,
-	"microscope-absolute-translation-anchors": nil,
-	"microscope-3d":                           nil,
-	"invalid-missing-translation-anchor": {
+	"cube-mounted/lens.dsn":                     nil,
+	"cube-mounted/mirror-diagonal.dsn":          nil,
+	"cube-mounted/slide-holder.dsn":             nil,
+	"primitives/cube-skeleton.dsn":              nil,
+	"primitives/flashlight.dsn":                 nil,
+	"primitives/projector-screen.dsn":           nil,
+	"microscopes/simple-rel-transl-anchors.dsn": nil,
+	"microscopes/simple-abs-transl-anchors.dsn": nil,
+	"microscopes/simple-3d.dsn":                 nil,
+	"microscopes/invalid-missing-transl-anchor.dsn": {
 		errors.New(
 			"invalid components spec: component light-source depends on nonexistent translation anchor " +
 				"sample-holder",
@@ -51,6 +53,7 @@ func TestDesignDecls(t *testing.T) {
 			designDecl, err := LoadDesignDecl(examplesFS, path.Join("designs", p, DesignDeclFile))
 			if err != nil {
 				t.Error(err)
+				return
 			}
 
 			t.Logf("check %s", p)
@@ -72,9 +75,117 @@ func renderErrors(errs []error) string {
 
 // CompsSpec
 
+var compsSpecMergeTests = map[string]struct {
+	in      CompsSpec
+	overlay CompsSpec
+	out     func(CompsSpec) CompsSpec
+}{
+	"none": {
+		in: map[CompID]CompSpec{
+			"a": exampleCompSpec,
+			"b": exampleCompSpec,
+		},
+		overlay: CompsSpec{},
+		out: func(s CompsSpec) CompsSpec {
+			return s
+		},
+	},
+	"b": {
+		in: map[CompID]CompSpec{
+			"a": exampleCompSpec,
+			"b": exampleCompSpec,
+		},
+		overlay: CompsSpec{
+			"b": CompSpec{
+				Pose: CompPoseSpec{
+					Rotation: CompPoseRotSpec{
+						Type: "foofoo",
+						Grid: CompPoseRotGridSpec{
+							Z: "Z!",
+						},
+					},
+				},
+			},
+		},
+		out: func(s CompsSpec) CompsSpec {
+			merged := maps.Clone(s)
+			b := merged["b"]
+			b.Pose.Rotation.Type = "foofoo"
+			b.Pose.Rotation.Grid.Z = "Z!"
+			merged["b"] = b
+			return merged
+		},
+	},
+	"c": {
+		in: map[CompID]CompSpec{
+			"a": exampleCompSpec,
+			"b": exampleCompSpec,
+		},
+		overlay: map[CompID]CompSpec{
+			"c": {
+				Type: "test",
+			},
+		},
+		out: func(s CompsSpec) CompsSpec {
+			merged := maps.Clone(s)
+			merged["c"] = CompSpec{
+				Type: "test",
+			}
+			return merged
+		},
+	},
+	"b,c": {
+		in: map[CompID]CompSpec{
+			"a": exampleCompSpec,
+			"b": exampleCompSpec,
+		},
+		overlay: CompsSpec{
+			"b": CompSpec{
+				Pose: CompPoseSpec{
+					Rotation: CompPoseRotSpec{
+						Type: "foofoo",
+						Grid: CompPoseRotGridSpec{
+							Z: "Z!",
+						},
+					},
+				},
+			},
+			"c": CompSpec{
+				Type: "test",
+			},
+		},
+		out: func(s CompsSpec) CompsSpec {
+			merged := maps.Clone(s)
+			b := merged["b"]
+			b.Pose.Rotation.Type = "foofoo"
+			b.Pose.Rotation.Grid.Z = "Z!"
+			merged["b"] = b
+			merged["c"] = CompSpec{
+				Type: "test",
+			}
+			return merged
+		},
+	},
+}
+
+func TestCompsSpecMerge(t *testing.T) {
+	t.Parallel()
+
+	for name, test := range compsSpecMergeTests {
+		t.Run(name, func(t *testing.T) {
+			t.Parallel()
+
+			t.Logf("%s", name)
+			if got, want := test.in.Merged(test.overlay), test.out(test.in); !cmp.Equal(got, want) {
+				t.Errorf("diff (-want +got):\n%+v", cmp.Diff(want, got))
+			}
+		})
+	}
+}
+
 var designFlattenTests = map[string]string{
-	"microscope-absolute-translation-anchors": "microscope-absolute-translation-anchors",
-	"microscope-relative-translation-anchors": "microscope-absolute-translation-anchors",
+	"microscopes/simple-abs-transl-anchors.dsn": "microscopes/simple-abs-transl-anchors.dsn",
+	"microscopes/simple-rel-transl-anchors.dsn": "microscopes/simple-abs-transl-anchors.dsn",
 }
 
 func TestDesignFlatten(t *testing.T) {
@@ -97,16 +208,126 @@ func TestDesignFlatten(t *testing.T) {
 			inDecl, err := LoadDesignDecl(examplesFS, path.Join("designs", in, DesignDeclFile))
 			if err != nil {
 				t.Error(err)
+				return
 			}
 
 			t.Logf("load %s", out)
 			outDecl, err := LoadDesignDecl(examplesFS, path.Join("designs", out, DesignDeclFile))
 			if err != nil {
 				t.Error(err)
+				return
 			}
 
 			t.Logf("check %s", in)
 			if got, want := inDecl.Components.Flattened(), outDecl.Components; !cmp.Equal(got, want) {
+				t.Errorf("diff (-want +got):\n%+v", cmp.Diff(want, got))
+			}
+		})
+	}
+}
+
+// CompSpec
+
+var exampleCompSpec = CompSpec{
+	Type:   "foo",
+	Design: "bar",
+	Pose: CompPoseSpec{
+		Rotation: CompPoseRotSpec{
+			Type: "foobar",
+			Grid: CompPoseRotGridSpec{
+				Z: "zz",
+				X: "xx",
+			},
+		},
+		Translation: CompPoseTranslSpec{
+			Anchor: "bazz",
+			OffsetGrid: DiscreteXYZ[int]{
+				X: 1,
+				Y: 2,
+				Z: 3,
+			},
+			OffsetCM: ContinuousXYZ[float64]{
+				X: 1.1,
+				Y: 2.2,
+				Z: 3.3,
+			},
+		},
+	},
+}
+
+var compSpecMergeTests = map[string]struct {
+	in      CompSpec
+	overlay CompSpec
+	out     func(CompSpec) CompSpec
+}{
+	"none": {
+		in:      exampleCompSpec,
+		overlay: CompSpec{},
+		out: func(s CompSpec) CompSpec {
+			return s
+		},
+	},
+	"Type": {
+		in: exampleCompSpec,
+		overlay: CompSpec{
+			Type: "foobar",
+		},
+		out: func(s CompSpec) CompSpec {
+			s.Type = "foobar"
+			return s
+		},
+	},
+	"Pose.Rotation": {
+		in: exampleCompSpec,
+		overlay: CompSpec{
+			Pose: CompPoseSpec{
+				Rotation: CompPoseRotSpec{
+					Type: "foofoo",
+					Grid: CompPoseRotGridSpec{
+						Z: "Z!",
+					},
+				},
+			},
+		},
+		out: func(s CompSpec) CompSpec {
+			s.Pose.Rotation.Type = "foofoo"
+			s.Pose.Rotation.Grid.Z = "Z!"
+			return s
+		},
+	},
+	"Pose.Translation": {
+		in: exampleCompSpec,
+		overlay: CompSpec{
+			Pose: CompPoseSpec{
+				Translation: CompPoseTranslSpec{
+					Anchor: "maybe",
+					OffsetGrid: DiscreteXYZ[int]{
+						X: -1,
+					},
+					OffsetCM: ContinuousXYZ[float64]{
+						Z: 11.1,
+					},
+				},
+			},
+		},
+		out: func(s CompSpec) CompSpec {
+			s.Pose.Translation.Anchor = "maybe"
+			s.Pose.Translation.OffsetGrid.X = -1
+			s.Pose.Translation.OffsetCM.Z = 11.1
+			return s
+		},
+	},
+}
+
+func TestCompSpecMerge(t *testing.T) {
+	t.Parallel()
+
+	for name, test := range compSpecMergeTests {
+		t.Run(name, func(t *testing.T) {
+			t.Parallel()
+
+			t.Logf("%s", name)
+			if got, want := test.in.Merged(test.overlay), test.out(test.in); !cmp.Equal(got, want) {
 				t.Errorf("diff (-want +got):\n%+v", cmp.Diff(want, got))
 			}
 		})

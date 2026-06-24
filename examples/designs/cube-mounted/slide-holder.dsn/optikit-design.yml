@@ -4,39 +4,36 @@ design:
   description: A microscope slide holder mounted in a cube
   tags:
     - sample-holder
+    - in/core-box
 
 components:
   skeleton:
     type: design
-    design: ./subdesigns/cube-skeleton
+    design: ./primitives/cube-skeleton.dsn
+    pose:
+      rotation:
+        type: grid
+  mounted-slide-holder:
+    type: primitive
+    model: SUB - 0027 - SAMHOL - V04 - virt ass.stp
+    pose:
+      rotation:
+        type: grid
 
 variants:
   z:
     description: Normal vector of the sample slide is the z-axis
-    components:
-      insert:
-        type: primitive
-        model: SUB - 0027 - SAMHOL - V04 - virt ass.stp
-        pose:
-          rotation:
-            type: grid
   y:
     description: Normal vector of the sample slide is the y-axis
     components:
-      insert:
-        type: primitive
-        model: SUB - 0027 - SAMHOL - V04 - virt ass.stp
+      mounted-slide-holder:
         pose:
           rotation:
-            type: grid
             grid: {z: +y, x: -z}
   x:
     description: Normal vector of the sample slide is the x-axis
     components:
-      insert:
-        type: primitive
-        model: SUB - 0027 - SAMHOL - V04 - virt ass.stp
+      mounted-slide-holder:
         pose:
           rotation:
-            type: grid
             grid: {z: +x, x: -z}

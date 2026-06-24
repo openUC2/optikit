@@ -1,7 +1,7 @@
 optikit-version: v0.0.0-alpha.1
 
 design:
-  description: A minimal 2-D microscope consisting of components whose positions are specified relative to the overall design.
+  description: A minimal 2-D microscope consisting of components whose positions are specified relative to each other.
   tags:
     - instrument
     - instrument/microscope
@@ -9,16 +9,17 @@ design:
 components:
   light-source:
     type: design
-    design: /subdesigns/flashlight
+    design: ./primitives/flashlight.dsn
     pose:
       rotation:
         type: grid
         grid: {z: +x, x: -z}
       translation:
+        anchor: sample-holder
         offset-cm: {x: -8}
   sample-holder:
     type: design
-    design: /subdesigns/mounted-slide-holder
+    design: ./cube-mounted/slide-holder.dsn
     instantiation:
       variant: x
     pose:
@@ -27,7 +28,7 @@ components:
         grid: {x: -y}
   objective-lens:
     type: design
-    design: /subdesigns/mounted-lens
+    design: ./cube-mounted/lens.dsn
     instantiation:
       variant: x
     pose:
@@ -35,20 +36,22 @@ components:
         type: uc2
         grid: {x: -y}
       translation:
+        anchor: sample-holder
         offset-grid: {x: 1}
   periscope-mirror-1:
     type: design
-    design: /subdesigns/mounted-diagonal-mirror
+    design: ./cube-mounted/mirror-diagonal.dsn
     instantiation:
       variant: xy
     pose:
       rotation:
         type: uc2
       translation:
-        offset-grid: {x: 2}
+        anchor: objective-lens
+        offset-grid: {x: 1}
   periscope-mirror-2:
     type: design
-    design: /subdesigns/mounted-diagonal-mirror
+    design: ./cube-mounted/mirror-diagonal.dsn
     instantiation:
       variant: xy
     pose:
@@ -56,10 +59,11 @@ components:
         type: uc2
         grid: {x: -x}
       translation:
-        offset-grid: {x: 2, y: 10}
+        anchor: periscope-mirror-1
+        offset-grid: {y: 10}
   tube-lens:
     type: design
-    design: /subdesigns/mounted-lens
+    design: ./cube-mounted/lens.dsn
     instantiation:
       variant: x
     pose:
@@ -67,16 +71,17 @@ components:
         type: uc2
         grid: {x: -y}
       translation:
-        offset-grid: {x: 5, y: 10}
+        anchor: periscope-mirror-2
+        offset-grid: {x: 3}
   projector-screen:
     type: design
-    design: /subdesigns/projector-screen
+    design: ./primitives/projector-screen.dsn
     pose:
       rotation:
         type: grid
         grid: {z: -x, x: +z}
       translation:
-        offset-grid: {x: 5, y: 10}
+        anchor: tube-lens
         offset-cm: {x: 10}
 
 relations:

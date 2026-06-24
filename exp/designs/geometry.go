@@ -1,6 +1,7 @@
 package designs
 
 import (
+	"cmp"
 	"fmt"
 
 	"github.com/ungerik/go3d/float64/mat4"
@@ -223,6 +224,16 @@ var GridRotMats = map[string]map[string]mat4.T{
 
 // DiscreteXYZ
 
+// Merged returns a new DiscreteXYZ created by applying the specified overlay, without modifying
+// this current DiscreteXYZ or the overlay.
+func (s DiscreteXYZ[Number]) Merged(overlay DiscreteXYZ[Number]) DiscreteXYZ[Number] {
+	return DiscreteXYZ[Number]{
+		X: cmp.Or(overlay.X, s.X),
+		Y: cmp.Or(overlay.Y, s.Y),
+		Z: cmp.Or(overlay.Z, s.Z),
+	}
+}
+
 func (s DiscreteXYZ[Number]) String() string {
 	switch {
 	case s.Y == 0 && s.Z == 0:
@@ -253,6 +264,16 @@ func (s DiscreteXYZ[Number]) Added(t DiscreteXYZ[Number]) DiscreteXYZ[Number] {
 }
 
 // ContinuousXYZ
+
+// Merged returns a new ContinuousXYZ created by applying the specified overlay, without modifying
+// this current ContinuousXYZ or the overlay.
+func (s ContinuousXYZ[Number]) Merged(overlay ContinuousXYZ[Number]) ContinuousXYZ[Number] {
+	return ContinuousXYZ[Number]{
+		X: cmp.Or(overlay.X, s.X),
+		Y: cmp.Or(overlay.Y, s.Y),
+		Z: cmp.Or(overlay.Z, s.Z),
+	}
+}
 
 func (s ContinuousXYZ[Number]) String() string {
 	switch {
