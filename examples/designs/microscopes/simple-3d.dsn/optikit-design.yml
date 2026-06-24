@@ -16,7 +16,7 @@ components:
         grid: {z: +x, x: -z}
       translation:
         anchor: sample-holder
-        offset-cm: {x: -8}
+        offset-mm: {x: -80}
   sample-holder:
     type: design
     design: ./cube-mounted/slide-holder.dsn
@@ -79,8 +79,9 @@ components:
       rotation:
         type: grid
       translation:
+        type: mm
         anchor: tube-lens
-        offset-cm: {z: 10}
+        offset-mm: {z: 100}
 
 relations:
   geometry:

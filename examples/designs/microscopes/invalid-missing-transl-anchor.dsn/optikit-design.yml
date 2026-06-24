@@ -11,5 +11,5 @@ components:
         type: grid
       translation:
         anchor: sample-holder
-        units: cm
-        offset: {x: -8}
+        units: mm
+        offset: {x: -80}

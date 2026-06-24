@@ -124,9 +124,9 @@ type CompPoseTranslSpec struct {
 	// OffsetGrid is an offset from the anchor's position towards the component's position, in the
 	// design's coordinate axes.
 	OffsetGrid DiscreteXYZ[int] `yaml:"offset-grid,omitempty"`
-	// OffsetCM is an additional offset from the anchor's position towards the component's position,
-	// in centimeters, after first applying the grid offset.
-	OffsetCM ContinuousXYZ[float64] `yaml:"offset-cm,omitempty"`
+	// OffsetMM is an additional offset from the anchor's position towards the component's position,
+	// in millimeters, after first applying the grid offset.
+	OffsetMM ContinuousXYZ[float64] `yaml:"offset-mm,omitempty"`
 }
 
 type (
@@ -299,7 +299,7 @@ func (s CompPoseSpec) Merged(overlay CompPoseSpec) CompPoseSpec {
 // component relative to the frame of the overall design, but only if the pose's translation is
 // specified with the overall design's coordinate system's origin as the anchor. If anything else is
 // the anchor, then this method returns an error instead.
-// The translation component of the matrix is in cm.
+// The translation component of the matrix is in mm.
 // This is the matrix H^a_b for homogeneous pose vectors p^a_h and p^b_h, which are homogeneous
 // representations of vectors p^a and p^b, where p^b is in the frame of the component and p^b is in
 // the frame of the overall design. In other words, this matrix can be multiplied with a point in
@@ -309,9 +309,9 @@ func (s CompPoseSpec) TransfMat(gridSpacings ContinuousXYZ[float64]) (mat4.T, er
 		return mat4.Zero, errors.New("translation anchor is not the overall design's origin!")
 	}
 	m := s.Rotation.TransfMat()
-	offsetGrid := s.Translation.OffsetGrid.AsCM(gridSpacings).AsVec3()
-	offsetCM := s.Translation.OffsetCM.AsVec3()
-	translation := vec3.Add(&offsetGrid, &offsetCM)
+	offsetGrid := AsMM(s.Translation.OffsetGrid, gridSpacings).AsVec3()
+	offsetMM := s.Translation.OffsetMM.AsVec3()
+	translation := vec3.Add(&offsetGrid, &offsetMM)
 	m.SetTranslation(&translation)
 	return m, nil
 }
@@ -391,32 +391,32 @@ func (s CompPoseTranslSpec) Merged(overlay CompPoseTranslSpec) CompPoseTranslSpe
 	return CompPoseTranslSpec{
 		Anchor:     cmp.Or(overlay.Anchor, s.Anchor),
 		OffsetGrid: s.OffsetGrid.Merged(overlay.OffsetGrid),
-		OffsetCM:   s.OffsetCM.Merged(overlay.OffsetCM),
+		OffsetMM:   s.OffsetMM.Merged(overlay.OffsetMM),
 	}
 }
 
 func (s CompPoseTranslSpec) String() string {
 	switch {
-	case s.OffsetGrid == gridZero && s.OffsetCM == cmZero:
+	case s.OffsetGrid == gridZero && s.OffsetMM == mmZero:
 		return ""
 	case s.OffsetGrid == gridZero:
-		return fmt.Sprintf("%s cm", s.OffsetCM.String())
-	case s.OffsetCM == cmZero:
+		return fmt.Sprintf("%s mm", s.OffsetMM.String())
+	case s.OffsetMM == mmZero:
 		return s.OffsetGrid.String()
 	default:
-		return fmt.Sprintf("%s + %s cm", s.OffsetGrid.String(), s.OffsetCM.String())
+		return fmt.Sprintf("%s + %s mm", s.OffsetGrid.String(), s.OffsetMM.String())
 	}
 }
 
 var (
 	gridZero DiscreteXYZ[int]
-	cmZero   ContinuousXYZ[float64]
+	mmZero   ContinuousXYZ[float64]
 )
 
 func (s CompPoseTranslSpec) Added(t CompPoseTranslSpec) CompPoseTranslSpec {
 	return CompPoseTranslSpec{
 		Anchor:     s.Anchor,
 		OffsetGrid: s.OffsetGrid.Added(t.OffsetGrid),
-		OffsetCM:   s.OffsetCM.Added(t.OffsetCM),
+		OffsetMM:   s.OffsetMM.Added(t.OffsetMM),
 	}
 }

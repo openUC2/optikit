@@ -247,19 +247,24 @@ func (s DiscreteXYZ[Number]) String() string {
 	}
 }
 
-func (s DiscreteXYZ[Number]) AsCM(gridSpacings ContinuousXYZ[float64]) ContinuousXYZ[float64] {
-	return ContinuousXYZ[float64]{
-		X: float64(s.X) * gridSpacings.X,
-		Y: float64(s.Y) * gridSpacings.Y,
-		Z: float64(s.Z) * gridSpacings.Z,
-	}
-}
-
 func (s DiscreteXYZ[Number]) Added(t DiscreteXYZ[Number]) DiscreteXYZ[Number] {
 	return DiscreteXYZ[Number]{
 		X: s.X + t.X,
 		Y: s.Y + t.Y,
 		Z: s.Z + t.Z,
+	}
+}
+
+// AsMM converts a unitless discrete grid position into a continuous position in millimeters
+// according to the specified discrete grid spacings along each axis.
+func AsMM[Number ~int | ~uint | ~int8 | ~uint8 | ~int16 | ~uint16 | ~int32 | ~uint32 | ~int64 | ~uint64](
+	gridPos DiscreteXYZ[Number],
+	gridSpacings ContinuousXYZ[float64],
+) ContinuousXYZ[float64] {
+	return ContinuousXYZ[float64]{
+		X: float64(gridPos.X) * gridSpacings.X,
+		Y: float64(gridPos.Y) * gridSpacings.Y,
+		Z: float64(gridPos.Z) * gridSpacings.Z,
 	}
 }
 
@@ -278,11 +283,11 @@ func (s ContinuousXYZ[Number]) Merged(overlay ContinuousXYZ[Number]) ContinuousX
 func (s ContinuousXYZ[Number]) String() string {
 	switch {
 	case s.Y == 0 && s.Z == 0:
-		return fmt.Sprintf("[x%+.2f]", s.X)
+		return fmt.Sprintf("[x%+.0f]", s.X)
 	case s.X == 0 && s.Z == 0:
-		return fmt.Sprintf("[y%+.2f]", s.Y)
+		return fmt.Sprintf("[y%+.0f]", s.Y)
 	case s.X == 0 && s.Y == 0:
-		return fmt.Sprintf("[z%+.2f]", s.Z)
+		return fmt.Sprintf("[z%+.0f]", s.Z)
 	default:
 		return fmt.Sprintf("+[%.2f %.2f %.2f]", s.X, s.Y, s.Z)
 	}

@@ -75,6 +75,35 @@ func renderErrors(errs []error) string {
 
 // CompsSpec
 
+var compSpecMergeTestOverlays = map[CompID]CompSpec{
+	"b": {
+		Pose: CompPoseSpec{
+			Rotation: CompPoseRotSpec{
+				Type: "foofoo",
+				Grid: CompPoseRotGridSpec{
+					Z: "Z!",
+				},
+			},
+		},
+	},
+	"c": {
+		Type: "test",
+	},
+}
+
+var compSpecMergeTestModifiers = map[CompID]func(s CompSpec) CompSpec{
+	"b": func(s CompSpec) CompSpec {
+		s.Pose.Rotation.Type = "foofoo"
+		s.Pose.Rotation.Grid.Z = "Z!"
+		return s
+	},
+	"c": func(_ CompSpec) CompSpec {
+		return CompSpec{
+			Type: "test",
+		}
+	},
+}
+
 var compsSpecMergeTests = map[string]struct {
 	in      CompsSpec
 	overlay CompsSpec
@@ -91,40 +120,26 @@ var compsSpecMergeTests = map[string]struct {
 		},
 	},
 	"b": {
-		in: map[CompID]CompSpec{
+		in: CompsSpec{
 			"a": exampleCompSpec,
 			"b": exampleCompSpec,
 		},
 		overlay: CompsSpec{
-			"b": CompSpec{
-				Pose: CompPoseSpec{
-					Rotation: CompPoseRotSpec{
-						Type: "foofoo",
-						Grid: CompPoseRotGridSpec{
-							Z: "Z!",
-						},
-					},
-				},
-			},
+			"b": compSpecMergeTestOverlays["b"],
 		},
 		out: func(s CompsSpec) CompsSpec {
 			merged := maps.Clone(s)
-			b := merged["b"]
-			b.Pose.Rotation.Type = "foofoo"
-			b.Pose.Rotation.Grid.Z = "Z!"
-			merged["b"] = b
+			merged["b"] = compSpecMergeTestModifiers["b"](merged["b"])
 			return merged
 		},
 	},
 	"c": {
-		in: map[CompID]CompSpec{
+		in: CompsSpec{
 			"a": exampleCompSpec,
 			"b": exampleCompSpec,
 		},
 		overlay: map[CompID]CompSpec{
-			"c": {
-				Type: "test",
-			},
+			"c": compSpecMergeTestOverlays["c"],
 		},
 		out: func(s CompsSpec) CompsSpec {
 			merged := maps.Clone(s)
@@ -135,34 +150,18 @@ var compsSpecMergeTests = map[string]struct {
 		},
 	},
 	"b,c": {
-		in: map[CompID]CompSpec{
+		in: CompsSpec{
 			"a": exampleCompSpec,
 			"b": exampleCompSpec,
 		},
 		overlay: CompsSpec{
-			"b": CompSpec{
-				Pose: CompPoseSpec{
-					Rotation: CompPoseRotSpec{
-						Type: "foofoo",
-						Grid: CompPoseRotGridSpec{
-							Z: "Z!",
-						},
-					},
-				},
-			},
-			"c": CompSpec{
-				Type: "test",
-			},
+			"b": compSpecMergeTestOverlays["b"],
+			"c": compSpecMergeTestOverlays["c"],
 		},
 		out: func(s CompsSpec) CompsSpec {
 			merged := maps.Clone(s)
-			b := merged["b"]
-			b.Pose.Rotation.Type = "foofoo"
-			b.Pose.Rotation.Grid.Z = "Z!"
-			merged["b"] = b
-			merged["c"] = CompSpec{
-				Type: "test",
-			}
+			merged["b"] = compSpecMergeTestModifiers["b"](merged["b"])
+			merged["c"] = compSpecMergeTestModifiers["c"](merged["c"])
 			return merged
 		},
 	},
@@ -246,10 +245,10 @@ var exampleCompSpec = CompSpec{
 				Y: 2,
 				Z: 3,
 			},
-			OffsetCM: ContinuousXYZ[float64]{
-				X: 1.1,
-				Y: 2.2,
-				Z: 3.3,
+			OffsetMM: ContinuousXYZ[float64]{
+				X: 11,
+				Y: 22,
+				Z: 33,
 			},
 		},
 	},
@@ -304,8 +303,8 @@ var compSpecMergeTests = map[string]struct {
 					OffsetGrid: DiscreteXYZ[int]{
 						X: -1,
 					},
-					OffsetCM: ContinuousXYZ[float64]{
-						Z: 11.1,
+					OffsetMM: ContinuousXYZ[float64]{
+						Z: 111,
 					},
 				},
 			},
@@ -313,7 +312,7 @@ var compSpecMergeTests = map[string]struct {
 		out: func(s CompSpec) CompSpec {
 			s.Pose.Translation.Anchor = "maybe"
 			s.Pose.Translation.OffsetGrid.X = -1
-			s.Pose.Translation.OffsetCM.Z = 11.1
+			s.Pose.Translation.OffsetMM.Z = 111
 			return s
 		},
 	},
