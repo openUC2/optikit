@@ -11,13 +11,35 @@ ci: dev diff
 .PHONY: clean
 clean: ## remove files created during build pipeline
 	$(call print-target)
+	find internal/clients/build123d/data/*-* ! -name '.gitattributes' -type f -exec rm -f {} +
+	find internal/clients/build123d/data/*-*/* ! -name . -prune -type d -exec rm -R {} +
 	rm -rf dist
 	rm -f coverage.*
 
 .PHONY: install
-install: ## go install tools
+install: ## go install tool
 	$(call print-target)
 	go install tool
+
+.PHONY: install-pip
+install-pip: ## embedpip
+	$(call print-target)
+	cd internal/clients/build123d; go run ./embedpip
+
+.PHONY: install-pip-linux-amd64
+install-pip-linux-amd64: ## embedpip linux-amd64
+	$(call print-target)
+	cd internal/clients/build123d; go run ./embedpip linux-amd64
+
+.PHONY: install-pip-darwin-amd64
+install-pip-darwin-amd64: ## embedpip linux-amd64
+	$(call print-target)
+	cd internal/clients/build123d; go run ./embedpip darwin-amd64
+
+.PHONY: install-pip-darwin-arm64
+install-pip-darwin-arm64: ## embedpip darwin-arm64
+	$(call print-target)
+	cd internal/clients/build123d; go run ./embedpip darwin-arm64
 
 .PHONY: generate
 generate: ## go generate
@@ -40,7 +62,7 @@ fmt: ## go fmt
 	go fmt ./...
 
 .PHONY: spell
-spell: ##misspell
+spell: ## misspell
 	$(call print-target)
 	go tool misspell -error -locale=US -w **.md
 
@@ -67,13 +89,13 @@ diff: ## git diff
 	RES=$$(git status --porcelain) ; if [ -n "$$RES" ]; then echo $$RES && exit 1 ; fi
 
 .PHONY: build
-build: ## Use goreleaser-cross (due to macOS CGo requirement) to run goreleaser --snapshot --skip=publish --clean
+build: ## goreleaser --snapshot --skip=publish --clean
 build: install
 	$(call print-target)
 	go tool goreleaser --snapshot --skip=publish --clean
 
 .PHONY: release
-release: ## Use goreleaser-cross (due to macOS CGo requirement) to run goreleaser --clean
+release: ## goreleaser --clean
 release: install
 	$(call print-target)
 	go tool goreleaser --clean

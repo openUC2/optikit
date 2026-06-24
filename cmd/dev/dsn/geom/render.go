@@ -10,7 +10,30 @@ import (
 	"github.com/openUC2/optikit/internal/optikit"
 )
 
-func renderPosGA(ctx context.Context, c *cli.Command) (err error) {
+func renderObjA(ctx context.Context, c *cli.Command) error {
+	designDecl, err := optikit.LoadDesignDecl(c.String("cwd"), c.String("variant"))
+	if err != nil {
+		return err
+	}
+
+	result, err := optikit.RenderObjects(ctx, designDecl.Components, c.String("format"))
+	if err != nil {
+		return err
+	}
+
+	return produceOutput(c.Args().First(), result)
+}
+
+func produceOutput(outputPath string, output []byte) error {
+	if outputPath == "" {
+		fmt.Println(string(output))
+		return nil
+	}
+	const perms = 0o644
+	return os.WriteFile(outputPath, output, perms)
+}
+
+func renderPosGA(ctx context.Context, c *cli.Command) error {
 	designDecl, err := optikit.LoadDesignDecl(c.String("cwd"), c.String("variant"))
 	if err != nil {
 		return err
@@ -20,16 +43,11 @@ func renderPosGA(ctx context.Context, c *cli.Command) (err error) {
 	if err != nil {
 		return err
 	}
-	outputPath := c.Args().First()
-	if outputPath == "" {
-		fmt.Println(string(result))
-		return nil
-	}
-	const perms = 0o644
-	return os.WriteFile(outputPath, result, perms)
+
+	return produceOutput(c.Args().First(), result)
 }
 
-func renderPosPA(ctx context.Context, c *cli.Command) (err error) {
+func renderPosPA(ctx context.Context, c *cli.Command) error {
 	designDecl, err := optikit.LoadDesignDecl(c.String("cwd"), c.String("variant"))
 	if err != nil {
 		return err
@@ -40,11 +58,5 @@ func renderPosPA(ctx context.Context, c *cli.Command) (err error) {
 		return err
 	}
 
-	outputPath := c.Args().First()
-	if outputPath == "" {
-		fmt.Println(string(result))
-		return nil
-	}
-	const perms = 0o644
-	return os.WriteFile(outputPath, result, perms)
+	return produceOutput(c.Args().First(), result)
 }

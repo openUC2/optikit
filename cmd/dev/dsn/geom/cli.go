@@ -20,6 +20,20 @@ func MakeCmd(_ optikit.Versions) *cli.Command {
 		},
 		Commands: []*cli.Command{
 			{
+				Name:      "render-obj",
+				Aliases:   []string{"render-objects"},
+				Usage:     "Render the assembly as a 3D model object",
+				ArgsUsage: "output_file",
+				Flags: []cli.Flag{
+					&cli.StringFlag{
+						Name:  "format",
+						Value: "step",
+						Usage: "Render output format (step)",
+					},
+				},
+				Action: renderObjA,
+			},
+			{
 				Name:      "render-pos-g",
 				Aliases:   []string{"render-positions-graph"},
 				Usage:     "Render a graph of the position relationships between the components",
