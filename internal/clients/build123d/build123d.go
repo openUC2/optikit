@@ -9,45 +9,85 @@ import (
 	"path/filepath"
 
 	"github.com/kluctl/go-embed-python/embed_util"
+	"github.com/kluctl/go-embed-python/pip"
 	"github.com/kluctl/go-embed-python/python"
 
 	"github.com/openUC2/optikit/internal/clients/build123d/data"
 )
 
 type Client struct {
-	epy  *python.EmbeddedPython
-	epip *embed_util.EmbeddedFiles
-	esrc *embed_util.EmbeddedFiles
+	pyEmbed   *python.EmbeddedPython
+	pipEmbeds []*embed_util.EmbeddedFiles
+	srcEmbed  *embed_util.EmbeddedFiles
 }
 
 func New() (c *Client, err error) {
 	c = &Client{}
-	if c.epy, err = python.NewEmbeddedPython("cadquery"); err != nil {
+	if c.pyEmbed, err = python.NewEmbeddedPython("cadquery"); err != nil {
 		return nil, err
 	}
 
-	if c.epip, err = embed_util.NewEmbeddedFiles(data.Data, "cadquery"); err != nil {
+	epip, err := embed_util.NewEmbeddedFiles(data.Data, "cadquery")
+	if err != nil {
 		return nil, err
 	}
-	c.epy.AddPythonPath(c.epip.GetExtractedPath())
+	c.addEmbeddedPipLib(epip)
+	c.pyEmbed.AddPythonPath(epip.GetExtractedPath())
+	c.pipEmbeds = append(c.pipEmbeds, epip)
 
-	if c.esrc, err = embed_util.NewEmbeddedFiles(Source, "cad"); err != nil {
+	if c.srcEmbed, err = embed_util.NewEmbeddedFiles(Source, "cad"); err != nil {
 		return nil, err
 	}
 	return c, nil
 }
 
-func (c *Client) Close() error {
-	return errors.Join(c.epy.Cleanup(), c.epip.Cleanup())
+func (c *Client) addEmbeddedPipLib(pipEmbed *embed_util.EmbeddedFiles) {
+	c.pyEmbed.AddPythonPath(pipEmbed.GetExtractedPath())
+	c.pipEmbeds = append(c.pipEmbeds, pipEmbed)
 }
 
-func (c *Client) Run() ([]byte, error) {
-	cmd, err := c.epy.PythonCmd(filepath.Join(c.esrc.GetExtractedPath(), "main.py"))
+func (c *Client) Close() error {
+	errs := []error{c.pyEmbed.Cleanup()}
+	for _, epip := range c.pipEmbeds {
+		if err := epip.Cleanup(); err != nil {
+			errs = append(errs, err)
+		}
+	}
+	return errors.Join(errs...)
+}
+
+// PipFreeze returns the result of running `pip freeze` with the requirements.txt file at the
+// specified path.
+// Note: this has a side-effect of adding an embedded pip library to the embedded Python instance's
+// Python path.
+func (c *Client) PipFreeze(requirementsFile string) (result []byte, err error) {
+	pipLib, err := pip.NewPipLib("pip")
+	if err != nil {
+		return nil, err
+	}
+	c.addEmbeddedPipLib(pipLib)
+
+	cmd, err := c.pyEmbed.PythonCmd("-m", "pip", "freeze", "-r", requirementsFile)
 	if err != nil {
 		return nil, err
 	}
 
-	// TODO: write the script to a temporary file instead!
+	out := bytes.Buffer{}
+	cmd.Stdout = &out
+	cmd.Stderr = os.Stderr
+	if err = cmd.Run(); err != nil {
+		fmt.Println(out.String())
+		return nil, err
+	}
+	return out.Bytes(), err
+}
+
+func (c *Client) Run() ([]byte, error) {
+	cmd, err := c.pyEmbed.PythonCmd(filepath.Join(c.srcEmbed.GetExtractedPath(), "main.py"))
+	if err != nil {
+		return nil, err
+	}
+
 	in := bytes.Buffer{}
 	cmd.Stdin = &in
 

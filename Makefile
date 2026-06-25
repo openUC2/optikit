@@ -2,7 +2,7 @@
 
 .PHONY: dev
 dev: ## dev build
-dev: clean install generate fmt fix spell vet lint test mod-tidy
+dev: clean install install-pip freeze-pip generate fmt fix spell vet lint test mod-tidy
 
 .PHONY: ci
 ci: ## CI build
@@ -12,7 +12,7 @@ ci: dev diff
 clean: ## remove files created during build pipeline
 	$(call print-target)
 	find internal/clients/build123d/data/*-* ! -name '.gitattributes' -type f -exec rm -f {} +
-	find internal/clients/build123d/data/*-*/* ! -name . -prune -type d -exec rm -R {} +
+	find internal/clients/build123d/data/*-*/* ! -name . -prune -type d -exec rm -R {} + || true
 	rm -rf dist
 	rm -f coverage.*
 
@@ -24,22 +24,12 @@ install: ## go install tool
 .PHONY: install-pip
 install-pip: ## embedpip
 	$(call print-target)
-	cd internal/clients/build123d; go run ./embedpip
+	cd internal/clients/build123d; go run ./cmd/embedpip requirements.frozen.txt
 
-.PHONY: install-pip-linux-amd64
-install-pip-linux-amd64: ## embedpip linux-amd64
+.PHONY: freeze-pip
+freeze-pip: ## freezepip
 	$(call print-target)
-	cd internal/clients/build123d; go run ./embedpip linux-amd64
-
-.PHONY: install-pip-darwin-amd64
-install-pip-darwin-amd64: ## embedpip linux-amd64
-	$(call print-target)
-	cd internal/clients/build123d; go run ./embedpip darwin-amd64
-
-.PHONY: install-pip-darwin-arm64
-install-pip-darwin-arm64: ## embedpip darwin-arm64
-	$(call print-target)
-	cd internal/clients/build123d; go run ./embedpip darwin-arm64
+	cd internal/clients/build123d; go run ./cmd/freezepip requirements.direct.txt requirements.frozen.txt
 
 .PHONY: generate
 generate: ## go generate

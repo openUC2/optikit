@@ -10,7 +10,16 @@ import (
 )
 
 func main() {
-	err := createEmbeddedPipPackages("requirements.txt", "./data/", os.Args[1:])
+	inputFile := "requirements.frozen.txt"
+	if len(os.Args) > 1 && os.Args[1] != "" {
+		inputFile = os.Args[1]
+	}
+
+	var platforms []string
+	if len(os.Args) > 2 {
+		platforms = os.Args[2:]
+	}
+	err := createEmbeddedPipPackages(inputFile, "./data/", platforms)
 	if err != nil {
 		panic(err)
 	}
