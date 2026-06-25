@@ -63,14 +63,25 @@ type (
 
 // CompSpec declares a component of an Optikit design.
 type CompSpec struct {
-	// Type is the type of component in the design. It can be either `location` or `design`.
+	// Type is the type of component in the design. It can be either `location`, `primitive`, or
+	// `design`.
 	Type string `yaml:"type"`
-	// Design is the path of the design which the component (of type `design`) instantiates. If it's
-	// specified as an absolute path, then it will be relative to the root directory of the Optikits
-	// design.
+	// Design is the path of the design which the component (of type `design`) instantiates, relative
+	// to the root directory of the Optikit design.
 	Design string `yaml:"design,omitempty"`
+	// Primitive declares information about the model primitive which the component (of type
+	// `primitive`) is.
+	Primitive CompPrimSpec `yaml:"primitive,omitempty"`
 	// Pose declares the geometry of the component.
 	Pose CompPoseSpec `yaml:"pose,omitempty"`
+}
+
+type CompPrimSpec struct {
+	// Type is the type of primitive in the design. It can be either `optiland` or `step`.
+	Type string `yaml:"type,omitempty"`
+	// Model is the path of the model file which the primitive represents, relative to the root
+	// directory of the Optikit design.
+	Model string `yaml:"model,omitempty"`
 }
 
 // CompPoseSpec defines declares a Optikit design's component's geometry.
@@ -169,7 +180,7 @@ func (d DesignDecl) Check() (errs []error) {
 }
 
 // NeedsInstantiation checks whether the DesignDecl needs instantiation parameters to be provided
-// to obtain a usable CompsSPec.
+// to obtain a usable CompsSpec.
 func (d DesignDecl) NeedsInstantiation() bool {
 	return len(d.Variants) > 0
 }
@@ -270,6 +281,19 @@ func (s CompsSpec) Flattened() CompsSpec {
 		}
 	}
 	return flattened
+}
+
+// Primitives returns the primitive-type components in this CompsSpec.
+// TODO: add a recursively-evaluated equivalent in FSDesign!
+func (s CompsSpec) Primitives() CompsSpec {
+	prims := make(CompsSpec)
+	for id, c := range s {
+		if c.Type != "primitive" {
+			continue
+		}
+		prims[id] = c
+	}
+	return prims
 }
 
 // CompSpec

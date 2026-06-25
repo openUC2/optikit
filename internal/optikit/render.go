@@ -16,6 +16,11 @@ import (
 func RenderObjects(
 	ctx context.Context, comps designs.CompsSpec, format string,
 ) (result []byte, err error) {
+	primsReport, err := ReportPrimitives(ctx, comps, "json")
+	if err != nil {
+		return nil, err
+	}
+
 	cqc, err := build123d.New()
 	if err != nil {
 		return nil, err
@@ -24,7 +29,7 @@ func RenderObjects(
 		err = cqc.Close()
 	}()
 
-	if result, err = cqc.Run(); err != nil {
+	if result, err = cqc.Run(primsReport); err != nil {
 		return nil, err
 	}
 	return result, nil

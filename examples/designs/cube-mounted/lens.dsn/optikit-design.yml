@@ -12,13 +12,15 @@ design:
 components:
   skeleton:
     type: design
-    design: ./primitives/cube-skeleton.dsn
+    design: primitives/cube-skeleton.dsn
     pose:
       rotation:
         type: grid
   mounted-lens:
     type: primitive
-    model: SUB - 0023 - LEND40F50 - V04 - virt ass.stp
+    primitive:
+      type: step
+      model: SUB - 0023 - LEND40F50 - V04 - virt ass.stp
     pose:
       rotation:
         type: grid

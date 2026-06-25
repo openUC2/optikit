@@ -82,13 +82,14 @@ func (c *Client) PipFreeze(requirementsFile string) (result []byte, err error) {
 	return out.Bytes(), err
 }
 
-func (c *Client) Run() ([]byte, error) {
+func (c *Client) Run(stdin []byte) ([]byte, error) {
 	cmd, err := c.pyEmbed.PythonCmd(filepath.Join(c.srcEmbed.GetExtractedPath(), "main.py"))
 	if err != nil {
 		return nil, err
 	}
 
 	in := bytes.Buffer{}
+	in.Write(stdin)
 	cmd.Stdin = &in
 
 	out := bytes.Buffer{}

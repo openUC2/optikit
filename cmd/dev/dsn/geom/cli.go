@@ -20,6 +20,21 @@ func MakeCmd(_ optikit.Versions) *cli.Command {
 		},
 		Commands: []*cli.Command{
 			{
+				Name:    "report-prim",
+				Aliases: []string{"report-primitives"},
+				Usage: "Generate a report of the model files and poses of all primitives in the " +
+					"design",
+				ArgsUsage: "output_file",
+				Flags: []cli.Flag{
+					&cli.StringFlag{
+						Name:  "format",
+						Value: "json",
+						Usage: "Render output format (json or yaml)",
+					},
+				},
+				Action: reportPrimA,
+			},
+			{
 				Name:      "render-obj",
 				Aliases:   []string{"render-objects"},
 				Usage:     "Render the assembly as a 3D model object",

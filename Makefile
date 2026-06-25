@@ -13,6 +13,7 @@ clean: ## remove files created during build pipeline
 	$(call print-target)
 	find internal/clients/build123d/data/*-* ! -name '.gitattributes' -type f -exec rm -f {} +
 	find internal/clients/build123d/data/*-*/* ! -name . -prune -type d -exec rm -R {} + || true
+	rm -rf examples/**/_positions-plot*.html
 	rm -rf dist
 	rm -f coverage.*
 
