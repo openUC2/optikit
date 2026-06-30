@@ -77,7 +77,7 @@ type CompSpec struct {
 }
 
 type CompPrimSpec struct {
-	// Type is the type of primitive in the design. It can be either `optiland` or `step`.
+	// Type is the type of primitive in the design. It can be `optiland`, `gltf`, `glb`, or `step`.
 	Type string `yaml:"type,omitempty"`
 	// Model is the path of the model file which the primitive represents, relative to the root
 	// directory of the Optikit design.
@@ -302,9 +302,21 @@ func (s CompsSpec) Primitives() CompsSpec {
 // current CompsSpec or the overlay.
 func (s CompSpec) Merged(overlay CompSpec) CompSpec {
 	return CompSpec{
-		Type:   cmp.Or(overlay.Type, s.Type),
-		Design: cmp.Or(overlay.Design, s.Design),
-		Pose:   s.Pose.Merged(overlay.Pose),
+		Type:      cmp.Or(overlay.Type, s.Type),
+		Design:    cmp.Or(overlay.Design, s.Design),
+		Primitive: s.Primitive.Merged(overlay.Primitive),
+		Pose:      s.Pose.Merged(overlay.Pose),
+	}
+}
+
+// CompPrimSpec
+
+// Merged returns a new CompPrimSpec created by applying the specified overlay, without modifying
+// this current CompsPoseSpec or the overlay.
+func (s CompPrimSpec) Merged(overlay CompPrimSpec) CompPrimSpec {
+	return CompPrimSpec{
+		Type:  cmp.Or(overlay.Type, s.Type),
+		Model: cmp.Or(overlay.Model, s.Model),
 	}
 }
 

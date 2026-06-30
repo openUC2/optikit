@@ -29,7 +29,7 @@ func RenderObjects(
 		err = cqc.Close()
 	}()
 
-	if result, err = cqc.Run(primsReport); err != nil {
+	if result, err = cqc.Assemble(primsReport); err != nil {
 		return nil, err
 	}
 	return result, nil

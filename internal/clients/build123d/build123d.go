@@ -82,8 +82,8 @@ func (c *Client) PipFreeze(requirementsFile string) (result []byte, err error) {
 	return out.Bytes(), err
 }
 
-func (c *Client) Run(stdin []byte) ([]byte, error) {
-	cmd, err := c.pyEmbed.PythonCmd(filepath.Join(c.srcEmbed.GetExtractedPath(), "main.py"))
+func (c *Client) Assemble(stdin []byte) ([]byte, error) {
+	cmd, err := c.pyEmbed.PythonCmd(filepath.Join(c.srcEmbed.GetExtractedPath(), "assemble.py"))
 	if err != nil {
 		return nil, err
 	}
@@ -101,4 +101,19 @@ func (c *Client) Run(stdin []byte) ([]byte, error) {
 		return nil, err
 	}
 	return out.Bytes(), err
+}
+
+func (c *Client) Convert(inputFormat, inputPath, outputFormat, outputPath string) error {
+	cmd, err := c.pyEmbed.PythonCmd(
+		filepath.Join(c.srcEmbed.GetExtractedPath(), "convert.py"),
+		inputFormat, inputPath, outputFormat, outputPath,
+	)
+	if err != nil {
+		return err
+	}
+
+	if err = cmd.Run(); err != nil {
+		return err
+	}
+	return nil
 }
