@@ -3,12 +3,12 @@
   position: [0.0, 0.0, 0.0]
   rotation:
     type: extrinsic
-    order: yxz
+    order: zxy
     angles: {}
 - type: step
   model: "PRT - 1003 - CUBHLF111 - V04.stp"
   position: [0.0, 0.0, 0.0]
   rotation:
     type: extrinsic
-    order: yxz
+    order: zxy
     angles: {"y": -180.0, z: -180.0}

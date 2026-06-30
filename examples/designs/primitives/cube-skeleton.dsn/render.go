@@ -11,4 +11,4 @@ package example
 
 //go:generate geom report-prim --format=json _primitives.json
 //go:generate geom report-prim --format=yaml _primitives.yml
-// //go:generate geom render-obj _objects.step
+//go:generate geom render-obj _objects.step

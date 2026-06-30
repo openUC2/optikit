@@ -1,0 +1,7 @@
+- type: step
+  model: axes.step
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    type: extrinsic
+    order: zxy
+    angles: {z: -90.0}

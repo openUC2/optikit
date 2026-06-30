@@ -67,6 +67,9 @@ type PrimRotReport struct {
 	// xyz, xzy, yzx, yxz, zxy, and zyx orders are Tait-Bryan angles, while
 	// xyx, xzx, yzy, yxy, zxz, and zyz orders are pure Euler angles.
 	// If the type is flipped and the order is reversed, then the overall rotation remains the same.
+	// For example, a rotation matrix defined as extrinsic ZXY (where Y, X, and Z are the rotation
+	// matrices for rotations about the world's Z-axis, X-axis, and Y-axis, respectively) corresponds
+	// to extrinsic rotations about the y-axis, then the x-axis, then the z-axis, in that order.
 	Order string `json:"order" yaml:"order"`
 	// Angles is in units of degrees
 	Angles designs.ContinuousXYZ[float64] `json:"angles" yaml:"angles,flow"`
@@ -76,7 +79,7 @@ func NewPrimRotReport(m mat4.T) PrimRotReport {
 	y, x, z := m.ExtractEulerAngles()
 	return PrimRotReport{
 		Type:  "extrinsic",
-		Order: "yxz",
+		Order: "zxy",
 		Angles: designs.ContinuousXYZ[float64]{
 			X: radToDeg(x),
 			Y: radToDeg(y),
