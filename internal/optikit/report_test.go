@@ -16,6 +16,102 @@ var reportPrimTests = []struct {
 	{
 		design: "primitives/cube-skeleton.dsn",
 	},
+	{
+		design:  "primitives/axes.dsn",
+		variant: "ZposXpos",
+	},
+	{
+		design:  "primitives/axes.dsn",
+		variant: "ZposYpos",
+	},
+	{
+		design:  "primitives/axes.dsn",
+		variant: "ZposXneg",
+	},
+	{
+		design:  "primitives/axes.dsn",
+		variant: "ZposYneg",
+	},
+	{
+		design:  "primitives/axes.dsn",
+		variant: "ZnegXpos",
+	},
+	{
+		design:  "primitives/axes.dsn",
+		variant: "ZnegYpos",
+	},
+	{
+		design:  "primitives/axes.dsn",
+		variant: "ZnegXneg",
+	},
+	{
+		design:  "primitives/axes.dsn",
+		variant: "ZnegYneg",
+	},
+	{
+		design:  "primitives/axes.dsn",
+		variant: "YposXpos",
+	},
+	{
+		design:  "primitives/axes.dsn",
+		variant: "YposZneg",
+	},
+	{
+		design:  "primitives/axes.dsn",
+		variant: "YposXneg",
+	},
+	{
+		design:  "primitives/axes.dsn",
+		variant: "YposZpos",
+	},
+	{
+		design:  "primitives/axes.dsn",
+		variant: "YnegXpos",
+	},
+	{
+		design:  "primitives/axes.dsn",
+		variant: "YnegZneg",
+	},
+	{
+		design:  "primitives/axes.dsn",
+		variant: "YnegXneg",
+	},
+	{
+		design:  "primitives/axes.dsn",
+		variant: "YnegZpos",
+	},
+	{
+		design:  "primitives/axes.dsn",
+		variant: "XposZneg",
+	},
+	{
+		design:  "primitives/axes.dsn",
+		variant: "XposYpos",
+	},
+	{
+		design:  "primitives/axes.dsn",
+		variant: "XposZpos",
+	},
+	{
+		design:  "primitives/axes.dsn",
+		variant: "XposYneg",
+	},
+	{
+		design:  "primitives/axes.dsn",
+		variant: "XnegZneg",
+	},
+	{
+		design:  "primitives/axes.dsn",
+		variant: "XnegYpos",
+	},
+	{
+		design:  "primitives/axes.dsn",
+		variant: "XnegZpos",
+	},
+	{
+		design:  "primitives/axes.dsn",
+		variant: "XnegYneg",
+	},
 }
 
 func TestReportPrims(t *testing.T) {
@@ -39,11 +135,16 @@ func TestReportPrims(t *testing.T) {
 			var want, got []byte
 
 			for _, format := range []string{"json", "yaml"} {
-				t.Logf("report %s:%s to %s", test.design, test.variant, format)
+				reportName := "_primitives"
+				if test.variant != "" {
+					reportName += ":" + test.variant
+				}
+				t.Logf("report %s to %s", reportName, format)
+				reportName += "." + fileExts[format]
 				if got, err = ReportPrimitives(t.Context(), designDecl.Components, format); err != nil {
 					t.Error(err)
 				}
-				if want, err = os.ReadFile(path.Join(dp, "_primitives."+fileExts[format])); err != nil {
+				if want, err = os.ReadFile(path.Join(dp, reportName)); err != nil {
 					t.Error(err)
 				}
 				if !cmp.Equal(got, want) {
