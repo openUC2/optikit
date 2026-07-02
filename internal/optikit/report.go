@@ -47,7 +47,9 @@ func ReportPrimitives(
 			return nil, err
 		}
 		var out bytes.Buffer
-		json.Indent(&out, result, "", "  ")
+		if err = json.Indent(&out, result, "", "  "); err != nil {
+			return nil, err
+		}
 		return out.Bytes(), nil
 	case "yaml":
 		if result, err = yaml.Marshal(report); err != nil {
@@ -93,5 +95,5 @@ func NewPrimRotReport(m mat4.T) PrimRotReport {
 }
 
 func radToDeg(rad float64) float64 {
-	return rad * (180.0 / math.Pi)
+	return rad * (180.0 / math.Pi) //nolint:mnd
 }

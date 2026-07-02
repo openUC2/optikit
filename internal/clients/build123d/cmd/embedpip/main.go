@@ -16,7 +16,7 @@ func main() {
 	}
 
 	var platforms []string
-	if len(os.Args) > 2 {
+	if len(os.Args) > 2 { //nolint:mnd
 		platforms = os.Args[2:]
 	}
 	err := createEmbeddedPipPackages(inputFile, "./data/", platforms)
