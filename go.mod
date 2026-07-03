@@ -18,10 +18,7 @@ require (
 	golang.org/x/mod v0.37.0
 )
 
-require (
-	github.com/PuerkitoBio/goquery v1.12.0
-	github.com/yosssi/gohtml v0.0.0-20201013000340-ee4748c638f4
-)
+require github.com/PuerkitoBio/goquery v1.12.0
 
 require (
 	4d63.com/gocheckcompilerdirectives v1.3.0 // indirect
