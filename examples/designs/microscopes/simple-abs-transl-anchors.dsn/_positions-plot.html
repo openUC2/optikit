@@ -1,0 +1,916 @@
+<!DOCTYPE html><html><head>
+    <meta charset="utf-8"/>
+    <title>Awesome go-echarts</title>
+    <script src="https://go-echarts.github.io/go-echarts-assets/assets/echarts.min.js"></script>
+    <script src="https://go-echarts.github.io/go-echarts-assets/assets/echarts@4.min.js"></script>
+    <script src="https://go-echarts.github.io/go-echarts-assets/assets/echarts-gl.min.js"></script>
+</head>
+
+<body><div class="container">
+    <div class="item" id="chart" style="width:1600px;height:800px;"></div>
+</div><script type="text/javascript">
+    "use strict";
+    let goecharts_chart = echarts.init(document.getElementById('chart'), "white", { renderer: "canvas" });
+    let option_chart = {
+      "color": [
+        "#5470c6",
+        "#91cc75",
+        "#fac858",
+        "#ee6666",
+        "#73c0de",
+        "#3ba272",
+        "#fc8452",
+        "#9a60b4",
+        "#ea7ccc"
+      ],
+      "grid3D": {},
+      "legend": {},
+      "series": [
+        {
+          "name": "light-source",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -80,
+                0,
+                2.5
+              ]
+            },
+            {
+              "value": [
+                -80,
+                0,
+                0
+              ]
+            },
+            {
+              "value": [
+                -80,
+                0,
+                -2.5
+              ]
+            }
+          ]
+        },
+        {
+          "name": "light-source",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -80,
+                -2.5,
+                0
+              ]
+            },
+            {
+              "value": [
+                -80,
+                0,
+                0
+              ]
+            },
+            {
+              "value": [
+                -80,
+                2.5,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "light-source",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -82.5,
+                0,
+                0
+              ]
+            },
+            {
+              "value": [
+                -80,
+                0,
+                0
+              ]
+            },
+            {
+              "value": [
+                -77.5,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "light-source",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                -80,
+                0,
+                -2.5
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                -80,
+                2.5,
+                0
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                -80,
+                0,
+                -2.5
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                -80,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "objective-lens",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                5,
+                2.5,
+                0
+              ]
+            },
+            {
+              "value": [
+                5,
+                0,
+                0
+              ]
+            },
+            {
+              "value": [
+                5,
+                -2.5,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "objective-lens",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                2.5,
+                0,
+                0
+              ]
+            },
+            {
+              "value": [
+                5,
+                0,
+                0
+              ]
+            },
+            {
+              "value": [
+                7.5,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "objective-lens",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                5,
+                0,
+                -2.5
+              ]
+            },
+            {
+              "value": [
+                5,
+                0,
+                0
+              ]
+            },
+            {
+              "value": [
+                5,
+                0,
+                2.5
+              ]
+            }
+          ]
+        },
+        {
+          "name": "objective-lens",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                5,
+                -2.5,
+                0
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                7.5,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                5,
+                -2.5,
+                0
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                5,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "periscope-mirror-1",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                7.5,
+                0,
+                0
+              ]
+            },
+            {
+              "value": [
+                10,
+                0,
+                0
+              ]
+            },
+            {
+              "value": [
+                12.5,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "periscope-mirror-1",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                10,
+                -2.5,
+                0
+              ]
+            },
+            {
+              "value": [
+                10,
+                0,
+                0
+              ]
+            },
+            {
+              "value": [
+                10,
+                2.5,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "periscope-mirror-1",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                10,
+                0,
+                -2.5
+              ]
+            },
+            {
+              "value": [
+                10,
+                0,
+                0
+              ]
+            },
+            {
+              "value": [
+                10,
+                0,
+                2.5
+              ]
+            }
+          ]
+        },
+        {
+          "name": "periscope-mirror-1",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                12.5,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                10,
+                2.5,
+                0
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                12.5,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                10,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "periscope-mirror-2",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                12.5,
+                50,
+                0
+              ]
+            },
+            {
+              "value": [
+                10,
+                50,
+                0
+              ]
+            },
+            {
+              "value": [
+                7.5,
+                50,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "periscope-mirror-2",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                10,
+                52.5,
+                0
+              ]
+            },
+            {
+              "value": [
+                10,
+                50,
+                0
+              ]
+            },
+            {
+              "value": [
+                10,
+                47.5,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "periscope-mirror-2",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                10,
+                50,
+                -2.5
+              ]
+            },
+            {
+              "value": [
+                10,
+                50,
+                0
+              ]
+            },
+            {
+              "value": [
+                10,
+                50,
+                2.5
+              ]
+            }
+          ]
+        },
+        {
+          "name": "periscope-mirror-2",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                7.5,
+                50,
+                0
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                10,
+                47.5,
+                0
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                7.5,
+                50,
+                0
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                10,
+                50,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "projector-screen",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                125,
+                50,
+                -2.5
+              ]
+            },
+            {
+              "value": [
+                125,
+                50,
+                0
+              ]
+            },
+            {
+              "value": [
+                125,
+                50,
+                2.5
+              ]
+            }
+          ]
+        },
+        {
+          "name": "projector-screen",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                125,
+                47.5,
+                0
+              ]
+            },
+            {
+              "value": [
+                125,
+                50,
+                0
+              ]
+            },
+            {
+              "value": [
+                125,
+                52.5,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "projector-screen",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                127.5,
+                50,
+                0
+              ]
+            },
+            {
+              "value": [
+                125,
+                50,
+                0
+              ]
+            },
+            {
+              "value": [
+                122.5,
+                50,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "projector-screen",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                125,
+                50,
+                2.5
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                125,
+                52.5,
+                0
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                125,
+                50,
+                2.5
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                125,
+                50,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "sample-holder",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                0,
+                2.5,
+                0
+              ]
+            },
+            {
+              "value": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "value": [
+                0,
+                -2.5,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "sample-holder",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -2.5,
+                0,
+                0
+              ]
+            },
+            {
+              "value": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "value": [
+                2.5,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "sample-holder",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                0,
+                0,
+                -2.5
+              ]
+            },
+            {
+              "value": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "value": [
+                0,
+                0,
+                2.5
+              ]
+            }
+          ]
+        },
+        {
+          "name": "sample-holder",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                0,
+                -2.5,
+                0
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                2.5,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                0,
+                -2.5,
+                0
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                0,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "tube-lens",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                25,
+                52.5,
+                0
+              ]
+            },
+            {
+              "value": [
+                25,
+                50,
+                0
+              ]
+            },
+            {
+              "value": [
+                25,
+                47.5,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "tube-lens",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                22.5,
+                50,
+                0
+              ]
+            },
+            {
+              "value": [
+                25,
+                50,
+                0
+              ]
+            },
+            {
+              "value": [
+                27.5,
+                50,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "tube-lens",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                25,
+                50,
+                -2.5
+              ]
+            },
+            {
+              "value": [
+                25,
+                50,
+                0
+              ]
+            },
+            {
+              "value": [
+                25,
+                50,
+                2.5
+              ]
+            }
+          ]
+        },
+        {
+          "name": "tube-lens",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                25,
+                47.5,
+                0
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                27.5,
+                50,
+                0
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                25,
+                47.5,
+                0
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                25,
+                50,
+                0
+              ]
+            }
+          ]
+        }
+      ],
+      "title": {},
+      "toolbox": {},
+      "tooltip": {},
+      "xAxis3D": {
+        "min": -82.5,
+        "max": 125
+      },
+      "yAxis3D": {
+        "min": -78.75,
+        "max": 128.75
+      },
+      "zAxis3D": {
+        "min": -103.75,
+        "max": 103.75
+      }
+    };
+
+    goecharts_chart.setOption(option_chart);
+</script>
+<style>
+    .container {margin-top:30px; display: flex;justify-content: center;align-items: center;}
+    .item {margin: auto;}
+</style>
+
+
+</body></html>

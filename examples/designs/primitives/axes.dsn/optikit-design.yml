@@ -1,0 +1,184 @@
+optikit-version: v0.0.0-alpha.1
+
+design:
+  description: A set of x-y-z coordinate axes
+
+components:
+  step:
+    type: primitive
+    primitive:
+      type: step
+      model: axes.step
+    pose:
+      rotation:
+        type: grid
+
+variants:
+  ZposXpos:
+    description: Grid rotation with component's z-axis in +z direction, x-axis in +x direction
+    components:
+      step:
+        pose:
+          rotation:
+            grid: {z: +z, x: +x}
+  ZposYpos:
+    description: Grid rotation with component's z-axis in +z direction, x-axis in +y direction
+    components:
+      step:
+        pose:
+          rotation:
+            grid: {z: +z, x: +y}
+  ZposXneg:
+    description: Grid rotation with component's z-axis in +z direction, x-axis in -x direction
+    components:
+      step:
+        pose:
+          rotation:
+            grid: {z: +z, x: -x}
+  ZposYneg:
+    description: Grid rotation with component's z-axis in +z direction, x-axis in -y direction
+    components:
+      step:
+        pose:
+          rotation:
+            grid: {z: +z, x: -y}
+  ZnegXpos:
+    description: Grid rotation with component's z-axis in -z direction, x-axis in +x direction
+    components:
+      step:
+        pose:
+          rotation:
+            grid: {z: -z, x: +x}
+  ZnegYpos:
+    description: Grid rotation with component's z-axis in -z direction, x-axis in +y direction
+    components:
+      step:
+        pose:
+          rotation:
+            grid: {z: -z, x: +y}
+  ZnegXneg:
+    description: Grid rotation with component's z-axis in -z direction, x-axis in -x direction
+    components:
+      step:
+        pose:
+          rotation:
+            grid: {z: -z, x: -x}
+  ZnegYneg:
+    description: Grid rotation with component's z-axis in -z direction, x-axis in -y direction
+    components:
+      step:
+        pose:
+          rotation:
+            grid: {z: -z, x: -y}
+  YposXpos:
+    description: Grid rotation with component's z-axis in +y direction, x-axis in +x direction
+    components:
+      step:
+        pose:
+          rotation:
+            grid: {z: +y, x: +x}
+  YposZneg:
+    description: Grid rotation with component's z-axis in +y direction, x-axis in -z direction
+    components:
+      step:
+        pose:
+          rotation:
+            grid: {z: +y, x: -z}
+  YposXneg:
+    description: Grid rotation with component's z-axis in +y direction, x-axis in -x direction
+    components:
+      step:
+        pose:
+          rotation:
+            grid: {z: +y, x: -x}
+  YposZpos:
+    description: Grid rotation with component's z-axis in +y direction, x-axis in +z direction
+    components:
+      step:
+        pose:
+          rotation:
+            grid: {z: +y, x: +z}
+  YnegXpos:
+    description: Grid rotation with component's z-axis in -y direction, x-axis in +x direction
+    components:
+      step:
+        pose:
+          rotation:
+            grid: {z: -y, x: +x}
+  YnegZneg:
+    description: Grid rotation with component's z-axis in -y direction, x-axis in +z direction
+    components:
+      step:
+        pose:
+          rotation:
+            grid: {z: -y, x: -z}
+  YnegXneg:
+    description: Grid rotation with component's z-axis in -y direction, x-axis in -x direction
+    components:
+      step:
+        pose:
+          rotation:
+            grid: {z: -y, x: -x}
+  YnegZpos:
+    description: Grid rotation with component's z-axis in -y direction, x-axis in +z direction
+    components:
+      step:
+        pose:
+          rotation:
+            grid: {z: -y, x: +z}
+  XposZneg:
+    description: Grid rotation with component's z-axis in +x direction, x-axis in -z direction
+    components:
+      step:
+        pose:
+          rotation:
+            grid: {z: +x, x: -z}
+  XposYpos:
+    description: Grid rotation with component's z-axis in +x direction, x-axis in +y direction
+    components:
+      step:
+        pose:
+          rotation:
+            grid: {z: +x, x: +y}
+  XposZpos:
+    description: Grid rotation with component's z-axis in +x direction, x-axis in +z direction
+    components:
+      step:
+        pose:
+          rotation:
+            grid: {z: +x, x: +z}
+  XposYneg:
+    description: Grid rotation with component's z-axis in +x direction, x-axis in -y direction
+    components:
+      step:
+        pose:
+          rotation:
+            grid: {z: +x, x: -y}
+  XnegZneg:
+    description: Grid rotation with component's z-axis in -x direction, x-axis in -z direction
+    components:
+      step:
+        pose:
+          rotation:
+            grid: {z: -x, x: -z}
+  XnegYpos:
+    description: Grid rotation with component's z-axis in -x direction, x-axis in +y direction
+    components:
+      step:
+        pose:
+          rotation:
+            grid: {z: -x, x: +y}
+  XnegZpos:
+    description: Grid rotation with component's z-axis in -x direction, x-axis in +z direction
+    components:
+      step:
+        pose:
+          rotation:
+            grid: {z: -x, x: +z}
+  XnegYneg:
+    description: Grid rotation with component's z-axis in -x direction, x-axis in -y direction
+    components:
+      step:
+        pose:
+          rotation:
+            grid: {z: -x, x: -y}

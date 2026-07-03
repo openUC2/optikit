@@ -7,6 +7,7 @@ import (
 	"github.com/urfave/cli/v3"
 
 	"github.com/openUC2/optikit/cmd/dev/dsn"
+	"github.com/openUC2/optikit/cmd/dev/mdl"
 	"github.com/openUC2/optikit/internal/optikit"
 )
 
@@ -19,6 +20,7 @@ func MakeCmd(versions optikit.Versions) *cli.Command {
 		Usage:   "Facilitates development and maintenance in the current working directory",
 		Commands: []*cli.Command{
 			dsn.MakeCmd(versions),
+			mdl.MakeCmd(versions),
 		},
 		Flags: []cli.Flag{
 			&cli.StringFlag{

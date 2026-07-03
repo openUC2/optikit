@@ -10,7 +10,7 @@ design:
 components:
   lens:
     type: design
-    design: ./lens.dsn
+    design: lens.dsn
     instantiation:
       optiland-model: '{{get inputs "lens-model"}}'
     pose:
@@ -21,7 +21,7 @@ components:
   insert:
     type: computed-primitive
     computation:
-      function: ./compute-insert-geometry.py
+      function: compute-insert-geometry.py
       inputs:
         lens: '{{get inputs "lens-model"}}'
         # TODO: do we need to specify notched vs. unnotched?

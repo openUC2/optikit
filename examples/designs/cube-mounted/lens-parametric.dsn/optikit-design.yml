@@ -10,13 +10,13 @@ design:
 components:
   skeleton:
     type: design
-    design: ./primitives/cube-skeleton.dsn
+    design: primitives/cube-skeleton.dsn
     pose:
       rotation:
         type: grid
   mounted-lens:
     type: design
-    design: ./mounted-lens.dsn
+    design: mounted-lens.dsn
     instantiation:
       lens: '{{get inputs "lens"}}'
     pose:

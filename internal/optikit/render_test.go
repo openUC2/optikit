@@ -19,6 +19,9 @@ var renderDesignDeclTests = []struct {
 	{
 		design: "microscopes/simple-abs-transl-anchors.dsn",
 	},
+	{
+		design: "primitives/cube-skeleton.dsn",
+	},
 }
 
 func TestRenderPositionGraph(t *testing.T) {

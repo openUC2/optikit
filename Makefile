@@ -2,7 +2,7 @@
 
 .PHONY: dev
 dev: ## dev build
-dev: clean install generate fmt fix spell vet lint test mod-tidy
+dev: clean install install-pip freeze-pip generate fmt fix spell vet lint test mod-tidy
 
 .PHONY: ci
 ci: ## CI build
@@ -11,18 +11,40 @@ ci: dev diff
 .PHONY: clean
 clean: ## remove files created during build pipeline
 	$(call print-target)
+	find internal/clients/build123d/data/*-* ! -name '.gitattributes' -type f -exec rm -f {} +
+	find internal/clients/build123d/data/*-*/* ! -name . -prune -type d -exec rm -R {} + || true
+	rm -rf examples/**/_positions-plot*.html
 	rm -rf dist
 	rm -f coverage.*
 
 .PHONY: install
-install: ## go install tools
+install: ## go install tool
 	$(call print-target)
 	go install tool
+
+.PHONY: install-pip
+install-pip: ## embedpip
+	$(call print-target)
+	cd internal/clients/build123d; go run ./cmd/embedpip requirements.frozen.txt
+
+.PHONY: freeze-pip
+freeze-pip: ## freezepip
+	$(call print-target)
+	cd internal/clients/build123d; go run ./cmd/freezepip requirements.direct.txt requirements.frozen.txt
 
 .PHONY: generate
 generate: ## go generate
 	$(call print-target)
 	go generate ./...
+
+.PHONY: generate-unreproducible
+generate-unreproducible: ## generate outside CI
+generate-unreproducible: generate-obj-step
+
+.PHONY: generate-obj-step
+generate-obj-step: ## examples/generate.sh generate-obj-step
+	$(call print-target)
+	./examples/generate-unreproducible.sh generate-obj-step
 
 .PHONY: vet
 vet: ## go vet
@@ -40,7 +62,7 @@ fmt: ## go fmt
 	go fmt ./...
 
 .PHONY: spell
-spell: ##misspell
+spell: ## misspell
 	$(call print-target)
 	go tool misspell -error -locale=US -w **.md
 
@@ -67,13 +89,13 @@ diff: ## git diff
 	RES=$$(git status --porcelain) ; if [ -n "$$RES" ]; then echo $$RES && exit 1 ; fi
 
 .PHONY: build
-build: ## Use goreleaser-cross (due to macOS CGo requirement) to run goreleaser --snapshot --skip=publish --clean
+build: ## goreleaser --snapshot --skip=publish --clean
 build: install
 	$(call print-target)
 	go tool goreleaser --snapshot --skip=publish --clean
 
 .PHONY: release
-release: ## Use goreleaser-cross (due to macOS CGo requirement) to run goreleaser --clean
+release: ## goreleaser --clean
 release: install
 	$(call print-target)
 	go tool goreleaser --clean

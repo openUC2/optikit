@@ -10,15 +10,18 @@ design:
 components:
   optical:
     type: primitive
-    model: '{{get inputs "optiland-model"}}'
+    primitive:
+      type: optiland
+      model: '{{get inputs "optiland-model"}}'
     pose:
       rotation:
         type: grid
       translation:
   mechanical:
-    type: computed-primitive
-    computation:
-      function: ./compute-geometry.py
+    type: primitive
+    primitive:
+      type: computed
+      function: compute-geometry.py
       inputs:
         lens: '{{get inputs "optiland-model"}}'
     pose:
