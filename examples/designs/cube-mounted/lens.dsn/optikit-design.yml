@@ -26,19 +26,19 @@ components:
         type: grid
 
 variants:
-    z:
-      description: Normal vector of lens is z-axis
-    y:
-      description: Normal vector of lens is y-axis; position is discretized.
-      components:
-        mounted-lens:
-          pose:
-            rotation:
-              grid: {z: +y}
-    x:
-      description: Normal vector of lens is x-axis
-      components:
-        mounted-lens:
-          pose:
-            rotation:
-              grid: {z: +x, x: -z}
+  z:
+    description: Normal vector of lens is z-axis
+  y:
+    description: Normal vector of lens is y-axis; position is discretized.
+    components:
+      mounted-lens:
+        pose:
+          rotation:
+            grid: {z: +y}
+  x:
+    description: Normal vector of lens is x-axis
+    components:
+      mounted-lens:
+        pose:
+          rotation:
+            grid: {z: +x, x: -z}

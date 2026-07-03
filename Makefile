@@ -37,6 +37,15 @@ generate: ## go generate
 	$(call print-target)
 	go generate ./...
 
+.PHONY: generate-unreproducible
+generate-unreproducible: ## generate outside CI
+generate-unreproducible: generate-obj-step
+
+.PHONY: generate-obj-step
+generate-obj-step: ## examples/generate.sh generate-obj-step
+	$(call print-target)
+	./examples/generate-unreproducible.sh generate-obj-step
+
 .PHONY: vet
 vet: ## go vet
 	$(call print-target)

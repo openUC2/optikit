@@ -1,7 +1,6 @@
 package optikit
 
 import (
-	"bytes"
 	"context"
 	"encoding/json"
 	"fmt"
@@ -43,14 +42,10 @@ func ReportPrimitives(
 	default:
 		return nil, fmt.Errorf("unknown output format %s", format)
 	case "json":
-		if result, err = json.Marshal(report); err != nil {
+		if result, err = json.MarshalIndent(report, "", "  "); err != nil {
 			return nil, err
 		}
-		var out bytes.Buffer
-		if err = json.Indent(&out, result, "", "  "); err != nil {
-			return nil, err
-		}
-		return out.Bytes(), nil
+		return result, nil
 	case "yaml":
 		if result, err = yaml.Marshal(report); err != nil {
 			return nil, err
