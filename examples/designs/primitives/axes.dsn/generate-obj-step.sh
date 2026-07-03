@@ -9,5 +9,6 @@ function geom {
 
 cd "$script_dir"
 yq '.variants | keys | .[]' optikit-design.yml | while read -r variant; do
+  echo "$variant"
   geom --variant="$variant" render-obj "_objects:$variant.step"
 done

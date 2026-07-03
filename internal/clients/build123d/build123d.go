@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"regexp"
 
 	"github.com/kluctl/go-embed-python/embed_util"
 	"github.com/kluctl/go-embed-python/pip"
@@ -100,7 +101,12 @@ func (c *Client) Assemble(stdin []byte) ([]byte, error) {
 		fmt.Println(out.String())
 		return nil, err
 	}
-	return out.Bytes(), err
+	return formatSTEP(out.Bytes()), err
+}
+
+func formatSTEP(step []byte) []byte {
+	pattern := regexp.MustCompile(`FILE_NAME\('(?P<name>.*)','\d+-\d+-\d+T\d+:\d+:\d+',\(`)
+	return pattern.ReplaceAll(step, []byte(`FILE_NAME('${name}','1970-01-01T00:00:00',(`))
 }
 
 func (c *Client) Convert(inputFormat, inputPath, outputFormat, outputPath string) error {
