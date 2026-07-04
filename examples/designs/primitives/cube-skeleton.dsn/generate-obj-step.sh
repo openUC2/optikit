@@ -8,4 +8,4 @@ function geom {
 }
 
 cd "$script_dir"
-geom render-obj "_objects.step"
+geom render-obj --format=step "_objects.step"

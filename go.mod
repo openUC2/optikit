@@ -3,6 +3,7 @@ module github.com/openUC2/optikit
 go 1.26.3
 
 require (
+	github.com/PuerkitoBio/goquery v1.12.0
 	github.com/bmatcuk/doublestar/v4 v4.10.0
 	github.com/carlmjohnson/versioninfo v0.22.5
 	github.com/go-echarts/go-echarts/v2 v2.7.2
@@ -13,12 +14,11 @@ require (
 	github.com/kluctl/go-embed-python v0.0.0-3.13.14-20260610-1
 	github.com/muesli/reflow v0.3.0
 	github.com/pkg/errors v0.9.1
+	github.com/qmuntal/gltf v0.28.0
 	github.com/ungerik/go3d v0.0.0-20251020194721-1bde1320d420
 	github.com/urfave/cli/v3 v3.10.0
 	golang.org/x/mod v0.37.0
 )
-
-require github.com/PuerkitoBio/goquery v1.12.0
 
 require (
 	4d63.com/gocheckcompilerdirectives v1.3.0 // indirect

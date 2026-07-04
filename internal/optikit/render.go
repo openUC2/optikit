@@ -17,6 +17,7 @@ import (
 	"github.com/openUC2/optikit/exp/structures"
 	"github.com/openUC2/optikit/internal/clients/build123d"
 	"github.com/openUC2/optikit/internal/clients/echarts"
+	"github.com/openUC2/optikit/internal/clients/gltf"
 	"github.com/openUC2/optikit/internal/clients/graphviz"
 )
 
@@ -25,20 +26,45 @@ import (
 func RenderObjects(
 	ctx context.Context, comps designs.CompsSpec, format string,
 ) (result []byte, err error) {
+	switch format {
+	default:
+		return nil, errors.Errorf("unknown format %s", format)
+	case "glb":
+		return RenderObjectsGLB(ctx, comps, false)
+	case "gltf":
+		return RenderObjectsGLB(ctx, comps, true)
+	case "step":
+		return RenderObjectsSTEP(ctx, comps)
+	}
+}
+
+func RenderObjectsGLB(
+	ctx context.Context, comps designs.CompsSpec, asText bool,
+) (result []byte, err error) {
+	doc := gltf.NewDocument()
+	if result, err = doc.Assemble(comps, asText, designs.UC2GridSpacings); err != nil {
+		return nil, err
+	}
+	return result, nil
+}
+
+func RenderObjectsSTEP(
+	ctx context.Context, comps designs.CompsSpec,
+) (result []byte, err error) {
 	primsReport, err := ReportPrimitives(ctx, comps, "json")
 	if err != nil {
 		return nil, err
 	}
 
-	cqc, err := build123d.New()
+	bc, err := build123d.New()
 	if err != nil {
 		return nil, err
 	}
 	defer func() {
-		err = cqc.Close()
+		err = bc.Close()
 	}()
 
-	if result, err = cqc.Assemble(primsReport); err != nil {
+	if result, err = bc.Assemble(primsReport); err != nil {
 		return nil, err
 	}
 	return result, nil

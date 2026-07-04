@@ -1,0 +1,328 @@
+package gltf
+
+import (
+	"bytes"
+	"crypto/sha256"
+	"encoding/json"
+	"fmt"
+	"maps"
+	"os"
+	"slices"
+
+	"github.com/pkg/errors"
+	"github.com/qmuntal/gltf"
+	"github.com/ungerik/go3d/float64/vec3"
+
+	"github.com/openUC2/optikit/exp/designs"
+)
+
+type Document struct {
+	d    *gltf.Document
+	root *gltf.Node
+
+	// modelInstances contains the lists of node indices of the root nodes of all instances of each
+	// primitive model added to the document. The key is a hash of each model (for
+	// content-addressability).
+	modelInstances map[string][][]int
+	// indexMapping contains the index mappings of array elements for all primitive models added to
+	// the document. The key is a hash of each model (for content-addressability).
+	indexMappings map[string]indexMappings
+}
+
+// indexMappings maps from the indices of array elements within a model to the indices of those
+// same array elements within the document to which that model has been added.
+type indexMappings struct {
+	Accessors   map[int]int
+	Buffers     map[int]int
+	BufferViews map[int]int
+	Materials   map[int]int
+	Meshes      map[int]int
+	Nodes       map[int]int
+}
+
+// Document
+
+func NewDocument() *Document {
+	d := Document{
+		d: gltf.NewDocument(),
+		root: &gltf.Node{
+			Name: "design",
+		},
+		modelInstances: make(map[string][][]int),
+		indexMappings:  make(map[string]indexMappings),
+	}
+	d.d.Asset = gltf.Asset{
+		Generator: "optikit", // TODO: add a version number!
+		Version:   "2.0",
+	}
+	d.d.Nodes = []*gltf.Node{d.root}
+	d.d.Scenes = []*gltf.Scene{
+		{
+			Name:  "design",
+			Nodes: []int{0},
+		},
+	}
+	return &d
+}
+
+func Load(contents []byte) (doc *Document, err error) {
+	doc = &Document{
+		d: gltf.NewDocument(),
+	}
+	if err = gltf.NewDecoder(bytes.NewReader(contents)).Decode(doc.d); err != nil {
+		return nil, err
+	}
+	return doc, nil
+}
+
+func (d *Document) Assemble(
+	comps designs.CompsSpec, asText bool, gridSpacings designs.ContinuousXYZ[float64],
+) ([]byte, error) {
+	flattened := comps.Flattened()
+	compIDs := slices.Sorted(maps.Keys(flattened))
+	for _, id := range compIDs {
+		rootNodeIndices, err := d.addComponent(id, flattened[id], gridSpacings)
+		if err != nil {
+			return nil, errors.Wrapf(err, "couldn't add component %s to gltf model", id)
+		}
+		d.root.Children = append(d.root.Children, rootNodeIndices...)
+	}
+
+	return d.Encode(asText)
+}
+
+func (d *Document) addComponent(
+	id designs.CompID, comp designs.CompSpec, gridSpacings designs.ContinuousXYZ[float64],
+) (
+	rootNodeIndices []int, err error,
+) {
+	n := new(gltf.Node)
+	n.Name = string(id)
+	var nodeIndex int
+	d.d.Nodes, nodeIndex = addElem(d.d.Nodes, n)
+
+	if n.Rotation, n.Translation, err = computeNodePose(comp.Pose, gridSpacings); err != nil {
+		return nil, errors.Wrapf(err, "couldn't add component %s", id)
+	}
+
+	// Add the node's primitive model to document:
+	var modelHash string
+	switch t := comp.Type; t {
+	default:
+		return nil, errors.Errorf("unknown component type for component %s: %s", id, t)
+	case "location":
+		return nil, nil
+	case "design":
+		// TODO: recursively add the design's components
+		return nil, errors.Errorf("unimplemented component type for component %s: %s", id, t)
+	case "primitive":
+		switch pt := comp.Primitive.Type; pt {
+		default:
+			return nil, errors.Errorf("unknown model type for primitive %s: %s", id, t)
+		case "optiland", "step":
+			return nil, nil
+		case "gltf", "glb":
+			h, rootNodes, err := d.addComponentPrimitive(comp.Primitive)
+			if err != nil {
+				return []int{nodeIndex}, errors.Wrapf(
+					err, "couldn't add primitive component: %+v", comp.Primitive,
+				)
+			}
+			n.Children = append(n.Children, rootNodes...)
+			modelHash = h
+		}
+	}
+	d.modelInstances[modelHash] = append(d.modelInstances[modelHash], n.Children)
+	return []int{nodeIndex}, nil
+}
+
+func computeNodePose(pose designs.CompPoseSpec, gridSpacings designs.ContinuousXYZ[float64]) (
+	rot [4]float64, transl [3]float64, err error,
+) {
+	mat, err := pose.TransfMat(gridSpacings)
+	if err != nil {
+		return [4]float64{}, [3]float64{}, errors.Wrap(err, "couldn't compute node pose")
+	}
+	mat.TransformVec3(&vec3.Zero)
+	return mat.Quaternion(), transl, nil
+}
+
+func (d *Document) addComponentPrimitive(prim designs.CompPrimSpec) (
+	modelHash string, rootNodeIndices []int, err error,
+) {
+	model := prim.Model
+	contents, err := os.ReadFile(model) // TODO: read from the FSDesign's FS, not from the cwd!
+	if err != nil {
+		return "", nil, errors.Wrapf(err, "couldn't read model %s", model)
+	}
+	hash := fmt.Sprintf("%x", sha256.Sum256(contents))
+	if instances, ok := d.modelInstances[hash]; ok {
+		return hash, d.cloneNodeTrees(instances[0]), nil
+	}
+	m, err := Load(contents)
+	if err != nil {
+		return hash, nil, errors.Wrapf(err, "couldn't parse glTF/glb model %s", model)
+	}
+	rootNodes, err := d.addModel(hash, m.d)
+	if err != nil {
+		return hash, nil, errors.Wrapf(err, "couldn't add model %s", model)
+	}
+	return hash, rootNodes, nil
+}
+
+func (d *Document) cloneNodeTrees(nodeIndices []int) []int {
+	clonedIndices := make(map[int]int)
+	// NOTE(ethanjli): we add the parent nodes before adding the child nodes, in breadth-first style:
+	for _, nodeIndex := range nodeIndices {
+		node := *d.d.Nodes[nodeIndex]
+		d.d.Nodes, clonedIndices[nodeIndex] = addElem(d.d.Nodes, &node)
+	}
+	for _, nodeIndex := range nodeIndices {
+		d.d.Nodes[clonedIndices[nodeIndex]].Children = d.cloneNodeTrees(d.d.Nodes[nodeIndex].Children)
+	}
+	return slices.Sorted(maps.Values(clonedIndices))
+}
+
+func (d *Document) addModel(hash string, m *gltf.Document) (rootNodeIndices []int, err error) {
+	im := newIndexMappings()
+	for i, el := range m.Materials {
+		d.d.Materials, im.Materials[i] = addElem(d.d.Materials, el)
+	}
+	for i, el := range m.Buffers {
+		d.d.Buffers, im.Buffers[i] = addElem(d.d.Buffers, el)
+	}
+	for i, el := range m.BufferViews {
+		var ok bool
+		if el.Buffer, ok = im.Buffers[el.Buffer]; !ok {
+			return nil, errors.Errorf("couldn't re-map buffer index for buffer view: %+v", el)
+		}
+		d.d.BufferViews, im.BufferViews[i] = addElem(d.d.BufferViews, el)
+	}
+	if err := d.addModelAccessors(m.Accessors, im); err != nil {
+		return nil, errors.Wrap(err, "couldn't add accessors for model")
+	}
+	if err := d.addModelMeshes(m.Meshes, im); err != nil {
+		return nil, errors.Wrap(err, "couldn't add meshes for model")
+	}
+	if err := d.addModelNodes(m.Nodes, im); err != nil {
+		return nil, errors.Wrap(err, "couldn't add nodes for model")
+	}
+	d.indexMappings[hash] = im
+	if len(m.Scenes) == 0 {
+		// NOTE(ethanjli): We could return maps.Values(im.Nodes), but if they have any internal
+		// parent-child relationships then we will invalidate the overall document by making all nodes
+		// be the child of a parent node. It's better to just return an error here instead of silently
+		// creating broken gltf/glb outputs.
+		return nil, errors.Errorf("model %s doesn't specify any scenes with root nodes", hash)
+	}
+	var sceneIdx int
+	if m.Scene != nil {
+		sceneIdx = *m.Scene
+	}
+	scene := m.Scenes[sceneIdx]
+	for _, i := range scene.Nodes {
+		rootNodeIndices = append(rootNodeIndices, im.Nodes[i])
+	}
+	return rootNodeIndices, nil
+}
+
+func addElem[T any](arr []T, elem T) (appended []T, idx int) {
+	arr = append(arr, elem)
+	return arr, len(arr) - 1
+}
+
+func (d *Document) addModelAccessors(m []*gltf.Accessor, im indexMappings) error {
+	for i, el := range m {
+		if el.BufferView == nil {
+			continue
+		}
+		idx, ok := im.BufferViews[*el.BufferView]
+		if !ok {
+			return errors.Errorf("couldn't re-map buffer index for buffer view: %+v", el)
+		}
+		el.BufferView = &idx
+		d.d.Accessors, im.Accessors[i] = addElem(d.d.Accessors, el)
+	}
+	return nil
+}
+
+func (d *Document) addModelMeshes(m []*gltf.Mesh, im indexMappings) error {
+	for i, el := range m {
+		for _, pr := range el.Primitives {
+			if pr.Indices != nil {
+				idx, ok := im.Accessors[*pr.Indices]
+				if !ok {
+					return errors.Errorf("couldn't re-map accessor index for mesh primitive: %+v", pr)
+				}
+				pr.Indices = &idx
+			}
+			if pr.Material != nil {
+				idx, ok := im.Materials[*pr.Material]
+				if !ok {
+					return errors.Errorf("couldn't re-map material index for mesh primitive: %+v", pr)
+				}
+				pr.Material = &idx
+			}
+		}
+		d.d.Meshes, im.Meshes[i] = addElem(d.d.Meshes, el)
+	}
+	return nil
+}
+
+func (d *Document) addModelNodes(m []*gltf.Node, im indexMappings) error {
+	// NOTE(ethanjli): we add the parent nodes before adding the child nodes, in breadth-first style:
+	addedNodes := make(map[int]*gltf.Node, 0)
+	for i, el := range m {
+		if el.Mesh != nil {
+			idx, ok := im.Meshes[*el.Mesh]
+			if !ok {
+				return errors.Errorf("couldn't re-map mesh index for node: %+v", el)
+			}
+			el.Mesh = &idx
+		}
+
+		addedNodes[i] = el
+		d.d.Nodes, im.Nodes[i] = addElem(d.d.Nodes, el)
+	}
+
+	for _, node := range addedNodes {
+		for i, j := range node.Children {
+			idx, ok := im.Nodes[j]
+			if !ok {
+				return errors.Errorf("couldn't re-map child node index %d for node: %+v", j, *node)
+			}
+			node.Children[i] = idx
+		}
+	}
+	return nil
+}
+
+func (d *Document) Encode(asText bool) ([]byte, error) {
+	var buf bytes.Buffer
+	enc := gltf.NewEncoder(&buf)
+	enc.AsBinary = !asText
+	if err := enc.Encode(d.d); err != nil {
+		return nil, err
+	}
+	if asText {
+		result := buf.Bytes()
+		buf.Reset()
+		if err := json.Indent(&buf, result, "", "  "); err != nil {
+			return result, err
+		}
+	}
+	return buf.Bytes(), nil
+}
+
+// indexMappings
+
+func newIndexMappings() indexMappings {
+	return indexMappings{
+		Accessors:   make(map[int]int),
+		Buffers:     make(map[int]int),
+		BufferViews: make(map[int]int),
+		Materials:   make(map[int]int),
+		Meshes:      make(map[int]int),
+		Nodes:       make(map[int]int),
+	}
+}

@@ -46,8 +46,8 @@ var cmds = []*cli.Command{
 		Flags: []cli.Flag{
 			&cli.StringFlag{
 				Name:  "format",
-				Value: "step",
-				Usage: "Render output format (step)",
+				Value: "glb",
+				Usage: "Render output format (glb, gltf, or step)",
 			},
 		},
 		Action: renderObjA,

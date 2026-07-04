@@ -21,7 +21,8 @@ func ReportPrimitives(
 	ctx context.Context, comps designs.CompsSpec,
 	format string,
 ) (result []byte, err error) {
-	prims := comps.Primitives()
+	flattened := comps.Flattened()
+	prims := flattened.Primitives()
 	report := make([]PrimReport, 0, len(prims))
 	for _, compID := range slices.Sorted(maps.Keys(prims)) {
 		comp := prims[compID]

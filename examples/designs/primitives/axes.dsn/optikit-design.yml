@@ -7,8 +7,8 @@ components:
   step:
     type: primitive
     primitive:
-      type: step
-      model: axes.step
+      type: gltf
+      model: axes.glb
     pose:
       rotation:
         type: grid

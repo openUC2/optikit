@@ -1,7 +1,7 @@
 [
   {
-    "type": "step",
-    "model": "PRT - 1003 - CUBHLF111 - V04.stp",
+    "type": "gltf",
+    "model": "PRT - 1003 - CUBHLF111 - V04.glb",
     "position": [
       0,
       0,
@@ -18,8 +18,8 @@
     }
   },
   {
-    "type": "step",
-    "model": "PRT - 1003 - CUBHLF111 - V04.stp",
+    "type": "gltf",
+    "model": "PRT - 1003 - CUBHLF111 - V04.glb",
     "position": [
       0,
       0,
