@@ -119,9 +119,7 @@ func (d *Document) addComponent(
 		switch pt := comp.Primitive.Type; pt {
 		default:
 			return nil, errors.Errorf("unknown model type for primitive %s: %s", id, t)
-		case "optiland", "step":
-			return nil, nil
-		case "gltf", "glb":
+		case "", "static":
 			h, rootNodes, err := d.addComponentPrimitive(comp.Primitive)
 			if err != nil {
 				return []int{nodeIndex}, errors.Wrapf(
@@ -150,7 +148,10 @@ func computeNodePose(pose designs.CompPoseSpec, gridSpacings designs.ContinuousX
 func (d *Document) addComponentPrimitive(prim designs.CompPrimSpec) (
 	modelHash string, rootNodeIndices []int, err error,
 ) {
-	model := prim.Model
+	model := prim.StaticModels.GLTF
+	if model == "" {
+		return "", nil, errors.Errorf("primitive component has no glTF/glb model file: %+v", prim)
+	}
 	contents, err := os.ReadFile(model) // TODO: read from the FSDesign's FS, not from the cwd!
 	if err != nil {
 		return "", nil, errors.Wrapf(err, "couldn't read model %s", model)

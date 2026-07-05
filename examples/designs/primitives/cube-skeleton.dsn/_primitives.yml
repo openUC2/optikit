@@ -1,12 +1,16 @@
-- type: gltf
-  model: "PRT - 1003 - CUBHLF111 - V04.glb"
+- type: ""
+  static-models:
+    gltf: "PRT - 1003 - CUBHLF111 - V04.glb"
+    step: "PRT - 1003 - CUBHLF111 - V04.stp"
   position: [0.0, 0.0, 0.0]
   rotation:
     type: extrinsic
     order: zxy
     angles: {}
-- type: gltf
-  model: "PRT - 1003 - CUBHLF111 - V04.glb"
+- type: ""
+  static-models:
+    gltf: "PRT - 1003 - CUBHLF111 - V04.glb"
+    step: "PRT - 1003 - CUBHLF111 - V04.stp"
   position: [0.0, 0.0, 0.0]
   rotation:
     type: extrinsic

@@ -19,8 +19,9 @@ components:
   mounted-lens:
     type: primitive
     primitive:
-      type: step
-      model: SUB - 0023 - LEND40F50 - V04 - virt ass.stp
+      static-models:
+        gltf: SUB - 0023 - LEND40F50 - V04 - virt ass.glb
+        step: SUB - 0023 - LEND40F50 - V04 - virt ass.stp
     pose:
       rotation:
         type: grid

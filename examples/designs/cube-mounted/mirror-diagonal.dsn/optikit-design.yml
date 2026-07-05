@@ -19,8 +19,9 @@ components:
   mounted-mirror:
     type: primitive
     primitive:
-      type: step
-      model: SUB - 0022 - MIR45TH2 - virt ass.stp
+      static-models:
+        gltf: SUB - 0022 - MIR45TH2 - virt ass.glb
+        step: SUB - 0022 - MIR45TH2 - virt ass.stp
     pose:
       rotation:
         type: grid
