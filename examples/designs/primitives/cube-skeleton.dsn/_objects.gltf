@@ -11282,2927 +11282,2550 @@
       "target": 34963
     }
   ],
-  "materials": [
-    {
-      "name": "mat_0",
-      "pbrMetallicRoughness": {
-        "baseColorFactor": [
-          0.07818742096424103,
-          0.08650045841932297,
-          0.09758734703063965,
-          1
-        ]
-      },
-      "doubleSided": true
-    }
-  ],
   "meshes": [
     {
-      "name": "PRT_-_1003_-_CUBHLF111_-_V04",
+      "name": "PRT - 1003 - CUBHLF111 - V04",
       "primitives": [
         {
           "attributes": {
             "NORMAL": 363,
             "POSITION": 0
           },
-          "indices": 726,
-          "material": 0
+          "indices": 726
         },
         {
           "attributes": {
             "NORMAL": 364,
             "POSITION": 1
           },
-          "indices": 727,
-          "material": 0
+          "indices": 727
         },
         {
           "attributes": {
             "NORMAL": 365,
             "POSITION": 2
           },
-          "indices": 728,
-          "material": 0
+          "indices": 728
         },
         {
           "attributes": {
             "NORMAL": 366,
             "POSITION": 3
           },
-          "indices": 729,
-          "material": 0
+          "indices": 729
         },
         {
           "attributes": {
             "NORMAL": 367,
             "POSITION": 4
           },
-          "indices": 730,
-          "material": 0
+          "indices": 730
         },
         {
           "attributes": {
             "NORMAL": 368,
             "POSITION": 5
           },
-          "indices": 731,
-          "material": 0
+          "indices": 731
         },
         {
           "attributes": {
             "NORMAL": 369,
             "POSITION": 6
           },
-          "indices": 732,
-          "material": 0
+          "indices": 732
         },
         {
           "attributes": {
             "NORMAL": 370,
             "POSITION": 7
           },
-          "indices": 733,
-          "material": 0
+          "indices": 733
         },
         {
           "attributes": {
             "NORMAL": 371,
             "POSITION": 8
           },
-          "indices": 734,
-          "material": 0
+          "indices": 734
         },
         {
           "attributes": {
             "NORMAL": 372,
             "POSITION": 9
           },
-          "indices": 735,
-          "material": 0
+          "indices": 735
         },
         {
           "attributes": {
             "NORMAL": 373,
             "POSITION": 10
           },
-          "indices": 736,
-          "material": 0
+          "indices": 736
         },
         {
           "attributes": {
             "NORMAL": 374,
             "POSITION": 11
           },
-          "indices": 737,
-          "material": 0
+          "indices": 737
         },
         {
           "attributes": {
             "NORMAL": 375,
             "POSITION": 12
           },
-          "indices": 738,
-          "material": 0
+          "indices": 738
         },
         {
           "attributes": {
             "NORMAL": 376,
             "POSITION": 13
           },
-          "indices": 739,
-          "material": 0
+          "indices": 739
         },
         {
           "attributes": {
             "NORMAL": 377,
             "POSITION": 14
           },
-          "indices": 740,
-          "material": 0
+          "indices": 740
         },
         {
           "attributes": {
             "NORMAL": 378,
             "POSITION": 15
           },
-          "indices": 741,
-          "material": 0
+          "indices": 741
         },
         {
           "attributes": {
             "NORMAL": 379,
             "POSITION": 16
           },
-          "indices": 742,
-          "material": 0
+          "indices": 742
         },
         {
           "attributes": {
             "NORMAL": 380,
             "POSITION": 17
           },
-          "indices": 743,
-          "material": 0
+          "indices": 743
         },
         {
           "attributes": {
             "NORMAL": 381,
             "POSITION": 18
           },
-          "indices": 744,
-          "material": 0
+          "indices": 744
         },
         {
           "attributes": {
             "NORMAL": 382,
             "POSITION": 19
           },
-          "indices": 745,
-          "material": 0
+          "indices": 745
         },
         {
           "attributes": {
             "NORMAL": 383,
             "POSITION": 20
           },
-          "indices": 746,
-          "material": 0
+          "indices": 746
         },
         {
           "attributes": {
             "NORMAL": 384,
             "POSITION": 21
           },
-          "indices": 747,
-          "material": 0
+          "indices": 747
         },
         {
           "attributes": {
             "NORMAL": 385,
             "POSITION": 22
           },
-          "indices": 748,
-          "material": 0
+          "indices": 748
         },
         {
           "attributes": {
             "NORMAL": 386,
             "POSITION": 23
           },
-          "indices": 749,
-          "material": 0
+          "indices": 749
         },
         {
           "attributes": {
             "NORMAL": 387,
             "POSITION": 24
           },
-          "indices": 750,
-          "material": 0
+          "indices": 750
         },
         {
           "attributes": {
             "NORMAL": 388,
             "POSITION": 25
           },
-          "indices": 751,
-          "material": 0
+          "indices": 751
         },
         {
           "attributes": {
             "NORMAL": 389,
             "POSITION": 26
           },
-          "indices": 752,
-          "material": 0
+          "indices": 752
         },
         {
           "attributes": {
             "NORMAL": 390,
             "POSITION": 27
           },
-          "indices": 753,
-          "material": 0
+          "indices": 753
         },
         {
           "attributes": {
             "NORMAL": 391,
             "POSITION": 28
           },
-          "indices": 754,
-          "material": 0
+          "indices": 754
         },
         {
           "attributes": {
             "NORMAL": 392,
             "POSITION": 29
           },
-          "indices": 755,
-          "material": 0
+          "indices": 755
         },
         {
           "attributes": {
             "NORMAL": 393,
             "POSITION": 30
           },
-          "indices": 756,
-          "material": 0
+          "indices": 756
         },
         {
           "attributes": {
             "NORMAL": 394,
             "POSITION": 31
           },
-          "indices": 757,
-          "material": 0
+          "indices": 757
         },
         {
           "attributes": {
             "NORMAL": 395,
             "POSITION": 32
           },
-          "indices": 758,
-          "material": 0
+          "indices": 758
         },
         {
           "attributes": {
             "NORMAL": 396,
             "POSITION": 33
           },
-          "indices": 759,
-          "material": 0
+          "indices": 759
         },
         {
           "attributes": {
             "NORMAL": 397,
             "POSITION": 34
           },
-          "indices": 760,
-          "material": 0
+          "indices": 760
         },
         {
           "attributes": {
             "NORMAL": 398,
             "POSITION": 35
           },
-          "indices": 761,
-          "material": 0
+          "indices": 761
         },
         {
           "attributes": {
             "NORMAL": 399,
             "POSITION": 36
           },
-          "indices": 762,
-          "material": 0
+          "indices": 762
         },
         {
           "attributes": {
             "NORMAL": 400,
             "POSITION": 37
           },
-          "indices": 763,
-          "material": 0
+          "indices": 763
         },
         {
           "attributes": {
             "NORMAL": 401,
             "POSITION": 38
           },
-          "indices": 764,
-          "material": 0
+          "indices": 764
         },
         {
           "attributes": {
             "NORMAL": 402,
             "POSITION": 39
           },
-          "indices": 765,
-          "material": 0
+          "indices": 765
         },
         {
           "attributes": {
             "NORMAL": 403,
             "POSITION": 40
           },
-          "indices": 766,
-          "material": 0
+          "indices": 766
         },
         {
           "attributes": {
             "NORMAL": 404,
             "POSITION": 41
           },
-          "indices": 767,
-          "material": 0
+          "indices": 767
         },
         {
           "attributes": {
             "NORMAL": 405,
             "POSITION": 42
           },
-          "indices": 768,
-          "material": 0
+          "indices": 768
         },
         {
           "attributes": {
             "NORMAL": 406,
             "POSITION": 43
           },
-          "indices": 769,
-          "material": 0
+          "indices": 769
         },
         {
           "attributes": {
             "NORMAL": 407,
             "POSITION": 44
           },
-          "indices": 770,
-          "material": 0
+          "indices": 770
         },
         {
           "attributes": {
             "NORMAL": 408,
             "POSITION": 45
           },
-          "indices": 771,
-          "material": 0
+          "indices": 771
         },
         {
           "attributes": {
             "NORMAL": 409,
             "POSITION": 46
           },
-          "indices": 772,
-          "material": 0
+          "indices": 772
         },
         {
           "attributes": {
             "NORMAL": 410,
             "POSITION": 47
           },
-          "indices": 773,
-          "material": 0
+          "indices": 773
         },
         {
           "attributes": {
             "NORMAL": 411,
             "POSITION": 48
           },
-          "indices": 774,
-          "material": 0
+          "indices": 774
         },
         {
           "attributes": {
             "NORMAL": 412,
             "POSITION": 49
           },
-          "indices": 775,
-          "material": 0
+          "indices": 775
         },
         {
           "attributes": {
             "NORMAL": 413,
             "POSITION": 50
           },
-          "indices": 776,
-          "material": 0
+          "indices": 776
         },
         {
           "attributes": {
             "NORMAL": 414,
             "POSITION": 51
           },
-          "indices": 777,
-          "material": 0
+          "indices": 777
         },
         {
           "attributes": {
             "NORMAL": 415,
             "POSITION": 52
           },
-          "indices": 778,
-          "material": 0
+          "indices": 778
         },
         {
           "attributes": {
             "NORMAL": 416,
             "POSITION": 53
           },
-          "indices": 779,
-          "material": 0
+          "indices": 779
         },
         {
           "attributes": {
             "NORMAL": 417,
             "POSITION": 54
           },
-          "indices": 780,
-          "material": 0
+          "indices": 780
         },
         {
           "attributes": {
             "NORMAL": 418,
             "POSITION": 55
           },
-          "indices": 781,
-          "material": 0
+          "indices": 781
         },
         {
           "attributes": {
             "NORMAL": 419,
             "POSITION": 56
           },
-          "indices": 782,
-          "material": 0
+          "indices": 782
         },
         {
           "attributes": {
             "NORMAL": 420,
             "POSITION": 57
           },
-          "indices": 783,
-          "material": 0
+          "indices": 783
         },
         {
           "attributes": {
             "NORMAL": 421,
             "POSITION": 58
           },
-          "indices": 784,
-          "material": 0
+          "indices": 784
         },
         {
           "attributes": {
             "NORMAL": 422,
             "POSITION": 59
           },
-          "indices": 785,
-          "material": 0
+          "indices": 785
         },
         {
           "attributes": {
             "NORMAL": 423,
             "POSITION": 60
           },
-          "indices": 786,
-          "material": 0
+          "indices": 786
         },
         {
           "attributes": {
             "NORMAL": 424,
             "POSITION": 61
           },
-          "indices": 787,
-          "material": 0
+          "indices": 787
         },
         {
           "attributes": {
             "NORMAL": 425,
             "POSITION": 62
           },
-          "indices": 788,
-          "material": 0
+          "indices": 788
         },
         {
           "attributes": {
             "NORMAL": 426,
             "POSITION": 63
           },
-          "indices": 789,
-          "material": 0
+          "indices": 789
         },
         {
           "attributes": {
             "NORMAL": 427,
             "POSITION": 64
           },
-          "indices": 790,
-          "material": 0
+          "indices": 790
         },
         {
           "attributes": {
             "NORMAL": 428,
             "POSITION": 65
           },
-          "indices": 791,
-          "material": 0
+          "indices": 791
         },
         {
           "attributes": {
             "NORMAL": 429,
             "POSITION": 66
           },
-          "indices": 792,
-          "material": 0
+          "indices": 792
         },
         {
           "attributes": {
             "NORMAL": 430,
             "POSITION": 67
           },
-          "indices": 793,
-          "material": 0
+          "indices": 793
         },
         {
           "attributes": {
             "NORMAL": 431,
             "POSITION": 68
           },
-          "indices": 794,
-          "material": 0
+          "indices": 794
         },
         {
           "attributes": {
             "NORMAL": 432,
             "POSITION": 69
           },
-          "indices": 795,
-          "material": 0
+          "indices": 795
         },
         {
           "attributes": {
             "NORMAL": 433,
             "POSITION": 70
           },
-          "indices": 796,
-          "material": 0
+          "indices": 796
         },
         {
           "attributes": {
             "NORMAL": 434,
             "POSITION": 71
           },
-          "indices": 797,
-          "material": 0
+          "indices": 797
         },
         {
           "attributes": {
             "NORMAL": 435,
             "POSITION": 72
           },
-          "indices": 798,
-          "material": 0
+          "indices": 798
         },
         {
           "attributes": {
             "NORMAL": 436,
             "POSITION": 73
           },
-          "indices": 799,
-          "material": 0
+          "indices": 799
         },
         {
           "attributes": {
             "NORMAL": 437,
             "POSITION": 74
           },
-          "indices": 800,
-          "material": 0
+          "indices": 800
         },
         {
           "attributes": {
             "NORMAL": 438,
             "POSITION": 75
           },
-          "indices": 801,
-          "material": 0
+          "indices": 801
         },
         {
           "attributes": {
             "NORMAL": 439,
             "POSITION": 76
           },
-          "indices": 802,
-          "material": 0
+          "indices": 802
         },
         {
           "attributes": {
             "NORMAL": 440,
             "POSITION": 77
           },
-          "indices": 803,
-          "material": 0
+          "indices": 803
         },
         {
           "attributes": {
             "NORMAL": 441,
             "POSITION": 78
           },
-          "indices": 804,
-          "material": 0
+          "indices": 804
         },
         {
           "attributes": {
             "NORMAL": 442,
             "POSITION": 79
           },
-          "indices": 805,
-          "material": 0
+          "indices": 805
         },
         {
           "attributes": {
             "NORMAL": 443,
             "POSITION": 80
           },
-          "indices": 806,
-          "material": 0
+          "indices": 806
         },
         {
           "attributes": {
             "NORMAL": 444,
             "POSITION": 81
           },
-          "indices": 807,
-          "material": 0
+          "indices": 807
         },
         {
           "attributes": {
             "NORMAL": 445,
             "POSITION": 82
           },
-          "indices": 808,
-          "material": 0
+          "indices": 808
         },
         {
           "attributes": {
             "NORMAL": 446,
             "POSITION": 83
           },
-          "indices": 809,
-          "material": 0
+          "indices": 809
         },
         {
           "attributes": {
             "NORMAL": 447,
             "POSITION": 84
           },
-          "indices": 810,
-          "material": 0
+          "indices": 810
         },
         {
           "attributes": {
             "NORMAL": 448,
             "POSITION": 85
           },
-          "indices": 811,
-          "material": 0
+          "indices": 811
         },
         {
           "attributes": {
             "NORMAL": 449,
             "POSITION": 86
           },
-          "indices": 812,
-          "material": 0
+          "indices": 812
         },
         {
           "attributes": {
             "NORMAL": 450,
             "POSITION": 87
           },
-          "indices": 813,
-          "material": 0
+          "indices": 813
         },
         {
           "attributes": {
             "NORMAL": 451,
             "POSITION": 88
           },
-          "indices": 814,
-          "material": 0
+          "indices": 814
         },
         {
           "attributes": {
             "NORMAL": 452,
             "POSITION": 89
           },
-          "indices": 815,
-          "material": 0
+          "indices": 815
         },
         {
           "attributes": {
             "NORMAL": 453,
             "POSITION": 90
           },
-          "indices": 816,
-          "material": 0
+          "indices": 816
         },
         {
           "attributes": {
             "NORMAL": 454,
             "POSITION": 91
           },
-          "indices": 817,
-          "material": 0
+          "indices": 817
         },
         {
           "attributes": {
             "NORMAL": 455,
             "POSITION": 92
           },
-          "indices": 818,
-          "material": 0
+          "indices": 818
         },
         {
           "attributes": {
             "NORMAL": 456,
             "POSITION": 93
           },
-          "indices": 819,
-          "material": 0
+          "indices": 819
         },
         {
           "attributes": {
             "NORMAL": 457,
             "POSITION": 94
           },
-          "indices": 820,
-          "material": 0
+          "indices": 820
         },
         {
           "attributes": {
             "NORMAL": 458,
             "POSITION": 95
           },
-          "indices": 821,
-          "material": 0
+          "indices": 821
         },
         {
           "attributes": {
             "NORMAL": 459,
             "POSITION": 96
           },
-          "indices": 822,
-          "material": 0
+          "indices": 822
         },
         {
           "attributes": {
             "NORMAL": 460,
             "POSITION": 97
           },
-          "indices": 823,
-          "material": 0
+          "indices": 823
         },
         {
           "attributes": {
             "NORMAL": 461,
             "POSITION": 98
           },
-          "indices": 824,
-          "material": 0
+          "indices": 824
         },
         {
           "attributes": {
             "NORMAL": 462,
             "POSITION": 99
           },
-          "indices": 825,
-          "material": 0
+          "indices": 825
         },
         {
           "attributes": {
             "NORMAL": 463,
             "POSITION": 100
           },
-          "indices": 826,
-          "material": 0
+          "indices": 826
         },
         {
           "attributes": {
             "NORMAL": 464,
             "POSITION": 101
           },
-          "indices": 827,
-          "material": 0
+          "indices": 827
         },
         {
           "attributes": {
             "NORMAL": 465,
             "POSITION": 102
           },
-          "indices": 828,
-          "material": 0
+          "indices": 828
         },
         {
           "attributes": {
             "NORMAL": 466,
             "POSITION": 103
           },
-          "indices": 829,
-          "material": 0
+          "indices": 829
         },
         {
           "attributes": {
             "NORMAL": 467,
             "POSITION": 104
           },
-          "indices": 830,
-          "material": 0
+          "indices": 830
         },
         {
           "attributes": {
             "NORMAL": 468,
             "POSITION": 105
           },
-          "indices": 831,
-          "material": 0
+          "indices": 831
         },
         {
           "attributes": {
             "NORMAL": 469,
             "POSITION": 106
           },
-          "indices": 832,
-          "material": 0
+          "indices": 832
         },
         {
           "attributes": {
             "NORMAL": 470,
             "POSITION": 107
           },
-          "indices": 833,
-          "material": 0
+          "indices": 833
         },
         {
           "attributes": {
             "NORMAL": 471,
             "POSITION": 108
           },
-          "indices": 834,
-          "material": 0
+          "indices": 834
         },
         {
           "attributes": {
             "NORMAL": 472,
             "POSITION": 109
           },
-          "indices": 835,
-          "material": 0
+          "indices": 835
         },
         {
           "attributes": {
             "NORMAL": 473,
             "POSITION": 110
           },
-          "indices": 836,
-          "material": 0
+          "indices": 836
         },
         {
           "attributes": {
             "NORMAL": 474,
             "POSITION": 111
           },
-          "indices": 837,
-          "material": 0
+          "indices": 837
         },
         {
           "attributes": {
             "NORMAL": 475,
             "POSITION": 112
           },
-          "indices": 838,
-          "material": 0
+          "indices": 838
         },
         {
           "attributes": {
             "NORMAL": 476,
             "POSITION": 113
           },
-          "indices": 839,
-          "material": 0
+          "indices": 839
         },
         {
           "attributes": {
             "NORMAL": 477,
             "POSITION": 114
           },
-          "indices": 840,
-          "material": 0
+          "indices": 840
         },
         {
           "attributes": {
             "NORMAL": 478,
             "POSITION": 115
           },
-          "indices": 841,
-          "material": 0
+          "indices": 841
         },
         {
           "attributes": {
             "NORMAL": 479,
             "POSITION": 116
           },
-          "indices": 842,
-          "material": 0
+          "indices": 842
         },
         {
           "attributes": {
             "NORMAL": 480,
             "POSITION": 117
           },
-          "indices": 843,
-          "material": 0
+          "indices": 843
         },
         {
           "attributes": {
             "NORMAL": 481,
             "POSITION": 118
           },
-          "indices": 844,
-          "material": 0
+          "indices": 844
         },
         {
           "attributes": {
             "NORMAL": 482,
             "POSITION": 119
           },
-          "indices": 845,
-          "material": 0
+          "indices": 845
         },
         {
           "attributes": {
             "NORMAL": 483,
             "POSITION": 120
           },
-          "indices": 846,
-          "material": 0
+          "indices": 846
         },
         {
           "attributes": {
             "NORMAL": 484,
             "POSITION": 121
           },
-          "indices": 847,
-          "material": 0
+          "indices": 847
         },
         {
           "attributes": {
             "NORMAL": 485,
             "POSITION": 122
           },
-          "indices": 848,
-          "material": 0
+          "indices": 848
         },
         {
           "attributes": {
             "NORMAL": 486,
             "POSITION": 123
           },
-          "indices": 849,
-          "material": 0
+          "indices": 849
         },
         {
           "attributes": {
             "NORMAL": 487,
             "POSITION": 124
           },
-          "indices": 850,
-          "material": 0
+          "indices": 850
         },
         {
           "attributes": {
             "NORMAL": 488,
             "POSITION": 125
           },
-          "indices": 851,
-          "material": 0
+          "indices": 851
         },
         {
           "attributes": {
             "NORMAL": 489,
             "POSITION": 126
           },
-          "indices": 852,
-          "material": 0
+          "indices": 852
         },
         {
           "attributes": {
             "NORMAL": 490,
             "POSITION": 127
           },
-          "indices": 853,
-          "material": 0
+          "indices": 853
         },
         {
           "attributes": {
             "NORMAL": 491,
             "POSITION": 128
           },
-          "indices": 854,
-          "material": 0
+          "indices": 854
         },
         {
           "attributes": {
             "NORMAL": 492,
             "POSITION": 129
           },
-          "indices": 855,
-          "material": 0
+          "indices": 855
         },
         {
           "attributes": {
             "NORMAL": 493,
             "POSITION": 130
           },
-          "indices": 856,
-          "material": 0
+          "indices": 856
         },
         {
           "attributes": {
             "NORMAL": 494,
             "POSITION": 131
           },
-          "indices": 857,
-          "material": 0
+          "indices": 857
         },
         {
           "attributes": {
             "NORMAL": 495,
             "POSITION": 132
           },
-          "indices": 858,
-          "material": 0
+          "indices": 858
         },
         {
           "attributes": {
             "NORMAL": 496,
             "POSITION": 133
           },
-          "indices": 859,
-          "material": 0
+          "indices": 859
         },
         {
           "attributes": {
             "NORMAL": 497,
             "POSITION": 134
           },
-          "indices": 860,
-          "material": 0
+          "indices": 860
         },
         {
           "attributes": {
             "NORMAL": 498,
             "POSITION": 135
           },
-          "indices": 861,
-          "material": 0
+          "indices": 861
         },
         {
           "attributes": {
             "NORMAL": 499,
             "POSITION": 136
           },
-          "indices": 862,
-          "material": 0
+          "indices": 862
         },
         {
           "attributes": {
             "NORMAL": 500,
             "POSITION": 137
           },
-          "indices": 863,
-          "material": 0
+          "indices": 863
         },
         {
           "attributes": {
             "NORMAL": 501,
             "POSITION": 138
           },
-          "indices": 864,
-          "material": 0
+          "indices": 864
         },
         {
           "attributes": {
             "NORMAL": 502,
             "POSITION": 139
           },
-          "indices": 865,
-          "material": 0
+          "indices": 865
         },
         {
           "attributes": {
             "NORMAL": 503,
             "POSITION": 140
           },
-          "indices": 866,
-          "material": 0
+          "indices": 866
         },
         {
           "attributes": {
             "NORMAL": 504,
             "POSITION": 141
           },
-          "indices": 867,
-          "material": 0
+          "indices": 867
         },
         {
           "attributes": {
             "NORMAL": 505,
             "POSITION": 142
           },
-          "indices": 868,
-          "material": 0
+          "indices": 868
         },
         {
           "attributes": {
             "NORMAL": 506,
             "POSITION": 143
           },
-          "indices": 869,
-          "material": 0
+          "indices": 869
         },
         {
           "attributes": {
             "NORMAL": 507,
             "POSITION": 144
           },
-          "indices": 870,
-          "material": 0
+          "indices": 870
         },
         {
           "attributes": {
             "NORMAL": 508,
             "POSITION": 145
           },
-          "indices": 871,
-          "material": 0
+          "indices": 871
         },
         {
           "attributes": {
             "NORMAL": 509,
             "POSITION": 146
           },
-          "indices": 872,
-          "material": 0
+          "indices": 872
         },
         {
           "attributes": {
             "NORMAL": 510,
             "POSITION": 147
           },
-          "indices": 873,
-          "material": 0
+          "indices": 873
         },
         {
           "attributes": {
             "NORMAL": 511,
             "POSITION": 148
           },
-          "indices": 874,
-          "material": 0
+          "indices": 874
         },
         {
           "attributes": {
             "NORMAL": 512,
             "POSITION": 149
           },
-          "indices": 875,
-          "material": 0
+          "indices": 875
         },
         {
           "attributes": {
             "NORMAL": 513,
             "POSITION": 150
           },
-          "indices": 876,
-          "material": 0
+          "indices": 876
         },
         {
           "attributes": {
             "NORMAL": 514,
             "POSITION": 151
           },
-          "indices": 877,
-          "material": 0
+          "indices": 877
         },
         {
           "attributes": {
             "NORMAL": 515,
             "POSITION": 152
           },
-          "indices": 878,
-          "material": 0
+          "indices": 878
         },
         {
           "attributes": {
             "NORMAL": 516,
             "POSITION": 153
           },
-          "indices": 879,
-          "material": 0
+          "indices": 879
         },
         {
           "attributes": {
             "NORMAL": 517,
             "POSITION": 154
           },
-          "indices": 880,
-          "material": 0
+          "indices": 880
         },
         {
           "attributes": {
             "NORMAL": 518,
             "POSITION": 155
           },
-          "indices": 881,
-          "material": 0
+          "indices": 881
         },
         {
           "attributes": {
             "NORMAL": 519,
             "POSITION": 156
           },
-          "indices": 882,
-          "material": 0
+          "indices": 882
         },
         {
           "attributes": {
             "NORMAL": 520,
             "POSITION": 157
           },
-          "indices": 883,
-          "material": 0
+          "indices": 883
         },
         {
           "attributes": {
             "NORMAL": 521,
             "POSITION": 158
           },
-          "indices": 884,
-          "material": 0
+          "indices": 884
         },
         {
           "attributes": {
             "NORMAL": 522,
             "POSITION": 159
           },
-          "indices": 885,
-          "material": 0
+          "indices": 885
         },
         {
           "attributes": {
             "NORMAL": 523,
             "POSITION": 160
           },
-          "indices": 886,
-          "material": 0
+          "indices": 886
         },
         {
           "attributes": {
             "NORMAL": 524,
             "POSITION": 161
           },
-          "indices": 887,
-          "material": 0
+          "indices": 887
         },
         {
           "attributes": {
             "NORMAL": 525,
             "POSITION": 162
           },
-          "indices": 888,
-          "material": 0
+          "indices": 888
         },
         {
           "attributes": {
             "NORMAL": 526,
             "POSITION": 163
           },
-          "indices": 889,
-          "material": 0
+          "indices": 889
         },
         {
           "attributes": {
             "NORMAL": 527,
             "POSITION": 164
           },
-          "indices": 890,
-          "material": 0
+          "indices": 890
         },
         {
           "attributes": {
             "NORMAL": 528,
             "POSITION": 165
           },
-          "indices": 891,
-          "material": 0
+          "indices": 891
         },
         {
           "attributes": {
             "NORMAL": 529,
             "POSITION": 166
           },
-          "indices": 892,
-          "material": 0
+          "indices": 892
         },
         {
           "attributes": {
             "NORMAL": 530,
             "POSITION": 167
           },
-          "indices": 893,
-          "material": 0
+          "indices": 893
         },
         {
           "attributes": {
             "NORMAL": 531,
             "POSITION": 168
           },
-          "indices": 894,
-          "material": 0
+          "indices": 894
         },
         {
           "attributes": {
             "NORMAL": 532,
             "POSITION": 169
           },
-          "indices": 895,
-          "material": 0
+          "indices": 895
         },
         {
           "attributes": {
             "NORMAL": 533,
             "POSITION": 170
           },
-          "indices": 896,
-          "material": 0
+          "indices": 896
         },
         {
           "attributes": {
             "NORMAL": 534,
             "POSITION": 171
           },
-          "indices": 897,
-          "material": 0
+          "indices": 897
         },
         {
           "attributes": {
             "NORMAL": 535,
             "POSITION": 172
           },
-          "indices": 898,
-          "material": 0
+          "indices": 898
         },
         {
           "attributes": {
             "NORMAL": 536,
             "POSITION": 173
           },
-          "indices": 899,
-          "material": 0
+          "indices": 899
         },
         {
           "attributes": {
             "NORMAL": 537,
             "POSITION": 174
           },
-          "indices": 900,
-          "material": 0
+          "indices": 900
         },
         {
           "attributes": {
             "NORMAL": 538,
             "POSITION": 175
           },
-          "indices": 901,
-          "material": 0
+          "indices": 901
         },
         {
           "attributes": {
             "NORMAL": 539,
             "POSITION": 176
           },
-          "indices": 902,
-          "material": 0
+          "indices": 902
         },
         {
           "attributes": {
             "NORMAL": 540,
             "POSITION": 177
           },
-          "indices": 903,
-          "material": 0
+          "indices": 903
         },
         {
           "attributes": {
             "NORMAL": 541,
             "POSITION": 178
           },
-          "indices": 904,
-          "material": 0
+          "indices": 904
         },
         {
           "attributes": {
             "NORMAL": 542,
             "POSITION": 179
           },
-          "indices": 905,
-          "material": 0
+          "indices": 905
         },
         {
           "attributes": {
             "NORMAL": 543,
             "POSITION": 180
           },
-          "indices": 906,
-          "material": 0
+          "indices": 906
         },
         {
           "attributes": {
             "NORMAL": 544,
             "POSITION": 181
           },
-          "indices": 907,
-          "material": 0
+          "indices": 907
         },
         {
           "attributes": {
             "NORMAL": 545,
             "POSITION": 182
           },
-          "indices": 908,
-          "material": 0
+          "indices": 908
         },
         {
           "attributes": {
             "NORMAL": 546,
             "POSITION": 183
           },
-          "indices": 909,
-          "material": 0
+          "indices": 909
         },
         {
           "attributes": {
             "NORMAL": 547,
             "POSITION": 184
           },
-          "indices": 910,
-          "material": 0
+          "indices": 910
         },
         {
           "attributes": {
             "NORMAL": 548,
             "POSITION": 185
           },
-          "indices": 911,
-          "material": 0
+          "indices": 911
         },
         {
           "attributes": {
             "NORMAL": 549,
             "POSITION": 186
           },
-          "indices": 912,
-          "material": 0
+          "indices": 912
         },
         {
           "attributes": {
             "NORMAL": 550,
             "POSITION": 187
           },
-          "indices": 913,
-          "material": 0
+          "indices": 913
         },
         {
           "attributes": {
             "NORMAL": 551,
             "POSITION": 188
           },
-          "indices": 914,
-          "material": 0
+          "indices": 914
         },
         {
           "attributes": {
             "NORMAL": 552,
             "POSITION": 189
           },
-          "indices": 915,
-          "material": 0
+          "indices": 915
         },
         {
           "attributes": {
             "NORMAL": 553,
             "POSITION": 190
           },
-          "indices": 916,
-          "material": 0
+          "indices": 916
         },
         {
           "attributes": {
             "NORMAL": 554,
             "POSITION": 191
           },
-          "indices": 917,
-          "material": 0
+          "indices": 917
         },
         {
           "attributes": {
             "NORMAL": 555,
             "POSITION": 192
           },
-          "indices": 918,
-          "material": 0
+          "indices": 918
         },
         {
           "attributes": {
             "NORMAL": 556,
             "POSITION": 193
           },
-          "indices": 919,
-          "material": 0
+          "indices": 919
         },
         {
           "attributes": {
             "NORMAL": 557,
             "POSITION": 194
           },
-          "indices": 920,
-          "material": 0
+          "indices": 920
         },
         {
           "attributes": {
             "NORMAL": 558,
             "POSITION": 195
           },
-          "indices": 921,
-          "material": 0
+          "indices": 921
         },
         {
           "attributes": {
             "NORMAL": 559,
             "POSITION": 196
           },
-          "indices": 922,
-          "material": 0
+          "indices": 922
         },
         {
           "attributes": {
             "NORMAL": 560,
             "POSITION": 197
           },
-          "indices": 923,
-          "material": 0
+          "indices": 923
         },
         {
           "attributes": {
             "NORMAL": 561,
             "POSITION": 198
           },
-          "indices": 924,
-          "material": 0
+          "indices": 924
         },
         {
           "attributes": {
             "NORMAL": 562,
             "POSITION": 199
           },
-          "indices": 925,
-          "material": 0
+          "indices": 925
         },
         {
           "attributes": {
             "NORMAL": 563,
             "POSITION": 200
           },
-          "indices": 926,
-          "material": 0
+          "indices": 926
         },
         {
           "attributes": {
             "NORMAL": 564,
             "POSITION": 201
           },
-          "indices": 927,
-          "material": 0
+          "indices": 927
         },
         {
           "attributes": {
             "NORMAL": 565,
             "POSITION": 202
           },
-          "indices": 928,
-          "material": 0
+          "indices": 928
         },
         {
           "attributes": {
             "NORMAL": 566,
             "POSITION": 203
           },
-          "indices": 929,
-          "material": 0
+          "indices": 929
         },
         {
           "attributes": {
             "NORMAL": 567,
             "POSITION": 204
           },
-          "indices": 930,
-          "material": 0
+          "indices": 930
         },
         {
           "attributes": {
             "NORMAL": 568,
             "POSITION": 205
           },
-          "indices": 931,
-          "material": 0
+          "indices": 931
         },
         {
           "attributes": {
             "NORMAL": 569,
             "POSITION": 206
           },
-          "indices": 932,
-          "material": 0
+          "indices": 932
         },
         {
           "attributes": {
             "NORMAL": 570,
             "POSITION": 207
           },
-          "indices": 933,
-          "material": 0
+          "indices": 933
         },
         {
           "attributes": {
             "NORMAL": 571,
             "POSITION": 208
           },
-          "indices": 934,
-          "material": 0
+          "indices": 934
         },
         {
           "attributes": {
             "NORMAL": 572,
             "POSITION": 209
           },
-          "indices": 935,
-          "material": 0
+          "indices": 935
         },
         {
           "attributes": {
             "NORMAL": 573,
             "POSITION": 210
           },
-          "indices": 936,
-          "material": 0
+          "indices": 936
         },
         {
           "attributes": {
             "NORMAL": 574,
             "POSITION": 211
           },
-          "indices": 937,
-          "material": 0
+          "indices": 937
         },
         {
           "attributes": {
             "NORMAL": 575,
             "POSITION": 212
           },
-          "indices": 938,
-          "material": 0
+          "indices": 938
         },
         {
           "attributes": {
             "NORMAL": 576,
             "POSITION": 213
           },
-          "indices": 939,
-          "material": 0
+          "indices": 939
         },
         {
           "attributes": {
             "NORMAL": 577,
             "POSITION": 214
           },
-          "indices": 940,
-          "material": 0
+          "indices": 940
         },
         {
           "attributes": {
             "NORMAL": 578,
             "POSITION": 215
           },
-          "indices": 941,
-          "material": 0
+          "indices": 941
         },
         {
           "attributes": {
             "NORMAL": 579,
             "POSITION": 216
           },
-          "indices": 942,
-          "material": 0
+          "indices": 942
         },
         {
           "attributes": {
             "NORMAL": 580,
             "POSITION": 217
           },
-          "indices": 943,
-          "material": 0
+          "indices": 943
         },
         {
           "attributes": {
             "NORMAL": 581,
             "POSITION": 218
           },
-          "indices": 944,
-          "material": 0
+          "indices": 944
         },
         {
           "attributes": {
             "NORMAL": 582,
             "POSITION": 219
           },
-          "indices": 945,
-          "material": 0
+          "indices": 945
         },
         {
           "attributes": {
             "NORMAL": 583,
             "POSITION": 220
           },
-          "indices": 946,
-          "material": 0
+          "indices": 946
         },
         {
           "attributes": {
             "NORMAL": 584,
             "POSITION": 221
           },
-          "indices": 947,
-          "material": 0
+          "indices": 947
         },
         {
           "attributes": {
             "NORMAL": 585,
             "POSITION": 222
           },
-          "indices": 948,
-          "material": 0
+          "indices": 948
         },
         {
           "attributes": {
             "NORMAL": 586,
             "POSITION": 223
           },
-          "indices": 949,
-          "material": 0
+          "indices": 949
         },
         {
           "attributes": {
             "NORMAL": 587,
             "POSITION": 224
           },
-          "indices": 950,
-          "material": 0
+          "indices": 950
         },
         {
           "attributes": {
             "NORMAL": 588,
             "POSITION": 225
           },
-          "indices": 951,
-          "material": 0
+          "indices": 951
         },
         {
           "attributes": {
             "NORMAL": 589,
             "POSITION": 226
           },
-          "indices": 952,
-          "material": 0
+          "indices": 952
         },
         {
           "attributes": {
             "NORMAL": 590,
             "POSITION": 227
           },
-          "indices": 953,
-          "material": 0
+          "indices": 953
         },
         {
           "attributes": {
             "NORMAL": 591,
             "POSITION": 228
           },
-          "indices": 954,
-          "material": 0
+          "indices": 954
         },
         {
           "attributes": {
             "NORMAL": 592,
             "POSITION": 229
           },
-          "indices": 955,
-          "material": 0
+          "indices": 955
         },
         {
           "attributes": {
             "NORMAL": 593,
             "POSITION": 230
           },
-          "indices": 956,
-          "material": 0
+          "indices": 956
         },
         {
           "attributes": {
             "NORMAL": 594,
             "POSITION": 231
           },
-          "indices": 957,
-          "material": 0
+          "indices": 957
         },
         {
           "attributes": {
             "NORMAL": 595,
             "POSITION": 232
           },
-          "indices": 958,
-          "material": 0
+          "indices": 958
         },
         {
           "attributes": {
             "NORMAL": 596,
             "POSITION": 233
           },
-          "indices": 959,
-          "material": 0
+          "indices": 959
         },
         {
           "attributes": {
             "NORMAL": 597,
             "POSITION": 234
           },
-          "indices": 960,
-          "material": 0
+          "indices": 960
         },
         {
           "attributes": {
             "NORMAL": 598,
             "POSITION": 235
           },
-          "indices": 961,
-          "material": 0
+          "indices": 961
         },
         {
           "attributes": {
             "NORMAL": 599,
             "POSITION": 236
           },
-          "indices": 962,
-          "material": 0
+          "indices": 962
         },
         {
           "attributes": {
             "NORMAL": 600,
             "POSITION": 237
           },
-          "indices": 963,
-          "material": 0
+          "indices": 963
         },
         {
           "attributes": {
             "NORMAL": 601,
             "POSITION": 238
           },
-          "indices": 964,
-          "material": 0
+          "indices": 964
         },
         {
           "attributes": {
             "NORMAL": 602,
             "POSITION": 239
           },
-          "indices": 965,
-          "material": 0
+          "indices": 965
         },
         {
           "attributes": {
             "NORMAL": 603,
             "POSITION": 240
           },
-          "indices": 966,
-          "material": 0
+          "indices": 966
         },
         {
           "attributes": {
             "NORMAL": 604,
             "POSITION": 241
           },
-          "indices": 967,
-          "material": 0
+          "indices": 967
         },
         {
           "attributes": {
             "NORMAL": 605,
             "POSITION": 242
           },
-          "indices": 968,
-          "material": 0
+          "indices": 968
         },
         {
           "attributes": {
             "NORMAL": 606,
             "POSITION": 243
           },
-          "indices": 969,
-          "material": 0
+          "indices": 969
         },
         {
           "attributes": {
             "NORMAL": 607,
             "POSITION": 244
           },
-          "indices": 970,
-          "material": 0
+          "indices": 970
         },
         {
           "attributes": {
             "NORMAL": 608,
             "POSITION": 245
           },
-          "indices": 971,
-          "material": 0
+          "indices": 971
         },
         {
           "attributes": {
             "NORMAL": 609,
             "POSITION": 246
           },
-          "indices": 972,
-          "material": 0
+          "indices": 972
         },
         {
           "attributes": {
             "NORMAL": 610,
             "POSITION": 247
           },
-          "indices": 973,
-          "material": 0
+          "indices": 973
         },
         {
           "attributes": {
             "NORMAL": 611,
             "POSITION": 248
           },
-          "indices": 974,
-          "material": 0
+          "indices": 974
         },
         {
           "attributes": {
             "NORMAL": 612,
             "POSITION": 249
           },
-          "indices": 975,
-          "material": 0
+          "indices": 975
         },
         {
           "attributes": {
             "NORMAL": 613,
             "POSITION": 250
           },
-          "indices": 976,
-          "material": 0
+          "indices": 976
         },
         {
           "attributes": {
             "NORMAL": 614,
             "POSITION": 251
           },
-          "indices": 977,
-          "material": 0
+          "indices": 977
         },
         {
           "attributes": {
             "NORMAL": 615,
             "POSITION": 252
           },
-          "indices": 978,
-          "material": 0
+          "indices": 978
         },
         {
           "attributes": {
             "NORMAL": 616,
             "POSITION": 253
           },
-          "indices": 979,
-          "material": 0
+          "indices": 979
         },
         {
           "attributes": {
             "NORMAL": 617,
             "POSITION": 254
           },
-          "indices": 980,
-          "material": 0
+          "indices": 980
         },
         {
           "attributes": {
             "NORMAL": 618,
             "POSITION": 255
           },
-          "indices": 981,
-          "material": 0
+          "indices": 981
         },
         {
           "attributes": {
             "NORMAL": 619,
             "POSITION": 256
           },
-          "indices": 982,
-          "material": 0
+          "indices": 982
         },
         {
           "attributes": {
             "NORMAL": 620,
             "POSITION": 257
           },
-          "indices": 983,
-          "material": 0
+          "indices": 983
         },
         {
           "attributes": {
             "NORMAL": 621,
             "POSITION": 258
           },
-          "indices": 984,
-          "material": 0
+          "indices": 984
         },
         {
           "attributes": {
             "NORMAL": 622,
             "POSITION": 259
           },
-          "indices": 985,
-          "material": 0
+          "indices": 985
         },
         {
           "attributes": {
             "NORMAL": 623,
             "POSITION": 260
           },
-          "indices": 986,
-          "material": 0
+          "indices": 986
         },
         {
           "attributes": {
             "NORMAL": 624,
             "POSITION": 261
           },
-          "indices": 987,
-          "material": 0
+          "indices": 987
         },
         {
           "attributes": {
             "NORMAL": 625,
             "POSITION": 262
           },
-          "indices": 988,
-          "material": 0
+          "indices": 988
         },
         {
           "attributes": {
             "NORMAL": 626,
             "POSITION": 263
           },
-          "indices": 989,
-          "material": 0
+          "indices": 989
         },
         {
           "attributes": {
             "NORMAL": 627,
             "POSITION": 264
           },
-          "indices": 990,
-          "material": 0
+          "indices": 990
         },
         {
           "attributes": {
             "NORMAL": 628,
             "POSITION": 265
           },
-          "indices": 991,
-          "material": 0
+          "indices": 991
         },
         {
           "attributes": {
             "NORMAL": 629,
             "POSITION": 266
           },
-          "indices": 992,
-          "material": 0
+          "indices": 992
         },
         {
           "attributes": {
             "NORMAL": 630,
             "POSITION": 267
           },
-          "indices": 993,
-          "material": 0
+          "indices": 993
         },
         {
           "attributes": {
             "NORMAL": 631,
             "POSITION": 268
           },
-          "indices": 994,
-          "material": 0
+          "indices": 994
         },
         {
           "attributes": {
             "NORMAL": 632,
             "POSITION": 269
           },
-          "indices": 995,
-          "material": 0
+          "indices": 995
         },
         {
           "attributes": {
             "NORMAL": 633,
             "POSITION": 270
           },
-          "indices": 996,
-          "material": 0
+          "indices": 996
         },
         {
           "attributes": {
             "NORMAL": 634,
             "POSITION": 271
           },
-          "indices": 997,
-          "material": 0
+          "indices": 997
         },
         {
           "attributes": {
             "NORMAL": 635,
             "POSITION": 272
           },
-          "indices": 998,
-          "material": 0
+          "indices": 998
         },
         {
           "attributes": {
             "NORMAL": 636,
             "POSITION": 273
           },
-          "indices": 999,
-          "material": 0
+          "indices": 999
         },
         {
           "attributes": {
             "NORMAL": 637,
             "POSITION": 274
           },
-          "indices": 1000,
-          "material": 0
+          "indices": 1000
         },
         {
           "attributes": {
             "NORMAL": 638,
             "POSITION": 275
           },
-          "indices": 1001,
-          "material": 0
+          "indices": 1001
         },
         {
           "attributes": {
             "NORMAL": 639,
             "POSITION": 276
           },
-          "indices": 1002,
-          "material": 0
+          "indices": 1002
         },
         {
           "attributes": {
             "NORMAL": 640,
             "POSITION": 277
           },
-          "indices": 1003,
-          "material": 0
+          "indices": 1003
         },
         {
           "attributes": {
             "NORMAL": 641,
             "POSITION": 278
           },
-          "indices": 1004,
-          "material": 0
+          "indices": 1004
         },
         {
           "attributes": {
             "NORMAL": 642,
             "POSITION": 279
           },
-          "indices": 1005,
-          "material": 0
+          "indices": 1005
         },
         {
           "attributes": {
             "NORMAL": 643,
             "POSITION": 280
           },
-          "indices": 1006,
-          "material": 0
+          "indices": 1006
         },
         {
           "attributes": {
             "NORMAL": 644,
             "POSITION": 281
           },
-          "indices": 1007,
-          "material": 0
+          "indices": 1007
         },
         {
           "attributes": {
             "NORMAL": 645,
             "POSITION": 282
           },
-          "indices": 1008,
-          "material": 0
+          "indices": 1008
         },
         {
           "attributes": {
             "NORMAL": 646,
             "POSITION": 283
           },
-          "indices": 1009,
-          "material": 0
+          "indices": 1009
         },
         {
           "attributes": {
             "NORMAL": 647,
             "POSITION": 284
           },
-          "indices": 1010,
-          "material": 0
+          "indices": 1010
         },
         {
           "attributes": {
             "NORMAL": 648,
             "POSITION": 285
           },
-          "indices": 1011,
-          "material": 0
+          "indices": 1011
         },
         {
           "attributes": {
             "NORMAL": 649,
             "POSITION": 286
           },
-          "indices": 1012,
-          "material": 0
+          "indices": 1012
         },
         {
           "attributes": {
             "NORMAL": 650,
             "POSITION": 287
           },
-          "indices": 1013,
-          "material": 0
+          "indices": 1013
         },
         {
           "attributes": {
             "NORMAL": 651,
             "POSITION": 288
           },
-          "indices": 1014,
-          "material": 0
+          "indices": 1014
         },
         {
           "attributes": {
             "NORMAL": 652,
             "POSITION": 289
           },
-          "indices": 1015,
-          "material": 0
+          "indices": 1015
         },
         {
           "attributes": {
             "NORMAL": 653,
             "POSITION": 290
           },
-          "indices": 1016,
-          "material": 0
+          "indices": 1016
         },
         {
           "attributes": {
             "NORMAL": 654,
             "POSITION": 291
           },
-          "indices": 1017,
-          "material": 0
+          "indices": 1017
         },
         {
           "attributes": {
             "NORMAL": 655,
             "POSITION": 292
           },
-          "indices": 1018,
-          "material": 0
+          "indices": 1018
         },
         {
           "attributes": {
             "NORMAL": 656,
             "POSITION": 293
           },
-          "indices": 1019,
-          "material": 0
+          "indices": 1019
         },
         {
           "attributes": {
             "NORMAL": 657,
             "POSITION": 294
           },
-          "indices": 1020,
-          "material": 0
+          "indices": 1020
         },
         {
           "attributes": {
             "NORMAL": 658,
             "POSITION": 295
           },
-          "indices": 1021,
-          "material": 0
+          "indices": 1021
         },
         {
           "attributes": {
             "NORMAL": 659,
             "POSITION": 296
           },
-          "indices": 1022,
-          "material": 0
+          "indices": 1022
         },
         {
           "attributes": {
             "NORMAL": 660,
             "POSITION": 297
           },
-          "indices": 1023,
-          "material": 0
+          "indices": 1023
         },
         {
           "attributes": {
             "NORMAL": 661,
             "POSITION": 298
           },
-          "indices": 1024,
-          "material": 0
+          "indices": 1024
         },
         {
           "attributes": {
             "NORMAL": 662,
             "POSITION": 299
           },
-          "indices": 1025,
-          "material": 0
+          "indices": 1025
         },
         {
           "attributes": {
             "NORMAL": 663,
             "POSITION": 300
           },
-          "indices": 1026,
-          "material": 0
+          "indices": 1026
         },
         {
           "attributes": {
             "NORMAL": 664,
             "POSITION": 301
           },
-          "indices": 1027,
-          "material": 0
+          "indices": 1027
         },
         {
           "attributes": {
             "NORMAL": 665,
             "POSITION": 302
           },
-          "indices": 1028,
-          "material": 0
+          "indices": 1028
         },
         {
           "attributes": {
             "NORMAL": 666,
             "POSITION": 303
           },
-          "indices": 1029,
-          "material": 0
+          "indices": 1029
         },
         {
           "attributes": {
             "NORMAL": 667,
             "POSITION": 304
           },
-          "indices": 1030,
-          "material": 0
+          "indices": 1030
         },
         {
           "attributes": {
             "NORMAL": 668,
             "POSITION": 305
           },
-          "indices": 1031,
-          "material": 0
+          "indices": 1031
         },
         {
           "attributes": {
             "NORMAL": 669,
             "POSITION": 306
           },
-          "indices": 1032,
-          "material": 0
+          "indices": 1032
         },
         {
           "attributes": {
             "NORMAL": 670,
             "POSITION": 307
           },
-          "indices": 1033,
-          "material": 0
+          "indices": 1033
         },
         {
           "attributes": {
             "NORMAL": 671,
             "POSITION": 308
           },
-          "indices": 1034,
-          "material": 0
+          "indices": 1034
         },
         {
           "attributes": {
             "NORMAL": 672,
             "POSITION": 309
           },
-          "indices": 1035,
-          "material": 0
+          "indices": 1035
         },
         {
           "attributes": {
             "NORMAL": 673,
             "POSITION": 310
           },
-          "indices": 1036,
-          "material": 0
+          "indices": 1036
         },
         {
           "attributes": {
             "NORMAL": 674,
             "POSITION": 311
           },
-          "indices": 1037,
-          "material": 0
+          "indices": 1037
         },
         {
           "attributes": {
             "NORMAL": 675,
             "POSITION": 312
           },
-          "indices": 1038,
-          "material": 0
+          "indices": 1038
         },
         {
           "attributes": {
             "NORMAL": 676,
             "POSITION": 313
           },
-          "indices": 1039,
-          "material": 0
+          "indices": 1039
         },
         {
           "attributes": {
             "NORMAL": 677,
             "POSITION": 314
           },
-          "indices": 1040,
-          "material": 0
+          "indices": 1040
         },
         {
           "attributes": {
             "NORMAL": 678,
             "POSITION": 315
           },
-          "indices": 1041,
-          "material": 0
+          "indices": 1041
         },
         {
           "attributes": {
             "NORMAL": 679,
             "POSITION": 316
           },
-          "indices": 1042,
-          "material": 0
+          "indices": 1042
         },
         {
           "attributes": {
             "NORMAL": 680,
             "POSITION": 317
           },
-          "indices": 1043,
-          "material": 0
+          "indices": 1043
         },
         {
           "attributes": {
             "NORMAL": 681,
             "POSITION": 318
           },
-          "indices": 1044,
-          "material": 0
+          "indices": 1044
         },
         {
           "attributes": {
             "NORMAL": 682,
             "POSITION": 319
           },
-          "indices": 1045,
-          "material": 0
+          "indices": 1045
         },
         {
           "attributes": {
             "NORMAL": 683,
             "POSITION": 320
           },
-          "indices": 1046,
-          "material": 0
+          "indices": 1046
         },
         {
           "attributes": {
             "NORMAL": 684,
             "POSITION": 321
           },
-          "indices": 1047,
-          "material": 0
+          "indices": 1047
         },
         {
           "attributes": {
             "NORMAL": 685,
             "POSITION": 322
           },
-          "indices": 1048,
-          "material": 0
+          "indices": 1048
         },
         {
           "attributes": {
             "NORMAL": 686,
             "POSITION": 323
           },
-          "indices": 1049,
-          "material": 0
+          "indices": 1049
         },
         {
           "attributes": {
             "NORMAL": 687,
             "POSITION": 324
           },
-          "indices": 1050,
-          "material": 0
+          "indices": 1050
         },
         {
           "attributes": {
             "NORMAL": 688,
             "POSITION": 325
           },
-          "indices": 1051,
-          "material": 0
+          "indices": 1051
         },
         {
           "attributes": {
             "NORMAL": 689,
             "POSITION": 326
           },
-          "indices": 1052,
-          "material": 0
+          "indices": 1052
         },
         {
           "attributes": {
             "NORMAL": 690,
             "POSITION": 327
           },
-          "indices": 1053,
-          "material": 0
+          "indices": 1053
         },
         {
           "attributes": {
             "NORMAL": 691,
             "POSITION": 328
           },
-          "indices": 1054,
-          "material": 0
+          "indices": 1054
         },
         {
           "attributes": {
             "NORMAL": 692,
             "POSITION": 329
           },
-          "indices": 1055,
-          "material": 0
+          "indices": 1055
         },
         {
           "attributes": {
             "NORMAL": 693,
             "POSITION": 330
           },
-          "indices": 1056,
-          "material": 0
+          "indices": 1056
         },
         {
           "attributes": {
             "NORMAL": 694,
             "POSITION": 331
           },
-          "indices": 1057,
-          "material": 0
+          "indices": 1057
         },
         {
           "attributes": {
             "NORMAL": 695,
             "POSITION": 332
           },
-          "indices": 1058,
-          "material": 0
+          "indices": 1058
         },
         {
           "attributes": {
             "NORMAL": 696,
             "POSITION": 333
           },
-          "indices": 1059,
-          "material": 0
+          "indices": 1059
         },
         {
           "attributes": {
             "NORMAL": 697,
             "POSITION": 334
           },
-          "indices": 1060,
-          "material": 0
+          "indices": 1060
         },
         {
           "attributes": {
             "NORMAL": 698,
             "POSITION": 335
           },
-          "indices": 1061,
-          "material": 0
+          "indices": 1061
         },
         {
           "attributes": {
             "NORMAL": 699,
             "POSITION": 336
           },
-          "indices": 1062,
-          "material": 0
+          "indices": 1062
         },
         {
           "attributes": {
             "NORMAL": 700,
             "POSITION": 337
           },
-          "indices": 1063,
-          "material": 0
+          "indices": 1063
         },
         {
           "attributes": {
             "NORMAL": 701,
             "POSITION": 338
           },
-          "indices": 1064,
-          "material": 0
+          "indices": 1064
         },
         {
           "attributes": {
             "NORMAL": 702,
             "POSITION": 339
           },
-          "indices": 1065,
-          "material": 0
+          "indices": 1065
         },
         {
           "attributes": {
             "NORMAL": 703,
             "POSITION": 340
           },
-          "indices": 1066,
-          "material": 0
+          "indices": 1066
         },
         {
           "attributes": {
             "NORMAL": 704,
             "POSITION": 341
           },
-          "indices": 1067,
-          "material": 0
+          "indices": 1067
         },
         {
           "attributes": {
             "NORMAL": 705,
             "POSITION": 342
           },
-          "indices": 1068,
-          "material": 0
+          "indices": 1068
         },
         {
           "attributes": {
             "NORMAL": 706,
             "POSITION": 343
           },
-          "indices": 1069,
-          "material": 0
+          "indices": 1069
         },
         {
           "attributes": {
             "NORMAL": 707,
             "POSITION": 344
           },
-          "indices": 1070,
-          "material": 0
+          "indices": 1070
         },
         {
           "attributes": {
             "NORMAL": 708,
             "POSITION": 345
           },
-          "indices": 1071,
-          "material": 0
+          "indices": 1071
         },
         {
           "attributes": {
             "NORMAL": 709,
             "POSITION": 346
           },
-          "indices": 1072,
-          "material": 0
+          "indices": 1072
         },
         {
           "attributes": {
             "NORMAL": 710,
             "POSITION": 347
           },
-          "indices": 1073,
-          "material": 0
+          "indices": 1073
         },
         {
           "attributes": {
             "NORMAL": 711,
             "POSITION": 348
           },
-          "indices": 1074,
-          "material": 0
+          "indices": 1074
         },
         {
           "attributes": {
             "NORMAL": 712,
             "POSITION": 349
           },
-          "indices": 1075,
-          "material": 0
+          "indices": 1075
         },
         {
           "attributes": {
             "NORMAL": 713,
             "POSITION": 350
           },
-          "indices": 1076,
-          "material": 0
+          "indices": 1076
         },
         {
           "attributes": {
             "NORMAL": 714,
             "POSITION": 351
           },
-          "indices": 1077,
-          "material": 0
+          "indices": 1077
         },
         {
           "attributes": {
             "NORMAL": 715,
             "POSITION": 352
           },
-          "indices": 1078,
-          "material": 0
+          "indices": 1078
         },
         {
           "attributes": {
             "NORMAL": 716,
             "POSITION": 353
           },
-          "indices": 1079,
-          "material": 0
+          "indices": 1079
         },
         {
           "attributes": {
             "NORMAL": 717,
             "POSITION": 354
           },
-          "indices": 1080,
-          "material": 0
+          "indices": 1080
         },
         {
           "attributes": {
             "NORMAL": 718,
             "POSITION": 355
           },
-          "indices": 1081,
-          "material": 0
+          "indices": 1081
         },
         {
           "attributes": {
             "NORMAL": 719,
             "POSITION": 356
           },
-          "indices": 1082,
-          "material": 0
+          "indices": 1082
         },
         {
           "attributes": {
             "NORMAL": 720,
             "POSITION": 357
           },
-          "indices": 1083,
-          "material": 0
+          "indices": 1083
         },
         {
           "attributes": {
             "NORMAL": 721,
             "POSITION": 358
           },
-          "indices": 1084,
-          "material": 0
+          "indices": 1084
         },
         {
           "attributes": {
             "NORMAL": 722,
             "POSITION": 359
           },
-          "indices": 1085,
-          "material": 0
+          "indices": 1085
         },
         {
           "attributes": {
             "NORMAL": 723,
             "POSITION": 360
           },
-          "indices": 1086,
-          "material": 0
+          "indices": 1086
         },
         {
           "attributes": {
             "NORMAL": 724,
             "POSITION": 361
           },
-          "indices": 1087,
-          "material": 0
+          "indices": 1087
         },
         {
           "attributes": {
             "NORMAL": 725,
             "POSITION": 362
           },
-          "indices": 1088,
-          "material": 0
+          "indices": 1088
         }
       ]
     }
@@ -14212,7 +13835,7 @@
       "name": "design",
       "children": [
         1,
-        4
+        3
       ]
     },
     {
@@ -14222,13 +13845,7 @@
       ]
     },
     {
-      "name": "design",
-      "children": [
-        3
-      ]
-    },
-    {
-      "name": "PRT_-_1003_-_CUBHLF111_-_V04",
+      "name": "PRT - 1003 - CUBHLF111 - V04",
       "mesh": 0
     },
     {
@@ -14240,17 +13857,11 @@
       ],
       "name": "upper-half",
       "children": [
-        5
+        4
       ]
     },
     {
-      "name": "design",
-      "children": [
-        6
-      ]
-    },
-    {
-      "name": "PRT_-_1003_-_CUBHLF111_-_V04",
+      "name": "PRT - 1003 - CUBHLF111 - V04",
       "mesh": 0
     }
   ],
