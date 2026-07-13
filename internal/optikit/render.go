@@ -31,16 +31,16 @@ func RenderObjects(
 	default:
 		return nil, errors.Errorf("unknown format %s", format)
 	case "glb":
-		return RenderObjectsGLB(ctx, fsys, comps, false)
+		return RenderObjectsGLB(fsys, comps, false)
 	case "gltf":
-		return RenderObjectsGLB(ctx, fsys, comps, true)
+		return RenderObjectsGLB(fsys, comps, true)
 	case "step":
 		return RenderObjectsSTEP(ctx, comps)
 	}
 }
 
 func RenderObjectsGLB(
-	ctx context.Context, fsys ffs.PathedFS, comps designs.CompsSpec, asText bool,
+	fsys ffs.PathedFS, comps designs.CompsSpec, asText bool,
 ) (result []byte, err error) {
 	doc := gltf.NewDocument()
 	if result, err = doc.Assemble(fsys, comps, asText, designs.UC2GridSpacings); err != nil {

@@ -76,6 +76,10 @@ func Load(contents []byte) (doc *Document, err error) {
 	return doc, nil
 }
 
+func (d *Document) Document() *gltf.Document {
+	return d.d
+}
+
 func (d *Document) Assemble(
 	fsys ffs.PathedFS, comps designs.CompsSpec, asText bool,
 	gridSpacings designs.ContinuousXYZ[float64],
