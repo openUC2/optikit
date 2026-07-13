@@ -1,6 +1,7 @@
 package optikit
 
 import (
+	"cmp"
 	"context"
 	"encoding/json"
 	"fmt"
@@ -21,7 +22,8 @@ func ReportPrimitives(
 	ctx context.Context, comps designs.CompsSpec,
 	format string,
 ) (result []byte, err error) {
-	prims := comps.Primitives()
+	flattened := comps.Flattened()
+	prims := flattened.Primitives()
 	report := make([]PrimReport, 0, len(prims))
 	for _, compID := range slices.Sorted(maps.Keys(prims)) {
 		comp := prims[compID]
@@ -30,10 +32,10 @@ func ReportPrimitives(
 			return nil, err
 		}
 		r := PrimReport{
-			Type:     comp.Primitive.Type,
-			Model:    comp.Primitive.Model,
-			Position: m.MulVec3(&vec3.Zero),
-			Rotation: NewPrimRotReport(m),
+			Type:         cmp.Or(comp.Primitive.Type, "static"),
+			StaticModels: comp.Primitive.StaticModels,
+			Position:     m.MulVec3(&vec3.Zero),
+			Rotation:     NewPrimRotReport(m),
 		}
 		report = append(report, r)
 	}
@@ -55,10 +57,10 @@ func ReportPrimitives(
 }
 
 type PrimReport struct {
-	Type     string        `json:"type"     yaml:"type"`
-	Model    string        `json:"model"    yaml:"model"`
-	Position vec3.T        `json:"position" yaml:"position,flow"`
-	Rotation PrimRotReport `json:"rotation" yaml:"rotation"`
+	Type         string                           `json:"type"          yaml:"type"`
+	StaticModels designs.CompPrimStaticModelsSpec `json:"static-models" yaml:"static-models"`
+	Position     vec3.T                           `json:"position"      yaml:"position,flow"`
+	Rotation     PrimRotReport                    `json:"rotation"      yaml:"rotation"`
 }
 
 type PrimRotReport struct {

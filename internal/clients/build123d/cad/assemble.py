@@ -3,6 +3,7 @@ from types import SimpleNamespace
 import json
 import tempfile
 import sys
+
 import build123d as b
 
 
@@ -16,7 +17,10 @@ axes = {
 def assemble_prims(prims_report: list[SimpleNamespace]) -> b.Compound:
     compounds: list[b.Compound] = []
     for prim in prims_report:
-        compound = b.import_step(prim.model)
+        if prim.static_models.step:
+            compound = b.import_step(prim.static_models.step)
+        else:
+            raise ValueError(f"primitive has no known importable model file: {prim}")
         ordering = prim.rotation.order.lower()
         match prim.rotation.type:
             case "intrinsic":
@@ -44,8 +48,13 @@ def export_assembly(design_assembly: b.Compound):
         print(fp.read().decode("utf-8"))
 
 
+def clean_hyphens(d):
+    dehyphenated = {k.replace("-", "_"): v for k, v in d.items()}
+    return SimpleNamespace(**dehyphenated)
+
+
 prims_report: list[SimpleNamespace] = json.loads(
     "".join([line.rstrip("\r\n") for line in sys.stdin]),
-    object_hook=SimpleNamespace,
+    object_hook=clean_hyphens,
 )
 export_assembly(assemble_prims(prims_report))

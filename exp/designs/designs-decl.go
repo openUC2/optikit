@@ -25,35 +25,35 @@ type DesignDecl struct {
 	// Optikit required to use the design. The Optikit tool refuses to use designs declaring newer
 	// Optikit versions for any operations beyond printing information. The Optikit version of the
 	// design must be greater than or equal to the Optikit version of every required Optikit design.
-	Optikit string `yaml:"optikit-version"`
+	Optikit string `json:"optikit-version" yaml:"optikit-version"`
 	// Design defines the basic metadata for the design.
-	Design DesignSpec `yaml:"design,omitempty"`
+	Design DesignSpec `json:"design" yaml:"design,omitempty"`
 	// Instantiation concretizes the design's abstract inputs, such as design variants, feature flags,
 	// and input variables.
-	Instantiation InstSpec `yaml:"instantiation,omitempty"`
+	Instantiation InstSpec `json:"instantiation" yaml:"instantiation,omitempty"`
 	// Components declares the design's constituent components as a mapping from the ID of each
 	// component to the declaration of that component.
-	Components CompsSpec `yaml:"components,omitempty"`
+	Components CompsSpec `json:"components" yaml:"components,omitempty"`
 	// Variants declares the design's variants as a mapping from the ID of each variant to the
 	// declaration of that variant.
-	Variants VariantsSpec `yaml:"variants,omitempty"`
+	Variants VariantsSpec `json:"variants" yaml:"variants,omitempty"`
 }
 
 // DesignSpec declares the basic metadata for an Optikit design.
 type DesignSpec struct {
 	// Path is the design path, which acts as the canonical name for the design.
-	Path string `yaml:"path,omitempty"`
+	Path string `json:"path,omitempty" yaml:"path,omitempty"`
 	// Description is a short description of the design to be shown to users.
-	Description string `yaml:"description,omitempty"`
+	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 	// Tags is a list of human-readable string tags for describing the design to software.
-	Tags []string `yaml:"tags,omitempty"`
+	Tags []string `json:"tags,omitempty" yaml:"tags,omitempty"`
 }
 
 // InstSpec declares how an indeterminate design is made determinate by specifying a particular
 // design variant, particular values of input variables, and particular feature flags.
 type InstSpec struct {
 	// Variant declares which design variant (if any) of a design will be used.
-	Variant VariantID `yaml:"variant,omitempty"`
+	Variant VariantID `json:"variant,omitempty" yaml:"variant,omitempty"`
 }
 
 type (
@@ -65,32 +65,39 @@ type (
 type CompSpec struct {
 	// Type is the type of component in the design. It can be either `location`, `primitive`, or
 	// `design`.
-	Type string `yaml:"type"`
+	Type string `json:"type" yaml:"type"`
 	// Design is the path of the design which the component (of type `design`) instantiates, relative
 	// to the root directory of the Optikit design.
-	Design string `yaml:"design,omitempty"`
+	Design string `json:"design,omitempty" yaml:"design,omitempty"`
 	// Primitive declares information about the model primitive which the component (of type
 	// `primitive`) is.
-	Primitive CompPrimSpec `yaml:"primitive,omitempty"`
+	Primitive CompPrimSpec `json:"primitive" yaml:"primitive,omitempty"`
 	// Pose declares the geometry of the component.
-	Pose CompPoseSpec `yaml:"pose,omitempty"`
+	Pose CompPoseSpec `json:"pose" yaml:"pose,omitempty"`
 }
 
 type CompPrimSpec struct {
-	// Type is the type of primitive in the design. It can be `optiland`, `gltf`, `glb`, or `step`.
-	Type string `yaml:"type,omitempty"`
-	// Model is the path of the model file which the primitive represents, relative to the root
-	// directory of the Optikit design.
-	Model string `yaml:"model,omitempty"`
+	// Type is the type of primitive. It can be `static`.
+	Type string `json:"type,omitempty" yaml:"type,omitempty"`
+	// StaticModels declares the paths of the model files (in whatever formats are available) which the
+	// primitive represents, relative to the root directory of the Optikit design.
+	StaticModels CompPrimStaticModelsSpec `json:"static-models" yaml:"static-models,omitempty"`
 }
 
-// CompPoseSpec defines declares a Optikit design's component's geometry.
+// CompPrimStaticModelSpec declares equivalent files in alternate file formats representing the same
+// primitive model.
+type CompPrimStaticModelsSpec struct {
+	GLTF string `json:"gltf,omitempty" yaml:"gltf,omitempty"`
+	STEP string `json:"step,omitempty" yaml:"step,omitempty"`
+}
+
+// CompPoseSpec declares a Optikit design's component's geometry.
 // A zero value indicates that the component has no geometric pose.
 type CompPoseSpec struct {
 	// Rotation declares the orientation of the component as a rotation.
-	Rotation CompPoseRotSpec `yaml:"rotation,omitempty"`
+	Rotation CompPoseRotSpec `json:"rotation" yaml:"rotation,omitempty"`
 	// Translation declares the position of the component as a linear translation.
-	Translation CompPoseTranslSpec `yaml:"translation,omitempty"`
+	Translation CompPoseTranslSpec `json:"translation" yaml:"translation,omitempty"`
 }
 
 // CompPoseRotSpec declares the orientation of the component as a rotation relative to the overall
@@ -101,10 +108,10 @@ type CompPoseRotSpec struct {
 	// aligned with the design's axes, even if violating UC2 cube orientation constraints).
 	// If the type is uc2, then Grid.Z is only allowed to be +z or -z, and Grid.X is not allowed to
 	// be +z or -z.
-	Type string `yaml:"type"`
+	Type string `json:"type,omitempty" yaml:"type"`
 	// Grid declares the orientation parameters of the component if its rotation type is `uc2` or
 	// `grid`.
-	Grid CompPoseRotGridSpec `yaml:"grid,omitempty"`
+	Grid CompPoseRotGridSpec `json:"grid" yaml:"grid,omitempty"`
 }
 
 const (
@@ -119,10 +126,10 @@ const (
 type CompPoseRotGridSpec struct {
 	// Z specifies the axis of the design's coordinate system which the component's coordinate
 	// system's +z direction should point in. The zero value is interpreted as +z.
-	Z string `yaml:"z,omitempty"`
+	Z string `json:"z,omitempty" yaml:"z,omitempty"`
 	// X specifies the axis of the design's coordinate system which the component's coordinate
 	// system's +x direction should point in. The zero value is interpreted as +x.
-	X string `yaml:"x,omitempty"`
+	X string `json:"x,omitempty" yaml:"x,omitempty"`
 }
 
 // CompPoseTranslSpec declares the position of the component as linear translation relative to an
@@ -131,13 +138,13 @@ type CompPoseTranslSpec struct {
 	// Anchor is the ID of the component whose position will be linearly translated by the specified
 	// offsets in order to determine the position of this component.
 	// If empty, it will be the origin of the overall design's coordinate axes.
-	Anchor CompID `yaml:"anchor,omitempty"`
+	Anchor CompID `json:"anchor,omitempty" yaml:"anchor,omitempty"`
 	// OffsetGrid is an offset from the anchor's position towards the component's position, in the
 	// design's coordinate axes.
-	OffsetGrid DiscreteXYZ[int] `yaml:"offset-grid,omitempty"`
+	OffsetGrid DiscreteXYZ[int] `json:"offset-grid" yaml:"offset-grid,omitempty"`
 	// OffsetMM is an additional offset from the anchor's position towards the component's position,
 	// in millimeters, after first applying the grid offset.
-	OffsetMM ContinuousXYZ[float64] `yaml:"offset-mm,omitempty"`
+	OffsetMM ContinuousXYZ[float64] `json:"offset-mm" yaml:"offset-mm,omitempty"`
 }
 
 type (
@@ -148,11 +155,11 @@ type (
 // A VariantSpec declares a design variant.
 type VariantSpec struct {
 	// Description is a short description of the variant to be shown to users.
-	Description string `yaml:"description,omitempty"`
+	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 	// Components declares any modifications to the design's components. Non-zero values here will
 	// overwrite non-zero values in the design's components; new components here will also be added to
 	// the design.
-	Components CompsSpec `yaml:"components,omitempty"`
+	Components CompsSpec `json:"components,omitempty" yaml:"components,omitempty"`
 }
 
 // DesignDecl
@@ -315,8 +322,21 @@ func (s CompSpec) Merged(overlay CompSpec) CompSpec {
 // this current CompsPoseSpec or the overlay.
 func (s CompPrimSpec) Merged(overlay CompPrimSpec) CompPrimSpec {
 	return CompPrimSpec{
-		Type:  cmp.Or(overlay.Type, s.Type),
-		Model: cmp.Or(overlay.Model, s.Model),
+		Type:         cmp.Or(overlay.Type, s.Type),
+		StaticModels: s.StaticModels.Merged(overlay.StaticModels),
+	}
+}
+
+// CompPrimStaticModelsSpec
+
+// Merged returns a new CompPrimStaticModelsSpec created by applying the specified overlay, without modifying
+// this current CompsPoseSpec or the overlay.
+func (s CompPrimStaticModelsSpec) Merged(
+	overlay CompPrimStaticModelsSpec,
+) CompPrimStaticModelsSpec {
+	return CompPrimStaticModelsSpec{
+		GLTF: cmp.Or(overlay.GLTF, s.GLTF),
+		STEP: cmp.Or(overlay.STEP, s.STEP),
 	}
 }
 

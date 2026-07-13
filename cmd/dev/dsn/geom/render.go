@@ -7,6 +7,7 @@ import (
 
 	"github.com/urfave/cli/v3"
 
+	ffs "github.com/openUC2/optikit/exp/fs"
 	"github.com/openUC2/optikit/internal/optikit"
 )
 
@@ -16,7 +17,8 @@ func renderObjA(ctx context.Context, c *cli.Command) error {
 		return err
 	}
 
-	result, err := optikit.RenderObjects(ctx, designDecl.Components, c.String("format"))
+	fsys := ffs.AttachPath(os.DirFS(c.String("cwd")), c.String("cwd"))
+	result, err := optikit.RenderObjects(ctx, fsys, designDecl.Components, c.String("format"))
 	if err != nil {
 		return err
 	}

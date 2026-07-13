@@ -7,16 +7,18 @@ components:
   lower-half:
     type: primitive
     primitive:
-      type: step
-      model: PRT - 1003 - CUBHLF111 - V04.stp
+      static-models:
+        gltf: PRT - 1003 - CUBHLF111 - V04.glb
+        step: PRT - 1003 - CUBHLF111 - V04.stp
     pose:
       rotation:
         type: grid
   upper-half:
     type: primitive
     primitive:
-      type: step
-      model: PRT - 1003 - CUBHLF111 - V04.stp
+      static-models:
+        gltf: PRT - 1003 - CUBHLF111 - V04.glb
+        step: PRT - 1003 - CUBHLF111 - V04.stp
     pose:
       rotation:
         type: grid

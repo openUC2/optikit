@@ -16,8 +16,9 @@ components:
   mounted-slide-holder:
     type: primitive
     primitive:
-      type: step
-      model: SUB - 0027 - SAMHOL - V04 - virt ass.stp
+      static-models:
+        gltf: SUB - 0027 - SAMHOL - V04 - virt ass.glb
+        step: SUB - 0027 - SAMHOL - V04 - virt ass.stp
     pose:
       rotation:
         type: grid

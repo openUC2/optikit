@@ -1,7 +1,10 @@
 [
   {
-    "type": "step",
-    "model": "axes.step",
+    "type": "static",
+    "static-models": {
+      "gltf": "axes.glb",
+      "step": "axes.step"
+    },
     "position": [
       0,
       0,
