@@ -14,6 +14,7 @@ import (
 	"github.com/pkg/errors"
 
 	"github.com/openUC2/optikit/exp/designs"
+	ffs "github.com/openUC2/optikit/exp/fs"
 	"github.com/openUC2/optikit/exp/structures"
 	"github.com/openUC2/optikit/internal/clients/build123d"
 	"github.com/openUC2/optikit/internal/clients/echarts"
@@ -24,25 +25,25 @@ import (
 // Objects
 
 func RenderObjects(
-	ctx context.Context, comps designs.CompsSpec, format string,
+	ctx context.Context, fsys ffs.PathedFS, comps designs.CompsSpec, format string,
 ) (result []byte, err error) {
 	switch format {
 	default:
 		return nil, errors.Errorf("unknown format %s", format)
 	case "glb":
-		return RenderObjectsGLB(ctx, comps, false)
+		return RenderObjectsGLB(ctx, fsys, comps, false)
 	case "gltf":
-		return RenderObjectsGLB(ctx, comps, true)
+		return RenderObjectsGLB(ctx, fsys, comps, true)
 	case "step":
 		return RenderObjectsSTEP(ctx, comps)
 	}
 }
 
 func RenderObjectsGLB(
-	ctx context.Context, comps designs.CompsSpec, asText bool,
+	ctx context.Context, fsys ffs.PathedFS, comps designs.CompsSpec, asText bool,
 ) (result []byte, err error) {
 	doc := gltf.NewDocument()
-	if result, err = doc.Assemble(comps, asText, designs.UC2GridSpacings); err != nil {
+	if result, err = doc.Assemble(fsys, comps, asText, designs.UC2GridSpacings); err != nil {
 		return nil, err
 	}
 	return result, nil

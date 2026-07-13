@@ -1,5 +1,4 @@
-// Package designs implements the Optikit designs specification for deployment and composition of
-// Optikit packages.
+// Package designs implements the Optikit designs specification for .
 package designs
 
 import (

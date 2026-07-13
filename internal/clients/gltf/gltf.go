@@ -5,8 +5,8 @@ import (
 	"crypto/sha256"
 	"encoding/json"
 	"fmt"
+	"io/fs"
 	"maps"
-	"os"
 	"slices"
 
 	"github.com/pkg/errors"
@@ -14,6 +14,7 @@ import (
 	"github.com/ungerik/go3d/float64/vec3"
 
 	"github.com/openUC2/optikit/exp/designs"
+	ffs "github.com/openUC2/optikit/exp/fs"
 )
 
 type Document struct {
@@ -76,12 +77,13 @@ func Load(contents []byte) (doc *Document, err error) {
 }
 
 func (d *Document) Assemble(
-	comps designs.CompsSpec, asText bool, gridSpacings designs.ContinuousXYZ[float64],
+	fsys ffs.PathedFS, comps designs.CompsSpec, asText bool,
+	gridSpacings designs.ContinuousXYZ[float64],
 ) ([]byte, error) {
 	flattened := comps.Flattened()
 	compIDs := slices.Sorted(maps.Keys(flattened))
 	for _, id := range compIDs {
-		rootNodeIndices, err := d.addComponent(id, flattened[id], gridSpacings)
+		rootNodeIndices, err := d.addComponent(fsys, id, flattened[id], gridSpacings)
 		if err != nil {
 			return nil, errors.Wrapf(err, "couldn't add component %s to gltf model", id)
 		}
@@ -92,7 +94,8 @@ func (d *Document) Assemble(
 }
 
 func (d *Document) addComponent(
-	id designs.CompID, comp designs.CompSpec, gridSpacings designs.ContinuousXYZ[float64],
+	fsys ffs.PathedFS, id designs.CompID, comp designs.CompSpec,
+	gridSpacings designs.ContinuousXYZ[float64],
 ) (
 	rootNodeIndices []int, err error,
 ) {
@@ -120,7 +123,7 @@ func (d *Document) addComponent(
 		default:
 			return nil, errors.Errorf("unknown model type for primitive %s: %s", id, t)
 		case "", "static":
-			h, rootNodes, err := d.addComponentPrimitive(comp.Primitive)
+			h, rootNodes, err := d.addComponentPrimitive(fsys, comp.Primitive)
 			if err != nil {
 				return []int{nodeIndex}, errors.Wrapf(
 					err, "couldn't add primitive component: %+v", comp.Primitive,
@@ -145,14 +148,14 @@ func computeNodePose(pose designs.CompPoseSpec, gridSpacings designs.ContinuousX
 	return mat.Quaternion(), transl, nil
 }
 
-func (d *Document) addComponentPrimitive(prim designs.CompPrimSpec) (
+func (d *Document) addComponentPrimitive(fsys ffs.PathedFS, prim designs.CompPrimSpec) (
 	modelHash string, rootNodeIndices []int, err error,
 ) {
 	model := prim.StaticModels.GLTF
 	if model == "" {
 		return "", nil, errors.Errorf("primitive component has no glTF/glb model file: %+v", prim)
 	}
-	contents, err := os.ReadFile(model) // TODO: read from the FSDesign's FS, not from the cwd!
+	contents, err := fs.ReadFile(fsys, model)
 	if err != nil {
 		return "", nil, errors.Wrapf(err, "couldn't read model %s", model)
 	}
