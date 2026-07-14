@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io/fs"
 	"maps"
+	"path"
 
 	"github.com/goccy/go-yaml"
 	"github.com/pkg/errors"
@@ -28,9 +29,6 @@ type DesignDecl struct {
 	Optikit string `json:"optikit-version" yaml:"optikit-version"`
 	// Design defines the basic metadata for the design.
 	Design DesignSpec `json:"design" yaml:"design,omitempty"`
-	// Instantiation concretizes the design's abstract inputs, such as design variants, feature flags,
-	// and input variables.
-	Instantiation InstSpec `json:"instantiation" yaml:"instantiation,omitempty"`
 	// Components declares the design's constituent components as a mapping from the ID of each
 	// component to the declaration of that component.
 	Components CompsSpec `json:"components" yaml:"components,omitempty"`
@@ -49,13 +47,6 @@ type DesignSpec struct {
 	Tags []string `json:"tags,omitempty" yaml:"tags,omitempty"`
 }
 
-// InstSpec declares how an indeterminate design is made determinate by specifying a particular
-// design variant, particular values of input variables, and particular feature flags.
-type InstSpec struct {
-	// Variant declares which design variant (if any) of a design will be used.
-	Variant VariantID `json:"variant,omitempty" yaml:"variant,omitempty"`
-}
-
 type (
 	CompID    string
 	CompsSpec map[CompID]CompSpec
@@ -69,11 +60,21 @@ type CompSpec struct {
 	// Design is the path of the design which the component (of type `design`) instantiates, relative
 	// to the root directory of the Optikit design.
 	Design string `json:"design,omitempty" yaml:"design,omitempty"`
+	// Instantiation declares information about how the design is to be instantiated to create the
+	// component (of type `design`).
+	Instantiation InstSpec `json:"instantiation" yaml:"instantiation,omitempty"`
 	// Primitive declares information about the model primitive which the component (of type
 	// `primitive`) is.
 	Primitive CompPrimSpec `json:"primitive" yaml:"primitive,omitempty"`
 	// Pose declares the geometry of the component.
 	Pose CompPoseSpec `json:"pose" yaml:"pose,omitempty"`
+}
+
+// InstSpec declares how an indeterminate design is made determinate by specifying a particular
+// design variant, particular values of input variables, and particular feature flags.
+type InstSpec struct {
+	// Variant declares which design variant (if any) of a design will be used.
+	Variant VariantID `json:"variant,omitempty" yaml:"variant,omitempty"`
 }
 
 type CompPrimSpec struct {
@@ -301,6 +302,16 @@ func (s CompsSpec) Primitives() CompsSpec {
 		prims[id] = c
 	}
 	return prims
+}
+
+// CompID
+
+func JoinCompIDs(elem ...CompID) CompID {
+	elems := make([]string, 0, len(elem))
+	for _, e := range elem {
+		elems = append(elems, string(e))
+	}
+	return CompID(path.Join(elems...))
 }
 
 // CompSpec

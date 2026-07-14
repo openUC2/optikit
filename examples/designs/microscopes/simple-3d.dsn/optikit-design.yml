@@ -53,7 +53,7 @@ components:
     type: design
     design: cube-mounted/mirror-diagonal.dsn
     instantiation:
-      variant: z
+      variant: _z
     pose:
       rotation:
         type: uc2

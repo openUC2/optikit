@@ -7,18 +7,18 @@ import (
 
 	"github.com/urfave/cli/v3"
 
-	ffs "github.com/openUC2/optikit/exp/fs"
+	ofs "github.com/openUC2/optikit/exp/fs"
 	"github.com/openUC2/optikit/internal/optikit"
 )
 
 func renderObjA(ctx context.Context, c *cli.Command) error {
-	designDecl, err := optikit.LoadDesignDecl(c.String("cwd"), c.String("variant"))
+	design, err := optikit.LoadFSDesign(c.String("cwd"), c.String("variant"), false)
 	if err != nil {
 		return err
 	}
 
-	fsys := ffs.AttachPath(os.DirFS(c.String("cwd")), c.String("cwd"))
-	result, err := optikit.RenderObjects(ctx, fsys, designDecl.Components, c.String("format"))
+	fsys := ofs.AttachPath(os.DirFS(c.String("cwd")), c.String("cwd"))
+	result, err := optikit.RenderObjects(ctx, fsys, design, c.String("format"))
 	if err != nil {
 		return err
 	}
@@ -36,12 +36,12 @@ func produceOutput(outputPath string, output []byte) error {
 }
 
 func renderPosGA(ctx context.Context, c *cli.Command) error {
-	designDecl, err := optikit.LoadDesignDecl(c.String("cwd"), c.String("variant"))
+	design, err := optikit.LoadFSDesign(c.String("cwd"), c.String("variant"), false)
 	if err != nil {
 		return err
 	}
 
-	result, err := optikit.RenderPositionGraph(ctx, designDecl.Components, c.String("format"))
+	result, err := optikit.RenderPositionGraph(ctx, design, c.String("format"), true)
 	if err != nil {
 		return err
 	}
@@ -50,12 +50,12 @@ func renderPosGA(ctx context.Context, c *cli.Command) error {
 }
 
 func renderPosPA(ctx context.Context, c *cli.Command) error {
-	designDecl, err := optikit.LoadDesignDecl(c.String("cwd"), c.String("variant"))
+	design, err := optikit.LoadFSDesign(c.String("cwd"), c.String("variant"), false)
 	if err != nil {
 		return err
 	}
 
-	result, err := optikit.RenderPositionPlot(designDecl.Components)
+	result, err := optikit.RenderPositionPlot(design.Decl.Components)
 	if err != nil {
 		return err
 	}

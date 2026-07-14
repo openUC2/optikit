@@ -18,13 +18,22 @@ var renderDesignDeclTests = []struct {
 	variant string
 }{
 	{
+		design: "primitives/cube-skeleton.dsn",
+	},
+	{
+		design: "cube-mounted/lens.dsn",
+	},
+	{
+		design: "cube-mounted/mirror-diagonal.dsn",
+	},
+	{
+		design: "cube-mounted/slide-holder.dsn",
+	},
+	{
 		design: "microscopes/simple-rel-transl-anchors.dsn",
 	},
 	{
 		design: "microscopes/simple-abs-transl-anchors.dsn",
-	},
-	{
-		design: "primitives/cube-skeleton.dsn",
 	},
 }
 
@@ -41,7 +50,7 @@ func TestRenderPositionGraph(t *testing.T) {
 			dp := path.Join(examplesPath, "designs", test.design)
 
 			t.Logf("load %s:%s", test.design, test.variant)
-			designDecl, err := LoadDesignDecl(dp, test.variant)
+			design, err := LoadFSDesign(dp, test.variant, false)
 			if err != nil {
 				t.Error(err)
 				return
@@ -50,7 +59,9 @@ func TestRenderPositionGraph(t *testing.T) {
 
 			for _, format := range []string{"dot", "svg"} {
 				t.Logf("render %s:%s to %s", test.design, test.variant, format)
-				if got, err = RenderPositionGraph(t.Context(), designDecl.Components, format); err != nil {
+				if got, err = RenderPositionGraph(
+					t.Context(), design, format, true,
+				); err != nil {
 					t.Error(err)
 				}
 				if want, err = os.ReadFile(path.Join(dp, "_positions-graph."+format)); err != nil {

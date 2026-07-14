@@ -9,12 +9,12 @@ import (
 )
 
 func reportPrimA(ctx context.Context, c *cli.Command) error {
-	designDecl, err := optikit.LoadDesignDecl(c.String("cwd"), c.String("variant"))
+	design, err := optikit.LoadFSDesign(c.String("cwd"), c.String("variant"), false)
 	if err != nil {
 		return err
 	}
 
-	result, err := optikit.ReportPrimitives(ctx, designDecl.Components, c.String("format"))
+	result, err := optikit.ReportPrimitives(ctx, design, c.String("format"))
 	if err != nil {
 		return err
 	}
