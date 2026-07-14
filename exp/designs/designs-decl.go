@@ -361,8 +361,8 @@ func (s CompPrimStaticModelsSpec) Merged(
 
 func (s CompPrimStaticModelsSpec) Prefixed(pathPrefix string) CompPrimStaticModelsSpec {
 	return CompPrimStaticModelsSpec{
-		GLTF: path.Join(pathPrefix, s.GLTF),
-		STEP: path.Join(pathPrefix, s.STEP),
+		GLTF: path.Clean(path.Join(pathPrefix, s.GLTF)),
+		STEP: path.Clean(path.Join(pathPrefix, s.STEP)),
 	}
 }
 

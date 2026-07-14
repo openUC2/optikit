@@ -156,6 +156,7 @@ func (d *FSDesign) Flattened() (flattened *FSDesign, err error) {
 			continue
 		}
 
+		delete(flattened.Decl.Components, compID)
 		subdesign, err := d.LoadCompFSDesign(compID)
 		if err != nil {
 			return nil, errors.Wrapf(
@@ -170,6 +171,11 @@ func (d *FSDesign) Flattened() (flattened *FSDesign, err error) {
 			)
 		}
 		for subcompID, subcomponent := range subflattened.Decl.Components {
+			if subcomponent.Type == "primitive" {
+				subcomponent.Primitive.StaticModels = subcomponent.Primitive.StaticModels.Prefixed(
+					component.Design,
+				)
+			}
 			flattened.Decl.Components[JoinCompIDs(compID, subcompID)] = subcomponent
 		}
 	}
