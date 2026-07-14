@@ -1,5 +1,6 @@
 [
   {
+    "id": "lower-half",
     "type": "static",
     "static-models": {
       "gltf": "PRT - 1003 - CUBHLF111 - V04.glb",
@@ -21,6 +22,7 @@
     }
   },
   {
+    "id": "upper-half",
     "type": "static",
     "static-models": {
       "gltf": "PRT - 1003 - CUBHLF111 - V04.glb",

@@ -1,5 +1,6 @@
 [
   {
+    "id": "axes",
     "type": "static",
     "static-models": {
       "gltf": "axes.glb",

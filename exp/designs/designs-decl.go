@@ -6,6 +6,7 @@ import (
 	"io/fs"
 	"maps"
 	"path"
+	"slices"
 
 	"github.com/goccy/go-yaml"
 	"github.com/pkg/errors"
@@ -203,6 +204,14 @@ func (d DesignDecl) Instantiate(instantiation InstSpec) (s CompsSpec, err error)
 	return d.Components.Merged(v.Components), nil
 }
 
+// Cloned returns a deep copy of the DesignDecl.
+func (d DesignDecl) Cloned() DesignDecl {
+	d.Design.Tags = slices.Clone(d.Design.Tags)
+	d.Components = maps.Clone(d.Components)
+	d.Variants = maps.Clone(d.Variants)
+	return d
+}
+
 // DesignSpec
 
 // Check looks for errors in the construction of the design spec.
@@ -267,11 +276,11 @@ func (s CompsSpec) Merged(overlay CompsSpec) CompsSpec {
 	return merged
 }
 
-// Flattened returns a new CompsSpec in which each non-origin component's translation anchor is just
-// the root (origin) node.
+// TranslFlattened returns a new CompsSpec in which each non-origin component's translation anchor
+// is just the root (origin) node.
 // It assumes that the CompsSpec does not have any errors such as a nonexistent translation anchor
 // required by a CompPosesTranslSpec.
-func (s CompsSpec) Flattened() CompsSpec {
+func (s CompsSpec) TranslFlattened() CompsSpec {
 	flattened := make(CompsSpec)
 	g := s.TranslDigraph()
 	nextParents := make([]CompID, 0, len(g))
@@ -292,7 +301,6 @@ func (s CompsSpec) Flattened() CompsSpec {
 }
 
 // Primitives returns the primitive-type components in this CompsSpec.
-// TODO: add a recursively-evaluated equivalent in FSDesign!
 func (s CompsSpec) Primitives() CompsSpec {
 	prims := make(CompsSpec)
 	for id, c := range s {
@@ -348,6 +356,13 @@ func (s CompPrimStaticModelsSpec) Merged(
 	return CompPrimStaticModelsSpec{
 		GLTF: cmp.Or(overlay.GLTF, s.GLTF),
 		STEP: cmp.Or(overlay.STEP, s.STEP),
+	}
+}
+
+func (s CompPrimStaticModelsSpec) Prefixed(pathPrefix string) CompPrimStaticModelsSpec {
+	return CompPrimStaticModelsSpec{
+		GLTF: path.Join(pathPrefix, s.GLTF),
+		STEP: path.Join(pathPrefix, s.STEP),
 	}
 }
 

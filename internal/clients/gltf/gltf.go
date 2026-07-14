@@ -84,7 +84,7 @@ func (d *Document) Assemble(
 	fsys ffs.PathedFS, comps designs.CompsSpec, asText bool,
 	gridSpacings designs.ContinuousXYZ[float64],
 ) ([]byte, error) {
-	flattened := comps.Flattened()
+	flattened := comps.TranslFlattened() // FIXME: change this to design.Flattened()!
 	compIDs := slices.Sorted(maps.Keys(flattened))
 	for _, id := range compIDs {
 		rootNodeIndices, err := d.addComponent(fsys, id, flattened[id], gridSpacings)

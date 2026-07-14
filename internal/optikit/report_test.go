@@ -11,9 +11,7 @@ import (
 )
 
 var reports = map[string][]string{ // design -> variants
-	"primitives/cube-skeleton.dsn": {
-		"",
-	},
+	"primitives/cube-skeleton.dsn": {""},
 	"primitives/axes.dsn": {
 		"ZposXpos",
 		"ZposYpos",
@@ -40,6 +38,9 @@ var reports = map[string][]string{ // design -> variants
 		"XnegZpos",
 		"XnegYneg",
 	},
+	"cube-mounted/lens.dsn":            {"x", "y", "z"},
+	"cube-mounted/mirror-diagonal.dsn": {"_z", "xy"},
+	"cube-mounted/slide-holder.dsn":    {"x", "y", "z"},
 }
 
 func TestReportPrims(t *testing.T) {
@@ -56,14 +57,14 @@ func TestReportPrims(t *testing.T) {
 				dp := path.Join(examplesPath, "designs", design)
 
 				t.Logf("load %s:%s", design, variant)
-				designDecl, err := LoadDesignDecl(dp, variant)
+				design, err := LoadFSDesign(dp, variant, false)
 				if err != nil {
 					t.Error(err)
 					return
 				}
 
 				for format := range fileExts {
-					checkPrimitives(t, variant, designDecl, dp, format)
+					checkPrimitives(t, variant, design, dp, format)
 				}
 			})
 		}
@@ -76,7 +77,7 @@ var fileExts = map[string]string{
 }
 
 func checkPrimitives(
-	t *testing.T, variant string, designDecl designs.DesignDecl, dp, format string,
+	t *testing.T, variant string, design *designs.FSDesign, dp, format string,
 ) {
 	t.Helper()
 
@@ -89,7 +90,7 @@ func checkPrimitives(
 
 	var want, got []byte
 	var err error
-	if got, err = ReportPrimitives(t.Context(), designDecl.Components, format); err != nil {
+	if got, err = ReportPrimitives(t.Context(), design, format); err != nil {
 		t.Error(err)
 	}
 	if want, err = os.ReadFile(path.Join(dp, reportName)); err != nil {

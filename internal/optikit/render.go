@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
-	gerrors "errors"
 	"fmt"
 	"maps"
 	"regexp"
@@ -138,25 +137,11 @@ func populatePositionGraph(
 			continue
 		}
 
-		subdesign, err := design.LoadFSDesign(component.Design)
+		subdesign, err := design.LoadCompFSDesign(compID)
 		if err != nil {
 			return nil, errors.Wrapf(
 				err, "couldn't load subdesign %s for component %s", component.Design, compID,
 			)
-		}
-		errs := subdesign.Check()
-		if len(errs) > 0 {
-			return nil, gerrors.Join(errs...)
-		}
-		if subdesign.Decl.NeedsInstantiation() {
-			if subdesign.Decl.Components, err = subdesign.Decl.Instantiate(designs.InstSpec{
-				Variant: component.Instantiation.Variant,
-			}); err != nil {
-				return nil, errors.Wrapf(
-					err, "couldn't instantiate variant %s of subdesign %s for component %s",
-					component.Instantiation.Variant, component.Design, compID,
-				)
-			}
 		}
 
 		if gg, err = populatePositionGraph(
@@ -176,7 +161,7 @@ func populatePositionGraph(
 func RenderPositionPlot(comps designs.CompsSpec) (result []byte, err error) {
 	c := echarts.NewChart3D()
 
-	flattened := comps.Flattened()
+	flattened := comps.TranslFlattened()
 	for _, id := range slices.Sorted(maps.Keys(flattened)) {
 		cdecl := flattened[id]
 		mat, err := cdecl.Pose.TransfMat(designs.UC2GridSpacings)

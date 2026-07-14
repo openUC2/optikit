@@ -218,7 +218,10 @@ func TestDesignFlatten(t *testing.T) {
 			}
 
 			t.Logf("check %s", in)
-			if got, want := inDecl.Components.Flattened(), outDecl.Components; !cmp.Equal(got, want) {
+			if got, want := inDecl.Components.TranslFlattened(), outDecl.Components; !cmp.Equal(
+				got,
+				want,
+			) {
 				t.Errorf("diff (-want +got):\n%+v", cmp.Diff(want, got))
 			}
 		})
