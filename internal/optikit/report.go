@@ -20,10 +20,10 @@ import (
 // Primitives
 
 func ReportPrimitives(
-	ctx context.Context, design *designs.FSDesign,
+	ctx context.Context, design *designs.FSDesign, gridSpacings designs.ContinuousXYZ[float64],
 	format string,
 ) (result []byte, err error) {
-	d, err := design.Flattened()
+	d, err := design.Flattened(gridSpacings)
 	if err != nil {
 		return nil, errors.Wrapf(err, "couldn't flatten design %s", d.Path())
 	}

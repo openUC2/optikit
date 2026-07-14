@@ -6,3 +6,4 @@ package example
 
 //go:generate ./generate-pos-graph.sh
 //go:generate ./generate-pos-plot.sh
+//go:generate ./generate-prim-report.sh

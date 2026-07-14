@@ -90,7 +90,7 @@ func checkPrimitives(
 
 	var want, got []byte
 	var err error
-	if got, err = ReportPrimitives(t.Context(), design, format); err != nil {
+	if got, err = ReportPrimitives(t.Context(), design, designs.UC2GridSpacings, format); err != nil {
 		t.Error(err)
 	}
 	if want, err = os.ReadFile(path.Join(dp, reportName)); err != nil {

@@ -11,6 +11,7 @@ import (
 
 	"github.com/bmatcuk/doublestar/v4"
 	"github.com/pkg/errors"
+	"github.com/ungerik/go3d/float64/mat4"
 	"golang.org/x/mod/semver"
 
 	ffs "github.com/openUC2/optikit/exp/fs"
@@ -148,14 +149,22 @@ func (d *FSDesign) LoadFSDesign(subdesign string) (*FSDesign, error) {
 // node.
 // It assumes that the design's Decl.Components does not have any errors such as a nonexistent
 // translation anchor required by a CompPosesTranslSpec.
-func (d *FSDesign) Flattened() (flattened *FSDesign, err error) {
+func (d *FSDesign) Flattened(gridSpacings ContinuousXYZ[float64]) (
+	flattened *FSDesign, err error,
+) {
 	flattened = d.Cloned()
 	flattened.Decl.Components = flattened.Decl.Components.TranslFlattened()
 	for compID, component := range flattened.Decl.Components {
-		if component.Type != "design" {
+		if component.Type != CompTypeDesign {
 			continue
 		}
 
+		mat, err := component.Pose.TransfMat(gridSpacings)
+		if err != nil {
+			return nil, errors.Wrapf(
+				err, "couldn't compute transformation matrix for pose of component %s", compID,
+			)
+		}
 		delete(flattened.Decl.Components, compID)
 		subdesign, err := d.LoadCompFSDesign(compID)
 		if err != nil {
@@ -163,19 +172,29 @@ func (d *FSDesign) Flattened() (flattened *FSDesign, err error) {
 				err, "couldn't load subdesign %s for component %s", component.Design, compID,
 			)
 		}
-
-		subflattened, err := subdesign.Flattened()
+		subflattened, err := subdesign.Flattened(gridSpacings)
 		if err != nil {
 			return nil, errors.Wrapf(
 				err, "couldn't flatten subdesign %s for component %s", component.Design, compID,
 			)
 		}
 		for subcompID, subcomponent := range subflattened.Decl.Components {
-			if subcomponent.Type == "primitive" {
+			submat, err := subcomponent.Pose.TransfMat(gridSpacings)
+			if err != nil {
+				return nil, errors.Wrapf(
+					err, "couldn't compute transformation matrix for pose of subcomponent %s", subcompID,
+				)
+			}
+			flattenedSubmat := mat4.Ident
+			flattenedSubmat.AssignMul(&mat, &submat)
+			subcomponent.Pose = NewPose(flattenedSubmat, gridSpacings)
+
+			if subcomponent.Type == CompTypePrimitive {
 				subcomponent.Primitive.StaticModels = subcomponent.Primitive.StaticModels.Prefixed(
 					component.Design,
 				)
 			}
+
 			flattened.Decl.Components[JoinCompIDs(compID, subcompID)] = subcomponent
 		}
 	}
@@ -184,7 +203,7 @@ func (d *FSDesign) Flattened() (flattened *FSDesign, err error) {
 
 func (d *FSDesign) LoadCompFSDesign(compID CompID) (subdesign *FSDesign, err error) {
 	component := d.Decl.Components[compID]
-	if component.Type != "design" {
+	if component.Type != CompTypeDesign {
 		return nil, errors.Errorf(
 			"component %s of type %s does not have an associated design", compID, component.Type,
 		)
@@ -216,7 +235,7 @@ func (d *FSDesign) LoadCompFSDesign(compID CompID) (subdesign *FSDesign, err err
 func (d *FSDesign) Primitives() (CompsSpec, error) {
 	prims := d.Design.Decl.Components.Primitives()
 	for id, c := range d.Design.Decl.Components {
-		if c.Type != "design" {
+		if c.Type != CompTypeDesign {
 			continue
 		}
 		subdesign, err := d.LoadFSDesign(c.Design)

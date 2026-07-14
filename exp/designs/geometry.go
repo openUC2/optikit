@@ -50,6 +50,15 @@ var BasisVec3s = map[string]vec3.T{
 	DirZNeg: {0, 0, -1},
 }
 
+var BasisDirs = map[vec3.T]string{
+	{1, 0, 0}:  DirXPos,
+	{-1, 0, 0}: DirXNeg,
+	{0, 1, 0}:  DirYPos,
+	{0, -1, 0}: DirYNeg,
+	{0, 0, 1}:  DirZPos,
+	{0, 0, -1}: DirZNeg,
+}
+
 // BasisVec4s holds the basis unit vectors for the various axis directions, as vec4.T's.
 var BasisVec4s = map[string]vec4.T{
 	DirXPos: {1, 0, 0, 0},

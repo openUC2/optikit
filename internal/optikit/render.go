@@ -52,7 +52,7 @@ func RenderObjectsGLB(
 func RenderObjectsSTEP(
 	ctx context.Context, design *designs.FSDesign,
 ) (result []byte, err error) {
-	primsReport, err := ReportPrimitives(ctx, design, "json")
+	primsReport, err := ReportPrimitives(ctx, design, designs.UC2GridSpacings, "json")
 	if err != nil {
 		return nil, err
 	}
@@ -133,7 +133,7 @@ func populatePositionGraph(
 
 	for _, compID := range fromIDs {
 		component := design.Decl.Components[compID]
-		if component.Type != "design" {
+		if component.Type != designs.CompTypeDesign {
 			continue
 		}
 

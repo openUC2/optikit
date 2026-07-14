@@ -1,0 +1,30 @@
+- id: mounted-slide-holder
+  type: static
+  static-models:
+    gltf: "SUB - 0027 - SAMHOL - V04 - virt ass.glb"
+    step: "SUB - 0027 - SAMHOL - V04 - virt ass.stp"
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    type: extrinsic
+    order: zxy
+    angles: {"y": 90.0}
+- id: skeleton/lower-half
+  type: static
+  static-models:
+    gltf: "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb"
+    step: "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    type: extrinsic
+    order: zxy
+    angles: {}
+- id: skeleton/upper-half
+  type: static
+  static-models:
+    gltf: "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb"
+    step: "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    type: extrinsic
+    order: zxy
+    angles: {"y": -180.0, z: -180.0}

@@ -117,12 +117,12 @@ func (d *Document) addComponent(
 	switch t := comp.Type; t {
 	default:
 		return nil, errors.Errorf("unknown component type for component %s: %s", id, t)
-	case "location":
+	case designs.CompTypeLocation:
 		return nil, nil
-	case "design":
+	case designs.CompTypeDesign:
 		// TODO: recursively add the design's components
 		return nil, errors.Errorf("unimplemented component type for component %s: %s", id, t)
-	case "primitive":
+	case designs.CompTypePrimitive:
 		switch pt := comp.Primitive.Type; pt {
 		default:
 			return nil, errors.Errorf("unknown model type for primitive %s: %s", id, t)
@@ -148,8 +148,9 @@ func computeNodePose(pose designs.CompPoseSpec, gridSpacings designs.ContinuousX
 	if err != nil {
 		return [4]float64{}, [3]float64{}, errors.Wrap(err, "couldn't compute node pose")
 	}
-	mat.TransformVec3(&vec3.Zero)
-	return mat.Quaternion(), transl, nil
+	origin := vec3.Zero
+	mat.TransformVec3(&origin)
+	return mat.Quaternion(), origin, nil
 }
 
 func (d *Document) addComponentPrimitive(fsys ffs.PathedFS, prim designs.CompPrimSpec) (

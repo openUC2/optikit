@@ -11,6 +11,7 @@ import (
 	"github.com/goccy/go-yaml"
 	"github.com/pkg/errors"
 	"github.com/ungerik/go3d/float64/mat4"
+	"github.com/ungerik/go3d/float64/quaternion"
 	"github.com/ungerik/go3d/float64/vec3"
 
 	ffs "github.com/openUC2/optikit/exp/fs"
@@ -71,6 +72,12 @@ type CompSpec struct {
 	Pose CompPoseSpec `json:"pose" yaml:"pose,omitempty"`
 }
 
+const (
+	CompTypeLocation  = "location"
+	CompTypePrimitive = "primitive"
+	CompTypeDesign    = "design"
+)
+
 // InstSpec declares how an indeterminate design is made determinate by specifying a particular
 // design variant, particular values of input variables, and particular feature flags.
 type InstSpec struct {
@@ -106,19 +113,24 @@ type CompPoseSpec struct {
 // design's orientation.
 type CompPoseRotSpec struct {
 	// Type is the type of orientation of the component. It can be either `` (implying a component
-	// without any spatial geometry), `uc2` (implying a UC2 cube), or `grid` (for any orientation
-	// aligned with the design's axes, even if violating UC2 cube orientation constraints).
+	// without any spatial geometry), `uc2` (implying a UC2 cube), `grid` (for any orientation
+	// aligned with the design's axes, even if violating UC2 cube orientation constraints), or
+	// `quaternion` (for arbitrary rotations).
 	// If the type is uc2, then Grid.Z is only allowed to be +z or -z, and Grid.X is not allowed to
 	// be +z or -z.
 	Type string `json:"type,omitempty" yaml:"type"`
 	// Grid declares the orientation parameters of the component if its rotation type is `uc2` or
 	// `grid`.
 	Grid CompPoseRotGridSpec `json:"grid" yaml:"grid,omitempty"`
+	// Quaternion declares the orientation parameters of the component if its rotation type is
+	// `quaternion`.
+	Quaternion quaternion.T `json:"quaternion" yaml:"quaternion,omitempty"`
 }
 
 const (
-	RotTypeUC2  = "uc2"
-	RotTypeGrid = "grid"
+	RotTypeUC2        = "uc2"
+	RotTypeGrid       = "grid"
+	RotTypeQuaternion = "quaternion"
 )
 
 // CompPoseRotGridSpec specifies the component's orientation relative to the design's orientation by
@@ -368,6 +380,13 @@ func (s CompPrimStaticModelsSpec) Prefixed(pathPrefix string) CompPrimStaticMode
 
 // CompPoseSpec
 
+func NewPose(mat mat4.T, gridSpacings ContinuousXYZ[float64]) CompPoseSpec {
+	return CompPoseSpec{
+		Rotation:    NewPoseRot(mat),
+		Translation: NewPoseTransl(mat, gridSpacings),
+	}
+}
+
 // Merged returns a new CompPoseSpec created by applying the specified overlay, without modifying
 // this current CompsPoseSpec or the overlay.
 func (s CompPoseSpec) Merged(overlay CompPoseSpec) CompPoseSpec {
@@ -400,6 +419,28 @@ func (s CompPoseSpec) TransfMat(gridSpacings ContinuousXYZ[float64]) (mat4.T, er
 
 // CompPoseRotSpec
 
+func NewPoseRot(mat mat4.T) CompPoseRotSpec {
+	z := vec3.UnitZ
+	mat.TransformVec3(&z)
+	zDir, zAxisAligned := BasisDirs[z]
+	x := vec3.UnitX
+	mat.TransformVec3(&x)
+	xDir, xAxisAligned := BasisDirs[x]
+	if zAxisAligned && xAxisAligned {
+		return CompPoseRotSpec{
+			Type: RotTypeGrid,
+			Grid: CompPoseRotGridSpec{
+				Z: zDir,
+				X: xDir,
+			},
+		}
+	}
+	return CompPoseRotSpec{
+		Type:       RotTypeQuaternion,
+		Quaternion: mat.Quaternion(),
+	}
+}
+
 // Check looks for errors in the construction of the component orientation spec.
 func (s CompPoseRotSpec) Check() (errs []error) {
 	switch s.Type {
@@ -421,15 +462,32 @@ func (s CompPoseRotSpec) Check() (errs []error) {
 		return append(errs, s.Grid.Check()...)
 	case RotTypeGrid:
 		return s.Grid.Check()
+	case RotTypeQuaternion:
+		const tolerance = 1e-6
+		if !s.Quaternion.IsUnitQuat(tolerance) {
+			return append(errs, errors.Errorf("quaternion is not a unit quaternion: %+v", s.Quaternion))
+		}
+		return nil
 	}
 }
 
 // Merged returns a new CompPoseRotSpec created by applying the specified overlay, without modifying
 // this current CompsPoseSpec or the overlay.
 func (s CompPoseRotSpec) Merged(overlay CompPoseRotSpec) CompPoseRotSpec {
-	return CompPoseRotSpec{
-		Type: cmp.Or(overlay.Type, s.Type),
-		Grid: s.Grid.Merged(overlay.Grid),
+	t := cmp.Or(overlay.Type, s.Type)
+	switch t {
+	default:
+		return CompPoseRotSpec{}
+	case RotTypeUC2, RotTypeGrid:
+		return CompPoseRotSpec{
+			Type: t,
+			Grid: s.Grid.Merged(overlay.Grid),
+		}
+	case RotTypeQuaternion:
+		return CompPoseRotSpec{
+			Type:       t,
+			Quaternion: cmp.Or(overlay.Quaternion, s.Quaternion),
+		}
 	}
 }
 
@@ -466,6 +524,24 @@ func (s CompPoseRotSpec) TransfMat() mat4.T {
 }
 
 // CompPoseTranslSpec
+
+func NewPoseTransl(mat mat4.T, gridSpacings ContinuousXYZ[float64]) CompPoseTranslSpec {
+	transl := vec3.Zero
+	mat.TransformVec3(&transl)
+	var gridded DiscreteXYZ[int]
+	gridded.X = int(transl[0] / gridSpacings.X)
+	gridded.Y = int(transl[1] / gridSpacings.Y)
+	gridded.Z = int(transl[2] / gridSpacings.Z)
+	griddedMM := AsMM(gridded, gridSpacings)
+	var mm ContinuousXYZ[float64]
+	mm.X = transl[0] - griddedMM.X
+	mm.Y = transl[1] - griddedMM.Y
+	mm.Z = transl[2] - griddedMM.Z
+	return CompPoseTranslSpec{
+		OffsetGrid: gridded,
+		OffsetMM:   mm,
+	}
+}
 
 // Merged returns a new CompPoseTranslSpec created by applying the specified overlay, without modifying
 // this current CompsPoseSpec or the overlay.
