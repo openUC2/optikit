@@ -24,11 +24,11 @@ type ContinuousXYZ[Number ~float32 | ~float64] struct {
 }
 
 // UC2GridSpacings indicates the distance between the center of each UC2 grid space along each axis,
-// in units of centimeters.
+// in units of millimeters.
 var UC2GridSpacings = ContinuousXYZ[float64]{
-	X: 5,   //nolint:mnd
-	Y: 5,   //nolint:mnd
-	Z: 5.5, //nolint:mnd
+	X: 50, //nolint:mnd
+	Y: 50, //nolint:mnd
+	Z: 55, //nolint:mnd
 }
 
 const (
@@ -245,6 +245,8 @@ func (s DiscreteXYZ[Number]) Merged(overlay DiscreteXYZ[Number]) DiscreteXYZ[Num
 
 func (s DiscreteXYZ[Number]) String() string {
 	switch {
+	case s.X == 0 && s.Y == 0 && s.Z == 0:
+		return ""
 	case s.Y == 0 && s.Z == 0:
 		return fmt.Sprintf("[x%+d]", s.X)
 	case s.X == 0 && s.Z == 0:
@@ -291,6 +293,8 @@ func (s ContinuousXYZ[Number]) Merged(overlay ContinuousXYZ[Number]) ContinuousX
 
 func (s ContinuousXYZ[Number]) String() string {
 	switch {
+	case s.X == 0 && s.Y == 0 && s.Z == 0:
+		return ""
 	case s.Y == 0 && s.Z == 0:
 		return fmt.Sprintf("[x%+.0f]", s.X)
 	case s.X == 0 && s.Z == 0:

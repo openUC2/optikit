@@ -89,15 +89,21 @@ type PrimRotReport struct {
 
 func NewPrimRotReport(m mat4.T) PrimRotReport {
 	y, x, z := m.ExtractEulerAngles()
+	const roundingPrecision = 10
 	return PrimRotReport{
 		Type:  "extrinsic",
 		Order: "zxy",
 		Angles: designs.ContinuousXYZ[float64]{
-			X: radToDeg(x),
-			Y: radToDeg(y),
-			Z: radToDeg(z),
+			X: roundFloat(radToDeg(x), roundingPrecision),
+			Y: roundFloat(radToDeg(y), roundingPrecision),
+			Z: roundFloat(radToDeg(z), roundingPrecision),
 		},
 	}
+}
+
+func roundFloat(value float64, roundingPrecision uint) float64 {
+	power := math.Pow(10, float64(roundingPrecision))
+	return math.Round(value*power) / power
 }
 
 func radToDeg(rad float64) float64 {
