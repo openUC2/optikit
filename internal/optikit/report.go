@@ -102,7 +102,7 @@ func NewPrimRotReport(m mat4.T) PrimRotReport {
 }
 
 func roundFloat(value float64, roundingPrecision uint) float64 {
-	power := math.Pow(10, float64(roundingPrecision))
+	power := math.Pow(10, float64(roundingPrecision)) //nolint:mnd
 	return math.Round(value*power) / power
 }
 
