@@ -420,11 +420,9 @@ func (s CompPoseSpec) TransfMat(gridSpacings ContinuousXYZ[float64]) (mat4.T, er
 // CompPoseRotSpec
 
 func NewPoseRot(mat mat4.T) CompPoseRotSpec {
-	z := vec3.UnitZ
-	mat.TransformVec3(&z)
+	z := mat.MulVec3(&vec3.UnitZ)
 	zDir, zAxisAligned := BasisDirs[z]
-	x := vec3.UnitX
-	mat.TransformVec3(&x)
+	x := mat.MulVec3(&vec3.UnitX)
 	xDir, xAxisAligned := BasisDirs[x]
 	if zAxisAligned && xAxisAligned {
 		return CompPoseRotSpec{
@@ -520,14 +518,17 @@ func (s CompPoseRotSpec) TransfMat() mat4.T {
 		return mat4.T{}
 	case RotTypeUC2, RotTypeGrid:
 		return GridRotMats[cmp.Or(s.Grid.Z, DirZPos)][cmp.Or(s.Grid.X, DirXPos)]
+	case RotTypeQuaternion:
+		mat := mat4.Zero
+		mat.AssignQuaternion(&s.Quaternion)
+		return mat
 	}
 }
 
 // CompPoseTranslSpec
 
 func NewPoseTransl(mat mat4.T, gridSpacings ContinuousXYZ[float64]) CompPoseTranslSpec {
-	transl := vec3.Zero
-	mat.TransformVec3(&transl)
+	transl := mat.MulVec3(&vec3.Zero)
 	var gridded DiscreteXYZ[int]
 	gridded.X = int(transl[0] / gridSpacings.X)
 	gridded.Y = int(transl[1] / gridSpacings.Y)

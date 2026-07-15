@@ -148,8 +148,7 @@ func computeNodePose(pose designs.CompPoseSpec, gridSpacings designs.ContinuousX
 	if err != nil {
 		return [4]float64{}, [3]float64{}, errors.Wrap(err, "couldn't compute node pose")
 	}
-	origin := vec3.Zero
-	mat.TransformVec3(&origin)
+	origin := mat.MulVec3(&vec3.Zero)
 	return mat.Quaternion(), origin, nil
 }
 
