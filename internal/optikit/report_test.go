@@ -38,12 +38,16 @@ var reports = map[string][]string{ // design -> variants
 		"XnegZpos",
 		"XnegYneg",
 	},
-	"cube-mounted/lens.dsn":            {"x", "y", "z"},
-	"cube-mounted/mirror-diagonal.dsn": {"_z", "xy"},
-	"cube-mounted/slide-holder.dsn":    {"x", "y", "z"},
+	"cube-mounted/lens.dsn":                     {"x", "y", "z"},
+	"cube-mounted/mirror-diagonal.dsn":          {"_z", "xy"},
+	"cube-mounted/slide-holder.dsn":             {"x", "y", "z"},
+	"microscopes/simple-3d.dsn":                 {""},
+	"microscopes/simple-rel-transl-anchors.dsn": {""},
+	"microscopes/simple-abs-transl-anchors.dsn": {""},
 }
 
 func TestReportPrims(t *testing.T) {
+	t.Parallel()
 	cwd, err := os.Getwd()
 	if err != nil {
 		t.Error(err)
@@ -54,6 +58,8 @@ func TestReportPrims(t *testing.T) {
 		for _, variant := range variants {
 			name := fmt.Sprintf("%s:%s", design, variant)
 			t.Run(name, func(t *testing.T) {
+				t.Parallel()
+
 				dp := path.Join(examplesPath, "designs", design)
 
 				t.Logf("load %s:%s", design, variant)

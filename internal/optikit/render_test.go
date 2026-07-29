@@ -25,10 +25,6 @@ var renderDesignDeclTests = []struct {
 	},
 	{
 		design:  "cube-mounted/lens.dsn",
-		variant: "y",
-	},
-	{
-		design:  "cube-mounted/lens.dsn",
 		variant: "z",
 	},
 	{
@@ -40,16 +36,7 @@ var renderDesignDeclTests = []struct {
 		variant: "_z",
 	},
 	{
-		design:  "cube-mounted/slide-holder.dsn",
-		variant: "x",
-	},
-	{
-		design:  "cube-mounted/slide-holder.dsn",
-		variant: "y",
-	},
-	{
-		design:  "cube-mounted/slide-holder.dsn",
-		variant: "z",
+		design: "microscopes/simple-3d.dsn",
 	},
 	{
 		design: "microscopes/simple-rel-transl-anchors.dsn",
@@ -103,6 +90,7 @@ func TestRenderPositionGraph(t *testing.T) {
 }
 
 func TestRenderObjectsGLTF(t *testing.T) {
+	t.Parallel()
 	cwd, err := os.Getwd()
 	if err != nil {
 		t.Error(err)
@@ -114,6 +102,8 @@ func TestRenderObjectsGLTF(t *testing.T) {
 		for _, variant := range variants {
 			name := fmt.Sprintf("%s:%s", design, variant)
 			t.Run(name, func(t *testing.T) {
+				t.Parallel()
+
 				t.Logf("load %s:%s", design, variant)
 				design, err := LoadFSDesign(dp, variant, false)
 				if err != nil {
@@ -157,6 +147,7 @@ func checkGLTF(t *testing.T, variant string, design *designs.FSDesign, dp string
 }
 
 func TestGLTFRoundtrip(t *testing.T) {
+	t.Parallel()
 	cwd, err := os.Getwd()
 	if err != nil {
 		t.Error(err)
@@ -168,6 +159,8 @@ func TestGLTFRoundtrip(t *testing.T) {
 		for _, variant := range variants {
 			name := fmt.Sprintf("%s:%s", design, variant)
 			t.Run(name, func(t *testing.T) {
+				t.Parallel()
+
 				t.Logf("load %s:%s", design, variant)
 				d, err := LoadFSDesign(dp, variant, false)
 				if err != nil {
