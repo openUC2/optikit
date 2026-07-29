@@ -9,7 +9,6 @@ import (
 	"github.com/google/go-cmp/cmp"
 
 	"github.com/openUC2/optikit/exp/designs"
-	ffs "github.com/openUC2/optikit/exp/fs"
 	"github.com/openUC2/optikit/internal/clients/gltf"
 )
 
@@ -21,13 +20,36 @@ var renderDesignDeclTests = []struct {
 		design: "primitives/cube-skeleton.dsn",
 	},
 	{
-		design: "cube-mounted/lens.dsn",
+		design:  "cube-mounted/lens.dsn",
+		variant: "x",
 	},
 	{
-		design: "cube-mounted/mirror-diagonal.dsn",
+		design:  "cube-mounted/lens.dsn",
+		variant: "y",
 	},
 	{
-		design: "cube-mounted/slide-holder.dsn",
+		design:  "cube-mounted/lens.dsn",
+		variant: "z",
+	},
+	{
+		design:  "cube-mounted/mirror-diagonal.dsn",
+		variant: "xy",
+	},
+	{
+		design:  "cube-mounted/mirror-diagonal.dsn",
+		variant: "_z",
+	},
+	{
+		design:  "cube-mounted/slide-holder.dsn",
+		variant: "x",
+	},
+	{
+		design:  "cube-mounted/slide-holder.dsn",
+		variant: "y",
+	},
+	{
+		design:  "cube-mounted/slide-holder.dsn",
+		variant: "z",
 	},
 	{
 		design: "microscopes/simple-rel-transl-anchors.dsn",
@@ -64,7 +86,12 @@ func TestRenderPositionGraph(t *testing.T) {
 				); err != nil {
 					t.Error(err)
 				}
-				if want, err = os.ReadFile(path.Join(dp, "_positions-graph."+format)); err != nil {
+				graphName := "_positions-graph"
+				if test.variant != "" {
+					graphName += ":" + test.variant
+				}
+				graphName += "." + format
+				if want, err = os.ReadFile(path.Join(dp, graphName)); err != nil {
 					t.Error(err)
 				}
 				if !cmp.Equal(got, want) {
@@ -84,29 +111,25 @@ func TestRenderObjectsGLTF(t *testing.T) {
 
 	for design, variants := range reports {
 		dp := path.Join(examplesPath, "designs", design)
-		fsys := ffs.AttachPath(os.DirFS(dp), dp)
 		for _, variant := range variants {
 			name := fmt.Sprintf("%s:%s", design, variant)
 			t.Run(name, func(t *testing.T) {
 				t.Logf("load %s:%s", design, variant)
-				designDecl, err := LoadDesignDecl(dp, variant)
+				design, err := LoadFSDesign(dp, variant, false)
 				if err != nil {
 					t.Error(err)
 					return
 				}
 
 				for _, asText := range []bool{true, false} {
-					checkGLTF(t, fsys, variant, designDecl, dp, asText)
+					checkGLTF(t, variant, design, dp, asText)
 				}
 			})
 		}
 	}
 }
 
-func checkGLTF(
-	t *testing.T, fsys ffs.PathedFS, variant string,
-	designDecl designs.DesignDecl, dp string, asText bool,
-) {
+func checkGLTF(t *testing.T, variant string, design *designs.FSDesign, dp string, asText bool) {
 	t.Helper()
 
 	format := "glb"
@@ -122,7 +145,7 @@ func checkGLTF(
 
 	var want, got []byte
 	var err error
-	if got, err = RenderObjectsGLB(fsys, designDecl.Components, asText); err != nil {
+	if got, err = RenderObjectsGLB(design, asText); err != nil {
 		t.Error(err)
 	}
 	if want, err = os.ReadFile(path.Join(dp, objectName)); err != nil {
@@ -142,12 +165,11 @@ func TestGLTFRoundtrip(t *testing.T) {
 
 	for design, variants := range reports {
 		dp := path.Join(examplesPath, "designs", design)
-		fsys := ffs.AttachPath(os.DirFS(dp), dp)
 		for _, variant := range variants {
 			name := fmt.Sprintf("%s:%s", design, variant)
 			t.Run(name, func(t *testing.T) {
 				t.Logf("load %s:%s", design, variant)
-				designDecl, err := LoadDesignDecl(dp, variant)
+				d, err := LoadFSDesign(dp, variant, false)
 				if err != nil {
 					t.Error(err)
 					return
@@ -156,13 +178,13 @@ func TestGLTFRoundtrip(t *testing.T) {
 				var buf []byte
 
 				t.Logf("round-trip glb loading and encoding of %s:%s", design, variant)
-				if buf, err = RenderObjectsGLB(fsys, designDecl.Components, false); err != nil {
+				if buf, err = RenderObjectsGLB(d, false); err != nil {
 					t.Error(err)
 				}
 				roundtripDoc(t, buf, false)
 
 				t.Logf("round-trip gltf loading and encoding of %s:%s", design, variant)
-				if buf, err = RenderObjectsGLB(fsys, designDecl.Components, true); err != nil {
+				if buf, err = RenderObjectsGLB(d, true); err != nil {
 					t.Error(err)
 				}
 				roundtripDoc(t, buf, true)

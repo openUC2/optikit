@@ -3,6 +3,8 @@ package example
 //go:generate -command geom go run ../../../../main.go dev dsn geom
 //go:generate -command mdl go run ../../../../main.go dev mdl
 
+//go:generate pwd
+
 //go:generate mdl convert --output-format=glb "PRT - 1003 - CUBHLF111 - V04.stp"
 
 //go:generate geom render-pos-g --format=dot _positions-graph.dot

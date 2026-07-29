@@ -83,7 +83,9 @@ func (d *Document) Document() *gltf.Document {
 func (d *Document) Assemble(
 	design *designs.FSDesign, asText bool, gridSpacings designs.ContinuousXYZ[float64],
 ) ([]byte, error) {
-	d.addComponents(design, gridSpacings, d.root)
+	if err := d.addComponents(design, gridSpacings, d.root); err != nil {
+		return nil, err
+	}
 
 	return d.Encode(asText)
 }
@@ -99,8 +101,6 @@ func (d *Document) addComponents(
 		switch t := comp.Type; t {
 		default:
 			return errors.Errorf("unknown component type for component %s: %s", id, t)
-		case "":
-			continue
 		case designs.CompTypeLocation:
 			return nil
 		case designs.CompTypePrimitive:
@@ -134,7 +134,6 @@ func (d *Document) addPrimitiveComponent(
 ) error {
 	n := new(gltf.Node)
 	n.Name = string(id)
-	fmt.Println("adding node for primitive component:", n.Name)
 	var nodeIndex int
 	d.d.Nodes, nodeIndex = addElem(d.d.Nodes, n)
 	parent.Children = append(parent.Children, nodeIndex)
@@ -172,6 +171,7 @@ func computeNodePose(pose designs.CompPoseSpec, gridSpacings designs.ContinuousX
 		return [4]float64{}, [3]float64{}, errors.Wrap(err, "couldn't compute node pose")
 	}
 	origin := mat.MulVec3(&vec3.Zero)
+	origin.Scale(0.001) // convert from mm (optikit units) to m (glTF units)
 	return mat.Quaternion(), origin, nil
 }
 
@@ -274,9 +274,11 @@ func (d *Document) addModelAccessors(m []*gltf.Accessor, im indexMappings) error
 }
 
 func (d *Document) addModelMeshes(m []*gltf.Mesh, im indexMappings) error {
-	// FIXME: something is broken here with subassembly recursion!
 	for i, el := range m {
 		for _, pr := range el.Primitives {
+			for attr, idx := range pr.Attributes {
+				pr.Attributes[attr] = im.Accessors[idx]
+			}
 			if pr.Indices != nil {
 				idx, ok := im.Accessors[*pr.Indices]
 				if !ok {
@@ -331,7 +333,6 @@ func (d *Document) addSubdesignComponent(
 ) error {
 	n := new(gltf.Node)
 	n.Name = string(id)
-	fmt.Println("adding node for subdesign component:", n.Name)
 	var nodeIndex int
 	d.d.Nodes, nodeIndex = addElem(d.d.Nodes, n)
 	parent.Children = append(parent.Children, nodeIndex)
