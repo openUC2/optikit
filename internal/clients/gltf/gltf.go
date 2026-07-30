@@ -171,7 +171,8 @@ func computeNodePose(pose designs.CompPoseSpec, gridSpacings designs.ContinuousX
 		return [4]float64{}, [3]float64{}, errors.Wrap(err, "couldn't compute node pose")
 	}
 	origin := mat.MulVec3(&vec3.Zero)
-	origin.Scale(0.001) // convert from mm (optikit units) to m (glTF units)
+	const conversion = 0.001 // convert from mm (optikit units) to m (glTF units)
+	origin.Scale(conversion)
 	return mat.Quaternion(), origin, nil
 }
 
