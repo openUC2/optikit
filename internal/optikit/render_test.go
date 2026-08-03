@@ -89,6 +89,49 @@ func TestRenderPositionGraph(t *testing.T) {
 	}
 }
 
+func TestRenderComponentsGraph(t *testing.T) {
+	cwd, err := os.Getwd()
+	if err != nil {
+		t.Error(err)
+	}
+	examplesPath := path.Join(path.Dir(path.Dir(cwd)), "examples")
+
+	for _, test := range renderDesignDeclTests {
+		name := fmt.Sprintf("%s:%s", test.design, test.variant)
+		t.Run(name, func(t *testing.T) {
+			dp := path.Join(examplesPath, "designs", test.design)
+
+			t.Logf("load %s:%s", test.design, test.variant)
+			design, err := LoadFSDesign(dp, test.variant, false)
+			if err != nil {
+				t.Error(err)
+				return
+			}
+			var want, got []byte
+
+			for _, format := range []string{"dot", "svg"} {
+				t.Logf("render %s:%s to %s", test.design, test.variant, format)
+				if got, err = RenderComponentsGraph(
+					t.Context(), design, format, true,
+				); err != nil {
+					t.Error(err)
+				}
+				graphName := "_components-graph"
+				if test.variant != "" {
+					graphName += ":" + test.variant
+				}
+				graphName += "." + format
+				if want, err = os.ReadFile(path.Join(dp, graphName)); err != nil {
+					t.Error(err)
+				}
+				if !cmp.Equal(got, want) {
+					t.Errorf("diff (-want +got):\n%+v", cmp.Diff(want, got))
+				}
+			}
+		})
+	}
+}
+
 func TestRenderObjectsGLTF(t *testing.T) {
 	t.Parallel()
 	cwd, err := os.Getwd()

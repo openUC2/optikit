@@ -49,8 +49,13 @@ type Graph struct {
 	g *graphviz.Graph
 }
 
+type NodeMetadata struct {
+	Label string
+}
+
 func (c *Client) NewStrictDigraph(
 	name string, graph structures.StrictEdgeDigraph[string, string],
+	nodeMetadata map[string]NodeMetadata,
 ) (g *Graph, err error) {
 	g = &Graph{
 		name: name,
@@ -68,6 +73,9 @@ func (c *Client) NewStrictDigraph(
 		n, err := g.g.CreateNodeByName(node)
 		if err != nil {
 			errs = append(errs, errors.Wrapf(err, "couldn't create node %s", node))
+		}
+		if m, ok := nodeMetadata[node]; ok && m.Label != "" {
+			n.SetLabel(m.Label)
 		}
 		nodes[node] = n
 	}

@@ -1,8 +1,12 @@
 package example
 
+//go:generate -command comp go run ../../../../main.go dev dsn comp
 //go:generate -command geom go run ../../../../main.go dev dsn geom
 
 //go:generate pwd
+
+//go:generate comp render-comps-g --format=dot _components-graph.dot
+//go:generate comp render-comps-g --format=svg _components-graph.svg
 
 //go:generate geom render-pos-g --format=dot _positions-graph.dot
 //go:generate geom render-pos-g --format=svg _positions-graph.svg

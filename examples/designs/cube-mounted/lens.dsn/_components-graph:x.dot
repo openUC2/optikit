@@ -1,0 +1,37 @@
+strict digraph "" {
+	graph [bb="0,0,305.22,197.8"];
+	node [label="\N"];
+	edge [label="\E"];
+	""	[height=0.5,
+		pos="79.603,179.8",
+		width=0.75];
+	"mounted-lens"	[height=0.5,
+		label="mounted-lens",
+		pos="63.603,91",
+		width=1.7667];
+	"" -> "mounted-lens"	[key=" -> mounted-lens",
+		label="",
+		pos="e,66.812,109.41 76.442,161.65 74.286,149.96 71.38,134.19 68.878,120.62"];
+	skeleton	[height=0.5,
+		label=skeleton,
+		pos="188.6,91",
+		width=1.2005];
+	"" -> skeleton	[key=" -> skeleton",
+		label="primitives/cube-skeleton.dsn",
+		lp="224.54,135.4",
+		pos="e,169.31,107.36 96.157,165.62 113.2,152.05 140.07,130.65 160.46,114.41"];
+	"skeleton/lower-half"	[height=0.5,
+		label="lower-half",
+		pos="127.6,18",
+		width=1.4237];
+	skeleton -> "skeleton/lower-half"	[key="skeleton -> skeleton/lower-half",
+		label="",
+		pos="e,141.67,35.378 174.45,73.533 166.91,64.751 157.47,53.763 149.04,43.956"];
+	"skeleton/upper-half"	[height=0.5,
+		label="upper-half",
+		pos="248.6,18",
+		width=1.4237];
+	skeleton -> "skeleton/upper-half"	[key="skeleton -> skeleton/upper-half",
+		label="",
+		pos="e,234.76,35.378 202.52,73.533 209.94,64.751 219.23,53.763 227.51,43.956"];
+}
