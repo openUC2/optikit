@@ -88,7 +88,7 @@ func RenderComponentsGraph(
 	}()
 
 	gg := make(structures.StrictEdgeDigraph[string, string])
-	gn := make(map[string]graphviz.NodeMetadata)
+	var gn map[string]graphviz.NodeMetadata
 	gg.AddNode("")
 	if gg, gn, err = populateComponentsGraph(gg, nil, design, ""); err != nil {
 		return nil, errors.Wrapf(err, "couldn't populate components graph for design %s", design.Path())
@@ -137,7 +137,7 @@ func populateComponentsGraph(
 				edgeLabel = fmt.Sprintf("%s:%s", edgeLabel, component.Instantiation.Variant)
 			}
 		}
-		gg.AddEdge(string(rootID), string(toID), edgeLabel)
+		gg.AddEdge(string(rootID), toID, edgeLabel)
 	}
 
 	for _, compID := range compIDs {

@@ -46,7 +46,7 @@ var renderDesignDeclTests = []struct {
 	},
 }
 
-func TestRenderPositionGraph(t *testing.T) {
+func TestRenderPositionGraph(t *testing.T) { //nolint:dupl
 	cwd, err := os.Getwd()
 	if err != nil {
 		t.Error(err)
