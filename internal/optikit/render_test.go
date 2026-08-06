@@ -48,7 +48,7 @@ var renderDesignDeclTests = []struct {
 }
 
 func TestRenderGraphs(t *testing.T) {
-	t.Parallel()
+	t.Parallel() //nolint:tparallel // graphviz is concurrency-unsafe, we can't parallelize subtests
 	cwd, err := os.Getwd()
 	if err != nil {
 		t.Error(err)
