@@ -6,9 +6,67 @@ import (
 	"slices"
 )
 
+// NonStrictEdgeDigraph
+
+// NonStrictEdgeDigraph is a diagraph represented as a list of nodes and edges, where zero or more
+// edges may exist between any pair of nodes.
+
+type NonStrictEdgeDigraph[Node comparable, Edge comparable] map[Node]map[Node]Set[Edge]
+
+// AdjDigraph copies the graph as a AdjDigraph.
+func (g NonStrictEdgeDigraph[Node, Edge]) AdjDigraph() AdjDigraph[Node] {
+	adjG := make(AdjDigraph[Node])
+	for from, edges := range g {
+		for to := range edges {
+			adjG.AddEdge(from, to)
+		}
+	}
+	return adjG
+}
+
+// AddNode adds the node to the graph. If the node was already in the graph, nothing changes.
+func (g NonStrictEdgeDigraph[Node, Edge]) AddNode(n Node) {
+	if _, ok := g[n]; ok {
+		return
+	}
+	g[n] = make(map[Node]Set[Edge])
+}
+
+// AddEdge adds an edge from the first node to the second node. If the edge was already in the
+// graph, nothing changes.
+func (g NonStrictEdgeDigraph[Node, Edge]) AddEdge(from, to Node, edge Edge) {
+	g.AddNode(from)
+	g.AddNode(to)
+	if g[from][to] == nil {
+		g[from][to] = make(Set[Edge])
+	}
+	g[from][to].Add(edge)
+}
+
+// AddEdge removes the specified edge from the first node to the second node. If the edge already
+// wasn't in the graph, nothing changes.
+func (g NonStrictEdgeDigraph[Node, Edge]) RemoveEdge(from, to Node, edge Edge) {
+	g[from][to].Remove(edge)
+}
+
+// HasEdge checks whether the edge exists from the first node to the second node.
+func (g NonStrictEdgeDigraph[Node, Edge]) HasEdge(from, to Node, edge Edge) bool {
+	targetNodes, ok := g[from]
+	if !ok {
+		return false
+	}
+	edges, ok := targetNodes[to]
+	if !ok {
+		return false
+	}
+	_, has := edges[edge]
+	return has
+}
+
 // StrictEdgeDigraph
 
-// StrictEdgeDigraph is a diagraph represented as a list of nodes and edges.
+// StrictEdgeDigraph is a digraph represented as a list of nodes and edges, where at most one edge
+// may exist between any pair of nodes.
 
 type StrictEdgeDigraph[Node comparable, Edge comparable] map[Node]map[Node]Edge
 

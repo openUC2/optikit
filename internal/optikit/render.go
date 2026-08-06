@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"maps"
+	"path"
 	"regexp"
 	"slices"
 	"strings"
@@ -158,6 +159,110 @@ func populateComponentsGraph(
 		); err != nil {
 			return nil, nil, errors.Wrapf(
 				err, "couldn't populate components graph by recursing into subdesign %s for component %s",
+				component.Design, compID,
+			)
+		}
+	}
+	return gg, nodeMetadata, nil
+}
+
+func RenderDesignsGraph(
+	ctx context.Context, design *designs.FSDesign, format string, recurse bool,
+) (result []byte, err error) {
+	gvc, err := graphviz.New(ctx)
+	if err != nil {
+		return nil, err
+	}
+	defer func() {
+		cerr := gvc.Close()
+		if cerr != nil {
+			err = cerr
+		}
+	}()
+
+	gg := make(structures.NonStrictEdgeDigraph[string, string])
+	var gn map[string]graphviz.NodeMetadata
+	gg.AddNode("")
+	if gg, gn, err = populateDesignsGraph(gg, nil, &designs.FSDesign{
+		Design: design.Design,
+		FS:     ffs.AttachPath(design.FS, ""),
+	}, ""); err != nil {
+		return nil, errors.Wrapf(err, "couldn't populate designs graph for design %s", design.Path())
+	}
+	gvg, err := gvc.NewNonStrictDigraph("", gg, gn)
+	if err != nil {
+		return nil, err
+	}
+
+	switch format {
+	default:
+		return nil, fmt.Errorf("unknown output format %s", format)
+	case "dot":
+		if result, err = gvg.DOT(ctx); err != nil {
+			return nil, err
+		}
+	case "svg":
+		if result, err = gvg.SVG(ctx); err != nil {
+			return nil, err
+		}
+	}
+	return result, nil
+}
+
+func populateDesignsGraph(
+	gg structures.NonStrictEdgeDigraph[string, string], nodeMetadata map[string]graphviz.NodeMetadata,
+	design *designs.FSDesign, rootID string,
+) (structures.NonStrictEdgeDigraph[string, string], map[string]graphviz.NodeMetadata, error) {
+	if nodeMetadata == nil {
+		nodeMetadata = make(map[string]graphviz.NodeMetadata)
+	}
+
+	comps := design.Decl.Components
+	compIDs := slices.Sorted(maps.Keys(comps))
+	for _, id := range compIDs {
+		component := comps[id]
+		if component.Type != designs.CompTypeDesign {
+			continue
+		}
+
+		child := path.Join(design.FS.Path(), component.Design)
+		if component.Instantiation.Variant != "" {
+			child += ":" + string(component.Instantiation.Variant)
+		}
+		gg.AddNode(child)
+		nodeMetadata[child] = graphviz.NodeMetadata{
+			Label: component.Design,
+		}
+		if component.Instantiation.Variant != "" {
+			nodeMetadata[child] = graphviz.NodeMetadata{
+				Label: fmt.Sprintf("%s:%s", component.Design, string(component.Instantiation.Variant)),
+			}
+		}
+		gg.AddEdge(rootID, child, string(id))
+	}
+
+	for _, compID := range compIDs {
+		component := comps[compID]
+		if component.Type != designs.CompTypeDesign {
+			continue
+		}
+
+		child := path.Join(design.FS.Path(), component.Design)
+		if component.Instantiation.Variant != "" {
+			child += ":" + string(component.Instantiation.Variant)
+		}
+		subdesign, err := design.LoadCompFSDesign(compID)
+		if err != nil {
+			return nil, nil, errors.Wrapf(
+				err, "couldn't load subdesign %s for component %s", component.Design, compID,
+			)
+		}
+
+		if gg, nodeMetadata, err = populateDesignsGraph(
+			gg, nodeMetadata, subdesign, child,
+		); err != nil {
+			return nil, nil, errors.Wrapf(
+				err, "couldn't populate designs graph by recursing into subdesign %s for component %s",
 				component.Design, compID,
 			)
 		}

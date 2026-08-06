@@ -53,6 +53,59 @@ type NodeMetadata struct {
 	Label string
 }
 
+func (c *Client) NewNonStrictDigraph(
+	name string, graph structures.NonStrictEdgeDigraph[string, string],
+	nodeMetadata map[string]NodeMetadata,
+) (g *Graph, err error) {
+	g = &Graph{
+		name: name,
+		c:    c,
+	}
+	if g.g, err = c.gv.Graph(
+		graphviz.WithDirectedType(graphviz.Directed), graphviz.WithName(name),
+	); err != nil {
+		return nil, err
+	}
+
+	nodes := make(map[string]*graphviz.Node)
+	errs := make([]error, 0)
+	for _, node := range slices.Sorted(maps.Keys(graph)) {
+		n, err := g.g.CreateNodeByName(node)
+		if err != nil {
+			errs = append(errs, errors.Wrapf(err, "couldn't create node %s", node))
+		}
+		if m, ok := nodeMetadata[node]; ok && m.Label != "" {
+			n.SetLabel(m.Label)
+		}
+		nodes[node] = n
+	}
+	if len(errs) > 0 {
+		_ = g.g.Close()
+		return nil, gerrors.Join(errs...)
+	}
+	for _, from := range slices.Sorted(maps.Keys(graph)) {
+		targets := graph[from]
+		for _, to := range slices.Sorted(maps.Keys(targets)) {
+			for _, edge := range slices.Sorted(maps.Keys(graph[from][to])) {
+				e, err := g.g.CreateEdgeByName(
+					fmt.Sprintf("%s -> %s: %s", from, to, edge), nodes[from], nodes[to],
+				)
+				if err != nil {
+					errs = append(errs, errors.Wrapf(err, "couldn't create edge %s", edge))
+				}
+				e.SetLabel(edge)
+			}
+		}
+	}
+	if len(errs) > 0 {
+		_ = g.g.Close()
+		return nil, gerrors.Join(errs...)
+	}
+
+	c.graphs.Add(g)
+	return g, nil
+}
+
 func (c *Client) NewStrictDigraph(
 	name string, graph structures.StrictEdgeDigraph[string, string],
 	nodeMetadata map[string]NodeMetadata,

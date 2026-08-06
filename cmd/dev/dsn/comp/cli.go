@@ -37,4 +37,18 @@ var cmds = []*cli.Command{
 		},
 		Action: renderCompsGA,
 	},
+	{
+		Name:      "render-dsns-g",
+		Aliases:   []string{"render-designs-graph"},
+		Usage:     "Render a graph of the composition relationships between designs",
+		ArgsUsage: "output_file",
+		Flags: []cli.Flag{
+			&cli.StringFlag{
+				Name:  "format",
+				Value: "dot",
+				Usage: "Render output format (dot or svg)",
+			},
+		},
+		Action: renderDsnsGA,
+	},
 }

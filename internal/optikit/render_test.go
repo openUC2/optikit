@@ -1,6 +1,7 @@
 package optikit
 
 import (
+	"context"
 	"fmt"
 	"os"
 	"path"
@@ -46,49 +47,6 @@ var renderDesignDeclTests = []struct {
 	},
 }
 
-func TestRenderPositionGraph(t *testing.T) { //nolint:dupl
-	cwd, err := os.Getwd()
-	if err != nil {
-		t.Error(err)
-	}
-	examplesPath := path.Join(path.Dir(path.Dir(cwd)), "examples")
-
-	for _, test := range renderDesignDeclTests {
-		name := fmt.Sprintf("%s:%s", test.design, test.variant)
-		t.Run(name, func(t *testing.T) {
-			dp := path.Join(examplesPath, "designs", test.design)
-
-			t.Logf("load %s:%s", test.design, test.variant)
-			design, err := LoadFSDesign(dp, test.variant, false)
-			if err != nil {
-				t.Error(err)
-				return
-			}
-			var want, got []byte
-
-			for _, format := range []string{"dot", "svg"} {
-				t.Logf("render %s:%s to %s", test.design, test.variant, format)
-				if got, err = RenderPositionGraph(
-					t.Context(), design, format, true,
-				); err != nil {
-					t.Error(err)
-				}
-				graphName := "_positions-graph"
-				if test.variant != "" {
-					graphName += ":" + test.variant
-				}
-				graphName += "." + format
-				if want, err = os.ReadFile(path.Join(dp, graphName)); err != nil {
-					t.Error(err)
-				}
-				if !cmp.Equal(got, want) {
-					t.Errorf("diff (-want +got):\n%+v", cmp.Diff(want, got))
-				}
-			}
-		})
-	}
-}
-
 func TestRenderComponentsGraph(t *testing.T) {
 	cwd, err := os.Getwd()
 	if err != nil {
@@ -100,34 +58,78 @@ func TestRenderComponentsGraph(t *testing.T) {
 		name := fmt.Sprintf("%s:%s", test.design, test.variant)
 		t.Run(name, func(t *testing.T) {
 			dp := path.Join(examplesPath, "designs", test.design)
+			checkGraph(t, dp, test.design, test.variant, "_components-graph", RenderComponentsGraph)
+		})
+	}
+}
 
-			t.Logf("load %s:%s", test.design, test.variant)
-			design, err := LoadFSDesign(dp, test.variant, false)
-			if err != nil {
-				t.Error(err)
-				return
-			}
-			var want, got []byte
+type graphRenderer func(
+	ctx context.Context, design *designs.FSDesign, format string, recurse bool,
+) (result []byte, err error)
 
-			for _, format := range []string{"dot", "svg"} {
-				t.Logf("render %s:%s to %s", test.design, test.variant, format)
-				if got, err = RenderComponentsGraph(
-					t.Context(), design, format, true,
-				); err != nil {
-					t.Error(err)
-				}
-				graphName := "_components-graph"
-				if test.variant != "" {
-					graphName += ":" + test.variant
-				}
-				graphName += "." + format
-				if want, err = os.ReadFile(path.Join(dp, graphName)); err != nil {
-					t.Error(err)
-				}
-				if !cmp.Equal(got, want) {
-					t.Errorf("diff (-want +got):\n%+v", cmp.Diff(want, got))
-				}
-			}
+func checkGraph(
+	t *testing.T, dp, design, variant, filename string, renderer graphRenderer,
+) {
+	t.Helper()
+
+	t.Logf("load %s:%s", design, variant)
+	d, err := LoadFSDesign(dp, variant, false)
+	if err != nil {
+		t.Error(err)
+		return
+	}
+	var want, got []byte
+
+	for _, format := range []string{"dot", "svg"} {
+		t.Logf("render %s:%s to %s", design, variant, format)
+		if got, err = renderer(t.Context(), d, format, true); err != nil {
+			t.Error(err)
+		}
+		if want, err = loadGraph(dp, filename, variant, format); err != nil {
+			t.Error(err)
+		}
+		if !cmp.Equal(got, want) {
+			t.Errorf("diff (-want +got):\n%+v", cmp.Diff(want, got))
+		}
+	}
+}
+
+func loadGraph(dp, name, variant, format string) ([]byte, error) {
+	if variant != "" {
+		name += ":" + variant
+	}
+	name += "." + format
+	return os.ReadFile(path.Join(dp, name))
+}
+
+func TestRenderDesignsGraph(t *testing.T) {
+	cwd, err := os.Getwd()
+	if err != nil {
+		t.Error(err)
+	}
+	examplesPath := path.Join(path.Dir(path.Dir(cwd)), "examples")
+
+	for _, test := range renderDesignDeclTests {
+		name := fmt.Sprintf("%s:%s", test.design, test.variant)
+		t.Run(name, func(t *testing.T) {
+			dp := path.Join(examplesPath, "designs", test.design)
+			checkGraph(t, dp, test.design, test.variant, "_designs-graph", RenderDesignsGraph)
+		})
+	}
+}
+
+func TestRenderPositionGraph(t *testing.T) { //nolint:dupl
+	cwd, err := os.Getwd()
+	if err != nil {
+		t.Error(err)
+	}
+	examplesPath := path.Join(path.Dir(path.Dir(cwd)), "examples")
+
+	for _, test := range renderDesignDeclTests {
+		name := fmt.Sprintf("%s:%s", test.design, test.variant)
+		t.Run(name, func(t *testing.T) {
+			dp := path.Join(examplesPath, "designs", test.design)
+			checkGraph(t, dp, test.design, test.variant, "_positions-graph", RenderPositionGraph)
 		})
 	}
 }

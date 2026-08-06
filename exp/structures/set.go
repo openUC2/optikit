@@ -17,6 +17,10 @@ func (s Set[Node]) Add(n ...Node) {
 
 // Remove removes each node from the set for each node still in the set.
 func (s Set[Node]) Remove(n ...Node) {
+	if s == nil {
+		return
+	}
+
 	for _, node := range n {
 		delete(s, node)
 	}
