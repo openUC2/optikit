@@ -74,6 +74,11 @@ func RenderObjectsSTEP(
 
 // Graphs
 
+const (
+	RenderFormatDOT = "dot"
+	RenderFormatSVG = "svg"
+)
+
 func RenderComponentsGraph(
 	ctx context.Context, design *designs.FSDesign, format string, recurse bool,
 ) (result []byte, err error) {
@@ -102,11 +107,11 @@ func RenderComponentsGraph(
 	switch format {
 	default:
 		return nil, fmt.Errorf("unknown output format %s", format)
-	case "dot":
+	case RenderFormatDOT:
 		if result, err = gvg.DOT(ctx); err != nil {
 			return nil, err
 		}
-	case "svg":
+	case RenderFormatSVG:
 		if result, err = gvg.SVG(ctx); err != nil {
 			return nil, err
 		}
@@ -197,11 +202,11 @@ func RenderDesignsGraph(
 	switch format {
 	default:
 		return nil, fmt.Errorf("unknown output format %s", format)
-	case "dot":
+	case RenderFormatDOT:
 		if result, err = gvg.DOT(ctx); err != nil {
 			return nil, err
 		}
-	case "svg":
+	case RenderFormatSVG:
 		if result, err = gvg.SVG(ctx); err != nil {
 			return nil, err
 		}
@@ -296,11 +301,11 @@ func RenderPositionGraph(
 	switch format {
 	default:
 		return nil, fmt.Errorf("unknown output format %s", format)
-	case "dot":
+	case RenderFormatDOT:
 		if result, err = gvg.DOT(ctx); err != nil {
 			return nil, err
 		}
-	case "svg":
+	case RenderFormatSVG:
 		if result, err = gvg.SVG(ctx); err != nil {
 			return nil, err
 		}
