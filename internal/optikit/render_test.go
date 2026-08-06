@@ -47,7 +47,8 @@ var renderDesignDeclTests = []struct {
 	},
 }
 
-func TestRenderComponentsGraph(t *testing.T) {
+func TestRenderGraphs(t *testing.T) {
+	t.Parallel()
 	cwd, err := os.Getwd()
 	if err != nil {
 		t.Error(err)
@@ -59,6 +60,8 @@ func TestRenderComponentsGraph(t *testing.T) {
 		t.Run(name, func(t *testing.T) {
 			dp := path.Join(examplesPath, "designs", test.design)
 			checkGraph(t, dp, test.design, test.variant, "_components-graph", RenderComponentsGraph)
+			checkGraph(t, dp, test.design, test.variant, "_designs-graph", RenderDesignsGraph)
+			checkGraph(t, dp, test.design, test.variant, "_positions-graph", RenderPositionGraph)
 		})
 	}
 }
@@ -100,38 +103,6 @@ func loadGraph(dp, name, variant, format string) ([]byte, error) {
 	}
 	name += "." + format
 	return os.ReadFile(path.Join(dp, name))
-}
-
-func TestRenderDesignsGraph(t *testing.T) {
-	cwd, err := os.Getwd()
-	if err != nil {
-		t.Error(err)
-	}
-	examplesPath := path.Join(path.Dir(path.Dir(cwd)), "examples")
-
-	for _, test := range renderDesignDeclTests {
-		name := fmt.Sprintf("%s:%s", test.design, test.variant)
-		t.Run(name, func(t *testing.T) {
-			dp := path.Join(examplesPath, "designs", test.design)
-			checkGraph(t, dp, test.design, test.variant, "_designs-graph", RenderDesignsGraph)
-		})
-	}
-}
-
-func TestRenderPositionGraph(t *testing.T) {
-	cwd, err := os.Getwd()
-	if err != nil {
-		t.Error(err)
-	}
-	examplesPath := path.Join(path.Dir(path.Dir(cwd)), "examples")
-
-	for _, test := range renderDesignDeclTests {
-		name := fmt.Sprintf("%s:%s", test.design, test.variant)
-		t.Run(name, func(t *testing.T) {
-			dp := path.Join(examplesPath, "designs", test.design)
-			checkGraph(t, dp, test.design, test.variant, "_positions-graph", RenderPositionGraph)
-		})
-	}
 }
 
 func TestRenderObjectsGLTF(t *testing.T) {
