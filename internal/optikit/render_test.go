@@ -69,8 +69,10 @@ var renderers = []struct {
 	},
 }
 
-func TestRenderGraphs(t *testing.T) {
-	t.Parallel() //nolint:tparallel // graphviz is concurrency-unsafe, we can't parallelize subtests
+func TestRenderGraphs(
+	t *testing.T,
+) { //nolint:tparallel // graphviz is concurrency-unsafe, so we can't parallelize subtests
+	t.Parallel()
 	cwd, err := os.Getwd()
 	if err != nil {
 		t.Error(err)
