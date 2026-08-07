@@ -5,10 +5,13 @@ import (
 	"fmt"
 	"io/fs"
 	"maps"
+	"path"
+	"slices"
 
 	"github.com/goccy/go-yaml"
 	"github.com/pkg/errors"
 	"github.com/ungerik/go3d/float64/mat4"
+	"github.com/ungerik/go3d/float64/quaternion"
 	"github.com/ungerik/go3d/float64/vec3"
 
 	ffs "github.com/openUC2/optikit/exp/fs"
@@ -28,9 +31,6 @@ type DesignDecl struct {
 	Optikit string `json:"optikit-version" yaml:"optikit-version"`
 	// Design defines the basic metadata for the design.
 	Design DesignSpec `json:"design" yaml:"design,omitempty"`
-	// Instantiation concretizes the design's abstract inputs, such as design variants, feature flags,
-	// and input variables.
-	Instantiation InstSpec `json:"instantiation" yaml:"instantiation,omitempty"`
 	// Components declares the design's constituent components as a mapping from the ID of each
 	// component to the declaration of that component.
 	Components CompsSpec `json:"components" yaml:"components,omitempty"`
@@ -49,13 +49,6 @@ type DesignSpec struct {
 	Tags []string `json:"tags,omitempty" yaml:"tags,omitempty"`
 }
 
-// InstSpec declares how an indeterminate design is made determinate by specifying a particular
-// design variant, particular values of input variables, and particular feature flags.
-type InstSpec struct {
-	// Variant declares which design variant (if any) of a design will be used.
-	Variant VariantID `json:"variant,omitempty" yaml:"variant,omitempty"`
-}
-
 type (
 	CompID    string
 	CompsSpec map[CompID]CompSpec
@@ -69,11 +62,27 @@ type CompSpec struct {
 	// Design is the path of the design which the component (of type `design`) instantiates, relative
 	// to the root directory of the Optikit design.
 	Design string `json:"design,omitempty" yaml:"design,omitempty"`
+	// Instantiation declares information about how the design is to be instantiated to create the
+	// component (of type `design`).
+	Instantiation InstSpec `json:"instantiation" yaml:"instantiation,omitempty"`
 	// Primitive declares information about the model primitive which the component (of type
 	// `primitive`) is.
 	Primitive CompPrimSpec `json:"primitive" yaml:"primitive,omitempty"`
 	// Pose declares the geometry of the component.
 	Pose CompPoseSpec `json:"pose" yaml:"pose,omitempty"`
+}
+
+const (
+	CompTypeLocation  = "location"
+	CompTypePrimitive = "primitive"
+	CompTypeDesign    = "design"
+)
+
+// InstSpec declares how an indeterminate design is made determinate by specifying a particular
+// design variant, particular values of input variables, and particular feature flags.
+type InstSpec struct {
+	// Variant declares which design variant (if any) of a design will be used.
+	Variant VariantID `json:"variant,omitempty" yaml:"variant,omitempty"`
 }
 
 type CompPrimSpec struct {
@@ -104,19 +113,24 @@ type CompPoseSpec struct {
 // design's orientation.
 type CompPoseRotSpec struct {
 	// Type is the type of orientation of the component. It can be either `` (implying a component
-	// without any spatial geometry), `uc2` (implying a UC2 cube), or `grid` (for any orientation
-	// aligned with the design's axes, even if violating UC2 cube orientation constraints).
+	// without any spatial geometry), `uc2` (implying a UC2 cube), `grid` (for any orientation
+	// aligned with the design's axes, even if violating UC2 cube orientation constraints), or
+	// `quaternion` (for arbitrary rotations).
 	// If the type is uc2, then Grid.Z is only allowed to be +z or -z, and Grid.X is not allowed to
 	// be +z or -z.
 	Type string `json:"type,omitempty" yaml:"type"`
 	// Grid declares the orientation parameters of the component if its rotation type is `uc2` or
 	// `grid`.
 	Grid CompPoseRotGridSpec `json:"grid" yaml:"grid,omitempty"`
+	// Quaternion declares the orientation parameters of the component if its rotation type is
+	// `quaternion`.
+	Quaternion quaternion.T `json:"quaternion" yaml:"quaternion,omitempty"`
 }
 
 const (
-	RotTypeUC2  = "uc2"
-	RotTypeGrid = "grid"
+	RotTypeUC2        = "uc2"
+	RotTypeGrid       = "grid"
+	RotTypeQuaternion = "quaternion"
 )
 
 // CompPoseRotGridSpec specifies the component's orientation relative to the design's orientation by
@@ -202,6 +216,14 @@ func (d DesignDecl) Instantiate(instantiation InstSpec) (s CompsSpec, err error)
 	return d.Components.Merged(v.Components), nil
 }
 
+// Cloned returns a deep copy of the DesignDecl.
+func (d DesignDecl) Cloned() DesignDecl {
+	d.Design.Tags = slices.Clone(d.Design.Tags)
+	d.Components = maps.Clone(d.Components)
+	d.Variants = maps.Clone(d.Variants)
+	return d
+}
+
 // DesignSpec
 
 // Check looks for errors in the construction of the design spec.
@@ -266,11 +288,11 @@ func (s CompsSpec) Merged(overlay CompsSpec) CompsSpec {
 	return merged
 }
 
-// Flattened returns a new CompsSpec in which each non-origin component's translation anchor is just
-// the root (origin) node.
+// TranslFlattened returns a new CompsSpec in which each non-origin component's translation anchor
+// is just the root (origin) node.
 // It assumes that the CompsSpec does not have any errors such as a nonexistent translation anchor
 // required by a CompPosesTranslSpec.
-func (s CompsSpec) Flattened() CompsSpec {
+func (s CompsSpec) TranslFlattened() CompsSpec {
 	flattened := make(CompsSpec)
 	g := s.TranslDigraph()
 	nextParents := make([]CompID, 0, len(g))
@@ -291,7 +313,6 @@ func (s CompsSpec) Flattened() CompsSpec {
 }
 
 // Primitives returns the primitive-type components in this CompsSpec.
-// TODO: add a recursively-evaluated equivalent in FSDesign!
 func (s CompsSpec) Primitives() CompsSpec {
 	prims := make(CompsSpec)
 	for id, c := range s {
@@ -301,6 +322,16 @@ func (s CompsSpec) Primitives() CompsSpec {
 		prims[id] = c
 	}
 	return prims
+}
+
+// CompID
+
+func JoinCompIDs(elem ...CompID) CompID {
+	elems := make([]string, 0, len(elem))
+	for _, e := range elem {
+		elems = append(elems, string(e))
+	}
+	return CompID(path.Join(elems...))
 }
 
 // CompSpec
@@ -340,7 +371,21 @@ func (s CompPrimStaticModelsSpec) Merged(
 	}
 }
 
+func (s CompPrimStaticModelsSpec) Prefixed(pathPrefix string) CompPrimStaticModelsSpec {
+	return CompPrimStaticModelsSpec{
+		GLTF: path.Clean(path.Join(pathPrefix, s.GLTF)),
+		STEP: path.Clean(path.Join(pathPrefix, s.STEP)),
+	}
+}
+
 // CompPoseSpec
+
+func NewPose(mat mat4.T, gridSpacings ContinuousXYZ[float64]) CompPoseSpec {
+	return CompPoseSpec{
+		Rotation:    NewPoseRot(mat),
+		Translation: NewPoseTransl(mat, gridSpacings),
+	}
+}
 
 // Merged returns a new CompPoseSpec created by applying the specified overlay, without modifying
 // this current CompsPoseSpec or the overlay.
@@ -374,6 +419,26 @@ func (s CompPoseSpec) TransfMat(gridSpacings ContinuousXYZ[float64]) (mat4.T, er
 
 // CompPoseRotSpec
 
+func NewPoseRot(mat mat4.T) CompPoseRotSpec {
+	z := mat.MulVec3(&vec3.UnitZ)
+	zDir, zAxisAligned := BasisDirs[z]
+	x := mat.MulVec3(&vec3.UnitX)
+	xDir, xAxisAligned := BasisDirs[x]
+	if zAxisAligned && xAxisAligned {
+		return CompPoseRotSpec{
+			Type: RotTypeGrid,
+			Grid: CompPoseRotGridSpec{
+				Z: zDir,
+				X: xDir,
+			},
+		}
+	}
+	return CompPoseRotSpec{
+		Type:       RotTypeQuaternion,
+		Quaternion: mat.Quaternion(),
+	}
+}
+
 // Check looks for errors in the construction of the component orientation spec.
 func (s CompPoseRotSpec) Check() (errs []error) {
 	switch s.Type {
@@ -395,15 +460,32 @@ func (s CompPoseRotSpec) Check() (errs []error) {
 		return append(errs, s.Grid.Check()...)
 	case RotTypeGrid:
 		return s.Grid.Check()
+	case RotTypeQuaternion:
+		const tolerance = 1e-6
+		if !s.Quaternion.IsUnitQuat(tolerance) {
+			return append(errs, errors.Errorf("quaternion is not a unit quaternion: %+v", s.Quaternion))
+		}
+		return nil
 	}
 }
 
 // Merged returns a new CompPoseRotSpec created by applying the specified overlay, without modifying
 // this current CompsPoseSpec or the overlay.
 func (s CompPoseRotSpec) Merged(overlay CompPoseRotSpec) CompPoseRotSpec {
-	return CompPoseRotSpec{
-		Type: cmp.Or(overlay.Type, s.Type),
-		Grid: s.Grid.Merged(overlay.Grid),
+	t := cmp.Or(overlay.Type, s.Type)
+	switch t {
+	default:
+		return CompPoseRotSpec{}
+	case RotTypeUC2, RotTypeGrid:
+		return CompPoseRotSpec{
+			Type: t,
+			Grid: s.Grid.Merged(overlay.Grid),
+		}
+	case RotTypeQuaternion:
+		return CompPoseRotSpec{
+			Type:       t,
+			Quaternion: cmp.Or(overlay.Quaternion, s.Quaternion),
+		}
 	}
 }
 
@@ -436,10 +518,31 @@ func (s CompPoseRotSpec) TransfMat() mat4.T {
 		return mat4.T{}
 	case RotTypeUC2, RotTypeGrid:
 		return GridRotMats[cmp.Or(s.Grid.Z, DirZPos)][cmp.Or(s.Grid.X, DirXPos)]
+	case RotTypeQuaternion:
+		mat := mat4.Zero
+		mat.AssignQuaternion(&s.Quaternion)
+		return mat
 	}
 }
 
 // CompPoseTranslSpec
+
+func NewPoseTransl(mat mat4.T, gridSpacings ContinuousXYZ[float64]) CompPoseTranslSpec {
+	transl := mat.MulVec3(&vec3.Zero)
+	var gridded DiscreteXYZ[int]
+	gridded.X = int(transl[0] / gridSpacings.X)
+	gridded.Y = int(transl[1] / gridSpacings.Y)
+	gridded.Z = int(transl[2] / gridSpacings.Z)
+	griddedMM := AsMM(gridded, gridSpacings)
+	var mm ContinuousXYZ[float64]
+	mm.X = transl[0] - griddedMM.X
+	mm.Y = transl[1] - griddedMM.Y
+	mm.Z = transl[2] - griddedMM.Z
+	return CompPoseTranslSpec{
+		OffsetGrid: gridded,
+		OffsetMM:   mm,
+	}
+}
 
 // Merged returns a new CompPoseTranslSpec created by applying the specified overlay, without modifying
 // this current CompsPoseSpec or the overlay.

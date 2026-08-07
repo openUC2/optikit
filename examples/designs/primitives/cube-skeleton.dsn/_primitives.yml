@@ -1,4 +1,5 @@
-- type: static
+- id: lower-half
+  type: static
   static-models:
     gltf: "PRT - 1003 - CUBHLF111 - V04.glb"
     step: "PRT - 1003 - CUBHLF111 - V04.stp"
@@ -7,7 +8,8 @@
     type: extrinsic
     order: zxy
     angles: {}
-- type: static
+- id: upper-half
+  type: static
   static-models:
     gltf: "PRT - 1003 - CUBHLF111 - V04.glb"
     step: "PRT - 1003 - CUBHLF111 - V04.stp"

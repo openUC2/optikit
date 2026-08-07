@@ -3,6 +3,7 @@ package designs
 
 import (
 	"cmp"
+	gerrors "errors"
 	"fmt"
 	"os"
 	"path"
@@ -10,6 +11,7 @@ import (
 
 	"github.com/bmatcuk/doublestar/v4"
 	"github.com/pkg/errors"
+	"github.com/ungerik/go3d/float64/mat4"
 	"golang.org/x/mod/semver"
 
 	ffs "github.com/openUC2/optikit/exp/fs"
@@ -43,7 +45,7 @@ func LoadFSDesign(fsys ffs.PathedFS, subdirPath string) (p *FSDesign, err error)
 		)
 	}
 	if p.Design.Decl, err = LoadDesignDecl(p.FS, DesignDeclFile); err != nil {
-		return nil, errors.Errorf("couldn't load design declaration")
+		return nil, errors.Wrapf(err, "couldn't load design declaration from %s", fsys.Path())
 	}
 	return p, nil
 }
@@ -107,38 +109,167 @@ func LoadFSDesigns(fsys ffs.PathedFS, searchPattern string) ([]*FSDesign, error)
 }
 
 // Exists checks whether the design actually exists on the OS's filesystem.
-func (p *FSDesign) Exists() bool {
-	return ffs.DirExists(p.FS.Path())
+func (d *FSDesign) Exists() bool {
+	return ffs.DirExists(d.FS.Path())
 }
 
 // Remove deletes the cache from the OS's filesystem, if it exists.
-func (p *FSDesign) Remove() error {
-	return os.RemoveAll(p.FS.Path())
+func (d *FSDesign) Remove() error {
+	return os.RemoveAll(d.FS.Path())
 }
 
 // Path returns either the design's path (if specified) or its path on the filesystem.
-func (p *FSDesign) Path() string {
-	if p.Decl.Design.Path == "" {
-		return p.FS.Path()
+func (d *FSDesign) Path() string {
+	if d.Decl.Design.Path == "" {
+		return d.FS.Path()
 	}
-	return p.Decl.Design.Path
+	return d.Decl.Design.Path
+}
+
+// Cloned returns a new design which is a deep copy of the FSDesign.
+func (d *FSDesign) Cloned() *FSDesign {
+	return &FSDesign{
+		Design: Design{
+			Decl:    d.Design.Decl.Cloned(),
+			Version: d.Design.Version,
+		},
+		FS: d.FS,
+	}
+}
+
+// LoadFSDesign loads the subdesign at the specified filesystem path, relative to the current
+// design.
+func (d *FSDesign) LoadFSDesign(subdesign string) (*FSDesign, error) {
+	return LoadFSDesign(d.FS, subdesign)
+}
+
+// Flattened returns a new design in which all subassembly components have been replaced with their
+// constituent primitive components, and each non-origin component's translation anchor is just the
+// root (origin) node, and each non-origin component's orientation is relative to the root (origin)
+// node.
+// It assumes that the design's Decl.Components does not have any errors such as a nonexistent
+// translation anchor required by a CompPosesTranslSpec.
+func (d *FSDesign) Flattened(gridSpacings ContinuousXYZ[float64]) (
+	flattened *FSDesign, err error,
+) {
+	flattened = d.Cloned()
+	flattened.Decl.Components = flattened.Decl.Components.TranslFlattened()
+	for compID, component := range flattened.Decl.Components {
+		if component.Type != CompTypeDesign {
+			continue
+		}
+
+		mat, err := component.Pose.TransfMat(gridSpacings)
+		if err != nil {
+			return nil, errors.Wrapf(
+				err, "couldn't compute transformation matrix for pose of component %s", compID,
+			)
+		}
+		delete(flattened.Decl.Components, compID)
+		subdesign, err := d.LoadCompFSDesign(compID)
+		if err != nil {
+			return nil, errors.Wrapf(
+				err, "couldn't load subdesign %s for component %s", component.Design, compID,
+			)
+		}
+		subflattened, err := subdesign.Flattened(gridSpacings)
+		if err != nil {
+			return nil, errors.Wrapf(
+				err, "couldn't flatten subdesign %s for component %s", component.Design, compID,
+			)
+		}
+		for subcompID, subcomponent := range subflattened.Decl.Components {
+			submat, err := subcomponent.Pose.TransfMat(gridSpacings)
+			if err != nil {
+				return nil, errors.Wrapf(
+					err, "couldn't compute transformation matrix for pose of subcomponent %s", subcompID,
+				)
+			}
+			flattenedSubmat := mat4.Ident
+			flattenedSubmat.AssignMul(&mat, &submat)
+			subcomponent.Pose = NewPose(flattenedSubmat, gridSpacings)
+
+			if subcomponent.Type == CompTypePrimitive {
+				subcomponent.Primitive.StaticModels = subcomponent.Primitive.StaticModels.Prefixed(
+					component.Design,
+				)
+			}
+
+			flattened.Decl.Components[JoinCompIDs(compID, subcompID)] = subcomponent
+		}
+	}
+	return flattened, nil
+}
+
+func (d *FSDesign) LoadCompFSDesign(compID CompID) (subdesign *FSDesign, err error) {
+	component := d.Decl.Components[compID]
+	if component.Type != CompTypeDesign {
+		return nil, errors.Errorf(
+			"component %s of type %s does not have an associated design", compID, component.Type,
+		)
+	}
+
+	if subdesign, err = d.LoadFSDesign(component.Design); err != nil {
+		return nil, errors.Wrapf(
+			err, "couldn't load subdesign %s for component %s", component.Design, compID,
+		)
+	}
+	errs := subdesign.Check()
+	if len(errs) > 0 {
+		return nil, gerrors.Join(errs...)
+	}
+	if subdesign.Decl.NeedsInstantiation() {
+		if subdesign.Decl.Components, err = subdesign.Decl.Instantiate(InstSpec{
+			Variant: component.Instantiation.Variant,
+		}); err != nil {
+			return nil, errors.Wrapf(
+				err, "couldn't instantiate variant %s of subdesign %s for component %s",
+				component.Instantiation.Variant, component.Design, compID,
+			)
+		}
+	}
+	return subdesign, nil
+}
+
+// Primitives recursively returns all primitives in the design and its subassembly components.
+func (d *FSDesign) Primitives() (CompsSpec, error) {
+	prims := d.Design.Decl.Components.Primitives()
+	for id, c := range d.Design.Decl.Components {
+		if c.Type != CompTypeDesign {
+			continue
+		}
+		subdesign, err := d.LoadFSDesign(c.Design)
+		if err != nil {
+			return nil, errors.Wrapf(err, "couldn't load subdesign %s of component %s", c.Design, id)
+		}
+		subprims, err := subdesign.Primitives()
+		if err != nil {
+			return nil, errors.Wrapf(
+				err, "couldn't identify primitives of component %s with subdesign %s", id, c.Design,
+			)
+		}
+		for subID, subC := range subprims {
+			prims[JoinCompIDs(id, subID)] = subC
+		}
+	}
+	return prims, nil
 }
 
 // Design
 
 // Path returns the design path of the Design instance.
-func (p Design) Path() string {
-	return p.Decl.Design.Path
+func (d Design) Path() string {
+	return d.Decl.Design.Path
 }
 
 // VersionQuery represents the Design instance as a version query.
-func (p Design) VersionQuery() string {
-	return fmt.Sprintf("%s@%s", p.Path(), p.Version)
+func (d Design) VersionQuery() string {
+	return fmt.Sprintf("%s@%s", d.Path(), d.Version)
 }
 
 // Check looks for errors in the construction of the design.
-func (p Design) Check() (errs []error) {
-	errs = append(errs, errsWrap(p.Decl.Check(), "invalid design declaration")...)
+func (d Design) Check() (errs []error) {
+	errs = append(errs, errsWrap(d.Decl.Check(), "invalid design declaration")...)
 	return errs
 }
 

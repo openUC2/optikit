@@ -1,0 +1,68 @@
+[
+  {
+    "id": "mounted-lens",
+    "type": "static",
+    "static-models": {
+      "gltf": "SUB - 0023 - LEND40F50 - V04 - virt ass.glb",
+      "step": "SUB - 0023 - LEND40F50 - V04 - virt ass.stp"
+    },
+    "position": [
+      0,
+      0,
+      0
+    ],
+    "rotation": {
+      "type": "extrinsic",
+      "order": "zxy",
+      "angles": {
+        "x": 0,
+        "y": -0,
+        "z": -0
+      }
+    }
+  },
+  {
+    "id": "skeleton/lower-half",
+    "type": "static",
+    "static-models": {
+      "gltf": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
+      "step": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
+    },
+    "position": [
+      0,
+      0,
+      0
+    ],
+    "rotation": {
+      "type": "extrinsic",
+      "order": "zxy",
+      "angles": {
+        "x": 0,
+        "y": -0,
+        "z": -0
+      }
+    }
+  },
+  {
+    "id": "skeleton/upper-half",
+    "type": "static",
+    "static-models": {
+      "gltf": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
+      "step": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
+    },
+    "position": [
+      0,
+      0,
+      0
+    ],
+    "rotation": {
+      "type": "extrinsic",
+      "order": "zxy",
+      "angles": {
+        "x": 0,
+        "y": -180,
+        "z": -180
+      }
+    }
+  }
+]

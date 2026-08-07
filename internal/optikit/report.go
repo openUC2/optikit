@@ -10,6 +10,7 @@ import (
 	"slices"
 
 	"github.com/goccy/go-yaml"
+	"github.com/pkg/errors"
 	"github.com/ungerik/go3d/float64/mat4"
 	"github.com/ungerik/go3d/float64/vec3"
 
@@ -19,11 +20,17 @@ import (
 // Primitives
 
 func ReportPrimitives(
-	ctx context.Context, comps designs.CompsSpec,
+	ctx context.Context, design *designs.FSDesign, gridSpacings designs.ContinuousXYZ[float64],
 	format string,
 ) (result []byte, err error) {
-	flattened := comps.Flattened()
-	prims := flattened.Primitives()
+	d, err := design.Flattened(gridSpacings)
+	if err != nil {
+		return nil, errors.Wrapf(err, "couldn't flatten design %s", d.Path())
+	}
+	prims, err := d.Primitives()
+	if err != nil {
+		return nil, errors.Wrapf(err, "couldn't determine primitives of design %s", d.Path())
+	}
 	report := make([]PrimReport, 0, len(prims))
 	for _, compID := range slices.Sorted(maps.Keys(prims)) {
 		comp := prims[compID]
@@ -32,6 +39,7 @@ func ReportPrimitives(
 			return nil, err
 		}
 		r := PrimReport{
+			ID:           compID,
 			Type:         cmp.Or(comp.Primitive.Type, "static"),
 			StaticModels: comp.Primitive.StaticModels,
 			Position:     m.MulVec3(&vec3.Zero),
@@ -57,6 +65,7 @@ func ReportPrimitives(
 }
 
 type PrimReport struct {
+	ID           designs.CompID                   `json:"id"            yaml:"id"`
 	Type         string                           `json:"type"          yaml:"type"`
 	StaticModels designs.CompPrimStaticModelsSpec `json:"static-models" yaml:"static-models"`
 	Position     vec3.T                           `json:"position"      yaml:"position,flow"`
@@ -80,15 +89,21 @@ type PrimRotReport struct {
 
 func NewPrimRotReport(m mat4.T) PrimRotReport {
 	y, x, z := m.ExtractEulerAngles()
+	const roundingPrecision = 10
 	return PrimRotReport{
 		Type:  "extrinsic",
 		Order: "zxy",
 		Angles: designs.ContinuousXYZ[float64]{
-			X: radToDeg(x),
-			Y: radToDeg(y),
-			Z: radToDeg(z),
+			X: roundFloat(radToDeg(x), roundingPrecision),
+			Y: roundFloat(radToDeg(y), roundingPrecision),
+			Z: roundFloat(radToDeg(z), roundingPrecision),
 		},
 	}
+}
+
+func roundFloat(value float64, roundingPrecision uint) float64 {
+	power := math.Pow(10, float64(roundingPrecision)) //nolint:mnd
+	return math.Round(value*power) / power
 }
 
 func radToDeg(rad float64) float64 {

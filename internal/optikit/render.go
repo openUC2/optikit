@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"maps"
+	"path"
 	"regexp"
 	"slices"
 	"strings"
@@ -25,34 +26,34 @@ import (
 // Objects
 
 func RenderObjects(
-	ctx context.Context, fsys ffs.PathedFS, comps designs.CompsSpec, format string,
+	ctx context.Context, fsys ffs.PathedFS, design *designs.FSDesign, format string,
 ) (result []byte, err error) {
 	switch format {
 	default:
 		return nil, errors.Errorf("unknown format %s", format)
 	case "glb":
-		return RenderObjectsGLB(fsys, comps, false)
+		return RenderObjectsGLB(design, false)
 	case "gltf":
-		return RenderObjectsGLB(fsys, comps, true)
+		return RenderObjectsGLB(design, true)
 	case "step":
-		return RenderObjectsSTEP(ctx, comps)
+		return RenderObjectsSTEP(ctx, design)
 	}
 }
 
 func RenderObjectsGLB(
-	fsys ffs.PathedFS, comps designs.CompsSpec, asText bool,
+	design *designs.FSDesign, asText bool,
 ) (result []byte, err error) {
 	doc := gltf.NewDocument()
-	if result, err = doc.Assemble(fsys, comps, asText, designs.UC2GridSpacings); err != nil {
+	if result, err = doc.Assemble(design, asText, designs.UC2GridSpacings); err != nil {
 		return nil, err
 	}
 	return result, nil
 }
 
 func RenderObjectsSTEP(
-	ctx context.Context, comps designs.CompsSpec,
+	ctx context.Context, design *designs.FSDesign,
 ) (result []byte, err error) {
-	primsReport, err := ReportPrimitives(ctx, comps, "json")
+	primsReport, err := ReportPrimitives(ctx, design, designs.UC2GridSpacings, "json")
 	if err != nil {
 		return nil, err
 	}
@@ -73,28 +74,32 @@ func RenderObjectsSTEP(
 
 // Graphs
 
-func RenderPositionGraph(
-	ctx context.Context, comps designs.CompsSpec, format string,
+const (
+	RenderFormatDOT = "dot"
+	RenderFormatSVG = "svg"
+)
+
+func RenderComponentsGraph(
+	ctx context.Context, design *designs.FSDesign, format string, recurse bool,
 ) (result []byte, err error) {
 	gvc, err := graphviz.New(ctx)
 	if err != nil {
 		return nil, err
 	}
 	defer func() {
-		err = gvc.Close()
+		cerr := gvc.Close()
+		if cerr != nil {
+			err = cerr
+		}
 	}()
 
 	gg := make(structures.StrictEdgeDigraph[string, string])
-	tg := comps.TranslDigraph()
-	for _, fromID := range slices.Sorted(maps.Keys(tg)) {
-		from := tg[fromID]
-		gg.AddNode(string(fromID))
-		for _, toID := range slices.Sorted(maps.Keys(from)) {
-			edge := from[toID]
-			gg.AddEdge(string(fromID), string(toID), edge.String())
-		}
+	var gn map[string]graphviz.NodeMetadata
+	gg.AddNode("")
+	if gg, gn, err = populateComponentsGraph(gg, nil, design, ""); err != nil {
+		return nil, errors.Wrapf(err, "couldn't populate components graph for design %s", design.Path())
 	}
-	gvg, err := gvc.NewStrictDigraph("", gg)
+	gvg, err := gvc.NewStrictDigraph("", gg, gn)
 	if err != nil {
 		return nil, err
 	}
@@ -102,11 +107,11 @@ func RenderPositionGraph(
 	switch format {
 	default:
 		return nil, fmt.Errorf("unknown output format %s", format)
-	case "dot":
+	case RenderFormatDOT:
 		if result, err = gvg.DOT(ctx); err != nil {
 			return nil, err
 		}
-	case "svg":
+	case RenderFormatSVG:
 		if result, err = gvg.SVG(ctx); err != nil {
 			return nil, err
 		}
@@ -114,12 +119,251 @@ func RenderPositionGraph(
 	return result, nil
 }
 
+func populateComponentsGraph(
+	gg structures.StrictEdgeDigraph[string, string], nodeMetadata map[string]graphviz.NodeMetadata,
+	design *designs.FSDesign, rootID designs.CompID,
+) (structures.StrictEdgeDigraph[string, string], map[string]graphviz.NodeMetadata, error) {
+	if nodeMetadata == nil {
+		nodeMetadata = make(map[string]graphviz.NodeMetadata)
+	}
+
+	comps := design.Decl.Components
+	compIDs := slices.Sorted(maps.Keys(comps))
+	for _, id := range compIDs {
+		component := comps[id]
+		toID := string(designs.JoinCompIDs(rootID, id))
+		gg.AddNode(toID)
+		nodeMetadata[toID] = graphviz.NodeMetadata{
+			Label: string(id),
+		}
+		edgeLabel := ""
+		if component.Type == "design" {
+			edgeLabel = component.Design
+			if component.Instantiation.Variant != "" {
+				edgeLabel = fmt.Sprintf("%s:%s", edgeLabel, component.Instantiation.Variant)
+			}
+		}
+		gg.AddEdge(string(rootID), toID, edgeLabel)
+	}
+
+	for _, compID := range compIDs {
+		component := comps[compID]
+		if component.Type != designs.CompTypeDesign {
+			continue
+		}
+
+		subdesign, err := design.LoadCompFSDesign(compID)
+		if err != nil {
+			return nil, nil, errors.Wrapf(
+				err, "couldn't load subdesign %s for component %s", component.Design, compID,
+			)
+		}
+
+		if gg, nodeMetadata, err = populateComponentsGraph(
+			gg, nodeMetadata, subdesign, designs.JoinCompIDs(rootID, compID),
+		); err != nil {
+			return nil, nil, errors.Wrapf(
+				err, "couldn't populate components graph by recursing into subdesign %s for component %s",
+				component.Design, compID,
+			)
+		}
+	}
+	return gg, nodeMetadata, nil
+}
+
+func RenderDesignsGraph(
+	ctx context.Context, design *designs.FSDesign, format string, recurse bool,
+) (result []byte, err error) {
+	gvc, err := graphviz.New(ctx)
+	if err != nil {
+		return nil, err
+	}
+	defer func() {
+		cerr := gvc.Close()
+		if cerr != nil {
+			err = cerr
+		}
+	}()
+
+	gg := make(structures.NonStrictEdgeDigraph[string, string])
+	var gn map[string]graphviz.NodeMetadata
+	gg.AddNode("")
+	if gg, gn, err = populateDesignsGraph(gg, nil, &designs.FSDesign{
+		Design: design.Design,
+		FS:     ffs.AttachPath(design.FS, ""),
+	}, ""); err != nil {
+		return nil, errors.Wrapf(err, "couldn't populate designs graph for design %s", design.Path())
+	}
+	gvg, err := gvc.NewNonStrictDigraph("", gg, gn)
+	if err != nil {
+		return nil, err
+	}
+
+	switch format {
+	default:
+		return nil, fmt.Errorf("unknown output format %s", format)
+	case RenderFormatDOT:
+		if result, err = gvg.DOT(ctx); err != nil {
+			return nil, err
+		}
+	case RenderFormatSVG:
+		if result, err = gvg.SVG(ctx); err != nil {
+			return nil, err
+		}
+	}
+	return result, nil
+}
+
+func populateDesignsGraph(
+	gg structures.NonStrictEdgeDigraph[string, string], nodeMetadata map[string]graphviz.NodeMetadata,
+	design *designs.FSDesign, rootID string,
+) (structures.NonStrictEdgeDigraph[string, string], map[string]graphviz.NodeMetadata, error) {
+	if nodeMetadata == nil {
+		nodeMetadata = make(map[string]graphviz.NodeMetadata)
+	}
+
+	comps := design.Decl.Components
+	compIDs := slices.Sorted(maps.Keys(comps))
+	for _, id := range compIDs {
+		component := comps[id]
+		if component.Type != designs.CompTypeDesign {
+			continue
+		}
+
+		child := path.Join(design.FS.Path(), component.Design)
+		if component.Instantiation.Variant != "" {
+			child += ":" + string(component.Instantiation.Variant)
+		}
+		gg.AddNode(child)
+		nodeMetadata[child] = graphviz.NodeMetadata{
+			Label: component.Design,
+		}
+		if component.Instantiation.Variant != "" {
+			nodeMetadata[child] = graphviz.NodeMetadata{
+				Label: fmt.Sprintf("%s:%s", component.Design, string(component.Instantiation.Variant)),
+			}
+		}
+		gg.AddEdge(rootID, child, string(id))
+	}
+
+	for _, compID := range compIDs {
+		component := comps[compID]
+		if component.Type != designs.CompTypeDesign {
+			continue
+		}
+
+		child := path.Join(design.FS.Path(), component.Design)
+		if component.Instantiation.Variant != "" {
+			child += ":" + string(component.Instantiation.Variant)
+		}
+		subdesign, err := design.LoadCompFSDesign(compID)
+		if err != nil {
+			return nil, nil, errors.Wrapf(
+				err, "couldn't load subdesign %s for component %s", component.Design, compID,
+			)
+		}
+
+		if gg, nodeMetadata, err = populateDesignsGraph(
+			gg, nodeMetadata, subdesign, child,
+		); err != nil {
+			return nil, nil, errors.Wrapf(
+				err, "couldn't populate designs graph by recursing into subdesign %s for component %s",
+				component.Design, compID,
+			)
+		}
+	}
+	return gg, nodeMetadata, nil
+}
+
+func RenderPositionGraph(
+	ctx context.Context, design *designs.FSDesign, format string, recurse bool,
+) (result []byte, err error) {
+	gvc, err := graphviz.New(ctx)
+	if err != nil {
+		return nil, err
+	}
+	defer func() {
+		cerr := gvc.Close()
+		if cerr != nil {
+			err = cerr
+		}
+	}()
+
+	gg := make(structures.StrictEdgeDigraph[string, string])
+	if gg, err = populatePositionGraph(gg, design, recurse, ""); err != nil {
+		return nil, errors.Wrapf(err, "couldn't populate position graph for design %s", design.Path())
+	}
+	gvg, err := gvc.NewStrictDigraph("", gg, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	switch format {
+	default:
+		return nil, fmt.Errorf("unknown output format %s", format)
+	case RenderFormatDOT:
+		if result, err = gvg.DOT(ctx); err != nil {
+			return nil, err
+		}
+	case RenderFormatSVG:
+		if result, err = gvg.SVG(ctx); err != nil {
+			return nil, err
+		}
+	}
+	return result, nil
+}
+
+func populatePositionGraph(
+	gg structures.StrictEdgeDigraph[string, string], design *designs.FSDesign,
+	recurse bool, nodePrefix designs.CompID,
+) (structures.StrictEdgeDigraph[string, string], error) {
+	tg := design.Decl.Components.TranslDigraph()
+	fromIDs := slices.Sorted(maps.Keys(tg))
+	for _, fromID := range fromIDs {
+		from := tg[fromID]
+		fromID = designs.JoinCompIDs(nodePrefix, fromID)
+		gg.AddNode(string(fromID))
+		for _, toID := range slices.Sorted(maps.Keys(from)) {
+			edge := from[toID]
+			toID = designs.JoinCompIDs(nodePrefix, toID)
+			gg.AddEdge(string(fromID), string(toID), edge.String())
+		}
+	}
+	if !recurse {
+		return gg, nil
+	}
+
+	for _, compID := range fromIDs {
+		component := design.Decl.Components[compID]
+		if component.Type != designs.CompTypeDesign {
+			continue
+		}
+
+		subdesign, err := design.LoadCompFSDesign(compID)
+		if err != nil {
+			return nil, errors.Wrapf(
+				err, "couldn't load subdesign %s for component %s", component.Design, compID,
+			)
+		}
+
+		if gg, err = populatePositionGraph(
+			gg, subdesign, recurse, designs.JoinCompIDs(nodePrefix, compID),
+		); err != nil {
+			return nil, errors.Wrapf(
+				err, "couldn't populate position graph by recursing into subdesign %s for component %s",
+				component.Design, compID,
+			)
+		}
+	}
+	return gg, nil
+}
+
 // Plots
 
 func RenderPositionPlot(comps designs.CompsSpec) (result []byte, err error) {
 	c := echarts.NewChart3D()
 
-	flattened := comps.Flattened()
+	flattened := comps.TranslFlattened()
 	for _, id := range slices.Sorted(maps.Keys(flattened)) {
 		cdecl := flattened[id]
 		mat, err := cdecl.Pose.TransfMat(designs.UC2GridSpacings)

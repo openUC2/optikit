@@ -81,64 +81,86 @@ func (d *Document) Document() *gltf.Document {
 }
 
 func (d *Document) Assemble(
-	fsys ffs.PathedFS, comps designs.CompsSpec, asText bool,
-	gridSpacings designs.ContinuousXYZ[float64],
+	design *designs.FSDesign, asText bool, gridSpacings designs.ContinuousXYZ[float64],
 ) ([]byte, error) {
-	flattened := comps.Flattened()
-	compIDs := slices.Sorted(maps.Keys(flattened))
-	for _, id := range compIDs {
-		rootNodeIndices, err := d.addComponent(fsys, id, flattened[id], gridSpacings)
-		if err != nil {
-			return nil, errors.Wrapf(err, "couldn't add component %s to gltf model", id)
-		}
-		d.root.Children = append(d.root.Children, rootNodeIndices...)
+	if err := d.addComponents(design, gridSpacings, d.root); err != nil {
+		return nil, err
 	}
 
 	return d.Encode(asText)
 }
 
-func (d *Document) addComponent(
+func (d *Document) addComponents(
+	design *designs.FSDesign, gridSpacings designs.ContinuousXYZ[float64], root *gltf.Node,
+) error {
+	flattened := design.Decl.Components.TranslFlattened()
+	compIDs := slices.Sorted(maps.Keys(flattened))
+	subdesignCompIDs := make([]designs.CompID, 0, len(compIDs))
+	for _, id := range compIDs {
+		comp := flattened[id]
+		switch t := comp.Type; t {
+		default:
+			return errors.Errorf("unknown component type for component %s: %s", id, t)
+		case designs.CompTypeLocation:
+			return nil
+		case designs.CompTypePrimitive:
+			if err := d.addPrimitiveComponent(design.FS, id, comp, gridSpacings, root); err != nil {
+				return errors.Wrapf(err, "couldn't add primitive component %s to gltf model", id)
+			}
+		case designs.CompTypeDesign:
+			// We recurse into subdesigns only after adding all other nodes, in order to construct the
+			// glTF scene graph in breadth-first order instead of depth-first order:
+			subdesignCompIDs = append(subdesignCompIDs, id)
+		}
+	}
+	for _, id := range subdesignCompIDs {
+		comp := flattened[id]
+		subdesign, err := design.LoadCompFSDesign(id)
+		if err != nil {
+			return errors.Wrapf(
+				err, "couldn't load subdesign %s for component %s", comp.Design, id,
+			)
+		}
+		if err := d.addSubdesignComponent(id, comp, subdesign, gridSpacings, root); err != nil {
+			return errors.Wrapf(err, "couldn't add subdesign component %s to gltf model", id)
+		}
+	}
+	return nil
+}
+
+func (d *Document) addPrimitiveComponent(
 	fsys ffs.PathedFS, id designs.CompID, comp designs.CompSpec,
-	gridSpacings designs.ContinuousXYZ[float64],
-) (
-	rootNodeIndices []int, err error,
-) {
+	gridSpacings designs.ContinuousXYZ[float64], parent *gltf.Node,
+) error {
 	n := new(gltf.Node)
 	n.Name = string(id)
 	var nodeIndex int
 	d.d.Nodes, nodeIndex = addElem(d.d.Nodes, n)
+	parent.Children = append(parent.Children, nodeIndex)
 
+	var err error
 	if n.Rotation, n.Translation, err = computeNodePose(comp.Pose, gridSpacings); err != nil {
-		return nil, errors.Wrapf(err, "couldn't add component %s", id)
+		return errors.Wrapf(err, "couldn't compute pose of component %s", id)
 	}
 
 	// Add the node's primitive model to document:
-	var modelHash string
-	switch t := comp.Type; t {
+	switch pt := comp.Primitive.Type; pt {
 	default:
-		return nil, errors.Errorf("unknown component type for component %s: %s", id, t)
-	case "location":
-		return nil, nil
-	case "design":
-		// TODO: recursively add the design's components
-		return nil, errors.Errorf("unimplemented component type for component %s: %s", id, t)
-	case "primitive":
-		switch pt := comp.Primitive.Type; pt {
-		default:
-			return nil, errors.Errorf("unknown model type for primitive %s: %s", id, t)
-		case "", "static":
-			h, rootNodes, err := d.addComponentPrimitive(fsys, comp.Primitive)
-			if err != nil {
-				return []int{nodeIndex}, errors.Wrapf(
-					err, "couldn't add primitive component: %+v", comp.Primitive,
-				)
-			}
-			n.Children = append(n.Children, rootNodes...)
-			modelHash = h
+		return errors.Errorf("unknown model type for primitive %s: %s", id, pt)
+	case "", "static":
+		modelHash, nodeIndices, err := d.addComponentPrimitive(fsys, comp.Primitive)
+		if err != nil {
+			return errors.Wrapf(err, "couldn't add primitive component: %+v", comp.Primitive)
 		}
+		n.Children = append(n.Children, nodeIndices...)
+		d.modelInstances[modelHash] = append(d.modelInstances[modelHash], n.Children)
 	}
-	d.modelInstances[modelHash] = append(d.modelInstances[modelHash], n.Children)
-	return []int{nodeIndex}, nil
+	return nil
+}
+
+func addElem[T any](arr []T, elem T) (appended []T, idx int) {
+	arr = append(arr, elem)
+	return arr, len(arr) - 1
 }
 
 func computeNodePose(pose designs.CompPoseSpec, gridSpacings designs.ContinuousXYZ[float64]) (
@@ -148,8 +170,10 @@ func computeNodePose(pose designs.CompPoseSpec, gridSpacings designs.ContinuousX
 	if err != nil {
 		return [4]float64{}, [3]float64{}, errors.Wrap(err, "couldn't compute node pose")
 	}
-	mat.TransformVec3(&vec3.Zero)
-	return mat.Quaternion(), transl, nil
+	origin := mat.MulVec3(&vec3.Zero)
+	const conversion = 0.001 // convert from mm (optikit units) to m (glTF units)
+	origin.Scale(conversion)
+	return mat.Quaternion(), origin, nil
 }
 
 func (d *Document) addComponentPrimitive(fsys ffs.PathedFS, prim designs.CompPrimSpec) (
@@ -167,6 +191,7 @@ func (d *Document) addComponentPrimitive(fsys ffs.PathedFS, prim designs.CompPri
 	if instances, ok := d.modelInstances[hash]; ok {
 		return hash, d.cloneNodeTrees(instances[0]), nil
 	}
+
 	m, err := Load(contents)
 	if err != nil {
 		return hash, nil, errors.Wrapf(err, "couldn't parse glTF/glb model %s", model)
@@ -179,7 +204,7 @@ func (d *Document) addComponentPrimitive(fsys ffs.PathedFS, prim designs.CompPri
 }
 
 func (d *Document) cloneNodeTrees(nodeIndices []int) []int {
-	clonedIndices := make(map[int]int)
+	clonedIndices := make(map[int]int) // map from node index -> cloned node index
 	// NOTE(ethanjli): we add the parent nodes before adding the child nodes, in breadth-first style:
 	for _, nodeIndex := range nodeIndices {
 		node := *d.d.Nodes[nodeIndex]
@@ -234,15 +259,10 @@ func (d *Document) addModel(hash string, m *gltf.Document) (rootNodeIndices []in
 	return rootNodeIndices, nil
 }
 
-func addElem[T any](arr []T, elem T) (appended []T, idx int) {
-	arr = append(arr, elem)
-	return arr, len(arr) - 1
-}
-
 func (d *Document) addModelAccessors(m []*gltf.Accessor, im indexMappings) error {
 	for i, el := range m {
 		if el.BufferView == nil {
-			continue
+			return errors.Errorf("unimplemented: can't handle accessor with nil bufferView!")
 		}
 		idx, ok := im.BufferViews[*el.BufferView]
 		if !ok {
@@ -257,6 +277,9 @@ func (d *Document) addModelAccessors(m []*gltf.Accessor, im indexMappings) error
 func (d *Document) addModelMeshes(m []*gltf.Mesh, im indexMappings) error {
 	for i, el := range m {
 		for _, pr := range el.Primitives {
+			for attr, idx := range pr.Attributes {
+				pr.Attributes[attr] = im.Accessors[idx]
+			}
 			if pr.Indices != nil {
 				idx, ok := im.Accessors[*pr.Indices]
 				if !ok {
@@ -301,6 +324,29 @@ func (d *Document) addModelNodes(m []*gltf.Node, im indexMappings) error {
 			}
 			node.Children[i] = idx
 		}
+	}
+	return nil
+}
+
+func (d *Document) addSubdesignComponent(
+	id designs.CompID, comp designs.CompSpec, subdesign *designs.FSDesign,
+	gridSpacings designs.ContinuousXYZ[float64], parent *gltf.Node,
+) error {
+	n := new(gltf.Node)
+	n.Name = string(id)
+	var nodeIndex int
+	d.d.Nodes, nodeIndex = addElem(d.d.Nodes, n)
+	parent.Children = append(parent.Children, nodeIndex)
+
+	var err error
+	if n.Rotation, n.Translation, err = computeNodePose(comp.Pose, gridSpacings); err != nil {
+		return errors.Wrapf(err, "couldn't compute pose of component %s", id)
+	}
+
+	if err = d.addComponents(subdesign, gridSpacings, n); err != nil {
+		return errors.Wrapf(
+			err, "couldn't add subcomponents of component %s with design %s", id, comp.Design,
+		)
 	}
 	return nil
 }

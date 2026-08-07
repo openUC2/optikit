@@ -1,0 +1,37 @@
+strict digraph "" {
+	graph [bb="0,0,360.43,197.8"];
+	node [label="\N"];
+	edge [label="\E"];
+	""	[height=0.5,
+		pos="110.17,179.8",
+		width=0.75];
+	"mounted-slide-holder"	[height=0.5,
+		label="mounted-slide-holder",
+		pos="94.172,91",
+		width=2.6159];
+	"" -> "mounted-slide-holder"	[key=" -> mounted-slide-holder",
+		label="",
+		pos="e,97.381,109.41 107.01,161.65 104.86,149.96 101.95,134.19 99.447,120.62"];
+	skeleton	[height=0.5,
+		label=skeleton,
+		pos="249.17,91",
+		width=1.2005];
+	"" -> skeleton	[key=" -> skeleton",
+		label="primitives/cube-skeleton.dsn",
+		lp="272.8,135.4",
+		pos="e,225.84,106.57 129.5,166.73 151.96,152.71 189.37,129.34 216.4,112.47"];
+	"skeleton/lower-half"	[height=0.5,
+		label="lower-half",
+		pos="188.17,18",
+		width=1.4237];
+	skeleton -> "skeleton/lower-half"	[key="skeleton -> skeleton/lower-half",
+		label="",
+		pos="e,202.24,35.378 235.02,73.533 227.48,64.751 218.04,53.763 209.61,43.956"];
+	"skeleton/upper-half"	[height=0.5,
+		label="upper-half",
+		pos="309.17,18",
+		width=1.4237];
+	skeleton -> "skeleton/upper-half"	[key="skeleton -> skeleton/upper-half",
+		label="",
+		pos="e,295.33,35.378 263.09,73.533 270.51,64.751 279.8,53.763 288.08,43.956"];
+}

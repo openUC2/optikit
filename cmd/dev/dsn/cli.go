@@ -4,6 +4,7 @@ package dsn
 import (
 	"github.com/urfave/cli/v3"
 
+	"github.com/openUC2/optikit/cmd/dev/dsn/comp"
 	"github.com/openUC2/optikit/cmd/dev/dsn/geom"
 	"github.com/openUC2/optikit/internal/optikit"
 )
@@ -15,6 +16,7 @@ func MakeCmd(versions optikit.Versions) *cli.Command {
 		Usage: "Facilitates development and maintenance of an Optikit design in the current working " +
 			"directory",
 		Commands: []*cli.Command{
+			comp.MakeCmd(versions),
 			geom.MakeCmd(versions),
 		},
 	}

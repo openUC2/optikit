@@ -35,9 +35,9 @@ def assemble_prims(prims_report: list[SimpleNamespace]) -> b.Compound:
             "y": prim.rotation.angles.y,
             "z": prim.rotation.angles.z,
         }
+        compound.location *= b.Location(tuple(prim.position))
         for axis in ordering[::-1]:
             compound.location *= b.Location((0, 0, 0), axes[axis], angles[axis])
-        compound.location.position = prim.position
         compounds.append(compound)
     return b.Compound(label="design", children=compounds)
 

@@ -9,6 +9,7 @@ import (
 	"testing"
 
 	"github.com/google/go-cmp/cmp"
+	"github.com/ungerik/go3d/float64/quaternion"
 
 	"github.com/openUC2/optikit/exp/fs"
 )
@@ -79,7 +80,7 @@ var compSpecMergeTestOverlays = map[CompID]CompSpec{
 	"b": {
 		Pose: CompPoseSpec{
 			Rotation: CompPoseRotSpec{
-				Type: "foofoo",
+				Type: "grid",
 				Grid: CompPoseRotGridSpec{
 					Z: "Z!",
 				},
@@ -93,7 +94,7 @@ var compSpecMergeTestOverlays = map[CompID]CompSpec{
 
 var compSpecMergeTestModifiers = map[CompID]func(s CompSpec) CompSpec{
 	"b": func(s CompSpec) CompSpec {
-		s.Pose.Rotation.Type = "foofoo"
+		s.Pose.Rotation.Type = "grid"
 		s.Pose.Rotation.Grid.Z = "Z!"
 		return s
 	},
@@ -218,7 +219,10 @@ func TestDesignFlatten(t *testing.T) {
 			}
 
 			t.Logf("check %s", in)
-			if got, want := inDecl.Components.Flattened(), outDecl.Components; !cmp.Equal(got, want) {
+			if got, want := inDecl.Components.TranslFlattened(), outDecl.Components; !cmp.Equal(
+				got,
+				want,
+			) {
 				t.Errorf("diff (-want +got):\n%+v", cmp.Diff(want, got))
 			}
 		})
@@ -232,7 +236,7 @@ var exampleCompSpec = CompSpec{
 	Design: "bar",
 	Pose: CompPoseSpec{
 		Rotation: CompPoseRotSpec{
-			Type: "foobar",
+			Type: "grid",
 			Grid: CompPoseRotGridSpec{
 				Z: "zz",
 				X: "xx",
@@ -281,7 +285,7 @@ var compSpecMergeTests = map[string]struct {
 		overlay: CompSpec{
 			Pose: CompPoseSpec{
 				Rotation: CompPoseRotSpec{
-					Type: "foofoo",
+					Type: "grid",
 					Grid: CompPoseRotGridSpec{
 						Z: "Z!",
 					},
@@ -289,8 +293,25 @@ var compSpecMergeTests = map[string]struct {
 			},
 		},
 		out: func(s CompSpec) CompSpec {
-			s.Pose.Rotation.Type = "foofoo"
+			s.Pose.Rotation.Type = "grid"
 			s.Pose.Rotation.Grid.Z = "Z!"
+			return s
+		},
+	},
+	"Pose.RotationQuaternion": {
+		in: exampleCompSpec,
+		overlay: CompSpec{
+			Pose: CompPoseSpec{
+				Rotation: CompPoseRotSpec{
+					Type:       "quaternion",
+					Quaternion: quaternion.FromZAxisAngle(0.5),
+				},
+			},
+		},
+		out: func(s CompSpec) CompSpec {
+			s.Pose.Rotation.Type = "quaternion"
+			s.Pose.Rotation.Grid = CompPoseRotGridSpec{}
+			s.Pose.Rotation.Quaternion = quaternion.FromZAxisAngle(0.5)
 			return s
 		},
 	},

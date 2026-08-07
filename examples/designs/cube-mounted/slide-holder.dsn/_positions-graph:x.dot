@@ -1,0 +1,32 @@
+strict digraph "" {
+	graph [bb="0,0,430.29,180"];
+	node [label="\N"];
+	edge [label="\E"];
+	""	[height=0.5,
+		pos="171.17,162",
+		width=0.75];
+	"mounted-slide-holder"	[height=0.5,
+		pos="94.172,90",
+		width=2.6159];
+	"" -> "mounted-slide-holder"	[key=" -> mounted-slide-holder",
+		label="",
+		pos="e,113,108.11 155.59,146.83 145.78,137.92 132.86,126.17 121.4,115.75"];
+	skeleton	[height=0.5,
+		pos="249.17,90",
+		width=1.2005];
+	"" -> skeleton	[key=" -> skeleton",
+		label="",
+		pos="e,231.62,106.76 186.58,147.17 197.01,137.81 211.05,125.21 223.19,114.32"];
+	"skeleton/lower-half"	[height=0.5,
+		pos="154.17,18",
+		width=2.3922];
+	skeleton -> "skeleton/lower-half"	[key="skeleton -> skeleton/lower-half",
+		label="",
+		pos="e,176.74,35.628 228.56,73.811 216.02,64.575 199.77,52.595 185.65,42.192"];
+	"skeleton/upper-half"	[height=0.5,
+		pos="344.17,18",
+		width=2.3922];
+	skeleton -> "skeleton/upper-half"	[key="skeleton -> skeleton/upper-half",
+		label="",
+		pos="e,321.61,35.628 269.79,73.811 282.32,64.575 298.58,52.595 312.7,42.192"];
+}

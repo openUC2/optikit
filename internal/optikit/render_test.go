@@ -1,6 +1,7 @@
 package optikit
 
 import (
+	"context"
 	"fmt"
 	"os"
 	"path"
@@ -9,62 +10,103 @@ import (
 	"github.com/google/go-cmp/cmp"
 
 	"github.com/openUC2/optikit/exp/designs"
-	ffs "github.com/openUC2/optikit/exp/fs"
 	"github.com/openUC2/optikit/internal/clients/gltf"
 )
 
-var renderDesignDeclTests = []struct {
-	design  string
-	variant string
+var renderDesignDeclTests = map[string][]string{ // design -> variants
+	"primitives/cube-skeleton.dsn":              {""},
+	"cube-mounted/lens.dsn":                     {"x", "z"},
+	"cube-mounted/mirror-diagonal.dsn":          {"_z", "xy"},
+	"microscopes/simple-3d.dsn":                 {""},
+	"microscopes/simple-rel-transl-anchors.dsn": {""},
+	"microscopes/simple-abs-transl-anchors.dsn": {""},
+}
+
+type graphRenderer func(
+	ctx context.Context, design *designs.FSDesign, format string, recurse bool,
+) (result []byte, err error)
+
+var renderers = []struct {
+	filename string
+	renderer graphRenderer
 }{
 	{
-		design: "microscopes/simple-rel-transl-anchors.dsn",
+		filename: "_components-graph",
+		renderer: RenderComponentsGraph,
 	},
 	{
-		design: "microscopes/simple-abs-transl-anchors.dsn",
+		filename: "_designs-graph",
+		renderer: RenderDesignsGraph,
 	},
 	{
-		design: "primitives/cube-skeleton.dsn",
+		filename: "_positions-graph",
+		renderer: RenderPositionGraph,
 	},
 }
 
-func TestRenderPositionGraph(t *testing.T) {
+func TestRenderGraphs(t *testing.T) { //nolint:tparallel // graphviz isn't concurrency-safe
+	t.Parallel()
 	cwd, err := os.Getwd()
 	if err != nil {
 		t.Error(err)
 	}
 	examplesPath := path.Join(path.Dir(path.Dir(cwd)), "examples")
 
-	for _, test := range renderDesignDeclTests {
-		name := fmt.Sprintf("%s:%s", test.design, test.variant)
-		t.Run(name, func(t *testing.T) {
-			dp := path.Join(examplesPath, "designs", test.design)
-
-			t.Logf("load %s:%s", test.design, test.variant)
-			designDecl, err := LoadDesignDecl(dp, test.variant)
-			if err != nil {
-				t.Error(err)
-				return
+	for design, variants := range renderDesignDeclTests {
+		dp := path.Join(examplesPath, "designs", design)
+		for _, variant := range variants {
+			for _, renderer := range renderers {
+				name := fmt.Sprintf("%s:%s %s", design, variant, renderer.filename)
+				t.Run(name, func(t *testing.T) {
+					checkGraph(t, dp, design, variant, renderer.filename, renderer.renderer)
+				})
 			}
-			var want, got []byte
-
-			for _, format := range []string{"dot", "svg"} {
-				t.Logf("render %s:%s to %s", test.design, test.variant, format)
-				if got, err = RenderPositionGraph(t.Context(), designDecl.Components, format); err != nil {
-					t.Error(err)
-				}
-				if want, err = os.ReadFile(path.Join(dp, "_positions-graph."+format)); err != nil {
-					t.Error(err)
-				}
-				if !cmp.Equal(got, want) {
-					t.Errorf("diff (-want +got):\n%+v", cmp.Diff(want, got))
-				}
-			}
-		})
+		}
 	}
 }
 
+func checkGraph(
+	t *testing.T, dp, design, variant, filename string, renderer graphRenderer,
+) {
+	t.Helper()
+
+	t.Logf("load %s:%s", design, variant)
+	d, err := LoadFSDesign(dp, variant, false)
+	if err != nil {
+		t.Error(err)
+		return
+	}
+	var want, got []byte
+
+	for _, format := range []string{"dot", "svg"} {
+		t.Logf("render %s:%s to %s", design, variant, format)
+		if got, err = renderer(t.Context(), d, format, true); err != nil {
+			t.Error(err)
+		}
+		if want, err = loadGraph(dp, filename, variant, format); err != nil {
+			t.Error(err)
+		}
+		if !cmp.Equal(got, want) {
+			t.Errorf("diff (-want +got):\n%+v", cmp.Diff(want, got))
+		}
+	}
+}
+
+func loadGraph(dp, name, variant, format string) ([]byte, error) {
+	if variant != "" {
+		name += ":" + variant
+	}
+	name += "." + format
+	return os.ReadFile(path.Join(dp, name))
+}
+
+const (
+	formatGLTF = "gltf"
+	formatGLB  = "glb"
+)
+
 func TestRenderObjectsGLTF(t *testing.T) {
+	t.Parallel()
 	cwd, err := os.Getwd()
 	if err != nil {
 		t.Error(err)
@@ -73,34 +115,32 @@ func TestRenderObjectsGLTF(t *testing.T) {
 
 	for design, variants := range reports {
 		dp := path.Join(examplesPath, "designs", design)
-		fsys := ffs.AttachPath(os.DirFS(dp), dp)
 		for _, variant := range variants {
 			name := fmt.Sprintf("%s:%s", design, variant)
 			t.Run(name, func(t *testing.T) {
+				t.Parallel()
+
 				t.Logf("load %s:%s", design, variant)
-				designDecl, err := LoadDesignDecl(dp, variant)
+				design, err := LoadFSDesign(dp, variant, false)
 				if err != nil {
 					t.Error(err)
 					return
 				}
 
-				for _, asText := range []bool{true, false} {
-					checkGLTF(t, fsys, variant, designDecl, dp, asText)
+				for _, format := range []string{formatGLB, formatGLTF} {
+					checkGLTF(t, variant, design, dp, format == formatGLTF)
 				}
 			})
 		}
 	}
 }
 
-func checkGLTF(
-	t *testing.T, fsys ffs.PathedFS, variant string,
-	designDecl designs.DesignDecl, dp string, asText bool,
-) {
+func checkGLTF(t *testing.T, variant string, design *designs.FSDesign, dp string, asText bool) {
 	t.Helper()
 
-	format := "glb"
+	format := formatGLB
 	if asText {
-		format = "gltf"
+		format = formatGLTF
 	}
 	objectName := "_objects"
 	if variant != "" {
@@ -111,7 +151,7 @@ func checkGLTF(
 
 	var want, got []byte
 	var err error
-	if got, err = RenderObjectsGLB(fsys, designDecl.Components, asText); err != nil {
+	if got, err = RenderObjectsGLB(design, asText); err != nil {
 		t.Error(err)
 	}
 	if want, err = os.ReadFile(path.Join(dp, objectName)); err != nil {
@@ -123,43 +163,40 @@ func checkGLTF(
 }
 
 func TestGLTFRoundtrip(t *testing.T) {
+	t.Parallel()
 	cwd, err := os.Getwd()
 	if err != nil {
 		t.Error(err)
 	}
 	examplesPath := path.Join(path.Dir(path.Dir(cwd)), "examples")
 
-	for design, variants := range reports {
+	for design, variants := range renderDesignDeclTests {
 		dp := path.Join(examplesPath, "designs", design)
-		fsys := ffs.AttachPath(os.DirFS(dp), dp)
 		for _, variant := range variants {
 			name := fmt.Sprintf("%s:%s", design, variant)
-			t.Run(name, func(t *testing.T) {
-				t.Logf("load %s:%s", design, variant)
-				designDecl, err := LoadDesignDecl(dp, variant)
-				if err != nil {
-					t.Error(err)
-					return
-				}
+			t.Logf("load %s:%s", design, variant)
+			d, err := LoadFSDesign(dp, variant, false)
+			if err != nil {
+				t.Error(err)
+				return
+			}
 
-				var buf []byte
+			for _, format := range []string{formatGLTF, formatGLB} {
+				t.Run(name, func(t *testing.T) {
+					t.Parallel()
 
-				t.Logf("round-trip glb loading and encoding of %s:%s", design, variant)
-				if buf, err = RenderObjectsGLB(fsys, designDecl.Components, false); err != nil {
-					t.Error(err)
-				}
-				roundtripDoc(t, buf, false)
+					var buf []byte
+					t.Logf("round-trip %s loading and encoding of %s:%s", format, design, variant)
+					if buf, err = RenderObjectsGLB(d, format == formatGLTF); err != nil {
+						t.Error(err)
+					}
+					roundtripDoc(t, buf, format == formatGLTF)
 
-				t.Logf("round-trip gltf loading and encoding of %s:%s", design, variant)
-				if buf, err = RenderObjectsGLB(fsys, designDecl.Components, true); err != nil {
-					t.Error(err)
-				}
-				roundtripDoc(t, buf, true)
-
-				// Note: glb-to-gltf-to-glb and gltf-to-glb-to-gltf roundtripping don't necessarily work
-				// due to potential gltf extensions (e.g. from OnShape's glTF/glb export), so we don't
-				// require it.
-			})
+					// Note: glb-to-gltf-to-glb and gltf-to-glb-to-gltf roundtripping don't necessarily work
+					// due to potential gltf extensions (e.g. from OnShape's glTF/glb export), so we don't
+					// require it.
+				})
+			}
 		}
 	}
 }

@@ -1,0 +1,16 @@
+digraph "" {
+	graph [bb="0,0,244.67,124.8"];
+	node [label="\N"];
+	edge [label="\E"];
+	""	[height=0.5,
+		pos="122.34,106.8",
+		width=0.75];
+	"primitives/cube-skeleton.dsn"	[height=0.5,
+		label="primitives/cube-skeleton.dsn",
+		pos="122.34,18",
+		width=3.3982];
+	"" -> "primitives/cube-skeleton.dsn"	[key=" -> primitives/cube-skeleton.dsn: skeleton",
+		label=skeleton,
+		lp="145.66,62.4",
+		pos="e,122.34,36.41 122.34,88.651 122.34,76.958 122.34,61.192 122.34,47.618"];
+}
