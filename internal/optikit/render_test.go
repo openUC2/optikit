@@ -47,6 +47,28 @@ var renderDesignDeclTests = []struct {
 	},
 }
 
+type graphRenderer func(
+	ctx context.Context, design *designs.FSDesign, format string, recurse bool,
+) (result []byte, err error)
+
+var renderers = []struct {
+	filename string
+	renderer graphRenderer
+}{
+	{
+		filename: "_components-graph",
+		renderer: RenderComponentsGraph,
+	},
+	{
+		filename: "_designs-graph",
+		renderer: RenderDesignsGraph,
+	},
+	{
+		filename: "_positions-graph",
+		renderer: RenderPositionGraph,
+	},
+}
+
 func TestRenderGraphs(t *testing.T) {
 	t.Parallel() //nolint:tparallel // graphviz is concurrency-unsafe, we can't parallelize subtests
 	cwd, err := os.Getwd()
@@ -56,19 +78,15 @@ func TestRenderGraphs(t *testing.T) {
 	examplesPath := path.Join(path.Dir(path.Dir(cwd)), "examples")
 
 	for _, test := range renderDesignDeclTests {
-		name := fmt.Sprintf("%s:%s", test.design, test.variant)
-		t.Run(name, func(t *testing.T) {
-			dp := path.Join(examplesPath, "designs", test.design)
-			checkGraph(t, dp, test.design, test.variant, "_components-graph", RenderComponentsGraph)
-			checkGraph(t, dp, test.design, test.variant, "_designs-graph", RenderDesignsGraph)
-			checkGraph(t, dp, test.design, test.variant, "_positions-graph", RenderPositionGraph)
-		})
+		dp := path.Join(examplesPath, "designs", test.design)
+		for _, renderer := range renderers {
+			name := fmt.Sprintf("%s:%s %s", test.design, test.variant, renderer.filename)
+			t.Run(name, func(t *testing.T) {
+				checkGraph(t, dp, test.design, test.variant, renderer.filename, renderer.renderer)
+			})
+		}
 	}
 }
-
-type graphRenderer func(
-	ctx context.Context, design *designs.FSDesign, format string, recurse bool,
-) (result []byte, err error)
 
 func checkGraph(
 	t *testing.T, dp, design, variant, filename string, renderer graphRenderer,
