@@ -13,38 +13,13 @@ import (
 	"github.com/openUC2/optikit/internal/clients/gltf"
 )
 
-var renderDesignDeclTests = []struct {
-	design  string
-	variant string
-}{
-	{
-		design: "primitives/cube-skeleton.dsn",
-	},
-	{
-		design:  "cube-mounted/lens.dsn",
-		variant: "x",
-	},
-	{
-		design:  "cube-mounted/lens.dsn",
-		variant: "z",
-	},
-	{
-		design:  "cube-mounted/mirror-diagonal.dsn",
-		variant: "xy",
-	},
-	{
-		design:  "cube-mounted/mirror-diagonal.dsn",
-		variant: "_z",
-	},
-	{
-		design: "microscopes/simple-3d.dsn",
-	},
-	{
-		design: "microscopes/simple-rel-transl-anchors.dsn",
-	},
-	{
-		design: "microscopes/simple-abs-transl-anchors.dsn",
-	},
+var renderDesignDeclTests = map[string][]string{ // design -> variants
+	"primitives/cube-skeleton.dsn":              {""},
+	"cube-mounted/lens.dsn":                     {"x", "z"},
+	"cube-mounted/mirror-diagonal.dsn":          {"_z", "xy"},
+	"microscopes/simple-3d.dsn":                 {""},
+	"microscopes/simple-rel-transl-anchors.dsn": {""},
+	"microscopes/simple-abs-transl-anchors.dsn": {""},
 }
 
 type graphRenderer func(
@@ -77,13 +52,15 @@ func TestRenderGraphs(t *testing.T) { //nolint:tparallel // graphviz isn't concu
 	}
 	examplesPath := path.Join(path.Dir(path.Dir(cwd)), "examples")
 
-	for _, test := range renderDesignDeclTests {
-		dp := path.Join(examplesPath, "designs", test.design)
-		for _, renderer := range renderers {
-			name := fmt.Sprintf("%s:%s %s", test.design, test.variant, renderer.filename)
-			t.Run(name, func(t *testing.T) {
-				checkGraph(t, dp, test.design, test.variant, renderer.filename, renderer.renderer)
-			})
+	for design, variants := range renderDesignDeclTests {
+		dp := path.Join(examplesPath, "designs", design)
+		for _, variant := range variants {
+			for _, renderer := range renderers {
+				name := fmt.Sprintf("%s:%s %s", design, variant, renderer.filename)
+				t.Run(name, func(t *testing.T) {
+					checkGraph(t, dp, design, variant, renderer.filename, renderer.renderer)
+				})
+			}
 		}
 	}
 }
@@ -123,6 +100,11 @@ func loadGraph(dp, name, variant, format string) ([]byte, error) {
 	return os.ReadFile(path.Join(dp, name))
 }
 
+const (
+	formatGLTF = "gltf"
+	formatGLB  = "glb"
+)
+
 func TestRenderObjectsGLTF(t *testing.T) {
 	t.Parallel()
 	cwd, err := os.Getwd()
@@ -145,8 +127,8 @@ func TestRenderObjectsGLTF(t *testing.T) {
 					return
 				}
 
-				for _, asText := range []bool{true, false} {
-					checkGLTF(t, variant, design, dp, asText)
+				for _, format := range []string{formatGLB, formatGLTF} {
+					checkGLTF(t, variant, design, dp, format == formatGLTF)
 				}
 			})
 		}
@@ -156,9 +138,9 @@ func TestRenderObjectsGLTF(t *testing.T) {
 func checkGLTF(t *testing.T, variant string, design *designs.FSDesign, dp string, asText bool) {
 	t.Helper()
 
-	format := "glb"
+	format := formatGLB
 	if asText {
-		format = "gltf"
+		format = formatGLTF
 	}
 	objectName := "_objects"
 	if variant != "" {
@@ -188,38 +170,33 @@ func TestGLTFRoundtrip(t *testing.T) {
 	}
 	examplesPath := path.Join(path.Dir(path.Dir(cwd)), "examples")
 
-	for design, variants := range reports {
+	for design, variants := range renderDesignDeclTests {
 		dp := path.Join(examplesPath, "designs", design)
 		for _, variant := range variants {
 			name := fmt.Sprintf("%s:%s", design, variant)
-			t.Run(name, func(t *testing.T) {
-				t.Parallel()
+			t.Logf("load %s:%s", design, variant)
+			d, err := LoadFSDesign(dp, variant, false)
+			if err != nil {
+				t.Error(err)
+				return
+			}
 
-				t.Logf("load %s:%s", design, variant)
-				d, err := LoadFSDesign(dp, variant, false)
-				if err != nil {
-					t.Error(err)
-					return
-				}
+			for _, format := range []string{formatGLTF, formatGLB} {
+				t.Run(name, func(t *testing.T) {
+					t.Parallel()
 
-				var buf []byte
+					var buf []byte
+					t.Logf("round-trip %s loading and encoding of %s:%s", format, design, variant)
+					if buf, err = RenderObjectsGLB(d, format == formatGLTF); err != nil {
+						t.Error(err)
+					}
+					roundtripDoc(t, buf, format == formatGLTF)
 
-				t.Logf("round-trip glb loading and encoding of %s:%s", design, variant)
-				if buf, err = RenderObjectsGLB(d, false); err != nil {
-					t.Error(err)
-				}
-				roundtripDoc(t, buf, false)
-
-				t.Logf("round-trip gltf loading and encoding of %s:%s", design, variant)
-				if buf, err = RenderObjectsGLB(d, true); err != nil {
-					t.Error(err)
-				}
-				roundtripDoc(t, buf, true)
-
-				// Note: glb-to-gltf-to-glb and gltf-to-glb-to-gltf roundtripping don't necessarily work
-				// due to potential gltf extensions (e.g. from OnShape's glTF/glb export), so we don't
-				// require it.
-			})
+					// Note: glb-to-gltf-to-glb and gltf-to-glb-to-gltf roundtripping don't necessarily work
+					// due to potential gltf extensions (e.g. from OnShape's glTF/glb export), so we don't
+					// require it.
+				})
+			}
 		}
 	}
 }
