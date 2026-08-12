@@ -1,0 +1,24 @@
+{
+  "name": "gltf-checker",
+  "version": "0.1.0",
+  "description": "A wrapper for the official glTF validator, for use in CI checks",
+  "homepage": "https://github.com/openUC2/optikit#readme",
+  "bugs": {
+    "url": "https://github.com/openUC2/optikit/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/openUC2/optikit.git"
+  },
+  "license": "Apache-2.0 OR BlueOak-1.0.0",
+  "author": "Ethan Li",
+  "type": "module",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "gltf-validator": "^2.0.0-dev.3.10"
+  }
+}

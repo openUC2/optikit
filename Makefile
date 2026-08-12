@@ -21,6 +21,7 @@ clean: ## remove files created during build pipeline
 install: ## go install tool
 	$(call print-target)
 	go install tool
+	npm --prefix tools/gltf-checker install
 
 .PHONY: install-pip
 install-pip: ## embedpip
@@ -76,6 +77,7 @@ test: ## go test with race detector and code coverage
 	$(call print-target)
 	go test -race -covermode=atomic -coverprofile=coverage.out ./...
 	go tool cover -html=coverage.out -o coverage.html
+	examples/check-gltf.sh
 
 .PHONY: mod-tidy
 mod-tidy: ## go mod tidy
