@@ -37,7 +37,7 @@ if (report.issues.numWarnings !== 0) {
 	process.exit(0);
 }
 
-console.info(`Asset passed with no errors or warnings:`, report);
+console.info(`Asset passed with no errors or warnings:`, reportMetadata);
 for (const message of report.issues.messages) {
 	switch (message.severity) {
 		case 2:
