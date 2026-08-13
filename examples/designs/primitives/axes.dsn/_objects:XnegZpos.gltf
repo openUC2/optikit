@@ -6,6 +6,9 @@
       "byteLength": 23032
     }
   ],
+  "extensionsUsed": [
+    "PTC_onshape_metadata"
+  ],
   "accessors": [
     {
       "name": "mesh0_coord_accessor",
