@@ -4,11 +4,17 @@ main="../../../../main.go"
 
 script_dir=$(dirname "$(realpath "$BASH_SOURCE")")
 function geom {
-  go run "$main" dev dsn geom "$@"
+  echo "go run \"$main\" dev dsn geom"
 }
 
 cd "$script_dir"
-yq '.variants | keys | .[]' optikit-design.yml | while read -r variant; do
-  echo "$variant"
-  geom --variant="$variant" render-obj --format=glb "_objects:$variant.glb"
-done
+yq '.variants | keys | .[]' optikit-design.yml |
+  go tool rush -k -e \
+    "
+      echo \"{}\"
+      $(geom) --variant=\"{}\" render-obj --format=glb \"_objects:{}.glb\"
+    "
+
+if [[ $? != 0 ]]; then
+  echo "A variant couldn't be generated; you can find error messages above by searching for [ERRO]"
+fi
