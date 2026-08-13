@@ -15,6 +15,7 @@ import (
 
 	"github.com/openUC2/optikit/exp/designs"
 	ffs "github.com/openUC2/optikit/exp/fs"
+	"github.com/openUC2/optikit/exp/structures"
 )
 
 type Document struct {
@@ -240,6 +241,7 @@ func (d *Document) addModel(hash string, m *gltf.Document) (rootNodeIndices []in
 	if err := d.addModelNodes(m.Nodes, im); err != nil {
 		return nil, errors.Wrap(err, "couldn't add nodes for model")
 	}
+	d.addModelExtensionsUsed(m.ExtensionsUsed)
 	d.indexMappings[hash] = im
 	if len(m.Scenes) == 0 {
 		// NOTE(ethanjli): We could return maps.Values(im.Nodes), but if they have any internal
@@ -326,6 +328,17 @@ func (d *Document) addModelNodes(m []*gltf.Node, im indexMappings) error {
 		}
 	}
 	return nil
+}
+
+func (d *Document) addModelExtensionsUsed(me []string) {
+	eu := make(structures.Set[string])
+	for _, e := range d.d.ExtensionsUsed {
+		eu.Add(e)
+	}
+	for _, e := range me {
+		eu.Add(e)
+	}
+	d.d.ExtensionsUsed = slices.Sorted(eu.All())
 }
 
 func (d *Document) addSubdesignComponent(
