@@ -43,9 +43,10 @@ generate-unreproducible: ## generate outside CI
 generate-unreproducible: generate-obj-step
 
 .PHONY: generate-obj-step
-generate-obj-step: ## tools/examples/run-all.sh generate-variant geom render objects step
+generate-obj-step: ## generate STEP files outputs with nondeterministically-ordered contents
 	$(call print-target)
-	./tools/examples/run-all.sh ./examples generate-variant geom render objects step
+	./tools/examples/run-all.sh ./examples generate-variants geom render objects step
+	./tools/examples/run-all.sh ./examples generate-obj-step
 
 .PHONY: vet
 vet: ## go vet
