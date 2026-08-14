@@ -40,7 +40,7 @@ while IFS= read -r variant; do
 done <<<"$variants" |
   go tool rush -k -e \
     "
-      echo \"{2} {3} {4} for variant {1} as {5}\"
+      echo \"variant {1}: {2} {3} {4} to {5}\"
       go run \"$repo_dir/main.go\" dev dsn {2} --variant={1} {3}-{4} --format={5} _{4}:{1}.{5}
     "
 
