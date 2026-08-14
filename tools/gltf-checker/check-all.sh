@@ -1,9 +1,15 @@
 #!/bin/bash
 
-script_dir="$(dirname "$(realpath "$BASH_SOURCE")")"
-tool_dir="$(dirname "$script_dir")/tools/gltf-checker"
+run_dir="$1"
 
-find "$script_dir" -type f | grep -E "\.gltf$|\.glb$" |
+if [ "$run_dir" = "" ]; then
+  run_dir="."
+fi
+
+script_dir="$(dirname "$(realpath "$BASH_SOURCE")")"
+tool_dir="$script_dir"
+
+find "$run_dir" -type f | grep -E "\.gltf$|\.glb$" |
   go tool rush -k \
     "
       echo \"{}\"

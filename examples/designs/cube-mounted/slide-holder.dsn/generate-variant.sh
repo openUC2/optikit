@@ -1,0 +1,1 @@
+../../../../tools/examples/generate-variant.sh

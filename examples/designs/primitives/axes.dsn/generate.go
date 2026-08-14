@@ -2,7 +2,7 @@ package example
 
 //go:generate pwd
 
-//go:generate ./generate-prim-report.sh
-
-//go:generate ./generate-obj-gltf.sh
-//go:generate ./generate-obj-glb.sh
+//go:generate ./generate-variant.sh geom report primitives yml
+//go:generate ./generate-variant.sh geom report primitives json
+//go:generate ./generate-variant.sh geom render objects gltf
+//go:generate ./generate-variant.sh geom render objects glb

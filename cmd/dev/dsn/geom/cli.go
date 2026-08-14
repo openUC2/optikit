@@ -33,7 +33,7 @@ var cmds = []*cli.Command{
 			&cli.StringFlag{
 				Name:  "format",
 				Value: "json",
-				Usage: "Render output format (json or yaml)",
+				Usage: "Render output format (json or yaml or yml)",
 			},
 		},
 		Action: reportPrimA,
@@ -69,8 +69,15 @@ var cmds = []*cli.Command{
 	{
 		Name:      "render-pos-p",
 		Aliases:   []string{"render-positions-plot"},
-		Usage:     "Render a scatterplot of the positions of the components, into an HTML file",
+		Usage:     "Render a scatterplot of the positions of the components",
 		ArgsUsage: "output_file",
-		Action:    renderPosPA,
+		Flags: []cli.Flag{
+			&cli.StringFlag{
+				Name:  "format",
+				Value: "html",
+				Usage: "Render output format (html)",
+			},
+		},
+		Action: renderPosPA,
 	},
 }
