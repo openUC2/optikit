@@ -11,6 +11,7 @@ import (
 
 	"github.com/pkg/errors"
 	"github.com/qmuntal/gltf"
+	"github.com/qmuntal/gltf/modeler"
 	"github.com/ungerik/go3d/float64/vec3"
 
 	"github.com/openUC2/optikit/exp/designs"
@@ -34,12 +35,10 @@ type Document struct {
 // indexMappings maps from the indices of array elements within a model to the indices of those
 // same array elements within the document to which that model has been added.
 type indexMappings struct {
-	Accessors   map[int]int
-	Buffers     map[int]int
-	BufferViews map[int]int
-	Materials   map[int]int
-	Meshes      map[int]int
-	Nodes       map[int]int
+	Accessors map[int]int
+	Materials map[int]int
+	Meshes    map[int]int
+	Nodes     map[int]int
 }
 
 // Document
@@ -88,7 +87,11 @@ func (d *Document) Assemble(
 		return nil, err
 	}
 
-	return d.Encode(asText)
+	if asText {
+		return d.Encode(true)
+	}
+
+	return d.Encode(false)
 }
 
 func (d *Document) addComponents(
@@ -222,17 +225,7 @@ func (d *Document) addModel(hash string, m *gltf.Document) (rootNodeIndices []in
 	for i, el := range m.Materials {
 		d.d.Materials, im.Materials[i] = addElem(d.d.Materials, el)
 	}
-	for i, el := range m.Buffers {
-		d.d.Buffers, im.Buffers[i] = addElem(d.d.Buffers, el)
-	}
-	for i, el := range m.BufferViews {
-		var ok bool
-		if el.Buffer, ok = im.Buffers[el.Buffer]; !ok {
-			return nil, errors.Errorf("couldn't re-map buffer index for buffer view: %+v", el)
-		}
-		d.d.BufferViews, im.BufferViews[i] = addElem(d.d.BufferViews, el)
-	}
-	if err := d.addModelAccessors(m.Accessors, im); err != nil {
+	if err := d.addModelAccessors(m, im); err != nil {
 		return nil, errors.Wrap(err, "couldn't add accessors for model")
 	}
 	if err := d.addModelMeshes(m.Meshes, im); err != nil {
@@ -261,17 +254,20 @@ func (d *Document) addModel(hash string, m *gltf.Document) (rootNodeIndices []in
 	return rootNodeIndices, nil
 }
 
-func (d *Document) addModelAccessors(m []*gltf.Accessor, im indexMappings) error {
-	for i, el := range m {
-		if el.BufferView == nil {
-			return errors.Errorf("unimplemented: can't handle accessor with nil bufferView!")
+func (d *Document) addModelAccessors(m *gltf.Document, im indexMappings) error {
+	for i, el := range m.Accessors {
+		target := gltf.TargetNone
+		if el.BufferView != nil {
+			target = m.BufferViews[*el.BufferView].Target
 		}
-		idx, ok := im.BufferViews[*el.BufferView]
-		if !ok {
-			return errors.Errorf("couldn't re-map buffer index for buffer view: %+v", el)
+		data, err := modeler.ReadAccessor(m, el, nil)
+		if err != nil {
+			return errors.Errorf("couldn't read accessor: %+v", el)
 		}
-		el.BufferView = &idx
-		d.d.Accessors, im.Accessors[i] = addElem(d.d.Accessors, el)
+		added := modeler.WriteAccessor(d.d, target, data)
+		im.Accessors[i] = added
+		d.d.Accessors[added].Min = el.Min
+		d.d.Accessors[added].Max = el.Max
 	}
 	return nil
 }
@@ -385,11 +381,9 @@ func (d *Document) Encode(asText bool) ([]byte, error) {
 
 func newIndexMappings() indexMappings {
 	return indexMappings{
-		Accessors:   make(map[int]int),
-		Buffers:     make(map[int]int),
-		BufferViews: make(map[int]int),
-		Materials:   make(map[int]int),
-		Meshes:      make(map[int]int),
-		Nodes:       make(map[int]int),
+		Accessors: make(map[int]int),
+		Materials: make(map[int]int),
+		Meshes:    make(map[int]int),
+		Nodes:     make(map[int]int),
 	}
 }

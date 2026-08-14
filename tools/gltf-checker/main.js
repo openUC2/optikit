@@ -45,7 +45,7 @@ if (report.issues.numWarnings !== 0) {
 			);
 		}
 	}
-	process.exit(0);
+	process.exit(3);
 }
 
 if (report.issues.numInfos + report.issues.numHints > 0) {
