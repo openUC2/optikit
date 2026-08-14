@@ -1,0 +1,4 @@
+geom report primitives yml
+geom report primitives json
+geom render objects gltf
+geom render objects glb

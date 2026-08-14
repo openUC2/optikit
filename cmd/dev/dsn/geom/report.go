@@ -15,7 +15,11 @@ func reportPrimA(ctx context.Context, c *cli.Command) error {
 		return err
 	}
 
-	result, err := optikit.ReportPrimitives(ctx, design, designs.UC2GridSpacings, c.String("format"))
+	format := c.String("format")
+	if format == "yml" {
+		format = "yaml"
+	}
+	result, err := optikit.ReportPrimitives(ctx, design, designs.UC2GridSpacings, format)
 	if err != nil {
 		return err
 	}

@@ -43,9 +43,10 @@ generate-unreproducible: ## generate outside CI
 generate-unreproducible: generate-obj-step
 
 .PHONY: generate-obj-step
-generate-obj-step: ## examples/generate.sh generate-obj-step
+generate-obj-step: ## generate STEP files outputs with nondeterministically-ordered contents
 	$(call print-target)
-	./examples/generate-unreproducible.sh generate-obj-step
+	./tools/examples/run-all.sh ./examples generate-variants geom render objects step
+	./tools/examples/run-all.sh ./examples generate-obj-step
 
 .PHONY: vet
 vet: ## go vet
@@ -74,10 +75,18 @@ lint: ## golangci-lint
 
 .PHONY: test
 test: ## go test with race detector and code coverage
+test: test-go test-gltf
+
+.PHONY: test-go
+test-go: ## go test with race detector and code coverage
 	$(call print-target)
 	go test -race -covermode=atomic -coverprofile=coverage.out ./...
 	go tool cover -html=coverage.out -o coverage.html
-	examples/check-gltf.sh
+
+.PHONY: test-gltf
+test-gltf: ## gltf file validator
+	$(call print-target)
+	tools/gltf-checker/check-all.sh
 
 .PHONY: mod-tidy
 mod-tidy: ## go mod tidy

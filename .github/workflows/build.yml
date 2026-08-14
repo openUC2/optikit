@@ -31,6 +31,8 @@ jobs:
           go-version-file: go.mod
 
       - name: Build
+        env:
+          TEST_VERBOSE: ${{ env.TEST_VERBOSE }}
         run: make ci
 
       - name: Upload coverage
