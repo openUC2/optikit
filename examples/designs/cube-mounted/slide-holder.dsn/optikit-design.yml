@@ -14,11 +14,8 @@ components:
       rotation:
         type: grid
   mounted-slide-holder:
-    type: primitive
-    primitive:
-      static-models:
-        gltf: SUB - 0027 - SAMHOL - V04 - virt ass.glb
-        step: SUB - 0027 - SAMHOL - V04 - virt ass.stp
+    type: design
+    design: mounted-holder.dsn
     pose:
       rotation:
         type: grid

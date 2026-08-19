@@ -34,6 +34,10 @@ func ReportPrimitives(
 	report := make([]PrimReport, 0, len(prims))
 	for _, compID := range slices.Sorted(maps.Keys(prims)) {
 		comp := prims[compID]
+		if comp.Pose == (designs.CompPoseSpec{}) {
+			continue
+		}
+
 		m, err := comp.Pose.TransfMat(designs.UC2GridSpacings)
 		if err != nil {
 			return nil, err

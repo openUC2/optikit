@@ -1,0 +1,29 @@
+strict digraph "" {
+	graph [bb="0,0,208.49,108"];
+	node [label="\N"];
+	edge [label="\E"];
+	""	[height=0.5,
+		pos="109.49,90",
+		width=0.75];
+	insert	[height=0.5,
+		label=insert,
+		pos="32.491,18",
+		width=0.90253];
+	"" -> insert	[key=" -> insert",
+		label="",
+		pos="e,48.847,33.869 93.909,74.834 83.371,65.255 69.232,52.401 57.176,41.441"];
+	lens	[height=0.5,
+		label=lens,
+		pos="109.49,18",
+		width=0.75];
+	"" -> lens	[key=" -> lens",
+		label="",
+		pos="e,109.49,36.104 109.49,71.697 109.49,64.407 109.49,55.726 109.49,47.536"];
+	nut	[height=0.5,
+		label=nut,
+		pos="181.49,18",
+		width=0.75];
+	"" -> nut	[key=" -> nut",
+		label="",
+		pos="e,166.59,33.485 124.41,74.496 134.26,64.923 147.35,52.19 158.52,41.336"];
+}

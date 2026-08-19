@@ -1,8 +1,28 @@
-- id: objective-lens/mounted-lens
+- id: objective-lens/mounted-lens/insert
   type: static
   static-models:
-    gltf: "cube-mounted/lens.dsn/SUB - 0023 - LEND40F50 - V04 - virt ass.glb"
-    step: "cube-mounted/lens.dsn/SUB - 0023 - LEND40F50 - V04 - virt ass.stp"
+    gltf: "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2023 - INSLEND40F50 - V04.glb"
+    step: "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2023 - INSLEND40F50 - V04.stp"
+  position: [50.0, 0.0, 0.0]
+  rotation:
+    type: extrinsic
+    order: zxy
+    angles: {"y": 90.0}
+- id: objective-lens/mounted-lens/lens
+  type: static
+  static-models:
+    gltf: "cube-mounted/lens.dsn/mounted-lens.dsn/BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx.glb"
+    step: "cube-mounted/lens.dsn/mounted-lens.dsn/BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx.stp"
+  position: [50.0, 0.0, 0.0]
+  rotation:
+    type: extrinsic
+    order: zxy
+    angles: {"y": 90.0}
+- id: objective-lens/mounted-lens/nut
+  type: static
+  static-models:
+    gltf: "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2003 - NUTD40.glb"
+    step: "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2003 - NUTD40.stp"
   position: [50.0, 0.0, 0.0]
   rotation:
     type: extrinsic
@@ -28,11 +48,31 @@
     type: extrinsic
     order: zxy
     angles: {"y": -180.0, z: -180.0}
-- id: periscope-mirror-1/mounted-mirror
+- id: periscope-mirror-1/mounted-mirror/adhesive-pad
   type: static
   static-models:
-    gltf: "cube-mounted/mirror-diagonal.dsn/SUB - 0022 - MIR45TH2 - virt ass.glb"
-    step: "cube-mounted/mirror-diagonal.dsn/SUB - 0022 - MIR45TH2 - virt ass.stp"
+    gltf: "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/BUY - Adhesive pad - 41x29x1.glb"
+    step: "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/BUY - Adhesive pad - 41x29x1.stp"
+  position: [100.5, -0.5, 0.0]
+  rotation:
+    type: extrinsic
+    order: zxy
+    angles: {z: -180.0}
+- id: periscope-mirror-1/mounted-mirror/insert
+  type: static
+  static-models:
+    gltf: "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/PRT - 2022 - INSMIR45TH2.glb"
+    step: "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/PRT - 2022 - INSMIR45TH2.stp"
+  position: [100.0, 0.0, 0.0]
+  rotation:
+    type: extrinsic
+    order: zxy
+    angles: {z: -180.0}
+- id: periscope-mirror-1/mounted-mirror/mirror
+  type: static
+  static-models:
+    gltf: "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/BUY - Mirror - 40x30x2.glb"
+    step: "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/BUY - Mirror - 40x30x2.stp"
   position: [100.0, 0.0, 0.0]
   rotation:
     type: extrinsic
@@ -58,11 +98,31 @@
     type: extrinsic
     order: zxy
     angles: {"y": -180.0}
-- id: periscope-mirror-2/mounted-mirror
+- id: periscope-mirror-2/mounted-mirror/adhesive-pad
   type: static
   static-models:
-    gltf: "cube-mounted/mirror-diagonal.dsn/SUB - 0022 - MIR45TH2 - virt ass.glb"
-    step: "cube-mounted/mirror-diagonal.dsn/SUB - 0022 - MIR45TH2 - virt ass.stp"
+    gltf: "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/BUY - Adhesive pad - 41x29x1.glb"
+    step: "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/BUY - Adhesive pad - 41x29x1.stp"
+  position: [100.0, 250.5, -0.5]
+  rotation:
+    type: extrinsic
+    order: zxy
+    angles: {x: -90.0, z: -90.0}
+- id: periscope-mirror-2/mounted-mirror/insert
+  type: static
+  static-models:
+    gltf: "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/PRT - 2022 - INSMIR45TH2.glb"
+    step: "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/PRT - 2022 - INSMIR45TH2.stp"
+  position: [100.0, 250.0, 0.0]
+  rotation:
+    type: extrinsic
+    order: zxy
+    angles: {x: -90.0, z: -90.0}
+- id: periscope-mirror-2/mounted-mirror/mirror
+  type: static
+  static-models:
+    gltf: "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/BUY - Mirror - 40x30x2.glb"
+    step: "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/BUY - Mirror - 40x30x2.stp"
   position: [100.0, 250.0, 0.0]
   rotation:
     type: extrinsic
@@ -88,11 +148,21 @@
     type: extrinsic
     order: zxy
     angles: {"y": 180.0, z: 90.0}
-- id: sample-holder/mounted-slide-holder
+- id: sample-holder/mounted-slide-holder/clip
   type: static
   static-models:
-    gltf: "cube-mounted/slide-holder.dsn/SUB - 0027 - SAMHOL - V04 - virt ass.glb"
-    step: "cube-mounted/slide-holder.dsn/SUB - 0027 - SAMHOL - V04 - virt ass.stp"
+    gltf: "cube-mounted/slide-holder.dsn/mounted-holder.dsn/PRT - 2008 - SAMCLP.glb"
+    step: "cube-mounted/slide-holder.dsn/mounted-holder.dsn/PRT - 2008 - SAMCLP.stp"
+  position: [-10.0, 0.0, 0.0]
+  rotation:
+    type: extrinsic
+    order: zxy
+    angles: {"y": 90.0}
+- id: sample-holder/mounted-slide-holder/insert
+  type: static
+  static-models:
+    gltf: "cube-mounted/slide-holder.dsn/mounted-holder.dsn/PRT - 2028 - INSSAMMNT - V04.glb"
+    step: "cube-mounted/slide-holder.dsn/mounted-holder.dsn/PRT - 2028 - INSSAMMNT - V04.stp"
   position: [0.0, 0.0, 0.0]
   rotation:
     type: extrinsic
@@ -118,11 +188,31 @@
     type: extrinsic
     order: zxy
     angles: {"y": -180.0, z: -180.0}
-- id: tube-lens/mounted-lens
+- id: tube-lens/mounted-lens/insert
   type: static
   static-models:
-    gltf: "cube-mounted/lens.dsn/SUB - 0023 - LEND40F50 - V04 - virt ass.glb"
-    step: "cube-mounted/lens.dsn/SUB - 0023 - LEND40F50 - V04 - virt ass.stp"
+    gltf: "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2023 - INSLEND40F50 - V04.glb"
+    step: "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2023 - INSLEND40F50 - V04.stp"
+  position: [100.0, 250.0, 165.0]
+  rotation:
+    type: extrinsic
+    order: zxy
+    angles: {}
+- id: tube-lens/mounted-lens/lens
+  type: static
+  static-models:
+    gltf: "cube-mounted/lens.dsn/mounted-lens.dsn/BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx.glb"
+    step: "cube-mounted/lens.dsn/mounted-lens.dsn/BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx.stp"
+  position: [100.0, 250.0, 165.0]
+  rotation:
+    type: extrinsic
+    order: zxy
+    angles: {}
+- id: tube-lens/mounted-lens/nut
+  type: static
+  static-models:
+    gltf: "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2003 - NUTD40.glb"
+    step: "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2003 - NUTD40.stp"
   position: [100.0, 250.0, 165.0]
   rotation:
     type: extrinsic

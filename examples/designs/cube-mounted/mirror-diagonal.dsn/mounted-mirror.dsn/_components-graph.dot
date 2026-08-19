@@ -1,0 +1,29 @@
+strict digraph "" {
+	graph [bb="0,0,295.69,108"];
+	node [label="\N"];
+	edge [label="\E"];
+	""	[height=0.5,
+		pos="173.98,90",
+		width=0.75];
+	"adhesive-pad"	[height=0.5,
+		label="adhesive-pad",
+		pos="61.981,18",
+		width=1.7217];
+	"" -> "adhesive-pad"	[key=" -> adhesive-pad",
+		label="",
+		pos="e,87.276,34.81 154.73,76.967 138.86,67.047 115.93,52.721 96.849,40.793"];
+	insert	[height=0.5,
+		label=insert,
+		pos="173.98,18",
+		width=0.90253];
+	"" -> insert	[key=" -> insert",
+		label="",
+		pos="e,173.98,36.104 173.98,71.697 173.98,64.407 173.98,55.726 173.98,47.536"];
+	mirror	[height=0.5,
+		label=mirror,
+		pos="259.98,18",
+		width=0.99186];
+	"" -> mirror	[key=" -> mirror",
+		label="",
+		pos="e,241.66,33.909 190.56,75.503 202.57,65.726 219.08,52.294 232.98,40.979"];
+}

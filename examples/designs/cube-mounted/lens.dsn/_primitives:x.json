@@ -1,10 +1,54 @@
 [
   {
-    "id": "mounted-lens",
+    "id": "mounted-lens/insert",
     "type": "static",
     "static-models": {
-      "gltf": "SUB - 0023 - LEND40F50 - V04 - virt ass.glb",
-      "step": "SUB - 0023 - LEND40F50 - V04 - virt ass.stp"
+      "gltf": "mounted-lens.dsn/PRT - 2023 - INSLEND40F50 - V04.glb",
+      "step": "mounted-lens.dsn/PRT - 2023 - INSLEND40F50 - V04.stp"
+    },
+    "position": [
+      0,
+      0,
+      0
+    ],
+    "rotation": {
+      "type": "extrinsic",
+      "order": "zxy",
+      "angles": {
+        "x": 0,
+        "y": 90,
+        "z": -0
+      }
+    }
+  },
+  {
+    "id": "mounted-lens/lens",
+    "type": "static",
+    "static-models": {
+      "gltf": "mounted-lens.dsn/BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx.glb",
+      "step": "mounted-lens.dsn/BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx.stp"
+    },
+    "position": [
+      0,
+      0,
+      0
+    ],
+    "rotation": {
+      "type": "extrinsic",
+      "order": "zxy",
+      "angles": {
+        "x": 0,
+        "y": 90,
+        "z": -0
+      }
+    }
+  },
+  {
+    "id": "mounted-lens/nut",
+    "type": "static",
+    "static-models": {
+      "gltf": "mounted-lens.dsn/PRT - 2003 - NUTD40.glb",
+      "step": "mounted-lens.dsn/PRT - 2003 - NUTD40.stp"
     },
     "position": [
       0,

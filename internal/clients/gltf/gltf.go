@@ -102,6 +102,10 @@ func (d *Document) addComponents(
 	subdesignCompIDs := make([]designs.CompID, 0, len(compIDs))
 	for _, id := range compIDs {
 		comp := flattened[id]
+		if comp.Pose.Rotation.Type == "" {
+			continue
+		}
+
 		switch t := comp.Type; t {
 		default:
 			return errors.Errorf("unknown component type for component %s: %s", id, t)
