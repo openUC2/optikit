@@ -17,11 +17,8 @@ components:
       rotation:
         type: grid
   mounted-lens:
-    type: primitive
-    primitive:
-      static-models:
-        gltf: SUB - 0023 - LEND40F50 - V04 - virt ass.glb
-        step: SUB - 0023 - LEND40F50 - V04 - virt ass.stp
+    type: design
+    design: mounted-lens.dsn
     pose:
       rotation:
         type: grid

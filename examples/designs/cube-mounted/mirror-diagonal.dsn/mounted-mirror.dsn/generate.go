@@ -13,10 +13,6 @@ package example
 //go:generate comp render-comps-g --format=dot _components-graph.dot
 //go:generate comp render-comps-g --format=svg _components-graph.svg
 
-//go:generate geom render-pos-g --format=dot _positions-graph.dot
-//go:generate geom render-pos-g --format=svg _positions-graph.svg
-//go:generate geom render-pos-p _positions-plot.html
-
 //go:generate geom report-prim --format=json _primitives.json
 //go:generate geom report-prim --format=yaml _primitives.yml
 

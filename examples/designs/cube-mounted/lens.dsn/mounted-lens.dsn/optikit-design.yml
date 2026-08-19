@@ -1,0 +1,38 @@
+optikit-version: v0.0.0-alpha.1
+
+design:
+  description: A f50 lens mounted on an insert
+  tags:
+    - insert-mounted
+    - lens
+    - lens/convex
+    - in/core-box
+
+components:
+  lens:
+    type: primitive
+    primitive:
+      static-models:
+        gltf: BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx.glb
+        step: BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx.stp
+    pose:
+      rotation:
+        type: grid
+  nut:
+    type: primitive
+    primitive:
+      static-models:
+        gltf: PRT - 2003 - NUTD40.glb
+        step: PRT - 2003 - NUTD40.stp
+    pose:
+      rotation:
+        type: grid
+  insert:
+    type: primitive
+    primitive:
+      static-models:
+        gltf: PRT - 2023 - INSLEND40F50 - V04.glb
+        step: PRT - 2023 - INSLEND40F50 - V04.stp
+    pose:
+      rotation:
+        type: grid
