@@ -128,11 +128,21 @@
     type: extrinsic
     order: zxy
     angles: {"y": 180.0, z: 90.0}
-- id: sample-holder/mounted-slide-holder
+- id: sample-holder/mounted-slide-holder/clip
   type: static
   static-models:
-    gltf: "cube-mounted/slide-holder.dsn/SUB - 0027 - SAMHOL - V04 - virt ass.glb"
-    step: "cube-mounted/slide-holder.dsn/SUB - 0027 - SAMHOL - V04 - virt ass.stp"
+    gltf: "cube-mounted/slide-holder.dsn/mounted-holder.dsn/PRT - 2008 - SAMCLP.glb"
+    step: "cube-mounted/slide-holder.dsn/mounted-holder.dsn/PRT - 2008 - SAMCLP.stp"
+  position: [-10.0, 0.0, 0.0]
+  rotation:
+    type: extrinsic
+    order: zxy
+    angles: {"y": 90.0}
+- id: sample-holder/mounted-slide-holder/insert
+  type: static
+  static-models:
+    gltf: "cube-mounted/slide-holder.dsn/mounted-holder.dsn/PRT - 2028 - INSSAMMNT - V04.glb"
+    step: "cube-mounted/slide-holder.dsn/mounted-holder.dsn/PRT - 2028 - INSSAMMNT - V04.stp"
   position: [0.0, 0.0, 0.0]
   rotation:
     type: extrinsic

@@ -145,8 +145,8 @@ func (d *FSDesign) LoadFSDesign(subdesign string) (*FSDesign, error) {
 
 // Flattened returns a new design in which all subassembly components have been replaced with their
 // constituent primitive components, and each non-origin component's translation anchor is just the
-// root (origin) node, and each non-origin component's orientation is relative to the root (origin)
-// node.
+// root (origin) node, and each non-origin component's orientation (if an orientation exists) is
+// relative to the root (origin) node.
 // It assumes that the design's Decl.Components does not have any errors such as a nonexistent
 // translation anchor required by a CompPosesTranslSpec.
 func (d *FSDesign) Flattened(gridSpacings ContinuousXYZ[float64]) (
@@ -179,15 +179,17 @@ func (d *FSDesign) Flattened(gridSpacings ContinuousXYZ[float64]) (
 			)
 		}
 		for subcompID, subcomponent := range subflattened.Decl.Components {
-			submat, err := subcomponent.Pose.TransfMat(gridSpacings)
-			if err != nil {
-				return nil, errors.Wrapf(
-					err, "couldn't compute transformation matrix for pose of subcomponent %s", subcompID,
-				)
+			if component.Pose != (CompPoseSpec{}) && subcomponent.Pose != (CompPoseSpec{}) {
+				submat, err := subcomponent.Pose.TransfMat(gridSpacings)
+				if err != nil {
+					return nil, errors.Wrapf(
+						err, "couldn't compute transformation matrix for pose of subcomponent %s", subcompID,
+					)
+				}
+				flattenedSubmat := mat4.Ident
+				flattenedSubmat.AssignMul(&mat, &submat)
+				subcomponent.Pose = NewPose(flattenedSubmat, gridSpacings)
 			}
-			flattenedSubmat := mat4.Ident
-			flattenedSubmat.AssignMul(&mat, &submat)
-			subcomponent.Pose = NewPose(flattenedSubmat, gridSpacings)
 
 			if subcomponent.Type == CompTypePrimitive {
 				subcomponent.Primitive.StaticModels = subcomponent.Primitive.StaticModels.Prefixed(

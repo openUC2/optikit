@@ -1,0 +1,46 @@
+[
+  {
+    "id": "clip",
+    "type": "static",
+    "static-models": {
+      "gltf": "PRT - 2008 - SAMCLP.glb",
+      "step": "PRT - 2008 - SAMCLP.stp"
+    },
+    "position": [
+      0,
+      0,
+      -10
+    ],
+    "rotation": {
+      "type": "extrinsic",
+      "order": "zxy",
+      "angles": {
+        "x": 0,
+        "y": -0,
+        "z": -0
+      }
+    }
+  },
+  {
+    "id": "insert",
+    "type": "static",
+    "static-models": {
+      "gltf": "PRT - 2028 - INSSAMMNT - V04.glb",
+      "step": "PRT - 2028 - INSSAMMNT - V04.stp"
+    },
+    "position": [
+      0,
+      0,
+      0
+    ],
+    "rotation": {
+      "type": "extrinsic",
+      "order": "zxy",
+      "angles": {
+        "x": 0,
+        "y": -0,
+        "z": -0
+      }
+    }
+  }
+]

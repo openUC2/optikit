@@ -1,16 +1,24 @@
 digraph "" {
-	graph [bb="0,0,244.67,124.8"];
+	graph [bb="0,0,439.88,124.8"];
 	node [label="\N"];
 	edge [label="\E"];
 	""	[height=0.5,
-		pos="122.34,106.8",
+		pos="202.55,106.8",
 		width=0.75];
+	"mounted-holder.dsn"	[height=0.5,
+		label="mounted-holder.dsn",
+		pos="88.547,18",
+		width=2.4596];
+	"" -> "mounted-holder.dsn"	[key=" -> mounted-holder.dsn: mounted-slide-holder",
+		label="mounted-slide-holder",
+		lp="216.02,62.4",
+		pos="e,110.73,35.89 185.23,92.617 167.87,79.397 140.75,58.751 119.65,42.684"];
 	"primitives/cube-skeleton.dsn"	[height=0.5,
 		label="primitives/cube-skeleton.dsn",
-		pos="122.34,18",
+		pos="317.55,18",
 		width=3.3982];
 	"" -> "primitives/cube-skeleton.dsn"	[key=" -> primitives/cube-skeleton.dsn: skeleton",
 		label=skeleton,
-		lp="145.66,62.4",
-		pos="e,122.34,36.41 122.34,88.651 122.34,76.958 122.34,61.192 122.34,47.618"];
+		lp="319.43,62.4",
+		pos="e,308.44,36.198 226.88,98.618 243.27,92.934 264.7,83.777 280.55,70.8 289,63.881 296.43,54.586 302.38,45.78"];
 }

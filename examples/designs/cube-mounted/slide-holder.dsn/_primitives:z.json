@@ -1,10 +1,32 @@
 [
   {
-    "id": "mounted-slide-holder",
+    "id": "mounted-slide-holder/clip",
     "type": "static",
     "static-models": {
-      "gltf": "SUB - 0027 - SAMHOL - V04 - virt ass.glb",
-      "step": "SUB - 0027 - SAMHOL - V04 - virt ass.stp"
+      "gltf": "mounted-holder.dsn/PRT - 2008 - SAMCLP.glb",
+      "step": "mounted-holder.dsn/PRT - 2008 - SAMCLP.stp"
+    },
+    "position": [
+      0,
+      0,
+      -10
+    ],
+    "rotation": {
+      "type": "extrinsic",
+      "order": "zxy",
+      "angles": {
+        "x": 0,
+        "y": -0,
+        "z": -0
+      }
+    }
+  },
+  {
+    "id": "mounted-slide-holder/insert",
+    "type": "static",
+    "static-models": {
+      "gltf": "mounted-holder.dsn/PRT - 2028 - INSSAMMNT - V04.glb",
+      "step": "mounted-holder.dsn/PRT - 2028 - INSSAMMNT - V04.stp"
     },
     "position": [
       0,

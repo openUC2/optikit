@@ -137,7 +137,7 @@ func populateComponentsGraph(
 			Label: string(id),
 		}
 		edgeLabel := ""
-		if component.Type == "design" {
+		if component.Type == designs.CompTypeDesign {
 			edgeLabel = component.Design
 			if component.Instantiation.Variant != "" {
 				edgeLabel = fmt.Sprintf("%s:%s", edgeLabel, component.Instantiation.Variant)
@@ -320,10 +320,18 @@ func populatePositionGraph(
 	tg := design.Decl.Components.TranslDigraph()
 	fromIDs := slices.Sorted(maps.Keys(tg))
 	for _, fromID := range fromIDs {
+		if fromID != "" && design.Decl.Components[fromID].Pose == (designs.CompPoseSpec{}) {
+			continue
+		}
+
 		from := tg[fromID]
 		fromID = designs.JoinCompIDs(nodePrefix, fromID)
 		gg.AddNode(string(fromID))
 		for _, toID := range slices.Sorted(maps.Keys(from)) {
+			if design.Decl.Components[toID].Pose == (designs.CompPoseSpec{}) {
+				continue
+			}
+
 			edge := from[toID]
 			toID = designs.JoinCompIDs(nodePrefix, toID)
 			gg.AddEdge(string(fromID), string(toID), edge.String())
@@ -366,6 +374,10 @@ func RenderPositionPlot(comps designs.CompsSpec) (result []byte, err error) {
 	flattened := comps.TranslFlattened()
 	for _, id := range slices.Sorted(maps.Keys(flattened)) {
 		cdecl := flattened[id]
+		if cdecl.Pose == (designs.CompPoseSpec{}) {
+			continue
+		}
+
 		mat, err := cdecl.Pose.TransfMat(designs.UC2GridSpacings)
 		if err != nil {
 			return nil, err
