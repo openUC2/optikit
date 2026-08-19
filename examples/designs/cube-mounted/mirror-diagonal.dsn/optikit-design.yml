@@ -17,11 +17,8 @@ components:
       rotation:
         type: grid
   mounted-mirror:
-    type: primitive
-    primitive:
-      static-models:
-        gltf: SUB - 0022 - MIR45TH2 - virt ass.glb
-        step: SUB - 0022 - MIR45TH2 - virt ass.stp
+    type: design
+    design: mounted-mirror.dsn
     pose:
       rotation:
         type: grid

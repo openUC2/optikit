@@ -1,0 +1,41 @@
+optikit-version: v0.0.0-alpha.1
+
+design:
+  description: A diagonal mirror mounted on a cube insert
+  tags:
+    - insert-mounted
+    - mirror
+    - mirror/single-sided
+    - mirror/flat
+    - in/core-box
+
+components:
+  mirror:
+    type: primitive
+    primitive:
+      static-models:
+        gltf: BUY - Mirror - 40x30x2.glb
+        step: BUY - Mirror - 40x30x2.stp
+    pose:
+      rotation:
+        type: grid
+  adhesive-pad:
+    type: primitive
+    primitive:
+      static-models:
+        gltf: BUY - Adhesive pad - 41x29x1.glb
+        step: BUY - Adhesive pad - 41x29x1.stp
+    pose:
+      rotation:
+        type: grid
+      translation:
+        offset-mm: {x: -0.5, y: 0.5}
+  insert:
+    type: primitive
+    primitive:
+      static-models:
+        gltf: PRT - 2022 - INSMIR45TH2.glb
+        step: PRT - 2022 - INSMIR45TH2.stp
+    pose:
+      rotation:
+        type: grid
