@@ -7,6 +7,7 @@ import (
 	"maps"
 	"path"
 	"slices"
+	"strings"
 
 	"github.com/goccy/go-yaml"
 	"github.com/pkg/errors"
@@ -18,8 +19,31 @@ import (
 	"github.com/openUC2/optikit/exp/structures"
 )
 
-// DesignDeclFile is the name of the file defining each Optikit design.
-const DesignDeclFile = "optikit-design.yml"
+// DesignExprDeclFile is the name of the file defining each Optikit design.
+const DesignExprDeclFile = "optikit-design.yml"
+
+// A DesignExprDecl declares an Optikit design.
+// Some parameters are string expressions which can be evaluated to produce a DesignDecl.
+type DesignExprDecl struct {
+	// Optikit indicates that the design was written assuming the semantics of a given version
+	// of Optikit. The version must be a valid Optikit version, and it sets the minimum version of
+	// Optikit required to use the design. The Optikit tool refuses to use designs declaring newer
+	// Optikit versions for any operations beyond printing information. The Optikit version of the
+	// design must be greater than or equal to the Optikit version of every required Optikit design.
+	Optikit string `json:"optikit-version" yaml:"optikit-version"`
+	// Design defines the basic metadata for the design.
+	Design DesignSpec `json:"design" yaml:"design,omitempty"`
+	// Components declares the design's constituent components as a mapping from the ID of each
+	// component to the declaration of that component.
+	// Some component parameters are string expressions which can be evaluated to produce a CompSpec.
+	Components CompExprsSpec `json:"components" yaml:"components,omitempty"`
+	// Inputs declares the design's input variables as a mapping from the name of each variable to the
+	// declaration of that input variable.
+	Inputs InputsSpec `json:"inputs,omitempty" yaml:"inputs,omitempty"`
+	// Variants declares the design's variants as a mapping from the ID of each variant to the
+	// declaration of that variant.
+	Variants VariantsSpec `json:"variants" yaml:"variants,omitempty"`
+}
 
 // A DesignDecl declares an Optikit design.
 type DesignDecl struct {
@@ -34,6 +58,9 @@ type DesignDecl struct {
 	// Components declares the design's constituent components as a mapping from the ID of each
 	// component to the declaration of that component.
 	Components CompsSpec `json:"components" yaml:"components,omitempty"`
+	// Inputs declares the design's input variables as a mapping from the name of each variable to the
+	// declaration of that input variable.
+	Inputs InputsSpec `json:"inputs,omitempty" yaml:"inputs,omitempty"`
 	// Variants declares the design's variants as a mapping from the ID of each variant to the
 	// declaration of that variant.
 	Variants VariantsSpec `json:"variants" yaml:"variants,omitempty"`
@@ -50,9 +77,32 @@ type DesignSpec struct {
 }
 
 type (
-	CompID    string
-	CompsSpec map[CompID]CompSpec
+	CompID        string
+	CompExprsSpec map[CompID]CompExprSpec
+	CompsSpec     map[CompID]CompSpec
 )
+
+// CompExprSpec declares a component of an Optikit design.
+// Some parameters are string expressions which can be evaluated to produce a CompSpec.
+type CompExprSpec struct {
+	// Type is the type of component in the design. It can be either `location`, `primitive`, or
+	// `design`.
+	Type string `json:"type" yaml:"type"`
+	// Design is the path of the design which the component (of type `design`) instantiates, relative
+	// to the root directory of the Optikit design.
+	Design string `json:"design,omitempty" yaml:"design,omitempty"`
+	// Instantiation declares information about how the design is to be instantiated to create the
+	// component (of type `design`).
+	// Some instantiation parameters are string expressions which can be evaluated to produce a
+	// InstSpec.
+	Instantiation InstExprSpec `json:"instantiation" yaml:"instantiation,omitempty"`
+	// Primitive declares information about the model primitive which the component (of type
+	// `primitive`) is.
+	Primitive CompPrimSpec `json:"primitive" yaml:"primitive,omitempty"`
+	// Pose declares the geometry of the component.
+	// Some pose parameters are string expressions which can be evaluated to produce a CompPoseSpec.
+	Pose CompPoseExprSpec `json:"pose" yaml:"pose,omitempty"`
+}
 
 // CompSpec declares a component of an Optikit design.
 type CompSpec struct {
@@ -78,11 +128,24 @@ const (
 	CompTypeDesign    = "design"
 )
 
+// InstExprSpec declares how an indeterminate design is made determinate by specifying a particular
+// design variant, particular values of input variables, and particular feature flags.
+// The input values are string expressions which can be evaluated into concrete values.
+type InstExprSpec struct {
+	// Variant declares which design variant (if any) of a design will be used.
+	Variant VariantID `json:"variant,omitempty" yaml:"variant,omitempty"`
+	// Inputs instantiates the design's input variables to particular values, which are provided as
+	// expr expressions to be evaluated into concrete values.
+	Inputs map[VarName]Expr `json:"inputs,omitempty" yaml:"inputs,omitempty"`
+}
+
 // InstSpec declares how an indeterminate design is made determinate by specifying a particular
 // design variant, particular values of input variables, and particular feature flags.
 type InstSpec struct {
 	// Variant declares which design variant (if any) of a design will be used.
 	Variant VariantID `json:"variant,omitempty" yaml:"variant,omitempty"`
+	// Inputs instantiates the design's input variables to particular values.
+	Inputs map[VarName]any `json:"inputs,omitempty" yaml:"inputs,omitempty"`
 }
 
 type CompPrimSpec struct {
@@ -100,6 +163,20 @@ type CompPrimStaticModelsSpec struct {
 	STEP string `json:"step,omitempty" yaml:"step,omitempty"`
 }
 
+// CompPoseExprSpec declares a Optikit design's component's geometry.
+// The pose parameters are string expressions which can be evaluated to generate a CompPoseSpec.
+// A zero value indicates that the component has no geometric pose.
+type CompPoseExprSpec struct {
+	// Rotation declares the orientation of the component as a rotation.
+	// The rotation parameters are string expressions which can be evaluated to generate a
+	// CompPoseRotSpec.
+	Rotation CompPoseRotExprSpec `json:"rotation" yaml:"rotation,omitempty"`
+	// Translation declares the position of the component as a linear translation.
+	// The translation parameters are string expressions which can be evaluated to generate a
+	// CompPoseTranslSpec.
+	Translation CompPoseTranslExprSpec `json:"translation" yaml:"translation,omitempty"`
+}
+
 // CompPoseSpec declares a Optikit design's component's geometry.
 // A zero value indicates that the component has no geometric pose.
 type CompPoseSpec struct {
@@ -109,8 +186,28 @@ type CompPoseSpec struct {
 	Translation CompPoseTranslSpec `json:"translation" yaml:"translation,omitempty"`
 }
 
-// CompPoseRotSpec declares the orientation of the component as a rotation relative to the overall
-// design's orientation.
+// CompPoseRotExprSpec declares the orientation of the component as a rotation relative to the
+// overall design's orientation.
+// The pose parameters are string expressions which can be evaluated to generate a CompPoseRotSpec.
+type CompPoseRotExprSpec struct {
+	// Type is the type of orientation of the component. It can be either `` (implying a component
+	// without any spatial geometry), `uc2` (implying a UC2 cube), `grid` (for any orientation
+	// aligned with the design's axes, even if violating UC2 cube orientation constraints), or
+	// `quaternion` (for arbitrary rotations).
+	// If the type is uc2, then Grid.Z is only allowed to be +z or -z, and Grid.X is not allowed to
+	// be +z or -z.
+	Type string `json:"type,omitempty" yaml:"type"`
+	// Grid declares the orientation parameters of the component if its rotation type is `uc2` or
+	// `grid`.
+	Grid CompPoseRotGridSpec `json:"grid" yaml:"grid,omitempty"`
+	// Quaternion declares the orientation parameters of the component if its rotation type is
+	// `quaternion`.
+	// The quaternion should be a string expression which evaluates into a 4-component numeric array.
+	Quaternion Expr `json:"quaternion" yaml:"quaternion,omitempty"`
+}
+
+// CompPoseRotSpec declares the orientation of the component as a rotation relative to the
+// overall design's orientation.
 type CompPoseRotSpec struct {
 	// Type is the type of orientation of the component. It can be either `` (implying a component
 	// without any spatial geometry), `uc2` (implying a UC2 cube), `grid` (for any orientation
@@ -146,8 +243,25 @@ type CompPoseRotGridSpec struct {
 	X string `json:"x,omitempty" yaml:"x,omitempty"`
 }
 
-// CompPoseTranslSpec declares the position of the component as linear translation relative to an
-// "anchor" component, as an x-y-z offset along the overall design's coordinate axes.
+// CompPoseTranslExprSpec declares the position of the component as linear translation relative to
+// an "anchor" component, as an x-y-z offset along the overall design's coordinate axes.
+// The pose parameters are string expressions which can be evaluated to generate a
+// CompPoseTranslSpec.
+type CompPoseTranslExprSpec struct {
+	// Anchor is the ID of the component whose position will be linearly translated by the specified
+	// offsets in order to determine the position of this component.
+	// If empty, it will be the origin of the overall design's coordinate axes.
+	Anchor CompID `json:"anchor,omitempty" yaml:"anchor,omitempty"`
+	// OffsetGrid is an offset from the anchor's position towards the component's position, in the
+	// design's coordinate axes.
+	OffsetGrid ExprXYZ `json:"offset-grid" yaml:"offset-grid,omitempty"`
+	// OffsetMM is an additional offset from the anchor's position towards the component's position,
+	// in millimeters, after first applying the grid offset.
+	OffsetMM ExprXYZ `json:"offset-mm" yaml:"offset-mm,omitempty"`
+}
+
+// CompPoseTranslSpec declares the position of the component as linear translation relative to
+// an "anchor" component, as an x-y-z offset along the overall design's coordinate axes.
 type CompPoseTranslSpec struct {
 	// Anchor is the ID of the component whose position will be linearly translated by the specified
 	// offsets in order to determine the position of this component.
@@ -162,6 +276,44 @@ type CompPoseTranslSpec struct {
 }
 
 type (
+	VarName    string
+	VarType    string
+	InputsSpec map[VarName]InputVarSpec
+)
+
+const (
+	VarTypeBool       = "bool"
+	VarTypeInt        = "int"
+	VarTypeFloat64    = "float64"
+	VarTypeString     = "string"
+	VarTypeQuaternion = "quaternion"
+)
+
+var varTypeZeroValues = map[VarType]any{
+	VarTypeBool:       false,
+	VarTypeInt:        0,
+	VarTypeFloat64:    0,
+	VarTypeString:     "",
+	VarTypeQuaternion: quaternion.T{},
+}
+
+// An InputVarSpec declares an input variable of a design, which can be referenced in
+// expression-based fields in other parts of the design.
+type InputVarSpec struct {
+	// Description is a short description of the variable to be shown to users.
+	Description string `json:"description,omitempty" yaml:"description,omitempty"`
+	// Type is a string indicating the expected type of the variable, for type-checking. Allowed
+	// values are: bool, int, float64, string
+	Type VarType `json:"type,omitempty" yaml:"type,omitempty"`
+	// Units is a string indicating the expected units of the variable, to be shown to users.
+	Units string `json:"units,omitempty" yaml:"units,omitempty"`
+	// Min is the minimum allowed value of the variable. It should be either an int or a float64.
+	Min any `json:"min,omitempty" yaml:"min,omitempty"`
+	// Max is the maximum allowed value of the variable. It should be either an int or a float64.
+	Max any `json:"max,omitempty" yaml:"max,omitempty"`
+}
+
+type (
 	VariantID    string
 	VariantsSpec map[VariantID]VariantSpec
 )
@@ -173,12 +325,76 @@ type VariantSpec struct {
 	// Components declares any modifications to the design's components. Non-zero values here will
 	// overwrite non-zero values in the design's components; new components here will also be added to
 	// the design.
-	Components CompsSpec `json:"components,omitempty" yaml:"components,omitempty"`
+	Components CompExprsSpec `json:"components,omitempty" yaml:"components,omitempty"`
+	// Inputs declares any modifications to the design's input variables. Non-zero values here will
+	// overwrite non-zero values in the design's input variables; new components here will also be
+	// added to the design.
+	Inputs InputsSpec `json:"inputs,omitempty" yaml:"inputs,omitempty"`
+}
+
+// DesignExprDecl
+
+// LoadDesignExprDecl loads a DesignExprDecl from the specified file path in the provided base
+// filesystem.
+func LoadDesignExprDecl(fsys ffs.PathedFS, filePath string) (DesignExprDecl, error) {
+	bytes, err := fs.ReadFile(fsys, filePath)
+	if err != nil {
+		return DesignExprDecl{}, errors.Wrapf(
+			err, "couldn't read design config file %s/%s", fsys.Path(), filePath,
+		)
+	}
+	config := DesignExprDecl{}
+	if err = yaml.Unmarshal(bytes, &config); err != nil {
+		return DesignExprDecl{}, errors.Wrap(err, "couldn't parse design declaration with expressions")
+	}
+	return config, nil
+}
+
+// Check looks for errors in the construction of the design configuration.
+func (d DesignExprDecl) Check() (errs []error) {
+	errs = append(errs, errsWrap(d.Design.Check(), "invalid design spec")...)
+	errs = append(errs, errsWrap(d.Components.Check(), "invalid components spec")...)
+	return errs
+}
+
+// Cloned returns a deep copy of the DesignExprDecl.
+func (d DesignExprDecl) Cloned() DesignExprDecl {
+	d.Design.Tags = slices.Clone(d.Design.Tags)
+	d.Components = maps.Clone(d.Components)
+	d.Inputs = maps.Clone(d.Inputs)
+	d.Variants = maps.Clone(d.Variants)
+	return d
+}
+
+// Instantiated returns a CompExprsSpec which has been modified with design variants, input
+// variables, and feature flags, as specified by the provided instantiation parameters.
+func (d DesignExprDecl) Instantiated(instantiation InstSpec) (dd DesignDecl, err error) {
+	s := d.Components
+	if instantiation.Variant != "" {
+		v, has := d.Variants[instantiation.Variant]
+		if !has {
+			return dd, errors.Errorf("requested variant not found: %s", instantiation.Variant)
+		}
+		dd.Inputs = d.Inputs.Merged(v.Inputs)
+		s = d.Components.Merged(v.Components)
+	}
+
+	inputEnv, err := MakeExprEnv(instantiation.Inputs, dd.Inputs)
+	if err != nil {
+		return dd, errors.Wrapf(
+			err, "couldn't make expression env with inputs %+v", instantiation.Inputs,
+		)
+	}
+	if dd.Components, err = s.Evaluated(inputEnv); err != nil {
+		return dd, errors.Wrapf(err, "couldn't evaluate expressions with inputs %+v", inputEnv)
+	}
+	return dd, nil
 }
 
 // DesignDecl
 
-// LoadDesignDecl loads a DesignDecl from the specified file path in the provided base filesystem.
+// LoadDesignDecl loads a DesignExprDecl from the specified file path in the provided base
+// filesystem.
 func LoadDesignDecl(fsys ffs.PathedFS, filePath string) (DesignDecl, error) {
 	bytes, err := fs.ReadFile(fsys, filePath)
 	if err != nil {
@@ -188,7 +404,7 @@ func LoadDesignDecl(fsys ffs.PathedFS, filePath string) (DesignDecl, error) {
 	}
 	config := DesignDecl{}
 	if err = yaml.Unmarshal(bytes, &config); err != nil {
-		return DesignDecl{}, errors.Wrap(err, "couldn't parse design config")
+		return DesignDecl{}, errors.Wrap(err, "couldn't parse design declaration")
 	}
 	return config, nil
 }
@@ -196,30 +412,16 @@ func LoadDesignDecl(fsys ffs.PathedFS, filePath string) (DesignDecl, error) {
 // Check looks for errors in the construction of the design configuration.
 func (d DesignDecl) Check() (errs []error) {
 	errs = append(errs, errsWrap(d.Design.Check(), "invalid design spec")...)
+	// TODO: make the components check account for declared input variables
 	errs = append(errs, errsWrap(d.Components.Check(), "invalid components spec")...)
 	return errs
-}
-
-// NeedsInstantiation checks whether the DesignDecl needs instantiation parameters to be provided
-// to obtain a usable CompsSpec.
-func (d DesignDecl) NeedsInstantiation() bool {
-	return len(d.Variants) > 0
-}
-
-// Instantiate returns a CompsSpec which has been modified with design variants, input variables,
-// and feature flags, as specified by the provided instantiation parameters.
-func (d DesignDecl) Instantiate(instantiation InstSpec) (s CompsSpec, err error) {
-	v, has := d.Variants[instantiation.Variant]
-	if !has {
-		return s, errors.Errorf("requested variant not found: %s", instantiation.Variant)
-	}
-	return d.Components.Merged(v.Components), nil
 }
 
 // Cloned returns a deep copy of the DesignDecl.
 func (d DesignDecl) Cloned() DesignDecl {
 	d.Design.Tags = slices.Clone(d.Design.Tags)
 	d.Components = maps.Clone(d.Components)
+	d.Inputs = maps.Clone(d.Inputs)
 	d.Variants = maps.Clone(d.Variants)
 	return d
 }
@@ -229,6 +431,49 @@ func (d DesignDecl) Cloned() DesignDecl {
 // Check looks for errors in the construction of the design spec.
 func (s DesignSpec) Check() (errs []error) {
 	return errs
+}
+
+// CompExprsSpec
+
+// Check looks for errors in the construction of the components spec.
+func (s CompExprsSpec) Check() (errs []error) {
+	for id, component := range s {
+		anchor := component.Pose.Translation.Anchor
+		if _, exists := s[anchor]; anchor != "" && !exists {
+			errs = append(errs, errors.Errorf(
+				"component %s depends on nonexistent translation anchor %s", id, anchor,
+			))
+		}
+		// TODO: check for validity of instantiation...or maybe we must do this in FSDesign
+	}
+	return errs
+}
+
+// Merged returns a new CompExprsSpec created by applying the specified overlay, without modifying
+// this current CompExprsSpec or the overlay.
+func (s CompExprsSpec) Merged(overlay CompExprsSpec) CompExprsSpec {
+	merged := maps.Clone(s)
+	for id, o := range overlay {
+		already, alreadyHas := merged[id]
+		if !alreadyHas {
+			merged[id] = o
+			continue
+		}
+
+		merged[id] = already.Merged(o)
+	}
+	return merged
+}
+
+// Evaluated evaluates the parameter expressions with the given ExprEnv into a CompsSpec.
+func (s CompExprsSpec) Evaluated(env ExprEnv) (result CompsSpec, err error) {
+	result = make(CompsSpec)
+	for id, c := range s {
+		if result[id], err = c.Evaluated(env); err != nil {
+			return nil, errors.Wrapf(err, "couldn't evaluate expressions in component %s", id)
+		}
+	}
+	return result, nil
 }
 
 // CompsSpec
@@ -272,22 +517,6 @@ func (s CompsSpec) TranslDigraph() TranslDigraph {
 	return g
 }
 
-// Merged returns a new CompsSpec created by applying the specified overlay, without modifying
-// this current CompsSpec or the overlay.
-func (s CompsSpec) Merged(overlay CompsSpec) CompsSpec {
-	merged := maps.Clone(s)
-	for id, o := range overlay {
-		already, alreadyHas := merged[id]
-		if !alreadyHas {
-			merged[id] = o
-			continue
-		}
-
-		merged[id] = already.Merged(o)
-	}
-	return merged
-}
-
 // TranslFlattened returns a new CompsSpec in which each non-origin component's translation anchor
 // is just the root (origin) node.
 // It assumes that the CompsSpec does not have any errors such as a nonexistent translation anchor
@@ -326,6 +555,7 @@ func (s CompsSpec) Primitives() CompsSpec {
 
 // CompID
 
+// JoinCompIDs concatenates component IDs with slash ("/") delimiters into a path-style name.
 func JoinCompIDs(elem ...CompID) CompID {
 	elems := make([]string, 0, len(elem))
 	for _, e := range elem {
@@ -334,17 +564,99 @@ func JoinCompIDs(elem ...CompID) CompID {
 	return CompID(path.Join(elems...))
 }
 
-// CompSpec
+// CompExprSpec
 
-// Merged returns a new CompSpec created by applying the specified overlay, without modifying this
-// current CompsSpec or the overlay.
-func (s CompSpec) Merged(overlay CompSpec) CompSpec {
-	return CompSpec{
-		Type:      cmp.Or(overlay.Type, s.Type),
-		Design:    cmp.Or(overlay.Design, s.Design),
-		Primitive: s.Primitive.Merged(overlay.Primitive),
-		Pose:      s.Pose.Merged(overlay.Pose),
+// Merged returns a new CompExprSpec created by applying the specified overlay, without modifying
+// this current CompExprSpec or the overlay.
+func (s CompExprSpec) Merged(overlay CompExprSpec) CompExprSpec {
+	return CompExprSpec{
+		Type:          cmp.Or(overlay.Type, s.Type),
+		Design:        cmp.Or(overlay.Design, s.Design),
+		Instantiation: s.Instantiation.Merged(overlay.Instantiation),
+		Primitive:     s.Primitive.Merged(overlay.Primitive),
+		Pose:          s.Pose.Merged(overlay.Pose),
 	}
+}
+
+// Evaluated evaluates the expressions with the given ExprEnv into a CompSpec.
+func (s CompExprSpec) Evaluated(env ExprEnv) (result CompSpec, err error) {
+	result = CompSpec{
+		Type:      s.Type,
+		Design:    s.Design,
+		Primitive: s.Primitive,
+	}
+	if result.Instantiation, err = s.Instantiation.Evaluated(env); err != nil {
+		return result, errors.Wrap(err, "couldn't evaluate expressions in instantiation section")
+	}
+	if result.Pose, err = s.Pose.Evaluated(env); err != nil {
+		return result, errors.Wrap(err, "couldn't evaluate expressions in pose section")
+	}
+	return result, nil
+}
+
+// InstExprSpec
+
+// Merged returns a new InstExprSpec created by applying the specified overlay, without modifying
+// this current InstExprSpec or the overlay.
+func (s InstExprSpec) Merged(overlay InstExprSpec) InstExprSpec {
+	merged := InstExprSpec{
+		Variant: cmp.Or(overlay.Variant, s.Variant),
+	}
+	mergedInputs := maps.Clone(s.Inputs)
+	for name, o := range overlay.Inputs {
+		already, alreadyHas := mergedInputs[name]
+		if !alreadyHas {
+			mergedInputs[name] = o
+			continue
+		}
+
+		mergedInputs[name] = cmp.Or(o, already)
+	}
+	merged.Inputs = mergedInputs
+	return merged
+}
+
+// Evaluated evaluates the expressions with the given ExprEnv into a CompSpec.
+func (s InstExprSpec) Evaluated(env ExprEnv) (InstSpec, error) {
+	inputs := make(map[VarName]any)
+	for varName, expr := range s.Inputs {
+		if expr == "" {
+			continue
+		}
+
+		value, err := expr.evalAsAny(env.ToMap())
+		if err != nil {
+			return InstSpec{}, errors.Wrapf(
+				err, "couldn't evaluate input %s as expression %s", varName, expr,
+			)
+		}
+		inputs[varName] = value
+	}
+	return InstSpec{
+		Variant: s.Variant,
+		Inputs:  inputs,
+	}, nil
+}
+
+// InstSpec
+
+// String returns an abbreviated string representation of the InstSpec.
+func (s InstSpec) String() string {
+	result := ":"
+	if s.Variant != "" {
+		result += string(s.Variant)
+	}
+	if len(s.Inputs) > 0 {
+		inputs := make([]string, len(s.Inputs), 0)
+		for _, varName := range slices.Sorted(maps.Keys(s.Inputs)) {
+			inputs = append(inputs, fmt.Sprintf("%s=%s", varName, s.Inputs[varName]))
+		}
+		result += fmt.Sprintf("(%s)", strings.Join(inputs, " "))
+	}
+	if result == ":" {
+		return ""
+	}
+	return result
 }
 
 // CompPrimSpec
@@ -378,21 +690,37 @@ func (s CompPrimStaticModelsSpec) Prefixed(pathPrefix string) CompPrimStaticMode
 	}
 }
 
+// CompPoseExprSpec
+
+// Merged returns a new CompPoseExprSpec created by applying the specified overlay, without
+// modifying this current CompsPoseExprSpec or the overlay.
+func (s CompPoseExprSpec) Merged(overlay CompPoseExprSpec) CompPoseExprSpec {
+	return CompPoseExprSpec{
+		Rotation:    s.Rotation.Merged(overlay.Rotation),
+		Translation: s.Translation.Merged(overlay.Translation),
+	}
+}
+
+// Evaluated evaluates the pose expressions with the given ExprEnv into a CompPoseSpec.
+func (s CompPoseExprSpec) Evaluated(env ExprEnv) (result CompPoseSpec, err error) {
+	if result.Rotation, err = s.Rotation.Evaluated(env); err != nil {
+		return CompPoseSpec{}, errors.Wrap(err, "couldn't evaluate rotation")
+	}
+	if result.Translation, err = s.Translation.Evaluated(env); err != nil {
+		return CompPoseSpec{}, errors.Wrap(err, "couldn't evaluate translation")
+	}
+	return result, nil
+}
+
 // CompPoseSpec
 
+// NewPose builds a new CompPoseSpec from a transformation matrix.
+// The translation component is decomposed into a discrete component (for any non-zero grid
+// spacings) and any remaining non-discrete component.
 func NewPose(mat mat4.T, gridSpacings ContinuousXYZ[float64]) CompPoseSpec {
 	return CompPoseSpec{
 		Rotation:    NewPoseRot(mat),
 		Translation: NewPoseTransl(mat, gridSpacings),
-	}
-}
-
-// Merged returns a new CompPoseSpec created by applying the specified overlay, without modifying
-// this current CompsPoseSpec or the overlay.
-func (s CompPoseSpec) Merged(overlay CompPoseSpec) CompPoseSpec {
-	return CompPoseSpec{
-		Rotation:    s.Rotation.Merged(overlay.Rotation),
-		Translation: s.Translation.Merged(overlay.Translation),
 	}
 }
 
@@ -417,8 +745,58 @@ func (s CompPoseSpec) TransfMat(gridSpacings ContinuousXYZ[float64]) (mat4.T, er
 	return m, nil
 }
 
+// CompPoseRotExprSpec
+
+// Merged returns a new CompPoseRotExprSpec created by applying the specified overlay, without
+// modifying this current CompsPoseExprSpec or the overlay.
+func (s CompPoseRotExprSpec) Merged(overlay CompPoseRotExprSpec) CompPoseRotExprSpec {
+	t := cmp.Or(overlay.Type, s.Type)
+	switch t {
+	default:
+		return CompPoseRotExprSpec{}
+	case RotTypeUC2, RotTypeGrid:
+		return CompPoseRotExprSpec{
+			Type: t,
+			Grid: s.Grid.Merged(overlay.Grid),
+		}
+	case RotTypeQuaternion:
+		return CompPoseRotExprSpec{
+			Type:       t,
+			Quaternion: cmp.Or(overlay.Quaternion, s.Quaternion),
+		}
+	}
+}
+
+// Evaluated evaluates the pose expressions with the given ExprEnv into a CompPoseRotSpec.
+// Parameters not associated with the CompPoseRotExprSpec's type are excluded from the result; for
+// example, if the rotation type is "quaternion", then the result's Grid field will be zero.
+func (s CompPoseRotExprSpec) Evaluated(env ExprEnv) (result CompPoseRotSpec, err error) {
+	result.Type = s.Type
+	switch result.Type {
+	case RotTypeUC2, RotTypeGrid:
+		result.Grid = s.Grid
+	case RotTypeQuaternion:
+		if s.Quaternion != "" {
+			evaluated, err := s.Quaternion.evalAs[[4]any](env.ToMap())
+			if err != nil {
+				return CompPoseRotSpec{}, errors.Wrap(err, "couldn't evaluate offsetGrid")
+			}
+			if result.Quaternion, err = convertToQuaternion(evaluated); err != nil {
+				return CompPoseRotSpec{}, errors.Wrapf(
+					err, "evaluated quat expr %s as array %+v, but couldn't convert it to a quaternion",
+					s.Quaternion, evaluated,
+				)
+			}
+		}
+	}
+	return result, nil
+}
+
 // CompPoseRotSpec
 
+// NewPoseRot builds a CompPoseRotSpec from a transformation matrix. If the transformation matrix
+// specifies an axis-aligned rotation, then the result will be of type "grid" (note: it will never
+// be of type "uc2"). Otherwise, the result will be of type "quaternion".
 func NewPoseRot(mat mat4.T) CompPoseRotSpec {
 	z := mat.MulVec3(&vec3.UnitZ)
 	zDir, zAxisAligned := BasisDirs[z]
@@ -469,28 +847,9 @@ func (s CompPoseRotSpec) Check() (errs []error) {
 	}
 }
 
-// Merged returns a new CompPoseRotSpec created by applying the specified overlay, without modifying
-// this current CompsPoseSpec or the overlay.
-func (s CompPoseRotSpec) Merged(overlay CompPoseRotSpec) CompPoseRotSpec {
-	t := cmp.Or(overlay.Type, s.Type)
-	switch t {
-	default:
-		return CompPoseRotSpec{}
-	case RotTypeUC2, RotTypeGrid:
-		return CompPoseRotSpec{
-			Type: t,
-			Grid: s.Grid.Merged(overlay.Grid),
-		}
-	case RotTypeQuaternion:
-		return CompPoseRotSpec{
-			Type:       t,
-			Quaternion: cmp.Or(overlay.Quaternion, s.Quaternion),
-		}
-	}
-}
-
 // CompPoseRotGridSpec
 
+// Check looks for errors in the construction of the component grid orientation spec.
 func (s CompPoseRotGridSpec) Check() (errs []error) {
 	if s.Z[1] == s.X[1] {
 		errs = append(errs, errors.Errorf("component's z and x axes are coaxial: z=%s, x=%s", s.Z, s.X))
@@ -525,14 +884,49 @@ func (s CompPoseRotSpec) TransfMat() mat4.T {
 	}
 }
 
+// CompPoseTranslExprSpec
+
+// Evaluated evaluates the pose expressions with the given ExprEnv into a CompPoseSpec.
+func (s CompPoseTranslExprSpec) Evaluated(env ExprEnv) (result CompPoseTranslSpec, err error) {
+	result = CompPoseTranslSpec{
+		Anchor: s.Anchor,
+	}
+	if result.OffsetGrid, err = s.OffsetGrid.EvaluatedInt(env.ToMap()); err != nil {
+		return CompPoseTranslSpec{}, errors.Wrap(err, "couldn't evaluate offsetGrid")
+	}
+	if result.OffsetMM, err = s.OffsetMM.EvaluatedFloat64(env.ToMap()); err != nil {
+		return CompPoseTranslSpec{}, errors.Wrap(err, "couldn't evaluate offsetMM")
+	}
+	return result, nil
+}
+
+// Merged returns a new CompPoseTranslSpec created by applying the specified overlay, without modifying
+// this current CompsPoseSpec or the overlay.
+func (s CompPoseTranslExprSpec) Merged(overlay CompPoseTranslExprSpec) CompPoseTranslExprSpec {
+	return CompPoseTranslExprSpec{
+		Anchor:     cmp.Or(overlay.Anchor, s.Anchor),
+		OffsetGrid: s.OffsetGrid.Merged(overlay.OffsetGrid),
+		OffsetMM:   s.OffsetMM.Merged(overlay.OffsetMM),
+	}
+}
+
 // CompPoseTranslSpec
 
+// NewPoseTransl builds a new CompPoseTranslSpec from a transformation matrix.
+// The translation component is decomposed into a discrete component (for any non-zero grid
+// spacings) and any remaining non-discrete component.
 func NewPoseTransl(mat mat4.T, gridSpacings ContinuousXYZ[float64]) CompPoseTranslSpec {
 	transl := mat.MulVec3(&vec3.Zero)
 	var gridded DiscreteXYZ[int]
-	gridded.X = int(transl[0] / gridSpacings.X)
-	gridded.Y = int(transl[1] / gridSpacings.Y)
-	gridded.Z = int(transl[2] / gridSpacings.Z)
+	if spacing := gridSpacings.X; spacing != 0 {
+		gridded.X = int(transl[0] / spacing)
+	}
+	if spacing := gridSpacings.Y; spacing != 0 {
+		gridded.Y = int(transl[1] / spacing)
+	}
+	if spacing := gridSpacings.Z; spacing != 0 {
+		gridded.Z = int(transl[2] / spacing)
+	}
 	griddedMM := AsMM(gridded, gridSpacings)
 	var mm ContinuousXYZ[float64]
 	mm.X = transl[0] - griddedMM.X
@@ -544,8 +938,8 @@ func NewPoseTransl(mat mat4.T, gridSpacings ContinuousXYZ[float64]) CompPoseTran
 	}
 }
 
-// Merged returns a new CompPoseTranslSpec created by applying the specified overlay, without modifying
-// this current CompsPoseSpec or the overlay.
+// Merged returns a new CompPoseTranslSpec created by applying the specified overlay, without
+// modifying this current CompsPoseSpec or the overlay.
 func (s CompPoseTranslSpec) Merged(overlay CompPoseTranslSpec) CompPoseTranslSpec {
 	return CompPoseTranslSpec{
 		Anchor:     cmp.Or(overlay.Anchor, s.Anchor),
@@ -554,6 +948,7 @@ func (s CompPoseTranslSpec) Merged(overlay CompPoseTranslSpec) CompPoseTranslSpe
 	}
 }
 
+// String returns an abbreviated representation of the CompPoseTranslSpec.
 func (s CompPoseTranslSpec) String() string {
 	switch {
 	case s.OffsetGrid == gridZero && s.OffsetMM == mmZero:
@@ -572,10 +967,44 @@ var (
 	mmZero   ContinuousXYZ[float64]
 )
 
+// Added returns the vector sum of the translation specified by this CompPoseTranslSpec and the
+// translation specified by the provided CompPoseTranslSpec.
 func (s CompPoseTranslSpec) Added(t CompPoseTranslSpec) CompPoseTranslSpec {
 	return CompPoseTranslSpec{
 		Anchor:     s.Anchor,
 		OffsetGrid: s.OffsetGrid.Added(t.OffsetGrid),
 		OffsetMM:   s.OffsetMM.Added(t.OffsetMM),
+	}
+}
+
+// InputsSpec
+
+// Merged returns a new InputsSpec created by applying the specified overlay, without modifying
+// this current InputsSpec or the overlay.
+func (s InputsSpec) Merged(overlay InputsSpec) InputsSpec {
+	merged := maps.Clone(s)
+	for id, o := range overlay {
+		already, alreadyHas := merged[id]
+		if !alreadyHas {
+			merged[id] = o
+			continue
+		}
+
+		merged[id] = already.Merged(o)
+	}
+	return merged
+}
+
+// InputVarSpec
+
+// Merged returns a new InputSpec created by applying the specified overlay, without modifying
+// this current InputSpec or the overlay.
+func (s InputVarSpec) Merged(overlay InputVarSpec) InputVarSpec {
+	return InputVarSpec{
+		Description: cmp.Or(overlay.Description, s.Description),
+		Type:        cmp.Or(overlay.Type, s.Type),
+		Units:       cmp.Or(overlay.Units, s.Units),
+		Min:         cmp.Or(overlay.Min, s.Min),
+		Max:         cmp.Or(overlay.Max, s.Max),
 	}
 }

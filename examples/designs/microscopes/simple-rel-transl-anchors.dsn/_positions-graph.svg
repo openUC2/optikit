@@ -10,19 +10,19 @@
 <polygon fill="white" stroke="none" points="-4,4 -4,-630 4593.79,-630 4593.79,4 -4,4"/>
 <g id="node1" class="node">
 <title></title>
-<ellipse fill="none" stroke="black" cx="1725.59" cy="-608" rx="27" ry="18"/>
+<ellipse fill="none" stroke="black" cx="1727.59" cy="-608" rx="27" ry="18"/>
 </g>
 <!-- sample&#45;holder -->
 <g id="node28" class="node">
 <title>sample&#45;holder</title>
-<ellipse fill="none" stroke="black" cx="1725.59" cy="-535" rx="66.28" ry="18"/>
-<text text-anchor="middle" x="1725.59" y="-530.8" font-family="Times,serif" font-size="14.00">sample&#45;holder</text>
+<ellipse fill="none" stroke="black" cx="1727.59" cy="-535" rx="66.28" ry="18"/>
+<text text-anchor="middle" x="1727.59" y="-530.8" font-family="Times,serif" font-size="14.00">sample&#45;holder</text>
 </g>
 <!-- &#45;&gt;sample&#45;holder -->
 <g id="edge1" class="edge">
 <title>&#45;&gt;sample&#45;holder</title>
-<path fill="none" stroke="black" d="M1725.59,-589.81C1725.59,-582.23 1725.59,-573.1 1725.59,-564.54"/>
-<polygon fill="black" stroke="black" points="1729.09,-564.54 1725.59,-554.54 1722.09,-564.54 1729.09,-564.54"/>
+<path fill="none" stroke="black" d="M1727.59,-589.81C1727.59,-582.23 1727.59,-573.1 1727.59,-564.54"/>
+<polygon fill="black" stroke="black" points="1731.09,-564.54 1727.59,-554.54 1724.09,-564.54 1731.09,-564.54"/>
 </g>
 <!-- light&#45;source -->
 <g id="node2" class="node">
@@ -338,16 +338,16 @@
 <!-- sample&#45;holder&#45;&gt;light&#45;source -->
 <g id="edge26" class="edge">
 <title>sample&#45;holder&#45;&gt;light&#45;source</title>
-<path fill="none" stroke="black" d="M1680.41,-521.39C1659.99,-515.29 1635.7,-507.45 1614.32,-499 1590.82,-489.71 1565.3,-477.54 1545,-467.33"/>
-<polygon fill="black" stroke="black" points="1546.75,-464.29 1536.25,-462.88 1543.58,-470.53 1546.75,-464.29"/>
-<text text-anchor="middle" x="1644.46" y="-486.4" font-family="Times,serif" font-size="14.00">[x&#45;80] mm</text>
+<path fill="none" stroke="black" d="M1682.29,-521.48C1661.63,-515.36 1636.99,-507.49 1615.32,-499 1591.61,-489.71 1565.86,-477.54 1545.37,-467.33"/>
+<polygon fill="black" stroke="black" points="1547.03,-464.25 1536.52,-462.87 1543.88,-470.5 1547.03,-464.25"/>
+<text text-anchor="middle" x="1645.46" y="-486.4" font-family="Times,serif" font-size="14.00">[x&#45;80] mm</text>
 </g>
 <!-- sample&#45;holder&#45;&gt;objective&#45;lens -->
 <g id="edge27" class="edge">
 <title>sample&#45;holder&#45;&gt;objective&#45;lens</title>
-<path fill="none" stroke="black" d="M1710.36,-517.26C1698.85,-504.62 1682.85,-487.04 1669.75,-472.65"/>
-<polygon fill="black" stroke="black" points="1672.38,-470.34 1663.06,-465.3 1667.2,-475.05 1672.38,-470.34"/>
-<text text-anchor="middle" x="1708.77" y="-486.4" font-family="Times,serif" font-size="14.00">[x+1]</text>
+<path fill="none" stroke="black" d="M1711.97,-517.26C1699.98,-504.42 1683.24,-486.48 1669.7,-471.97"/>
+<polygon fill="black" stroke="black" points="1672.57,-469.91 1663.19,-464.99 1667.45,-474.69 1672.57,-469.91"/>
+<text text-anchor="middle" x="1709.95" y="-486.4" font-family="Times,serif" font-size="14.00">[x+1]</text>
 </g>
 <!-- sample&#45;holder/mounted&#45;slide&#45;holder -->
 <g id="node29" class="node">
@@ -358,8 +358,9 @@
 <!-- sample&#45;holder&#45;&gt;sample&#45;holder/mounted&#45;slide&#45;holder -->
 <g id="edge28" class="edge">
 <title>sample&#45;holder&#45;&gt;sample&#45;holder/mounted&#45;slide&#45;holder</title>
-<path fill="none" stroke="black" d="M1758.59,-519.08C1789.3,-505.2 1835.4,-484.36 1870.06,-468.69"/>
-<polygon fill="black" stroke="black" points="1871.37,-471.93 1879.04,-464.63 1868.49,-465.56 1871.37,-471.93"/>
+<path fill="none" stroke="black" d="M1760.25,-519.08C1790.63,-505.2 1836.25,-484.36 1870.56,-468.69"/>
+<polygon fill="black" stroke="black" points="1871.79,-471.97 1879.43,-464.63 1868.88,-465.6 1871.79,-471.97"/>
+<text text-anchor="middle" x="1871.36" y="-486.4" font-family="Times,serif" font-size="14.00">[x+12] mm</text>
 </g>
 <!-- sample&#45;holder/skeleton -->
 <g id="node32" class="node">
@@ -370,8 +371,8 @@
 <!-- sample&#45;holder&#45;&gt;sample&#45;holder/skeleton -->
 <g id="edge29" class="edge">
 <title>sample&#45;holder&#45;&gt;sample&#45;holder/skeleton</title>
-<path fill="none" stroke="black" d="M1787.32,-528C1939.78,-513.18 2335.13,-474.75 2520.26,-456.76"/>
-<polygon fill="black" stroke="black" points="2520.49,-460.25 2530.1,-455.8 2519.81,-453.28 2520.49,-460.25"/>
+<path fill="none" stroke="black" d="M1789.18,-528C1941.2,-513.19 2335.27,-474.8 2520.13,-456.79"/>
+<polygon fill="black" stroke="black" points="2520.34,-460.29 2529.95,-455.83 2519.66,-453.32 2520.34,-460.29"/>
 </g>
 <!-- sample&#45;holder/mounted&#45;slide&#45;holder/clip -->
 <g id="node30" class="node">

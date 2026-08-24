@@ -10,40 +10,43 @@ import (
 	"github.com/openUC2/optikit/exp/designs"
 )
 
-var reports = map[string][]string{ // design -> variants
-	"primitives/cube-skeleton.dsn": {""},
+var reports = map[string][]designs.InstSpec{ // design -> instantiations
+	"primitives/cube-skeleton.dsn": {{}},
 	"primitives/axes.dsn": {
-		"ZposXpos",
-		"ZposYpos",
-		"ZposXneg",
-		"ZposYneg",
-		"ZnegXpos",
-		"ZnegYpos",
-		"ZnegXneg",
-		"ZnegYneg",
-		"YposXpos",
-		"YposZneg",
-		"YposXneg",
-		"YposZpos",
-		"YnegXpos",
-		"YnegZneg",
-		"YnegXneg",
-		"YnegZpos",
-		"XposZneg",
-		"XposYpos",
-		"XposZpos",
-		"XposYneg",
-		"XnegZneg",
-		"XnegYpos",
-		"XnegZpos",
-		"XnegYneg",
+		{Variant: "ZposXpos"},
+		{Variant: "ZposYpos"},
+		{Variant: "ZposXneg"},
+		{Variant: "ZposYneg"},
+		{Variant: "ZnegXpos"},
+		{Variant: "ZnegYpos"},
+		{Variant: "ZnegXneg"},
+		{Variant: "ZnegYneg"},
+		{Variant: "YposXpos"},
+		{Variant: "YposZneg"},
+		{Variant: "YposXneg"},
+		{Variant: "YposZpos"},
+		{Variant: "YnegXpos"},
+		{Variant: "YnegZneg"},
+		{Variant: "YnegXneg"},
+		{Variant: "YnegZpos"},
+		{Variant: "XposZneg"},
+		{Variant: "XposYpos"},
+		{Variant: "XposZpos"},
+		{Variant: "XposYneg"},
+		{Variant: "XnegZneg"},
+		{Variant: "XnegYpos"},
+		{Variant: "XnegZpos"},
+		{Variant: "XnegYneg"},
 	},
-	"cube-mounted/lens.dsn":                     {"x", "y", "z"},
-	"cube-mounted/mirror-diagonal.dsn":          {"_z", "xy"},
-	"cube-mounted/slide-holder.dsn":             {"x", "y", "z"},
-	"microscopes/simple-3d.dsn":                 {""},
-	"microscopes/simple-rel-transl-anchors.dsn": {""},
-	"microscopes/simple-abs-transl-anchors.dsn": {""},
+	"cube-mounted/lens.dsn":            {{Variant: "x"}, {Variant: "y"}, {Variant: "z"}},
+	"cube-mounted/mirror-diagonal.dsn": {{Variant: "_z"}, {Variant: "xy"}},
+	"cube-mounted/slide-holder.dsn": {
+		{Variant: "x", Inputs: map[designs.VarName]any{"offset": -12}},
+		{Variant: "z", Inputs: map[designs.VarName]any{"offset": 7}},
+	},
+	"microscopes/simple-3d.dsn":                 {{}},
+	"microscopes/simple-rel-transl-anchors.dsn": {{}},
+	"microscopes/simple-abs-transl-anchors.dsn": {{}},
 }
 
 func TestReportPrims(t *testing.T) {
@@ -54,23 +57,23 @@ func TestReportPrims(t *testing.T) {
 	}
 	examplesPath := path.Join(path.Dir(path.Dir(cwd)), "examples")
 
-	for design, variants := range reports {
-		for _, variant := range variants {
-			name := fmt.Sprintf("%s:%s", design, variant)
+	for design, instantiations := range reports {
+		for _, instantiation := range instantiations {
+			name := fmt.Sprintf("%s:%s", design, instantiation)
 			t.Run(name, func(t *testing.T) {
 				t.Parallel()
 
 				dp := path.Join(examplesPath, "designs", design)
 
-				t.Logf("load %s:%s", design, variant)
-				design, err := LoadFSDesign(dp, variant, false)
+				t.Logf("load %s:%s", design, instantiation)
+				design, err := LoadFSDesign(dp, instantiation.Variant, instantiation.Inputs, false)
 				if err != nil {
 					t.Error(err)
 					return
 				}
 
 				for format := range fileExts {
-					checkPrimitives(t, variant, design, dp, format)
+					checkPrimitives(t, instantiation.Variant, design, dp, format)
 				}
 			})
 		}
@@ -83,13 +86,13 @@ var fileExts = map[string]string{
 }
 
 func checkPrimitives(
-	t *testing.T, variant string, design *designs.FSDesign, dp, format string,
+	t *testing.T, variant designs.VariantID, design *designs.FSDesign, dp, format string,
 ) {
 	t.Helper()
 
 	reportName := "_primitives"
 	if variant != "" {
-		reportName += ":" + variant
+		reportName += ":" + string(variant)
 	}
 	t.Logf("report %s to %s", reportName, format)
 	reportName += "." + fileExts[format]

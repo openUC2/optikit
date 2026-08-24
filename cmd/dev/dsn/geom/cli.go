@@ -14,8 +14,14 @@ func MakeCmd(_ optikit.Versions) *cli.Command {
 		Usage:   "Facilitates development and maintenance of the design's geometry",
 		Flags: []cli.Flag{
 			&cli.StringFlag{
-				Name:  "variant",
-				Usage: "Select design variant",
+				Name:    "variant",
+				Aliases: []string{"v"},
+				Usage:   "Select design variant",
+			},
+			&cli.StringSliceFlag{
+				Name:    "input",
+				Aliases: []string{"i"},
+				Usage:   "Set value of input variable, using format `variablename:variablevalue`",
 			},
 		},
 		Commands: cmds,

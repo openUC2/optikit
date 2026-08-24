@@ -22,6 +22,8 @@ components:
     design: cube-mounted/slide-holder.dsn
     instantiation:
       variant: x
+      inputs:
+        offset: 7
     pose:
       rotation:
         type: uc2

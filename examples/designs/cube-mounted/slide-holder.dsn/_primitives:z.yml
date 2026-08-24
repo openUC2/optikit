@@ -3,7 +3,7 @@
   static-models:
     gltf: "mounted-holder.dsn/PRT - 2008 - SAMCLP.glb"
     step: "mounted-holder.dsn/PRT - 2008 - SAMCLP.stp"
-  position: [0.0, 0.0, -10.0]
+  position: [0.0, 0.0, 2.0]
   rotation:
     type: extrinsic
     order: zxy
@@ -13,7 +13,7 @@
   static-models:
     gltf: "mounted-holder.dsn/PRT - 2028 - INSSAMMNT - V04.glb"
     step: "mounted-holder.dsn/PRT - 2028 - INSSAMMNT - V04.stp"
-  position: [0.0, 0.0, 0.0]
+  position: [0.0, 0.0, 12.0]
   rotation:
     type: extrinsic
     order: zxy

@@ -17,12 +17,31 @@ import (
 	ffs "github.com/openUC2/optikit/exp/fs"
 )
 
+// A FSDesignExpr is an Optikit design stored at the root of a [fs.FS] filesystem.
+// Various parameters of the design are string expressions which can be evaluated to get a FSDesign.
+type FSDesignExpr struct {
+	// DesignExpr is the design at the root of the filesystem.
+	DesignExpr
+	// FS is a filesystem which contains the design's contents.
+	FS ffs.PathedFS
+}
+
 // A FSDesign is an Optikit design stored at the root of a [fs.FS] filesystem.
 type FSDesign struct {
 	// Design is the design at the root of the filesystem.
 	Design
 	// FS is a filesystem which contains the design's contents.
 	FS ffs.PathedFS
+}
+
+// A DesignExpr is an Optikit design, a complete specification of all package deployments which
+// should be active on a Docker host.
+// Various parameters of the Decl are string expressions which can be evaluated to get a Design.
+type DesignExpr struct {
+	// Decl is the Optikit design definition for the design.
+	Decl DesignExprDecl
+	// Version is the version or pseudoversion of the design.
+	Version string
 }
 
 // A Design is an Optikit design, a complete specification of all package deployments which should
@@ -34,33 +53,34 @@ type Design struct {
 	Version string
 }
 
-// FSDesign
+// FSDesignExpr
 
-// LoadFSDesign loads a FSDesign from the specified directory path in the provided base filesystem.
-func LoadFSDesign(fsys ffs.PathedFS, subdirPath string) (p *FSDesign, err error) {
-	p = &FSDesign{}
+// LoadFSDesignExpr loads a FSDesignExpr from the specified directory path in the provided base
+// filesystem.
+func LoadFSDesignExpr(fsys ffs.PathedFS, subdirPath string) (p *FSDesignExpr, err error) {
+	p = &FSDesignExpr{}
 	if p.FS, err = fsys.Sub(subdirPath); err != nil {
 		return nil, errors.Wrapf(
 			err, "couldn't enter directory %s from fs at %s", subdirPath, fsys.Path(),
 		)
 	}
-	if p.Design.Decl, err = LoadDesignDecl(p.FS, DesignDeclFile); err != nil {
+	if p.DesignExpr.Decl, err = LoadDesignExprDecl(p.FS, DesignExprDeclFile); err != nil {
 		return nil, errors.Wrapf(err, "couldn't load design declaration from %s", fsys.Path())
 	}
 	return p, nil
 }
 
-// LoadFSDesignContaining loads the FSDesign containing the specified sub-directory path in the
-// provided base filesystem.
+// LoadFSDesignExprContaining loads the FSDesignExpr containing the specified sub-directory path in
+// the provided base filesystem.
 // The provided path should use the host OS's path separators.
 // The sub-directory path does not have to actually exist.
-func LoadFSDesignContaining(path string) (*FSDesign, error) {
+func LoadFSDesignExprContaining(path string) (*FSDesignExpr, error) {
 	designCandidatePath, err := filepath.Abs(path)
 	if err != nil {
 		return nil, errors.Wrapf(err, "couldn't convert '%s' into an absolute path", path)
 	}
 	for {
-		if fsDesign, err := LoadFSDesign(ffs.DirFS(designCandidatePath), "."); err == nil {
+		if fsDesign, err := LoadFSDesignExpr(ffs.DirFS(designCandidatePath), "."); err == nil {
 			return fsDesign, nil
 		}
 
@@ -74,12 +94,12 @@ func LoadFSDesignContaining(path string) (*FSDesign, error) {
 	}
 }
 
-// LoadFSDesigns loads all FSDesigns from the provided base filesystem matching the specified search
-// pattern. The search pattern should be a [doublestar] pattern, such as `**`, matching design
-// directories to search for.
+// LoadFSDesignExprs loads all FSDesignExprs from the provided base filesystem matching the
+// specified search pattern. The search pattern should be a [doublestar] pattern, such as `**`,
+// matching design directories to search for.
 // In the embedded [Design] of each loaded FSDesign, the version is *not* initialized.
-func LoadFSDesigns(fsys ffs.PathedFS, searchPattern string) ([]*FSDesign, error) {
-	searchPattern = path.Join(searchPattern, DesignDeclFile)
+func LoadFSDesignExprs(fsys ffs.PathedFS, searchPattern string) ([]*FSDesignExpr, error) {
+	searchPattern = path.Join(searchPattern, DesignExprDeclFile)
 	designDeclFiles, err := doublestar.Glob(fsys, searchPattern)
 	if err != nil {
 		return nil, errors.Wrapf(
@@ -88,13 +108,13 @@ func LoadFSDesigns(fsys ffs.PathedFS, searchPattern string) ([]*FSDesign, error)
 		)
 	}
 
-	orderedDesigns := make([]*FSDesign, 0, len(designDeclFiles))
-	designs := make(map[string]*FSDesign)
+	orderedDesigns := make([]*FSDesignExpr, 0, len(designDeclFiles))
+	designs := make(map[string]*FSDesignExpr)
 	for _, designDeclFilePath := range designDeclFiles {
-		if path.Base(designDeclFilePath) != DesignDeclFile {
+		if path.Base(designDeclFilePath) != DesignExprDeclFile {
 			continue
 		}
-		design, err := LoadFSDesign(fsys, path.Dir(designDeclFilePath))
+		design, err := LoadFSDesignExpr(fsys, path.Dir(designDeclFilePath))
 		if err != nil {
 			return nil, errors.Wrapf(
 				err, "couldn't load design from %s/%s", fsys.Path(), designDeclFilePath,
@@ -109,11 +129,48 @@ func LoadFSDesigns(fsys ffs.PathedFS, searchPattern string) ([]*FSDesign, error)
 }
 
 // Exists checks whether the design actually exists on the OS's filesystem.
+func (d *FSDesignExpr) Exists() bool {
+	return ffs.DirExists(d.FS.Path())
+}
+
+// Remove deletes the design from the OS's filesystem, if it exists.
+func (d *FSDesignExpr) Remove() error {
+	return os.RemoveAll(d.FS.Path())
+}
+
+// Path returns either the design's path (if specified) or its path on the filesystem.
+func (d *FSDesignExpr) Path() string {
+	if d.Decl.Design.Path == "" {
+		return d.FS.Path()
+	}
+	return d.Decl.Design.Path
+}
+
+// Cloned returns a new design which is a deep copy of the FSDesign.
+func (d *FSDesignExpr) Cloned() *FSDesignExpr {
+	return &FSDesignExpr{
+		DesignExpr: DesignExpr{
+			Decl:    d.DesignExpr.Decl.Cloned(),
+			Version: d.DesignExpr.Version,
+		},
+		FS: d.FS,
+	}
+}
+
+// LoadFSDesignExpr loads the subdesign at the specified filesystem path, relative to the current
+// design.
+func (d *FSDesignExpr) LoadFSDesignExpr(subdesign string) (*FSDesignExpr, error) {
+	return LoadFSDesignExpr(d.FS, subdesign)
+}
+
+// FSDesign
+
+// Exists checks whether the design actually exists on the OS's filesystem.
 func (d *FSDesign) Exists() bool {
 	return ffs.DirExists(d.FS.Path())
 }
 
-// Remove deletes the cache from the OS's filesystem, if it exists.
+// Remove deletes the design from the OS's filesystem, if it exists.
 func (d *FSDesign) Remove() error {
 	return os.RemoveAll(d.FS.Path())
 }
@@ -139,8 +196,8 @@ func (d *FSDesign) Cloned() *FSDesign {
 
 // LoadFSDesign loads the subdesign at the specified filesystem path, relative to the current
 // design.
-func (d *FSDesign) LoadFSDesign(subdesign string) (*FSDesign, error) {
-	return LoadFSDesign(d.FS, subdesign)
+func (d *FSDesign) LoadFSDesignExpr(subdesign string) (*FSDesignExpr, error) {
+	return LoadFSDesignExpr(d.FS, subdesign)
 }
 
 // Flattened returns a new design in which all subassembly components have been replaced with their
@@ -211,24 +268,25 @@ func (d *FSDesign) LoadCompFSDesign(compID CompID) (subdesign *FSDesign, err err
 		)
 	}
 
-	if subdesign, err = d.LoadFSDesign(component.Design); err != nil {
+	subdesignExpr, err := d.LoadFSDesignExpr(component.Design)
+	if err != nil {
 		return nil, errors.Wrapf(
 			err, "couldn't load subdesign %s for component %s", component.Design, compID,
 		)
 	}
-	errs := subdesign.Check()
+	errs := subdesignExpr.Check()
 	if len(errs) > 0 {
 		return nil, gerrors.Join(errs...)
 	}
-	if subdesign.Decl.NeedsInstantiation() {
-		if subdesign.Decl.Components, err = subdesign.Decl.Instantiate(InstSpec{
-			Variant: component.Instantiation.Variant,
-		}); err != nil {
-			return nil, errors.Wrapf(
-				err, "couldn't instantiate variant %s of subdesign %s for component %s",
-				component.Instantiation.Variant, component.Design, compID,
-			)
-		}
+	subdesign = &FSDesign{FS: subdesignExpr.FS}
+	if subdesign.Design, err = subdesignExpr.Instantiated(component.Instantiation); err != nil {
+		return nil, errors.Wrapf(
+			err, "couldn't instantiate variant %s of subdesign %s for component %s",
+			component.Instantiation.Variant, component.Design, compID,
+		)
+	}
+	if errs = subdesign.Check(); len(errs) > 0 {
+		return nil, gerrors.Join(errs...)
 	}
 	return subdesign, nil
 }
@@ -240,9 +298,11 @@ func (d *FSDesign) Primitives() (CompsSpec, error) {
 		if c.Type != CompTypeDesign {
 			continue
 		}
-		subdesign, err := d.LoadFSDesign(c.Design)
+		subdesign, err := d.LoadCompFSDesign(id)
 		if err != nil {
-			return nil, errors.Wrapf(err, "couldn't load subdesign %s of component %s", c.Design, id)
+			return nil, errors.Wrapf(
+				err, "couldn't load design of component %s with subdesign %s", id, c.Design,
+			)
 		}
 		subprims, err := subdesign.Primitives()
 		if err != nil {
@@ -255,6 +315,25 @@ func (d *FSDesign) Primitives() (CompsSpec, error) {
 		}
 	}
 	return prims, nil
+}
+
+// DesignExpr
+
+// Check looks for errors in the construction of the design.
+func (d DesignExpr) Check() (errs []error) {
+	errs = append(errs, errsWrap(d.Decl.Check(), "invalid design declaration")...)
+	return errs
+}
+
+func (d DesignExpr) Instantiated(instantiation InstSpec) (Design, error) {
+	dd, err := d.Decl.Instantiated(instantiation)
+	if err != nil {
+		return Design{}, err
+	}
+	return Design{
+		Decl:    dd,
+		Version: d.Version,
+	}, nil
 }
 
 // Design

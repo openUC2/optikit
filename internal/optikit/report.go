@@ -25,7 +25,7 @@ func ReportPrimitives(
 ) (result []byte, err error) {
 	d, err := design.Flattened(gridSpacings)
 	if err != nil {
-		return nil, errors.Wrapf(err, "couldn't flatten design %s", d.Path())
+		return nil, errors.Wrapf(err, "couldn't flatten design %s", design.Path())
 	}
 	prims, err := d.Primitives()
 	if err != nil {
