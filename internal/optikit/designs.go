@@ -2,6 +2,7 @@ package optikit
 
 import (
 	gerrors "errors"
+	"maps"
 	"os"
 
 	"github.com/pkg/errors"
@@ -35,9 +36,7 @@ func LoadFSDesign(
 		FS: de.FS,
 	}
 	i := make(map[designs.VarName]any)
-	for name, value := range inputs {
-		i[name] = value
-	}
+	maps.Copy(i, inputs)
 	if d.Design, err = de.Instantiated(designs.InstSpec{
 		Variant: variant,
 		Inputs:  i,

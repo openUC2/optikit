@@ -149,11 +149,9 @@ func (d *FSDesignExpr) Path() string {
 // Cloned returns a new design which is a deep copy of the FSDesign.
 func (d *FSDesignExpr) Cloned() *FSDesignExpr {
 	return &FSDesignExpr{
-		DesignExpr: DesignExpr{
-			Decl:    d.Decl.Cloned(),
-			Version: d.Version,
-		},
-		FS: d.FS,
+		Decl:    d.Decl.Cloned(),
+		Version: d.Version,
+		FS:      d.FS,
 	}
 }
 
@@ -186,11 +184,9 @@ func (d *FSDesign) Path() string {
 // Cloned returns a new design which is a deep copy of the FSDesign.
 func (d *FSDesign) Cloned() *FSDesign {
 	return &FSDesign{
-		Design: Design{
-			Decl:    d.Decl.Cloned(),
-			Version: d.Version,
-		},
-		FS: d.FS,
+		Decl:    d.Decl.Cloned(),
+		Version: d.Version,
+		FS:      d.FS,
 	}
 }
 
