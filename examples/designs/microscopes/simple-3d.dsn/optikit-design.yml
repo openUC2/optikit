@@ -1,7 +1,7 @@
 optikit-version: v0.0.0-alpha.1
 
 design:
-  description: A minimal 2-D microscope consisting of components whose positions are specified relative to each other.
+  description: A minimal 2-D microscope consisting of components whose 3-D positions are specified relative to each other.
   tags:
     - instrument
     - instrument/microscope
@@ -42,21 +42,25 @@ components:
         offset-grid: {x: 1}
   periscope-mirror-1:
     type: design
-    design: cube-mounted/mirror-diagonal.dsn
+    design: cube-mounted/mirror-static.dsn
     instantiation:
-      variant: xy
+      variant: x
+      inputs:
+        off-axis: true
     pose:
       rotation:
         type: uc2
-        grid: {x: -x}
+        grid: {x: +y}
       translation:
         anchor: objective-lens
         offset-grid: {x: 1}
   periscope-mirror-2:
     type: design
-    design: cube-mounted/mirror-diagonal.dsn
+    design: cube-mounted/mirror-static.dsn
     instantiation:
-      variant: _z
+      variant: z
+      inputs:
+        off-axis: true
     pose:
       rotation:
         type: uc2

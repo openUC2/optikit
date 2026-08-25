@@ -4,15 +4,16 @@ import (
 	"fmt"
 	"reflect"
 	"strconv"
+	"strings"
 
 	exprl "github.com/expr-lang/expr"
 	"github.com/pkg/errors"
 	"github.com/ungerik/go3d/float64/quaternion"
 )
 
-type (
-	Expr string
-)
+type Expr string
+
+const ExprPrefix = "~ "
 
 type ExprEnv struct {
 	Inputs map[VarName]ExprEnvInput
@@ -183,9 +184,31 @@ func (e Expr) evalAsAny(env any, options ...exprl.Option) (result any, err error
 	return raw, nil
 }
 
-func (e Expr) evalAs[T any](
-	env any, options ...exprl.Option,
-) (result T, err error) {
+// evalAsString returns the expression as a string literal if it doesn't contain the expected
+// expression prefix `~ `; otherwise, it evaluates the expression.
+func (e Expr) evalAsString[T ~string](env any, options ...exprl.Option) (result T, err error) {
+	if s := string(e); !strings.HasPrefix(s, ExprPrefix) {
+		return T(strings.TrimPrefix(s, ExprPrefix)), nil
+	}
+
+	options = append([]exprl.Option{}, options...)
+	options = append(options, exprl.AsKind(reflect.String))
+
+	raw, err := e.eval(env, options...)
+	if err != nil {
+		return result, errors.Wrapf(err, "couldn't evaluate expression for %T result", result)
+	}
+	asString, ok := raw.(string)
+	if !ok {
+		return result, errors.Errorf(
+			"expression result %+v is a %T, but a string is needed for conversion to %T",
+			raw, raw, result,
+		)
+	}
+	return T(asString), nil
+}
+
+func (e Expr) evalAs[T any](env any, options ...exprl.Option) (result T, err error) {
 	options = append([]exprl.Option{}, options...)
 	options = append(options, exprl.AsKind(reflect.ValueOf(result).Kind()))
 
@@ -204,7 +227,8 @@ func (e Expr) evalAs[T any](
 
 func (e Expr) eval(env any, options ...exprl.Option) (result any, err error) {
 	program, err := exprl.Compile(
-		string(e), append([]exprl.Option{exprl.Env(env)}, options...)...,
+		strings.TrimPrefix(string(e), ExprPrefix),
+		append([]exprl.Option{exprl.Env(env)}, options...)...,
 	)
 	if err != nil {
 		return nil, errors.Wrapf(

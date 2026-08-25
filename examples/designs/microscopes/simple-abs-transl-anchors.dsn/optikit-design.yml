@@ -46,7 +46,7 @@ components:
     pose:
       rotation:
         type: uc2
-        grid: {x: -x}
+        grid: {x: +y}
       translation:
         offset-grid: {x: 2}
   periscope-mirror-2:
@@ -57,6 +57,7 @@ components:
     pose:
       rotation:
         type: uc2
+        grid: {x: -y}
       translation:
         offset-grid: {x: 2, y: 10}
   tube-lens:

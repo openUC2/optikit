@@ -132,8 +132,11 @@ const (
 // design variant, particular values of input variables, and particular feature flags.
 // The input values are string expressions which can be evaluated into concrete values.
 type InstExprSpec struct {
-	// Variant declares which design variant (if any) of a design will be used.
-	Variant VariantID `json:"variant,omitempty" yaml:"variant,omitempty"`
+	// Variant declares which design variant (if any) of a design will be used. The value will only
+	// be evaluated as an expression if it begins with the prefix `~ `; otherwise, it will be treated
+	// as a string literal directly encoding the variant ID (rather than an expression to be evaluated
+	// into a variant ID).
+	Variant Expr `json:"variant,omitempty" yaml:"variant,omitempty"`
 	// Inputs instantiates the design's input variables to particular values, which are provided as
 	// expr expressions to be evaluated into concrete values.
 	Inputs map[VarName]Expr `json:"inputs,omitempty" yaml:"inputs,omitempty"`
@@ -617,8 +620,8 @@ func (s InstExprSpec) Merged(overlay InstExprSpec) InstExprSpec {
 }
 
 // Evaluated evaluates the expressions with the given ExprEnv into a CompSpec.
-func (s InstExprSpec) Evaluated(env ExprEnv) (InstSpec, error) {
-	inputs := make(map[VarName]any)
+func (s InstExprSpec) Evaluated(env ExprEnv) (result InstSpec, err error) {
+	result.Inputs = make(map[VarName]any)
 	for varName, expr := range s.Inputs {
 		if expr == "" {
 			continue
@@ -630,12 +633,12 @@ func (s InstExprSpec) Evaluated(env ExprEnv) (InstSpec, error) {
 				err, "couldn't evaluate input %s as expression %s", varName, expr,
 			)
 		}
-		inputs[varName] = value
+		result.Inputs[varName] = value
 	}
-	return InstSpec{
-		Variant: s.Variant,
-		Inputs:  inputs,
-	}, nil
+	if result.Variant, err = s.Variant.evalAsString[VariantID](env.ToMap()); err != nil {
+		return result, errors.Wrapf(err, "couldn't evaluate variant expression %s", s.Variant)
+	}
+	return result, nil
 }
 
 // InstSpec
@@ -777,9 +780,11 @@ func (s CompPoseRotExprSpec) Evaluated(env ExprEnv) (result CompPoseRotSpec, err
 		result.Grid = s.Grid
 	case RotTypeQuaternion:
 		if s.Quaternion != "" {
-			evaluated, err := s.Quaternion.evalAs[[4]any](env.ToMap())
+			evaluated, err := s.Quaternion.evalAsAny(env.ToMap())
 			if err != nil {
-				return CompPoseRotSpec{}, errors.Wrap(err, "couldn't evaluate offsetGrid")
+				return CompPoseRotSpec{}, errors.Wrapf(
+					err, "couldn't evaluate quat expr %s", s.Quaternion,
+				)
 			}
 			if result.Quaternion, err = convertToQuaternion(evaluated); err != nil {
 				return CompPoseRotSpec{}, errors.Wrapf(

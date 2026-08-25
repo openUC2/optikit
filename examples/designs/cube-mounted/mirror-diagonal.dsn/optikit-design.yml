@@ -26,6 +26,11 @@ components:
 variants:
   xy:
     description: Normal vector of mirror surface in the x-y plane
+    components:
+      mounted-mirror:
+        pose:
+          rotation:
+            grid: {x: +y}
   _z:
     description: Normal vector of mirror surface in the y-z plane
     components:
