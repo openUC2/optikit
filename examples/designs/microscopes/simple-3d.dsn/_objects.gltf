@@ -107218,6 +107218,11 @@
         0,
         0.7071067811865476
       ],
+      "translation": [
+        0.005,
+        0,
+        0
+      ],
       "name": "mounted-lens",
       "children": [
         4,
@@ -107586,6 +107591,11 @@
       ]
     },
     {
+      "translation": [
+        0,
+        0,
+        -0.008
+      ],
       "name": "mounted-lens",
       "children": [
         55,

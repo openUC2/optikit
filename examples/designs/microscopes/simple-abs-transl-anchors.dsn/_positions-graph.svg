@@ -111,8 +111,9 @@
 <!-- objective&#45;lens&#45;&gt;objective&#45;lens/mounted&#45;lens -->
 <g id="edge8" class="edge">
 <title>objective&#45;lens&#45;&gt;objective&#45;lens/mounted&#45;lens</title>
-<path fill="none" stroke="black" d="M2311.25,-182.58C2302.13,-180.6 2292.6,-178.81 2283.59,-177.6 2206.47,-167.24 1099.47,-126.27 718.94,-112.41"/>
-<polygon fill="black" stroke="black" points="719.26,-108.92 709.14,-112.05 719,-115.91 719.26,-108.92"/>
+<path fill="none" stroke="black" d="M2311.25,-182.58C2302.13,-180.6 2292.6,-178.81 2283.59,-177.6 2244.89,-172.4 1104.85,-127.75 718.32,-112.72"/>
+<polygon fill="black" stroke="black" points="718.47,-109.22 708.34,-112.33 718.2,-116.21 718.47,-109.22"/>
+<text text-anchor="middle" x="1882.25" y="-147" font-family="Times,serif" font-size="14.00">[x+5] mm</text>
 </g>
 <!-- objective&#45;lens/skeleton -->
 <g id="node8" class="node">
@@ -441,6 +442,7 @@
 <title>tube&#45;lens&#45;&gt;tube&#45;lens/mounted&#45;lens</title>
 <path fill="none" stroke="black" d="M6898.59,-177.45C6898.59,-165.76 6898.59,-149.99 6898.59,-136.42"/>
 <polygon fill="black" stroke="black" points="6902.09,-136.72 6898.59,-126.72 6895.09,-136.72 6902.09,-136.72"/>
+<text text-anchor="middle" x="6925.22" y="-147" font-family="Times,serif" font-size="14.00">[x&#45;8] mm</text>
 </g>
 <!-- tube&#45;lens/skeleton -->
 <g id="node40" class="node">

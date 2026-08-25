@@ -3,7 +3,7 @@
   static-models:
     gltf: "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2023 - INSLEND40F50 - V04.glb"
     step: "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2023 - INSLEND40F50 - V04.stp"
-  position: [50.0, 0.0, 0.0]
+  position: [55.0, 0.0, 0.0]
   rotation:
     type: extrinsic
     order: zxy
@@ -13,7 +13,7 @@
   static-models:
     gltf: "cube-mounted/lens.dsn/mounted-lens.dsn/BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx.glb"
     step: "cube-mounted/lens.dsn/mounted-lens.dsn/BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx.stp"
-  position: [50.0, 0.0, 0.0]
+  position: [55.0, 0.0, 0.0]
   rotation:
     type: extrinsic
     order: zxy
@@ -23,7 +23,7 @@
   static-models:
     gltf: "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2003 - NUTD40.glb"
     step: "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2003 - NUTD40.stp"
-  position: [50.0, 0.0, 0.0]
+  position: [55.0, 0.0, 0.0]
   rotation:
     type: extrinsic
     order: zxy
@@ -193,7 +193,7 @@
   static-models:
     gltf: "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2023 - INSLEND40F50 - V04.glb"
     step: "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2023 - INSLEND40F50 - V04.stp"
-  position: [250.0, 500.0, 0.0]
+  position: [242.0, 500.0, 0.0]
   rotation:
     type: extrinsic
     order: zxy
@@ -203,7 +203,7 @@
   static-models:
     gltf: "cube-mounted/lens.dsn/mounted-lens.dsn/BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx.glb"
     step: "cube-mounted/lens.dsn/mounted-lens.dsn/BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx.stp"
-  position: [250.0, 500.0, 0.0]
+  position: [242.0, 500.0, 0.0]
   rotation:
     type: extrinsic
     order: zxy
@@ -213,7 +213,7 @@
   static-models:
     gltf: "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2003 - NUTD40.glb"
     step: "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2003 - NUTD40.stp"
-  position: [250.0, 500.0, 0.0]
+  position: [242.0, 500.0, 0.0]
   rotation:
     type: extrinsic
     order: zxy

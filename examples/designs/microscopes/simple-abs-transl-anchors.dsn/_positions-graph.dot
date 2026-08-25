@@ -58,8 +58,9 @@ strict digraph "" {
 		pos="591.59,106.8",
 		width=3.3458];
 	"objective-lens" -> "objective-lens/mounted-lens"	[key="objective-lens -> objective-lens/mounted-lens",
-		label="",
-		pos="e,707.63,112 2311.2,182.58 2302.1,180.6 2292.6,178.81 2283.6,177.6 2206.5,167.24 1099.5,126.27 718.94,112.41"];
+		label="[x+5] mm",
+		lp="1882.2,151.2",
+		pos="e,706.83,112.27 2311.2,182.58 2302.1,180.6 2292.6,178.81 2283.6,177.6 2244.9,172.4 1104.8,127.75 718.32,112.72"];
 	"objective-lens/skeleton"	[height=0.5,
 		pos="1337.6,106.8",
 		width=2.7796];
@@ -224,7 +225,8 @@ strict digraph "" {
 		pos="6898.6,106.8",
 		width=2.8245];
 	"tube-lens" -> "tube-lens/mounted-lens"	[key="tube-lens -> tube-lens/mounted-lens",
-		label="",
+		label="[x-8] mm",
+		lp="6925.2,151.2",
 		pos="e,6898.6,125.21 6898.6,177.45 6898.6,165.76 6898.6,149.99 6898.6,136.42"];
 	"tube-lens/skeleton"	[height=0.5,
 		pos="7412.6,106.8",

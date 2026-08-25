@@ -31,6 +31,8 @@ components:
     design: cube-mounted/lens.dsn
     instantiation:
       variant: x
+      inputs:
+        offset: 5
     pose:
       rotation:
         type: uc2
@@ -62,6 +64,8 @@ components:
     design: cube-mounted/lens.dsn
     instantiation:
       variant: x
+      inputs:
+        offset: -8
     pose:
       rotation:
         type: uc2
