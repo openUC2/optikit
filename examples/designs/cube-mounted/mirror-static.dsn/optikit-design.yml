@@ -1,0 +1,46 @@
+optikit-version: v0.0.0-alpha.1
+
+design:
+  description: A diagonal mirror mounted in a cube, with 90 or 45 deg rotations
+  tags:
+    - cube-mounted
+    - mirror
+    - mirror/single-sided
+    - mirror/flat
+    - in/qbox
+
+components:
+  skeleton:
+    type: design
+    design: primitives/cube-skeleton.dsn
+    pose:
+      rotation:
+        type: grid
+  mounted-mirror:
+    type: design
+    design: mounted-mirror.dsn
+    instantiation:
+      variant: "~ inputs['off-axis'].value ? 'xy' : 'x'"
+    pose:
+      rotation:
+        type: grid
+
+inputs:
+  off-axis:
+    description: >
+      Whether the mirror should be rotated to a 45 deg deflection from the base axis direction
+      (i.e. basis vectors) of the cube's coordinate system, as specified by the design variant.
+    type: bool
+    tags:
+      - adjustment/manual-assembly
+
+variants:
+  x:
+    description: Base direction in the x-axis for the normal vector of the mirror before any off-axis deflection
+  z:
+    description: Base direction in the z-axis for the normal vector of the mirror before any off-axis deflection
+    components:
+      mounted-mirror:
+        pose:
+          rotation:
+            grid: {z: +y, x: +z}

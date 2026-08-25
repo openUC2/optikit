@@ -1,0 +1,61 @@
+optikit-version: v0.0.0-alpha.1
+
+design:
+  description: A diagonal mirror mounted on a cube insert
+  tags:
+    - insert-mounted
+    - mirror
+    - mirror/single-sided
+    - mirror/flat
+    - in/core-box
+
+components:
+  mirror:
+    type: primitive
+    primitive:
+      static-models:
+        gltf: BUY - Mirror - D24x3.glb
+        step: BUY - Mirror - D24x3.stp
+    pose:
+      rotation:
+        type: grid
+  adhesive-pad:
+    type: primitive
+    primitive:
+      static-models:
+        gltf: BUY - Adhesive pad - D22x1.glb
+        step: BUY - Adhesive pad - D22x1.stp
+    pose:
+      rotation:
+        type: grid
+      translation:
+        offset-mm:
+          x: ~ -0.5 - 3
+  mount-base:
+    type: primitive
+    primitive:
+      static-models:
+        gltf: PRT - 2110 - MASINSMIRHOLLOW - C.glb
+        step: PRT - 2110 - MASINSMIRHOLLOW - C.stp
+    pose:
+      rotation:
+        type: grid
+  screw-1:
+    type: primitive
+    primitive:
+      static-models:
+        bom: TP lens head screw with TORX - 2.5 x 8 - St - A2K.bom.yml
+  screw-2:
+    type: primitive
+    primitive:
+      static-models:
+        bom: TP lens head screw with TORX - 2.5 x 8 - St - A2K.bom.yml
+  mount-top:
+    type: primitive
+    primitive:
+      static-models:
+        gltf: PRT - 2111 - MASINSMIRHOLUPP - C.glb
+        step: PRT - 2111 - MASINSMIRHOLUPP - C.stp
+    pose:
+      rotation:
+        type: grid

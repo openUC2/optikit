@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"path/filepath"
 
 	"github.com/openUC2/optikit/internal/clients/build123d"
 )
@@ -35,7 +36,11 @@ func main() {
 		return
 	}
 	const perms = 0o644
-	if err = os.WriteFile(os.Args[2], result, perms); err != nil {
+	if err = os.WriteFile( //nolint:gosec // internal tool
+		filepath.Clean(os.Args[2]),
+		result,
+		perms,
+	); err != nil {
 		fmt.Fprint(os.Stderr, err)
 		panic(err)
 	}

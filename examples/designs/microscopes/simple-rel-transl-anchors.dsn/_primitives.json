@@ -7,7 +7,7 @@
       "step": "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2023 - INSLEND40F50 - V04.stp"
     },
     "position": [
-      50,
+      55,
       0,
       0
     ],
@@ -29,7 +29,7 @@
       "step": "cube-mounted/lens.dsn/mounted-lens.dsn/BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx.stp"
     },
     "position": [
-      50,
+      55,
       0,
       0
     ],
@@ -51,7 +51,7 @@
       "step": "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2003 - NUTD40.stp"
     },
     "position": [
-      50,
+      55,
       0,
       0
     ],
@@ -127,7 +127,7 @@
       "angles": {
         "x": 0,
         "y": -0,
-        "z": -180
+        "z": 180
       }
     }
   },
@@ -193,7 +193,7 @@
       "angles": {
         "x": 0,
         "y": -0,
-        "z": -180
+        "z": 90
       }
     }
   },
@@ -215,7 +215,7 @@
       "angles": {
         "x": 0,
         "y": -180,
-        "z": -0
+        "z": -90
       }
     }
   },
@@ -236,7 +236,7 @@
       "order": "zxy",
       "angles": {
         "x": 0,
-        "y": -0,
+        "y": 0,
         "z": -0
       }
     }
@@ -302,8 +302,8 @@
       "order": "zxy",
       "angles": {
         "x": 0,
-        "y": -0,
-        "z": -0
+        "y": 0,
+        "z": -90
       }
     }
   },
@@ -324,8 +324,8 @@
       "order": "zxy",
       "angles": {
         "x": 0,
-        "y": -180,
-        "z": -180
+        "y": 180,
+        "z": 90
       }
     }
   },
@@ -337,7 +337,7 @@
       "step": "cube-mounted/slide-holder.dsn/mounted-holder.dsn/PRT - 2008 - SAMCLP.stp"
     },
     "position": [
-      -10,
+      2,
       0,
       0
     ],
@@ -359,7 +359,7 @@
       "step": "cube-mounted/slide-holder.dsn/mounted-holder.dsn/PRT - 2028 - INSSAMMNT - V04.stp"
     },
     "position": [
-      0,
+      12,
       0,
       0
     ],
@@ -425,7 +425,7 @@
       "step": "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2023 - INSLEND40F50 - V04.stp"
     },
     "position": [
-      250,
+      242,
       500,
       0
     ],
@@ -447,7 +447,7 @@
       "step": "cube-mounted/lens.dsn/mounted-lens.dsn/BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx.stp"
     },
     "position": [
-      250,
+      242,
       500,
       0
     ],
@@ -469,7 +469,7 @@
       "step": "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2003 - NUTD40.stp"
     },
     "position": [
-      250,
+      242,
       500,
       0
     ],

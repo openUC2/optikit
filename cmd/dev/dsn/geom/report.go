@@ -3,6 +3,7 @@ package geom
 import (
 	"context"
 
+	"github.com/pkg/errors"
 	"github.com/urfave/cli/v3"
 
 	"github.com/openUC2/optikit/exp/designs"
@@ -10,7 +11,13 @@ import (
 )
 
 func reportPrimA(ctx context.Context, c *cli.Command) error {
-	design, err := optikit.LoadFSDesign(c.String("cwd"), c.String("variant"), false)
+	inputs, err := parseInputVars(c.StringSlice("input"))
+	if err != nil {
+		return errors.Wrap(err, "couldn't parse input variables")
+	}
+	design, err := optikit.LoadFSDesign(
+		c.String("cwd"), designs.VariantID(c.String("variant")), inputs, false,
+	)
 	if err != nil {
 		return err
 	}

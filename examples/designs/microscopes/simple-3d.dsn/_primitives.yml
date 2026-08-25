@@ -3,7 +3,7 @@
   static-models:
     gltf: "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2023 - INSLEND40F50 - V04.glb"
     step: "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2023 - INSLEND40F50 - V04.stp"
-  position: [50.0, 0.0, 0.0]
+  position: [55.0, 0.0, 0.0]
   rotation:
     type: extrinsic
     order: zxy
@@ -13,7 +13,7 @@
   static-models:
     gltf: "cube-mounted/lens.dsn/mounted-lens.dsn/BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx.glb"
     step: "cube-mounted/lens.dsn/mounted-lens.dsn/BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx.stp"
-  position: [50.0, 0.0, 0.0]
+  position: [55.0, 0.0, 0.0]
   rotation:
     type: extrinsic
     order: zxy
@@ -23,7 +23,7 @@
   static-models:
     gltf: "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2003 - NUTD40.glb"
     step: "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2003 - NUTD40.stp"
-  position: [50.0, 0.0, 0.0]
+  position: [55.0, 0.0, 0.0]
   rotation:
     type: extrinsic
     order: zxy
@@ -48,91 +48,151 @@
     type: extrinsic
     order: zxy
     angles: {"y": -180.0, z: -180.0}
-- id: periscope-mirror-1/mounted-mirror/adhesive-pad
+- id: periscope-mirror-1/mounted-mirror/inner-insert/adhesive-pad
   type: static
   static-models:
-    gltf: "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/BUY - Adhesive pad - 41x29x1.glb"
-    step: "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/BUY - Adhesive pad - 41x29x1.stp"
-  position: [100.5, -0.5, 0.0]
+    gltf: "cube-mounted/mirror-static.dsn/mounted-mirror.dsn/mounted-mirror-inner.dsn/BUY - Adhesive pad - D22x1.glb"
+    step: "cube-mounted/mirror-static.dsn/mounted-mirror.dsn/mounted-mirror-inner.dsn/BUY - Adhesive pad - D22x1.stp"
+  position: [102.47487373415292, -2.4748737341529163, 0.0]
   rotation:
     type: extrinsic
     order: zxy
-    angles: {z: -180.0}
-- id: periscope-mirror-1/mounted-mirror/insert
+    angles: {z: 135.0}
+- id: periscope-mirror-1/mounted-mirror/inner-insert/mirror
   type: static
   static-models:
-    gltf: "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/PRT - 2022 - INSMIR45TH2.glb"
-    step: "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/PRT - 2022 - INSMIR45TH2.stp"
+    gltf: "cube-mounted/mirror-static.dsn/mounted-mirror.dsn/mounted-mirror-inner.dsn/BUY - Mirror - D24x3.glb"
+    step: "cube-mounted/mirror-static.dsn/mounted-mirror.dsn/mounted-mirror-inner.dsn/BUY - Mirror - D24x3.stp"
   position: [100.0, 0.0, 0.0]
   rotation:
     type: extrinsic
     order: zxy
-    angles: {z: -180.0}
-- id: periscope-mirror-1/mounted-mirror/mirror
+    angles: {z: 135.0}
+- id: periscope-mirror-1/mounted-mirror/inner-insert/mount-base
   type: static
   static-models:
-    gltf: "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/BUY - Mirror - 40x30x2.glb"
-    step: "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/BUY - Mirror - 40x30x2.stp"
+    gltf: "cube-mounted/mirror-static.dsn/mounted-mirror.dsn/mounted-mirror-inner.dsn/PRT - 2110 - MASINSMIRHOLLOW - C.glb"
+    step: "cube-mounted/mirror-static.dsn/mounted-mirror.dsn/mounted-mirror-inner.dsn/PRT - 2110 - MASINSMIRHOLLOW - C.stp"
   position: [100.0, 0.0, 0.0]
   rotation:
     type: extrinsic
     order: zxy
-    angles: {z: -180.0}
+    angles: {z: 135.0}
+- id: periscope-mirror-1/mounted-mirror/inner-insert/mount-top
+  type: static
+  static-models:
+    gltf: "cube-mounted/mirror-static.dsn/mounted-mirror.dsn/mounted-mirror-inner.dsn/PRT - 2111 - MASINSMIRHOLUPP - C.glb"
+    step: "cube-mounted/mirror-static.dsn/mounted-mirror.dsn/mounted-mirror-inner.dsn/PRT - 2111 - MASINSMIRHOLUPP - C.stp"
+  position: [100.0, 0.0, 0.0]
+  rotation:
+    type: extrinsic
+    order: zxy
+    angles: {z: 135.0}
+- id: periscope-mirror-1/mounted-mirror/master-insert-bottom
+  type: static
+  static-models:
+    gltf: "cube-mounted/mirror-static.dsn/mounted-mirror.dsn/PRT - 2100 - MASINS - V04 - B.glb"
+    step: "cube-mounted/mirror-static.dsn/mounted-mirror.dsn/PRT - 2100 - MASINS - V04 - B.stp"
+  position: [100.0, 0.0, -15.0]
+  rotation:
+    type: extrinsic
+    order: zxy
+    angles: {"y": -180.0, z: -90.0}
+- id: periscope-mirror-1/mounted-mirror/master-insert-top
+  type: static
+  static-models:
+    gltf: "cube-mounted/mirror-static.dsn/mounted-mirror.dsn/PRT - 2100 - MASINS - V04 - B.glb"
+    step: "cube-mounted/mirror-static.dsn/mounted-mirror.dsn/PRT - 2100 - MASINS - V04 - B.stp"
+  position: [100.0, 0.0, 15.0]
+  rotation:
+    type: extrinsic
+    order: zxy
+    angles: {z: 90.0}
 - id: periscope-mirror-1/skeleton/lower-half
   type: static
   static-models:
-    gltf: "cube-mounted/mirror-diagonal.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb"
-    step: "cube-mounted/mirror-diagonal.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
+    gltf: "cube-mounted/mirror-static.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb"
+    step: "cube-mounted/mirror-static.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
   position: [100.0, 0.0, 0.0]
   rotation:
     type: extrinsic
     order: zxy
-    angles: {z: -180.0}
+    angles: {z: 90.0}
 - id: periscope-mirror-1/skeleton/upper-half
   type: static
   static-models:
-    gltf: "cube-mounted/mirror-diagonal.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb"
-    step: "cube-mounted/mirror-diagonal.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
+    gltf: "cube-mounted/mirror-static.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb"
+    step: "cube-mounted/mirror-static.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
   position: [100.0, 0.0, 0.0]
   rotation:
     type: extrinsic
     order: zxy
-    angles: {"y": -180.0}
-- id: periscope-mirror-2/mounted-mirror/adhesive-pad
+    angles: {"y": -180.0, z: -90.0}
+- id: periscope-mirror-2/mounted-mirror/inner-insert/adhesive-pad
   type: static
   static-models:
-    gltf: "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/BUY - Adhesive pad - 41x29x1.glb"
-    step: "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/BUY - Adhesive pad - 41x29x1.stp"
-  position: [100.0, 250.5, -0.5]
+    gltf: "cube-mounted/mirror-static.dsn/mounted-mirror.dsn/mounted-mirror-inner.dsn/BUY - Adhesive pad - D22x1.glb"
+    step: "cube-mounted/mirror-static.dsn/mounted-mirror.dsn/mounted-mirror-inner.dsn/BUY - Adhesive pad - D22x1.stp"
+  position: [100.0, 252.4748737341529, -2.4748737341529163]
   rotation:
     type: extrinsic
     order: zxy
-    angles: {x: -90.0, z: -90.0}
-- id: periscope-mirror-2/mounted-mirror/insert
+    angles: {x: -45.0, "y": -90.0, z: -180.0}
+- id: periscope-mirror-2/mounted-mirror/inner-insert/mirror
   type: static
   static-models:
-    gltf: "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/PRT - 2022 - INSMIR45TH2.glb"
-    step: "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/PRT - 2022 - INSMIR45TH2.stp"
+    gltf: "cube-mounted/mirror-static.dsn/mounted-mirror.dsn/mounted-mirror-inner.dsn/BUY - Mirror - D24x3.glb"
+    step: "cube-mounted/mirror-static.dsn/mounted-mirror.dsn/mounted-mirror-inner.dsn/BUY - Mirror - D24x3.stp"
   position: [100.0, 250.0, 0.0]
   rotation:
     type: extrinsic
     order: zxy
-    angles: {x: -90.0, z: -90.0}
-- id: periscope-mirror-2/mounted-mirror/mirror
+    angles: {x: -45.0, "y": -90.0, z: -180.0}
+- id: periscope-mirror-2/mounted-mirror/inner-insert/mount-base
   type: static
   static-models:
-    gltf: "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/BUY - Mirror - 40x30x2.glb"
-    step: "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/BUY - Mirror - 40x30x2.stp"
+    gltf: "cube-mounted/mirror-static.dsn/mounted-mirror.dsn/mounted-mirror-inner.dsn/PRT - 2110 - MASINSMIRHOLLOW - C.glb"
+    step: "cube-mounted/mirror-static.dsn/mounted-mirror.dsn/mounted-mirror-inner.dsn/PRT - 2110 - MASINSMIRHOLLOW - C.stp"
   position: [100.0, 250.0, 0.0]
   rotation:
     type: extrinsic
     order: zxy
-    angles: {x: -90.0, z: -90.0}
+    angles: {x: -45.0, "y": -90.0, z: -180.0}
+- id: periscope-mirror-2/mounted-mirror/inner-insert/mount-top
+  type: static
+  static-models:
+    gltf: "cube-mounted/mirror-static.dsn/mounted-mirror.dsn/mounted-mirror-inner.dsn/PRT - 2111 - MASINSMIRHOLUPP - C.glb"
+    step: "cube-mounted/mirror-static.dsn/mounted-mirror.dsn/mounted-mirror-inner.dsn/PRT - 2111 - MASINSMIRHOLUPP - C.stp"
+  position: [100.0, 250.0, 0.0]
+  rotation:
+    type: extrinsic
+    order: zxy
+    angles: {x: -45.0, "y": -90.0, z: -180.0}
+- id: periscope-mirror-2/mounted-mirror/master-insert-bottom
+  type: static
+  static-models:
+    gltf: "cube-mounted/mirror-static.dsn/mounted-mirror.dsn/PRT - 2100 - MASINS - V04 - B.glb"
+    step: "cube-mounted/mirror-static.dsn/mounted-mirror.dsn/PRT - 2100 - MASINS - V04 - B.stp"
+  position: [85.0, 250.0, 0.0]
+  rotation:
+    type: extrinsic
+    order: zxy
+    angles: {"y": -90.0}
+- id: periscope-mirror-2/mounted-mirror/master-insert-top
+  type: static
+  static-models:
+    gltf: "cube-mounted/mirror-static.dsn/mounted-mirror.dsn/PRT - 2100 - MASINS - V04 - B.glb"
+    step: "cube-mounted/mirror-static.dsn/mounted-mirror.dsn/PRT - 2100 - MASINS - V04 - B.stp"
+  position: [115.0, 250.0, 0.0]
+  rotation:
+    type: extrinsic
+    order: zxy
+    angles: {"y": -90.0, z: -180.0}
 - id: periscope-mirror-2/skeleton/lower-half
   type: static
   static-models:
-    gltf: "cube-mounted/mirror-diagonal.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb"
-    step: "cube-mounted/mirror-diagonal.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
+    gltf: "cube-mounted/mirror-static.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb"
+    step: "cube-mounted/mirror-static.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
   position: [100.0, 250.0, 0.0]
   rotation:
     type: extrinsic
@@ -141,8 +201,8 @@
 - id: periscope-mirror-2/skeleton/upper-half
   type: static
   static-models:
-    gltf: "cube-mounted/mirror-diagonal.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb"
-    step: "cube-mounted/mirror-diagonal.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
+    gltf: "cube-mounted/mirror-static.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb"
+    step: "cube-mounted/mirror-static.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
   position: [100.0, 250.0, 0.0]
   rotation:
     type: extrinsic
@@ -153,7 +213,7 @@
   static-models:
     gltf: "cube-mounted/slide-holder.dsn/mounted-holder.dsn/PRT - 2008 - SAMCLP.glb"
     step: "cube-mounted/slide-holder.dsn/mounted-holder.dsn/PRT - 2008 - SAMCLP.stp"
-  position: [-10.0, 0.0, 0.0]
+  position: [2.0, 0.0, 0.0]
   rotation:
     type: extrinsic
     order: zxy
@@ -163,7 +223,7 @@
   static-models:
     gltf: "cube-mounted/slide-holder.dsn/mounted-holder.dsn/PRT - 2028 - INSSAMMNT - V04.glb"
     step: "cube-mounted/slide-holder.dsn/mounted-holder.dsn/PRT - 2028 - INSSAMMNT - V04.stp"
-  position: [0.0, 0.0, 0.0]
+  position: [12.0, 0.0, 0.0]
   rotation:
     type: extrinsic
     order: zxy
@@ -193,7 +253,7 @@
   static-models:
     gltf: "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2023 - INSLEND40F50 - V04.glb"
     step: "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2023 - INSLEND40F50 - V04.stp"
-  position: [100.0, 250.0, 165.0]
+  position: [100.0, 250.0, 157.0]
   rotation:
     type: extrinsic
     order: zxy
@@ -203,7 +263,7 @@
   static-models:
     gltf: "cube-mounted/lens.dsn/mounted-lens.dsn/BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx.glb"
     step: "cube-mounted/lens.dsn/mounted-lens.dsn/BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx.stp"
-  position: [100.0, 250.0, 165.0]
+  position: [100.0, 250.0, 157.0]
   rotation:
     type: extrinsic
     order: zxy
@@ -213,7 +273,7 @@
   static-models:
     gltf: "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2003 - NUTD40.glb"
     step: "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2003 - NUTD40.stp"
-  position: [100.0, 250.0, 165.0]
+  position: [100.0, 250.0, 157.0]
   rotation:
     type: extrinsic
     order: zxy

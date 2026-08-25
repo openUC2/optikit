@@ -1,0 +1,80 @@
+- id: mounted-mirror/inner-insert/adhesive-pad
+  type: static
+  static-models:
+    gltf: "mounted-mirror.dsn/mounted-mirror-inner.dsn/BUY - Adhesive pad - D22x1.glb"
+    step: "mounted-mirror.dsn/mounted-mirror-inner.dsn/BUY - Adhesive pad - D22x1.stp"
+  position: [-3.5, 0.0, 0.0]
+  rotation:
+    type: extrinsic
+    order: zxy
+    angles: {}
+- id: mounted-mirror/inner-insert/mirror
+  type: static
+  static-models:
+    gltf: "mounted-mirror.dsn/mounted-mirror-inner.dsn/BUY - Mirror - D24x3.glb"
+    step: "mounted-mirror.dsn/mounted-mirror-inner.dsn/BUY - Mirror - D24x3.stp"
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    type: extrinsic
+    order: zxy
+    angles: {}
+- id: mounted-mirror/inner-insert/mount-base
+  type: static
+  static-models:
+    gltf: "mounted-mirror.dsn/mounted-mirror-inner.dsn/PRT - 2110 - MASINSMIRHOLLOW - C.glb"
+    step: "mounted-mirror.dsn/mounted-mirror-inner.dsn/PRT - 2110 - MASINSMIRHOLLOW - C.stp"
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    type: extrinsic
+    order: zxy
+    angles: {}
+- id: mounted-mirror/inner-insert/mount-top
+  type: static
+  static-models:
+    gltf: "mounted-mirror.dsn/mounted-mirror-inner.dsn/PRT - 2111 - MASINSMIRHOLUPP - C.glb"
+    step: "mounted-mirror.dsn/mounted-mirror-inner.dsn/PRT - 2111 - MASINSMIRHOLUPP - C.stp"
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    type: extrinsic
+    order: zxy
+    angles: {}
+- id: mounted-mirror/master-insert-bottom
+  type: static
+  static-models:
+    gltf: "mounted-mirror.dsn/PRT - 2100 - MASINS - V04 - B.glb"
+    step: "mounted-mirror.dsn/PRT - 2100 - MASINS - V04 - B.stp"
+  position: [0.0, 0.0, -15.0]
+  rotation:
+    type: extrinsic
+    order: zxy
+    angles: {"y": -180.0, z: -180.0}
+- id: mounted-mirror/master-insert-top
+  type: static
+  static-models:
+    gltf: "mounted-mirror.dsn/PRT - 2100 - MASINS - V04 - B.glb"
+    step: "mounted-mirror.dsn/PRT - 2100 - MASINS - V04 - B.stp"
+  position: [0.0, 0.0, 15.0]
+  rotation:
+    type: extrinsic
+    order: zxy
+    angles: {}
+- id: skeleton/lower-half
+  type: static
+  static-models:
+    gltf: "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb"
+    step: "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    type: extrinsic
+    order: zxy
+    angles: {}
+- id: skeleton/upper-half
+  type: static
+  static-models:
+    gltf: "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb"
+    step: "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    type: extrinsic
+    order: zxy
+    angles: {"y": -180.0, z: -180.0}

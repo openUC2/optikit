@@ -50494,6 +50494,11 @@
       ]
     },
     {
+      "translation": [
+        0,
+        0,
+        0.012
+      ],
       "name": "mounted-slide-holder",
       "children": [
         2,

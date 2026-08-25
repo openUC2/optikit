@@ -1,14 +1,18 @@
 package optikit
 
 import (
-	"errors"
+	gerrors "errors"
 	"os"
+
+	"github.com/pkg/errors"
 
 	"github.com/openUC2/optikit/exp/designs"
 	ofs "github.com/openUC2/optikit/exp/fs"
 )
 
-func LoadFSDesign(path, variant string, isolate bool) (d *designs.FSDesign, err error) {
+func LoadFSDesign(
+	path string, variant designs.VariantID, inputs map[designs.VarName]any, isolate bool,
+) (d *designs.FSDesign, err error) {
 	fsys := os.DirFS(path)
 	if isolate {
 		pathRoot, err := os.OpenRoot(path)
@@ -18,47 +22,27 @@ func LoadFSDesign(path, variant string, isolate bool) (d *designs.FSDesign, err 
 		fsys = pathRoot.FS()
 	}
 	designFS := ofs.AttachPath(fsys, path)
-	if d, err = designs.LoadFSDesign(designFS, "."); err != nil {
-		return d, err
-	}
-
-	errs := d.Check()
-	if len(errs) > 0 {
-		return d, errors.Join(errs...)
-	}
-
-	if d.Decl.NeedsInstantiation() {
-		if d.Decl.Components, err = d.Decl.Instantiate(designs.InstSpec{
-			Variant: designs.VariantID(variant),
-		}); err != nil {
-			return d, err
-		}
-	}
-
-	return d, err
-}
-
-func LoadDesignDecl(path, variant string) (d designs.DesignDecl, err error) {
-	pathRoot, err := os.OpenRoot(path)
+	de, err := designs.LoadFSDesignExpr(designFS, ".")
 	if err != nil {
 		return d, err
 	}
-	designFS := ofs.AttachPath(pathRoot.FS(), path)
-	if d, err = designs.LoadDesignDecl(designFS, designs.DesignDeclFile); err != nil {
-		return d, err
-	}
-
-	errs := d.Check()
+	errs := de.Check()
 	if len(errs) > 0 {
-		return d, errors.Join(errs...)
+		return d, gerrors.Join(errs...)
 	}
 
-	if d.NeedsInstantiation() {
-		if d.Components, err = d.Instantiate(designs.InstSpec{
-			Variant: designs.VariantID(variant),
-		}); err != nil {
-			return d, err
-		}
+	d = &designs.FSDesign{
+		FS: de.FS,
+	}
+	i := de.Decl.Inputs.ZeroValues().Merged(inputs)
+	if d.Design, err = de.Instantiated(designs.InstSpec{
+		Variant: variant,
+		Inputs:  i,
+	}); err != nil {
+		return d, errors.Wrapf(err, "couldn't instantiate with variant %s & inputs %+v", variant, i)
+	}
+	if errs = d.Check(); len(errs) > 0 {
+		return d, gerrors.Join(errs...)
 	}
 
 	return d, err

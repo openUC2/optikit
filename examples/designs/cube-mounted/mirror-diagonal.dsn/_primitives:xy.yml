@@ -3,11 +3,11 @@
   static-models:
     gltf: "mounted-mirror.dsn/BUY - Adhesive pad - 41x29x1.glb"
     step: "mounted-mirror.dsn/BUY - Adhesive pad - 41x29x1.stp"
-  position: [-0.5, 0.5, 0.0]
+  position: [-0.5, -0.5, 0.0]
   rotation:
     type: extrinsic
     order: zxy
-    angles: {}
+    angles: {z: 90.0}
 - id: mounted-mirror/insert
   type: static
   static-models:
@@ -17,7 +17,7 @@
   rotation:
     type: extrinsic
     order: zxy
-    angles: {}
+    angles: {z: 90.0}
 - id: mounted-mirror/mirror
   type: static
   static-models:
@@ -27,7 +27,7 @@
   rotation:
     type: extrinsic
     order: zxy
-    angles: {}
+    angles: {z: 90.0}
 - id: skeleton/lower-half
   type: static
   static-models:

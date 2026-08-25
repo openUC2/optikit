@@ -32,16 +32,24 @@ repo_dir="$(dirname "$(dirname "$script_dir")")"
 
 directives="$(cat)"
 variants="$(yq '.variants | keys | .[]' optikit-design.yml)"
-args=""
 while IFS= read -r variant; do
+  if [ -f variant-instantiations.yml ]; then
+    inputs="$(yq ".$variant.inputs" variant-instantiations.yml)"
+    inst_args="--variant=$variant $(yq 'to_entries | map(. | "--input=\(.key):\(.value)") | join(" ")' <<<"$inputs")"
+    inputs_string="($(yq 'to_entries | map(. | "\(.key)=\(.value)") | join(" ")' <<<"$inputs"))"
+  else
+    inputs_string="()"
+    inst_args="--variant=$variant"
+  fi
   while IFS= read -r directive; do # directive: "command prefix type format"
-    echo "$variant $directive"
+    directive="$(tr ' ' '\t' <<<"$directive")"
+    echo -e "$variant\t$inputs_string\t$inst_args\t$directive"
   done <<<"$directives"
 done <<<"$variants" |
-  go tool rush -k -e \
+  go tool rush -k -e -d "\t" \
     "
-      echo \"variant {1}: {2} {3} {4} to {5}\"
-      go run \"$repo_dir/main.go\" dev dsn {2} --variant={1} {3}-{4} --format={5} _{4}:{1}.{5}
+      echo '{1}: {4} {5} {6} to {7} with inputs {2}'
+      go run '$repo_dir/main.go' dev dsn {4} {3} {5}-{6} --format={7} '_{6}:{1}.{7}'
     "
 
 if [[ "$?" != 0 ]]; then

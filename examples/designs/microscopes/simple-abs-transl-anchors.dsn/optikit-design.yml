@@ -21,6 +21,8 @@ components:
     design: cube-mounted/slide-holder.dsn
     instantiation:
       variant: x
+      inputs:
+        offset: 7
     pose:
       rotation:
         type: uc2
@@ -29,6 +31,8 @@ components:
     design: cube-mounted/lens.dsn
     instantiation:
       variant: x
+      inputs:
+        offset: 5
     pose:
       rotation:
         type: uc2
@@ -42,7 +46,7 @@ components:
     pose:
       rotation:
         type: uc2
-        grid: {x: -x}
+        grid: {x: +y}
       translation:
         offset-grid: {x: 2}
   periscope-mirror-2:
@@ -53,6 +57,7 @@ components:
     pose:
       rotation:
         type: uc2
+        grid: {x: -y}
       translation:
         offset-grid: {x: 2, y: 10}
   tube-lens:
@@ -60,6 +65,8 @@ components:
     design: cube-mounted/lens.dsn
     instantiation:
       variant: x
+      inputs:
+        offset: -8
     pose:
       rotation:
         type: uc2

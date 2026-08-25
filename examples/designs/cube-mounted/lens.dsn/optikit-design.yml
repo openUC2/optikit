@@ -23,16 +23,25 @@ components:
       rotation:
         type: grid
 
+inputs:
+  offset:
+    description: Translation of mounted-lens along its normal vector
+    type: float64
+    units: mm
+    min: -11
+    max: 7
+    tags:
+      - adjustment/manual-assembly
+
 variants:
   z:
     description: Normal vector of lens is z-axis
-  y:
-    description: Normal vector of lens is y-axis; position is discretized.
     components:
       mounted-lens:
         pose:
-          rotation:
-            grid: {z: +y}
+          translation:
+            offset-mm:
+              z: inputs.offset.value
   x:
     description: Normal vector of lens is x-axis
     components:
@@ -40,3 +49,6 @@ variants:
         pose:
           rotation:
             grid: {z: +x, x: -z}
+          translation:
+            offset-mm:
+              x: inputs.offset.value

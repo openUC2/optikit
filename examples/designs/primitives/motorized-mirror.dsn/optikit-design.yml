@@ -1,0 +1,73 @@
+optikit-version: v0.0.0-alpha.1
+
+design:
+  description: A motorized galvo mirror with mounting hardware
+  tags:
+    - mirror
+    - mirror/single-sided
+    - mirror/flat
+    - actuator/stepper-motor
+    - control/electronic
+    - in/galvo-box
+
+components:
+  motorized-mirror:
+    type: primitive
+    primitive:
+      static-models:
+        gltf: BUY - Galvo scanner XY --- single motor.glb
+        step: BUY - Galvo scanner XY --- single motor.stp
+    pose:
+      rotation:
+        type: euler
+        euler:
+          z: -90
+          y: ~ inputs['mirror-rotation'].value
+      translation:
+        offset-mm:
+          x: -44
+  mount-ring:
+    type: primitive
+    primitive:
+      static-models:
+        gltf: PRT - 2180 - DISRNG.glb
+        step: PRT - 2180 - DISRNG.stp
+    pose:
+      rotation:
+        type: grid
+        grid: {x: -x}
+      translation:
+        offset-mm:
+          x: ~ -44 + 17
+  screw-1:
+    type: primitive
+    primitive:
+      static-models:
+        bom: ISO 4762 - Cylinder head screw with hex socket - M3 x 20 - 8.8 - A2K.bom.yml
+  screw-2:
+    type: primitive
+    primitive:
+      static-models:
+        bom: ISO 4762 - Cylinder head screw with hex socket - M3 x 20 - 8.8 - A2K.bom.yml
+  mount-top:
+    type: primitive
+    primitive:
+      static-models:
+        gltf: PRT - 2165 - CLPPCE.glb
+        step: PRT - 2165 - CLPPCE.stp
+    pose:
+      rotation:
+        type: grid
+        grid: {x: -y}
+      translation:
+        offset-mm:
+          x: ~ -44 + 1.7
+
+inputs:
+  mirror-rotation:
+    description: Rotation of mirror about the rotation axis of the motor
+    type: float64
+    units: deg
+    tags:
+      - adjustment/electronic
+      - actuation/stepper

@@ -1,0 +1,53 @@
+optikit-version: v0.0.0-alpha.1
+
+design:
+  description: A diagonal mirror mounted on a cube insert
+  tags:
+    - insert-mounted
+    - mirror
+    - mirror/single-sided
+    - mirror/flat
+    - in/core-box
+
+components:
+  inner-insert:
+    type: design
+    design: mounted-mirror-inner.dsn
+    pose:
+      rotation:
+        type: grid
+  master-insert-top:
+    type: primitive
+    primitive:
+      static-models:
+        gltf: PRT - 2100 - MASINS - V04 - B.glb
+        step: PRT - 2100 - MASINS - V04 - B.stp
+    pose:
+      rotation:
+        type: grid
+      translation:
+        offset-mm: {z: 15}
+  master-insert-bottom:
+    type: primitive
+    primitive:
+      static-models:
+        gltf: PRT - 2100 - MASINS - V04 - B.glb
+        step: PRT - 2100 - MASINS - V04 - B.stp
+    pose:
+      rotation:
+        type: grid
+        grid: {z: -z}
+      translation:
+        offset-mm: {z: -15}
+
+variants:
+  x:
+    description: Normal vector of the mirror is the design's +x basis vector
+  xy:
+    description: Normal vector of the mirror is halfway between the design's +x and +y basis vectors
+    components:
+      inner-insert:
+        pose:
+          rotation:
+            type: euler
+            euler: {z: 45}

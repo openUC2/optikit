@@ -4,10 +4,18 @@ import (
 	"cmp"
 	"fmt"
 
+	"github.com/pkg/errors"
 	"github.com/ungerik/go3d/float64/mat4"
 	"github.com/ungerik/go3d/float64/vec3"
 	"github.com/ungerik/go3d/float64/vec4"
 )
+
+// ExprXYZ is a vector in an X-Y-Z coordinate system whose components are expr expressions.
+type ExprXYZ struct {
+	X Expr `json:"x" yaml:"x,omitempty"`
+	Y Expr `json:"y" yaml:"y,omitempty"`
+	Z Expr `json:"z" yaml:"z,omitempty"`
+}
 
 // DiscreteXYZ is a vector in an X-Y-Z coordinate system with integer components.
 type DiscreteXYZ[Number ~int | ~uint | ~int8 | ~uint8 | ~int16 | ~uint16 | ~int32 | ~uint32 | ~int64 | ~uint64] struct {
@@ -26,9 +34,9 @@ type ContinuousXYZ[Number ~float32 | ~float64] struct {
 // UC2GridSpacings indicates the distance between the center of each UC2 grid space along each axis,
 // in units of millimeters.
 var UC2GridSpacings = ContinuousXYZ[float64]{
-	X: 50, //nolint:mnd
-	Y: 50, //nolint:mnd
-	Z: 55, //nolint:mnd
+	X: 50, //nolint:mnd // the overall variable is a magic-number vector!
+	Y: 50, //nolint:mnd // the overall variable is a magic-number vector!
+	Z: 55, //nolint:mnd // the overall variable is a magic-number vector!
 }
 
 const (
@@ -229,6 +237,56 @@ var GridRotMats = map[string]map[string]mat4.T{
 			vec4.UnitW,
 		},
 	},
+}
+
+// ExprXYZ
+
+// Merged returns a new ExprXYZ created by applying the specified overlay, without modifying
+// this current ExprXYZ or the overlay.
+func (s ExprXYZ) Merged(overlay ExprXYZ) ExprXYZ {
+	return ExprXYZ{
+		X: cmp.Or(overlay.X, s.X),
+		Y: cmp.Or(overlay.Y, s.Y),
+		Z: cmp.Or(overlay.Z, s.Z),
+	}
+}
+
+func (s ExprXYZ) EvaluatedInt(env any) (result DiscreteXYZ[int], err error) {
+	if s.X != "" {
+		if result.X, err = s.X.evalAs[int](env); err != nil {
+			return result, errors.Wrap(err, "couldn't evaluate x component of vector")
+		}
+	}
+	if s.Y != "" {
+		if result.Y, err = s.Y.evalAs[int](env); err != nil {
+			return result, errors.Wrap(err, "couldn't evaluate y component of vector")
+		}
+	}
+	if s.Z != "" {
+		if result.Z, err = s.Z.evalAs[int](env); err != nil {
+			return result, errors.Wrap(err, "couldn't evaluate z component of vector")
+		}
+	}
+	return result, nil
+}
+
+func (s ExprXYZ) EvaluatedFloat64(env any) (result ContinuousXYZ[float64], err error) {
+	if s.X != "" {
+		if result.X, err = s.X.evalAs[float64](env); err != nil {
+			return result, errors.Wrap(err, "couldn't evaluate x component of vector")
+		}
+	}
+	if s.Y != "" {
+		if result.Y, err = s.Y.evalAs[float64](env); err != nil {
+			return result, errors.Wrap(err, "couldn't evaluate y component of vector")
+		}
+	}
+	if s.Z != "" {
+		if result.Z, err = s.Z.evalAs[float64](env); err != nil {
+			return result, errors.Wrap(err, "couldn't evaluate z component of vector")
+		}
+	}
+	return result, nil
 }
 
 // DiscreteXYZ

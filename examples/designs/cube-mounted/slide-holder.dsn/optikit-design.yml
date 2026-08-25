@@ -20,16 +20,25 @@ components:
       rotation:
         type: grid
 
+inputs:
+  offset:
+    description: Translation of mounted-slide-holder along its normal vector
+    type: float64
+    units: mm
+    min: -12
+    max: 7
+    tags:
+      - adjustment/manual-assembly
+
 variants:
   z:
     description: Normal vector of the sample slide is the z-axis
-  y:
-    description: Normal vector of the sample slide is the y-axis
     components:
       mounted-slide-holder:
         pose:
-          rotation:
-            grid: {z: +y, x: -z}
+          translation:
+            offset-mm:
+              z: 5 + inputs.offset.value
   x:
     description: Normal vector of the sample slide is the x-axis
     components:
@@ -37,3 +46,6 @@ variants:
         pose:
           rotation:
             grid: {z: +x, x: -z}
+          translation:
+            offset-mm:
+              x: 5 + inputs.offset.value

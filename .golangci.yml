@@ -32,6 +32,8 @@ linters:
     - unused
     - whitespace
   settings:
+    goconst:
+      ignore-tests: true
     gocyclo:
       min-complexity: 15
     misspell:

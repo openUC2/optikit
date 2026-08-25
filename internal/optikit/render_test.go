@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"path"
+	"path/filepath"
 	"testing"
 
 	"github.com/google/go-cmp/cmp"
@@ -13,13 +14,14 @@ import (
 	"github.com/openUC2/optikit/internal/clients/gltf"
 )
 
-var renderDesignDeclTests = map[string][]string{ // design -> variants
-	"primitives/cube-skeleton.dsn":              {""},
-	"cube-mounted/lens.dsn":                     {"x", "z"},
-	"cube-mounted/mirror-diagonal.dsn":          {"_z", "xy"},
-	"microscopes/simple-3d.dsn":                 {""},
-	"microscopes/simple-rel-transl-anchors.dsn": {""},
-	"microscopes/simple-abs-transl-anchors.dsn": {""},
+var renderDesignDeclTests = map[string][]designs.InstSpec{ // design -> instantiations
+	"primitives/cube-skeleton.dsn": {{}},
+	"cube-mounted/lens.dsn": {
+		{Variant: "x", Inputs: map[designs.VarName]any{"offset": -11}},
+		{Variant: "z", Inputs: map[designs.VarName]any{"offset": 7}},
+	},
+	"microscopes/simple-3d.dsn":                 {{}},
+	"microscopes/simple-rel-transl-anchors.dsn": {{}},
 }
 
 type graphRenderer func(
@@ -52,13 +54,16 @@ func TestRenderGraphs(t *testing.T) { //nolint:tparallel // graphviz isn't concu
 	}
 	examplesPath := path.Join(path.Dir(path.Dir(cwd)), "examples")
 
-	for design, variants := range renderDesignDeclTests {
+	for design, instantiations := range renderDesignDeclTests {
 		dp := path.Join(examplesPath, "designs", design)
-		for _, variant := range variants {
+		for _, instantiation := range instantiations {
 			for _, renderer := range renderers {
-				name := fmt.Sprintf("%s:%s %s", design, variant, renderer.filename)
+				name := fmt.Sprintf("%s:%s %s", design, instantiation, renderer.filename)
 				t.Run(name, func(t *testing.T) {
-					checkGraph(t, dp, design, variant, renderer.filename, renderer.renderer)
+					checkGraph(
+						t, dp, design, instantiation.Variant, instantiation.Inputs,
+						renderer.filename, renderer.renderer,
+					)
 				})
 			}
 		}
@@ -66,12 +71,14 @@ func TestRenderGraphs(t *testing.T) { //nolint:tparallel // graphviz isn't concu
 }
 
 func checkGraph(
-	t *testing.T, dp, design, variant, filename string, renderer graphRenderer,
+	t *testing.T, dp, design string,
+	variant designs.VariantID, inputs map[designs.VarName]any,
+	filename string, renderer graphRenderer,
 ) {
 	t.Helper()
 
-	t.Logf("load %s:%s", design, variant)
-	d, err := LoadFSDesign(dp, variant, false)
+	t.Logf("load %s:%s:%+v", design, variant, inputs)
+	d, err := LoadFSDesign(dp, variant, inputs, false)
 	if err != nil {
 		t.Error(err)
 		return
@@ -92,12 +99,12 @@ func checkGraph(
 	}
 }
 
-func loadGraph(dp, name, variant, format string) ([]byte, error) {
+func loadGraph(dp, name string, variant designs.VariantID, format string) ([]byte, error) {
 	if variant != "" {
-		name += ":" + variant
+		name += ":" + string(variant)
 	}
 	name += "." + format
-	return os.ReadFile(path.Join(dp, name))
+	return os.ReadFile(filepath.Clean(path.Join(dp, name)))
 }
 
 const (
@@ -113,29 +120,31 @@ func TestRenderObjectsGLTF(t *testing.T) {
 	}
 	examplesPath := path.Join(path.Dir(path.Dir(cwd)), "examples")
 
-	for design, variants := range reports {
+	for design, instantiations := range reports {
 		dp := path.Join(examplesPath, "designs", design)
-		for _, variant := range variants {
-			name := fmt.Sprintf("%s:%s", design, variant)
+		for _, instantiation := range instantiations {
+			name := fmt.Sprintf("%s:%s", design, instantiation)
 			t.Run(name, func(t *testing.T) {
 				t.Parallel()
 
-				t.Logf("load %s:%s", design, variant)
-				design, err := LoadFSDesign(dp, variant, false)
+				t.Logf("load %s:%s", design, instantiation)
+				design, err := LoadFSDesign(dp, instantiation.Variant, instantiation.Inputs, false)
 				if err != nil {
 					t.Error(err)
 					return
 				}
 
 				for _, format := range []string{formatGLB, formatGLTF} {
-					checkGLTF(t, variant, design, dp, format == formatGLTF)
+					checkGLTF(t, instantiation.Variant, design, dp, format == formatGLTF)
 				}
 			})
 		}
 	}
 }
 
-func checkGLTF(t *testing.T, variant string, design *designs.FSDesign, dp string, asText bool) {
+func checkGLTF(
+	t *testing.T, variant designs.VariantID, design *designs.FSDesign, dp string, asText bool,
+) {
 	t.Helper()
 
 	format := formatGLB
@@ -144,7 +153,7 @@ func checkGLTF(t *testing.T, variant string, design *designs.FSDesign, dp string
 	}
 	objectName := "_objects"
 	if variant != "" {
-		objectName += ":" + variant
+		objectName += ":" + string(variant)
 	}
 	t.Logf("render %s to %s", objectName, format)
 	objectName += "." + format
@@ -153,9 +162,11 @@ func checkGLTF(t *testing.T, variant string, design *designs.FSDesign, dp string
 	var err error
 	if got, err = RenderObjectsGLB(design, asText); err != nil {
 		t.Error(err)
+		return
 	}
-	if want, err = os.ReadFile(path.Join(dp, objectName)); err != nil {
+	if want, err = os.ReadFile(filepath.Clean(path.Join(dp, objectName))); err != nil {
 		t.Error(err)
+		return
 	}
 	if !cmp.Equal(got, want) {
 		t.Errorf("diff (-want +got):\n%+v", cmp.Diff(want, got))
@@ -170,12 +181,12 @@ func TestGLTFRoundtrip(t *testing.T) {
 	}
 	examplesPath := path.Join(path.Dir(path.Dir(cwd)), "examples")
 
-	for design, variants := range renderDesignDeclTests {
+	for design, instantiations := range renderDesignDeclTests {
 		dp := path.Join(examplesPath, "designs", design)
-		for _, variant := range variants {
-			name := fmt.Sprintf("%s:%s", design, variant)
-			t.Logf("load %s:%s", design, variant)
-			d, err := LoadFSDesign(dp, variant, false)
+		for _, instantiation := range instantiations {
+			name := fmt.Sprintf("%s:%s", design, instantiation)
+			t.Logf("load %s:%s", design, instantiation)
+			d, err := LoadFSDesign(dp, instantiation.Variant, instantiation.Inputs, false)
 			if err != nil {
 				t.Error(err)
 				return
@@ -186,7 +197,7 @@ func TestGLTFRoundtrip(t *testing.T) {
 					t.Parallel()
 
 					var buf []byte
-					t.Logf("round-trip %s loading and encoding of %s:%s", format, design, variant)
+					t.Logf("round-trip %s loading and encoding of %s:%s", format, design, instantiation)
 					if buf, err = RenderObjectsGLB(d, format == formatGLTF); err != nil {
 						t.Error(err)
 					}

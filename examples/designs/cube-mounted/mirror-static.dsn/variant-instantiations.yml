@@ -1,0 +1,6 @@
+x:
+  inputs:
+    off-axis: false
+z:
+  inputs:
+    off-axis: true

@@ -10,19 +10,19 @@
 <polygon fill="white" stroke="none" points="-4,4 -4,-630 4593.79,-630 4593.79,4 -4,4"/>
 <g id="node1" class="node">
 <title></title>
-<ellipse fill="none" stroke="black" cx="1725.59" cy="-608" rx="27" ry="18"/>
+<ellipse fill="none" stroke="black" cx="1727.59" cy="-608" rx="27" ry="18"/>
 </g>
 <!-- sample&#45;holder -->
 <g id="node28" class="node">
 <title>sample&#45;holder</title>
-<ellipse fill="none" stroke="black" cx="1725.59" cy="-535" rx="66.28" ry="18"/>
-<text text-anchor="middle" x="1725.59" y="-530.8" font-family="Times,serif" font-size="14.00">sample&#45;holder</text>
+<ellipse fill="none" stroke="black" cx="1727.59" cy="-535" rx="66.28" ry="18"/>
+<text text-anchor="middle" x="1727.59" y="-530.8" font-family="Times,serif" font-size="14.00">sample&#45;holder</text>
 </g>
 <!-- &#45;&gt;sample&#45;holder -->
 <g id="edge1" class="edge">
 <title>&#45;&gt;sample&#45;holder</title>
-<path fill="none" stroke="black" d="M1725.59,-589.81C1725.59,-582.23 1725.59,-573.1 1725.59,-564.54"/>
-<polygon fill="black" stroke="black" points="1729.09,-564.54 1725.59,-554.54 1722.09,-564.54 1729.09,-564.54"/>
+<path fill="none" stroke="black" d="M1727.59,-589.81C1727.59,-582.23 1727.59,-573.1 1727.59,-564.54"/>
+<polygon fill="black" stroke="black" points="1731.09,-564.54 1727.59,-554.54 1724.09,-564.54 1731.09,-564.54"/>
 </g>
 <!-- light&#45;source -->
 <g id="node2" class="node">
@@ -45,8 +45,9 @@
 <!-- objective&#45;lens&#45;&gt;objective&#45;lens/mounted&#45;lens -->
 <g id="edge2" class="edge">
 <title>objective&#45;lens&#45;&gt;objective&#45;lens/mounted&#45;lens</title>
-<path fill="none" stroke="black" d="M1599.82,-433.31C1590.83,-431.35 1581.45,-429.53 1572.59,-428.2 1269.75,-382.92 909.79,-366.83 721.35,-361.25"/>
-<polygon fill="black" stroke="black" points="721.63,-357.75 711.53,-360.96 721.43,-364.75 721.63,-357.75"/>
+<path fill="none" stroke="black" d="M1599.82,-433.31C1590.83,-431.35 1581.45,-429.53 1572.59,-428.2 1489.63,-415.8 956.01,-381.31 712.47,-365.95"/>
+<polygon fill="black" stroke="black" points="712.81,-362.46 702.6,-365.33 712.37,-369.45 712.81,-362.46"/>
+<text text-anchor="middle" x="1390.21" y="-397.6" font-family="Times,serif" font-size="14.00">[x+5] mm</text>
 </g>
 <!-- objective&#45;lens/skeleton -->
 <g id="node8" class="node">
@@ -258,15 +259,15 @@
 <!-- tube&#45;lens -->
 <g id="node35" class="node">
 <title>tube&#45;lens</title>
-<ellipse fill="none" stroke="black" cx="3690.59" cy="-179.8" rx="46.43" ry="18"/>
-<text text-anchor="middle" x="3690.59" y="-175.6" font-family="Times,serif" font-size="14.00">tube&#45;lens</text>
+<ellipse fill="none" stroke="black" cx="3692.59" cy="-179.8" rx="46.43" ry="18"/>
+<text text-anchor="middle" x="3692.59" y="-175.6" font-family="Times,serif" font-size="14.00">tube&#45;lens</text>
 </g>
 <!-- periscope&#45;mirror&#45;2&#45;&gt;tube&#45;lens -->
 <g id="edge20" class="edge">
 <title>periscope&#45;mirror&#45;2&#45;&gt;tube&#45;lens</title>
-<path fill="none" stroke="black" d="M2922.03,-259.94C3088.33,-242.81 3486.96,-201.77 3634.46,-186.58"/>
-<polygon fill="black" stroke="black" points="3634.79,-190.06 3644.38,-185.56 3634.07,-183.1 3634.79,-190.06"/>
-<text text-anchor="middle" x="3360.2" y="-220" font-family="Times,serif" font-size="14.00">[x+3]</text>
+<path fill="none" stroke="black" d="M2922.21,-259.94C3089.1,-242.79 3489.42,-201.67 3636.85,-186.53"/>
+<polygon fill="black" stroke="black" points="3637.17,-190.01 3646.76,-185.51 3636.45,-183.05 3637.17,-190.01"/>
+<text text-anchor="middle" x="3361.38" y="-220" font-family="Times,serif" font-size="14.00">[x+3]</text>
 </g>
 <!-- periscope&#45;mirror&#45;2/mounted&#45;mirror/adhesive&#45;pad -->
 <g id="node21" class="node">
@@ -338,16 +339,16 @@
 <!-- sample&#45;holder&#45;&gt;light&#45;source -->
 <g id="edge26" class="edge">
 <title>sample&#45;holder&#45;&gt;light&#45;source</title>
-<path fill="none" stroke="black" d="M1680.41,-521.39C1659.99,-515.29 1635.7,-507.45 1614.32,-499 1590.82,-489.71 1565.3,-477.54 1545,-467.33"/>
-<polygon fill="black" stroke="black" points="1546.75,-464.29 1536.25,-462.88 1543.58,-470.53 1546.75,-464.29"/>
-<text text-anchor="middle" x="1644.46" y="-486.4" font-family="Times,serif" font-size="14.00">[x&#45;80] mm</text>
+<path fill="none" stroke="black" d="M1682.29,-521.48C1661.63,-515.36 1636.99,-507.49 1615.32,-499 1591.61,-489.71 1565.86,-477.54 1545.37,-467.33"/>
+<polygon fill="black" stroke="black" points="1547.03,-464.25 1536.52,-462.87 1543.88,-470.5 1547.03,-464.25"/>
+<text text-anchor="middle" x="1645.46" y="-486.4" font-family="Times,serif" font-size="14.00">[x&#45;80] mm</text>
 </g>
 <!-- sample&#45;holder&#45;&gt;objective&#45;lens -->
 <g id="edge27" class="edge">
 <title>sample&#45;holder&#45;&gt;objective&#45;lens</title>
-<path fill="none" stroke="black" d="M1710.36,-517.26C1698.85,-504.62 1682.85,-487.04 1669.75,-472.65"/>
-<polygon fill="black" stroke="black" points="1672.38,-470.34 1663.06,-465.3 1667.2,-475.05 1672.38,-470.34"/>
-<text text-anchor="middle" x="1708.77" y="-486.4" font-family="Times,serif" font-size="14.00">[x+1]</text>
+<path fill="none" stroke="black" d="M1711.97,-517.26C1699.98,-504.42 1683.24,-486.48 1669.7,-471.97"/>
+<polygon fill="black" stroke="black" points="1672.57,-469.91 1663.19,-464.99 1667.45,-474.69 1672.57,-469.91"/>
+<text text-anchor="middle" x="1709.95" y="-486.4" font-family="Times,serif" font-size="14.00">[x+1]</text>
 </g>
 <!-- sample&#45;holder/mounted&#45;slide&#45;holder -->
 <g id="node29" class="node">
@@ -358,8 +359,9 @@
 <!-- sample&#45;holder&#45;&gt;sample&#45;holder/mounted&#45;slide&#45;holder -->
 <g id="edge28" class="edge">
 <title>sample&#45;holder&#45;&gt;sample&#45;holder/mounted&#45;slide&#45;holder</title>
-<path fill="none" stroke="black" d="M1758.59,-519.08C1789.3,-505.2 1835.4,-484.36 1870.06,-468.69"/>
-<polygon fill="black" stroke="black" points="1871.37,-471.93 1879.04,-464.63 1868.49,-465.56 1871.37,-471.93"/>
+<path fill="none" stroke="black" d="M1760.25,-519.08C1790.63,-505.2 1836.25,-484.36 1870.56,-468.69"/>
+<polygon fill="black" stroke="black" points="1871.79,-471.97 1879.43,-464.63 1868.88,-465.6 1871.79,-471.97"/>
+<text text-anchor="middle" x="1871.36" y="-486.4" font-family="Times,serif" font-size="14.00">[x+12] mm</text>
 </g>
 <!-- sample&#45;holder/skeleton -->
 <g id="node32" class="node">
@@ -370,8 +372,8 @@
 <!-- sample&#45;holder&#45;&gt;sample&#45;holder/skeleton -->
 <g id="edge29" class="edge">
 <title>sample&#45;holder&#45;&gt;sample&#45;holder/skeleton</title>
-<path fill="none" stroke="black" d="M1787.32,-528C1939.78,-513.18 2335.13,-474.75 2520.26,-456.76"/>
-<polygon fill="black" stroke="black" points="2520.49,-460.25 2530.1,-455.8 2519.81,-453.28 2520.49,-460.25"/>
+<path fill="none" stroke="black" d="M1789.18,-528C1941.2,-513.19 2335.27,-474.8 2520.13,-456.79"/>
+<polygon fill="black" stroke="black" points="2520.34,-460.29 2529.95,-455.83 2519.66,-453.32 2520.34,-460.29"/>
 </g>
 <!-- sample&#45;holder/mounted&#45;slide&#45;holder/clip -->
 <g id="node30" class="node">
@@ -425,9 +427,9 @@
 <!-- tube&#45;lens&#45;&gt;projector&#45;screen -->
 <g id="edge34" class="edge">
 <title>tube&#45;lens&#45;&gt;projector&#45;screen</title>
-<path fill="none" stroke="black" d="M3677.42,-162.47C3667.35,-149.99 3653.26,-132.52 3641.63,-118.1"/>
-<polygon fill="black" stroke="black" points="3644.37,-115.91 3635.36,-110.32 3638.92,-120.3 3644.37,-115.91"/>
-<text text-anchor="middle" x="3697.11" y="-131.2" font-family="Times,serif" font-size="14.00">[x+100] mm</text>
+<path fill="none" stroke="black" d="M3679.05,-162.47C3668.59,-149.87 3653.92,-132.18 3641.89,-117.69"/>
+<polygon fill="black" stroke="black" points="3644.85,-115.77 3635.78,-110.31 3639.47,-120.24 3644.85,-115.77"/>
+<text text-anchor="middle" x="3698.29" y="-131.2" font-family="Times,serif" font-size="14.00">[x+100] mm</text>
 </g>
 <!-- tube&#45;lens/mounted&#45;lens -->
 <g id="node36" class="node">
@@ -438,8 +440,9 @@
 <!-- tube&#45;lens&#45;&gt;tube&#45;lens/mounted&#45;lens -->
 <g id="edge35" class="edge">
 <title>tube&#45;lens&#45;&gt;tube&#45;lens/mounted&#45;lens</title>
-<path fill="none" stroke="black" d="M3712.29,-163.48C3731.16,-150.17 3758.78,-130.68 3780.41,-115.41"/>
-<polygon fill="black" stroke="black" points="3782.19,-118.44 3788.34,-109.82 3778.15,-112.72 3782.19,-118.44"/>
+<path fill="none" stroke="black" d="M3713.94,-163.48C3732.42,-150.23 3759.42,-130.85 3780.66,-115.62"/>
+<polygon fill="black" stroke="black" points="3782.65,-118.5 3788.74,-109.83 3778.57,-112.81 3782.65,-118.5"/>
+<text text-anchor="middle" x="3790.56" y="-131.2" font-family="Times,serif" font-size="14.00">[x&#45;8] mm</text>
 </g>
 <!-- tube&#45;lens/skeleton -->
 <g id="node40" class="node">
@@ -450,8 +453,8 @@
 <!-- tube&#45;lens&#45;&gt;tube&#45;lens/skeleton -->
 <g id="edge36" class="edge">
 <title>tube&#45;lens&#45;&gt;tube&#45;lens/skeleton</title>
-<path fill="none" stroke="black" d="M3732.67,-171.62C3819.06,-156.89 4017.33,-123.08 4125.64,-104.61"/>
-<polygon fill="black" stroke="black" points="4126.03,-108.09 4135.3,-102.96 4124.86,-101.19 4126.03,-108.09"/>
+<path fill="none" stroke="black" d="M3734.51,-171.62C3820.44,-156.91 4017.52,-123.17 4125.5,-104.68"/>
+<polygon fill="black" stroke="black" points="4125.86,-108.17 4135.13,-103.04 4124.68,-101.27 4125.86,-108.17"/>
 </g>
 <!-- tube&#45;lens/mounted&#45;lens/insert -->
 <g id="node37" class="node">

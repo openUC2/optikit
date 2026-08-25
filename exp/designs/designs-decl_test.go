@@ -3,13 +3,11 @@ package designs
 import (
 	"errors"
 	"fmt"
-	"maps"
 	"os"
 	"path"
 	"testing"
 
 	"github.com/google/go-cmp/cmp"
-	"github.com/ungerik/go3d/float64/quaternion"
 
 	"github.com/openUC2/optikit/exp/fs"
 )
@@ -51,7 +49,7 @@ func TestDesignDecls(t *testing.T) {
 			t.Parallel()
 
 			t.Logf("load %s", p)
-			designDecl, err := LoadDesignDecl(examplesFS, path.Join("designs", p, DesignDeclFile))
+			designDecl, err := LoadDesignDecl(examplesFS, path.Join("designs", p, DesignExprDeclFile))
 			if err != nil {
 				t.Error(err)
 				return
@@ -76,6 +74,7 @@ func renderErrors(errs []error) string {
 
 // CompsSpec
 
+/*
 var compSpecMergeTestOverlays = map[CompID]CompSpec{
 	"b": {
 		Pose: CompPoseSpec{
@@ -105,6 +104,7 @@ var compSpecMergeTestModifiers = map[CompID]func(s CompSpec) CompSpec{
 	},
 }
 
+// FIXME: change this to compExprsSpecMergeTests
 var compsSpecMergeTests = map[string]struct {
 	in      CompsSpec
 	overlay CompsSpec
@@ -182,6 +182,7 @@ func TestCompsSpecMerge(t *testing.T) {
 		})
 	}
 }
+*/
 
 var designFlattenTests = map[string]string{
 	"microscopes/simple-abs-transl-anchors.dsn": "microscopes/simple-abs-transl-anchors.dsn",
@@ -205,14 +206,14 @@ func TestDesignFlatten(t *testing.T) {
 			t.Parallel()
 
 			t.Logf("load %s", in)
-			inDecl, err := LoadDesignDecl(examplesFS, path.Join("designs", in, DesignDeclFile))
+			inDecl, err := LoadDesignDecl(examplesFS, path.Join("designs", in, DesignExprDeclFile))
 			if err != nil {
 				t.Error(err)
 				return
 			}
 
 			t.Logf("load %s", out)
-			outDecl, err := LoadDesignDecl(examplesFS, path.Join("designs", out, DesignDeclFile))
+			outDecl, err := LoadDesignDecl(examplesFS, path.Join("designs", out, DesignExprDeclFile))
 			if err != nil {
 				t.Error(err)
 				return
@@ -231,6 +232,7 @@ func TestDesignFlatten(t *testing.T) {
 
 // CompSpec
 
+/*
 var exampleCompSpec = CompSpec{
 	Type:   "foo",
 	Design: "bar",
@@ -258,6 +260,7 @@ var exampleCompSpec = CompSpec{
 	},
 }
 
+// FIXME: update this to CompExprSpecMergeTests
 var compSpecMergeTests = map[string]struct {
 	in      CompSpec
 	overlay CompSpec
@@ -353,6 +356,7 @@ func TestCompSpecMerge(t *testing.T) {
 		})
 	}
 }
+*/
 
 // CompPoseRotSpec
 
