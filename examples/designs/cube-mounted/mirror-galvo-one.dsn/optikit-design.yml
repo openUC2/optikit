@@ -1,0 +1,45 @@
+optikit-version: v0.0.0-alpha.1
+
+design:
+  description: One motorized galvo mirror in a cube
+  tags:
+    - cube-mounted
+    - mirror
+    - mirror/single-sided
+    - mirror/flat
+    - actuator/stepper-motor
+    - control/electronic
+
+components:
+  skeleton:
+    type: design
+    design: primitives/cube-skeleton.dsn
+    pose:
+      rotation:
+        type: grid
+  mounted-mirror:
+    type: design
+    design: mounted-mirror.dsn
+    instantiation:
+      inputs:
+        mirror-rotation: ~ inputs['mirror-rotation'].value
+    pose:
+      rotation:
+        type: grid
+  skeleton-extra:
+    type: design
+    design: primitives/cube-skeleton.dsn
+    pose:
+      rotation:
+        type: grid
+      translation:
+        offset-grid: {x: -1}
+
+inputs:
+  mirror-rotation:
+    description: Rotation of mirror about the rotation axis of its motor
+    type: float64
+    units: deg
+    tags:
+      - adjustment/electronic
+      - actuation/stepper

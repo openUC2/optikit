@@ -1,0 +1,43 @@
+optikit-version: v0.0.0-alpha.1
+
+design:
+  description: One motorized galvo mirror on a cube insert
+  tags:
+    - insert-mounted
+    - mirror
+    - mirror/single-sided
+    - mirror/flat
+    - actuator/stepper-motor
+    - control/electronic
+    - in/galvo-box
+
+components:
+  motorized-mirror:
+    type: design
+    design: primitives/motorized-mirror.dsn
+    instantiation:
+      inputs:
+        mirror-rotation: ~ inputs['mirror-rotation'].value
+    pose:
+      rotation:
+        type: grid
+        grid: {z: -z}
+  cube-insert:
+    type: primitive
+    primitive:
+      static-models:
+        gltf: PRT - 2164 - INSGLV - V04.glb
+        step: PRT - 2164 - INSGLV - V04.stp
+    pose:
+      rotation:
+        type: grid
+        grid: {x: -y}
+
+inputs:
+  mirror-rotation:
+    description: Rotation of mirror about the rotation axis of its motor
+    type: float64
+    units: deg
+    tags:
+      - adjustment/electronic
+      - actuation/stepper

@@ -1,0 +1,47 @@
+optikit-version: v0.0.0-alpha.1
+
+design:
+  description: A minimal 2-D microscope consisting of components whose 3-D positions are specified relative to each other.
+  tags:
+    - instrument
+    - instrument/microscope
+
+components:
+  galvo-mirror-pair-1:
+    type: design
+    design: cube-mounted/mirror-galvo-two.dsn
+    instantiation:
+      inputs:
+        mirror-1-rotation: 10
+        mirror-2-rotation: 40
+    pose:
+      rotation:
+        type: uc2
+  galvo-mirror-pair-2:
+    type: design
+    design: cube-mounted/mirror-galvo-two.dsn
+    instantiation:
+      inputs:
+        mirror-1-rotation: 20
+        mirror-2-rotation: 60
+    pose:
+      rotation:
+        type: uc2
+      translation:
+        offset-grid: {x: 1, y: 1}
+  galvo-mirror-pair-3:
+    type: design
+    design: cube-mounted/mirror-galvo-two.dsn
+    instantiation:
+      inputs:
+        mirror-1-rotation: 40
+        mirror-2-rotation: 80
+    pose:
+      rotation:
+        type: uc2
+      translation:
+        offset-grid: {x: 2, y: 2}
+
+relations:
+  geometry:
+  logic:
