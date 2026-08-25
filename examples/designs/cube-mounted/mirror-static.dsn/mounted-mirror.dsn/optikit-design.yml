@@ -49,5 +49,5 @@ variants:
       inner-insert:
         pose:
           rotation:
-            type: quaternion
-            quaternion: ~ [0, 0, 0.3826834, 0.9238795]
+            type: euler
+            euler: {z: 45}

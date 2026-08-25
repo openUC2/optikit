@@ -193,7 +193,7 @@ func (d *Document) addComponentPrimitive(fsys ffs.PathedFS, prim designs.CompPri
 	}
 	contents, err := fs.ReadFile(fsys, model)
 	if err != nil {
-		return "", nil, errors.Wrapf(err, "couldn't read model %s", model)
+		return "", nil, errors.Wrapf(err, "couldn't read model %s from %s", model, fsys.Path())
 	}
 	hash := fmt.Sprintf("%x", sha256.Sum256(contents))
 	if instances, ok := d.modelInstances[hash]; ok {

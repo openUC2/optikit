@@ -53,11 +53,11 @@
   static-models:
     gltf: "cube-mounted/mirror-static.dsn/mounted-mirror.dsn/mounted-mirror-inner.dsn/BUY - Adhesive pad - D22x1.glb"
     step: "cube-mounted/mirror-static.dsn/mounted-mirror.dsn/mounted-mirror-inner.dsn/BUY - Adhesive pad - D22x1.stp"
-  position: [102.4748734377521, -2.4748739075510797, 0.0]
+  position: [102.47487373415292, -2.4748737341529163, 0.0]
   rotation:
     type: extrinsic
     order: zxy
-    angles: {z: 134.9999939721}
+    angles: {z: 135.0}
 - id: periscope-mirror-1/mounted-mirror/inner-insert/mirror
   type: static
   static-models:
@@ -67,7 +67,7 @@
   rotation:
     type: extrinsic
     order: zxy
-    angles: {z: 134.9999939721}
+    angles: {z: 135.0}
 - id: periscope-mirror-1/mounted-mirror/inner-insert/mount-base
   type: static
   static-models:
@@ -77,7 +77,7 @@
   rotation:
     type: extrinsic
     order: zxy
-    angles: {z: 134.9999939721}
+    angles: {z: 135.0}
 - id: periscope-mirror-1/mounted-mirror/inner-insert/mount-top
   type: static
   static-models:
@@ -87,7 +87,7 @@
   rotation:
     type: extrinsic
     order: zxy
-    angles: {z: 134.9999939721}
+    angles: {z: 135.0}
 - id: periscope-mirror-1/mounted-mirror/master-insert-bottom
   type: static
   static-models:
@@ -133,11 +133,11 @@
   static-models:
     gltf: "cube-mounted/mirror-static.dsn/mounted-mirror.dsn/mounted-mirror-inner.dsn/BUY - Adhesive pad - D22x1.glb"
     step: "cube-mounted/mirror-static.dsn/mounted-mirror.dsn/mounted-mirror-inner.dsn/BUY - Adhesive pad - D22x1.stp"
-  position: [100.0, 252.4748734377521, -2.4748739075510797]
+  position: [100.0, 252.4748737341529, -2.4748737341529163]
   rotation:
     type: extrinsic
     order: zxy
-    angles: {x: -44.9999939721, "y": -90.0, z: -180.0}
+    angles: {x: -45.0, "y": -90.0, z: -180.0}
 - id: periscope-mirror-2/mounted-mirror/inner-insert/mirror
   type: static
   static-models:
@@ -147,7 +147,7 @@
   rotation:
     type: extrinsic
     order: zxy
-    angles: {x: -44.9999939721, "y": -90.0, z: -180.0}
+    angles: {x: -45.0, "y": -90.0, z: -180.0}
 - id: periscope-mirror-2/mounted-mirror/inner-insert/mount-base
   type: static
   static-models:
@@ -157,7 +157,7 @@
   rotation:
     type: extrinsic
     order: zxy
-    angles: {x: -44.9999939721, "y": -90.0, z: -180.0}
+    angles: {x: -45.0, "y": -90.0, z: -180.0}
 - id: periscope-mirror-2/mounted-mirror/inner-insert/mount-top
   type: static
   static-models:
@@ -167,7 +167,7 @@
   rotation:
     type: extrinsic
     order: zxy
-    angles: {x: -44.9999939721, "y": -90.0, z: -180.0}
+    angles: {x: -45.0, "y": -90.0, z: -180.0}
 - id: periscope-mirror-2/mounted-mirror/master-insert-bottom
   type: static
   static-models:

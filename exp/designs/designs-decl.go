@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io/fs"
 	"maps"
+	"math"
 	"path"
 	"slices"
 	"strings"
@@ -148,8 +149,10 @@ type InstSpec struct {
 	// Variant declares which design variant (if any) of a design will be used.
 	Variant VariantID `json:"variant,omitempty" yaml:"variant,omitempty"`
 	// Inputs instantiates the design's input variables to particular values.
-	Inputs map[VarName]any `json:"inputs,omitempty" yaml:"inputs,omitempty"`
+	Inputs InputValues `json:"inputs,omitempty" yaml:"inputs,omitempty"`
 }
+
+type InputValues map[VarName]any
 
 type CompPrimSpec struct {
 	// Type is the type of primitive. It can be `static`.
@@ -195,7 +198,8 @@ type CompPoseSpec struct {
 type CompPoseRotExprSpec struct {
 	// Type is the type of orientation of the component. It can be either `` (implying a component
 	// without any spatial geometry), `uc2` (implying a UC2 cube), `grid` (for any orientation
-	// aligned with the design's axes, even if violating UC2 cube orientation constraints), or
+	// aligned with the design's axes, even if violating UC2 cube orientation constraints),
+	// 'euler' (for arbitrary rotations in the extrinsic z-x-y Euler angle order), or
 	// `quaternion` (for arbitrary rotations).
 	// If the type is uc2, then Grid.Z is only allowed to be +z or -z, and Grid.X is not allowed to
 	// be +z or -z.
@@ -203,6 +207,10 @@ type CompPoseRotExprSpec struct {
 	// Grid declares the orientation parameters of the component if its rotation type is `uc2` or
 	// `grid`.
 	Grid CompPoseRotGridSpec `json:"grid" yaml:"grid,omitempty"`
+	// Euler declares the orientation parameters of the component if its rotation type is
+	// `euler`. Angles should be in the extrinsic Z-X-Y order, which is equivalent to the
+	// intrinsic Y-X-Z order.
+	Euler ExprXYZ `json:"euler" yaml:"euler,omitempty"`
 	// Quaternion declares the orientation parameters of the component if its rotation type is
 	// `quaternion`.
 	// The quaternion should be a string expression which evaluates into a 4-component numeric array.
@@ -222,6 +230,10 @@ type CompPoseRotSpec struct {
 	// Grid declares the orientation parameters of the component if its rotation type is `uc2` or
 	// `grid`.
 	Grid CompPoseRotGridSpec `json:"grid" yaml:"grid,omitempty"`
+	// Euler declares the orientation parameters of the component if its rotation type is
+	// `euler`. Angles should be in the extrinsic Z-X-Y order, which is equivalent to the
+	// intrinsic Y-X-Z order.
+	Euler ContinuousXYZ[float64] `json:"euler" yaml:"euler,omitempty"`
 	// Quaternion declares the orientation parameters of the component if its rotation type is
 	// `quaternion`.
 	Quaternion quaternion.T `json:"quaternion" yaml:"quaternion,omitempty"`
@@ -230,6 +242,7 @@ type CompPoseRotSpec struct {
 const (
 	RotTypeUC2        = "uc2"
 	RotTypeGrid       = "grid"
+	RotTypeEuler      = "euler"
 	RotTypeQuaternion = "quaternion"
 )
 
@@ -373,12 +386,13 @@ func (d DesignExprDecl) Cloned() DesignExprDecl {
 // variables, and feature flags, as specified by the provided instantiation parameters.
 func (d DesignExprDecl) Instantiated(instantiation InstSpec) (dd DesignDecl, err error) {
 	s := d.Components
+	dd.Inputs = d.Inputs
 	if instantiation.Variant != "" {
 		v, has := d.Variants[instantiation.Variant]
 		if !has {
 			return dd, errors.Errorf("requested variant not found: %s", instantiation.Variant)
 		}
-		dd.Inputs = d.Inputs.Merged(v.Inputs)
+		dd.Inputs = dd.Inputs.Merged(v.Inputs)
 		s = d.Components.Merged(v.Components)
 	}
 
@@ -621,7 +635,7 @@ func (s InstExprSpec) Merged(overlay InstExprSpec) InstExprSpec {
 
 // Evaluated evaluates the expressions with the given ExprEnv into a CompSpec.
 func (s InstExprSpec) Evaluated(env ExprEnv) (result InstSpec, err error) {
-	result.Inputs = make(map[VarName]any)
+	result.Inputs = make(InputValues)
 	for varName, expr := range s.Inputs {
 		if expr == "" {
 			continue
@@ -660,6 +674,24 @@ func (s InstSpec) String() string {
 		return ""
 	}
 	return result
+}
+
+// InputValues
+
+// Merged returns a new InputValues created by applying the specified overlay, without modifying
+// this current InputValues or the overlay.
+func (s InputValues) Merged(overlay InputValues) InputValues {
+	merged := maps.Clone(s)
+	for name, o := range overlay {
+		already, alreadyHas := merged[name]
+		if !alreadyHas {
+			merged[name] = o
+			continue
+		}
+
+		merged[name] = cmp.Or(o, already)
+	}
+	return merged
 }
 
 // CompPrimSpec
@@ -762,6 +794,11 @@ func (s CompPoseRotExprSpec) Merged(overlay CompPoseRotExprSpec) CompPoseRotExpr
 			Type: t,
 			Grid: s.Grid.Merged(overlay.Grid),
 		}
+	case RotTypeEuler:
+		return CompPoseRotExprSpec{
+			Type:  t,
+			Euler: s.Euler.Merged(overlay.Euler),
+		}
 	case RotTypeQuaternion:
 		return CompPoseRotExprSpec{
 			Type:       t,
@@ -778,6 +815,10 @@ func (s CompPoseRotExprSpec) Evaluated(env ExprEnv) (result CompPoseRotSpec, err
 	switch result.Type {
 	case RotTypeUC2, RotTypeGrid:
 		result.Grid = s.Grid
+	case RotTypeEuler:
+		if result.Euler, err = s.Euler.EvaluatedFloat64(env.ToMap()); err != nil {
+			return CompPoseRotSpec{}, errors.Wrap(err, "couldn't evaluate euler")
+		}
 	case RotTypeQuaternion:
 		if s.Quaternion != "" {
 			evaluated, err := s.Quaternion.evalAsAny(env.ToMap())
@@ -882,11 +923,21 @@ func (s CompPoseRotSpec) TransfMat() mat4.T {
 		return mat4.T{}
 	case RotTypeUC2, RotTypeGrid:
 		return GridRotMats[cmp.Or(s.Grid.Z, DirZPos)][cmp.Or(s.Grid.X, DirXPos)]
+	case RotTypeEuler:
+		mat := mat4.Zero
+		mat.AssignEulerRotation(
+			degToRad(s.Euler.Y), degToRad(s.Euler.X), degToRad(s.Euler.Z),
+		)
+		return mat
 	case RotTypeQuaternion:
 		mat := mat4.Zero
 		mat.AssignQuaternion(&s.Quaternion)
 		return mat
 	}
+}
+
+func degToRad(deg float64) float64 {
+	return deg * (math.Pi / 180.0) //nolint:mnd // the entire function is a magic number conversion...
 }
 
 // CompPoseTranslExprSpec
@@ -998,6 +1049,15 @@ func (s InputsSpec) Merged(overlay InputsSpec) InputsSpec {
 		merged[id] = already.Merged(o)
 	}
 	return merged
+}
+
+// Defaults returns a map of zero values for all input variables.
+func (s InputsSpec) ZeroValues() InputValues {
+	zeroes := make(InputValues)
+	for id, spec := range s {
+		zeroes[id] = varTypeZeroValues[spec.Type]
+	}
+	return zeroes
 }
 
 // InputVarSpec

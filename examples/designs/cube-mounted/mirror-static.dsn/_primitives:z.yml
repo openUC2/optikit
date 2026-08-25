@@ -3,11 +3,11 @@
   static-models:
     gltf: "mounted-mirror.dsn/mounted-mirror-inner.dsn/BUY - Adhesive pad - D22x1.glb"
     step: "mounted-mirror.dsn/mounted-mirror-inner.dsn/BUY - Adhesive pad - D22x1.stp"
-  position: [-2.4748734377521, 0.0, -2.4748739075510797]
+  position: [-2.474873734152916, 0.0, -2.4748737341529163]
   rotation:
     type: extrinsic
     order: zxy
-    angles: {x: -44.9999939721, "y": -90.0, z: -90.0}
+    angles: {x: -45.0, "y": -90.0, z: -90.0}
 - id: mounted-mirror/inner-insert/mirror
   type: static
   static-models:
@@ -17,7 +17,7 @@
   rotation:
     type: extrinsic
     order: zxy
-    angles: {x: -44.9999939721, "y": -90.0, z: -90.0}
+    angles: {x: -45.0, "y": -90.0, z: -90.0}
 - id: mounted-mirror/inner-insert/mount-base
   type: static
   static-models:
@@ -27,7 +27,7 @@
   rotation:
     type: extrinsic
     order: zxy
-    angles: {x: -44.9999939721, "y": -90.0, z: -90.0}
+    angles: {x: -45.0, "y": -90.0, z: -90.0}
 - id: mounted-mirror/inner-insert/mount-top
   type: static
   static-models:
@@ -37,7 +37,7 @@
   rotation:
     type: extrinsic
     order: zxy
-    angles: {x: -44.9999939721, "y": -90.0, z: -90.0}
+    angles: {x: -45.0, "y": -90.0, z: -90.0}
 - id: mounted-mirror/master-insert-bottom
   type: static
   static-models:

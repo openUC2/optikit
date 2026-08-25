@@ -2,7 +2,6 @@ package optikit
 
 import (
 	gerrors "errors"
-	"maps"
 	"os"
 
 	"github.com/pkg/errors"
@@ -35,48 +34,12 @@ func LoadFSDesign(
 	d = &designs.FSDesign{
 		FS: de.FS,
 	}
-	i := make(map[designs.VarName]any)
-	maps.Copy(i, inputs)
+	i := de.Decl.Inputs.ZeroValues().Merged(inputs)
 	if d.Design, err = de.Instantiated(designs.InstSpec{
 		Variant: variant,
 		Inputs:  i,
 	}); err != nil {
 		return d, errors.Wrapf(err, "couldn't instantiate with variant %s & inputs %+v", variant, i)
-	}
-	if errs = d.Check(); len(errs) > 0 {
-		return d, gerrors.Join(errs...)
-	}
-
-	return d, err
-}
-
-func LoadDesignDecl(
-	path, variant string, inputs map[string]any,
-) (d designs.DesignDecl, err error) {
-	pathRoot, err := os.OpenRoot(path)
-	if err != nil {
-		return d, err
-	}
-	designFS := ofs.AttachPath(pathRoot.FS(), path)
-	de, err := designs.LoadDesignExprDecl(designFS, designs.DesignExprDeclFile)
-	if err != nil {
-		return d, err
-	}
-
-	errs := de.Check()
-	if len(errs) > 0 {
-		return d, gerrors.Join(errs...)
-	}
-
-	i := make(map[designs.VarName]any)
-	for name, value := range inputs {
-		i[designs.VarName(name)] = value
-	}
-	if d, err = de.Instantiated(designs.InstSpec{
-		Variant: designs.VariantID(variant),
-		Inputs:  i,
-	}); err != nil {
-		return d, err
 	}
 	if errs = d.Check(); len(errs) > 0 {
 		return d, gerrors.Join(errs...)
