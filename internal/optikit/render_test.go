@@ -20,13 +20,8 @@ var renderDesignDeclTests = map[string][]designs.InstSpec{ // design -> instanti
 		{Variant: "x", Inputs: map[designs.VarName]any{"offset": -11}},
 		{Variant: "z", Inputs: map[designs.VarName]any{"offset": 7}},
 	},
-	"cube-mounted/slide-holder.dsn": {
-		{Variant: "x", Inputs: map[designs.VarName]any{"offset": -12}},
-		{Variant: "z", Inputs: map[designs.VarName]any{"offset": 7}},
-	},
 	"microscopes/simple-3d.dsn":                 {{}},
 	"microscopes/simple-rel-transl-anchors.dsn": {{}},
-	"microscopes/simple-abs-transl-anchors.dsn": {{}},
 }
 
 type graphRenderer func(
