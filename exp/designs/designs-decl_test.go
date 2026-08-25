@@ -74,6 +74,7 @@ func renderErrors(errs []error) string {
 
 // CompsSpec
 
+/*
 var compSpecMergeTestOverlays = map[CompID]CompSpec{
 	"b": {
 		Pose: CompPoseSpec{
@@ -104,7 +105,6 @@ var compSpecMergeTestModifiers = map[CompID]func(s CompSpec) CompSpec{
 }
 
 // FIXME: change this to compExprsSpecMergeTests
-/*
 var compsSpecMergeTests = map[string]struct {
 	in      CompsSpec
 	overlay CompsSpec
@@ -232,6 +232,7 @@ func TestDesignFlatten(t *testing.T) {
 
 // CompSpec
 
+/*
 var exampleCompSpec = CompSpec{
 	Type:   "foo",
 	Design: "bar",
@@ -260,7 +261,6 @@ var exampleCompSpec = CompSpec{
 }
 
 // FIXME: update this to CompExprSpecMergeTests
-/*
 var compSpecMergeTests = map[string]struct {
 	in      CompSpec
 	overlay CompSpec

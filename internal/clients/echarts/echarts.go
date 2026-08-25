@@ -78,7 +78,7 @@ func (c *Chart3D) MakeAxesIsometric() {
 	center := c.Limits.Center()
 	extent := vec3.Sub(&c.Limits.Max, &c.Limits.Min)
 	maxExtent := slices.Max(extent.Slice())
-	halfDiagonal := vec3.UnitXYZ.Scaled(maxExtent / 2) //nolint:mnd
+	halfDiagonal := vec3.UnitXYZ.Scaled(maxExtent / 2) //nolint:mnd // half isn't magic...
 	limits := vec3.Box{
 		Min: vec3.Sub(&center, &halfDiagonal),
 		Max: vec3.Add(&center, &halfDiagonal),

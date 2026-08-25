@@ -2,6 +2,8 @@
 package mdl
 
 import (
+	"fmt"
+
 	"github.com/urfave/cli/v3"
 
 	"github.com/openUC2/optikit/internal/optikit"
@@ -22,12 +24,15 @@ func MakeCmd(_ optikit.Versions) *cli.Command {
 				Flags: []cli.Flag{
 					&cli.StringFlag{
 						Name:  "input-format",
-						Value: "step",
-						Usage: "Manually set format of input_file (step)",
+						Value: formatStep,
+						Usage: fmt.Sprintf("Manually set format of input_file (%s)", formatStep),
 					},
 					&cli.StringFlag{
-						Name:  "output-format",
-						Usage: "Manually set format of output_file (step, gltf, or glb)",
+						Name: "output-format",
+						Usage: fmt.Sprintf(
+							"Manually set format of output_file (%s, %s, or %s)",
+							formatStep, formatGLTF, formatGLB,
+						),
 					},
 				},
 			},

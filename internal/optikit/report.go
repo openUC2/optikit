@@ -106,10 +106,10 @@ func NewPrimRotReport(m mat4.T) PrimRotReport {
 }
 
 func roundFloat(value float64, roundingPrecision uint) float64 {
-	power := math.Pow(10, float64(roundingPrecision)) //nolint:mnd
+	power := math.Pow(10, float64(roundingPrecision)) //nolint:mnd // base-10 isn't magic...
 	return math.Round(value*power) / power
 }
 
 func radToDeg(rad float64) float64 {
-	return rad * (180.0 / math.Pi) //nolint:mnd
+	return rad * (180.0 / math.Pi) //nolint:mnd // the entire function is a magic number conversion...
 }

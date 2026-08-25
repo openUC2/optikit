@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"path"
+	"path/filepath"
 	"testing"
 
 	"github.com/google/go-cmp/cmp"
@@ -105,7 +106,7 @@ func loadGraph(dp, name string, variant designs.VariantID, format string) ([]byt
 		name += ":" + string(variant)
 	}
 	name += "." + format
-	return os.ReadFile(path.Join(dp, name))
+	return os.ReadFile(filepath.Clean(path.Join(dp, name)))
 }
 
 const (
@@ -165,7 +166,7 @@ func checkGLTF(
 		t.Error(err)
 		return
 	}
-	if want, err = os.ReadFile(path.Join(dp, objectName)); err != nil {
+	if want, err = os.ReadFile(filepath.Clean(path.Join(dp, objectName))); err != nil {
 		t.Error(err)
 		return
 	}

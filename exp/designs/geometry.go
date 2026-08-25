@@ -34,9 +34,9 @@ type ContinuousXYZ[Number ~float32 | ~float64] struct {
 // UC2GridSpacings indicates the distance between the center of each UC2 grid space along each axis,
 // in units of millimeters.
 var UC2GridSpacings = ContinuousXYZ[float64]{
-	X: 50, //nolint:mnd
-	Y: 50, //nolint:mnd
-	Z: 55, //nolint:mnd
+	X: 50, //nolint:mnd // the overall variable is a magic-number vector!
+	Y: 50, //nolint:mnd // the overall variable is a magic-number vector!
+	Z: 55, //nolint:mnd // the overall variable is a magic-number vector!
 }
 
 const (

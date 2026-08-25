@@ -382,7 +382,7 @@ func RenderPositionPlot(comps designs.CompsSpec) (result []byte, err error) {
 		if err != nil {
 			return nil, err
 		}
-		c.AddObject(string(id), mat, designs.UC2GridSpacings.X/2) //nolint:mnd
+		c.AddObject(string(id), mat, designs.UC2GridSpacings.X/2) //nolint:mnd // half isn't magic...
 	}
 	c.MakeAxesIsometric()
 

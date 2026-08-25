@@ -4,9 +4,11 @@ import (
 	"fmt"
 	"os"
 	"path"
+	"path/filepath"
 	"testing"
 
 	"github.com/google/go-cmp/cmp"
+
 	"github.com/openUC2/optikit/exp/designs"
 )
 
@@ -102,7 +104,7 @@ func checkPrimitives(
 	if got, err = ReportPrimitives(t.Context(), design, designs.UC2GridSpacings, format); err != nil {
 		t.Error(err)
 	}
-	if want, err = os.ReadFile(path.Join(dp, reportName)); err != nil {
+	if want, err = os.ReadFile(filepath.Clean(path.Join(dp, reportName))); err != nil {
 		t.Error(err)
 	}
 	if !cmp.Equal(got, want) {

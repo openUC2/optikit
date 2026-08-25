@@ -64,7 +64,7 @@ func LoadFSDesignExpr(fsys ffs.PathedFS, subdirPath string) (p *FSDesignExpr, er
 			err, "couldn't enter directory %s from fs at %s", subdirPath, fsys.Path(),
 		)
 	}
-	if p.DesignExpr.Decl, err = LoadDesignExprDecl(p.FS, DesignExprDeclFile); err != nil {
+	if p.Decl, err = LoadDesignExprDecl(p.FS, DesignExprDeclFile); err != nil {
 		return nil, errors.Wrapf(err, "couldn't load design declaration from %s", fsys.Path())
 	}
 	return p, nil
@@ -150,8 +150,8 @@ func (d *FSDesignExpr) Path() string {
 func (d *FSDesignExpr) Cloned() *FSDesignExpr {
 	return &FSDesignExpr{
 		DesignExpr: DesignExpr{
-			Decl:    d.DesignExpr.Decl.Cloned(),
-			Version: d.DesignExpr.Version,
+			Decl:    d.Decl.Cloned(),
+			Version: d.Version,
 		},
 		FS: d.FS,
 	}
@@ -187,8 +187,8 @@ func (d *FSDesign) Path() string {
 func (d *FSDesign) Cloned() *FSDesign {
 	return &FSDesign{
 		Design: Design{
-			Decl:    d.Design.Decl.Cloned(),
-			Version: d.Design.Version,
+			Decl:    d.Decl.Cloned(),
+			Version: d.Version,
 		},
 		FS: d.FS,
 	}
@@ -293,8 +293,8 @@ func (d *FSDesign) LoadCompFSDesign(compID CompID) (subdesign *FSDesign, err err
 
 // Primitives recursively returns all primitives in the design and its subassembly components.
 func (d *FSDesign) Primitives() (CompsSpec, error) {
-	prims := d.Design.Decl.Components.Primitives()
-	for id, c := range d.Design.Decl.Components {
+	prims := d.Decl.Components.Primitives()
+	for id, c := range d.Decl.Components {
 		if c.Type != CompTypeDesign {
 			continue
 		}
