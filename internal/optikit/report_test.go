@@ -40,7 +40,10 @@ var reports = map[string][]designs.InstSpec{ // design -> instantiations
 		{Variant: "XnegZpos"},
 		{Variant: "XnegYneg"},
 	},
-	"cube-mounted/lens.dsn":            {{Variant: "x"}, {Variant: "y"}, {Variant: "z"}},
+	"cube-mounted/lens.dsn": {
+		{Variant: "x", Inputs: map[designs.VarName]any{"offset": -11}},
+		{Variant: "z", Inputs: map[designs.VarName]any{"offset": 7}},
+	},
 	"cube-mounted/mirror-diagonal.dsn": {{Variant: "_z"}, {Variant: "xy"}},
 	"cube-mounted/slide-holder.dsn": {
 		{Variant: "x", Inputs: map[designs.VarName]any{"offset": -12}},

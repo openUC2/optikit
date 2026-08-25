@@ -16,7 +16,10 @@ import (
 
 var renderDesignDeclTests = map[string][]designs.InstSpec{ // design -> instantiations
 	"primitives/cube-skeleton.dsn": {{}},
-	"cube-mounted/lens.dsn":        {{Variant: "x"}, {Variant: "z"}},
+	"cube-mounted/lens.dsn": {
+		{Variant: "x", Inputs: map[designs.VarName]any{"offset": -11}},
+		{Variant: "z", Inputs: map[designs.VarName]any{"offset": 7}},
+	},
 	"cube-mounted/slide-holder.dsn": {
 		{Variant: "x", Inputs: map[designs.VarName]any{"offset": -12}},
 		{Variant: "z", Inputs: map[designs.VarName]any{"offset": 7}},
