@@ -1,7 +1,7 @@
 [
   {
     "id": "mounted-lens/insert",
-    "type": "static",
+    "kind": "static",
     "static-models": {
       "gltf": "mounted-lens.dsn/PRT - 2023 - INSLEND40F50 - V04.glb",
       "step": "mounted-lens.dsn/PRT - 2023 - INSLEND40F50 - V04.stp"
@@ -12,7 +12,7 @@
       0
     ],
     "rotation": {
-      "type": "extrinsic",
+      "kind": "extrinsic",
       "order": "zxy",
       "angles": {
         "x": 0,
@@ -23,7 +23,7 @@
   },
   {
     "id": "mounted-lens/lens",
-    "type": "static",
+    "kind": "static",
     "static-models": {
       "gltf": "mounted-lens.dsn/BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx.glb",
       "step": "mounted-lens.dsn/BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx.stp"
@@ -34,7 +34,7 @@
       0
     ],
     "rotation": {
-      "type": "extrinsic",
+      "kind": "extrinsic",
       "order": "zxy",
       "angles": {
         "x": 0,
@@ -45,7 +45,7 @@
   },
   {
     "id": "mounted-lens/nut",
-    "type": "static",
+    "kind": "static",
     "static-models": {
       "gltf": "mounted-lens.dsn/PRT - 2003 - NUTD40.glb",
       "step": "mounted-lens.dsn/PRT - 2003 - NUTD40.stp"
@@ -56,7 +56,7 @@
       0
     ],
     "rotation": {
-      "type": "extrinsic",
+      "kind": "extrinsic",
       "order": "zxy",
       "angles": {
         "x": 0,
@@ -67,7 +67,7 @@
   },
   {
     "id": "skeleton/lower-half",
-    "type": "static",
+    "kind": "static",
     "static-models": {
       "gltf": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
       "step": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -78,7 +78,7 @@
       0
     ],
     "rotation": {
-      "type": "extrinsic",
+      "kind": "extrinsic",
       "order": "zxy",
       "angles": {
         "x": 0,
@@ -89,7 +89,7 @@
   },
   {
     "id": "skeleton/upper-half",
-    "type": "static",
+    "kind": "static",
     "static-models": {
       "gltf": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
       "step": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -100,7 +100,7 @@
       0
     ],
     "rotation": {
-      "type": "extrinsic",
+      "kind": "extrinsic",
       "order": "zxy",
       "angles": {
         "x": 0,

@@ -1,7 +1,7 @@
 [
   {
     "id": "clip",
-    "type": "static",
+    "kind": "static",
     "static-models": {
       "gltf": "PRT - 2008 - SAMCLP.glb",
       "step": "PRT - 2008 - SAMCLP.stp"
@@ -12,7 +12,7 @@
       -10
     ],
     "rotation": {
-      "type": "extrinsic",
+      "kind": "extrinsic",
       "order": "zxy",
       "angles": {
         "x": 0,
@@ -23,7 +23,7 @@
   },
   {
     "id": "insert",
-    "type": "static",
+    "kind": "static",
     "static-models": {
       "gltf": "PRT - 2028 - INSSAMMNT - V04.glb",
       "step": "PRT - 2028 - INSSAMMNT - V04.stp"
@@ -34,7 +34,7 @@
       0
     ],
     "rotation": {
-      "type": "extrinsic",
+      "kind": "extrinsic",
       "order": "zxy",
       "angles": {
         "x": 0,

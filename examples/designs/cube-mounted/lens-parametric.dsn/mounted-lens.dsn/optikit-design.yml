@@ -9,17 +9,17 @@ design:
 
 components:
   lens:
-    type: design
+    kind: design
     design: lens.dsn
     instantiation:
       optiland-model: '{{get inputs "lens-model"}}'
     pose:
       rotation:
-        type: grid
+        kind: grid
       translation:
         # TODO: do we need any offset-mm?
   insert:
-    type: computed-primitive
+    kind: computed-primitive
     computation:
       function: compute-insert-geometry.py
       inputs:
@@ -27,8 +27,8 @@ components:
         # TODO: do we need to specify notched vs. unnotched?
     pose:
       rotation:
-        type: grid
+        kind: grid
 
 inputs:
   lens-model:
-    type: string
+    kind: string

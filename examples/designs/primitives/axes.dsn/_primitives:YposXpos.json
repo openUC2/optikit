@@ -1,7 +1,7 @@
 [
   {
     "id": "axes",
-    "type": "static",
+    "kind": "static",
     "static-models": {
       "gltf": "axes.glb",
       "step": "axes.step"
@@ -12,7 +12,7 @@
       0
     ],
     "rotation": {
-      "type": "extrinsic",
+      "kind": "extrinsic",
       "order": "zxy",
       "angles": {
         "x": -90,

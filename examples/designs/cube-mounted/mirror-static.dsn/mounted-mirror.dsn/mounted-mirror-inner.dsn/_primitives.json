@@ -1,7 +1,7 @@
 [
   {
     "id": "adhesive-pad",
-    "type": "static",
+    "kind": "static",
     "static-models": {
       "gltf": "BUY - Adhesive pad - D22x1.glb",
       "step": "BUY - Adhesive pad - D22x1.stp"
@@ -12,7 +12,7 @@
       0
     ],
     "rotation": {
-      "type": "extrinsic",
+      "kind": "extrinsic",
       "order": "zxy",
       "angles": {
         "x": 0,
@@ -23,7 +23,7 @@
   },
   {
     "id": "mirror",
-    "type": "static",
+    "kind": "static",
     "static-models": {
       "gltf": "BUY - Mirror - D24x3.glb",
       "step": "BUY - Mirror - D24x3.stp"
@@ -34,7 +34,7 @@
       0
     ],
     "rotation": {
-      "type": "extrinsic",
+      "kind": "extrinsic",
       "order": "zxy",
       "angles": {
         "x": 0,
@@ -45,7 +45,7 @@
   },
   {
     "id": "mount-base",
-    "type": "static",
+    "kind": "static",
     "static-models": {
       "gltf": "PRT - 2110 - MASINSMIRHOLLOW - C.glb",
       "step": "PRT - 2110 - MASINSMIRHOLLOW - C.stp"
@@ -56,7 +56,7 @@
       0
     ],
     "rotation": {
-      "type": "extrinsic",
+      "kind": "extrinsic",
       "order": "zxy",
       "angles": {
         "x": 0,
@@ -67,7 +67,7 @@
   },
   {
     "id": "mount-top",
-    "type": "static",
+    "kind": "static",
     "static-models": {
       "gltf": "PRT - 2111 - MASINSMIRHOLUPP - C.glb",
       "step": "PRT - 2111 - MASINSMIRHOLUPP - C.stp"
@@ -78,7 +78,7 @@
       0
     ],
     "rotation": {
-      "type": "extrinsic",
+      "kind": "extrinsic",
       "order": "zxy",
       "angles": {
         "x": 0,

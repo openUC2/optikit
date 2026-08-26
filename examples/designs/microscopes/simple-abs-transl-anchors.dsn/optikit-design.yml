@@ -8,16 +8,16 @@ design:
 
 components:
   light-source:
-    type: design
+    kind: design
     design: primitives/flashlight.dsn
     pose:
       rotation:
-        type: grid
+        kind: grid
         grid: {z: +x, x: -z}
       translation:
         offset-mm: {x: -80}
   sample-holder:
-    type: design
+    kind: design
     design: cube-mounted/slide-holder.dsn
     instantiation:
       variant: x
@@ -25,9 +25,9 @@ components:
         offset: 7
     pose:
       rotation:
-        type: uc2
+        kind: uc2
   objective-lens:
-    type: design
+    kind: design
     design: cube-mounted/lens.dsn
     instantiation:
       variant: x
@@ -35,33 +35,33 @@ components:
         offset: 5
     pose:
       rotation:
-        type: uc2
+        kind: uc2
       translation:
         offset-grid: {x: 1}
   periscope-mirror-1:
-    type: design
+    kind: design
     design: cube-mounted/mirror-diagonal.dsn
     instantiation:
       variant: xy
     pose:
       rotation:
-        type: uc2
+        kind: uc2
         grid: {x: +y}
       translation:
         offset-grid: {x: 2}
   periscope-mirror-2:
-    type: design
+    kind: design
     design: cube-mounted/mirror-diagonal.dsn
     instantiation:
       variant: xy
     pose:
       rotation:
-        type: uc2
+        kind: uc2
         grid: {x: -y}
       translation:
         offset-grid: {x: 2, y: 10}
   tube-lens:
-    type: design
+    kind: design
     design: cube-mounted/lens.dsn
     instantiation:
       variant: x
@@ -69,15 +69,15 @@ components:
         offset: -8
     pose:
       rotation:
-        type: uc2
+        kind: uc2
       translation:
         offset-grid: {x: 5, y: 10}
   projector-screen:
-    type: design
+    kind: design
     design: primitives/projector-screen.dsn
     pose:
       rotation:
-        type: grid
+        kind: grid
         grid: {z: -x, x: +z}
       translation:
         offset-grid: {x: 5, y: 10}

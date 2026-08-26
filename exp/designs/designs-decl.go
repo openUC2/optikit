@@ -86,18 +86,18 @@ type (
 // CompExprSpec declares a component of an Optikit design.
 // Some parameters are string expressions which can be evaluated to produce a CompSpec.
 type CompExprSpec struct {
-	// Type is the type of component in the design. It can be either `location`, `primitive`, or
+	// Kind is the type of component in the design. It can be either `location`, `primitive`, or
 	// `design`.
-	Type string `json:"type" yaml:"type"`
-	// Design is the path of the design which the component (of type `design`) instantiates, relative
+	Kind string `json:"kind" yaml:"kind"`
+	// Design is the path of the design which the component (of kind `design`) instantiates, relative
 	// to the root directory of the Optikit design.
 	Design string `json:"design,omitempty" yaml:"design,omitempty"`
 	// Instantiation declares information about how the design is to be instantiated to create the
-	// component (of type `design`).
+	// component (of kind `design`).
 	// Some instantiation parameters are string expressions which can be evaluated to produce a
 	// InstSpec.
 	Instantiation InstExprSpec `json:"instantiation" yaml:"instantiation,omitempty"`
-	// Primitive declares information about the model primitive which the component (of type
+	// Primitive declares information about the model primitive which the component (of kind
 	// `primitive`) is.
 	Primitive CompPrimSpec `json:"primitive" yaml:"primitive,omitempty"`
 	// Pose declares the geometry of the component.
@@ -107,16 +107,16 @@ type CompExprSpec struct {
 
 // CompSpec declares a component of an Optikit design.
 type CompSpec struct {
-	// Type is the type of component in the design. It can be either `location`, `primitive`, or
+	// Kind is the type of component in the design. It can be either `location`, `primitive`, or
 	// `design`.
-	Type string `json:"type" yaml:"type"`
-	// Design is the path of the design which the component (of type `design`) instantiates, relative
+	Kind string `json:"kind" yaml:"kind"`
+	// Design is the path of the design which the component (of kind `design`) instantiates, relative
 	// to the root directory of the Optikit design.
 	Design string `json:"design,omitempty" yaml:"design,omitempty"`
 	// Instantiation declares information about how the design is to be instantiated to create the
-	// component (of type `design`).
+	// component (of kind `design`).
 	Instantiation InstSpec `json:"instantiation" yaml:"instantiation,omitempty"`
-	// Primitive declares information about the model primitive which the component (of type
+	// Primitive declares information about the model primitive which the component (of kind
 	// `primitive`) is.
 	Primitive CompPrimSpec `json:"primitive" yaml:"primitive,omitempty"`
 	// Pose declares the geometry of the component.
@@ -124,9 +124,9 @@ type CompSpec struct {
 }
 
 const (
-	CompTypeLocation  = "location"
-	CompTypePrimitive = "primitive"
-	CompTypeDesign    = "design"
+	CompKindLocation  = "location"
+	CompKindPrimitive = "primitive"
+	CompKindDesign    = "design"
 )
 
 // InstExprSpec declares how an indeterminate design is made determinate by specifying a particular
@@ -155,8 +155,8 @@ type InstSpec struct {
 type InputValues map[VarName]any
 
 type CompPrimSpec struct {
-	// Type is the type of primitive. It can be `static`.
-	Type string `json:"type,omitempty" yaml:"type,omitempty"`
+	// Kind is the type of primitive. It can be `static`.
+	Kind string `json:"kind,omitempty" yaml:"kind,omitempty"`
 	// StaticModels declares the paths of the model files (in whatever formats are available) which the
 	// primitive represents, relative to the root directory of the Optikit design.
 	StaticModels CompPrimStaticModelsSpec `json:"static-models" yaml:"static-models,omitempty"`
@@ -196,22 +196,22 @@ type CompPoseSpec struct {
 // overall design's orientation.
 // The pose parameters are string expressions which can be evaluated to generate a CompPoseRotSpec.
 type CompPoseRotExprSpec struct {
-	// Type is the type of orientation of the component. It can be either `` (implying a component
+	// Kind is the type of orientation of the component. It can be either `` (implying a component
 	// without any spatial geometry), `uc2` (implying a UC2 cube), `grid` (for any orientation
 	// aligned with the design's axes, even if violating UC2 cube orientation constraints),
 	// 'euler' (for arbitrary rotations in the extrinsic z-x-y Euler angle order), or
 	// `quaternion` (for arbitrary rotations).
-	// If the type is uc2, then Grid.Z is only allowed to be +z or -z, and Grid.X is not allowed to
+	// If the kind is uc2, then Grid.Z is only allowed to be +z or -z, and Grid.X is not allowed to
 	// be +z or -z.
-	Type string `json:"type,omitempty" yaml:"type"`
-	// Grid declares the orientation parameters of the component if its rotation type is `uc2` or
+	Kind string `json:"kind,omitempty" yaml:"kind"`
+	// Grid declares the orientation parameters of the component if its rotation kind is `uc2` or
 	// `grid`.
 	Grid CompPoseRotGridSpec `json:"grid" yaml:"grid,omitempty"`
-	// Euler declares the orientation parameters of the component if its rotation type is
+	// Euler declares the orientation parameters of the component if its rotation kind is
 	// `euler`. Angles should be in the extrinsic Z-X-Y order, which is equivalent to the
 	// intrinsic Y-X-Z order.
 	Euler ExprXYZ `json:"euler" yaml:"euler,omitempty"`
-	// Quaternion declares the orientation parameters of the component if its rotation type is
+	// Quaternion declares the orientation parameters of the component if its rotation kind is
 	// `quaternion`.
 	// The quaternion should be a string expression which evaluates into a 4-component numeric array.
 	Quaternion Expr `json:"quaternion" yaml:"quaternion,omitempty"`
@@ -220,30 +220,30 @@ type CompPoseRotExprSpec struct {
 // CompPoseRotSpec declares the orientation of the component as a rotation relative to the
 // overall design's orientation.
 type CompPoseRotSpec struct {
-	// Type is the type of orientation of the component. It can be either `` (implying a component
+	// Kind is the type of orientation of the component. It can be either `` (implying a component
 	// without any spatial geometry), `uc2` (implying a UC2 cube), `grid` (for any orientation
 	// aligned with the design's axes, even if violating UC2 cube orientation constraints), or
 	// `quaternion` (for arbitrary rotations).
-	// If the type is uc2, then Grid.Z is only allowed to be +z or -z, and Grid.X is not allowed to
+	// If the kind is uc2, then Grid.Z is only allowed to be +z or -z, and Grid.X is not allowed to
 	// be +z or -z.
-	Type string `json:"type,omitempty" yaml:"type"`
-	// Grid declares the orientation parameters of the component if its rotation type is `uc2` or
+	Kind string `json:"kind,omitempty" yaml:"kind"`
+	// Grid declares the orientation parameters of the component if its rotation kind is `uc2` or
 	// `grid`.
 	Grid CompPoseRotGridSpec `json:"grid" yaml:"grid,omitempty"`
-	// Euler declares the orientation parameters of the component if its rotation type is
+	// Euler declares the orientation parameters of the component if its rotation kind is
 	// `euler`. Angles should be in the extrinsic Z-X-Y order, which is equivalent to the
 	// intrinsic Y-X-Z order.
 	Euler ContinuousXYZ[float64] `json:"euler" yaml:"euler,omitempty"`
-	// Quaternion declares the orientation parameters of the component if its rotation type is
+	// Quaternion declares the orientation parameters of the component if its rotation kind is
 	// `quaternion`.
 	Quaternion quaternion.T `json:"quaternion" yaml:"quaternion,omitempty"`
 }
 
 const (
-	RotTypeUC2        = "uc2"
-	RotTypeGrid       = "grid"
-	RotTypeEuler      = "euler"
-	RotTypeQuaternion = "quaternion"
+	RotKindUC2        = "uc2"
+	RotKindGrid       = "grid"
+	RotKindEuler      = "euler"
+	RotKindQuaternion = "quaternion"
 )
 
 // CompPoseRotGridSpec specifies the component's orientation relative to the design's orientation by
@@ -293,24 +293,24 @@ type CompPoseTranslSpec struct {
 
 type (
 	VarName    string
-	VarType    string
+	VarKind    string
 	InputsSpec map[VarName]InputVarSpec
 )
 
 const (
-	VarTypeBool       = "bool"
-	VarTypeInt        = "int"
-	VarTypeFloat64    = "float64"
-	VarTypeString     = "string"
-	VarTypeQuaternion = "quaternion"
+	VarKindBool       = "bool"
+	VarKindInt        = "int"
+	VarKindFloat64    = "float64"
+	VarKindString     = "string"
+	VarKindQuaternion = "quaternion"
 )
 
-var varTypeZeroValues = map[VarType]any{
-	VarTypeBool:       false,
-	VarTypeInt:        0,
-	VarTypeFloat64:    0,
-	VarTypeString:     "",
-	VarTypeQuaternion: quaternion.T{},
+var varKindZeroValues = map[VarKind]any{
+	VarKindBool:       false,
+	VarKindInt:        0,
+	VarKindFloat64:    0,
+	VarKindString:     "",
+	VarKindQuaternion: quaternion.T{},
 }
 
 // An InputVarSpec declares an input variable of a design, which can be referenced in
@@ -318,9 +318,9 @@ var varTypeZeroValues = map[VarType]any{
 type InputVarSpec struct {
 	// Description is a short description of the variable to be shown to users.
 	Description string `json:"description,omitempty" yaml:"description,omitempty"`
-	// Type is a string indicating the expected type of the variable, for type-checking. Allowed
+	// Kind is a string indicating the expected type of the variable, for type-checking. Allowed
 	// values are: bool, int, float64, string
-	Type VarType `json:"type,omitempty" yaml:"type,omitempty"`
+	Kind VarKind `json:"kind,omitempty" yaml:"kind,omitempty"`
 	// Units is a string indicating the expected units of the variable, to be shown to users.
 	Units string `json:"units,omitempty" yaml:"units,omitempty"`
 	// Min is the minimum allowed value of the variable. It should be either an int or a float64.
@@ -562,7 +562,7 @@ func (s CompsSpec) TranslFlattened() CompsSpec {
 func (s CompsSpec) Primitives() CompsSpec {
 	prims := make(CompsSpec)
 	for id, c := range s {
-		if c.Type != "primitive" {
+		if c.Kind != "primitive" {
 			continue
 		}
 		prims[id] = c
@@ -587,7 +587,7 @@ func JoinCompIDs(elem ...CompID) CompID {
 // this current CompExprSpec or the overlay.
 func (s CompExprSpec) Merged(overlay CompExprSpec) CompExprSpec {
 	return CompExprSpec{
-		Type:          cmp.Or(overlay.Type, s.Type),
+		Kind:          cmp.Or(overlay.Kind, s.Kind),
 		Design:        cmp.Or(overlay.Design, s.Design),
 		Instantiation: s.Instantiation.Merged(overlay.Instantiation),
 		Primitive:     s.Primitive.Merged(overlay.Primitive),
@@ -598,7 +598,7 @@ func (s CompExprSpec) Merged(overlay CompExprSpec) CompExprSpec {
 // Evaluated evaluates the expressions with the given ExprEnv into a CompSpec.
 func (s CompExprSpec) Evaluated(env ExprEnv) (result CompSpec, err error) {
 	result = CompSpec{
-		Type:      s.Type,
+		Kind:      s.Kind,
 		Design:    s.Design,
 		Primitive: s.Primitive,
 	}
@@ -700,7 +700,7 @@ func (s InputValues) Merged(overlay InputValues) InputValues {
 // this current CompsPoseSpec or the overlay.
 func (s CompPrimSpec) Merged(overlay CompPrimSpec) CompPrimSpec {
 	return CompPrimSpec{
-		Type:         cmp.Or(overlay.Type, s.Type),
+		Kind:         cmp.Or(overlay.Kind, s.Kind),
 		StaticModels: s.StaticModels.Merged(overlay.StaticModels),
 	}
 }
@@ -785,41 +785,41 @@ func (s CompPoseSpec) TransfMat(gridSpacings ContinuousXYZ[float64]) (mat4.T, er
 // Merged returns a new CompPoseRotExprSpec created by applying the specified overlay, without
 // modifying this current CompsPoseExprSpec or the overlay.
 func (s CompPoseRotExprSpec) Merged(overlay CompPoseRotExprSpec) CompPoseRotExprSpec {
-	t := cmp.Or(overlay.Type, s.Type)
+	t := cmp.Or(overlay.Kind, s.Kind)
 	switch t {
 	default:
 		return CompPoseRotExprSpec{}
-	case RotTypeUC2, RotTypeGrid:
+	case RotKindUC2, RotKindGrid:
 		return CompPoseRotExprSpec{
-			Type: t,
+			Kind: t,
 			Grid: s.Grid.Merged(overlay.Grid),
 		}
-	case RotTypeEuler:
+	case RotKindEuler:
 		return CompPoseRotExprSpec{
-			Type:  t,
+			Kind:  t,
 			Euler: s.Euler.Merged(overlay.Euler),
 		}
-	case RotTypeQuaternion:
+	case RotKindQuaternion:
 		return CompPoseRotExprSpec{
-			Type:       t,
+			Kind:       t,
 			Quaternion: cmp.Or(overlay.Quaternion, s.Quaternion),
 		}
 	}
 }
 
 // Evaluated evaluates the pose expressions with the given ExprEnv into a CompPoseRotSpec.
-// Parameters not associated with the CompPoseRotExprSpec's type are excluded from the result; for
-// example, if the rotation type is "quaternion", then the result's Grid field will be zero.
+// Parameters not associated with the CompPoseRotExprSpec's kind are excluded from the result; for
+// example, if the rotation kind is "quaternion", then the result's Grid field will be zero.
 func (s CompPoseRotExprSpec) Evaluated(env ExprEnv) (result CompPoseRotSpec, err error) {
-	result.Type = s.Type
-	switch result.Type {
-	case RotTypeUC2, RotTypeGrid:
+	result.Kind = s.Kind
+	switch result.Kind {
+	case RotKindUC2, RotKindGrid:
 		result.Grid = s.Grid
-	case RotTypeEuler:
+	case RotKindEuler:
 		if result.Euler, err = s.Euler.EvaluatedFloat64(env.ToMap()); err != nil {
 			return CompPoseRotSpec{}, errors.Wrap(err, "couldn't evaluate euler")
 		}
-	case RotTypeQuaternion:
+	case RotKindQuaternion:
 		if s.Quaternion != "" {
 			evaluated, err := s.Quaternion.evalAsAny(env.ToMap())
 			if err != nil {
@@ -841,8 +841,8 @@ func (s CompPoseRotExprSpec) Evaluated(env ExprEnv) (result CompPoseRotSpec, err
 // CompPoseRotSpec
 
 // NewPoseRot builds a CompPoseRotSpec from a transformation matrix. If the transformation matrix
-// specifies an axis-aligned rotation, then the result will be of type "grid" (note: it will never
-// be of type "uc2"). Otherwise, the result will be of type "quaternion".
+// specifies an axis-aligned rotation, then the result will be of kind "grid" (note: it will never
+// be of kind "uc2"). Otherwise, the result will be of kind "quaternion".
 func NewPoseRot(mat mat4.T) CompPoseRotSpec {
 	z := mat.MulVec3(&vec3.UnitZ)
 	zDir, zAxisAligned := BasisDirs[z]
@@ -850,7 +850,7 @@ func NewPoseRot(mat mat4.T) CompPoseRotSpec {
 	xDir, xAxisAligned := BasisDirs[x]
 	if zAxisAligned && xAxisAligned {
 		return CompPoseRotSpec{
-			Type: RotTypeGrid,
+			Kind: RotKindGrid,
 			Grid: CompPoseRotGridSpec{
 				Z: zDir,
 				X: xDir,
@@ -858,19 +858,19 @@ func NewPoseRot(mat mat4.T) CompPoseRotSpec {
 		}
 	}
 	return CompPoseRotSpec{
-		Type:       RotTypeQuaternion,
+		Kind:       RotKindQuaternion,
 		Quaternion: mat.Quaternion(),
 	}
 }
 
 // Check looks for errors in the construction of the component orientation spec.
 func (s CompPoseRotSpec) Check() (errs []error) {
-	switch s.Type {
+	switch s.Kind {
 	default:
-		return []error{errors.Errorf("invalid rotation type: %s", s.Type)}
+		return []error{errors.Errorf("invalid rotation kind: %s", s.Kind)}
 	case "":
 		return nil
-	case RotTypeUC2:
+	case RotKindUC2:
 		switch s.Grid.Z {
 		case "", DirZPos, DirZNeg:
 		default:
@@ -882,9 +882,9 @@ func (s CompPoseRotSpec) Check() (errs []error) {
 			errs = append(errs, errors.Errorf("invalid value for component's x-axis: %s", s.Grid.X))
 		}
 		return append(errs, s.Grid.Check()...)
-	case RotTypeGrid:
+	case RotKindGrid:
 		return s.Grid.Check()
-	case RotTypeQuaternion:
+	case RotKindQuaternion:
 		const tolerance = 1e-6
 		if !s.Quaternion.IsUnitQuat(tolerance) {
 			return append(errs, errors.Errorf("quaternion is not a unit quaternion: %+v", s.Quaternion))
@@ -913,23 +913,23 @@ func (s CompPoseRotGridSpec) Merged(overlay CompPoseRotGridSpec) CompPoseRotGrid
 }
 
 // TransfMat returns a homogeneous transformation matrix representing the orientation of the
-// component relative to the frame of the design. If the rotation type is empty, then it'll return
+// component relative to the frame of the design. If the rotation kind is empty, then it'll return
 // a zero matrix; otherwise, it assumes that the component orientation spec is valid.
 // The first column is the component's x-axis, represented in the coordinate system of the overall
 // design. The second and third columns are the y- and z-axes, respectively.
 func (s CompPoseRotSpec) TransfMat() mat4.T {
-	switch s.Type {
+	switch s.Kind {
 	default:
 		return mat4.T{}
-	case RotTypeUC2, RotTypeGrid:
+	case RotKindUC2, RotKindGrid:
 		return GridRotMats[cmp.Or(s.Grid.Z, DirZPos)][cmp.Or(s.Grid.X, DirXPos)]
-	case RotTypeEuler:
+	case RotKindEuler:
 		mat := mat4.Zero
 		mat.AssignEulerRotation(
 			degToRad(s.Euler.Y), degToRad(s.Euler.X), degToRad(s.Euler.Z),
 		)
 		return mat
-	case RotTypeQuaternion:
+	case RotKindQuaternion:
 		mat := mat4.Zero
 		mat.AssignQuaternion(&s.Quaternion)
 		return mat
@@ -1055,7 +1055,7 @@ func (s InputsSpec) Merged(overlay InputsSpec) InputsSpec {
 func (s InputsSpec) ZeroValues() InputValues {
 	zeroes := make(InputValues)
 	for id, spec := range s {
-		zeroes[id] = varTypeZeroValues[spec.Type]
+		zeroes[id] = varKindZeroValues[spec.Kind]
 	}
 	return zeroes
 }
@@ -1067,7 +1067,7 @@ func (s InputsSpec) ZeroValues() InputValues {
 func (s InputVarSpec) Merged(overlay InputVarSpec) InputVarSpec {
 	return InputVarSpec{
 		Description: cmp.Or(overlay.Description, s.Description),
-		Type:        cmp.Or(overlay.Type, s.Type),
+		Kind:        cmp.Or(overlay.Kind, s.Kind),
 		Units:       cmp.Or(overlay.Units, s.Units),
 		Min:         cmp.Or(overlay.Min, s.Min),
 		Max:         cmp.Or(overlay.Max, s.Max),

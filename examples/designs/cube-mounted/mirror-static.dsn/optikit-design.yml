@@ -11,26 +11,26 @@ design:
 
 components:
   skeleton:
-    type: design
+    kind: design
     design: primitives/cube-skeleton.dsn
     pose:
       rotation:
-        type: grid
+        kind: grid
   mounted-mirror:
-    type: design
+    kind: design
     design: mounted-mirror.dsn
     instantiation:
       variant: "~ inputs['off-axis'].value ? 'xy' : 'x'"
     pose:
       rotation:
-        type: grid
+        kind: grid
 
 inputs:
   off-axis:
     description: >
       Whether the mirror should be rotated to a 45 deg deflection from the base axis direction
       (i.e. basis vectors) of the cube's coordinate system, as specified by the design variant.
-    type: bool
+    kind: bool
     tags:
       - adjustment/manual-assembly
 

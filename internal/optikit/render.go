@@ -137,7 +137,7 @@ func populateComponentsGraph(
 			Label: string(id),
 		}
 		edgeLabel := ""
-		if component.Type == designs.CompTypeDesign {
+		if component.Kind == designs.CompKindDesign {
 			edgeLabel = component.Design
 			if component.Instantiation.Variant != "" {
 				edgeLabel = fmt.Sprintf("%s:%s", edgeLabel, component.Instantiation.Variant)
@@ -148,7 +148,7 @@ func populateComponentsGraph(
 
 	for _, compID := range compIDs {
 		component := comps[compID]
-		if component.Type != designs.CompTypeDesign {
+		if component.Kind != designs.CompKindDesign {
 			continue
 		}
 
@@ -226,7 +226,7 @@ func populateDesignsGraph(
 	compIDs := slices.Sorted(maps.Keys(comps))
 	for _, id := range compIDs {
 		component := comps[id]
-		if component.Type != designs.CompTypeDesign {
+		if component.Kind != designs.CompKindDesign {
 			continue
 		}
 
@@ -248,7 +248,7 @@ func populateDesignsGraph(
 
 	for _, compID := range compIDs {
 		component := comps[compID]
-		if component.Type != designs.CompTypeDesign {
+		if component.Kind != designs.CompKindDesign {
 			continue
 		}
 
@@ -343,7 +343,7 @@ func populatePositionGraph(
 
 	for _, compID := range fromIDs {
 		component := design.Decl.Components[compID]
-		if component.Type != designs.CompTypeDesign {
+		if component.Kind != designs.CompKindDesign {
 			continue
 		}
 

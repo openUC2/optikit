@@ -9,19 +9,19 @@ design:
 
 components:
   skeleton:
-    type: design
+    kind: design
     design: primitives/cube-skeleton.dsn
     pose:
       rotation:
-        type: grid
+        kind: grid
   mounted-lens:
-    type: design
+    kind: design
     design: mounted-lens.dsn
     instantiation:
       lens: '{{get inputs "lens"}}'
     pose:
       rotation:
-        type: grid
+        kind: grid
       translation:
         offset-mm:
           lens-offset-x: '{{get inputs "lens-offset-x"}}'
@@ -30,19 +30,19 @@ components:
 
 inputs:
   lens:
-    type: string
+    kind: string
   lens-offset-x:
-    type: mm
+    kind: mm
     range:
       min: -40
       max: 40
   lens-offset-y:
-    type: mm
+    kind: mm
     range:
       min: -40
       max: 40
   lens-offset-z:
-    type: mm
+    kind: mm
     range:
       min: -40
       max: 40
@@ -72,7 +72,7 @@ variants:
       mounted-lens:
         pose:
           rotation:
-            type: z-spherical
+            kind: z-spherical
             z-spherical:
               # Lens's normal vector (its z-axis) is specified in spherical coordinates relative to
               # the design's axes, and then an angle is specified for rotation of the lens about its
@@ -87,17 +87,17 @@ variants:
               rotation: '{{get inputs "lens-rotation"}}'
     inputs:
       lens-precession:
-        type: deg
+        kind: deg
         range:
           min: 0
           max: 180
       lens-ascension:
-        type: deg
+        kind: deg
         range:
           min: 0
           max: 360
       lens-rotation:
-        type: deg
+        kind: deg
         range:
           min: 0
           max: 360

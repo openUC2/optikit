@@ -10,29 +10,29 @@ design:
 
 components:
   lens:
-    type: primitive
+    kind: primitive
     primitive:
       static-models:
         gltf: BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx.glb
         step: BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx.stp
     pose:
       rotation:
-        type: grid
+        kind: grid
   nut:
-    type: primitive
+    kind: primitive
     primitive:
       static-models:
         gltf: PRT - 2003 - NUTD40.glb
         step: PRT - 2003 - NUTD40.stp
     pose:
       rotation:
-        type: grid
+        kind: grid
   insert:
-    type: primitive
+    kind: primitive
     primitive:
       static-models:
         gltf: PRT - 2023 - INSLEND40F50 - V04.glb
         step: PRT - 2023 - INSLEND40F50 - V04.stp
     pose:
       rotation:
-        type: grid
+        kind: grid

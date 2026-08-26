@@ -8,7 +8,7 @@ design:
 
 components:
   galvo-mirror-pair-1:
-    type: design
+    kind: design
     design: cube-mounted/mirror-galvo-two.dsn
     instantiation:
       inputs:
@@ -16,9 +16,9 @@ components:
         mirror-2-rotation: 40
     pose:
       rotation:
-        type: uc2
+        kind: uc2
   galvo-mirror-pair-2:
-    type: design
+    kind: design
     design: cube-mounted/mirror-galvo-two.dsn
     instantiation:
       inputs:
@@ -26,11 +26,11 @@ components:
         mirror-2-rotation: 60
     pose:
       rotation:
-        type: uc2
+        kind: uc2
       translation:
         offset-grid: {x: 1, y: 1}
   galvo-mirror-pair-3:
-    type: design
+    kind: design
     design: cube-mounted/mirror-galvo-two.dsn
     instantiation:
       inputs:
@@ -38,7 +38,7 @@ components:
         mirror-2-rotation: 80
     pose:
       rotation:
-        type: uc2
+        kind: uc2
       translation:
         offset-grid: {x: 2, y: 2}
 

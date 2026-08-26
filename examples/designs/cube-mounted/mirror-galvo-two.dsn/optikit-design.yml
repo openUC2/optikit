@@ -13,13 +13,13 @@ design:
 
 components:
   skeleton:
-    type: design
+    kind: design
     design: primitives/cube-skeleton.dsn
     pose:
       rotation:
-        type: grid
+        kind: grid
   mounted-mirrors:
-    type: design
+    kind: design
     design: mounted-mirrors.dsn
     instantiation:
       inputs:
@@ -27,24 +27,24 @@ components:
         mirror-2-rotation: ~ inputs['mirror-2-rotation'].value
     pose:
       rotation:
-        type: grid
+        kind: grid
   skeleton-extra-1:
-    type: design
+    kind: design
     design: primitives/cube-skeleton.dsn
     pose:
       rotation:
-        type: grid
+        kind: grid
       translation:
         offset-grid: {x: -1}
   skeleton-extra-2:
-    type: primitive
+    kind: primitive
     primitive:
       static-models:
         gltf: primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb
         step: primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp
     pose:
       rotation:
-        type: grid
+        kind: grid
         grid: {z: -z}
       translation:
         offset-grid: {y: -1}
@@ -52,14 +52,14 @@ components:
 inputs:
   mirror-1-rotation:
     description: Rotation of mirror 1 about the rotation axis of its motor
-    type: float64
+    kind: float64
     units: deg
     tags:
       - adjustment/electronic
       - actuation/stepper
   mirror-2-rotation:
     description: Rotation of mirror 2 about the rotation axis of its motor
-    type: float64
+    kind: float64
     units: deg
     tags:
       - adjustment/electronic

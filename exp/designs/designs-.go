@@ -208,7 +208,7 @@ func (d *FSDesign) Flattened(gridSpacings ContinuousXYZ[float64]) (
 	flattened = d.Cloned()
 	flattened.Decl.Components = flattened.Decl.Components.TranslFlattened()
 	for compID, component := range flattened.Decl.Components {
-		if component.Type != CompTypeDesign {
+		if component.Kind != CompKindDesign {
 			continue
 		}
 
@@ -244,7 +244,7 @@ func (d *FSDesign) Flattened(gridSpacings ContinuousXYZ[float64]) (
 				subcomponent.Pose = NewPose(flattenedSubmat, gridSpacings)
 			}
 
-			if subcomponent.Type == CompTypePrimitive {
+			if subcomponent.Kind == CompKindPrimitive {
 				subcomponent.Primitive.StaticModels = subcomponent.Primitive.StaticModels.Prefixed(
 					component.Design,
 				)
@@ -258,9 +258,9 @@ func (d *FSDesign) Flattened(gridSpacings ContinuousXYZ[float64]) (
 
 func (d *FSDesign) LoadCompFSDesign(compID CompID) (subdesign *FSDesign, err error) {
 	component := d.Decl.Components[compID]
-	if component.Type != CompTypeDesign {
+	if component.Kind != CompKindDesign {
 		return nil, errors.Errorf(
-			"component %s of type %s does not have an associated design", compID, component.Type,
+			"component %s of kind %s does not have an associated design", compID, component.Kind,
 		)
 	}
 
@@ -291,7 +291,7 @@ func (d *FSDesign) LoadCompFSDesign(compID CompID) (subdesign *FSDesign, err err
 func (d *FSDesign) Primitives() (CompsSpec, error) {
 	prims := d.Decl.Components.Primitives()
 	for id, c := range d.Decl.Components {
-		if c.Type != CompTypeDesign {
+		if c.Kind != CompKindDesign {
 			continue
 		}
 		subdesign, err := d.LoadCompFSDesign(id)

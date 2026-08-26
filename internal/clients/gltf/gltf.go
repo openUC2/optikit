@@ -102,20 +102,20 @@ func (d *Document) addComponents(
 	subdesignCompIDs := make([]designs.CompID, 0, len(compIDs))
 	for _, id := range compIDs {
 		comp := flattened[id]
-		if comp.Pose.Rotation.Type == "" {
+		if comp.Pose.Rotation.Kind == "" {
 			continue
 		}
 
-		switch t := comp.Type; t {
+		switch t := comp.Kind; t {
 		default:
-			return errors.Errorf("unknown component type for component %s: %s", id, t)
-		case designs.CompTypeLocation:
+			return errors.Errorf("unknown component kind for component %s: %s", id, t)
+		case designs.CompKindLocation:
 			return nil
-		case designs.CompTypePrimitive:
+		case designs.CompKindPrimitive:
 			if err := d.addPrimitiveComponent(design.FS, id, comp, gridSpacings, root); err != nil {
 				return errors.Wrapf(err, "couldn't add primitive component %s to gltf model", id)
 			}
-		case designs.CompTypeDesign:
+		case designs.CompKindDesign:
 			// We recurse into subdesigns only after adding all other nodes, in order to construct the
 			// glTF scene graph in breadth-first order instead of depth-first order:
 			subdesignCompIDs = append(subdesignCompIDs, id)
@@ -152,9 +152,9 @@ func (d *Document) addPrimitiveComponent(
 	}
 
 	// Add the node's primitive model to document:
-	switch pt := comp.Primitive.Type; pt {
+	switch pt := comp.Primitive.Kind; pt {
 	default:
-		return errors.Errorf("unknown model type for primitive %s: %s", id, pt)
+		return errors.Errorf("unknown model kind for primitive %s: %s", id, pt)
 	case "", "static":
 		modelHash, nodeIndices, err := d.addComponentPrimitive(fsys, comp.Primitive)
 		if err != nil {

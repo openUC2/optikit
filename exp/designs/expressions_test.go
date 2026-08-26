@@ -18,7 +18,7 @@ var makeEnvTests = map[string]struct {
 		},
 		inputSpecs: map[VarName]InputVarSpec{
 			"offset": {
-				Type:  "float64",
+				Kind:  "float64",
 				Units: "mm",
 				Min:   -5,
 				Max:   5,
@@ -28,7 +28,7 @@ var makeEnvTests = map[string]struct {
 			Inputs: map[VarName]ExprEnvInput{
 				"offset": {
 					Value: 7.0,
-					Type:  "float64",
+					Kind:  "float64",
 					Units: "mm",
 					Min:   -5,
 					Max:   5,
@@ -54,7 +54,7 @@ func TestMakeEnv(t *testing.T) {
 	}
 }
 
-// TODO: test ensureType
+// TODO: test ensureKind
 
 var evaluateAsAnyTests = map[string]struct {
 	expression Expr

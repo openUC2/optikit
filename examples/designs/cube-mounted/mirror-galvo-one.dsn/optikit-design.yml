@@ -12,33 +12,33 @@ design:
 
 components:
   skeleton:
-    type: design
+    kind: design
     design: primitives/cube-skeleton.dsn
     pose:
       rotation:
-        type: grid
+        kind: grid
   mounted-mirror:
-    type: design
+    kind: design
     design: mounted-mirror.dsn
     instantiation:
       inputs:
         mirror-rotation: ~ inputs['mirror-rotation'].value
     pose:
       rotation:
-        type: grid
+        kind: grid
   skeleton-extra:
-    type: design
+    kind: design
     design: primitives/cube-skeleton.dsn
     pose:
       rotation:
-        type: grid
+        kind: grid
       translation:
         offset-grid: {x: -1}
 
 inputs:
   mirror-rotation:
     description: Rotation of mirror about the rotation axis of its motor
-    type: float64
+    kind: float64
     units: deg
     tags:
       - adjustment/electronic
