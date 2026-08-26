@@ -13,30 +13,30 @@ design:
 
 components:
   motorized-mirror:
-    type: design
+    kind: design
     design: primitives/motorized-mirror.dsn
     instantiation:
       inputs:
         mirror-rotation: ~ inputs['mirror-rotation'].value
     pose:
       rotation:
-        type: grid
+        kind: grid
         grid: {z: -z}
   cube-insert:
-    type: primitive
+    kind: primitive
     primitive:
       static-models:
         gltf: PRT - 2164 - INSGLV - V04.glb
         step: PRT - 2164 - INSGLV - V04.stp
     pose:
       rotation:
-        type: grid
+        kind: grid
         grid: {x: -y}
 
 inputs:
   mirror-rotation:
     description: Rotation of mirror about the rotation axis of its motor
-    type: float64
+    kind: float64
     units: deg
     tags:
       - adjustment/electronic

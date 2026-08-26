@@ -5,14 +5,14 @@ design:
 
 components:
   axes:
-    type: primitive
+    kind: primitive
     primitive:
       static-models:
         gltf: axes.glb
         step: axes.step
     pose:
       rotation:
-        type: grid
+        kind: grid
 
 variants:
   ZposXpos:

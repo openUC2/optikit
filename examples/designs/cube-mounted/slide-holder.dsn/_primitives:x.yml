@@ -1,40 +1,40 @@
 - id: mounted-slide-holder/clip
-  type: static
+  kind: static
   static-models:
     gltf: "mounted-holder.dsn/PRT - 2008 - SAMCLP.glb"
     step: "mounted-holder.dsn/PRT - 2008 - SAMCLP.stp"
   position: [-17.0, 0.0, 0.0]
   rotation:
-    type: extrinsic
+    kind: extrinsic
     order: zxy
     angles: {"y": 90.0}
 - id: mounted-slide-holder/insert
-  type: static
+  kind: static
   static-models:
     gltf: "mounted-holder.dsn/PRT - 2028 - INSSAMMNT - V04.glb"
     step: "mounted-holder.dsn/PRT - 2028 - INSSAMMNT - V04.stp"
   position: [-7.0, 0.0, 0.0]
   rotation:
-    type: extrinsic
+    kind: extrinsic
     order: zxy
     angles: {"y": 90.0}
 - id: skeleton/lower-half
-  type: static
+  kind: static
   static-models:
     gltf: "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb"
     step: "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
   position: [0.0, 0.0, 0.0]
   rotation:
-    type: extrinsic
+    kind: extrinsic
     order: zxy
     angles: {}
 - id: skeleton/upper-half
-  type: static
+  kind: static
   static-models:
     gltf: "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb"
     step: "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
   position: [0.0, 0.0, 0.0]
   rotation:
-    type: extrinsic
+    kind: extrinsic
     order: zxy
     angles: {"y": -180.0, z: -180.0}

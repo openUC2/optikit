@@ -11,51 +11,51 @@ design:
 
 components:
   mirror:
-    type: primitive
+    kind: primitive
     primitive:
       static-models:
         gltf: BUY - Mirror - D24x3.glb
         step: BUY - Mirror - D24x3.stp
     pose:
       rotation:
-        type: grid
+        kind: grid
   adhesive-pad:
-    type: primitive
+    kind: primitive
     primitive:
       static-models:
         gltf: BUY - Adhesive pad - D22x1.glb
         step: BUY - Adhesive pad - D22x1.stp
     pose:
       rotation:
-        type: grid
+        kind: grid
       translation:
         offset-mm:
           x: ~ -0.5 - 3
   mount-base:
-    type: primitive
+    kind: primitive
     primitive:
       static-models:
         gltf: PRT - 2110 - MASINSMIRHOLLOW - C.glb
         step: PRT - 2110 - MASINSMIRHOLLOW - C.stp
     pose:
       rotation:
-        type: grid
+        kind: grid
   screw-1:
-    type: primitive
+    kind: primitive
     primitive:
       static-models:
         bom: TP lens head screw with TORX - 2.5 x 8 - St - A2K.bom.yml
   screw-2:
-    type: primitive
+    kind: primitive
     primitive:
       static-models:
         bom: TP lens head screw with TORX - 2.5 x 8 - St - A2K.bom.yml
   mount-top:
-    type: primitive
+    kind: primitive
     primitive:
       static-models:
         gltf: PRT - 2111 - MASINSMIRHOLUPP - C.glb
         step: PRT - 2111 - MASINSMIRHOLUPP - C.stp
     pose:
       rotation:
-        type: grid
+        kind: grid

@@ -1,11 +1,9 @@
+import json
+import sys
+import tempfile
 from types import SimpleNamespace
 
-import json
-import tempfile
-import sys
-
 import build123d as b
-
 
 axes = {
     "x": (1, 0, 0),
@@ -22,14 +20,14 @@ def assemble_prims(prims_report: list[SimpleNamespace]) -> b.Compound:
         else:
             raise ValueError(f"primitive has no known importable model file: {prim}")
         ordering = prim.rotation.order.lower()
-        match prim.rotation.type:
+        match prim.rotation.kind:
             case "intrinsic":
                 pass
             case "extrinsic":
                 # build123d seems to compose rotations with intrinsic axes:
                 ordering = ordering[::-1]
             case _:
-                raise ValueError(f"unknown rotation type {prim.rotation.type}")
+                raise ValueError(f"unknown rotation kind {prim.rotation.kind}")
         angles = {
             "x": prim.rotation.angles.x,
             "y": prim.rotation.angles.y,

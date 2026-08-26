@@ -1,20 +1,20 @@
 - id: lower-half
-  type: static
+  kind: static
   static-models:
     gltf: "PRT - 1003 - CUBHLF111 - V04.glb"
     step: "PRT - 1003 - CUBHLF111 - V04.stp"
   position: [0.0, 0.0, 0.0]
   rotation:
-    type: extrinsic
+    kind: extrinsic
     order: zxy
     angles: {}
 - id: upper-half
-  type: static
+  kind: static
   static-models:
     gltf: "PRT - 1003 - CUBHLF111 - V04.glb"
     step: "PRT - 1003 - CUBHLF111 - V04.stp"
   position: [0.0, 0.0, 0.0]
   rotation:
-    type: extrinsic
+    kind: extrinsic
     order: zxy
     angles: {"y": -180.0, z: -180.0}

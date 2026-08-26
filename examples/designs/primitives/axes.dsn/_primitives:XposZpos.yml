@@ -1,10 +1,10 @@
 - id: axes
-  type: static
+  kind: static
   static-models:
     gltf: axes.glb
     step: axes.step
   position: [0.0, 0.0, 0.0]
   rotation:
-    type: extrinsic
+    kind: extrinsic
     order: zxy
     angles: {"y": -90.0, z: -180.0}

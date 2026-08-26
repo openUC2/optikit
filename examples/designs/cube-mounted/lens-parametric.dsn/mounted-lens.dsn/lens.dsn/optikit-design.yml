@@ -9,25 +9,25 @@ design:
 
 components:
   optical:
-    type: primitive
+    kind: primitive
     primitive:
-      type: optiland
+      kind: optiland
       model: '{{get inputs "optiland-model"}}'
     pose:
       rotation:
-        type: grid
+        kind: grid
       translation:
   mechanical:
-    type: primitive
+    kind: primitive
     primitive:
-      type: computed
+      kind: computed
       function: compute-geometry.py
       inputs:
         lens: '{{get inputs "optiland-model"}}'
     pose:
       rotation:
-        type: grid
+        kind: grid
 
 inputs:
   optiland-model:
-    type: string
+    kind: string

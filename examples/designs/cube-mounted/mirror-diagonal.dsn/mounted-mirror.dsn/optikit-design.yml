@@ -11,31 +11,31 @@ design:
 
 components:
   mirror:
-    type: primitive
+    kind: primitive
     primitive:
       static-models:
         gltf: BUY - Mirror - 40x30x2.glb
         step: BUY - Mirror - 40x30x2.stp
     pose:
       rotation:
-        type: grid
+        kind: grid
   adhesive-pad:
-    type: primitive
+    kind: primitive
     primitive:
       static-models:
         gltf: BUY - Adhesive pad - 41x29x1.glb
         step: BUY - Adhesive pad - 41x29x1.stp
     pose:
       rotation:
-        type: grid
+        kind: grid
       translation:
         offset-mm: {x: -0.5, y: 0.5}
   insert:
-    type: primitive
+    kind: primitive
     primitive:
       static-models:
         gltf: PRT - 2022 - INSMIR45TH2.glb
         step: PRT - 2022 - INSMIR45TH2.stp
     pose:
       rotation:
-        type: grid
+        kind: grid

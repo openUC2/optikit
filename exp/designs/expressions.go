@@ -20,7 +20,7 @@ type ExprEnv struct {
 }
 type ExprEnvInput struct {
 	Value any
-	Type  string
+	Kind  string
 	Units string
 	Min   any
 	Max   any
@@ -34,18 +34,18 @@ func MakeExprEnv(
 	result.Inputs = make(map[VarName]ExprEnvInput)
 	for name, spec := range inputSpecs {
 		input := ExprEnvInput{
-			Type:  string(spec.Type),
+			Kind:  string(spec.Kind),
 			Units: spec.Units,
 			Min:   spec.Min,
 			Max:   spec.Max,
 		}
 		var ok bool
 		if input.Value, ok = inputValues[name]; !ok {
-			input.Value = varTypeZeroValues[spec.Type]
+			input.Value = varKindZeroValues[spec.Kind]
 		}
-		if input.Value, err = convertTo(input.Value, spec.Type); err != nil {
+		if input.Value, err = convertTo(input.Value, spec.Kind); err != nil {
 			return result, errors.Wrapf(
-				err, "couldn't ensure that %+v is of type %s", input.Value, spec.Type,
+				err, "couldn't ensure that %+v is of kind %s", input.Value, spec.Kind,
 			)
 		}
 		result.Inputs[name] = input
@@ -54,9 +54,9 @@ func MakeExprEnv(
 	return result, nil
 }
 
-func convertTo(value any, kind VarType) (result any, err error) {
+func convertTo(value any, kind VarKind) (result any, err error) {
 	switch kind {
-	case VarTypeBool:
+	case VarKindBool:
 		switch r := value.(type) {
 		default:
 			return result, errors.Errorf("can't convert %+v from %T to bool", r, r)
@@ -65,7 +65,7 @@ func convertTo(value any, kind VarType) (result any, err error) {
 		case string:
 			return strconv.ParseBool(r)
 		}
-	case VarTypeInt:
+	case VarKindInt:
 		switch r := value.(type) {
 		default:
 			return result, errors.Errorf("can't convert %+v from %T to int", r, r)
@@ -75,7 +75,7 @@ func convertTo(value any, kind VarType) (result any, err error) {
 			const base = 10
 			return strconv.ParseInt(r, base, strconv.IntSize)
 		}
-	case VarTypeFloat64:
+	case VarKindFloat64:
 		switch r := value.(type) {
 		default:
 			return result, errors.Errorf("can't convert %+v from %T to float64", r, r)
@@ -87,13 +87,13 @@ func convertTo(value any, kind VarType) (result any, err error) {
 			const bitsize = 64
 			return strconv.ParseFloat(r, bitsize)
 		}
-	case VarTypeString:
+	case VarKindString:
 		if r, ok := value.(string); ok {
 			result = r
 			break
 		}
 		result = fmt.Sprintf("%s", value)
-	case VarTypeQuaternion:
+	case VarKindQuaternion:
 		return convertToQuaternion(value)
 	}
 	return result, nil
@@ -113,7 +113,7 @@ func convertToQuaternion(value any) (result quaternion.T, err error) {
 		return quaternion.T(r), nil
 	case [quatLength]any:
 		for i, elem := range r {
-			raw, err := convertTo(elem, VarTypeFloat64)
+			raw, err := convertTo(elem, VarKindFloat64)
 			if err != nil {
 				return result, errors.Wrapf(
 					err, "couldn't convert elem %d of %+v from %T to float64 for quaternion", i, r, elem,
@@ -132,7 +132,7 @@ func convertToQuaternion(value any) (result quaternion.T, err error) {
 			return result, errors.Errorf("can't convert %d-element slice into 4-element quaternion", l)
 		}
 		for i, elem := range r {
-			raw, err := convertTo(elem, VarTypeFloat64)
+			raw, err := convertTo(elem, VarKindFloat64)
 			if err != nil {
 				return result, errors.Wrapf(
 					err, "couldn't convert elem %d of %+v from %T to float64 for quaternion", i, r, elem,
@@ -164,7 +164,7 @@ func (e ExprEnv) ToMap() map[string]any {
 func (e ExprEnvInput) ToMap() map[string]any {
 	return map[string]any{
 		"value": e.Value,
-		"type":  e.Type,
+		"kind":  e.Kind,
 		"units": e.Units,
 		"min":   e.Min,
 		"max":   e.Max,

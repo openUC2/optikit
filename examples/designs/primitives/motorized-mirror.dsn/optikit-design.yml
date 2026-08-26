@@ -12,14 +12,14 @@ design:
 
 components:
   motorized-mirror:
-    type: primitive
+    kind: primitive
     primitive:
       static-models:
         gltf: BUY - Galvo scanner XY --- single motor.glb
         step: BUY - Galvo scanner XY --- single motor.stp
     pose:
       rotation:
-        type: euler
+        kind: euler
         euler:
           z: -90
           y: ~ inputs['mirror-rotation'].value
@@ -27,37 +27,37 @@ components:
         offset-mm:
           x: -44
   mount-ring:
-    type: primitive
+    kind: primitive
     primitive:
       static-models:
         gltf: PRT - 2180 - DISRNG.glb
         step: PRT - 2180 - DISRNG.stp
     pose:
       rotation:
-        type: grid
+        kind: grid
         grid: {x: -x}
       translation:
         offset-mm:
           x: ~ -44 + 17
   screw-1:
-    type: primitive
+    kind: primitive
     primitive:
       static-models:
         bom: ISO 4762 - Cylinder head screw with hex socket - M3 x 20 - 8.8 - A2K.bom.yml
   screw-2:
-    type: primitive
+    kind: primitive
     primitive:
       static-models:
         bom: ISO 4762 - Cylinder head screw with hex socket - M3 x 20 - 8.8 - A2K.bom.yml
   mount-top:
-    type: primitive
+    kind: primitive
     primitive:
       static-models:
         gltf: PRT - 2165 - CLPPCE.glb
         step: PRT - 2165 - CLPPCE.stp
     pose:
       rotation:
-        type: grid
+        kind: grid
         grid: {x: -y}
       translation:
         offset-mm:
@@ -66,7 +66,7 @@ components:
 inputs:
   mirror-rotation:
     description: Rotation of mirror about the rotation axis of the motor
-    type: float64
+    kind: float64
     units: deg
     tags:
       - adjustment/electronic

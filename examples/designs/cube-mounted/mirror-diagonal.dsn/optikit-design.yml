@@ -11,17 +11,17 @@ design:
 
 components:
   skeleton:
-    type: design
+    kind: design
     design: primitives/cube-skeleton.dsn
     pose:
       rotation:
-        type: grid
+        kind: grid
   mounted-mirror:
-    type: design
+    kind: design
     design: mounted-mirror.dsn
     pose:
       rotation:
-        type: grid
+        kind: grid
 
 variants:
   xy:

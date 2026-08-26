@@ -41,7 +41,7 @@ while IFS= read -r variant; do
     inputs_string="()"
     inst_args="--variant=$variant"
   fi
-  while IFS= read -r directive; do # directive: "command prefix type format"
+  while IFS= read -r directive; do # directive: "command prefix kind format"
     directive="$(tr ' ' '\t' <<<"$directive")"
     echo -e "$variant\t$inputs_string\t$inst_args\t$directive"
   done <<<"$directives"

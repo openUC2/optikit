@@ -8,22 +8,22 @@ design:
 
 components:
   skeleton:
-    type: design
+    kind: design
     design: primitives/cube-skeleton.dsn
     pose:
       rotation:
-        type: grid
+        kind: grid
   mounted-slide-holder:
-    type: design
+    kind: design
     design: mounted-holder.dsn
     pose:
       rotation:
-        type: grid
+        kind: grid
 
 inputs:
   offset:
     description: Translation of mounted-slide-holder along its normal vector
-    type: float64
+    kind: float64
     units: mm
     min: -12
     max: 7

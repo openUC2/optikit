@@ -9,42 +9,42 @@ design:
 
 components:
   clip:
-    type: primitive
+    kind: primitive
     primitive:
       static-models:
         gltf: PRT - 2008 - SAMCLP.glb
         step: PRT - 2008 - SAMCLP.stp
     pose:
       rotation:
-        type: grid
+        kind: grid
       translation:
         offset-mm: {z: -10}
   magnet-1:
-    type: primitive
+    kind: primitive
     primitive:
       static-models:
         bom: BUY - NeFeB-Magnet - ø8x3 N40 Ni.bom.yml
   magnet-2:
-    type: primitive
+    kind: primitive
     primitive:
       static-models:
         bom: BUY - NeFeB-Magnet - ø8x3 N40 Ni.bom.yml
   magnet-3:
-    type: primitive
+    kind: primitive
     primitive:
       static-models:
         bom: BUY - NeFeB-Magnet - ø8x3 N40 Ni.bom.yml
   magnet-4:
-    type: primitive
+    kind: primitive
     primitive:
       static-models:
         bom: BUY - NeFeB-Magnet - ø8x3 N40 Ni.bom.yml
   insert:
-    type: primitive
+    kind: primitive
     primitive:
       static-models:
         gltf: PRT - 2028 - INSSAMMNT - V04.glb
         step: PRT - 2028 - INSSAMMNT - V04.stp
     pose:
       rotation:
-        type: grid
+        kind: grid

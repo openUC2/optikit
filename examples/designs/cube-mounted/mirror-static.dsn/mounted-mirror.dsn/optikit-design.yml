@@ -11,31 +11,31 @@ design:
 
 components:
   inner-insert:
-    type: design
+    kind: design
     design: mounted-mirror-inner.dsn
     pose:
       rotation:
-        type: grid
+        kind: grid
   master-insert-top:
-    type: primitive
+    kind: primitive
     primitive:
       static-models:
         gltf: PRT - 2100 - MASINS - V04 - B.glb
         step: PRT - 2100 - MASINS - V04 - B.stp
     pose:
       rotation:
-        type: grid
+        kind: grid
       translation:
         offset-mm: {z: 15}
   master-insert-bottom:
-    type: primitive
+    kind: primitive
     primitive:
       static-models:
         gltf: PRT - 2100 - MASINS - V04 - B.glb
         step: PRT - 2100 - MASINS - V04 - B.stp
     pose:
       rotation:
-        type: grid
+        kind: grid
         grid: {z: -z}
       translation:
         offset-mm: {z: -15}
@@ -49,5 +49,5 @@ variants:
       inner-insert:
         pose:
           rotation:
-            type: euler
+            kind: euler
             euler: {z: 45}

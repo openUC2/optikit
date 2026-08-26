@@ -79,7 +79,7 @@ var compSpecMergeTestOverlays = map[CompID]CompSpec{
 	"b": {
 		Pose: CompPoseSpec{
 			Rotation: CompPoseRotSpec{
-				Type: "grid",
+				Kind: "grid",
 				Grid: CompPoseRotGridSpec{
 					Z: "Z!",
 				},
@@ -87,19 +87,19 @@ var compSpecMergeTestOverlays = map[CompID]CompSpec{
 		},
 	},
 	"c": {
-		Type: "test",
+		Kind: "test",
 	},
 }
 
 var compSpecMergeTestModifiers = map[CompID]func(s CompSpec) CompSpec{
 	"b": func(s CompSpec) CompSpec {
-		s.Pose.Rotation.Type = "grid"
+		s.Pose.Rotation.Kind = "grid"
 		s.Pose.Rotation.Grid.Z = "Z!"
 		return s
 	},
 	"c": func(_ CompSpec) CompSpec {
 		return CompSpec{
-			Type: "test",
+			Kind: "test",
 		}
 	},
 }
@@ -145,7 +145,7 @@ var compsSpecMergeTests = map[string]struct {
 		out: func(s CompsSpec) CompsSpec {
 			merged := maps.Clone(s)
 			merged["c"] = CompSpec{
-				Type: "test",
+				Kind: "test",
 			}
 			return merged
 		},
@@ -234,11 +234,11 @@ func TestDesignFlatten(t *testing.T) {
 
 /*
 var exampleCompSpec = CompSpec{
-	Type:   "foo",
+	Kind:   "foo",
 	Design: "bar",
 	Pose: CompPoseSpec{
 		Rotation: CompPoseRotSpec{
-			Type: "grid",
+			Kind: "grid",
 			Grid: CompPoseRotGridSpec{
 				Z: "zz",
 				X: "xx",
@@ -273,13 +273,13 @@ var compSpecMergeTests = map[string]struct {
 			return s
 		},
 	},
-	"Type": {
+	"Kind": {
 		in: exampleCompSpec,
 		overlay: CompSpec{
-			Type: "foobar",
+			Kind: "foobar",
 		},
 		out: func(s CompSpec) CompSpec {
-			s.Type = "foobar"
+			s.Kind = "foobar"
 			return s
 		},
 	},
@@ -288,7 +288,7 @@ var compSpecMergeTests = map[string]struct {
 		overlay: CompSpec{
 			Pose: CompPoseSpec{
 				Rotation: CompPoseRotSpec{
-					Type: "grid",
+					Kind: "grid",
 					Grid: CompPoseRotGridSpec{
 						Z: "Z!",
 					},
@@ -296,7 +296,7 @@ var compSpecMergeTests = map[string]struct {
 			},
 		},
 		out: func(s CompSpec) CompSpec {
-			s.Pose.Rotation.Type = "grid"
+			s.Pose.Rotation.Kind = "grid"
 			s.Pose.Rotation.Grid.Z = "Z!"
 			return s
 		},
@@ -306,13 +306,13 @@ var compSpecMergeTests = map[string]struct {
 		overlay: CompSpec{
 			Pose: CompPoseSpec{
 				Rotation: CompPoseRotSpec{
-					Type:       "quaternion",
+					Kind:       "quaternion",
 					Quaternion: quaternion.FromZAxisAngle(0.5),
 				},
 			},
 		},
 		out: func(s CompSpec) CompSpec {
-			s.Pose.Rotation.Type = "quaternion"
+			s.Pose.Rotation.Kind = "quaternion"
 			s.Pose.Rotation.Grid = CompPoseRotGridSpec{}
 			s.Pose.Rotation.Quaternion = quaternion.FromZAxisAngle(0.5)
 			return s
@@ -366,69 +366,69 @@ var compPoseRotUC2Tests = []struct {
 }{
 	{
 		in: CompPoseRotSpec{
-			Type: RotTypeUC2,
+			Kind: RotKindUC2,
 			Grid: CompPoseRotGridSpec{Z: DirZPos, X: DirXPos},
 		},
 	},
 	{
 		in: CompPoseRotSpec{
-			Type: RotTypeUC2,
+			Kind: RotKindUC2,
 			Grid: CompPoseRotGridSpec{Z: DirZPos, X: DirYPos},
 		},
 	},
 	{
 		in: CompPoseRotSpec{
-			Type: RotTypeUC2,
+			Kind: RotKindUC2,
 			Grid: CompPoseRotGridSpec{Z: DirZPos, X: DirXNeg},
 		},
 	},
 	{
 		in: CompPoseRotSpec{
-			Type: RotTypeUC2,
+			Kind: RotKindUC2,
 			Grid: CompPoseRotGridSpec{Z: DirZPos, X: DirYNeg},
 		},
 	},
 	{
 		in: CompPoseRotSpec{
-			Type: RotTypeUC2,
+			Kind: RotKindUC2,
 			Grid: CompPoseRotGridSpec{Z: DirZNeg, X: DirXPos},
 		},
 	},
 	{
 		in: CompPoseRotSpec{
-			Type: RotTypeUC2,
+			Kind: RotKindUC2,
 			Grid: CompPoseRotGridSpec{Z: DirZNeg, X: DirYPos},
 		},
 	},
 	{
 		in: CompPoseRotSpec{
-			Type: RotTypeUC2,
+			Kind: RotKindUC2,
 			Grid: CompPoseRotGridSpec{Z: DirZNeg, X: DirXNeg},
 		},
 	},
 	{
 		in: CompPoseRotSpec{
-			Type: RotTypeUC2,
+			Kind: RotKindUC2,
 			Grid: CompPoseRotGridSpec{Z: DirZNeg, X: DirYNeg},
 		},
 	},
 	{
 		in: CompPoseRotSpec{
-			Type: RotTypeUC2,
+			Kind: RotKindUC2,
 			Grid: CompPoseRotGridSpec{Z: DirYPos, X: DirXPos},
 		},
 		errs: []error{errors.New("invalid value for component's z-axis: +y")},
 	},
 	{
 		in: CompPoseRotSpec{
-			Type: RotTypeUC2,
+			Kind: RotKindUC2,
 			Grid: CompPoseRotGridSpec{Z: DirYNeg, X: DirXPos},
 		},
 		errs: []error{errors.New("invalid value for component's z-axis: -y")},
 	},
 	{
 		in: CompPoseRotSpec{
-			Type: RotTypeUC2,
+			Kind: RotKindUC2,
 			Grid: CompPoseRotGridSpec{Z: DirYNeg, X: DirZNeg},
 		},
 		errs: []error{
@@ -438,7 +438,7 @@ var compPoseRotUC2Tests = []struct {
 	},
 	{
 		in: CompPoseRotSpec{
-			Type: RotTypeUC2,
+			Kind: RotKindUC2,
 			Grid: CompPoseRotGridSpec{Z: DirZPos, X: DirZPos},
 		},
 		errs: []error{
@@ -448,7 +448,7 @@ var compPoseRotUC2Tests = []struct {
 	},
 	{
 		in: CompPoseRotSpec{
-			Type: RotTypeUC2,
+			Kind: RotKindUC2,
 			Grid: CompPoseRotGridSpec{Z: DirZPos, X: DirZNeg},
 		},
 		errs: []error{
@@ -499,7 +499,7 @@ func TestCompPoseRotGridMats(t *testing.T) {
 
 				t.Log(name)
 				spec := CompPoseRotSpec{
-					Type: RotTypeGrid,
+					Kind: RotKindGrid,
 					Grid: CompPoseRotGridSpec{Z: z, X: x},
 				}
 
