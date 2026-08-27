@@ -1,12 +1,9 @@
 optikit-version: v0.0.0-alpha.1
 
 design:
-  # Note: see also https://github.com/openUC2/openUC2-optikit-modules-references/blob/main/modules/lenses/lens-pos-50mm/module.yaml
-  description: A lens mounted in a cube
+  description: A 50 mm lens mounted in a cube
   tags:
-    - cube-mounted
-    - lens
-    - lens/convex
+    - composition/cube-mounted
     - in/core-box
 
 components:
@@ -31,6 +28,7 @@ inputs:
     min: -11
     max: 7
     tags:
+      - pose/insert/translation
       - adjustment/manual-assembly
 
 variants:
@@ -42,6 +40,8 @@ variants:
           translation:
             offset-mm:
               z: inputs.offset.value
+    tags:
+      - pose/insert/orientation/vertical
   x:
     description: Normal vector of lens is x-axis
     components:
@@ -52,3 +52,5 @@ variants:
           translation:
             offset-mm:
               x: inputs.offset.value
+    tags:
+      - pose/insert/orientation/horizontal

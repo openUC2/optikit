@@ -3,7 +3,7 @@ optikit-version: v0.0.0-alpha.1
 design:
   description: A microscope slide holder mounted in a cube
   tags:
-    - sample-holder
+    - composition/cube-mounted
     - in/core-box
 
 components:
@@ -28,6 +28,7 @@ inputs:
     min: -12
     max: 7
     tags:
+      - pose/insert/translation
       - adjustment/manual-assembly
 
 variants:
@@ -39,6 +40,8 @@ variants:
           translation:
             offset-mm:
               z: 5 + inputs.offset.value
+    tags:
+      - pose/insert/orientation/vertical
   x:
     description: Normal vector of the sample slide is the x-axis
     components:
@@ -49,3 +52,5 @@ variants:
           translation:
             offset-mm:
               x: 5 + inputs.offset.value
+    tags:
+      - pose/insert/orientation/horizontal

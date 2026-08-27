@@ -2,13 +2,6 @@ optikit-version: v0.0.0-alpha.1
 
 design:
   description: A motorized galvo mirror with mounting hardware
-  tags:
-    - mirror
-    - mirror/single-sided
-    - mirror/flat
-    - actuator/stepper-motor
-    - control/electronic
-    - in/galvo-box
 
 components:
   motorized-mirror:
@@ -26,6 +19,13 @@ components:
       translation:
         offset-mm:
           x: -44
+    tags:
+      - optical/mirror/flat
+      - optical/mirror/single-sided
+      - actuation/rotational/stepper
+      - control/electronic
+      - procurement/buy
+      - in/kit/galvo-box
   mount-ring:
     kind: primitive
     primitive:
@@ -39,16 +39,28 @@ components:
       translation:
         offset-mm:
           x: ~ -44 + 17
+    tags:
+      - structure/mount
+      - procurement/3d-print
+      - in/kit/galvo-box
   screw-1:
     kind: primitive
     primitive:
       static-models:
         bom: ISO 4762 - Cylinder head screw with hex socket - M3 x 20 - 8.8 - A2K.bom.yml
+    tags:
+      - structure/fastener/threaded
+      - procurement/buy
+      - in/kit/galvo-box
   screw-2:
     kind: primitive
     primitive:
       static-models:
         bom: ISO 4762 - Cylinder head screw with hex socket - M3 x 20 - 8.8 - A2K.bom.yml
+    tags:
+      - structure/fastener/threaded
+      - procurement/buy
+      - in/kit/galvo-box
   mount-top:
     kind: primitive
     primitive:
@@ -62,6 +74,9 @@ components:
       translation:
         offset-mm:
           x: ~ -44 + 1.7
+    tags:
+      - structure/mount
+      - in/kit/galvo-box
 
 inputs:
   mirror-rotation:
@@ -69,5 +84,7 @@ inputs:
     kind: float64
     units: deg
     tags:
-      - adjustment/electronic
-      - actuation/stepper
+      - pose/actuator/orientation
+      - adjustment/actuated
+      - actuation/rotational/stepper
+      - control/electronic

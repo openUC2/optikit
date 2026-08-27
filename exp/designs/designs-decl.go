@@ -74,8 +74,10 @@ type DesignSpec struct {
 	// Description is a short description of the design to be shown to users.
 	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 	// Tags is a list of human-readable string tags for describing the design to software.
-	Tags []string `json:"tags,omitempty" yaml:"tags,omitempty"`
+	Tags Tags `json:"tags,omitempty" yaml:"tags,omitempty"`
 }
+
+type Tags []string
 
 type (
 	CompID        string
@@ -103,6 +105,8 @@ type CompExprSpec struct {
 	// Pose declares the geometry of the component.
 	// Some pose parameters are string expressions which can be evaluated to produce a CompPoseSpec.
 	Pose CompPoseExprSpec `json:"pose" yaml:"pose,omitempty"`
+	// Tags is a list of human-readable string tags for describing the component to software.
+	Tags Tags `json:"tags,omitempty" yaml:"tags,omitempty"`
 }
 
 // CompSpec declares a component of an Optikit design.
@@ -121,6 +125,8 @@ type CompSpec struct {
 	Primitive CompPrimSpec `json:"primitive" yaml:"primitive,omitempty"`
 	// Pose declares the geometry of the component.
 	Pose CompPoseSpec `json:"pose" yaml:"pose,omitempty"`
+	// Tags is a list of human-readable string tags for describing the component to software.
+	Tags Tags `json:"tags,omitempty" yaml:"tags,omitempty"`
 }
 
 const (
@@ -327,6 +333,8 @@ type InputVarSpec struct {
 	Min any `json:"min,omitempty" yaml:"min,omitempty"`
 	// Max is the maximum allowed value of the variable. It should be either an int or a float64.
 	Max any `json:"max,omitempty" yaml:"max,omitempty"`
+	// Tags is a list of human-readable string tags for describing the input variable to software.
+	Tags Tags `json:"tags,omitempty" yaml:"tags,omitempty"`
 }
 
 type (
@@ -346,6 +354,8 @@ type VariantSpec struct {
 	// overwrite non-zero values in the design's input variables; new components here will also be
 	// added to the design.
 	Inputs InputsSpec `json:"inputs,omitempty" yaml:"inputs,omitempty"`
+	// Tags is a list of human-readable string tags for describing the variant to software.
+	Tags Tags `json:"tags,omitempty" yaml:"tags,omitempty"`
 }
 
 // DesignExprDecl
@@ -448,6 +458,28 @@ func (d DesignDecl) Cloned() DesignDecl {
 // Check looks for errors in the construction of the design spec.
 func (s DesignSpec) Check() (errs []error) {
 	return errs
+}
+
+// Tags
+
+// Merged returns a new Tags created by applying the specified overlay, without modifying this
+// current Tags or the overlay.
+func (t Tags) Merged(overlay Tags) Tags {
+	set := make(structures.Set[string])
+	merged := make(Tags, 0, len(t)+len(overlay))
+	for _, tag := range t {
+		set.Add(tag)
+		merged = append(merged, tag)
+	}
+	for _, tag := range overlay {
+		if set.Has(tag) {
+			continue
+		}
+
+		set.Add(tag)
+		merged = append(merged, tag)
+	}
+	return merged
 }
 
 // CompExprsSpec
@@ -592,6 +624,7 @@ func (s CompExprSpec) Merged(overlay CompExprSpec) CompExprSpec {
 		Instantiation: s.Instantiation.Merged(overlay.Instantiation),
 		Primitive:     s.Primitive.Merged(overlay.Primitive),
 		Pose:          s.Pose.Merged(overlay.Pose),
+		Tags:          s.Tags.Merged(overlay.Tags),
 	}
 }
 
@@ -1071,5 +1104,6 @@ func (s InputVarSpec) Merged(overlay InputVarSpec) InputVarSpec {
 		Units:       cmp.Or(overlay.Units, s.Units),
 		Min:         cmp.Or(overlay.Min, s.Min),
 		Max:         cmp.Or(overlay.Max, s.Max),
+		Tags:        s.Tags.Merged(overlay.Tags),
 	}
 }

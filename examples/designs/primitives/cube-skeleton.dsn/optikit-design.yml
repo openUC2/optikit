@@ -2,6 +2,8 @@ optikit-version: v0.0.0-alpha.1
 
 design:
   description: A two-piece injection-molded cube-shaped UC2 module skeleton
+  tags:
+    - structure/cube
 
 components:
   lower-half:
@@ -13,6 +15,11 @@ components:
     pose:
       rotation:
         kind: grid
+    tags:
+      - procurement/injection-mold
+      - in/kit/core-box
+      - in/kit/qbox
+      - in/kit/galvo-box
   upper-half:
     kind: primitive
     primitive:
@@ -23,3 +30,8 @@ components:
       rotation:
         kind: grid
         grid: {z: -z}
+    tags:
+      - procurement/injection-mold
+      - in/kit/core-box
+      - in/kit/qbox
+      - in/kit/galvo-box

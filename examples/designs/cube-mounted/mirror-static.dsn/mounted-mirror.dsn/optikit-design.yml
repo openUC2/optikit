@@ -3,11 +3,7 @@ optikit-version: v0.0.0-alpha.1
 design:
   description: A diagonal mirror mounted on a cube insert
   tags:
-    - insert-mounted
-    - mirror
-    - mirror/single-sided
-    - mirror/flat
-    - in/core-box
+    - composition/insert-mounted
 
 components:
   inner-insert:
@@ -27,6 +23,9 @@ components:
         kind: grid
       translation:
         offset-mm: {z: 15}
+    tags:
+      - procurement/3d-print
+      - in/kit/qbox
   master-insert-bottom:
     kind: primitive
     primitive:
@@ -39,6 +38,9 @@ components:
         grid: {z: -z}
       translation:
         offset-mm: {z: -15}
+    tags:
+      - procurement/3d-print
+      - in/kit/qbox
 
 variants:
   x:
