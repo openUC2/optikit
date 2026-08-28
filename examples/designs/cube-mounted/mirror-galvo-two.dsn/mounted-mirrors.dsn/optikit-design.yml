@@ -3,13 +3,7 @@ optikit-version: v0.0.0-alpha.1
 design:
   description: Two motorized galvo mirrors on a cube insert
   tags:
-    - insert-mounted
-    - mirror
-    - mirror/single-sided
-    - mirror/flat
-    - actuator/stepper-motor
-    - control/electronic
-    - in/galvo-box
+    - composition/insert-mounted
 
 components:
   motorized-mirror-1:
@@ -44,6 +38,9 @@ components:
       rotation:
         kind: grid
         grid: {x: -y}
+    tags:
+      - procurement/3d-print
+      - in/kit/galvo-box
 
 inputs:
   mirror-1-rotation:
@@ -51,12 +48,16 @@ inputs:
     kind: float64
     units: deg
     tags:
-      - adjustment/electronic
-      - actuation/stepper
+      - pose/actuator/orientation
+      - adjustment/actuated
+      - actuation/rotational/stepper
+      - control/electronic
   mirror-2-rotation:
     description: Rotation of mirror 2 about the rotation axis of its motor
     kind: float64
     units: deg
     tags:
-      - adjustment/electronic
-      - actuation/stepper
+      - pose/actuator/orientation
+      - adjustment/actuated
+      - actuation/rotational/stepper
+      - control/electronic

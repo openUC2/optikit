@@ -74,8 +74,10 @@ type DesignSpec struct {
 	// Description is a short description of the design to be shown to users.
 	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 	// Tags is a list of human-readable string tags for describing the design to software.
-	Tags []string `json:"tags,omitempty" yaml:"tags,omitempty"`
+	Tags Tags `json:"tags,omitempty" yaml:"tags,omitempty"`
 }
+
+type Tags []string
 
 type (
 	CompID        string
@@ -103,6 +105,8 @@ type CompExprSpec struct {
 	// Pose declares the geometry of the component.
 	// Some pose parameters are string expressions which can be evaluated to produce a CompPoseSpec.
 	Pose CompPoseExprSpec `json:"pose" yaml:"pose,omitempty"`
+	// Tags is a list of human-readable string tags for describing the component to software.
+	Tags Tags `json:"tags,omitempty" yaml:"tags,omitempty"`
 }
 
 // CompSpec declares a component of an Optikit design.
@@ -121,6 +125,8 @@ type CompSpec struct {
 	Primitive CompPrimSpec `json:"primitive" yaml:"primitive,omitempty"`
 	// Pose declares the geometry of the component.
 	Pose CompPoseSpec `json:"pose" yaml:"pose,omitempty"`
+	// Tags is a list of human-readable string tags for describing the component to software.
+	Tags Tags `json:"tags,omitempty" yaml:"tags,omitempty"`
 }
 
 const (
@@ -327,6 +333,8 @@ type InputVarSpec struct {
 	Min any `json:"min,omitempty" yaml:"min,omitempty"`
 	// Max is the maximum allowed value of the variable. It should be either an int or a float64.
 	Max any `json:"max,omitempty" yaml:"max,omitempty"`
+	// Tags is a list of human-readable string tags for describing the input variable to software.
+	Tags Tags `json:"tags,omitempty" yaml:"tags,omitempty"`
 }
 
 type (
@@ -346,6 +354,8 @@ type VariantSpec struct {
 	// overwrite non-zero values in the design's input variables; new components here will also be
 	// added to the design.
 	Inputs InputsSpec `json:"inputs,omitempty" yaml:"inputs,omitempty"`
+	// Tags is a list of human-readable string tags for describing the variant to software.
+	Tags Tags `json:"tags,omitempty" yaml:"tags,omitempty"`
 }
 
 // DesignExprDecl
@@ -376,9 +386,9 @@ func (d DesignExprDecl) Check() (errs []error) {
 // Cloned returns a deep copy of the DesignExprDecl.
 func (d DesignExprDecl) Cloned() DesignExprDecl {
 	d.Design.Tags = slices.Clone(d.Design.Tags)
-	d.Components = maps.Clone(d.Components)
-	d.Inputs = maps.Clone(d.Inputs)
-	d.Variants = maps.Clone(d.Variants)
+	d.Components = d.Components.Cloned()
+	d.Inputs = d.Inputs.Cloned()
+	d.Variants = d.Variants.Cloned()
 	return d
 }
 
@@ -437,9 +447,9 @@ func (d DesignDecl) Check() (errs []error) {
 // Cloned returns a deep copy of the DesignDecl.
 func (d DesignDecl) Cloned() DesignDecl {
 	d.Design.Tags = slices.Clone(d.Design.Tags)
-	d.Components = maps.Clone(d.Components)
-	d.Inputs = maps.Clone(d.Inputs)
-	d.Variants = maps.Clone(d.Variants)
+	d.Components = d.Components.Cloned()
+	d.Inputs = d.Inputs.Cloned()
+	d.Variants = d.Variants.Cloned()
 	return d
 }
 
@@ -448,6 +458,28 @@ func (d DesignDecl) Cloned() DesignDecl {
 // Check looks for errors in the construction of the design spec.
 func (s DesignSpec) Check() (errs []error) {
 	return errs
+}
+
+// Tags
+
+// Merged returns a new Tags created by applying the specified overlay, without modifying this
+// current Tags or the overlay.
+func (t Tags) Merged(overlay Tags) Tags {
+	set := make(structures.Set[string])
+	merged := make(Tags, 0, len(t)+len(overlay))
+	for _, tag := range t {
+		set.Add(tag)
+		merged = append(merged, tag)
+	}
+	for _, tag := range overlay {
+		if set.Has(tag) {
+			continue
+		}
+
+		set.Add(tag)
+		merged = append(merged, tag)
+	}
+	return merged
 }
 
 // CompExprsSpec
@@ -466,10 +498,19 @@ func (s CompExprsSpec) Check() (errs []error) {
 	return errs
 }
 
+// Cloned returns a deep copy of the CompExprsSpec.
+func (s CompExprsSpec) Cloned() CompExprsSpec {
+	result := make(CompExprsSpec)
+	for compID, spec := range s {
+		result[compID] = spec.Cloned()
+	}
+	return result
+}
+
 // Merged returns a new CompExprsSpec created by applying the specified overlay, without modifying
 // this current CompExprsSpec or the overlay.
 func (s CompExprsSpec) Merged(overlay CompExprsSpec) CompExprsSpec {
-	merged := maps.Clone(s)
+	merged := s.Cloned()
 	for id, o := range overlay {
 		already, alreadyHas := merged[id]
 		if !alreadyHas {
@@ -507,6 +548,15 @@ func (s CompsSpec) Check() (errs []error) {
 		// TODO: check for validity of instantiation...or maybe we must do this in FSDesign
 	}
 	return errs
+}
+
+// Cloned returns a deep copy of the CompsSpec.
+func (s CompsSpec) Cloned() CompsSpec {
+	result := make(CompsSpec)
+	for compID, spec := range s {
+		result[compID] = spec.Cloned()
+	}
+	return result
 }
 
 // Poses returns a map from component IDs to their poses.
@@ -583,6 +633,18 @@ func JoinCompIDs(elem ...CompID) CompID {
 
 // CompExprSpec
 
+// Cloned returns a deep copy of the CompExprSpec.
+func (s CompExprSpec) Cloned() CompExprSpec {
+	return CompExprSpec{
+		Kind:          s.Kind,
+		Design:        s.Design,
+		Instantiation: s.Instantiation.Cloned(),
+		Primitive:     s.Primitive.Cloned(),
+		Pose:          s.Pose,
+		Tags:          slices.Clone(s.Tags),
+	}
+}
+
 // Merged returns a new CompExprSpec created by applying the specified overlay, without modifying
 // this current CompExprSpec or the overlay.
 func (s CompExprSpec) Merged(overlay CompExprSpec) CompExprSpec {
@@ -592,6 +654,7 @@ func (s CompExprSpec) Merged(overlay CompExprSpec) CompExprSpec {
 		Instantiation: s.Instantiation.Merged(overlay.Instantiation),
 		Primitive:     s.Primitive.Merged(overlay.Primitive),
 		Pose:          s.Pose.Merged(overlay.Pose),
+		Tags:          s.Tags.Merged(overlay.Tags),
 	}
 }
 
@@ -601,6 +664,7 @@ func (s CompExprSpec) Evaluated(env ExprEnv) (result CompSpec, err error) {
 		Kind:      s.Kind,
 		Design:    s.Design,
 		Primitive: s.Primitive,
+		Tags:      s.Tags,
 	}
 	if result.Instantiation, err = s.Instantiation.Evaluated(env); err != nil {
 		return result, errors.Wrap(err, "couldn't evaluate expressions in instantiation section")
@@ -611,7 +675,29 @@ func (s CompExprSpec) Evaluated(env ExprEnv) (result CompSpec, err error) {
 	return result, nil
 }
 
+// CompSpec
+
+// Cloned returns a deep copy of the CompSpec.
+func (s CompSpec) Cloned() CompSpec {
+	return CompSpec{
+		Kind:          s.Kind,
+		Design:        s.Design,
+		Instantiation: s.Instantiation.Cloned(),
+		Primitive:     s.Primitive.Cloned(),
+		Pose:          s.Pose,
+		Tags:          slices.Clone(s.Tags),
+	}
+}
+
 // InstExprSpec
+
+// Cloned returns a deep copy of the InstExprSpec.
+func (s InstExprSpec) Cloned() InstExprSpec {
+	return InstExprSpec{
+		Variant: s.Variant,
+		Inputs:  maps.Clone(s.Inputs),
+	}
+}
 
 // Merged returns a new InstExprSpec created by applying the specified overlay, without modifying
 // this current InstExprSpec or the overlay.
@@ -676,6 +762,14 @@ func (s InstSpec) String() string {
 	return result
 }
 
+// Cloned returns a deep copy of the InstSpec.
+func (s InstSpec) Cloned() InstSpec {
+	return InstSpec{
+		Variant: s.Variant,
+		Inputs:  maps.Clone(s.Inputs),
+	}
+}
+
 // InputValues
 
 // Merged returns a new InputValues created by applying the specified overlay, without modifying
@@ -696,6 +790,14 @@ func (s InputValues) Merged(overlay InputValues) InputValues {
 
 // CompPrimSpec
 
+// Cloned returns a deep copy of the CompPrimSpec.
+func (s CompPrimSpec) Cloned() CompPrimSpec {
+	return CompPrimSpec{
+		Kind:         s.Kind,
+		StaticModels: s.StaticModels.Cloned(),
+	}
+}
+
 // Merged returns a new CompPrimSpec created by applying the specified overlay, without modifying
 // this current CompsPoseSpec or the overlay.
 func (s CompPrimSpec) Merged(overlay CompPrimSpec) CompPrimSpec {
@@ -706,6 +808,11 @@ func (s CompPrimSpec) Merged(overlay CompPrimSpec) CompPrimSpec {
 }
 
 // CompPrimStaticModelsSpec
+
+func (s CompPrimStaticModelsSpec) Cloned() CompPrimStaticModelsSpec {
+	// TODO: once CompPrimStaticModelsSpec includes a map, we must maps.Clone it
+	return s
+}
 
 // Merged returns a new CompPrimStaticModelsSpec created by applying the specified overlay, without modifying
 // this current CompsPoseSpec or the overlay.
@@ -1035,10 +1142,19 @@ func (s CompPoseTranslSpec) Added(t CompPoseTranslSpec) CompPoseTranslSpec {
 
 // InputsSpec
 
+// Cloned returns a deep copy of the InputsSpec.
+func (s InputsSpec) Cloned() InputsSpec {
+	result := make(InputsSpec)
+	for varName, spec := range s {
+		result[varName] = spec.Cloned()
+	}
+	return result
+}
+
 // Merged returns a new InputsSpec created by applying the specified overlay, without modifying
 // this current InputsSpec or the overlay.
 func (s InputsSpec) Merged(overlay InputsSpec) InputsSpec {
-	merged := maps.Clone(s)
+	merged := s.Cloned()
 	for id, o := range overlay {
 		already, alreadyHas := merged[id]
 		if !alreadyHas {
@@ -1062,6 +1178,18 @@ func (s InputsSpec) ZeroValues() InputValues {
 
 // InputVarSpec
 
+// Cloned returns a deep copy of the InputSpec.
+func (s InputVarSpec) Cloned() InputVarSpec {
+	return InputVarSpec{
+		Description: s.Description,
+		Kind:        s.Kind,
+		Units:       s.Units,
+		Min:         s.Min,
+		Max:         s.Max,
+		Tags:        slices.Clone(s.Tags),
+	}
+}
+
 // Merged returns a new InputSpec created by applying the specified overlay, without modifying
 // this current InputSpec or the overlay.
 func (s InputVarSpec) Merged(overlay InputVarSpec) InputVarSpec {
@@ -1071,5 +1199,29 @@ func (s InputVarSpec) Merged(overlay InputVarSpec) InputVarSpec {
 		Units:       cmp.Or(overlay.Units, s.Units),
 		Min:         cmp.Or(overlay.Min, s.Min),
 		Max:         cmp.Or(overlay.Max, s.Max),
+		Tags:        s.Tags.Merged(overlay.Tags),
+	}
+}
+
+// VariantsSpec
+
+// Cloned returns a deep copy of the VariantsSpec.
+func (s VariantsSpec) Cloned() VariantsSpec {
+	result := make(VariantsSpec)
+	for variantID, spec := range s {
+		result[variantID] = spec.Cloned()
+	}
+	return result
+}
+
+// VariantSpec
+
+// Cloned returns a deep copy of the InputSpec.
+func (s VariantSpec) Cloned() VariantSpec {
+	return VariantSpec{
+		Description: s.Description,
+		Components:  s.Components.Cloned(),
+		Inputs:      s.Inputs.Cloned(),
+		Tags:        slices.Clone(s.Tags),
 	}
 }

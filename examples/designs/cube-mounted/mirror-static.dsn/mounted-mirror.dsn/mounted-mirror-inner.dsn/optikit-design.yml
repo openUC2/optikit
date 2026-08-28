@@ -3,11 +3,7 @@ optikit-version: v0.0.0-alpha.1
 design:
   description: A diagonal mirror mounted on a cube insert
   tags:
-    - insert-mounted
-    - mirror
-    - mirror/single-sided
-    - mirror/flat
-    - in/core-box
+    - composition/insert-mounted
 
 components:
   mirror:
@@ -19,6 +15,11 @@ components:
     pose:
       rotation:
         kind: grid
+    tags:
+      - optical/mirror/flat
+      - optical/mirror/single-sided
+      - procurement/buy
+      - in/kit/qbox
   adhesive-pad:
     kind: primitive
     primitive:
@@ -31,6 +32,10 @@ components:
       translation:
         offset-mm:
           x: ~ -0.5 - 3
+    tags:
+      - structure/fastener/adhesive
+      - procurement/buy
+      - in/kit/qbox
   mount-base:
     kind: primitive
     primitive:
@@ -40,16 +45,28 @@ components:
     pose:
       rotation:
         kind: grid
+    tags:
+      - structure/insert
+      - procurement/3d-print
+      - in/kit/qbox
   screw-1:
     kind: primitive
     primitive:
       static-models:
         bom: TP lens head screw with TORX - 2.5 x 8 - St - A2K.bom.yml
+    tags:
+      - structure/fastener/threaded
+      - procurement/buy
+      - in/kit/qbox
   screw-2:
     kind: primitive
     primitive:
       static-models:
         bom: TP lens head screw with TORX - 2.5 x 8 - St - A2K.bom.yml
+    tags:
+      - structure/fastener/threaded
+      - procurement/buy
+      - in/kit/qbox
   mount-top:
     kind: primitive
     primitive:
@@ -59,3 +76,7 @@ components:
     pose:
       rotation:
         kind: grid
+    tags:
+      - structure/insert
+      - procurement/3d-print
+      - in/kit/qbox

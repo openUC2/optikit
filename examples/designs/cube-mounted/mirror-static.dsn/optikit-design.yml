@@ -3,10 +3,7 @@ optikit-version: v0.0.0-alpha.1
 design:
   description: A diagonal mirror mounted in a cube, with 90 or 45 deg rotations
   tags:
-    - cube-mounted
-    - mirror
-    - mirror/single-sided
-    - mirror/flat
+    - composition/cube-mounted
     - in/qbox
 
 components:
@@ -32,11 +29,14 @@ inputs:
       (i.e. basis vectors) of the cube's coordinate system, as specified by the design variant.
     kind: bool
     tags:
+      - pose/insert/orientation
       - adjustment/manual-assembly
 
 variants:
   x:
     description: Base direction in the x-axis for the normal vector of the mirror before any off-axis deflection
+    tags:
+      - pose/insert/orientation/horizontal
   z:
     description: Base direction in the z-axis for the normal vector of the mirror before any off-axis deflection
     components:
@@ -44,3 +44,5 @@ variants:
         pose:
           rotation:
             grid: {z: +y, x: +z}
+    tags:
+      - pose/insert/orientation/vertical

@@ -3,10 +3,7 @@ optikit-version: v0.0.0-alpha.1
 design:
   description: A f50 lens mounted on an insert
   tags:
-    - insert-mounted
-    - lens
-    - lens/convex
-    - in/core-box
+    - composition/insert-mounted
 
 components:
   lens:
@@ -18,6 +15,10 @@ components:
     pose:
       rotation:
         kind: grid
+    tags:
+      - optical/lens/convex
+      - procurement/buy
+      - in/kit/core-box
   nut:
     kind: primitive
     primitive:
@@ -27,6 +28,10 @@ components:
     pose:
       rotation:
         kind: grid
+    tags:
+      - structure/fastener/threaded
+      - procurement/3d-print
+      - in/kit/core-box
   insert:
     kind: primitive
     primitive:
@@ -36,3 +41,7 @@ components:
     pose:
       rotation:
         kind: grid
+    tags:
+      - structure/insert
+      - procurement/3d-print
+      - in/kit/core-box

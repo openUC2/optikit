@@ -3,10 +3,7 @@ optikit-version: v0.0.0-alpha.1
 design:
   description: A diagonal mirror mounted in a cube
   tags:
-    - cube-mounted
-    - mirror
-    - mirror/single-sided
-    - mirror/flat
+    - composition/cube-mounted
     - in/core-box
 
 components:
@@ -31,6 +28,8 @@ variants:
         pose:
           rotation:
             grid: {x: +y}
+    tags:
+      - pose/orientation/insert/horizontal
   _z:
     description: Normal vector of mirror surface in the y-z plane
     components:
@@ -38,3 +37,5 @@ variants:
         pose:
           rotation:
             grid: {z: +y}
+    tags:
+      - pose/orientation/insert/vertical

@@ -3,12 +3,7 @@ optikit-version: v0.0.0-alpha.1
 design:
   description: One motorized galvo mirror in a cube
   tags:
-    - cube-mounted
-    - mirror
-    - mirror/single-sided
-    - mirror/flat
-    - actuator/stepper-motor
-    - control/electronic
+    - composition/cube-mounted
 
 components:
   skeleton:
@@ -41,5 +36,7 @@ inputs:
     kind: float64
     units: deg
     tags:
-      - adjustment/electronic
-      - actuation/stepper
+      - pose/actuator/orientation
+      - adjustment/actuated
+      - actuation/rotational/stepper
+      - control/electronic

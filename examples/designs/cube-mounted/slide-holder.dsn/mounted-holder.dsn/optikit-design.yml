@@ -3,9 +3,7 @@ optikit-version: v0.0.0-alpha.1
 design:
   description: A magnetic sample holder clip on a cube insert
   tags:
-    - insert-mounted
-    - sample-holder
-    - in/core-box
+    - composition/insert-mounted
 
 components:
   clip:
@@ -19,26 +17,45 @@ components:
         kind: grid
       translation:
         offset-mm: {z: -10}
+    tags:
+      - procurement/3d-print
+      - in/core-box
   magnet-1:
     kind: primitive
     primitive:
       static-models:
         bom: BUY - NeFeB-Magnet - ø8x3 N40 Ni.bom.yml
+    tags:
+      - structure/fastener/magnetic
+      - procurement/buy
+      - in/core-box
   magnet-2:
     kind: primitive
     primitive:
       static-models:
         bom: BUY - NeFeB-Magnet - ø8x3 N40 Ni.bom.yml
+    tags:
+      - structure/fastener/magnetic
+      - procurement/buy
+      - in/core-box
   magnet-3:
     kind: primitive
     primitive:
       static-models:
         bom: BUY - NeFeB-Magnet - ø8x3 N40 Ni.bom.yml
+    tags:
+      - structure/fastener/magnetic
+      - procurement/buy
+      - in/core-box
   magnet-4:
     kind: primitive
     primitive:
       static-models:
         bom: BUY - NeFeB-Magnet - ø8x3 N40 Ni.bom.yml
+    tags:
+      - structure/fastener/magnetic
+      - procurement/buy
+      - in/core-box
   insert:
     kind: primitive
     primitive:
@@ -48,3 +65,7 @@ components:
     pose:
       rotation:
         kind: grid
+    tags:
+      - structure/insert
+      - procurement/3d-print
+      - in/core-box
