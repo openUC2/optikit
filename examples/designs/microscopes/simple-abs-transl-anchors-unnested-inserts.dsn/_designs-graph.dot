@@ -1,0 +1,85 @@
+digraph "" {
+	graph [bb="0,0,2127.9,124.8"];
+	node [label="\N"];
+	edge [label="\E"];
+	""	[height=0.5,
+		pos="1024.4,106.8",
+		width=0.75];
+	"cube-mounted/lens.dsn/mounted-lens.dsn"	[height=0.5,
+		label="cube-mounted/lens.dsn/mounted-lens.dsn",
+		pos="171.42,18",
+		width=4.7617];
+	"" -> "cube-mounted/lens.dsn/mounted-lens.dsn"	[key=" -> cube-mounted/lens.dsn/mounted-lens.dsn: objective-lens",
+		label="objective-lens",
+		lp="392.16,62.4",
+		pos="e,218.89,35.743 997.33,105.2 888.15,102.68 480.15,91.996 352.9,70.8 310.87,63.799 264.71,50.543 229.46,39.195"];
+	"" -> "cube-mounted/lens.dsn/mounted-lens.dsn"	[key=" -> cube-mounted/lens.dsn/mounted-lens.dsn: tube-lens",
+		label="tube-lens",
+		lp="551.76,62.4",
+		pos="e,278.78,32.427 997.32,104.9 922.21,102.2 705.14,92.908 526.11,70.8 483.69,65.562 473.65,60.586 431.42,54 385.27,46.802 334.37,39.754 \
+289.93,33.891"];
+	"cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn"	[height=0.5,
+		label="cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn",
+		pos="587.42,18",
+		width=6.2811];
+	"" -> "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn"	[key=" -> cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn: periscope-mirror-1",
+		label="periscope-mirror-1",
+		lp="641.56,62.4",
+		pos="e,582.55,36.122 997.27,105.68 906.35,105 616.79,100.5 588.69,70.8 582.83,64.599 581.13,55.88 581.33,47.361"];
+	"" -> "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn"	[key=" -> cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn: periscope-mirror-2",
+		label="periscope-mirror-2",
+		lp="781.56,62.4",
+		pos="e,644.04,35.89 997.31,105.62 944.5,104.62 824.65,99.101 728.69,70.8 712.42,66.002 710.14,60.386 694.42,54 681.71,48.833 667.92,43.867 \
+654.6,39.38"];
+	"cube-mounted/slide-holder.dsn/mounted-holder.dsn"	[height=0.5,
+		label="cube-mounted/slide-holder.dsn/mounted-holder.dsn",
+		pos="1042.4,18",
+		width=5.8641];
+	"" -> "cube-mounted/slide-holder.dsn/mounted-holder.dsn"	[key=" -> cube-mounted/slide-holder.dsn/mounted-holder.dsn: sample-holder",
+		label="sample-holder",
+		lp="886.38,62.4",
+		pos="e,900.44,31.635 997.1,106.53 937.61,107.24 804.89,103.5 846.34,54 853.49,45.46 869.46,39.001 889.36,34.118"];
+	"primitives/cube-skeleton.dsn"	[height=0.5,
+		label="primitives/cube-skeleton.dsn",
+		pos="1393.4,18",
+		width=3.3982];
+	"" -> "primitives/cube-skeleton.dsn"	[key=" -> primitives/cube-skeleton.dsn: objective-lens-skeleton",
+		label="objective-lens-skeleton",
+		lp="1014.5,62.4",
+		pos="e,1306.8,31.124 999.51,99.112 971.12,90.353 930.92,73.763 949.58,54 973.48,28.683 1227.8,39.242 1262.4,36 1273.2,34.991 1284.5,33.775 \
+1295.7,32.463"];
+	"" -> "primitives/cube-skeleton.dsn"	[key=" -> primitives/cube-skeleton.dsn: periscope-mirror-1-skeleton",
+		label="periscope-mirror-1-skeleton",
+		lp="1180.9,62.4",
+		pos="e,1304.7,30.727 1044,93.794 1054.6,87.175 1067.8,78.716 1079.4,70.8 1089.9,63.669 1090.6,58.594 1102.4,54 1169.1,27.986 1191.4,44.606 \
+1262.4,36 1272.5,34.785 1282.9,33.485 1293.4,32.164"];
+	"" -> "primitives/cube-skeleton.dsn"	[key=" -> primitives/cube-skeleton.dsn: periscope-mirror-2-skeleton",
+		label="periscope-mirror-2-skeleton",
+		lp="1360.9,62.4",
+		pos="e,1333.2,34.056 1051.6,105.92 1096.6,105.22 1188.5,99.959 1259.4,70.8 1271.1,65.996 1271.1,59.709 1282.4,54 1294.9,47.661 1308.8,\
+42.185 1322.4,37.572"];
+	"" -> "primitives/cube-skeleton.dsn"	[key=" -> primitives/cube-skeleton.dsn: sample-holder-skeleton",
+		label="sample-holder-skeleton",
+		lp="1509.1,62.4",
+		pos="e,1423.6,35.927 1051.8,105.59 1140.2,104.61 1413.2,99.312 1439.4,70.8 1447.7,61.807 1442.2,51.797 1432.5,42.991"];
+	"" -> "primitives/cube-skeleton.dsn"	[key=" -> primitives/cube-skeleton.dsn: tube-lens-skeleton",
+		label="tube-lens-skeleton",
+		lp="1638.8,62.4",
+		pos="e,1513.1,22.097 1051.7,106.21 1158.2,107.51 1542.1,109.49 1578.4,70.8 1604.6,42.942 1570.3,29.643 1524.4,23.453"];
+	"primitives/flashlight.dsn"	[height=0.5,
+		label="primitives/flashlight.dsn",
+		pos="1741.4,18",
+		width=2.9219];
+	"" -> "primitives/flashlight.dsn"	[key=" -> primitives/flashlight.dsn: light-source",
+		label="light-source",
+		lp="1749.1,62.4",
+		pos="e,1731,36.27 1051.6,105.6 1169.9,104.55 1635.7,98.67 1694.4,70.8 1706.2,65.198 1716.4,55.153 1724.3,45.39"];
+	"primitives/projector-screen.dsn"	[height=0.5,
+		label="primitives/projector-screen.dsn",
+		pos="1996.4,18",
+		width=3.6512];
+	"" -> "primitives/projector-screen.dsn"	[key=" -> primitives/projector-screen.dsn: projector-screen",
+		label="projector-screen",
+		lp="1913.5,62.4",
+		pos="e,1944.3,34.871 1051.5,105.27 1169.5,102.84 1640.1,91.994 1786.4,70.8 1836.5,63.55 1892,49.596 1933.3,37.996"];
+}

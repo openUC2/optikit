@@ -1,0 +1,143 @@
+optikit-version: v0.0.0-alpha.1
+
+design:
+  description: A minimal 2-D microscope consisting of components whose positions are specified relative to the overall design.
+  tags:
+    - instrument
+    - instrument/microscope
+
+components:
+  light-source:
+    kind: design
+    design: primitives/flashlight.dsn
+    pose:
+      rotation:
+        kind: grid
+        grid: {z: +x, x: -z}
+      translation:
+        offset-mm: {x: -80}
+  sample-holder-gridded-location:
+    kind: location
+    pose:
+      rotation:
+        kind: grid
+  sample-holder:
+    kind: design
+    design: cube-mounted/slide-holder.dsn/mounted-holder.dsn
+    pose:
+      rotation:
+        kind: grid
+        grid: {z: +x, x: -z}
+      translation:
+        anchor: sample-holder-gridded-location
+        offset-mm:
+          x: ~ 5 + 7
+  sample-holder-skeleton:
+    kind: design
+    design: primitives/cube-skeleton.dsn
+    pose:
+      rotation:
+        kind: uc2
+      translation:
+        anchor: sample-holder-gridded-location
+  objective-lens-gridded-location:
+    kind: location
+    pose:
+      rotation:
+        kind: grid
+      translation:
+        offset-grid: {x: 1}
+  objective-lens:
+    kind: design
+    design: cube-mounted/lens.dsn/mounted-lens.dsn
+    instantiation:
+      inputs:
+        offset: 5
+    pose:
+      rotation:
+        kind: grid
+        grid: {z: +x, x: -z}
+      translation:
+        anchor: objective-lens-gridded-location
+        offset-mm:
+          x: 5
+  objective-lens-skeleton:
+    kind: design
+    design: primitives/cube-skeleton.dsn
+    pose:
+      rotation:
+        kind: uc2
+      translation:
+        anchor: objective-lens-gridded-location
+  periscope-mirror-1:
+    kind: design
+    design: cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn
+    pose:
+      rotation:
+        kind: grid
+        grid: {x: -x}
+      translation:
+        offset-grid: {x: 2}
+  periscope-mirror-1-skeleton:
+    kind: design
+    design: primitives/cube-skeleton.dsn
+    pose:
+      rotation:
+        kind: uc2
+      translation:
+        anchor: periscope-mirror-1
+  periscope-mirror-2:
+    kind: design
+    design: cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn
+    pose:
+      rotation:
+        kind: grid
+      translation:
+        offset-grid: {x: 2, y: 10}
+  periscope-mirror-2-skeleton:
+    kind: design
+    design: primitives/cube-skeleton.dsn
+    pose:
+      rotation:
+        kind: uc2
+      translation:
+        anchor: periscope-mirror-2
+  tube-lens-location:
+    kind: location
+    pose:
+      rotation:
+        kind: grid
+      translation:
+        offset-grid: {x: 5, y: 10}
+  tube-lens:
+    kind: design
+    design: cube-mounted/lens.dsn/mounted-lens.dsn
+    pose:
+      rotation:
+        kind: grid
+        grid: {z: +x, x: -z}
+      translation:
+        anchor: tube-lens-location
+        offset-mm: {x: -8}
+  tube-lens-skeleton:
+    kind: design
+    design: primitives/cube-skeleton.dsn
+    pose:
+      rotation:
+        kind: uc2
+      translation:
+        anchor: tube-lens-location
+  projector-screen:
+    kind: design
+    design: primitives/projector-screen.dsn
+    pose:
+      rotation:
+        kind: grid
+        grid: {z: -x, x: +z}
+      translation:
+        offset-grid: {x: 5, y: 10}
+        offset-mm: {x: 100}
+
+relations:
+  geometry:
+  logic:
