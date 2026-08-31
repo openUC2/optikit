@@ -1,0 +1,6328 @@
+<!DOCTYPE html><html><head>
+    <meta charset="utf-8"/>
+    <title>Awesome go-echarts</title>
+    <script src="https://go-echarts.github.io/go-echarts-assets/assets/echarts.min.js"></script>
+    <script src="https://go-echarts.github.io/go-echarts-assets/assets/echarts@4.min.js"></script>
+    <script src="https://go-echarts.github.io/go-echarts-assets/assets/echarts-gl.min.js"></script>
+</head>
+
+<body><div class="container">
+    <div class="item" id="chart" style="width:1600px;height:800px;"></div>
+</div><script type="text/javascript">
+    "use strict";
+    let goecharts_chart = echarts.init(document.getElementById('chart'), "white", { renderer: "canvas" });
+    let option_chart = {
+      "color": [
+        "#5470c6",
+        "#91cc75",
+        "#fac858",
+        "#ee6666",
+        "#73c0de",
+        "#3ba272",
+        "#fc8452",
+        "#9a60b4",
+        "#ea7ccc"
+      ],
+      "grid3D": {},
+      "legend": {},
+      "series": [
+        {
+          "name": "camera-basic",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                0,
+                50,
+                25
+              ]
+            },
+            {
+              "value": [
+                0,
+                50,
+                0
+              ]
+            },
+            {
+              "value": [
+                0,
+                50,
+                -25
+              ]
+            }
+          ]
+        },
+        {
+          "name": "camera-basic",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                0,
+                25,
+                0
+              ]
+            },
+            {
+              "value": [
+                0,
+                50,
+                0
+              ]
+            },
+            {
+              "value": [
+                0,
+                75,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "camera-basic",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -25,
+                50,
+                0
+              ]
+            },
+            {
+              "value": [
+                0,
+                50,
+                0
+              ]
+            },
+            {
+              "value": [
+                25,
+                50,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "camera-basic",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                0,
+                50,
+                -25
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                0,
+                75,
+                0
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                0,
+                50,
+                -25
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                0,
+                50,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "cube-45-fixed",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -225,
+                50,
+                0
+              ]
+            },
+            {
+              "value": [
+                -200,
+                50,
+                0
+              ]
+            },
+            {
+              "value": [
+                -175,
+                50,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "cube-45-fixed",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -200,
+                25,
+                0
+              ]
+            },
+            {
+              "value": [
+                -200,
+                50,
+                0
+              ]
+            },
+            {
+              "value": [
+                -200,
+                75,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "cube-45-fixed",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -200,
+                50,
+                -25
+              ]
+            },
+            {
+              "value": [
+                -200,
+                50,
+                0
+              ]
+            },
+            {
+              "value": [
+                -200,
+                50,
+                25
+              ]
+            }
+          ]
+        },
+        {
+          "name": "cube-45-fixed",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                -175,
+                50,
+                0
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                -200,
+                75,
+                0
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                -175,
+                50,
+                0
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                -200,
+                50,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "lens-galvo-160",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -175,
+                50,
+                0
+              ]
+            },
+            {
+              "value": [
+                -150,
+                50,
+                0
+              ]
+            },
+            {
+              "value": [
+                -125,
+                50,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "lens-galvo-160",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -150,
+                25,
+                0
+              ]
+            },
+            {
+              "value": [
+                -150,
+                50,
+                0
+              ]
+            },
+            {
+              "value": [
+                -150,
+                75,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "lens-galvo-160",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -150,
+                50,
+                -25
+              ]
+            },
+            {
+              "value": [
+                -150,
+                50,
+                0
+              ]
+            },
+            {
+              "value": [
+                -150,
+                50,
+                25
+              ]
+            }
+          ]
+        },
+        {
+          "name": "lens-galvo-160",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                -125,
+                50,
+                0
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                -150,
+                75,
+                0
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                -125,
+                50,
+                0
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                -150,
+                50,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-1",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -175,
+                50,
+                0
+              ]
+            },
+            {
+              "value": [
+                -150,
+                50,
+                0
+              ]
+            },
+            {
+              "value": [
+                -125,
+                50,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-1",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -150,
+                25,
+                0
+              ]
+            },
+            {
+              "value": [
+                -150,
+                50,
+                0
+              ]
+            },
+            {
+              "value": [
+                -150,
+                75,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-1",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -150,
+                50,
+                -25
+              ]
+            },
+            {
+              "value": [
+                -150,
+                50,
+                0
+              ]
+            },
+            {
+              "value": [
+                -150,
+                50,
+                25
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-1",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                -125,
+                50,
+                0
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                -150,
+                75,
+                0
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                -125,
+                50,
+                0
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                -150,
+                50,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-10",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -75,
+                50,
+                55
+              ]
+            },
+            {
+              "value": [
+                -50,
+                50,
+                55
+              ]
+            },
+            {
+              "value": [
+                -25,
+                50,
+                55
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-10",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -50,
+                25,
+                55
+              ]
+            },
+            {
+              "value": [
+                -50,
+                50,
+                55
+              ]
+            },
+            {
+              "value": [
+                -50,
+                75,
+                55
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-10",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -50,
+                50,
+                30
+              ]
+            },
+            {
+              "value": [
+                -50,
+                50,
+                55
+              ]
+            },
+            {
+              "value": [
+                -50,
+                50,
+                80
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-10",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                -25,
+                50,
+                55
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                -50,
+                75,
+                55
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                -25,
+                50,
+                55
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                -50,
+                50,
+                55
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-11",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -225,
+                0,
+                0
+              ]
+            },
+            {
+              "value": [
+                -200,
+                0,
+                0
+              ]
+            },
+            {
+              "value": [
+                -175,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-11",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -200,
+                -25,
+                0
+              ]
+            },
+            {
+              "value": [
+                -200,
+                0,
+                0
+              ]
+            },
+            {
+              "value": [
+                -200,
+                25,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-11",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -200,
+                0,
+                -25
+              ]
+            },
+            {
+              "value": [
+                -200,
+                0,
+                0
+              ]
+            },
+            {
+              "value": [
+                -200,
+                0,
+                25
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-11",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                -175,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                -200,
+                25,
+                0
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                -175,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                -200,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-12",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -225,
+                0,
+                55
+              ]
+            },
+            {
+              "value": [
+                -200,
+                0,
+                55
+              ]
+            },
+            {
+              "value": [
+                -175,
+                0,
+                55
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-12",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -200,
+                -25,
+                55
+              ]
+            },
+            {
+              "value": [
+                -200,
+                0,
+                55
+              ]
+            },
+            {
+              "value": [
+                -200,
+                25,
+                55
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-12",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -200,
+                0,
+                30
+              ]
+            },
+            {
+              "value": [
+                -200,
+                0,
+                55
+              ]
+            },
+            {
+              "value": [
+                -200,
+                0,
+                80
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-12",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                -175,
+                0,
+                55
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                -200,
+                25,
+                55
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                -175,
+                0,
+                55
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                -200,
+                0,
+                55
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-13",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -125,
+                0,
+                0
+              ]
+            },
+            {
+              "value": [
+                -100,
+                0,
+                0
+              ]
+            },
+            {
+              "value": [
+                -75,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-13",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -100,
+                -25,
+                0
+              ]
+            },
+            {
+              "value": [
+                -100,
+                0,
+                0
+              ]
+            },
+            {
+              "value": [
+                -100,
+                25,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-13",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -100,
+                0,
+                -25
+              ]
+            },
+            {
+              "value": [
+                -100,
+                0,
+                0
+              ]
+            },
+            {
+              "value": [
+                -100,
+                0,
+                25
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-13",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                -75,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                -100,
+                25,
+                0
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                -75,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                -100,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-14",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -125,
+                0,
+                55
+              ]
+            },
+            {
+              "value": [
+                -100,
+                0,
+                55
+              ]
+            },
+            {
+              "value": [
+                -75,
+                0,
+                55
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-14",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -100,
+                -25,
+                55
+              ]
+            },
+            {
+              "value": [
+                -100,
+                0,
+                55
+              ]
+            },
+            {
+              "value": [
+                -100,
+                25,
+                55
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-14",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -100,
+                0,
+                30
+              ]
+            },
+            {
+              "value": [
+                -100,
+                0,
+                55
+              ]
+            },
+            {
+              "value": [
+                -100,
+                0,
+                80
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-14",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                -75,
+                0,
+                55
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                -100,
+                25,
+                55
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                -75,
+                0,
+                55
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                -100,
+                0,
+                55
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-15",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -225,
+                100,
+                0
+              ]
+            },
+            {
+              "value": [
+                -200,
+                100,
+                0
+              ]
+            },
+            {
+              "value": [
+                -175,
+                100,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-15",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -200,
+                75,
+                0
+              ]
+            },
+            {
+              "value": [
+                -200,
+                100,
+                0
+              ]
+            },
+            {
+              "value": [
+                -200,
+                125,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-15",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -200,
+                100,
+                -25
+              ]
+            },
+            {
+              "value": [
+                -200,
+                100,
+                0
+              ]
+            },
+            {
+              "value": [
+                -200,
+                100,
+                25
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-15",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                -175,
+                100,
+                0
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                -200,
+                125,
+                0
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                -175,
+                100,
+                0
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                -200,
+                100,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-16",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -225,
+                100,
+                55
+              ]
+            },
+            {
+              "value": [
+                -200,
+                100,
+                55
+              ]
+            },
+            {
+              "value": [
+                -175,
+                100,
+                55
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-16",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -200,
+                75,
+                55
+              ]
+            },
+            {
+              "value": [
+                -200,
+                100,
+                55
+              ]
+            },
+            {
+              "value": [
+                -200,
+                125,
+                55
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-16",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -200,
+                100,
+                30
+              ]
+            },
+            {
+              "value": [
+                -200,
+                100,
+                55
+              ]
+            },
+            {
+              "value": [
+                -200,
+                100,
+                80
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-16",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                -175,
+                100,
+                55
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                -200,
+                125,
+                55
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                -175,
+                100,
+                55
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                -200,
+                100,
+                55
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-17",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -175,
+                100,
+                0
+              ]
+            },
+            {
+              "value": [
+                -150,
+                100,
+                0
+              ]
+            },
+            {
+              "value": [
+                -125,
+                100,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-17",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -150,
+                75,
+                0
+              ]
+            },
+            {
+              "value": [
+                -150,
+                100,
+                0
+              ]
+            },
+            {
+              "value": [
+                -150,
+                125,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-17",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -150,
+                100,
+                -25
+              ]
+            },
+            {
+              "value": [
+                -150,
+                100,
+                0
+              ]
+            },
+            {
+              "value": [
+                -150,
+                100,
+                25
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-17",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                -125,
+                100,
+                0
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                -150,
+                125,
+                0
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                -125,
+                100,
+                0
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                -150,
+                100,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-18",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -175,
+                100,
+                55
+              ]
+            },
+            {
+              "value": [
+                -150,
+                100,
+                55
+              ]
+            },
+            {
+              "value": [
+                -125,
+                100,
+                55
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-18",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -150,
+                75,
+                55
+              ]
+            },
+            {
+              "value": [
+                -150,
+                100,
+                55
+              ]
+            },
+            {
+              "value": [
+                -150,
+                125,
+                55
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-18",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -150,
+                100,
+                30
+              ]
+            },
+            {
+              "value": [
+                -150,
+                100,
+                55
+              ]
+            },
+            {
+              "value": [
+                -150,
+                100,
+                80
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-18",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                -125,
+                100,
+                55
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                -150,
+                125,
+                55
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                -125,
+                100,
+                55
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                -150,
+                100,
+                55
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-19",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -125,
+                100,
+                0
+              ]
+            },
+            {
+              "value": [
+                -100,
+                100,
+                0
+              ]
+            },
+            {
+              "value": [
+                -75,
+                100,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-19",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -100,
+                75,
+                0
+              ]
+            },
+            {
+              "value": [
+                -100,
+                100,
+                0
+              ]
+            },
+            {
+              "value": [
+                -100,
+                125,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-19",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -100,
+                100,
+                -25
+              ]
+            },
+            {
+              "value": [
+                -100,
+                100,
+                0
+              ]
+            },
+            {
+              "value": [
+                -100,
+                100,
+                25
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-19",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                -75,
+                100,
+                0
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                -100,
+                125,
+                0
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                -75,
+                100,
+                0
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                -100,
+                100,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-2",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -175,
+                50,
+                55
+              ]
+            },
+            {
+              "value": [
+                -150,
+                50,
+                55
+              ]
+            },
+            {
+              "value": [
+                -125,
+                50,
+                55
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-2",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -150,
+                25,
+                55
+              ]
+            },
+            {
+              "value": [
+                -150,
+                50,
+                55
+              ]
+            },
+            {
+              "value": [
+                -150,
+                75,
+                55
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-2",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -150,
+                50,
+                30
+              ]
+            },
+            {
+              "value": [
+                -150,
+                50,
+                55
+              ]
+            },
+            {
+              "value": [
+                -150,
+                50,
+                80
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-2",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                -125,
+                50,
+                55
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                -150,
+                75,
+                55
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                -125,
+                50,
+                55
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                -150,
+                50,
+                55
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-20",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -125,
+                100,
+                55
+              ]
+            },
+            {
+              "value": [
+                -100,
+                100,
+                55
+              ]
+            },
+            {
+              "value": [
+                -75,
+                100,
+                55
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-20",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -100,
+                75,
+                55
+              ]
+            },
+            {
+              "value": [
+                -100,
+                100,
+                55
+              ]
+            },
+            {
+              "value": [
+                -100,
+                125,
+                55
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-20",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -100,
+                100,
+                30
+              ]
+            },
+            {
+              "value": [
+                -100,
+                100,
+                55
+              ]
+            },
+            {
+              "value": [
+                -100,
+                100,
+                80
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-20",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                -75,
+                100,
+                55
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                -100,
+                125,
+                55
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                -75,
+                100,
+                55
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                -100,
+                100,
+                55
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-21",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -175,
+                0,
+                0
+              ]
+            },
+            {
+              "value": [
+                -150,
+                0,
+                0
+              ]
+            },
+            {
+              "value": [
+                -125,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-21",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -150,
+                -25,
+                0
+              ]
+            },
+            {
+              "value": [
+                -150,
+                0,
+                0
+              ]
+            },
+            {
+              "value": [
+                -150,
+                25,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-21",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -150,
+                0,
+                -25
+              ]
+            },
+            {
+              "value": [
+                -150,
+                0,
+                0
+              ]
+            },
+            {
+              "value": [
+                -150,
+                0,
+                25
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-21",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                -125,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                -150,
+                25,
+                0
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                -125,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                -150,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-22",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -175,
+                0,
+                55
+              ]
+            },
+            {
+              "value": [
+                -150,
+                0,
+                55
+              ]
+            },
+            {
+              "value": [
+                -125,
+                0,
+                55
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-22",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -150,
+                -25,
+                55
+              ]
+            },
+            {
+              "value": [
+                -150,
+                0,
+                55
+              ]
+            },
+            {
+              "value": [
+                -150,
+                25,
+                55
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-22",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -150,
+                0,
+                30
+              ]
+            },
+            {
+              "value": [
+                -150,
+                0,
+                55
+              ]
+            },
+            {
+              "value": [
+                -150,
+                0,
+                80
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-22",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                -125,
+                0,
+                55
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                -150,
+                25,
+                55
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                -125,
+                0,
+                55
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                -150,
+                0,
+                55
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-23",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -225,
+                50,
+                110
+              ]
+            },
+            {
+              "value": [
+                -200,
+                50,
+                110
+              ]
+            },
+            {
+              "value": [
+                -175,
+                50,
+                110
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-23",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -200,
+                25,
+                110
+              ]
+            },
+            {
+              "value": [
+                -200,
+                50,
+                110
+              ]
+            },
+            {
+              "value": [
+                -200,
+                75,
+                110
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-23",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -200,
+                50,
+                85
+              ]
+            },
+            {
+              "value": [
+                -200,
+                50,
+                110
+              ]
+            },
+            {
+              "value": [
+                -200,
+                50,
+                135
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-23",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                -175,
+                50,
+                110
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                -200,
+                75,
+                110
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                -175,
+                50,
+                110
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                -200,
+                50,
+                110
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-24",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -175,
+                100,
+                110
+              ]
+            },
+            {
+              "value": [
+                -150,
+                100,
+                110
+              ]
+            },
+            {
+              "value": [
+                -125,
+                100,
+                110
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-24",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -150,
+                75,
+                110
+              ]
+            },
+            {
+              "value": [
+                -150,
+                100,
+                110
+              ]
+            },
+            {
+              "value": [
+                -150,
+                125,
+                110
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-24",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -150,
+                100,
+                85
+              ]
+            },
+            {
+              "value": [
+                -150,
+                100,
+                110
+              ]
+            },
+            {
+              "value": [
+                -150,
+                100,
+                135
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-24",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                -125,
+                100,
+                110
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                -150,
+                125,
+                110
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                -125,
+                100,
+                110
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                -150,
+                100,
+                110
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-25",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -175,
+                0,
+                110
+              ]
+            },
+            {
+              "value": [
+                -150,
+                0,
+                110
+              ]
+            },
+            {
+              "value": [
+                -125,
+                0,
+                110
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-25",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -150,
+                -25,
+                110
+              ]
+            },
+            {
+              "value": [
+                -150,
+                0,
+                110
+              ]
+            },
+            {
+              "value": [
+                -150,
+                25,
+                110
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-25",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -150,
+                0,
+                85
+              ]
+            },
+            {
+              "value": [
+                -150,
+                0,
+                110
+              ]
+            },
+            {
+              "value": [
+                -150,
+                0,
+                135
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-25",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                -125,
+                0,
+                110
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                -150,
+                25,
+                110
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                -125,
+                0,
+                110
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                -150,
+                0,
+                110
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-26",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -125,
+                50,
+                110
+              ]
+            },
+            {
+              "value": [
+                -100,
+                50,
+                110
+              ]
+            },
+            {
+              "value": [
+                -75,
+                50,
+                110
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-26",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -100,
+                25,
+                110
+              ]
+            },
+            {
+              "value": [
+                -100,
+                50,
+                110
+              ]
+            },
+            {
+              "value": [
+                -100,
+                75,
+                110
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-26",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -100,
+                50,
+                85
+              ]
+            },
+            {
+              "value": [
+                -100,
+                50,
+                110
+              ]
+            },
+            {
+              "value": [
+                -100,
+                50,
+                135
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-26",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                -75,
+                50,
+                110
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                -100,
+                75,
+                110
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                -75,
+                50,
+                110
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                -100,
+                50,
+                110
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-27",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -125,
+                100,
+                110
+              ]
+            },
+            {
+              "value": [
+                -100,
+                100,
+                110
+              ]
+            },
+            {
+              "value": [
+                -75,
+                100,
+                110
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-27",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -100,
+                75,
+                110
+              ]
+            },
+            {
+              "value": [
+                -100,
+                100,
+                110
+              ]
+            },
+            {
+              "value": [
+                -100,
+                125,
+                110
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-27",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -100,
+                100,
+                85
+              ]
+            },
+            {
+              "value": [
+                -100,
+                100,
+                110
+              ]
+            },
+            {
+              "value": [
+                -100,
+                100,
+                135
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-27",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                -75,
+                100,
+                110
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                -100,
+                125,
+                110
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                -75,
+                100,
+                110
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                -100,
+                100,
+                110
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-28",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -225,
+                100,
+                110
+              ]
+            },
+            {
+              "value": [
+                -200,
+                100,
+                110
+              ]
+            },
+            {
+              "value": [
+                -175,
+                100,
+                110
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-28",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -200,
+                75,
+                110
+              ]
+            },
+            {
+              "value": [
+                -200,
+                100,
+                110
+              ]
+            },
+            {
+              "value": [
+                -200,
+                125,
+                110
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-28",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -200,
+                100,
+                85
+              ]
+            },
+            {
+              "value": [
+                -200,
+                100,
+                110
+              ]
+            },
+            {
+              "value": [
+                -200,
+                100,
+                135
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-28",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                -175,
+                100,
+                110
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                -200,
+                125,
+                110
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                -175,
+                100,
+                110
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                -200,
+                100,
+                110
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-29",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -225,
+                0,
+                110
+              ]
+            },
+            {
+              "value": [
+                -200,
+                0,
+                110
+              ]
+            },
+            {
+              "value": [
+                -175,
+                0,
+                110
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-29",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -200,
+                -25,
+                110
+              ]
+            },
+            {
+              "value": [
+                -200,
+                0,
+                110
+              ]
+            },
+            {
+              "value": [
+                -200,
+                25,
+                110
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-29",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -200,
+                0,
+                85
+              ]
+            },
+            {
+              "value": [
+                -200,
+                0,
+                110
+              ]
+            },
+            {
+              "value": [
+                -200,
+                0,
+                135
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-29",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                -175,
+                0,
+                110
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                -200,
+                25,
+                110
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                -175,
+                0,
+                110
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                -200,
+                0,
+                110
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-3",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -25,
+                50,
+                0
+              ]
+            },
+            {
+              "value": [
+                0,
+                50,
+                0
+              ]
+            },
+            {
+              "value": [
+                25,
+                50,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-3",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                0,
+                25,
+                0
+              ]
+            },
+            {
+              "value": [
+                0,
+                50,
+                0
+              ]
+            },
+            {
+              "value": [
+                0,
+                75,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-3",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                0,
+                50,
+                -25
+              ]
+            },
+            {
+              "value": [
+                0,
+                50,
+                0
+              ]
+            },
+            {
+              "value": [
+                0,
+                50,
+                25
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-3",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                25,
+                50,
+                0
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                0,
+                75,
+                0
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                25,
+                50,
+                0
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                0,
+                50,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-30",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -125,
+                0,
+                110
+              ]
+            },
+            {
+              "value": [
+                -100,
+                0,
+                110
+              ]
+            },
+            {
+              "value": [
+                -75,
+                0,
+                110
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-30",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -100,
+                -25,
+                110
+              ]
+            },
+            {
+              "value": [
+                -100,
+                0,
+                110
+              ]
+            },
+            {
+              "value": [
+                -100,
+                25,
+                110
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-30",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -100,
+                0,
+                85
+              ]
+            },
+            {
+              "value": [
+                -100,
+                0,
+                110
+              ]
+            },
+            {
+              "value": [
+                -100,
+                0,
+                135
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-30",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                -75,
+                0,
+                110
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                -100,
+                25,
+                110
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                -75,
+                0,
+                110
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                -100,
+                0,
+                110
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-31",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -175,
+                50,
+                110
+              ]
+            },
+            {
+              "value": [
+                -150,
+                50,
+                110
+              ]
+            },
+            {
+              "value": [
+                -125,
+                50,
+                110
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-31",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -150,
+                25,
+                110
+              ]
+            },
+            {
+              "value": [
+                -150,
+                50,
+                110
+              ]
+            },
+            {
+              "value": [
+                -150,
+                75,
+                110
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-31",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -150,
+                50,
+                85
+              ]
+            },
+            {
+              "value": [
+                -150,
+                50,
+                110
+              ]
+            },
+            {
+              "value": [
+                -150,
+                50,
+                135
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-31",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                -125,
+                50,
+                110
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                -150,
+                75,
+                110
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                -125,
+                50,
+                110
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                -150,
+                50,
+                110
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-4",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -25,
+                50,
+                55
+              ]
+            },
+            {
+              "value": [
+                0,
+                50,
+                55
+              ]
+            },
+            {
+              "value": [
+                25,
+                50,
+                55
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-4",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                0,
+                25,
+                55
+              ]
+            },
+            {
+              "value": [
+                0,
+                50,
+                55
+              ]
+            },
+            {
+              "value": [
+                0,
+                75,
+                55
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-4",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                0,
+                50,
+                30
+              ]
+            },
+            {
+              "value": [
+                0,
+                50,
+                55
+              ]
+            },
+            {
+              "value": [
+                0,
+                50,
+                80
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-4",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                25,
+                50,
+                55
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                0,
+                75,
+                55
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                25,
+                50,
+                55
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                0,
+                50,
+                55
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-5",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -225,
+                50,
+                0
+              ]
+            },
+            {
+              "value": [
+                -200,
+                50,
+                0
+              ]
+            },
+            {
+              "value": [
+                -175,
+                50,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-5",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -200,
+                25,
+                0
+              ]
+            },
+            {
+              "value": [
+                -200,
+                50,
+                0
+              ]
+            },
+            {
+              "value": [
+                -200,
+                75,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-5",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -200,
+                50,
+                -25
+              ]
+            },
+            {
+              "value": [
+                -200,
+                50,
+                0
+              ]
+            },
+            {
+              "value": [
+                -200,
+                50,
+                25
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-5",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                -175,
+                50,
+                0
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                -200,
+                75,
+                0
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                -175,
+                50,
+                0
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                -200,
+                50,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-6",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -225,
+                50,
+                55
+              ]
+            },
+            {
+              "value": [
+                -200,
+                50,
+                55
+              ]
+            },
+            {
+              "value": [
+                -175,
+                50,
+                55
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-6",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -200,
+                25,
+                55
+              ]
+            },
+            {
+              "value": [
+                -200,
+                50,
+                55
+              ]
+            },
+            {
+              "value": [
+                -200,
+                75,
+                55
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-6",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -200,
+                50,
+                30
+              ]
+            },
+            {
+              "value": [
+                -200,
+                50,
+                55
+              ]
+            },
+            {
+              "value": [
+                -200,
+                50,
+                80
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-6",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                -175,
+                50,
+                55
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                -200,
+                75,
+                55
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                -175,
+                50,
+                55
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                -200,
+                50,
+                55
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-7",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -125,
+                50,
+                0
+              ]
+            },
+            {
+              "value": [
+                -100,
+                50,
+                0
+              ]
+            },
+            {
+              "value": [
+                -75,
+                50,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-7",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -100,
+                25,
+                0
+              ]
+            },
+            {
+              "value": [
+                -100,
+                50,
+                0
+              ]
+            },
+            {
+              "value": [
+                -100,
+                75,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-7",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -100,
+                50,
+                -25
+              ]
+            },
+            {
+              "value": [
+                -100,
+                50,
+                0
+              ]
+            },
+            {
+              "value": [
+                -100,
+                50,
+                25
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-7",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                -75,
+                50,
+                0
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                -100,
+                75,
+                0
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                -75,
+                50,
+                0
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                -100,
+                50,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-8",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -125,
+                50,
+                55
+              ]
+            },
+            {
+              "value": [
+                -100,
+                50,
+                55
+              ]
+            },
+            {
+              "value": [
+                -75,
+                50,
+                55
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-8",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -100,
+                25,
+                55
+              ]
+            },
+            {
+              "value": [
+                -100,
+                50,
+                55
+              ]
+            },
+            {
+              "value": [
+                -100,
+                75,
+                55
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-8",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -100,
+                50,
+                30
+              ]
+            },
+            {
+              "value": [
+                -100,
+                50,
+                55
+              ]
+            },
+            {
+              "value": [
+                -100,
+                50,
+                80
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-8",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                -75,
+                50,
+                55
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                -100,
+                75,
+                55
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                -75,
+                50,
+                55
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                -100,
+                50,
+                55
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-9",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -75,
+                50,
+                0
+              ]
+            },
+            {
+              "value": [
+                -50,
+                50,
+                0
+              ]
+            },
+            {
+              "value": [
+                -25,
+                50,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-9",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -50,
+                25,
+                0
+              ]
+            },
+            {
+              "value": [
+                -50,
+                50,
+                0
+              ]
+            },
+            {
+              "value": [
+                -50,
+                75,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-9",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -50,
+                50,
+                -25
+              ]
+            },
+            {
+              "value": [
+                -50,
+                50,
+                0
+              ]
+            },
+            {
+              "value": [
+                -50,
+                50,
+                25
+              ]
+            }
+          ]
+        },
+        {
+          "name": "puzzle-9",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                -25,
+                50,
+                0
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                -50,
+                75,
+                0
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                -25,
+                50,
+                0
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                -50,
+                50,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-1",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -125,
+                50,
+                0
+              ]
+            },
+            {
+              "value": [
+                -100,
+                50,
+                0
+              ]
+            },
+            {
+              "value": [
+                -75,
+                50,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-1",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -100,
+                25,
+                0
+              ]
+            },
+            {
+              "value": [
+                -100,
+                50,
+                0
+              ]
+            },
+            {
+              "value": [
+                -100,
+                75,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-1",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -100,
+                50,
+                -25
+              ]
+            },
+            {
+              "value": [
+                -100,
+                50,
+                0
+              ]
+            },
+            {
+              "value": [
+                -100,
+                50,
+                25
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-1",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                -75,
+                50,
+                0
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                -100,
+                75,
+                0
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                -75,
+                50,
+                0
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                -100,
+                50,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-10",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -175,
+                100,
+                55
+              ]
+            },
+            {
+              "value": [
+                -150,
+                100,
+                55
+              ]
+            },
+            {
+              "value": [
+                -125,
+                100,
+                55
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-10",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -150,
+                75,
+                55
+              ]
+            },
+            {
+              "value": [
+                -150,
+                100,
+                55
+              ]
+            },
+            {
+              "value": [
+                -150,
+                125,
+                55
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-10",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -150,
+                100,
+                30
+              ]
+            },
+            {
+              "value": [
+                -150,
+                100,
+                55
+              ]
+            },
+            {
+              "value": [
+                -150,
+                100,
+                80
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-10",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                -125,
+                100,
+                55
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                -150,
+                125,
+                55
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                -125,
+                100,
+                55
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                -150,
+                100,
+                55
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-11",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -175,
+                0,
+                55
+              ]
+            },
+            {
+              "value": [
+                -150,
+                0,
+                55
+              ]
+            },
+            {
+              "value": [
+                -125,
+                0,
+                55
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-11",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -150,
+                -25,
+                55
+              ]
+            },
+            {
+              "value": [
+                -150,
+                0,
+                55
+              ]
+            },
+            {
+              "value": [
+                -150,
+                25,
+                55
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-11",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -150,
+                0,
+                30
+              ]
+            },
+            {
+              "value": [
+                -150,
+                0,
+                55
+              ]
+            },
+            {
+              "value": [
+                -150,
+                0,
+                80
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-11",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                -125,
+                0,
+                55
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                -150,
+                25,
+                55
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                -125,
+                0,
+                55
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                -150,
+                0,
+                55
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-12",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -125,
+                50,
+                55
+              ]
+            },
+            {
+              "value": [
+                -100,
+                50,
+                55
+              ]
+            },
+            {
+              "value": [
+                -75,
+                50,
+                55
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-12",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -100,
+                25,
+                55
+              ]
+            },
+            {
+              "value": [
+                -100,
+                50,
+                55
+              ]
+            },
+            {
+              "value": [
+                -100,
+                75,
+                55
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-12",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -100,
+                50,
+                30
+              ]
+            },
+            {
+              "value": [
+                -100,
+                50,
+                55
+              ]
+            },
+            {
+              "value": [
+                -100,
+                50,
+                80
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-12",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                -75,
+                50,
+                55
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                -100,
+                75,
+                55
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                -75,
+                50,
+                55
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                -100,
+                50,
+                55
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-13",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -125,
+                100,
+                55
+              ]
+            },
+            {
+              "value": [
+                -100,
+                100,
+                55
+              ]
+            },
+            {
+              "value": [
+                -75,
+                100,
+                55
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-13",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -100,
+                75,
+                55
+              ]
+            },
+            {
+              "value": [
+                -100,
+                100,
+                55
+              ]
+            },
+            {
+              "value": [
+                -100,
+                125,
+                55
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-13",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -100,
+                100,
+                30
+              ]
+            },
+            {
+              "value": [
+                -100,
+                100,
+                55
+              ]
+            },
+            {
+              "value": [
+                -100,
+                100,
+                80
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-13",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                -75,
+                100,
+                55
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                -100,
+                125,
+                55
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                -75,
+                100,
+                55
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                -100,
+                100,
+                55
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-14",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -225,
+                100,
+                55
+              ]
+            },
+            {
+              "value": [
+                -200,
+                100,
+                55
+              ]
+            },
+            {
+              "value": [
+                -175,
+                100,
+                55
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-14",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -200,
+                75,
+                55
+              ]
+            },
+            {
+              "value": [
+                -200,
+                100,
+                55
+              ]
+            },
+            {
+              "value": [
+                -200,
+                125,
+                55
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-14",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -200,
+                100,
+                30
+              ]
+            },
+            {
+              "value": [
+                -200,
+                100,
+                55
+              ]
+            },
+            {
+              "value": [
+                -200,
+                100,
+                80
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-14",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                -175,
+                100,
+                55
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                -200,
+                125,
+                55
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                -175,
+                100,
+                55
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                -200,
+                100,
+                55
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-15",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -225,
+                0,
+                55
+              ]
+            },
+            {
+              "value": [
+                -200,
+                0,
+                55
+              ]
+            },
+            {
+              "value": [
+                -175,
+                0,
+                55
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-15",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -200,
+                -25,
+                55
+              ]
+            },
+            {
+              "value": [
+                -200,
+                0,
+                55
+              ]
+            },
+            {
+              "value": [
+                -200,
+                25,
+                55
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-15",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -200,
+                0,
+                30
+              ]
+            },
+            {
+              "value": [
+                -200,
+                0,
+                55
+              ]
+            },
+            {
+              "value": [
+                -200,
+                0,
+                80
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-15",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                -175,
+                0,
+                55
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                -200,
+                25,
+                55
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                -175,
+                0,
+                55
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                -200,
+                0,
+                55
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-16",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -125,
+                0,
+                55
+              ]
+            },
+            {
+              "value": [
+                -100,
+                0,
+                55
+              ]
+            },
+            {
+              "value": [
+                -75,
+                0,
+                55
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-16",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -100,
+                -25,
+                55
+              ]
+            },
+            {
+              "value": [
+                -100,
+                0,
+                55
+              ]
+            },
+            {
+              "value": [
+                -100,
+                25,
+                55
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-16",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -100,
+                0,
+                30
+              ]
+            },
+            {
+              "value": [
+                -100,
+                0,
+                55
+              ]
+            },
+            {
+              "value": [
+                -100,
+                0,
+                80
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-16",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                -75,
+                0,
+                55
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                -100,
+                25,
+                55
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                -75,
+                0,
+                55
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                -100,
+                0,
+                55
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-17",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -175,
+                50,
+                55
+              ]
+            },
+            {
+              "value": [
+                -150,
+                50,
+                55
+              ]
+            },
+            {
+              "value": [
+                -125,
+                50,
+                55
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-17",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -150,
+                25,
+                55
+              ]
+            },
+            {
+              "value": [
+                -150,
+                50,
+                55
+              ]
+            },
+            {
+              "value": [
+                -150,
+                75,
+                55
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-17",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -150,
+                50,
+                30
+              ]
+            },
+            {
+              "value": [
+                -150,
+                50,
+                55
+              ]
+            },
+            {
+              "value": [
+                -150,
+                50,
+                80
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-17",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                -125,
+                50,
+                55
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                -150,
+                75,
+                55
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                -125,
+                50,
+                55
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                -150,
+                50,
+                55
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-2",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -75,
+                50,
+                0
+              ]
+            },
+            {
+              "value": [
+                -50,
+                50,
+                0
+              ]
+            },
+            {
+              "value": [
+                -25,
+                50,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-2",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -50,
+                25,
+                0
+              ]
+            },
+            {
+              "value": [
+                -50,
+                50,
+                0
+              ]
+            },
+            {
+              "value": [
+                -50,
+                75,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-2",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -50,
+                50,
+                -25
+              ]
+            },
+            {
+              "value": [
+                -50,
+                50,
+                0
+              ]
+            },
+            {
+              "value": [
+                -50,
+                50,
+                25
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-2",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                -25,
+                50,
+                0
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                -50,
+                75,
+                0
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                -25,
+                50,
+                0
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                -50,
+                50,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-3",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -225,
+                0,
+                0
+              ]
+            },
+            {
+              "value": [
+                -200,
+                0,
+                0
+              ]
+            },
+            {
+              "value": [
+                -175,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-3",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -200,
+                -25,
+                0
+              ]
+            },
+            {
+              "value": [
+                -200,
+                0,
+                0
+              ]
+            },
+            {
+              "value": [
+                -200,
+                25,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-3",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -200,
+                0,
+                -25
+              ]
+            },
+            {
+              "value": [
+                -200,
+                0,
+                0
+              ]
+            },
+            {
+              "value": [
+                -200,
+                0,
+                25
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-3",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                -175,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                -200,
+                25,
+                0
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                -175,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                -200,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-4",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -175,
+                0,
+                0
+              ]
+            },
+            {
+              "value": [
+                -150,
+                0,
+                0
+              ]
+            },
+            {
+              "value": [
+                -125,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-4",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -150,
+                -25,
+                0
+              ]
+            },
+            {
+              "value": [
+                -150,
+                0,
+                0
+              ]
+            },
+            {
+              "value": [
+                -150,
+                25,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-4",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -150,
+                0,
+                -25
+              ]
+            },
+            {
+              "value": [
+                -150,
+                0,
+                0
+              ]
+            },
+            {
+              "value": [
+                -150,
+                0,
+                25
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-4",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                -125,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                -150,
+                25,
+                0
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                -125,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                -150,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-5",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -125,
+                0,
+                0
+              ]
+            },
+            {
+              "value": [
+                -100,
+                0,
+                0
+              ]
+            },
+            {
+              "value": [
+                -75,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-5",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -100,
+                -25,
+                0
+              ]
+            },
+            {
+              "value": [
+                -100,
+                0,
+                0
+              ]
+            },
+            {
+              "value": [
+                -100,
+                25,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-5",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -100,
+                0,
+                -25
+              ]
+            },
+            {
+              "value": [
+                -100,
+                0,
+                0
+              ]
+            },
+            {
+              "value": [
+                -100,
+                0,
+                25
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-5",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                -75,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                -100,
+                25,
+                0
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                -75,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                -100,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-6",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -225,
+                50,
+                55
+              ]
+            },
+            {
+              "value": [
+                -200,
+                50,
+                55
+              ]
+            },
+            {
+              "value": [
+                -175,
+                50,
+                55
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-6",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -200,
+                25,
+                55
+              ]
+            },
+            {
+              "value": [
+                -200,
+                50,
+                55
+              ]
+            },
+            {
+              "value": [
+                -200,
+                75,
+                55
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-6",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -200,
+                50,
+                30
+              ]
+            },
+            {
+              "value": [
+                -200,
+                50,
+                55
+              ]
+            },
+            {
+              "value": [
+                -200,
+                50,
+                80
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-6",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                -175,
+                50,
+                55
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                -200,
+                75,
+                55
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                -175,
+                50,
+                55
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                -200,
+                50,
+                55
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-7",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -225,
+                100,
+                0
+              ]
+            },
+            {
+              "value": [
+                -200,
+                100,
+                0
+              ]
+            },
+            {
+              "value": [
+                -175,
+                100,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-7",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -200,
+                75,
+                0
+              ]
+            },
+            {
+              "value": [
+                -200,
+                100,
+                0
+              ]
+            },
+            {
+              "value": [
+                -200,
+                125,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-7",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -200,
+                100,
+                -25
+              ]
+            },
+            {
+              "value": [
+                -200,
+                100,
+                0
+              ]
+            },
+            {
+              "value": [
+                -200,
+                100,
+                25
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-7",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                -175,
+                100,
+                0
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                -200,
+                125,
+                0
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                -175,
+                100,
+                0
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                -200,
+                100,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-8",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -175,
+                100,
+                0
+              ]
+            },
+            {
+              "value": [
+                -150,
+                100,
+                0
+              ]
+            },
+            {
+              "value": [
+                -125,
+                100,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-8",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -150,
+                75,
+                0
+              ]
+            },
+            {
+              "value": [
+                -150,
+                100,
+                0
+              ]
+            },
+            {
+              "value": [
+                -150,
+                125,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-8",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -150,
+                100,
+                -25
+              ]
+            },
+            {
+              "value": [
+                -150,
+                100,
+                0
+              ]
+            },
+            {
+              "value": [
+                -150,
+                100,
+                25
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-8",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                -125,
+                100,
+                0
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                -150,
+                125,
+                0
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                -125,
+                100,
+                0
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                -150,
+                100,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-9",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -125,
+                100,
+                0
+              ]
+            },
+            {
+              "value": [
+                -100,
+                100,
+                0
+              ]
+            },
+            {
+              "value": [
+                -75,
+                100,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-9",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -100,
+                75,
+                0
+              ]
+            },
+            {
+              "value": [
+                -100,
+                100,
+                0
+              ]
+            },
+            {
+              "value": [
+                -100,
+                125,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-9",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -100,
+                100,
+                -25
+              ]
+            },
+            {
+              "value": [
+                -100,
+                100,
+                0
+              ]
+            },
+            {
+              "value": [
+                -100,
+                100,
+                25
+              ]
+            }
+          ]
+        },
+        {
+          "name": "scaffolding-9",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                -75,
+                100,
+                0
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                -100,
+                125,
+                0
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                -75,
+                100,
+                0
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                -100,
+                100,
+                0
+              ]
+            }
+          ]
+        }
+      ],
+      "title": {},
+      "toolbox": {},
+      "tooltip": {},
+      "xAxis3D": {
+        "min": -225,
+        "max": 25
+      },
+      "yAxis3D": {
+        "min": -75,
+        "max": 175
+      },
+      "zAxis3D": {
+        "min": -70,
+        "max": 180
+      }
+    };
+
+    goecharts_chart.setOption(option_chart);
+</script>
+<style>
+    .container {margin-top:30px; display: flex;justify-content: center;align-items: center;}
+    .item {margin: auto;}
+</style>
+
+
+</body></html>

@@ -1,0 +1,22 @@
+optikit-version: v0.0.0-alpha.1
+
+design:
+  description: An injection-molded UC2 cube puzzle connector
+  tags:
+    - structure/puzzle
+
+components:
+  puzzle:
+    kind: primitive
+    primitive:
+      static-models:
+        gltf: PRT - 1004 - PUZ11 - V04 - A.glb
+        step: PRT - 1004 - PUZ11 - V04 - A.stp
+    pose:
+      rotation:
+        kind: uc2
+    tags:
+      - procurement/injection-mold
+      - in/kit/core-box
+      - in/kit/qbox
+      - in/kit/galvo-box
