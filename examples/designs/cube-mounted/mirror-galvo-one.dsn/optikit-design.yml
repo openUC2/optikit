@@ -27,8 +27,6 @@ components:
     pose:
       rotation:
         kind: grid
-      translation:
-        offset-grid: {x: -1}
 
 inputs:
   mirror-rotation:
@@ -40,3 +38,27 @@ inputs:
       - adjustment/actuated
       - actuation/rotational/stepper
       - control/electronic
+
+variants:
+  x:
+    description: Rotational axis of motor is x-axis
+    tags:
+      - pose/insert/orientation/horizontal
+    components:
+      skeleton-extra:
+        pose:
+          translation:
+            offset-grid: {x: -1}
+  z:
+    description: Rotational axis of motor is z-axis
+    components:
+      mounted-mirror:
+        pose:
+          rotation:
+            grid: {z: +x, x: -z}
+      skeleton-extra:
+        pose:
+          translation:
+            offset-grid: {z: 1}
+    tags:
+      - pose/insert/orientation/vertical

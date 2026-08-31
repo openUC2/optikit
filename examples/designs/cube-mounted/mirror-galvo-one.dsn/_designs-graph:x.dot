@@ -1,0 +1,36 @@
+digraph "" {
+	graph [bb="0,0,487.08,213.6"];
+	node [label="\N"];
+	edge [label="\E"];
+	""	[height=0.5,
+		pos="294.75,195.6",
+		width=0.75];
+	"mounted-mirror.dsn"	[height=0.5,
+		label="mounted-mirror.dsn",
+		pos="135.75,106.8",
+		width=2.4596];
+	"" -> "mounted-mirror.dsn"	[key=" -> mounted-mirror.dsn: mounted-mirror",
+		label="mounted-mirror",
+		lp="242.04,151.2",
+		pos="e,152.54,124.79 269.67,188.25 249.34,182.49 220.38,172.87 197.33,159.6 184.37,152.14 171.48,141.87 160.87,132.43"];
+	"primitives/cube-skeleton.dsn"	[height=0.5,
+		label="primitives/cube-skeleton.dsn",
+		pos="364.75,106.8",
+		width=3.3982];
+	"" -> "primitives/cube-skeleton.dsn"	[key=" -> primitives/cube-skeleton.dsn: skeleton",
+		label=skeleton,
+		lp="319.42,151.2",
+		pos="e,316.94,123.63 290.99,177.47 289.59,166.71 289.66,153 296.09,142.8 299.18,137.9 303.18,133.66 307.71,130"];
+	"" -> "primitives/cube-skeleton.dsn"	[key=" -> primitives/cube-skeleton.dsn: skeleton-extra",
+		label="skeleton-extra",
+		lp="392.06,151.2",
+		pos="e,360.07,124.89 314.96,183.36 324.39,177.31 335.18,169.13 342.75,159.6 348.34,152.55 352.76,143.87 356.13,135.64"];
+	"mounted-mirror.dsn/primitives/motorized-mirror.dsn"	[height=0.5,
+		label="primitives/motorized-mirror.dsn",
+		pos="135.75,18",
+		width=3.7707];
+	"mounted-mirror.dsn" -> "mounted-mirror.dsn/primitives/motorized-mirror.dsn"	[key="mounted-mirror.dsn -> mounted-mirror.dsn/primitives/motorized-mirror.dsn: motorized-mirror",
+		label="motorized-mirror",
+		lp="184.34,62.4",
+		pos="e,135.75,36.41 135.75,88.651 135.75,76.958 135.75,61.192 135.75,47.618"];
+}

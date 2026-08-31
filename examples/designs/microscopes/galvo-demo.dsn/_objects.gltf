@@ -53864,7 +53864,7 @@
         -0.05,
         0
       ],
-      "name": "skeleton-extra-2",
+      "name": "skeleton-extra-partial",
       "children": [
         3
       ]
@@ -54095,7 +54095,7 @@
         0,
         0
       ],
-      "name": "skeleton-extra-1",
+      "name": "skeleton-extra-full",
       "children": [
         27,
         29
@@ -54153,7 +54153,7 @@
         -0.05,
         0
       ],
-      "name": "skeleton-extra-2",
+      "name": "skeleton-extra-partial",
       "children": [
         33
       ]
@@ -54384,7 +54384,7 @@
         0,
         0
       ],
-      "name": "skeleton-extra-1",
+      "name": "skeleton-extra-full",
       "children": [
         57,
         59
@@ -54442,7 +54442,7 @@
         -0.05,
         0
       ],
-      "name": "skeleton-extra-2",
+      "name": "skeleton-extra-partial",
       "children": [
         63
       ]
@@ -54673,7 +54673,7 @@
         0,
         0
       ],
-      "name": "skeleton-extra-1",
+      "name": "skeleton-extra-full",
       "children": [
         87,
         89
