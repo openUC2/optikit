@@ -1,5 +1,71 @@
 [
   {
+    "id": "objective-lens-insert/insert",
+    "kind": "static",
+    "static-models": {
+      "gltf": "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2023 - INSLEND40F50 - V04.glb",
+      "step": "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2023 - INSLEND40F50 - V04.stp"
+    },
+    "position": [
+      55,
+      0,
+      0
+    ],
+    "rotation": {
+      "kind": "extrinsic",
+      "order": "zxy",
+      "angles": {
+        "x": 0,
+        "y": 90,
+        "z": -0
+      }
+    }
+  },
+  {
+    "id": "objective-lens-insert/lens",
+    "kind": "static",
+    "static-models": {
+      "gltf": "cube-mounted/lens.dsn/mounted-lens.dsn/BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx.glb",
+      "step": "cube-mounted/lens.dsn/mounted-lens.dsn/BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx.stp"
+    },
+    "position": [
+      55,
+      0,
+      0
+    ],
+    "rotation": {
+      "kind": "extrinsic",
+      "order": "zxy",
+      "angles": {
+        "x": 0,
+        "y": 90,
+        "z": -0
+      }
+    }
+  },
+  {
+    "id": "objective-lens-insert/nut",
+    "kind": "static",
+    "static-models": {
+      "gltf": "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2003 - NUTD40.glb",
+      "step": "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2003 - NUTD40.stp"
+    },
+    "position": [
+      55,
+      0,
+      0
+    ],
+    "rotation": {
+      "kind": "extrinsic",
+      "order": "zxy",
+      "angles": {
+        "x": 0,
+        "y": 90,
+        "z": -0
+      }
+    }
+  },
+  {
     "id": "objective-lens-skeleton/lower-half",
     "kind": "static",
     "static-models": {
@@ -40,72 +106,6 @@
         "x": 0,
         "y": -180,
         "z": -180
-      }
-    }
-  },
-  {
-    "id": "objective-lens/insert",
-    "kind": "static",
-    "static-models": {
-      "gltf": "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2023 - INSLEND40F50 - V04.glb",
-      "step": "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2023 - INSLEND40F50 - V04.stp"
-    },
-    "position": [
-      55,
-      0,
-      0
-    ],
-    "rotation": {
-      "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": 90,
-        "z": -0
-      }
-    }
-  },
-  {
-    "id": "objective-lens/lens",
-    "kind": "static",
-    "static-models": {
-      "gltf": "cube-mounted/lens.dsn/mounted-lens.dsn/BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx.glb",
-      "step": "cube-mounted/lens.dsn/mounted-lens.dsn/BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx.stp"
-    },
-    "position": [
-      55,
-      0,
-      0
-    ],
-    "rotation": {
-      "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": 90,
-        "z": -0
-      }
-    }
-  },
-  {
-    "id": "objective-lens/nut",
-    "kind": "static",
-    "static-models": {
-      "gltf": "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2003 - NUTD40.glb",
-      "step": "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2003 - NUTD40.stp"
-    },
-    "position": [
-      55,
-      0,
-      0
-    ],
-    "rotation": {
-      "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": 90,
-        "z": -0
       }
     }
   },
@@ -330,6 +330,50 @@
     }
   },
   {
+    "id": "sample-holder-insert/clip",
+    "kind": "static",
+    "static-models": {
+      "gltf": "cube-mounted/slide-holder.dsn/mounted-holder.dsn/PRT - 2008 - SAMCLP.glb",
+      "step": "cube-mounted/slide-holder.dsn/mounted-holder.dsn/PRT - 2008 - SAMCLP.stp"
+    },
+    "position": [
+      2,
+      0,
+      0
+    ],
+    "rotation": {
+      "kind": "extrinsic",
+      "order": "zxy",
+      "angles": {
+        "x": 0,
+        "y": 90,
+        "z": -0
+      }
+    }
+  },
+  {
+    "id": "sample-holder-insert/insert",
+    "kind": "static",
+    "static-models": {
+      "gltf": "cube-mounted/slide-holder.dsn/mounted-holder.dsn/PRT - 2028 - INSSAMMNT - V04.glb",
+      "step": "cube-mounted/slide-holder.dsn/mounted-holder.dsn/PRT - 2028 - INSSAMMNT - V04.stp"
+    },
+    "position": [
+      12,
+      0,
+      0
+    ],
+    "rotation": {
+      "kind": "extrinsic",
+      "order": "zxy",
+      "angles": {
+        "x": 0,
+        "y": 90,
+        "z": -0
+      }
+    }
+  },
+  {
     "id": "sample-holder-skeleton/lower-half",
     "kind": "static",
     "static-models": {
@@ -374,15 +418,15 @@
     }
   },
   {
-    "id": "sample-holder/clip",
+    "id": "tube-lens-insert/insert",
     "kind": "static",
     "static-models": {
-      "gltf": "cube-mounted/slide-holder.dsn/mounted-holder.dsn/PRT - 2008 - SAMCLP.glb",
-      "step": "cube-mounted/slide-holder.dsn/mounted-holder.dsn/PRT - 2008 - SAMCLP.stp"
+      "gltf": "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2023 - INSLEND40F50 - V04.glb",
+      "step": "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2023 - INSLEND40F50 - V04.stp"
     },
     "position": [
-      2,
-      0,
+      242,
+      500,
       0
     ],
     "rotation": {
@@ -396,15 +440,37 @@
     }
   },
   {
-    "id": "sample-holder/insert",
+    "id": "tube-lens-insert/lens",
     "kind": "static",
     "static-models": {
-      "gltf": "cube-mounted/slide-holder.dsn/mounted-holder.dsn/PRT - 2028 - INSSAMMNT - V04.glb",
-      "step": "cube-mounted/slide-holder.dsn/mounted-holder.dsn/PRT - 2028 - INSSAMMNT - V04.stp"
+      "gltf": "cube-mounted/lens.dsn/mounted-lens.dsn/BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx.glb",
+      "step": "cube-mounted/lens.dsn/mounted-lens.dsn/BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx.stp"
     },
     "position": [
-      12,
-      0,
+      242,
+      500,
+      0
+    ],
+    "rotation": {
+      "kind": "extrinsic",
+      "order": "zxy",
+      "angles": {
+        "x": 0,
+        "y": 90,
+        "z": -0
+      }
+    }
+  },
+  {
+    "id": "tube-lens-insert/nut",
+    "kind": "static",
+    "static-models": {
+      "gltf": "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2003 - NUTD40.glb",
+      "step": "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2003 - NUTD40.stp"
+    },
+    "position": [
+      242,
+      500,
       0
     ],
     "rotation": {
@@ -458,72 +524,6 @@
         "x": 0,
         "y": -180,
         "z": -180
-      }
-    }
-  },
-  {
-    "id": "tube-lens/insert",
-    "kind": "static",
-    "static-models": {
-      "gltf": "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2023 - INSLEND40F50 - V04.glb",
-      "step": "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2023 - INSLEND40F50 - V04.stp"
-    },
-    "position": [
-      242,
-      500,
-      0
-    ],
-    "rotation": {
-      "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": 90,
-        "z": -0
-      }
-    }
-  },
-  {
-    "id": "tube-lens/lens",
-    "kind": "static",
-    "static-models": {
-      "gltf": "cube-mounted/lens.dsn/mounted-lens.dsn/BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx.glb",
-      "step": "cube-mounted/lens.dsn/mounted-lens.dsn/BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx.stp"
-    },
-    "position": [
-      242,
-      500,
-      0
-    ],
-    "rotation": {
-      "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": 90,
-        "z": -0
-      }
-    }
-  },
-  {
-    "id": "tube-lens/nut",
-    "kind": "static",
-    "static-models": {
-      "gltf": "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2003 - NUTD40.glb",
-      "step": "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2003 - NUTD40.stp"
-    },
-    "position": [
-      242,
-      500,
-      0
-    ],
-    "rotation": {
-      "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": 90,
-        "z": -0
       }
     }
   }

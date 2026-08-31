@@ -107216,7 +107216,7 @@
         0,
         0
       ],
-      "name": "objective-lens",
+      "name": "objective-lens-insert",
       "children": [
         3,
         5,
@@ -107495,7 +107495,7 @@
         0,
         0
       ],
-      "name": "sample-holder",
+      "name": "sample-holder-insert",
       "children": [
         40,
         42
@@ -107571,7 +107571,7 @@
         0.5,
         0
       ],
-      "name": "tube-lens",
+      "name": "tube-lens-insert",
       "children": [
         50,
         52,

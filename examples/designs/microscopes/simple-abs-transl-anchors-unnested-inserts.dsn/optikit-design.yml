@@ -16,12 +16,13 @@ components:
         grid: {z: +x, x: -z}
       translation:
         offset-mm: {x: -80}
-  sample-holder-gridded-location:
+  sample-holder-gridded-anchor:
+    # This is the center of the grid cell; this must be modeled because the sample holder insert can move relative to the center of the grid cell!
     kind: location
     pose:
       rotation:
         kind: grid
-  sample-holder:
+  sample-holder-insert:
     kind: design
     design: cube-mounted/slide-holder.dsn/mounted-holder.dsn
     pose:
@@ -29,7 +30,7 @@ components:
         kind: grid
         grid: {z: +x, x: -z}
       translation:
-        anchor: sample-holder-gridded-location
+        anchor: sample-holder-gridded-anchor
         offset-mm:
           x: ~ 5 + 7
   sample-holder-skeleton:
@@ -39,15 +40,16 @@ components:
       rotation:
         kind: uc2
       translation:
-        anchor: sample-holder-gridded-location
-  objective-lens-gridded-location:
+        anchor: sample-holder-gridded-anchor
+  objective-lens-gridded-anchor:
+    # This is the center of the grid cell; this must be modeled because the sample holder insert can move relative to the center of the grid cell!
     kind: location
     pose:
       rotation:
         kind: grid
       translation:
         offset-grid: {x: 1}
-  objective-lens:
+  objective-lens-insert:
     kind: design
     design: cube-mounted/lens.dsn/mounted-lens.dsn
     instantiation:
@@ -58,7 +60,7 @@ components:
         kind: grid
         grid: {z: +x, x: -z}
       translation:
-        anchor: objective-lens-gridded-location
+        anchor: objective-lens-gridded-anchor
         offset-mm:
           x: 5
   objective-lens-skeleton:
@@ -68,7 +70,7 @@ components:
       rotation:
         kind: uc2
       translation:
-        anchor: objective-lens-gridded-location
+        anchor: objective-lens-gridded-anchor
   periscope-mirror-1:
     kind: design
     design: cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn
@@ -102,14 +104,15 @@ components:
         kind: uc2
       translation:
         anchor: periscope-mirror-2
-  tube-lens-location:
+  tube-lens-anchor:
+    # This is the center of the grid cell; this must be modeled because the sample holder insert can move relative to the center of the grid cell!
     kind: location
     pose:
       rotation:
         kind: grid
       translation:
         offset-grid: {x: 5, y: 10}
-  tube-lens:
+  tube-lens-insert:
     kind: design
     design: cube-mounted/lens.dsn/mounted-lens.dsn
     pose:
@@ -117,7 +120,7 @@ components:
         kind: grid
         grid: {z: +x, x: -z}
       translation:
-        anchor: tube-lens-location
+        anchor: tube-lens-anchor
         offset-mm: {x: -8}
   tube-lens-skeleton:
     kind: design
@@ -126,7 +129,7 @@ components:
       rotation:
         kind: uc2
       translation:
-        anchor: tube-lens-location
+        anchor: tube-lens-anchor
   projector-screen:
     kind: design
     design: primitives/projector-screen.dsn
