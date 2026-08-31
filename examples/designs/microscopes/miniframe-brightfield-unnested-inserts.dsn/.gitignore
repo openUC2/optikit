@@ -1,0 +1,2 @@
+# the STEP file is huge, so we don't track it in git:
+_objects.step

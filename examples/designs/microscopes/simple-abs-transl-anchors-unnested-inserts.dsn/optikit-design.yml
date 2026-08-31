@@ -17,7 +17,7 @@ components:
       translation:
         offset-mm: {x: -80}
   sample-holder-gridded-anchor:
-    # This is the center of the grid cell; this must be modeled because the sample holder insert can move relative to the center of the grid cell!
+    # This is the center of the grid cell; this must be modeled because the insert can move relative to the center of the grid cell!
     kind: location
     pose:
       rotation:
@@ -42,7 +42,7 @@ components:
       translation:
         anchor: sample-holder-gridded-anchor
   objective-lens-gridded-anchor:
-    # This is the center of the grid cell; this must be modeled because the sample holder insert can move relative to the center of the grid cell!
+    # This is the center of the grid cell; this must be modeled because the insert can move relative to the center of the grid cell!
     kind: location
     pose:
       rotation:
@@ -105,7 +105,7 @@ components:
       translation:
         anchor: periscope-mirror-2
   tube-lens-anchor:
-    # This is the center of the grid cell; this must be modeled because the sample holder insert can move relative to the center of the grid cell!
+    # This is the center of the grid cell; this must be modeled because the insert can move relative to the center of the grid cell!
     kind: location
     pose:
       rotation:
