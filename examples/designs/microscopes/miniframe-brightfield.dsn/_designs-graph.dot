@@ -1,0 +1,290 @@
+digraph "" {
+	graph [bb="0,0,4443.5,213.6"];
+	node [label="\N"];
+	edge [label="\E"];
+	""	[height=0.5,
+		pos="2757.4,195.6",
+		width=0.75];
+	"cube-mounted/lens.dsn:x"	[height=0.5,
+		label="cube-mounted/lens.dsn:x",
+		pos="272.43,106.8",
+		width=2.996];
+	"" -> "cube-mounted/lens.dsn:x"	[key=" -> cube-mounted/lens.dsn:x: lens-galvo-160",
+		label="lens-galvo-160",
+		lp="477.44,151.2",
+		pos="e,311.83,123.91 2730.1,194.67 2485.2,195.26 672.84,198.24 435.45,159.6 396.65,153.28 354.38,139.65 322.61,127.95"];
+	"cube-mounted/mirror-diagonal.dsn:_z"	[height=0.5,
+		label="cube-mounted/mirror-diagonal.dsn:_z",
+		pos="556.43,106.8",
+		width=4.3812];
+	"" -> "cube-mounted/mirror-diagonal.dsn:_z"	[key=" -> cube-mounted/mirror-diagonal.dsn:_z: cube-45-fixed",
+		label="cube-45-fixed",
+		lp="567.17,151.2",
+		pos="e,537.05,124.72 2730.2,194.7 2478.5,195.57 568.5,200.83 527.91,159.6 520.57,152.14 523.6,142.4 529.91,133.38"];
+	"primitives/cube-skeleton.dsn"	[height=0.5,
+		label="primitives/cube-skeleton.dsn",
+		pos="1446.4,106.8",
+		width=3.3982];
+	"" -> "primitives/cube-skeleton.dsn"	[key=" -> primitives/cube-skeleton.dsn: scaffolding-1",
+		label="scaffolding-1",
+		lp="652.11,151.2",
+		pos="e,1324.5,108.54 2730.1,194.68 2483.7,195.38 653.72,199.17 614.79,159.6 609.55,154.28 609.62,148.19 614.79,142.8 638.52,118.05 1084.2,\
+110.76 1313.1,108.65"];
+	"" -> "primitives/cube-skeleton.dsn"	[key=" -> primitives/cube-skeleton.dsn: scaffolding-10",
+		label="scaffolding-10",
+		lp="753.61,151.2",
+		pos="e,1325,109.28 2730.2,194.66 2490.7,195.14 749.87,197.32 712.79,159.6 707.56,154.28 707.64,148.2 712.79,142.8 733.15,121.44 1107.7,\
+112.67 1313.6,109.45"];
+	"" -> "primitives/cube-skeleton.dsn"	[key=" -> primitives/cube-skeleton.dsn: scaffolding-11",
+		label="scaffolding-11",
+		lp="858.61,151.2",
+		pos="e,1326.1,110.29 2730.2,194.64 2497.5,194.88 852.88,195.32 817.79,159.6 812.56,154.27 812.66,148.22 817.79,142.8 834.6,125.03 1135.4,\
+115 1314.7,110.57"];
+	"" -> "primitives/cube-skeleton.dsn"	[key=" -> primitives/cube-skeleton.dsn: scaffolding-12",
+		label="scaffolding-12",
+		lp="963.61,151.2",
+		pos="e,1323.9,107.38 2730.2,194.61 2505,194.6 955.89,193.34 922.79,159.6 917.56,154.27 917.69,148.25 922.79,142.8 948.93,114.85 1166.3,\
+108.51 1312.6,107.46"];
+	"" -> "primitives/cube-skeleton.dsn"	[key=" -> primitives/cube-skeleton.dsn: scaffolding-13",
+		label="scaffolding-13",
+		lp="1068.6,151.2",
+		pos="e,1325.3,109.73 2730.1,194.57 2511.8,194.31 1058.9,191.34 1027.8,159.6 1022.6,154.27 1022.7,148.3 1027.8,142.8 1047.1,121.84 1198.6,\
+113.43 1313.9,110.06"];
+	"" -> "primitives/cube-skeleton.dsn"	[key=" -> primitives/cube-skeleton.dsn: scaffolding-14",
+		label="scaffolding-14",
+		lp="1173.6,151.2",
+		pos="e,1327.4,111.21 2730.1,194.54 2519.5,194 1161.9,189.36 1132.8,159.6 1103.7,129.88 1217.5,117.2 1316.1,111.8"];
+	"" -> "primitives/cube-skeleton.dsn"	[key=" -> primitives/cube-skeleton.dsn: scaffolding-15",
+		label="scaffolding-15",
+		lp="1278.6,151.2",
+		pos="e,1333.3,113.89 2730.3,194.5 2528.1,193.67 1264.9,187.38 1237.8,159.6 1232.6,154.26 1233,148.5 1237.8,142.8 1249.7,128.73 1284.3,\
+120.32 1322,115.28"];
+	"" -> "primitives/cube-skeleton.dsn"	[key=" -> primitives/cube-skeleton.dsn: scaffolding-16",
+		label="scaffolding-16",
+		lp="1383.6,151.2",
+		pos="e,1374.8,121.71 2730,194.45 2535.3,193.31 1367.9,185.39 1342.8,159.6 1328.4,144.81 1342.2,133.55 1363.9,125.36"];
+	"" -> "primitives/cube-skeleton.dsn"	[key=" -> primitives/cube-skeleton.dsn: scaffolding-17",
+		label="scaffolding-17",
+		lp="1488.6,151.2",
+		pos="e,1441.4,125.07 2730,194.39 2543.8,192.87 1471.3,183.1 1447.8,159.6 1441.8,153.56 1440,144.89 1440.2,136.36"];
+	"" -> "primitives/cube-skeleton.dsn"	[key=" -> primitives/cube-skeleton.dsn: scaffolding-2",
+		label="scaffolding-2",
+		lp="1590.1,151.2",
+		pos="e,1490,124 2730.1,194.76 2561.8,195.64 1667.6,198.45 1552.8,159.6 1540.7,155.5 1540.6,149.06 1529.4,142.8 1520.3,137.69 1510.3,132.86 \
+1500.5,128.51"];
+	"" -> "primitives/cube-skeleton.dsn"	[key=" -> primitives/cube-skeleton.dsn: scaffolding-3",
+		label="scaffolding-3",
+		lp="1688.1,151.2",
+		pos="e,1541.8,118.3 2730.1,194.69 2569.7,195.07 1755.7,195.26 1650.8,159.6 1638.7,155.49 1639.2,147.87 1627.4,142.8 1604.1,132.75 1577.9,\
+125.57 1552.8,120.44"];
+	"" -> "primitives/cube-skeleton.dsn"	[key=" -> primitives/cube-skeleton.dsn: scaffolding-4",
+		label="scaffolding-4",
+		lp="1786.1,151.2",
+		pos="e,1553.6,115.76 2730.3,194.6 2579.1,194.46 1843.9,192.09 1748.8,159.6 1736.7,155.47 1737.3,147.47 1725.4,142.8 1696.4,131.42 1627,\
+122.69 1564.7,116.79"];
+	"" -> "primitives/cube-skeleton.dsn"	[key=" -> primitives/cube-skeleton.dsn: scaffolding-5",
+		label="scaffolding-5",
+		lp="1884.1,151.2",
+		pos="e,1564,111.99 2730.2,194.49 2587.8,193.77 1932.1,188.91 1846.8,159.6 1834.7,155.44 1835.4,147.28 1823.4,142.8 1779.3,126.27 1666.1,\
+117.27 1575.2,112.56"];
+	"" -> "primitives/cube-skeleton.dsn"	[key=" -> primitives/cube-skeleton.dsn: scaffolding-6",
+		label="scaffolding-6",
+		lp="1982.1,151.2",
+		pos="e,1568,109.28 2730.1,194.35 2597.1,193.01 2020.3,185.73 1944.8,159.6 1932.7,155.42 1933.5,147.17 1921.4,142.8 1860.8,120.76 1697.5,\
+112.59 1579.3,109.56"];
+	"" -> "primitives/cube-skeleton.dsn"	[key=" -> primitives/cube-skeleton.dsn: scaffolding-7",
+		label="scaffolding-7",
+		lp="2080.1,151.2",
+		pos="e,1569,107.36 2730.2,194.18 2607.5,192.16 2108.5,182.58 2042.8,159.6 2030.7,155.38 2031.5,147.09 2019.4,142.8 1941.6,115.06 1724,\
+108.57 1580.5,107.44"];
+	"" -> "primitives/cube-skeleton.dsn"	[key=" -> primitives/cube-skeleton.dsn: scaffolding-8",
+		label="scaffolding-8",
+		lp="2178.1,151.2",
+		pos="e,1566.7,110.4 2730.3,193.95 2618.5,191.17 2196.8,179.43 2140.8,159.6 2128.7,155.33 2129.5,147.04 2117.4,142.8 2068.1,125.48 1759.2,\
+115.26 1578.2,110.69"];
+	"" -> "primitives/cube-skeleton.dsn"	[key=" -> primitives/cube-skeleton.dsn: scaffolding-9",
+		label="scaffolding-9",
+		lp="2291.1,151.2",
+		pos="e,1568.9,107.94 2730.2,193.93 2639,191.51 2345.4,182.12 2253.8,159.6 2235.7,155.16 2233.6,147.03 2215.4,142.8 2098.6,115.56 1767.7,\
+109.31 1580.2,108.01"];
+	"primitives/puzzle.dsn"	[height=0.5,
+		label="primitives/puzzle.dsn",
+		pos="3491.4,106.8",
+		width=2.6086];
+	"" -> "primitives/puzzle.dsn"	[key=" -> primitives/puzzle.dsn: puzzle-1",
+		label="puzzle-1",
+		lp="2360.3,151.2",
+		pos="e,3398.1,108.91 2730.2,194.42 2641.2,193.57 2362.9,188.59 2336.2,159.6 2331.2,154.11 2331,148.16 2336.2,142.8 2354.4,124.08 3105.6,\
+112.67 3386.7,109.06"];
+	"" -> "primitives/puzzle.dsn"	[key=" -> primitives/puzzle.dsn: puzzle-10",
+		label="puzzle-10",
+		lp="2434.8,151.2",
+		pos="e,3397.3,107.33 2730.1,194.69 2640.2,194.55 2361.2,190.32 2407.2,142.8 2440.9,108.02 3120.3,106.53 3386.1,107.29"];
+	"" -> "primitives/puzzle.dsn"	[key=" -> primitives/puzzle.dsn: puzzle-11",
+		label="puzzle-11",
+		lp="2512.8,151.2",
+		pos="e,3397.5,107.58 2730.3,193.11 2664.6,189.24 2501.3,177.84 2485.2,159.6 2480.3,153.99 2480.1,148.17 2485.2,142.8 2516.1,110.8 3134.5,\
+107.56 3386.2,107.58"];
+	"" -> "primitives/puzzle.dsn"	[key=" -> primitives/puzzle.dsn: puzzle-12",
+		label="puzzle-12",
+		lp="2590.8,151.2",
+		pos="e,3397.3,107.87 2730.1,195.41 2665.7,196.51 2514,193.95 2563.2,142.8 2591.4,113.59 3148.7,108.67 3385.9,107.91"];
+	"" -> "primitives/puzzle.dsn"	[key=" -> primitives/puzzle.dsn: puzzle-13",
+		label="puzzle-13",
+		lp="2668.8,151.2",
+		pos="e,3397.4,108.22 2730.8,191.88 2688.2,186.58 2612.6,172.68 2641.2,142.8 2666.6,116.35 3164,109.87 3386,108.3"];
+	"" -> "primitives/puzzle.dsn"	[key=" -> primitives/puzzle.dsn: puzzle-14",
+		label="puzzle-14",
+		lp="2746.8,151.2",
+		pos="e,3397.8,108.64 2738.4,182.41 2723.6,171.46 2707.4,155.24 2719.2,142.8 2741.9,119.08 3180.5,111.18 3386.4,108.77"];
+	"" -> "primitives/puzzle.dsn"	[key=" -> primitives/puzzle.dsn: puzzle-15",
+		label="puzzle-15",
+		lp="2824.8,151.2",
+		pos="e,3397.4,108.19 2765.3,177.89 2772,165.83 2782.8,150.38 2797.2,142.8 2847.9,116.22 3204.6,109.82 3386,108.28"];
+	"" -> "primitives/puzzle.dsn"	[key=" -> primitives/puzzle.dsn: puzzle-16",
+		label="puzzle-16",
+		lp="2902.8,151.2",
+		pos="e,3398.6,110.16 2782.1,187.63 2801.7,181.57 2829.7,171.85 2852.4,159.6 2863.5,153.63 2863.4,147.07 2875.2,142.8 2921.9,125.97 3223.9,\
+115.17 3387.1,110.48"];
+	"" -> "primitives/puzzle.dsn"	[key=" -> primitives/puzzle.dsn: puzzle-17",
+		label="puzzle-17",
+		lp="2980.8,151.2",
+		pos="e,3397.1,107.59 2784.3,192.78 2819.3,189.61 2881.7,181.21 2930.4,159.6 2941.9,154.5 2941.4,147.12 2953.2,142.8 3029.9,114.81 3252,\
+108.71 3385.7,107.67"];
+	"" -> "primitives/puzzle.dsn"	[key=" -> primitives/puzzle.dsn: puzzle-18",
+		label="puzzle-18",
+		lp="3058.8,151.2",
+		pos="e,3397.7,108.86 2784.6,195.11 2831.8,195.07 2931.6,190.88 3008.4,159.6 3020.1,154.85 3019.4,147.18 3031.2,142.8 3094,119.49 3271.1,\
+111.7 3386.4,109.1"];
+	"" -> "primitives/puzzle.dsn"	[key=" -> primitives/puzzle.dsn: puzzle-19",
+		label="puzzle-19",
+		lp="3136.8,151.2",
+		pos="e,3399.1,110.58 2784.6,193.53 2853.2,190.56 3031.5,180.94 3086.4,159.6 3098.2,155.04 3097.5,147.27 3109.2,142.8 3158.4,124.12 3292.2,\
+115.17 3387.6,111.05"];
+	"" -> "primitives/puzzle.dsn"	[key=" -> primitives/puzzle.dsn: puzzle-2",
+		label="puzzle-2",
+		lp="3211.3,151.2",
+		pos="e,3402.4,112.96 2784.8,194.17 2864.4,192.62 3094.6,185.92 3164.4,159.6 3176.2,155.16 3175.5,147.41 3187.2,142.8 3223.4,128.6 3317.2,\
+119.21 3391.2,113.77"];
+	"" -> "primitives/puzzle.dsn"	[key=" -> primitives/puzzle.dsn: puzzle-20",
+		label="puzzle-20",
+		lp="3285.8,151.2",
+		pos="e,3400.1,111.26 2784.8,194.58 2873.4,194.19 3151.8,190.5 3235.4,159.6 3247.2,155.24 3246.6,147.61 3258.2,142.8 3299.1,125.9 3347.1,\
+117.03 3388.8,112.42"];
+	"" -> "primitives/puzzle.dsn"	[key=" -> primitives/puzzle.dsn: puzzle-21",
+		label="puzzle-21",
+		lp="3363.8,151.2",
+		pos="e,3417.2,118.09 2784.7,194.9 2882.4,195.68 3214.6,195.56 3313.4,159.6 3325.3,155.3 3324.8,148.03 3336.2,142.8 3358,132.85 3382.9,\
+125.62 3406.2,120.41"];
+	"" -> "primitives/puzzle.dsn"	[key=" -> primitives/puzzle.dsn: puzzle-22",
+		label="puzzle-22",
+		lp="3441.8,151.2",
+		pos="e,3452.5,123.53 2784.6,194.02 2898.4,191.44 3333.8,180.32 3391.4,159.6 3403.3,155.34 3403.4,149.17 3414.2,142.8 3423.1,137.61 3432.9,\
+132.65 3442.4,128.17"];
+	"" -> "primitives/puzzle.dsn"	[key=" -> primitives/puzzle.dsn: puzzle-23",
+		label="puzzle-23",
+		lp="3510.2,151.2",
+		pos="e,3488.9,125.25 2784.5,194.07 2911.3,191.49 3440.9,179.54 3469.4,159.6 3477.3,154.1 3482.4,145.17 3485.7,136.26"];
+	"" -> "primitives/puzzle.dsn"	[key=" -> primitives/puzzle.dsn: puzzle-24",
+		label="puzzle-24",
+		lp="3573.2,151.2",
+		pos="e,3523.3,124.09 2784.8,194.43 2920.3,193.44 3514.7,187.51 3541.4,159.6 3550.5,150.1 3543.7,139.66 3532.5,130.66"];
+	"" -> "primitives/puzzle.dsn"	[key=" -> primitives/puzzle.dsn: puzzle-25",
+		label="puzzle-25",
+		lp="3638.2,151.2",
+		pos="e,3562.7,118.84 2784.6,194.52 2926.2,193.98 3575.4,189.87 3604.4,159.6 3621.3,141.99 3601.3,129.84 3573.6,121.75"];
+	"" -> "primitives/puzzle.dsn"	[key=" -> primitives/puzzle.dsn: puzzle-26",
+		label="puzzle-26",
+		lp="3705.9,151.2",
+		pos="e,3584.4,109.85 2784.7,194.6 2933,194.5 3638,192.28 3669.4,159.6 3699.1,128.74 3649.8,115.96 3595.7,110.81"];
+	"" -> "primitives/puzzle.dsn"	[key=" -> primitives/puzzle.dsn: puzzle-27",
+		label="puzzle-27",
+		lp="3768.8,151.2",
+		pos="e,3585,108.8 2784.7,194.68 2939.5,195.01 3703.4,194.82 3737.4,159.6 3742.6,154.23 3742.3,148.44 3737.4,142.8 3718.8,121.37 3654.4,\
+112.73 3596.2,109.38"];
+	"" -> "primitives/puzzle.dsn"	[key=" -> primitives/puzzle.dsn: puzzle-28",
+		label="puzzle-28",
+		lp="3832.5,151.2",
+		pos="e,3584,110.18 2784.8,194.74 2945.9,195.45 3764.1,197.17 3800.4,159.6 3831.4,127.61 3696.5,115.35 3595.2,110.67"];
+	"" -> "primitives/puzzle.dsn"	[key=" -> primitives/puzzle.dsn: puzzle-29",
+		label="puzzle-29",
+		lp="3897.4,151.2",
+		pos="e,3585.5,107.66 2784.8,194.8 2951.8,195.87 3825.7,199.56 3864.4,159.6 3903.7,119.08 3720.4,109.65 3596.9,107.81"];
+	"" -> "primitives/puzzle.dsn"	[key=" -> primitives/puzzle.dsn: puzzle-3",
+		label="puzzle-3",
+		lp="3957.4,151.2",
+		pos="e,3585.3,108.67 2784.7,194.31 2958.9,192.37 3908.8,180.83 3929.4,159.6 3934.6,154.24 3934.5,148.29 3929.4,142.8 3907.3,118.82 3719,\
+111.26 3596.6,108.88"];
+	"" -> "primitives/puzzle.dsn"	[key=" -> primitives/puzzle.dsn: puzzle-30",
+		label="puzzle-30",
+		lp="4016.9,151.2",
+		pos="e,3585.6,107.71 2784.9,194.34 2964.3,192.6 3963.8,181.87 3985.4,159.6 3990.6,154.25 3990.5,148.26 3985.4,142.8 3959.5,115.02 3734.1,\
+108.91 3596.9,107.8"];
+	"" -> "primitives/puzzle.dsn"	[key=" -> primitives/puzzle.dsn: puzzle-31",
+		label="puzzle-31",
+		lp="4079.9,151.2",
+		pos="e,3585.8,106.86 2784.8,194.38 2969.3,192.85 4025.6,183.06 4048.4,159.6 4053.6,154.25 4053.5,148.24 4048.4,142.8 4018.3,110.69 3750,\
+106.54 3597,106.83"];
+	"" -> "primitives/puzzle.dsn"	[key=" -> primitives/puzzle.dsn: puzzle-4",
+		label="puzzle-4",
+		lp="4139.4,151.2",
+		pos="e,3584.3,109.73 2784.9,194.42 2974.8,193.09 4087.4,184.24 4111.4,159.6 4116.6,154.25 4116.6,148.23 4111.4,142.8 4094,124.38 3767.7,\
+114.14 3595.7,110"];
+	"" -> "primitives/puzzle.dsn"	[key=" -> primitives/puzzle.dsn: puzzle-5",
+		label="puzzle-5",
+		lp="4195.4,151.2",
+		pos="e,3584.9,109.28 2784.8,194.45 2978.9,193.29 4142.4,185.3 4167.4,159.6 4172.6,154.26 4172.6,148.21 4167.4,142.8 4148.1,122.45 3781.3,\
+112.98 3596.3,109.49"];
+	"" -> "primitives/puzzle.dsn"	[key=" -> primitives/puzzle.dsn: puzzle-6",
+		label="puzzle-6",
+		lp="4251.4,151.2",
+		pos="e,3584.9,108.88 2784.6,194.47 2982.5,193.49 4197.3,186.37 4223.4,159.6 4228.6,154.26 4228.6,148.2 4223.4,142.8 4202.2,120.48 3793.3,\
+111.9 3596.1,109.04"];
+	"" -> "primitives/puzzle.dsn"	[key=" -> primitives/puzzle.dsn: puzzle-7",
+		label="puzzle-7",
+		lp="4307.4,151.2",
+		pos="e,3585,108.54 2784.6,194.5 2987.1,193.67 4252.2,187.42 4279.4,159.6 4284.7,154.26 4284.6,148.2 4279.4,142.8 4256.2,118.52 3805.4,\
+110.9 3596.3,108.66"];
+	"" -> "primitives/puzzle.dsn"	[key=" -> primitives/puzzle.dsn: puzzle-8",
+		label="puzzle-8",
+		lp="4363.4,151.2",
+		pos="e,3585.2,108.25 2784.6,194.52 2991.3,193.85 4307.2,188.48 4335.4,159.6 4340.7,154.26 4340.6,148.19 4335.4,142.8 4310.2,116.55 3817,\
+109.97 3596.5,108.33"];
+	"" -> "primitives/puzzle.dsn"	[key=" -> primitives/puzzle.dsn: puzzle-9",
+		label="puzzle-9",
+		lp="4419.4,151.2",
+		pos="e,3585.6,107.99 2784.6,194.54 2995.3,194.03 4362.1,189.54 4391.4,159.6 4396.7,154.26 4396.6,148.18 4391.4,142.8 4364.3,114.59 3829,\
+109.1 3597,108.04"];
+	"cube-mounted/lens.dsn/mounted-lens.dsn"	[height=0.5,
+		label="mounted-lens.dsn",
+		pos="79.432,18",
+		width=2.2064];
+	"cube-mounted/lens.dsn/primitives/cube-skeleton.dsn"	[height=0.5,
+		label="primitives/cube-skeleton.dsn",
+		pos="299.43,18",
+		width=3.3982];
+	"cube-mounted/lens.dsn:x" -> "cube-mounted/lens.dsn/mounted-lens.dsn"	[key="cube-mounted/lens.dsn:x -> cube-mounted/lens.dsn/mounted-lens.dsn: mounted-lens",
+		label="mounted-lens",
+		lp="231.32,62.4",
+		pos="e,113.95,34.524 236.13,89.474 204.36,75.187 158.11,54.385 124.09,39.083"];
+	"cube-mounted/lens.dsn:x" -> "cube-mounted/lens.dsn/primitives/cube-skeleton.dsn"	[key="cube-mounted/lens.dsn:x -> cube-mounted/lens.dsn/primitives/cube-skeleton.dsn: skeleton",
+		label=skeleton,
+		lp="311.68,62.4",
+		pos="e,294.02,36.41 277.77,88.651 281.44,76.84 286.41,60.874 290.66,47.207"];
+	"cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn"	[height=0.5,
+		label="mounted-mirror.dsn",
+		pos="542.43,18",
+		width=2.4596];
+	"cube-mounted/mirror-diagonal.dsn/primitives/cube-skeleton.dsn"	[height=0.5,
+		label="primitives/cube-skeleton.dsn",
+		pos="771.43,18",
+		width=3.3982];
+	"cube-mounted/mirror-diagonal.dsn:_z" -> "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn"	[key="cube-mounted/mirror-diagonal.dsn:_z -> cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn: mounted-mirror",
+		label="mounted-mirror",
+		lp="595.4,62.4",
+		pos="e,545.24,36.41 553.67,88.651 551.78,76.958 549.24,61.192 547.05,47.618"];
+	"cube-mounted/mirror-diagonal.dsn:_z" -> "cube-mounted/mirror-diagonal.dsn/primitives/cube-skeleton.dsn"	[key="cube-mounted/mirror-diagonal.dsn:_z -> cube-mounted/mirror-diagonal.dsn/primitives/cube-skeleton.dsn: skeleton",
+		label=skeleton,
+		lp="706.2,62.4",
+		pos="e,731.43,35.42 598.54,89.14 613.09,83.36 629.49,76.82 644.43,70.8 669.72,60.616 697.78,49.183 721.08,39.653"];
+}

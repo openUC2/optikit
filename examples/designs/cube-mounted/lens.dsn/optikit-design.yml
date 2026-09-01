@@ -32,16 +32,6 @@ inputs:
       - adjustment/manual-assembly
 
 variants:
-  z:
-    description: Normal vector of lens is z-axis
-    components:
-      mounted-lens:
-        pose:
-          translation:
-            offset-mm:
-              z: inputs.offset.value
-    tags:
-      - pose/insert/orientation/vertical
   x:
     description: Normal vector of lens is x-axis
     components:
@@ -54,3 +44,13 @@ variants:
               x: inputs.offset.value
     tags:
       - pose/insert/orientation/horizontal
+  z:
+    description: Normal vector of lens is z-axis
+    components:
+      mounted-lens:
+        pose:
+          translation:
+            offset-mm:
+              z: inputs.offset.value
+    tags:
+      - pose/insert/orientation/vertical

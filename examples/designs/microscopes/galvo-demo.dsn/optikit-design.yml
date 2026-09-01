@@ -11,6 +11,7 @@ components:
     kind: design
     design: cube-mounted/mirror-galvo-two.dsn
     instantiation:
+      variant: x
       inputs:
         mirror-1-rotation: 10
         mirror-2-rotation: 40
@@ -21,6 +22,7 @@ components:
     kind: design
     design: cube-mounted/mirror-galvo-two.dsn
     instantiation:
+      variant: x
       inputs:
         mirror-1-rotation: 20
         mirror-2-rotation: 60
@@ -33,6 +35,7 @@ components:
     kind: design
     design: cube-mounted/mirror-galvo-two.dsn
     instantiation:
+      variant: x
       inputs:
         mirror-1-rotation: 40
         mirror-2-rotation: 80

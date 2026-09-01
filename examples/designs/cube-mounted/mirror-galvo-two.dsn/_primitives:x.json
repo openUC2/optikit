@@ -1,0 +1,266 @@
+[
+  {
+    "id": "mounted-mirrors/cube-insert",
+    "kind": "static",
+    "static-models": {
+      "gltf": "mounted-mirrors.dsn/PRT - 2164 - INSGLV - V04.glb",
+      "step": "mounted-mirrors.dsn/PRT - 2164 - INSGLV - V04.stp"
+    },
+    "position": [
+      0,
+      0,
+      0
+    ],
+    "rotation": {
+      "kind": "extrinsic",
+      "order": "zxy",
+      "angles": {
+        "x": 0,
+        "y": -0,
+        "z": -90
+      }
+    }
+  },
+  {
+    "id": "mounted-mirrors/motorized-mirror-1/motorized-mirror",
+    "kind": "static",
+    "static-models": {
+      "gltf": "mounted-mirrors.dsn/primitives/motorized-mirror.dsn/BUY - Galvo scanner XY --- single motor.glb",
+      "step": "mounted-mirrors.dsn/primitives/motorized-mirror.dsn/BUY - Galvo scanner XY --- single motor.stp"
+    },
+    "position": [
+      -44,
+      0,
+      0
+    ],
+    "rotation": {
+      "kind": "extrinsic",
+      "order": "zxy",
+      "angles": {
+        "x": 0,
+        "y": -180,
+        "z": -90
+      }
+    }
+  },
+  {
+    "id": "mounted-mirrors/motorized-mirror-1/mount-ring",
+    "kind": "static",
+    "static-models": {
+      "gltf": "mounted-mirrors.dsn/primitives/motorized-mirror.dsn/PRT - 2180 - DISRNG.glb",
+      "step": "mounted-mirrors.dsn/primitives/motorized-mirror.dsn/PRT - 2180 - DISRNG.stp"
+    },
+    "position": [
+      -27,
+      0,
+      0
+    ],
+    "rotation": {
+      "kind": "extrinsic",
+      "order": "zxy",
+      "angles": {
+        "x": 0,
+        "y": -180,
+        "z": -0
+      }
+    }
+  },
+  {
+    "id": "mounted-mirrors/motorized-mirror-1/mount-top",
+    "kind": "static",
+    "static-models": {
+      "gltf": "mounted-mirrors.dsn/primitives/motorized-mirror.dsn/PRT - 2165 - CLPPCE.glb",
+      "step": "mounted-mirrors.dsn/primitives/motorized-mirror.dsn/PRT - 2165 - CLPPCE.stp"
+    },
+    "position": [
+      -42.3,
+      0,
+      0
+    ],
+    "rotation": {
+      "kind": "extrinsic",
+      "order": "zxy",
+      "angles": {
+        "x": 0,
+        "y": -180,
+        "z": -90
+      }
+    }
+  },
+  {
+    "id": "mounted-mirrors/motorized-mirror-2/motorized-mirror",
+    "kind": "static",
+    "static-models": {
+      "gltf": "mounted-mirrors.dsn/primitives/motorized-mirror.dsn/BUY - Galvo scanner XY --- single motor.glb",
+      "step": "mounted-mirrors.dsn/primitives/motorized-mirror.dsn/BUY - Galvo scanner XY --- single motor.stp"
+    },
+    "position": [
+      0,
+      -44,
+      -7.4
+    ],
+    "rotation": {
+      "kind": "extrinsic",
+      "order": "zxy",
+      "angles": {
+        "x": 0,
+        "y": -180,
+        "z": -0
+      }
+    }
+  },
+  {
+    "id": "mounted-mirrors/motorized-mirror-2/mount-ring",
+    "kind": "static",
+    "static-models": {
+      "gltf": "mounted-mirrors.dsn/primitives/motorized-mirror.dsn/PRT - 2180 - DISRNG.glb",
+      "step": "mounted-mirrors.dsn/primitives/motorized-mirror.dsn/PRT - 2180 - DISRNG.stp"
+    },
+    "position": [
+      0,
+      -27,
+      -7.4
+    ],
+    "rotation": {
+      "kind": "extrinsic",
+      "order": "zxy",
+      "angles": {
+        "x": 0,
+        "y": 180,
+        "z": 90
+      }
+    }
+  },
+  {
+    "id": "mounted-mirrors/motorized-mirror-2/mount-top",
+    "kind": "static",
+    "static-models": {
+      "gltf": "mounted-mirrors.dsn/primitives/motorized-mirror.dsn/PRT - 2165 - CLPPCE.glb",
+      "step": "mounted-mirrors.dsn/primitives/motorized-mirror.dsn/PRT - 2165 - CLPPCE.stp"
+    },
+    "position": [
+      0,
+      -42.3,
+      -7.4
+    ],
+    "rotation": {
+      "kind": "extrinsic",
+      "order": "zxy",
+      "angles": {
+        "x": 0,
+        "y": -180,
+        "z": -0
+      }
+    }
+  },
+  {
+    "id": "skeleton-extra-full/lower-half",
+    "kind": "static",
+    "static-models": {
+      "gltf": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
+      "step": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
+    },
+    "position": [
+      -50,
+      0,
+      0
+    ],
+    "rotation": {
+      "kind": "extrinsic",
+      "order": "zxy",
+      "angles": {
+        "x": 0,
+        "y": -0,
+        "z": -0
+      }
+    }
+  },
+  {
+    "id": "skeleton-extra-full/upper-half",
+    "kind": "static",
+    "static-models": {
+      "gltf": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
+      "step": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
+    },
+    "position": [
+      -50,
+      0,
+      0
+    ],
+    "rotation": {
+      "kind": "extrinsic",
+      "order": "zxy",
+      "angles": {
+        "x": 0,
+        "y": -180,
+        "z": -180
+      }
+    }
+  },
+  {
+    "id": "skeleton-extra-partial",
+    "kind": "static",
+    "static-models": {
+      "gltf": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
+      "step": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
+    },
+    "position": [
+      0,
+      -50,
+      0
+    ],
+    "rotation": {
+      "kind": "extrinsic",
+      "order": "zxy",
+      "angles": {
+        "x": 0,
+        "y": -180,
+        "z": -180
+      }
+    }
+  },
+  {
+    "id": "skeleton/lower-half",
+    "kind": "static",
+    "static-models": {
+      "gltf": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
+      "step": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
+    },
+    "position": [
+      0,
+      0,
+      0
+    ],
+    "rotation": {
+      "kind": "extrinsic",
+      "order": "zxy",
+      "angles": {
+        "x": 0,
+        "y": -0,
+        "z": -0
+      }
+    }
+  },
+  {
+    "id": "skeleton/upper-half",
+    "kind": "static",
+    "static-models": {
+      "gltf": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
+      "step": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
+    },
+    "position": [
+      0,
+      0,
+      0
+    ],
+    "rotation": {
+      "kind": "extrinsic",
+      "order": "zxy",
+      "angles": {
+        "x": 0,
+        "y": -180,
+        "z": -180
+      }
+    }
+  }
+]

@@ -110,7 +110,9 @@ func (d *Document) addComponents(
 		default:
 			return errors.Errorf("unknown component kind for component %s: %s", id, t)
 		case designs.CompKindLocation:
-			return nil
+			// Note: the component positions have already been flattened using the location component, so
+			// the location component doesn't need to be exported to GLTF.
+			continue
 		case designs.CompKindPrimitive:
 			if err := d.addPrimitiveComponent(design.FS, id, comp, gridSpacings, root); err != nil {
 				return errors.Wrapf(err, "couldn't add primitive component %s to gltf model", id)

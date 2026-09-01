@@ -154,7 +154,7 @@
     }
   },
   {
-    "id": "galvo-mirror-pair-1/skeleton-extra-1/lower-half",
+    "id": "galvo-mirror-pair-1/skeleton-extra-full/lower-half",
     "kind": "static",
     "static-models": {
       "gltf": "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
@@ -176,7 +176,7 @@
     }
   },
   {
-    "id": "galvo-mirror-pair-1/skeleton-extra-1/upper-half",
+    "id": "galvo-mirror-pair-1/skeleton-extra-full/upper-half",
     "kind": "static",
     "static-models": {
       "gltf": "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
@@ -198,7 +198,7 @@
     }
   },
   {
-    "id": "galvo-mirror-pair-1/skeleton-extra-2",
+    "id": "galvo-mirror-pair-1/skeleton-extra-partial",
     "kind": "static",
     "static-models": {
       "gltf": "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
@@ -418,7 +418,7 @@
     }
   },
   {
-    "id": "galvo-mirror-pair-2/skeleton-extra-1/lower-half",
+    "id": "galvo-mirror-pair-2/skeleton-extra-full/lower-half",
     "kind": "static",
     "static-models": {
       "gltf": "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
@@ -440,7 +440,7 @@
     }
   },
   {
-    "id": "galvo-mirror-pair-2/skeleton-extra-1/upper-half",
+    "id": "galvo-mirror-pair-2/skeleton-extra-full/upper-half",
     "kind": "static",
     "static-models": {
       "gltf": "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
@@ -462,7 +462,7 @@
     }
   },
   {
-    "id": "galvo-mirror-pair-2/skeleton-extra-2",
+    "id": "galvo-mirror-pair-2/skeleton-extra-partial",
     "kind": "static",
     "static-models": {
       "gltf": "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
@@ -682,7 +682,7 @@
     }
   },
   {
-    "id": "galvo-mirror-pair-3/skeleton-extra-1/lower-half",
+    "id": "galvo-mirror-pair-3/skeleton-extra-full/lower-half",
     "kind": "static",
     "static-models": {
       "gltf": "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
@@ -704,7 +704,7 @@
     }
   },
   {
-    "id": "galvo-mirror-pair-3/skeleton-extra-1/upper-half",
+    "id": "galvo-mirror-pair-3/skeleton-extra-full/upper-half",
     "kind": "static",
     "static-models": {
       "gltf": "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
@@ -726,7 +726,7 @@
     }
   },
   {
-    "id": "galvo-mirror-pair-3/skeleton-extra-2",
+    "id": "galvo-mirror-pair-3/skeleton-extra-partial",
     "kind": "static",
     "static-models": {
       "gltf": "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",

@@ -23,15 +23,13 @@ components:
     pose:
       rotation:
         kind: grid
-  skeleton-extra-1:
+  skeleton-extra-full:
     kind: design
     design: primitives/cube-skeleton.dsn
     pose:
       rotation:
         kind: grid
-      translation:
-        offset-grid: {x: -1}
-  skeleton-extra-2:
+  skeleton-extra-partial:
     kind: primitive
     primitive:
       static-models:
@@ -40,9 +38,6 @@ components:
     pose:
       rotation:
         kind: grid
-        grid: {z: -z}
-      translation:
-        offset-grid: {y: -1}
     tags:
       - procurement/injection-mold
       - in/kit/galvo-box
@@ -66,3 +61,56 @@ inputs:
       - adjustment/actuated
       - actuation/rotational/stepper
       - control/electronic
+
+variants:
+  x:
+    description: Rotational axes of motors are in the x-y plane
+    tags:
+      - pose/insert/orientation/horizontal
+    components:
+      skeleton-extra-full:
+        pose:
+          translation:
+            offset-grid: {x: -1}
+      skeleton-extra-partial:
+        pose:
+          rotation:
+            grid: {z: -z}
+          translation:
+            offset-grid: {y: -1}
+  z:
+    description: Rotational axis of the non-offset motor is in the z-axis
+    components:
+      mounted-mirrors:
+        pose:
+          rotation:
+            grid: {z: -y, x: -z}
+      skeleton-extra-full:
+        pose:
+          translation:
+            offset-grid: {z: 1}
+      skeleton-extra-partial:
+        pose:
+          translation:
+            offset-grid: {x: -1}
+    tags:
+      - pose/insert/orientation/vertical
+  z-offset:
+    description: Rotational axis of the offset motor is in the z-axis
+    components:
+      mounted-mirrors:
+        pose:
+          rotation:
+            grid: {z: +y}
+      skeleton-extra-full:
+        pose:
+          translation:
+            offset-grid: {x: -1}
+      skeleton-extra-partial:
+        pose:
+          rotation:
+            grid: {z: -z}
+          translation:
+            offset-grid: {z: 1}
+    tags:
+      - pose/insert/orientation/vertical
