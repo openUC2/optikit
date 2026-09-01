@@ -3,7 +3,7 @@ module github.com/openUC2/optikit
 go 1.27.0
 
 require (
-	github.com/PuerkitoBio/goquery v1.12.0
+	github.com/PuerkitoBio/goquery v1.13.0
 	github.com/bmatcuk/doublestar/v4 v4.10.0
 	github.com/carlmjohnson/versioninfo v0.22.5
 	github.com/expr-lang/expr v1.17.8
@@ -15,9 +15,9 @@ require (
 	github.com/kluctl/go-embed-python v0.0.0-3.13.14-20260610-1
 	github.com/muesli/reflow v0.3.0
 	github.com/pkg/errors v0.9.1
-	github.com/qmuntal/gltf v0.28.0
+	github.com/qmuntal/gltf v0.29.0
 	github.com/ungerik/go3d v0.0.0-20251020194721-1bde1320d420
-	github.com/urfave/cli/v3 v3.10.1
+	github.com/urfave/cli/v3 v3.11.0
 	golang.org/x/mod v0.40.0
 )
 
@@ -94,7 +94,7 @@ require (
 	github.com/alingse/asasalint v0.0.11 // indirect
 	github.com/alingse/nilnesserr v0.2.0 // indirect
 	github.com/anchore/go-macholibre v0.0.0-20250826193721-3cd206ca93aa // indirect
-	github.com/andybalholm/cascadia v1.3.3 // indirect
+	github.com/andybalholm/cascadia v1.3.4 // indirect
 	github.com/araddon/dateparse v0.0.0-20210429162001-6b43995a97de // indirect
 	github.com/asaskevich/govalidator v0.0.0-20230301143203-a9d515a09cc2 // indirect
 	github.com/ashanbrown/forbidigo/v2 v2.3.1 // indirect
