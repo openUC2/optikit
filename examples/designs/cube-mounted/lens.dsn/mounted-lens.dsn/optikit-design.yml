@@ -12,6 +12,9 @@ components:
       static-models:
         gltf: BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx.glb
         step: BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx.stp
+        # Warning: this is a fake optiland model which doesn't actually correspond to this lens!
+        # It's included here only for testing purposes.
+        optiland: AC254-100-A-Zemax-ZMX.optiland
     pose:
       rotation:
         kind: grid

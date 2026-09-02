@@ -3,6 +3,7 @@ package designs
 
 import (
 	"cmp"
+	"context"
 	gerrors "errors"
 	"fmt"
 	"os"
@@ -57,14 +58,16 @@ type Design struct {
 
 // LoadFSDesignExpr loads a FSDesignExpr from the specified directory path in the provided base
 // filesystem.
-func LoadFSDesignExpr(fsys ffs.PathedFS, subdirPath string) (p *FSDesignExpr, err error) {
+func LoadFSDesignExpr(
+	ctx context.Context, fsys ffs.PathedFS, subdirPath string,
+) (p *FSDesignExpr, err error) {
 	p = &FSDesignExpr{}
 	if p.FS, err = fsys.Sub(subdirPath); err != nil {
 		return nil, errors.Wrapf(
 			err, "couldn't enter directory %s from fs at %s", subdirPath, fsys.Path(),
 		)
 	}
-	if p.Decl, err = LoadDesignExprDecl(p.FS, DesignExprDeclFile); err != nil {
+	if p.Decl, err = LoadDesignExprDecl(ctx, p.FS, DesignExprDeclFile); err != nil {
 		return nil, errors.Wrapf(err, "couldn't load design declaration from %s", fsys.Path())
 	}
 	return p, nil
@@ -74,13 +77,13 @@ func LoadFSDesignExpr(fsys ffs.PathedFS, subdirPath string) (p *FSDesignExpr, er
 // the provided base filesystem.
 // The provided path should use the host OS's path separators.
 // The sub-directory path does not have to actually exist.
-func LoadFSDesignExprContaining(path string) (*FSDesignExpr, error) {
+func LoadFSDesignExprContaining(ctx context.Context, path string) (*FSDesignExpr, error) {
 	designCandidatePath, err := filepath.Abs(path)
 	if err != nil {
 		return nil, errors.Wrapf(err, "couldn't convert '%s' into an absolute path", path)
 	}
 	for {
-		if fsDesign, err := LoadFSDesignExpr(ffs.DirFS(designCandidatePath), "."); err == nil {
+		if fsDesign, err := LoadFSDesignExpr(ctx, ffs.DirFS(designCandidatePath), "."); err == nil {
 			return fsDesign, nil
 		}
 
@@ -98,7 +101,9 @@ func LoadFSDesignExprContaining(path string) (*FSDesignExpr, error) {
 // specified search pattern. The search pattern should be a [doublestar] pattern, such as `**`,
 // matching design directories to search for.
 // In the embedded [Design] of each loaded FSDesign, the version is *not* initialized.
-func LoadFSDesignExprs(fsys ffs.PathedFS, searchPattern string) ([]*FSDesignExpr, error) {
+func LoadFSDesignExprs(
+	ctx context.Context, fsys ffs.PathedFS, searchPattern string,
+) ([]*FSDesignExpr, error) {
 	searchPattern = path.Join(searchPattern, DesignExprDeclFile)
 	designDeclFiles, err := doublestar.Glob(fsys, searchPattern)
 	if err != nil {
@@ -114,7 +119,7 @@ func LoadFSDesignExprs(fsys ffs.PathedFS, searchPattern string) ([]*FSDesignExpr
 		if path.Base(designDeclFilePath) != DesignExprDeclFile {
 			continue
 		}
-		design, err := LoadFSDesignExpr(fsys, path.Dir(designDeclFilePath))
+		design, err := LoadFSDesignExpr(ctx, fsys, path.Dir(designDeclFilePath))
 		if err != nil {
 			return nil, errors.Wrapf(
 				err, "couldn't load design from %s/%s", fsys.Path(), designDeclFilePath,
@@ -157,8 +162,10 @@ func (d *FSDesignExpr) Cloned() *FSDesignExpr {
 
 // LoadFSDesignExpr loads the subdesign at the specified filesystem path, relative to the current
 // design.
-func (d *FSDesignExpr) LoadFSDesignExpr(subdesign string) (*FSDesignExpr, error) {
-	return LoadFSDesignExpr(d.FS, subdesign)
+func (d *FSDesignExpr) LoadFSDesignExpr(
+	ctx context.Context, subdesign string,
+) (*FSDesignExpr, error) {
+	return LoadFSDesignExpr(ctx, d.FS, subdesign)
 }
 
 // FSDesign
@@ -192,8 +199,8 @@ func (d *FSDesign) Cloned() *FSDesign {
 
 // LoadFSDesign loads the subdesign at the specified filesystem path, relative to the current
 // design.
-func (d *FSDesign) LoadFSDesignExpr(subdesign string) (*FSDesignExpr, error) {
-	return LoadFSDesignExpr(d.FS, subdesign)
+func (d *FSDesign) LoadFSDesignExpr(ctx context.Context, subdesign string) (*FSDesignExpr, error) {
+	return LoadFSDesignExpr(ctx, d.FS, subdesign)
 }
 
 // Flattened returns a new design in which all subassembly components have been replaced with their
@@ -202,7 +209,7 @@ func (d *FSDesign) LoadFSDesignExpr(subdesign string) (*FSDesignExpr, error) {
 // relative to the root (origin) node.
 // It assumes that the design's Decl.Components does not have any errors such as a nonexistent
 // translation anchor required by a CompPosesTranslSpec.
-func (d *FSDesign) Flattened(gridSpacings ContinuousXYZ[float64]) (
+func (d *FSDesign) Flattened(ctx context.Context, gridSpacings ContinuousXYZ[float64]) (
 	flattened *FSDesign, err error,
 ) {
 	flattened = d.Cloned()
@@ -219,13 +226,13 @@ func (d *FSDesign) Flattened(gridSpacings ContinuousXYZ[float64]) (
 			)
 		}
 		delete(flattened.Decl.Components, compID)
-		subdesign, err := d.LoadCompFSDesign(compID)
+		subdesign, err := d.LoadCompFSDesign(ctx, compID)
 		if err != nil {
 			return nil, errors.Wrapf(
 				err, "couldn't load subdesign %s for component %s", component.Design, compID,
 			)
 		}
-		subflattened, err := subdesign.Flattened(gridSpacings)
+		subflattened, err := subdesign.Flattened(ctx, gridSpacings)
 		if err != nil {
 			return nil, errors.Wrapf(
 				err, "couldn't flatten subdesign %s for component %s", component.Design, compID,
@@ -256,7 +263,9 @@ func (d *FSDesign) Flattened(gridSpacings ContinuousXYZ[float64]) (
 	return flattened, nil
 }
 
-func (d *FSDesign) LoadCompFSDesign(compID CompID) (subdesign *FSDesign, err error) {
+func (d *FSDesign) LoadCompFSDesign(
+	ctx context.Context, compID CompID,
+) (subdesign *FSDesign, err error) {
 	component := d.Decl.Components[compID]
 	if component.Kind != CompKindDesign {
 		return nil, errors.Errorf(
@@ -264,7 +273,7 @@ func (d *FSDesign) LoadCompFSDesign(compID CompID) (subdesign *FSDesign, err err
 		)
 	}
 
-	subdesignExpr, err := d.LoadFSDesignExpr(component.Design)
+	subdesignExpr, err := d.LoadFSDesignExpr(ctx, component.Design)
 	if err != nil {
 		return nil, errors.Wrapf(
 			err, "couldn't load subdesign %s for component %s", component.Design, compID,
@@ -288,19 +297,19 @@ func (d *FSDesign) LoadCompFSDesign(compID CompID) (subdesign *FSDesign, err err
 }
 
 // Primitives recursively returns all primitives in the design and its subassembly components.
-func (d *FSDesign) Primitives() (CompsSpec, error) {
+func (d *FSDesign) Primitives(ctx context.Context) (CompsSpec, error) {
 	prims := d.Decl.Components.Primitives()
 	for id, c := range d.Decl.Components {
 		if c.Kind != CompKindDesign {
 			continue
 		}
-		subdesign, err := d.LoadCompFSDesign(id)
+		subdesign, err := d.LoadCompFSDesign(ctx, id)
 		if err != nil {
 			return nil, errors.Wrapf(
 				err, "couldn't load design of component %s with subdesign %s", id, c.Design,
 			)
 		}
-		subprims, err := subdesign.Primitives()
+		subprims, err := subdesign.Primitives(ctx)
 		if err != nil {
 			return nil, errors.Wrapf(
 				err, "couldn't identify primitives of component %s with subdesign %s", id, c.Design,

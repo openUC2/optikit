@@ -12,7 +12,7 @@ components:
     kind: primitive
     primitive:
       kind: optiland
-      model: '{{get inputs "optiland-model"}}'
+      model: ~ optiland-model
     pose:
       rotation:
         kind: grid
@@ -23,7 +23,7 @@ components:
       kind: computed
       function: compute-geometry.py
       inputs:
-        lens: '{{get inputs "optiland-model"}}'
+        lens: ~ optiland-model
     pose:
       rotation:
         kind: grid

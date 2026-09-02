@@ -71,7 +71,9 @@ func TestReportPrims(t *testing.T) {
 				dp := path.Join(examplesPath, "designs", design)
 
 				t.Logf("load %s:%s", design, instantiation)
-				design, err := LoadFSDesign(dp, instantiation.Variant, instantiation.Inputs, false)
+				design, err := LoadFSDesign(
+					t.Context(), dp, instantiation.Variant, instantiation.Inputs, false,
+				)
 				if err != nil {
 					t.Error(err)
 					return

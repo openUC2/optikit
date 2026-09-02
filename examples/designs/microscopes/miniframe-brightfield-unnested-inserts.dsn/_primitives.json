@@ -48,6 +48,7 @@
     "kind": "static",
     "static-models": {
       "gltf": "cube-mounted/lens.dsn/mounted-lens.dsn/BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx.glb",
+      "optiland": "cube-mounted/lens.dsn/mounted-lens.dsn/AC254-100-A-Zemax-ZMX.optiland",
       "step": "cube-mounted/lens.dsn/mounted-lens.dsn/BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx.stp"
     },
     "position": [
@@ -246,6 +247,7 @@
     "kind": "static",
     "static-models": {
       "gltf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.glb",
+      "pdf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.pdf",
       "step": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.stp"
     },
     "position": [
@@ -268,6 +270,7 @@
     "kind": "static",
     "static-models": {
       "gltf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.glb",
+      "pdf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.pdf",
       "step": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.stp"
     },
     "position": [
@@ -290,6 +293,7 @@
     "kind": "static",
     "static-models": {
       "gltf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.glb",
+      "pdf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.pdf",
       "step": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.stp"
     },
     "position": [
@@ -312,6 +316,7 @@
     "kind": "static",
     "static-models": {
       "gltf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.glb",
+      "pdf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.pdf",
       "step": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.stp"
     },
     "position": [
@@ -334,6 +339,7 @@
     "kind": "static",
     "static-models": {
       "gltf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.glb",
+      "pdf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.pdf",
       "step": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.stp"
     },
     "position": [
@@ -356,6 +362,7 @@
     "kind": "static",
     "static-models": {
       "gltf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.glb",
+      "pdf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.pdf",
       "step": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.stp"
     },
     "position": [
@@ -378,6 +385,7 @@
     "kind": "static",
     "static-models": {
       "gltf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.glb",
+      "pdf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.pdf",
       "step": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.stp"
     },
     "position": [
@@ -400,6 +408,7 @@
     "kind": "static",
     "static-models": {
       "gltf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.glb",
+      "pdf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.pdf",
       "step": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.stp"
     },
     "position": [
@@ -422,6 +431,7 @@
     "kind": "static",
     "static-models": {
       "gltf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.glb",
+      "pdf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.pdf",
       "step": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.stp"
     },
     "position": [
@@ -444,6 +454,7 @@
     "kind": "static",
     "static-models": {
       "gltf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.glb",
+      "pdf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.pdf",
       "step": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.stp"
     },
     "position": [
@@ -466,6 +477,7 @@
     "kind": "static",
     "static-models": {
       "gltf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.glb",
+      "pdf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.pdf",
       "step": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.stp"
     },
     "position": [
@@ -488,6 +500,7 @@
     "kind": "static",
     "static-models": {
       "gltf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.glb",
+      "pdf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.pdf",
       "step": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.stp"
     },
     "position": [
@@ -510,6 +523,7 @@
     "kind": "static",
     "static-models": {
       "gltf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.glb",
+      "pdf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.pdf",
       "step": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.stp"
     },
     "position": [
@@ -532,6 +546,7 @@
     "kind": "static",
     "static-models": {
       "gltf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.glb",
+      "pdf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.pdf",
       "step": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.stp"
     },
     "position": [
@@ -554,6 +569,7 @@
     "kind": "static",
     "static-models": {
       "gltf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.glb",
+      "pdf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.pdf",
       "step": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.stp"
     },
     "position": [
@@ -576,6 +592,7 @@
     "kind": "static",
     "static-models": {
       "gltf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.glb",
+      "pdf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.pdf",
       "step": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.stp"
     },
     "position": [
@@ -598,6 +615,7 @@
     "kind": "static",
     "static-models": {
       "gltf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.glb",
+      "pdf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.pdf",
       "step": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.stp"
     },
     "position": [
@@ -620,6 +638,7 @@
     "kind": "static",
     "static-models": {
       "gltf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.glb",
+      "pdf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.pdf",
       "step": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.stp"
     },
     "position": [
@@ -642,6 +661,7 @@
     "kind": "static",
     "static-models": {
       "gltf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.glb",
+      "pdf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.pdf",
       "step": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.stp"
     },
     "position": [
@@ -664,6 +684,7 @@
     "kind": "static",
     "static-models": {
       "gltf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.glb",
+      "pdf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.pdf",
       "step": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.stp"
     },
     "position": [
@@ -686,6 +707,7 @@
     "kind": "static",
     "static-models": {
       "gltf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.glb",
+      "pdf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.pdf",
       "step": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.stp"
     },
     "position": [
@@ -708,6 +730,7 @@
     "kind": "static",
     "static-models": {
       "gltf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.glb",
+      "pdf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.pdf",
       "step": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.stp"
     },
     "position": [
@@ -730,6 +753,7 @@
     "kind": "static",
     "static-models": {
       "gltf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.glb",
+      "pdf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.pdf",
       "step": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.stp"
     },
     "position": [
@@ -752,6 +776,7 @@
     "kind": "static",
     "static-models": {
       "gltf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.glb",
+      "pdf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.pdf",
       "step": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.stp"
     },
     "position": [
@@ -774,6 +799,7 @@
     "kind": "static",
     "static-models": {
       "gltf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.glb",
+      "pdf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.pdf",
       "step": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.stp"
     },
     "position": [
@@ -796,6 +822,7 @@
     "kind": "static",
     "static-models": {
       "gltf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.glb",
+      "pdf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.pdf",
       "step": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.stp"
     },
     "position": [
@@ -818,6 +845,7 @@
     "kind": "static",
     "static-models": {
       "gltf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.glb",
+      "pdf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.pdf",
       "step": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.stp"
     },
     "position": [
@@ -840,6 +868,7 @@
     "kind": "static",
     "static-models": {
       "gltf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.glb",
+      "pdf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.pdf",
       "step": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.stp"
     },
     "position": [
@@ -862,6 +891,7 @@
     "kind": "static",
     "static-models": {
       "gltf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.glb",
+      "pdf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.pdf",
       "step": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.stp"
     },
     "position": [
@@ -884,6 +914,7 @@
     "kind": "static",
     "static-models": {
       "gltf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.glb",
+      "pdf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.pdf",
       "step": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.stp"
     },
     "position": [
@@ -906,6 +937,7 @@
     "kind": "static",
     "static-models": {
       "gltf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.glb",
+      "pdf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.pdf",
       "step": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.stp"
     },
     "position": [
