@@ -8,6 +8,7 @@ require (
 	github.com/carlmjohnson/versioninfo v0.22.5
 	github.com/expr-lang/expr v1.17.8
 	github.com/go-echarts/go-echarts/v2 v2.7.2
+	github.com/go-viper/mapstructure/v2 v2.5.0
 	github.com/goccy/go-graphviz v0.2.10
 	github.com/goccy/go-yaml v1.19.2
 	github.com/google/go-cmp v0.7.0
@@ -248,7 +249,6 @@ require (
 	github.com/go-toolsmith/astp v1.1.0 // indirect
 	github.com/go-toolsmith/strparse v1.1.0 // indirect
 	github.com/go-toolsmith/typep v1.1.0 // indirect
-	github.com/go-viper/mapstructure/v2 v2.5.0 // indirect
 	github.com/go-xmlfmt/xmlfmt v1.1.3 // indirect
 	github.com/gobwas/glob v0.2.3 // indirect
 	github.com/godoc-lint/godoc-lint v0.11.2 // indirect
