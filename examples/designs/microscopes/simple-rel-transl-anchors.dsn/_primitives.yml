@@ -12,6 +12,7 @@
   kind: static
   static-models:
     gltf: "cube-mounted/lens.dsn/mounted-lens.dsn/BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx.glb"
+    optiland: cube-mounted/lens.dsn/mounted-lens.dsn/AC254-100-A-Zemax-ZMX.optiland
     step: "cube-mounted/lens.dsn/mounted-lens.dsn/BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx.stp"
   position: [55.0, 0.0, 0.0]
   rotation:
@@ -202,6 +203,7 @@
   kind: static
   static-models:
     gltf: "cube-mounted/lens.dsn/mounted-lens.dsn/BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx.glb"
+    optiland: cube-mounted/lens.dsn/mounted-lens.dsn/AC254-100-A-Zemax-ZMX.optiland
     step: "cube-mounted/lens.dsn/mounted-lens.dsn/BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx.stp"
   position: [242.0, 500.0, 0.0]
   rotation:

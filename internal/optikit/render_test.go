@@ -78,7 +78,7 @@ func checkGraph(
 	t.Helper()
 
 	t.Logf("load %s:%s:%+v", design, variant, inputs)
-	d, err := LoadFSDesign(dp, variant, inputs, false)
+	d, err := LoadFSDesign(t.Context(), dp, variant, inputs, false)
 	if err != nil {
 		t.Error(err)
 		return
@@ -128,7 +128,9 @@ func TestRenderObjectsGLTF(t *testing.T) {
 				t.Parallel()
 
 				t.Logf("load %s:%s", design, instantiation)
-				design, err := LoadFSDesign(dp, instantiation.Variant, instantiation.Inputs, false)
+				design, err := LoadFSDesign(
+					t.Context(), dp, instantiation.Variant, instantiation.Inputs, false,
+				)
 				if err != nil {
 					t.Error(err)
 					return
@@ -160,7 +162,7 @@ func checkGLTF(
 
 	var want, got []byte
 	var err error
-	if got, err = RenderObjectsGLB(design, asText); err != nil {
+	if got, err = RenderObjectsGLB(t.Context(), design, asText); err != nil {
 		t.Error(err)
 		return
 	}
@@ -186,7 +188,7 @@ func TestGLTFRoundtrip(t *testing.T) {
 		for _, instantiation := range instantiations {
 			name := fmt.Sprintf("%s:%s", design, instantiation)
 			t.Logf("load %s:%s", design, instantiation)
-			d, err := LoadFSDesign(dp, instantiation.Variant, instantiation.Inputs, false)
+			d, err := LoadFSDesign(t.Context(), dp, instantiation.Variant, instantiation.Inputs, false)
 			if err != nil {
 				t.Error(err)
 				return
@@ -198,7 +200,7 @@ func TestGLTFRoundtrip(t *testing.T) {
 
 					var buf []byte
 					t.Logf("round-trip %s loading and encoding of %s:%s", format, design, instantiation)
-					if buf, err = RenderObjectsGLB(d, format == formatGLTF); err != nil {
+					if buf, err = RenderObjectsGLB(t.Context(), d, format == formatGLTF); err != nil {
 						t.Error(err)
 					}
 					roundtripDoc(t, buf, format == formatGLTF)

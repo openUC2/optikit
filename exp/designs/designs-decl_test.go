@@ -49,7 +49,9 @@ func TestDesignDecls(t *testing.T) {
 			t.Parallel()
 
 			t.Logf("load %s", p)
-			designDecl, err := LoadDesignDecl(examplesFS, path.Join("designs", p, DesignExprDeclFile))
+			designDecl, err := LoadDesignDecl(
+				t.Context(), examplesFS, path.Join("designs", p, DesignExprDeclFile),
+			)
 			if err != nil {
 				t.Error(err)
 				return
@@ -206,14 +208,18 @@ func TestDesignFlatten(t *testing.T) {
 			t.Parallel()
 
 			t.Logf("load %s", in)
-			inDecl, err := LoadDesignDecl(examplesFS, path.Join("designs", in, DesignExprDeclFile))
+			inDecl, err := LoadDesignDecl(
+				t.Context(), examplesFS, path.Join("designs", in, DesignExprDeclFile),
+			)
 			if err != nil {
 				t.Error(err)
 				return
 			}
 
 			t.Logf("load %s", out)
-			outDecl, err := LoadDesignDecl(examplesFS, path.Join("designs", out, DesignExprDeclFile))
+			outDecl, err := LoadDesignDecl(
+				t.Context(), examplesFS, path.Join("designs", out, DesignExprDeclFile),
+			)
 			if err != nil {
 				t.Error(err)
 				return

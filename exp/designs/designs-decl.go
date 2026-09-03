@@ -1,7 +1,10 @@
 package designs
 
 import (
+	"bytes"
 	"cmp"
+	"context"
+	"encoding/json/v2"
 	"fmt"
 	"io/fs"
 	"maps"
@@ -10,6 +13,7 @@ import (
 	"slices"
 	"strings"
 
+	"github.com/go-viper/mapstructure/v2"
 	"github.com/goccy/go-yaml"
 	"github.com/pkg/errors"
 	"github.com/ungerik/go3d/float64/mat4"
@@ -171,8 +175,10 @@ type CompPrimSpec struct {
 // CompPrimStaticModelSpec declares equivalent files in alternate file formats representing the same
 // primitive model.
 type CompPrimStaticModelsSpec struct {
-	GLTF string `json:"gltf,omitempty" yaml:"gltf,omitempty"`
-	STEP string `json:"step,omitempty" yaml:"step,omitempty"`
+	GLTF     string            `mapstructure:"gltf,omitempty"`
+	STEP     string            `mapstructure:"step,omitempty"`
+	Optiland string            `mapstructure:"optiland,omitempty"`
+	Other    map[string]string `mapstructure:",remain"`
 }
 
 // CompPoseExprSpec declares a Optikit design's component's geometry.
@@ -362,18 +368,27 @@ type VariantSpec struct {
 
 // LoadDesignExprDecl loads a DesignExprDecl from the specified file path in the provided base
 // filesystem.
-func LoadDesignExprDecl(fsys ffs.PathedFS, filePath string) (DesignExprDecl, error) {
-	bytes, err := fs.ReadFile(fsys, filePath)
+func LoadDesignExprDecl(
+	ctx context.Context, fsys ffs.PathedFS, filePath string,
+) (DesignExprDecl, error) {
+	b, err := fs.ReadFile(fsys, filePath)
 	if err != nil {
 		return DesignExprDecl{}, errors.Wrapf(
 			err, "couldn't read design config file %s/%s", fsys.Path(), filePath,
 		)
 	}
 	config := DesignExprDecl{}
-	if err = yaml.Unmarshal(bytes, &config); err != nil {
+	decoder := yaml.NewDecoder(bytes.NewReader(b), customYAMLUnmarshalers()...)
+	if err = decoder.DecodeContext(ctx, &config); err != nil {
 		return DesignExprDecl{}, errors.Wrap(err, "couldn't parse design declaration with expressions")
 	}
 	return config, nil
+}
+
+func customYAMLUnmarshalers() []yaml.DecodeOption {
+	return []yaml.DecodeOption{
+		yaml.CustomUnmarshalerContext(yamlUnmarshalCompPrimStaticModelsSpec),
+	}
 }
 
 // Check looks for errors in the construction of the design configuration.
@@ -422,15 +437,16 @@ func (d DesignExprDecl) Instantiated(instantiation InstSpec) (dd DesignDecl, err
 
 // LoadDesignDecl loads a DesignExprDecl from the specified file path in the provided base
 // filesystem.
-func LoadDesignDecl(fsys ffs.PathedFS, filePath string) (DesignDecl, error) {
-	bytes, err := fs.ReadFile(fsys, filePath)
+func LoadDesignDecl(ctx context.Context, fsys ffs.PathedFS, filePath string) (DesignDecl, error) {
+	b, err := fs.ReadFile(fsys, filePath)
 	if err != nil {
 		return DesignDecl{}, errors.Wrapf(
 			err, "couldn't read design config file %s/%s", fsys.Path(), filePath,
 		)
 	}
 	config := DesignDecl{}
-	if err = yaml.Unmarshal(bytes, &config); err != nil {
+	decoder := yaml.NewDecoder(bytes.NewReader(b), customYAMLUnmarshalers()...)
+	if err = decoder.DecodeContext(ctx, &config); err != nil {
 		return DesignDecl{}, errors.Wrap(err, "couldn't parse design declaration")
 	}
 	return config, nil
@@ -810,8 +826,47 @@ func (s CompPrimSpec) Merged(overlay CompPrimSpec) CompPrimSpec {
 // CompPrimStaticModelsSpec
 
 func (s CompPrimStaticModelsSpec) Cloned() CompPrimStaticModelsSpec {
-	// TODO: once CompPrimStaticModelsSpec includes a map, we must maps.Clone it
-	return s
+	return CompPrimStaticModelsSpec{
+		GLTF:     s.GLTF,
+		STEP:     s.STEP,
+		Optiland: s.Optiland,
+		Other:    maps.Clone(s.Other),
+	}
+}
+
+func (s CompPrimStaticModelsSpec) MarshalJSON() ([]byte, error) {
+	// Implements json.Marshaler
+	m := make(map[string]any)
+	if err := mapstructure.Decode(s, &m); err != nil {
+		return nil, errors.Wrap(err, "couldn't marshal primitive static models struct as a map")
+	}
+	b, err := json.Marshal(m, json.Deterministic(true))
+	if err != nil {
+		return nil, errors.Wrap(err, "couldn't marshal primitive static models map as yaml")
+	}
+	return b, nil
+}
+
+func (s CompPrimStaticModelsSpec) MarshalYAML(ctx context.Context) (any, error) {
+	// Implements yaml.BytesMarshalerContext
+	m := make(map[string]any)
+	if err := mapstructure.Decode(s, &m); err != nil {
+		return nil, errors.Wrap(err, "couldn't marshal primitive static models struct as a map")
+	}
+	return m, nil
+}
+
+func yamlUnmarshalCompPrimStaticModelsSpec(
+	ctx context.Context, s *CompPrimStaticModelsSpec, data []byte,
+) error {
+	m := make(map[string]any)
+	if err := yaml.UnmarshalContext(ctx, data, &m); err != nil {
+		return errors.Wrap(err, "couldn't unmarshal primitive static models yaml as a map")
+	}
+	if err := mapstructure.Decode(m, s); err != nil {
+		return errors.Wrap(err, "couldn't unmarshal primitive static models map as a struct")
+	}
+	return nil
 }
 
 // Merged returns a new CompPrimStaticModelsSpec created by applying the specified overlay, without modifying
@@ -819,17 +874,42 @@ func (s CompPrimStaticModelsSpec) Cloned() CompPrimStaticModelsSpec {
 func (s CompPrimStaticModelsSpec) Merged(
 	overlay CompPrimStaticModelsSpec,
 ) CompPrimStaticModelsSpec {
+	otherMerged := maps.Clone(s.Other)
+	for key, value := range overlay.Other {
+		if value == "" {
+			continue
+		}
+		otherMerged[key] = value
+	}
+
 	return CompPrimStaticModelsSpec{
-		GLTF: cmp.Or(overlay.GLTF, s.GLTF),
-		STEP: cmp.Or(overlay.STEP, s.STEP),
+		GLTF:     cmp.Or(overlay.GLTF, s.GLTF),
+		STEP:     cmp.Or(overlay.STEP, s.STEP),
+		Optiland: cmp.Or(overlay.Optiland, s.Optiland),
+		Other:    otherMerged,
 	}
 }
 
 func (s CompPrimStaticModelsSpec) Prefixed(pathPrefix string) CompPrimStaticModelsSpec {
-	return CompPrimStaticModelsSpec{
-		GLTF: path.Clean(path.Join(pathPrefix, s.GLTF)),
-		STEP: path.Clean(path.Join(pathPrefix, s.STEP)),
+	otherPrefixed := make(map[string]string)
+	for key, value := range s.Other {
+		otherPrefixed[key] = prefixNonempty(value, pathPrefix)
 	}
+
+	return CompPrimStaticModelsSpec{
+		GLTF:     prefixNonempty(s.GLTF, pathPrefix),
+		STEP:     prefixNonempty(s.STEP, pathPrefix),
+		Optiland: prefixNonempty(s.Optiland, pathPrefix),
+		Other:    otherPrefixed,
+	}
+}
+
+func prefixNonempty(s, pathPrefix string) string {
+	if s == "" {
+		return ""
+	}
+
+	return path.Clean(path.Join(pathPrefix, s))
 }
 
 // CompPoseExprSpec

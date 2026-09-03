@@ -1,6 +1,7 @@
 package optikit
 
 import (
+	"context"
 	gerrors "errors"
 	"os"
 
@@ -11,6 +12,7 @@ import (
 )
 
 func LoadFSDesign(
+	ctx context.Context,
 	path string, variant designs.VariantID, inputs map[designs.VarName]any, isolate bool,
 ) (d *designs.FSDesign, err error) {
 	fsys := os.DirFS(path)
@@ -22,7 +24,7 @@ func LoadFSDesign(
 		fsys = pathRoot.FS()
 	}
 	designFS := ofs.AttachPath(fsys, path)
-	de, err := designs.LoadFSDesignExpr(designFS, ".")
+	de, err := designs.LoadFSDesignExpr(ctx, designFS, ".")
 	if err != nil {
 		return d, err
 	}

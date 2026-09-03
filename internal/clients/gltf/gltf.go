@@ -2,6 +2,7 @@ package gltf
 
 import (
 	"bytes"
+	"context"
 	"crypto/sha256"
 	"encoding/json"
 	"fmt"
@@ -81,9 +82,10 @@ func (d *Document) Document() *gltf.Document {
 }
 
 func (d *Document) Assemble(
+	ctx context.Context,
 	design *designs.FSDesign, asText bool, gridSpacings designs.ContinuousXYZ[float64],
 ) ([]byte, error) {
-	if err := d.addComponents(design, gridSpacings, d.root); err != nil {
+	if err := d.addComponents(ctx, design, gridSpacings, d.root); err != nil {
 		return nil, err
 	}
 
@@ -95,6 +97,7 @@ func (d *Document) Assemble(
 }
 
 func (d *Document) addComponents(
+	ctx context.Context,
 	design *designs.FSDesign, gridSpacings designs.ContinuousXYZ[float64], root *gltf.Node,
 ) error {
 	flattened := design.Decl.Components.TranslFlattened()
@@ -125,13 +128,13 @@ func (d *Document) addComponents(
 	}
 	for _, id := range subdesignCompIDs {
 		comp := flattened[id]
-		subdesign, err := design.LoadCompFSDesign(id)
+		subdesign, err := design.LoadCompFSDesign(ctx, id)
 		if err != nil {
 			return errors.Wrapf(
 				err, "couldn't load subdesign %s for component %s", comp.Design, id,
 			)
 		}
-		if err := d.addSubdesignComponent(id, comp, subdesign, gridSpacings, root); err != nil {
+		if err := d.addSubdesignComponent(ctx, id, comp, subdesign, gridSpacings, root); err != nil {
 			return errors.Wrapf(err, "couldn't add subdesign component %s to gltf model", id)
 		}
 	}
@@ -344,6 +347,7 @@ func (d *Document) addModelExtensionsUsed(me []string) {
 }
 
 func (d *Document) addSubdesignComponent(
+	ctx context.Context,
 	id designs.CompID, comp designs.CompSpec, subdesign *designs.FSDesign,
 	gridSpacings designs.ContinuousXYZ[float64], parent *gltf.Node,
 ) error {
@@ -358,7 +362,7 @@ func (d *Document) addSubdesignComponent(
 		return errors.Wrapf(err, "couldn't compute pose of component %s", id)
 	}
 
-	if err = d.addComponents(subdesign, gridSpacings, n); err != nil {
+	if err = d.addComponents(ctx, subdesign, gridSpacings, n); err != nil {
 		return errors.Wrapf(
 			err, "couldn't add subcomponents of component %s with design %s", id, comp.Design,
 		)

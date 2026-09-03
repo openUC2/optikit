@@ -12,6 +12,7 @@
   kind: static
   static-models:
     gltf: "mounted-lens.dsn/BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx.glb"
+    optiland: mounted-lens.dsn/AC254-100-A-Zemax-ZMX.optiland
     step: "mounted-lens.dsn/BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx.stp"
   position: [-11.0, 0.0, 0.0]
   rotation:

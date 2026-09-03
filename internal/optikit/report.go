@@ -3,7 +3,8 @@ package optikit
 import (
 	"cmp"
 	"context"
-	"encoding/json"
+	"encoding/json/jsontext"
+	"encoding/json/v2"
 	"fmt"
 	"maps"
 	"math"
@@ -23,11 +24,11 @@ func ReportPrimitives(
 	ctx context.Context, design *designs.FSDesign, gridSpacings designs.ContinuousXYZ[float64],
 	format string,
 ) (result []byte, err error) {
-	d, err := design.Flattened(gridSpacings)
+	d, err := design.Flattened(ctx, gridSpacings)
 	if err != nil {
 		return nil, errors.Wrapf(err, "couldn't flatten design %s", design.Path())
 	}
-	prims, err := d.Primitives()
+	prims, err := d.Primitives(ctx)
 	if err != nil {
 		return nil, errors.Wrapf(err, "couldn't determine primitives of design %s", d.Path())
 	}
@@ -56,16 +57,20 @@ func ReportPrimitives(
 	default:
 		return nil, fmt.Errorf("unknown output format %s", format)
 	case "json":
-		if result, err = json.MarshalIndent(report, "", "  "); err != nil {
+		if result, err = json.Marshal(
+			report, json.Deterministic(true), jsontext.Multiline(true),
+			jsontext.CanonicalizeRawFloats(true), jsontext.CanonicalizeRawInts(true),
+			jsontext.WithIndent("  "),
+		); err != nil {
 			return nil, err
 		}
 		return result, nil
 	case "yaml":
-		if result, err = yaml.Marshal(report); err != nil {
+		if result, err = yaml.MarshalContext(ctx, report); err != nil {
 			return nil, err
 		}
+		return result, nil
 	}
-	return result, nil
 }
 
 type PrimReport struct {

@@ -26,6 +26,7 @@
     "kind": "static",
     "static-models": {
       "gltf": "BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx.glb",
+      "optiland": "AC254-100-A-Zemax-ZMX.optiland",
       "step": "BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx.stp"
     },
     "position": [
