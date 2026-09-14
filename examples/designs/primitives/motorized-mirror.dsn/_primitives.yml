@@ -28,3 +28,21 @@
     kind: extrinsic
     order: zxy
     angles: {z: -90.0}
+- id: screw-1
+  kind: static
+  static-models:
+    bom: "ISO 4762 - Cylinder head screw with hex socket - M3 x 20 - 8.8 - A2K.bom.yml"
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: ""
+    order: ""
+    angles: {}
+- id: screw-2
+  kind: static
+  static-models:
+    bom: "ISO 4762 - Cylinder head screw with hex socket - M3 x 20 - 8.8 - A2K.bom.yml"
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: ""
+    order: ""
+    angles: {}

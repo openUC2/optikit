@@ -86,5 +86,47 @@
         "z": -0
       }
     }
+  },
+  {
+    "id": "screw-1",
+    "kind": "static",
+    "static-models": {
+      "bom": "TP lens head screw with TORX - 2.5 x 8 - St - A2K.bom.yml"
+    },
+    "position": [
+      0,
+      0,
+      0
+    ],
+    "rotation": {
+      "kind": "",
+      "order": "",
+      "angles": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    }
+  },
+  {
+    "id": "screw-2",
+    "kind": "static",
+    "static-models": {
+      "bom": "TP lens head screw with TORX - 2.5 x 8 - St - A2K.bom.yml"
+    },
+    "position": [
+      0,
+      0,
+      0
+    ],
+    "rotation": {
+      "kind": "",
+      "order": "",
+      "angles": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    }
   }
 ]

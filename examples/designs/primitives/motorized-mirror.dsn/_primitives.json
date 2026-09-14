@@ -64,5 +64,47 @@
         "z": -90
       }
     }
+  },
+  {
+    "id": "screw-1",
+    "kind": "static",
+    "static-models": {
+      "bom": "ISO 4762 - Cylinder head screw with hex socket - M3 x 20 - 8.8 - A2K.bom.yml"
+    },
+    "position": [
+      0,
+      0,
+      0
+    ],
+    "rotation": {
+      "kind": "",
+      "order": "",
+      "angles": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    }
+  },
+  {
+    "id": "screw-2",
+    "kind": "static",
+    "static-models": {
+      "bom": "ISO 4762 - Cylinder head screw with hex socket - M3 x 20 - 8.8 - A2K.bom.yml"
+    },
+    "position": [
+      0,
+      0,
+      0
+    ],
+    "rotation": {
+      "kind": "",
+      "order": "",
+      "angles": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    }
   }
 ]

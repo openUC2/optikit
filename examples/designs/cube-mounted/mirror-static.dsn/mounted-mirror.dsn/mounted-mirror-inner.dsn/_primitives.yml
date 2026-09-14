@@ -38,3 +38,21 @@
     kind: extrinsic
     order: zxy
     angles: {}
+- id: screw-1
+  kind: static
+  static-models:
+    bom: "TP lens head screw with TORX - 2.5 x 8 - St - A2K.bom.yml"
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: ""
+    order: ""
+    angles: {}
+- id: screw-2
+  kind: static
+  static-models:
+    bom: "TP lens head screw with TORX - 2.5 x 8 - St - A2K.bom.yml"
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: ""
+    order: ""
+    angles: {}

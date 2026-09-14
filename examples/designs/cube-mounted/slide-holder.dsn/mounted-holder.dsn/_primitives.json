@@ -42,5 +42,89 @@
         "z": -0
       }
     }
+  },
+  {
+    "id": "magnet-1",
+    "kind": "static",
+    "static-models": {
+      "bom": "BUY - NeFeB-Magnet - ø8x3 N40 Ni.bom.yml"
+    },
+    "position": [
+      0,
+      0,
+      0
+    ],
+    "rotation": {
+      "kind": "",
+      "order": "",
+      "angles": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    }
+  },
+  {
+    "id": "magnet-2",
+    "kind": "static",
+    "static-models": {
+      "bom": "BUY - NeFeB-Magnet - ø8x3 N40 Ni.bom.yml"
+    },
+    "position": [
+      0,
+      0,
+      0
+    ],
+    "rotation": {
+      "kind": "",
+      "order": "",
+      "angles": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    }
+  },
+  {
+    "id": "magnet-3",
+    "kind": "static",
+    "static-models": {
+      "bom": "BUY - NeFeB-Magnet - ø8x3 N40 Ni.bom.yml"
+    },
+    "position": [
+      0,
+      0,
+      0
+    ],
+    "rotation": {
+      "kind": "",
+      "order": "",
+      "angles": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    }
+  },
+  {
+    "id": "magnet-4",
+    "kind": "static",
+    "static-models": {
+      "bom": "BUY - NeFeB-Magnet - ø8x3 N40 Ni.bom.yml"
+    },
+    "position": [
+      0,
+      0,
+      0
+    ],
+    "rotation": {
+      "kind": "",
+      "order": "",
+      "angles": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    }
   }
 ]

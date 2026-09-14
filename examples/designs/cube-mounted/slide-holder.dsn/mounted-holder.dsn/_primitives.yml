@@ -18,3 +18,39 @@
     kind: extrinsic
     order: zxy
     angles: {}
+- id: magnet-1
+  kind: static
+  static-models:
+    bom: "BUY - NeFeB-Magnet - ø8x3 N40 Ni.bom.yml"
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: ""
+    order: ""
+    angles: {}
+- id: magnet-2
+  kind: static
+  static-models:
+    bom: "BUY - NeFeB-Magnet - ø8x3 N40 Ni.bom.yml"
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: ""
+    order: ""
+    angles: {}
+- id: magnet-3
+  kind: static
+  static-models:
+    bom: "BUY - NeFeB-Magnet - ø8x3 N40 Ni.bom.yml"
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: ""
+    order: ""
+    angles: {}
+- id: magnet-4
+  kind: static
+  static-models:
+    bom: "BUY - NeFeB-Magnet - ø8x3 N40 Ni.bom.yml"
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: ""
+    order: ""
+    angles: {}

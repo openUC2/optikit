@@ -1,13 +1,22 @@
-- id: camera-basic
+- id: camera-basic/lens-and-camera
   kind: static
   static-models:
-    gltf: primitives/axes.dsn/axes.glb
-    step: primitives/axes.dsn/axes.step
+    gltf: "cube-mounted/hikcamera-with-objective.dsn/ASS - 4003 - CAM+OBJ.glb"
+    step: "cube-mounted/hikcamera-with-objective.dsn/ASS - 4003 - CAM+OBJ.stp"
   position: [0.0, 50.0, 0.0]
   rotation:
     kind: extrinsic
     order: zxy
-    angles: {"y": 90.0}
+    angles: {"y": -180.0}
+- id: camera-basic/software
+  kind: static
+  static-models:
+    newswitch-device: cube-mounted/hikcamera-with-objective.dsn/hikcamera.newswitch-device.yml
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: ""
+    order: ""
+    angles: {}
 - id: lens-insert/insert
   kind: static
   static-models:

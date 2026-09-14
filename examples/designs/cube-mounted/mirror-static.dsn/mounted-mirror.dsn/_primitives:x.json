@@ -88,6 +88,48 @@
     }
   },
   {
+    "id": "inner-insert/screw-1",
+    "kind": "static",
+    "static-models": {
+      "bom": "mounted-mirror-inner.dsn/TP lens head screw with TORX - 2.5 x 8 - St - A2K.bom.yml"
+    },
+    "position": [
+      0,
+      0,
+      0
+    ],
+    "rotation": {
+      "kind": "",
+      "order": "",
+      "angles": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    }
+  },
+  {
+    "id": "inner-insert/screw-2",
+    "kind": "static",
+    "static-models": {
+      "bom": "mounted-mirror-inner.dsn/TP lens head screw with TORX - 2.5 x 8 - St - A2K.bom.yml"
+    },
+    "position": [
+      0,
+      0,
+      0
+    ],
+    "rotation": {
+      "kind": "",
+      "order": "",
+      "angles": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    }
+  },
+  {
     "id": "master-insert-bottom",
     "kind": "static",
     "static-models": {

@@ -88,6 +88,48 @@
     }
   },
   {
+    "id": "mounted-mirror/motorized-mirror/screw-1",
+    "kind": "static",
+    "static-models": {
+      "bom": "mounted-mirror.dsn/primitives/motorized-mirror.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 20 - 8.8 - A2K.bom.yml"
+    },
+    "position": [
+      0,
+      0,
+      0
+    ],
+    "rotation": {
+      "kind": "",
+      "order": "",
+      "angles": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    }
+  },
+  {
+    "id": "mounted-mirror/motorized-mirror/screw-2",
+    "kind": "static",
+    "static-models": {
+      "bom": "mounted-mirror.dsn/primitives/motorized-mirror.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 20 - 8.8 - A2K.bom.yml"
+    },
+    "position": [
+      0,
+      0,
+      0
+    ],
+    "rotation": {
+      "kind": "",
+      "order": "",
+      "angles": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    }
+  },
+  {
     "id": "skeleton-extra/lower-half",
     "kind": "static",
     "static-models": {

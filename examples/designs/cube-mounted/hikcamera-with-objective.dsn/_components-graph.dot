@@ -1,0 +1,22 @@
+strict digraph "" {
+	graph [bb="0,0,256.12,108"];
+	node [label="\N"];
+	edge [label="\E"];
+	""	[height=0.5,
+		pos="142.84,90",
+		width=0.75];
+	"lens-and-camera"	[height=0.5,
+		label="lens-and-camera",
+		pos="74.839,18",
+		width=2.0789];
+	"" -> "lens-and-camera"	[key=" -> lens-and-camera",
+		label="",
+		pos="e,91.306,35.951 128.75,74.496 120.24,65.736 109.16,54.331 99.261,44.14"];
+	software	[height=0.5,
+		label=software,
+		pos="211.84,18",
+		width=1.2301];
+	"" -> software	[key=" -> software",
+		label="",
+		pos="e,195.87,35.198 157.14,74.496 166.04,65.459 177.73,53.607 188.01,43.177"];
+}

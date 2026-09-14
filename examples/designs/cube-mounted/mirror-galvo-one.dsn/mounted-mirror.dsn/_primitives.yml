@@ -38,3 +38,21 @@
     kind: extrinsic
     order: zxy
     angles: {"y": -180.0, z: -90.0}
+- id: motorized-mirror/screw-1
+  kind: static
+  static-models:
+    bom: "primitives/motorized-mirror.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 20 - 8.8 - A2K.bom.yml"
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: ""
+    order: ""
+    angles: {}
+- id: motorized-mirror/screw-2
+  kind: static
+  static-models:
+    bom: "primitives/motorized-mirror.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 20 - 8.8 - A2K.bom.yml"
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: ""
+    order: ""
+    angles: {}

@@ -15,10 +15,10 @@ axes = {
 def assemble_prims(prims_report: list[SimpleNamespace]) -> b.Compound:
     compounds: list[b.Compound] = []
     for prim in prims_report:
-        if prim.static_models.step:
-            compound = b.import_step(prim.static_models.step)
-        else:
-            raise ValueError(f"primitive has no known importable model file: {prim}")
+        if not hasattr(prim.static_models, "step"):
+            continue
+
+        compound = b.import_step(prim.static_models.step)
         ordering = prim.rotation.order.lower()
         match prim.rotation.kind:
             case "intrinsic":

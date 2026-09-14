@@ -88,6 +88,48 @@
     }
   },
   {
+    "id": "mounted-mirrors/motorized-mirror-1/screw-1",
+    "kind": "static",
+    "static-models": {
+      "bom": "mounted-mirrors.dsn/primitives/motorized-mirror.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 20 - 8.8 - A2K.bom.yml"
+    },
+    "position": [
+      0,
+      0,
+      0
+    ],
+    "rotation": {
+      "kind": "",
+      "order": "",
+      "angles": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    }
+  },
+  {
+    "id": "mounted-mirrors/motorized-mirror-1/screw-2",
+    "kind": "static",
+    "static-models": {
+      "bom": "mounted-mirrors.dsn/primitives/motorized-mirror.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 20 - 8.8 - A2K.bom.yml"
+    },
+    "position": [
+      0,
+      0,
+      0
+    ],
+    "rotation": {
+      "kind": "",
+      "order": "",
+      "angles": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    }
+  },
+  {
     "id": "mounted-mirrors/motorized-mirror-2/motorized-mirror",
     "kind": "static",
     "static-models": {
@@ -150,6 +192,48 @@
         "x": -90,
         "y": 0,
         "z": 180
+      }
+    }
+  },
+  {
+    "id": "mounted-mirrors/motorized-mirror-2/screw-1",
+    "kind": "static",
+    "static-models": {
+      "bom": "mounted-mirrors.dsn/primitives/motorized-mirror.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 20 - 8.8 - A2K.bom.yml"
+    },
+    "position": [
+      0,
+      0,
+      0
+    ],
+    "rotation": {
+      "kind": "",
+      "order": "",
+      "angles": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    }
+  },
+  {
+    "id": "mounted-mirrors/motorized-mirror-2/screw-2",
+    "kind": "static",
+    "static-models": {
+      "bom": "mounted-mirrors.dsn/primitives/motorized-mirror.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 20 - 8.8 - A2K.bom.yml"
+    },
+    "position": [
+      0,
+      0,
+      0
+    ],
+    "rotation": {
+      "kind": "",
+      "order": "",
+      "angles": {
+        "x": 0,
+        "y": 0,
+        "z": 0
       }
     }
   },

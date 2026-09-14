@@ -1,0 +1,29 @@
+optikit-version: v0.0.0-alpha.1
+
+design:
+  description: A camera attached to a 100 mm lens in a cube-shaped housing
+  tags:
+    - composition/cube-mounted
+    - in/core-box
+
+components:
+  lens-and-camera:
+    kind: primitive
+    primitive:
+      static-models:
+        gltf: ASS - 4003 - CAM+OBJ.glb
+        step: ASS - 4003 - CAM+OBJ.stp
+    pose:
+      rotation:
+        kind: grid
+    tags:
+      - optical/lens/convex
+      - optical/detector/camera
+      - procurement/buy
+      - procurement/3d-print
+      - in/kit/infinity-box
+  software:
+    kind: primitive
+    primitive:
+      static-models:
+        newswitch-device: hikcamera.newswitch-device.yml

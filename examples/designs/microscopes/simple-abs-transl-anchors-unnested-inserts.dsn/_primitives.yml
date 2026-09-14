@@ -169,6 +169,42 @@
     kind: extrinsic
     order: zxy
     angles: {"y": 90.0}
+- id: sample-holder-insert/magnet-1
+  kind: static
+  static-models:
+    bom: "cube-mounted/slide-holder.dsn/mounted-holder.dsn/BUY - NeFeB-Magnet - ø8x3 N40 Ni.bom.yml"
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: ""
+    order: ""
+    angles: {}
+- id: sample-holder-insert/magnet-2
+  kind: static
+  static-models:
+    bom: "cube-mounted/slide-holder.dsn/mounted-holder.dsn/BUY - NeFeB-Magnet - ø8x3 N40 Ni.bom.yml"
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: ""
+    order: ""
+    angles: {}
+- id: sample-holder-insert/magnet-3
+  kind: static
+  static-models:
+    bom: "cube-mounted/slide-holder.dsn/mounted-holder.dsn/BUY - NeFeB-Magnet - ø8x3 N40 Ni.bom.yml"
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: ""
+    order: ""
+    angles: {}
+- id: sample-holder-insert/magnet-4
+  kind: static
+  static-models:
+    bom: "cube-mounted/slide-holder.dsn/mounted-holder.dsn/BUY - NeFeB-Magnet - ø8x3 N40 Ni.bom.yml"
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: ""
+    order: ""
+    angles: {}
 - id: sample-holder-skeleton/lower-half
   kind: static
   static-models:

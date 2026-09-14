@@ -38,6 +38,24 @@
     kind: extrinsic
     order: zxy
     angles: {"y": -180.0, z: -90.0}
+- id: galvo-mirror-pair-1/mounted-mirrors/motorized-mirror-1/screw-1
+  kind: static
+  static-models:
+    bom: "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 20 - 8.8 - A2K.bom.yml"
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: ""
+    order: ""
+    angles: {}
+- id: galvo-mirror-pair-1/mounted-mirrors/motorized-mirror-1/screw-2
+  kind: static
+  static-models:
+    bom: "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 20 - 8.8 - A2K.bom.yml"
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: ""
+    order: ""
+    angles: {}
 - id: galvo-mirror-pair-1/mounted-mirrors/motorized-mirror-2/motorized-mirror
   kind: static
   static-models:
@@ -68,6 +86,24 @@
     kind: extrinsic
     order: zxy
     angles: {"y": -180.0}
+- id: galvo-mirror-pair-1/mounted-mirrors/motorized-mirror-2/screw-1
+  kind: static
+  static-models:
+    bom: "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 20 - 8.8 - A2K.bom.yml"
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: ""
+    order: ""
+    angles: {}
+- id: galvo-mirror-pair-1/mounted-mirrors/motorized-mirror-2/screw-2
+  kind: static
+  static-models:
+    bom: "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 20 - 8.8 - A2K.bom.yml"
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: ""
+    order: ""
+    angles: {}
 - id: galvo-mirror-pair-1/skeleton-extra-full/lower-half
   kind: static
   static-models:
@@ -158,6 +194,24 @@
     kind: extrinsic
     order: zxy
     angles: {"y": -180.0, z: -90.0}
+- id: galvo-mirror-pair-2/mounted-mirrors/motorized-mirror-1/screw-1
+  kind: static
+  static-models:
+    bom: "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 20 - 8.8 - A2K.bom.yml"
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: ""
+    order: ""
+    angles: {}
+- id: galvo-mirror-pair-2/mounted-mirrors/motorized-mirror-1/screw-2
+  kind: static
+  static-models:
+    bom: "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 20 - 8.8 - A2K.bom.yml"
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: ""
+    order: ""
+    angles: {}
 - id: galvo-mirror-pair-2/mounted-mirrors/motorized-mirror-2/motorized-mirror
   kind: static
   static-models:
@@ -188,6 +242,24 @@
     kind: extrinsic
     order: zxy
     angles: {"y": -180.0}
+- id: galvo-mirror-pair-2/mounted-mirrors/motorized-mirror-2/screw-1
+  kind: static
+  static-models:
+    bom: "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 20 - 8.8 - A2K.bom.yml"
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: ""
+    order: ""
+    angles: {}
+- id: galvo-mirror-pair-2/mounted-mirrors/motorized-mirror-2/screw-2
+  kind: static
+  static-models:
+    bom: "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 20 - 8.8 - A2K.bom.yml"
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: ""
+    order: ""
+    angles: {}
 - id: galvo-mirror-pair-2/skeleton-extra-full/lower-half
   kind: static
   static-models:
@@ -278,6 +350,24 @@
     kind: extrinsic
     order: zxy
     angles: {"y": -180.0, z: -90.0}
+- id: galvo-mirror-pair-3/mounted-mirrors/motorized-mirror-1/screw-1
+  kind: static
+  static-models:
+    bom: "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 20 - 8.8 - A2K.bom.yml"
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: ""
+    order: ""
+    angles: {}
+- id: galvo-mirror-pair-3/mounted-mirrors/motorized-mirror-1/screw-2
+  kind: static
+  static-models:
+    bom: "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 20 - 8.8 - A2K.bom.yml"
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: ""
+    order: ""
+    angles: {}
 - id: galvo-mirror-pair-3/mounted-mirrors/motorized-mirror-2/motorized-mirror
   kind: static
   static-models:
@@ -308,6 +398,24 @@
     kind: extrinsic
     order: zxy
     angles: {"y": -180.0}
+- id: galvo-mirror-pair-3/mounted-mirrors/motorized-mirror-2/screw-1
+  kind: static
+  static-models:
+    bom: "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 20 - 8.8 - A2K.bom.yml"
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: ""
+    order: ""
+    angles: {}
+- id: galvo-mirror-pair-3/mounted-mirrors/motorized-mirror-2/screw-2
+  kind: static
+  static-models:
+    bom: "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 20 - 8.8 - A2K.bom.yml"
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: ""
+    order: ""
+    angles: {}
 - id: galvo-mirror-pair-3/skeleton-extra-full/lower-half
   kind: static
   static-models:

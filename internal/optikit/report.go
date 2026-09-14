@@ -35,20 +35,18 @@ func ReportPrimitives(
 	report := make([]PrimReport, 0, len(prims))
 	for _, compID := range slices.Sorted(maps.Keys(prims)) {
 		comp := prims[compID]
-		if comp.Pose == (designs.CompPoseSpec{}) {
-			continue
-		}
-
-		m, err := comp.Pose.TransfMat(designs.UC2GridSpacings)
-		if err != nil {
-			return nil, err
-		}
 		r := PrimReport{
 			ID:           compID,
 			Kind:         cmp.Or(comp.Primitive.Kind, "static"),
 			StaticModels: comp.Primitive.StaticModels,
-			Position:     m.MulVec3(&vec3.Zero),
-			Rotation:     NewPrimRotReport(m),
+		}
+		if comp.Pose != (designs.CompPoseSpec{}) {
+			m, err := comp.Pose.TransfMat(designs.UC2GridSpacings)
+			if err != nil {
+				return nil, err
+			}
+			r.Position = m.MulVec3(&vec3.Zero)
+			r.Rotation = NewPrimRotReport(m)
 		}
 		report = append(report, r)
 	}
