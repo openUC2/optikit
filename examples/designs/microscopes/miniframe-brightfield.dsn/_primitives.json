@@ -1,10 +1,20 @@
 [
   {
-    "id": "camera-basic/lens-and-camera",
-    "kind": "static",
+    "id": "camera-basic/drivers",
+    "kind": "primitive/static",
     "static-models": {
-      "gltf": "cube-mounted/hikcamera-with-objective.dsn/ASS - 4003 - CAM+OBJ.glb",
-      "step": "cube-mounted/hikcamera-with-objective.dsn/ASS - 4003 - CAM+OBJ.stp"
+      "newswitch-device": "primitives/hikcamera-with-objective.dsn/hikcamera.newswitch-device.yml"
+    },
+    "results": {
+      "newswitch-device-id": ""
+    }
+  },
+  {
+    "id": "camera-basic/lens-and-camera",
+    "kind": "primitive/static",
+    "static-models": {
+      "gltf": "primitives/hikcamera-with-objective.dsn/ASS - 4003 - CAM+OBJ.glb",
+      "step": "primitives/hikcamera-with-objective.dsn/ASS - 4003 - CAM+OBJ.stp"
     },
     "position": [
       0,
@@ -15,36 +25,13 @@
       "kind": "extrinsic",
       "order": "zxy",
       "angles": {
-        "x": 0,
-        "y": -180,
-        "z": -0
-      }
-    }
-  },
-  {
-    "id": "camera-basic/software",
-    "kind": "static",
-    "static-models": {
-      "newswitch-device": "cube-mounted/hikcamera-with-objective.dsn/hikcamera.newswitch-device.yml"
-    },
-    "position": [
-      0,
-      0,
-      0
-    ],
-    "rotation": {
-      "kind": "",
-      "order": "",
-      "angles": {
-        "x": 0,
-        "y": 0,
-        "z": 0
+        "y": -180
       }
     }
   },
   {
     "id": "cube-45-fixed/mounted-mirror/adhesive-pad",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/BUY - Adhesive pad - 41x29x1.glb",
       "step": "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/BUY - Adhesive pad - 41x29x1.stp"
@@ -58,15 +45,13 @@
       "kind": "extrinsic",
       "order": "zxy",
       "angles": {
-        "x": -90,
-        "y": 0,
-        "z": 0
+        "x": -90
       }
     }
   },
   {
     "id": "cube-45-fixed/mounted-mirror/insert",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/PRT - 2022 - INSMIR45TH2.glb",
       "step": "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/PRT - 2022 - INSMIR45TH2.stp"
@@ -80,15 +65,13 @@
       "kind": "extrinsic",
       "order": "zxy",
       "angles": {
-        "x": -90,
-        "y": 0,
-        "z": 0
+        "x": -90
       }
     }
   },
   {
     "id": "cube-45-fixed/mounted-mirror/mirror",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/BUY - Mirror - 40x30x2.glb",
       "step": "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/BUY - Mirror - 40x30x2.stp"
@@ -102,15 +85,13 @@
       "kind": "extrinsic",
       "order": "zxy",
       "angles": {
-        "x": -90,
-        "y": 0,
-        "z": 0
+        "x": -90
       }
     }
   },
   {
     "id": "cube-45-fixed/skeleton/lower-half",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "cube-mounted/mirror-diagonal.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
       "step": "cube-mounted/mirror-diagonal.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -122,17 +103,12 @@
     ],
     "rotation": {
       "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
+      "order": "zxy"
     }
   },
   {
     "id": "cube-45-fixed/skeleton/upper-half",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "cube-mounted/mirror-diagonal.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
       "step": "cube-mounted/mirror-diagonal.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -146,7 +122,6 @@
       "kind": "extrinsic",
       "order": "zxy",
       "angles": {
-        "x": 0,
         "y": -180,
         "z": -180
       }
@@ -154,7 +129,7 @@
   },
   {
     "id": "lens-galvo-160/mounted-lens/insert",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2023 - INSLEND40F50 - V04.glb",
       "step": "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2023 - INSLEND40F50 - V04.stp"
@@ -168,15 +143,13 @@
       "kind": "extrinsic",
       "order": "zxy",
       "angles": {
-        "x": 0,
-        "y": 90,
-        "z": -0
+        "y": 90
       }
     }
   },
   {
     "id": "lens-galvo-160/mounted-lens/lens",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "cube-mounted/lens.dsn/mounted-lens.dsn/BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx.glb",
       "optiland": "cube-mounted/lens.dsn/mounted-lens.dsn/AC254-100-A-Zemax-ZMX.optiland",
@@ -191,15 +164,13 @@
       "kind": "extrinsic",
       "order": "zxy",
       "angles": {
-        "x": 0,
-        "y": 90,
-        "z": -0
+        "y": 90
       }
     }
   },
   {
     "id": "lens-galvo-160/mounted-lens/nut",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2003 - NUTD40.glb",
       "step": "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2003 - NUTD40.stp"
@@ -213,15 +184,13 @@
       "kind": "extrinsic",
       "order": "zxy",
       "angles": {
-        "x": 0,
-        "y": 90,
-        "z": -0
+        "y": 90
       }
     }
   },
   {
     "id": "lens-galvo-160/skeleton/lower-half",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "cube-mounted/lens.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
       "step": "cube-mounted/lens.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -233,17 +202,12 @@
     ],
     "rotation": {
       "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
+      "order": "zxy"
     }
   },
   {
     "id": "lens-galvo-160/skeleton/upper-half",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "cube-mounted/lens.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
       "step": "cube-mounted/lens.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -257,7 +221,6 @@
       "kind": "extrinsic",
       "order": "zxy",
       "angles": {
-        "x": 0,
         "y": -180,
         "z": -180
       }
@@ -265,7 +228,7 @@
   },
   {
     "id": "puzzle-1/puzzle",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.glb",
       "pdf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.pdf",
@@ -278,17 +241,12 @@
     ],
     "rotation": {
       "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
+      "order": "zxy"
     }
   },
   {
     "id": "puzzle-10/puzzle",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.glb",
       "pdf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.pdf",
@@ -301,17 +259,12 @@
     ],
     "rotation": {
       "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
+      "order": "zxy"
     }
   },
   {
     "id": "puzzle-11/puzzle",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.glb",
       "pdf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.pdf",
@@ -324,17 +277,12 @@
     ],
     "rotation": {
       "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
+      "order": "zxy"
     }
   },
   {
     "id": "puzzle-12/puzzle",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.glb",
       "pdf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.pdf",
@@ -347,17 +295,12 @@
     ],
     "rotation": {
       "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
+      "order": "zxy"
     }
   },
   {
     "id": "puzzle-13/puzzle",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.glb",
       "pdf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.pdf",
@@ -370,17 +313,12 @@
     ],
     "rotation": {
       "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
+      "order": "zxy"
     }
   },
   {
     "id": "puzzle-14/puzzle",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.glb",
       "pdf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.pdf",
@@ -393,17 +331,12 @@
     ],
     "rotation": {
       "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
+      "order": "zxy"
     }
   },
   {
     "id": "puzzle-15/puzzle",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.glb",
       "pdf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.pdf",
@@ -416,17 +349,12 @@
     ],
     "rotation": {
       "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
+      "order": "zxy"
     }
   },
   {
     "id": "puzzle-16/puzzle",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.glb",
       "pdf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.pdf",
@@ -439,17 +367,12 @@
     ],
     "rotation": {
       "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
+      "order": "zxy"
     }
   },
   {
     "id": "puzzle-17/puzzle",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.glb",
       "pdf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.pdf",
@@ -462,17 +385,12 @@
     ],
     "rotation": {
       "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
+      "order": "zxy"
     }
   },
   {
     "id": "puzzle-18/puzzle",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.glb",
       "pdf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.pdf",
@@ -485,17 +403,12 @@
     ],
     "rotation": {
       "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
+      "order": "zxy"
     }
   },
   {
     "id": "puzzle-19/puzzle",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.glb",
       "pdf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.pdf",
@@ -508,17 +421,12 @@
     ],
     "rotation": {
       "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
+      "order": "zxy"
     }
   },
   {
     "id": "puzzle-2/puzzle",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.glb",
       "pdf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.pdf",
@@ -531,17 +439,12 @@
     ],
     "rotation": {
       "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
+      "order": "zxy"
     }
   },
   {
     "id": "puzzle-20/puzzle",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.glb",
       "pdf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.pdf",
@@ -554,17 +457,12 @@
     ],
     "rotation": {
       "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
+      "order": "zxy"
     }
   },
   {
     "id": "puzzle-21/puzzle",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.glb",
       "pdf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.pdf",
@@ -577,17 +475,12 @@
     ],
     "rotation": {
       "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
+      "order": "zxy"
     }
   },
   {
     "id": "puzzle-22/puzzle",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.glb",
       "pdf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.pdf",
@@ -600,17 +493,12 @@
     ],
     "rotation": {
       "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
+      "order": "zxy"
     }
   },
   {
     "id": "puzzle-23/puzzle",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.glb",
       "pdf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.pdf",
@@ -623,17 +511,12 @@
     ],
     "rotation": {
       "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
+      "order": "zxy"
     }
   },
   {
     "id": "puzzle-24/puzzle",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.glb",
       "pdf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.pdf",
@@ -646,17 +529,12 @@
     ],
     "rotation": {
       "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
+      "order": "zxy"
     }
   },
   {
     "id": "puzzle-25/puzzle",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.glb",
       "pdf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.pdf",
@@ -669,17 +547,12 @@
     ],
     "rotation": {
       "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
+      "order": "zxy"
     }
   },
   {
     "id": "puzzle-26/puzzle",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.glb",
       "pdf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.pdf",
@@ -692,17 +565,12 @@
     ],
     "rotation": {
       "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
+      "order": "zxy"
     }
   },
   {
     "id": "puzzle-27/puzzle",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.glb",
       "pdf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.pdf",
@@ -715,17 +583,12 @@
     ],
     "rotation": {
       "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
+      "order": "zxy"
     }
   },
   {
     "id": "puzzle-28/puzzle",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.glb",
       "pdf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.pdf",
@@ -738,17 +601,12 @@
     ],
     "rotation": {
       "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
+      "order": "zxy"
     }
   },
   {
     "id": "puzzle-29/puzzle",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.glb",
       "pdf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.pdf",
@@ -761,17 +619,12 @@
     ],
     "rotation": {
       "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
+      "order": "zxy"
     }
   },
   {
     "id": "puzzle-3/puzzle",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.glb",
       "pdf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.pdf",
@@ -784,17 +637,12 @@
     ],
     "rotation": {
       "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
+      "order": "zxy"
     }
   },
   {
     "id": "puzzle-30/puzzle",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.glb",
       "pdf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.pdf",
@@ -807,17 +655,12 @@
     ],
     "rotation": {
       "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
+      "order": "zxy"
     }
   },
   {
     "id": "puzzle-31/puzzle",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.glb",
       "pdf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.pdf",
@@ -830,17 +673,12 @@
     ],
     "rotation": {
       "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
+      "order": "zxy"
     }
   },
   {
     "id": "puzzle-4/puzzle",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.glb",
       "pdf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.pdf",
@@ -853,17 +691,12 @@
     ],
     "rotation": {
       "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
+      "order": "zxy"
     }
   },
   {
     "id": "puzzle-5/puzzle",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.glb",
       "pdf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.pdf",
@@ -876,17 +709,12 @@
     ],
     "rotation": {
       "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
+      "order": "zxy"
     }
   },
   {
     "id": "puzzle-6/puzzle",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.glb",
       "pdf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.pdf",
@@ -899,17 +727,12 @@
     ],
     "rotation": {
       "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
+      "order": "zxy"
     }
   },
   {
     "id": "puzzle-7/puzzle",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.glb",
       "pdf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.pdf",
@@ -922,17 +745,12 @@
     ],
     "rotation": {
       "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
+      "order": "zxy"
     }
   },
   {
     "id": "puzzle-8/puzzle",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.glb",
       "pdf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.pdf",
@@ -945,17 +763,12 @@
     ],
     "rotation": {
       "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
+      "order": "zxy"
     }
   },
   {
     "id": "puzzle-9/puzzle",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.glb",
       "pdf": "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.pdf",
@@ -968,17 +781,12 @@
     ],
     "rotation": {
       "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
+      "order": "zxy"
     }
   },
   {
     "id": "scaffolding-1/lower-half",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
       "step": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -990,17 +798,12 @@
     ],
     "rotation": {
       "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
+      "order": "zxy"
     }
   },
   {
     "id": "scaffolding-1/upper-half",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
       "step": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -1014,7 +817,6 @@
       "kind": "extrinsic",
       "order": "zxy",
       "angles": {
-        "x": 0,
         "y": -180,
         "z": -180
       }
@@ -1022,7 +824,7 @@
   },
   {
     "id": "scaffolding-10/lower-half",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
       "step": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -1034,17 +836,12 @@
     ],
     "rotation": {
       "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
+      "order": "zxy"
     }
   },
   {
     "id": "scaffolding-10/upper-half",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
       "step": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -1058,7 +855,6 @@
       "kind": "extrinsic",
       "order": "zxy",
       "angles": {
-        "x": 0,
         "y": -180,
         "z": -180
       }
@@ -1066,7 +862,7 @@
   },
   {
     "id": "scaffolding-11/lower-half",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
       "step": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -1078,17 +874,12 @@
     ],
     "rotation": {
       "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
+      "order": "zxy"
     }
   },
   {
     "id": "scaffolding-11/upper-half",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
       "step": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -1102,7 +893,6 @@
       "kind": "extrinsic",
       "order": "zxy",
       "angles": {
-        "x": 0,
         "y": -180,
         "z": -180
       }
@@ -1110,7 +900,7 @@
   },
   {
     "id": "scaffolding-12/lower-half",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
       "step": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -1122,17 +912,12 @@
     ],
     "rotation": {
       "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
+      "order": "zxy"
     }
   },
   {
     "id": "scaffolding-12/upper-half",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
       "step": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -1146,7 +931,6 @@
       "kind": "extrinsic",
       "order": "zxy",
       "angles": {
-        "x": 0,
         "y": -180,
         "z": -180
       }
@@ -1154,7 +938,7 @@
   },
   {
     "id": "scaffolding-13/lower-half",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
       "step": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -1166,17 +950,12 @@
     ],
     "rotation": {
       "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
+      "order": "zxy"
     }
   },
   {
     "id": "scaffolding-13/upper-half",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
       "step": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -1190,7 +969,6 @@
       "kind": "extrinsic",
       "order": "zxy",
       "angles": {
-        "x": 0,
         "y": -180,
         "z": -180
       }
@@ -1198,7 +976,7 @@
   },
   {
     "id": "scaffolding-14/lower-half",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
       "step": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -1210,17 +988,12 @@
     ],
     "rotation": {
       "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
+      "order": "zxy"
     }
   },
   {
     "id": "scaffolding-14/upper-half",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
       "step": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -1234,7 +1007,6 @@
       "kind": "extrinsic",
       "order": "zxy",
       "angles": {
-        "x": 0,
         "y": -180,
         "z": -180
       }
@@ -1242,7 +1014,7 @@
   },
   {
     "id": "scaffolding-15/lower-half",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
       "step": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -1254,17 +1026,12 @@
     ],
     "rotation": {
       "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
+      "order": "zxy"
     }
   },
   {
     "id": "scaffolding-15/upper-half",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
       "step": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -1278,7 +1045,6 @@
       "kind": "extrinsic",
       "order": "zxy",
       "angles": {
-        "x": 0,
         "y": -180,
         "z": -180
       }
@@ -1286,7 +1052,7 @@
   },
   {
     "id": "scaffolding-16/lower-half",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
       "step": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -1298,17 +1064,12 @@
     ],
     "rotation": {
       "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
+      "order": "zxy"
     }
   },
   {
     "id": "scaffolding-16/upper-half",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
       "step": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -1322,7 +1083,6 @@
       "kind": "extrinsic",
       "order": "zxy",
       "angles": {
-        "x": 0,
         "y": -180,
         "z": -180
       }
@@ -1330,7 +1090,7 @@
   },
   {
     "id": "scaffolding-17/lower-half",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
       "step": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -1342,17 +1102,12 @@
     ],
     "rotation": {
       "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
+      "order": "zxy"
     }
   },
   {
     "id": "scaffolding-17/upper-half",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
       "step": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -1366,7 +1121,6 @@
       "kind": "extrinsic",
       "order": "zxy",
       "angles": {
-        "x": 0,
         "y": -180,
         "z": -180
       }
@@ -1374,7 +1128,7 @@
   },
   {
     "id": "scaffolding-2/lower-half",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
       "step": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -1386,17 +1140,12 @@
     ],
     "rotation": {
       "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
+      "order": "zxy"
     }
   },
   {
     "id": "scaffolding-2/upper-half",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
       "step": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -1410,7 +1159,6 @@
       "kind": "extrinsic",
       "order": "zxy",
       "angles": {
-        "x": 0,
         "y": -180,
         "z": -180
       }
@@ -1418,7 +1166,7 @@
   },
   {
     "id": "scaffolding-3/lower-half",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
       "step": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -1430,17 +1178,12 @@
     ],
     "rotation": {
       "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
+      "order": "zxy"
     }
   },
   {
     "id": "scaffolding-3/upper-half",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
       "step": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -1454,7 +1197,6 @@
       "kind": "extrinsic",
       "order": "zxy",
       "angles": {
-        "x": 0,
         "y": -180,
         "z": -180
       }
@@ -1462,7 +1204,7 @@
   },
   {
     "id": "scaffolding-4/lower-half",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
       "step": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -1474,17 +1216,12 @@
     ],
     "rotation": {
       "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
+      "order": "zxy"
     }
   },
   {
     "id": "scaffolding-4/upper-half",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
       "step": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -1498,7 +1235,6 @@
       "kind": "extrinsic",
       "order": "zxy",
       "angles": {
-        "x": 0,
         "y": -180,
         "z": -180
       }
@@ -1506,7 +1242,7 @@
   },
   {
     "id": "scaffolding-5/lower-half",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
       "step": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -1518,17 +1254,12 @@
     ],
     "rotation": {
       "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
+      "order": "zxy"
     }
   },
   {
     "id": "scaffolding-5/upper-half",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
       "step": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -1542,7 +1273,6 @@
       "kind": "extrinsic",
       "order": "zxy",
       "angles": {
-        "x": 0,
         "y": -180,
         "z": -180
       }
@@ -1550,7 +1280,7 @@
   },
   {
     "id": "scaffolding-6/lower-half",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
       "step": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -1562,17 +1292,12 @@
     ],
     "rotation": {
       "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
+      "order": "zxy"
     }
   },
   {
     "id": "scaffolding-6/upper-half",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
       "step": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -1586,7 +1311,6 @@
       "kind": "extrinsic",
       "order": "zxy",
       "angles": {
-        "x": 0,
         "y": -180,
         "z": -180
       }
@@ -1594,7 +1318,7 @@
   },
   {
     "id": "scaffolding-7/lower-half",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
       "step": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -1606,17 +1330,12 @@
     ],
     "rotation": {
       "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
+      "order": "zxy"
     }
   },
   {
     "id": "scaffolding-7/upper-half",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
       "step": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -1630,7 +1349,6 @@
       "kind": "extrinsic",
       "order": "zxy",
       "angles": {
-        "x": 0,
         "y": -180,
         "z": -180
       }
@@ -1638,7 +1356,7 @@
   },
   {
     "id": "scaffolding-8/lower-half",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
       "step": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -1650,17 +1368,12 @@
     ],
     "rotation": {
       "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
+      "order": "zxy"
     }
   },
   {
     "id": "scaffolding-8/upper-half",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
       "step": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -1674,7 +1387,6 @@
       "kind": "extrinsic",
       "order": "zxy",
       "angles": {
-        "x": 0,
         "y": -180,
         "z": -180
       }
@@ -1682,7 +1394,7 @@
   },
   {
     "id": "scaffolding-9/lower-half",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
       "step": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -1694,17 +1406,12 @@
     ],
     "rotation": {
       "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
+      "order": "zxy"
     }
   },
   {
     "id": "scaffolding-9/upper-half",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
       "step": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -1718,7 +1425,6 @@
       "kind": "extrinsic",
       "order": "zxy",
       "angles": {
-        "x": 0,
         "y": -180,
         "z": -180
       }

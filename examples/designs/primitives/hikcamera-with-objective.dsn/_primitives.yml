@@ -1,0 +1,16 @@
+- id: drivers
+  kind: primitive/static
+  static-models:
+    newswitch-device: hikcamera.newswitch-device.yml
+  position: [0.0, 0.0, 0.0]
+  results:
+    newswitch-device-id: ""
+- id: lens-and-camera
+  kind: primitive/static
+  static-models:
+    gltf: "ASS - 4003 - CAM+OBJ.glb"
+    step: "ASS - 4003 - CAM+OBJ.stp"
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy

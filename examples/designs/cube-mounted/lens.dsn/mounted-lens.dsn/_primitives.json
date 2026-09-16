@@ -1,69 +1,39 @@
 [
   {
     "id": "insert",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "PRT - 2023 - INSLEND40F50 - V04.glb",
       "step": "PRT - 2023 - INSLEND40F50 - V04.stp"
     },
-    "position": [
-      0,
-      0,
-      0
-    ],
     "rotation": {
       "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
+      "order": "zxy"
     }
   },
   {
     "id": "lens",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx.glb",
       "optiland": "AC254-100-A-Zemax-ZMX.optiland",
       "step": "BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx.stp"
     },
-    "position": [
-      0,
-      0,
-      0
-    ],
     "rotation": {
       "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
+      "order": "zxy"
     }
   },
   {
     "id": "nut",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "PRT - 2003 - NUTD40.glb",
       "step": "PRT - 2003 - NUTD40.stp"
     },
-    "position": [
-      0,
-      0,
-      0
-    ],
     "rotation": {
       "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
+      "order": "zxy"
     }
   }
 ]

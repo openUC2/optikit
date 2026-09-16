@@ -1,0 +1,22 @@
+strict digraph "" {
+	graph [bb="0,0,243.69,108"];
+	node [label="\N"];
+	edge [label="\E"];
+	""	[height=0.5,
+		pos="102.85,90",
+		width=0.75];
+	drivers	[height=0.5,
+		label=drivers,
+		pos="37.852,18",
+		width=1.0515];
+	"" -> drivers	[key=" -> drivers",
+		label="",
+		pos="e,52.521,34.797 89.068,74.155 80.683,65.125 69.777,53.38 60.185,43.05"];
+	"lens-and-camera"	[height=0.5,
+		label="lens-and-camera",
+		pos="168.85,18",
+		width=2.0789];
+	"" -> "lens-and-camera"	[key=" -> lens-and-camera",
+		label="",
+		pos="e,152.79,36.04 116.85,74.155 125.07,65.439 135.67,54.192 145.16,44.131"];
+}

@@ -15,7 +15,11 @@ axes = {
 def assemble_prims(prims_report: list[SimpleNamespace]) -> b.Compound:
     compounds: list[b.Compound] = []
     for prim in prims_report:
+        if not hasattr(prim, "static_models"):
+            continue
         if not hasattr(prim.static_models, "step"):
+            continue
+        if not hasattr(prim, "rotation"):
             continue
 
         compound = b.import_step(prim.static_models.step)
@@ -28,12 +32,18 @@ def assemble_prims(prims_report: list[SimpleNamespace]) -> b.Compound:
                 ordering = ordering[::-1]
             case _:
                 raise ValueError(f"unknown rotation kind {prim.rotation.kind}")
-        angles = {
-            "x": prim.rotation.angles.x,
-            "y": prim.rotation.angles.y,
-            "z": prim.rotation.angles.z,
-        }
-        compound.location *= b.Location(tuple(prim.position))
+        angles = {"x": 0, "y": 0, "z": 0}
+        if hasattr(prim.rotation, "angles"):
+            if hasattr(prim.rotation.angles, "x"):
+                angles["x"] = prim.rotation.angles.x
+            if hasattr(prim.rotation.angles, "y"):
+                angles["y"] = prim.rotation.angles.y
+            if hasattr(prim.rotation.angles, "z"):
+                angles["z"] = prim.rotation.angles.z
+        position = (0, 0, 0)
+        if hasattr(prim, "position"):
+            position = tuple(prim.position)
+        compound.location *= b.Location(position)
         for axis in ordering[::-1]:
             compound.location *= b.Location((0, 0, 0), axes[axis], angles[axis])
         compounds.append(compound)

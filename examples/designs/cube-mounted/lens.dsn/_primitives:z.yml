@@ -1,5 +1,5 @@
 - id: mounted-lens/insert
-  kind: static
+  kind: primitive/static
   static-models:
     gltf: "mounted-lens.dsn/PRT - 2023 - INSLEND40F50 - V04.glb"
     step: "mounted-lens.dsn/PRT - 2023 - INSLEND40F50 - V04.stp"
@@ -7,9 +7,8 @@
   rotation:
     kind: extrinsic
     order: zxy
-    angles: {}
 - id: mounted-lens/lens
-  kind: static
+  kind: primitive/static
   static-models:
     gltf: "mounted-lens.dsn/BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx.glb"
     optiland: mounted-lens.dsn/AC254-100-A-Zemax-ZMX.optiland
@@ -18,9 +17,8 @@
   rotation:
     kind: extrinsic
     order: zxy
-    angles: {}
 - id: mounted-lens/nut
-  kind: static
+  kind: primitive/static
   static-models:
     gltf: "mounted-lens.dsn/PRT - 2003 - NUTD40.glb"
     step: "mounted-lens.dsn/PRT - 2003 - NUTD40.stp"
@@ -28,9 +26,8 @@
   rotation:
     kind: extrinsic
     order: zxy
-    angles: {}
 - id: skeleton/lower-half
-  kind: static
+  kind: primitive/static
   static-models:
     gltf: "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb"
     step: "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -38,9 +35,8 @@
   rotation:
     kind: extrinsic
     order: zxy
-    angles: {}
 - id: skeleton/upper-half
-  kind: static
+  kind: primitive/static
   static-models:
     gltf: "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb"
     step: "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -48,4 +44,6 @@
   rotation:
     kind: extrinsic
     order: zxy
-    angles: {"y": -180.0, z: -180.0}
+    angles:
+      "y": -180.0
+      z: -180.0

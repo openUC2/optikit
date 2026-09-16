@@ -26,10 +26,14 @@ func reportPrimA(ctx context.Context, c *cli.Command) error {
 	if format == "yml" {
 		format = "yaml"
 	}
-	result, err := optikit.ReportPrimitives(ctx, design, designs.UC2GridSpacings, format)
+	report, err := optikit.ReportPrimitives(ctx, design, designs.UC2GridSpacings)
+	if err != nil {
+		return err
+	}
+	serialized, err := optikit.SerializeReport(ctx, report, format)
 	if err != nil {
 		return err
 	}
 
-	return produceOutput(c.Args().First(), result)
+	return produceOutput(c.Args().First(), serialized)
 }

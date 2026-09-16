@@ -1,0 +1,24 @@
+optikit-version: v0.0.0-alpha.1
+
+design:
+  description: A dichroic mirror cube with a 485 nm emission filter
+  tags:
+    - composition/cube-mounted
+    - in/kit/fluorescence-laser-box
+
+components:
+  mirror-with-filter:
+    kind: primitive
+    primitive:
+      static-models:
+        gltf: ASS - 2072 - CUBDICSPL+EMIFIL_WLS485.glb
+        step: ASS - 2072 - CUBDICSPL+EMIFIL_WLS485.stp
+    pose:
+      rotation:
+        kind: grid
+    tags:
+      - optical/mirror
+      - optical/filter/485
+      - procurement/buy
+      - procurement/3d-print
+      - in/kit/fluorescence-laser-box

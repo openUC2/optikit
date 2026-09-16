@@ -1,5 +1,5 @@
 - id: inner-insert/adhesive-pad
-  kind: static
+  kind: primitive/static
   static-models:
     gltf: "mounted-mirror-inner.dsn/BUY - Adhesive pad - D22x1.glb"
     step: "mounted-mirror-inner.dsn/BUY - Adhesive pad - D22x1.stp"
@@ -7,9 +7,10 @@
   rotation:
     kind: extrinsic
     order: zxy
-    angles: {z: 45.0}
+    angles:
+      z: 45.0
 - id: inner-insert/mirror
-  kind: static
+  kind: primitive/static
   static-models:
     gltf: "mounted-mirror-inner.dsn/BUY - Mirror - D24x3.glb"
     step: "mounted-mirror-inner.dsn/BUY - Mirror - D24x3.stp"
@@ -17,9 +18,10 @@
   rotation:
     kind: extrinsic
     order: zxy
-    angles: {z: 45.0}
+    angles:
+      z: 45.0
 - id: inner-insert/mount-base
-  kind: static
+  kind: primitive/static
   static-models:
     gltf: "mounted-mirror-inner.dsn/PRT - 2110 - MASINSMIRHOLLOW - C.glb"
     step: "mounted-mirror-inner.dsn/PRT - 2110 - MASINSMIRHOLLOW - C.stp"
@@ -27,9 +29,10 @@
   rotation:
     kind: extrinsic
     order: zxy
-    angles: {z: 45.0}
+    angles:
+      z: 45.0
 - id: inner-insert/mount-top
-  kind: static
+  kind: primitive/static
   static-models:
     gltf: "mounted-mirror-inner.dsn/PRT - 2111 - MASINSMIRHOLUPP - C.glb"
     step: "mounted-mirror-inner.dsn/PRT - 2111 - MASINSMIRHOLUPP - C.stp"
@@ -37,27 +40,20 @@
   rotation:
     kind: extrinsic
     order: zxy
-    angles: {z: 45.0}
+    angles:
+      z: 45.0
 - id: inner-insert/screw-1
-  kind: static
+  kind: primitive/static
   static-models:
     bom: "mounted-mirror-inner.dsn/TP lens head screw with TORX - 2.5 x 8 - St - A2K.bom.yml"
   position: [0.0, 0.0, 0.0]
-  rotation:
-    kind: ""
-    order: ""
-    angles: {}
 - id: inner-insert/screw-2
-  kind: static
+  kind: primitive/static
   static-models:
     bom: "mounted-mirror-inner.dsn/TP lens head screw with TORX - 2.5 x 8 - St - A2K.bom.yml"
   position: [0.0, 0.0, 0.0]
-  rotation:
-    kind: ""
-    order: ""
-    angles: {}
 - id: master-insert-bottom
-  kind: static
+  kind: primitive/static
   static-models:
     gltf: "PRT - 2100 - MASINS - V04 - B.glb"
     step: "PRT - 2100 - MASINS - V04 - B.stp"
@@ -65,9 +61,11 @@
   rotation:
     kind: extrinsic
     order: zxy
-    angles: {"y": -180.0, z: -180.0}
+    angles:
+      "y": -180.0
+      z: -180.0
 - id: master-insert-top
-  kind: static
+  kind: primitive/static
   static-models:
     gltf: "PRT - 2100 - MASINS - V04 - B.glb"
     step: "PRT - 2100 - MASINS - V04 - B.stp"
@@ -75,4 +73,3 @@
   rotation:
     kind: extrinsic
     order: zxy
-    angles: {}

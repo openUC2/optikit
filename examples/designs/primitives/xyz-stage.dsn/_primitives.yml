@@ -1,0 +1,51 @@
+- id: laser
+  kind: primitive/static
+  static-models:
+    gltf: "ASS - 3006 - AUTXYZSTG - V04 - A__for OST.glb"
+    step: "ASS - 3006 - AUTXYZSTG - V04 - A__for OST.stp"
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: stage-drivers
+  kind: primitive/static
+  static-models:
+    newswitch-device: stage.newswitch-device.yml
+  position: [0.0, 0.0, 0.0]
+  results:
+    newswitch-device-config:
+      stage:
+        device-x: -x
+        device-y: -y
+        device-z: -z
+    newswitch-device-id: ""
+- id: x-drivers
+  kind: primitive/static
+  static-models:
+    newswitch-device: linear-actuator.newswitch-device.yml
+  position: [0.0, 0.0, 0.0]
+  results:
+    newswitch-device-config:
+      controller: ""
+      dsn-input-variable: ""
+    newswitch-device-id: -x
+- id: y-drivers
+  kind: primitive/static
+  static-models:
+    newswitch-device: linear-actuator.newswitch-device.yml
+  position: [0.0, 0.0, 0.0]
+  results:
+    newswitch-device-config:
+      controller: ""
+      dsn-input-variable: ""
+    newswitch-device-id: -y
+- id: z-drivers
+  kind: primitive/static
+  static-models:
+    newswitch-device: linear-actuator.newswitch-device.yml
+  position: [0.0, 0.0, 0.0]
+  results:
+    newswitch-device-config:
+      controller: ""
+      dsn-input-variable: ""
+    newswitch-device-id: -z

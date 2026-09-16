@@ -1,0 +1,20 @@
+- id: drivers
+  kind: primitive/static
+  static-models:
+    newswitch-device: laser.newswitch-device.yml
+  position: [0.0, 0.0, 0.0]
+  results:
+    newswitch-device-config:
+      controller: ""
+    newswitch-device-id: ""
+- id: laser
+  kind: primitive/static
+  static-models:
+    gltf: "ASS - 4005 - LAS+CAS.glb"
+    step: "ASS - 4005 - LAS+CAS.stp"
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+    angles:
+      x: 90.0

@@ -1,0 +1,9 @@
+- id: fiber-holder
+  kind: primitive/static
+  static-models:
+    gltf: "ASS - 2069 - CUBFIBHOL - V04.glb"
+    step: "ASS - 2069 - CUBFIBHOL - V04.stp"
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy

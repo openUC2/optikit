@@ -1,7 +1,7 @@
 [
   {
     "id": "clip",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "PRT - 2008 - SAMCLP.glb",
       "step": "PRT - 2008 - SAMCLP.stp"
@@ -13,118 +13,47 @@
     ],
     "rotation": {
       "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
+      "order": "zxy"
     }
   },
   {
     "id": "insert",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "PRT - 2028 - INSSAMMNT - V04.glb",
       "step": "PRT - 2028 - INSSAMMNT - V04.stp"
     },
-    "position": [
-      0,
-      0,
-      0
-    ],
     "rotation": {
       "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
+      "order": "zxy"
     }
   },
   {
     "id": "magnet-1",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "bom": "BUY - NeFeB-Magnet - ø8x3 N40 Ni.bom.yml"
-    },
-    "position": [
-      0,
-      0,
-      0
-    ],
-    "rotation": {
-      "kind": "",
-      "order": "",
-      "angles": {
-        "x": 0,
-        "y": 0,
-        "z": 0
-      }
     }
   },
   {
     "id": "magnet-2",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "bom": "BUY - NeFeB-Magnet - ø8x3 N40 Ni.bom.yml"
-    },
-    "position": [
-      0,
-      0,
-      0
-    ],
-    "rotation": {
-      "kind": "",
-      "order": "",
-      "angles": {
-        "x": 0,
-        "y": 0,
-        "z": 0
-      }
     }
   },
   {
     "id": "magnet-3",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "bom": "BUY - NeFeB-Magnet - ø8x3 N40 Ni.bom.yml"
-    },
-    "position": [
-      0,
-      0,
-      0
-    ],
-    "rotation": {
-      "kind": "",
-      "order": "",
-      "angles": {
-        "x": 0,
-        "y": 0,
-        "z": 0
-      }
     }
   },
   {
     "id": "magnet-4",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "bom": "BUY - NeFeB-Magnet - ø8x3 N40 Ni.bom.yml"
-    },
-    "position": [
-      0,
-      0,
-      0
-    ],
-    "rotation": {
-      "kind": "",
-      "order": "",
-      "angles": {
-        "x": 0,
-        "y": 0,
-        "z": 0
-      }
     }
   }
 ]

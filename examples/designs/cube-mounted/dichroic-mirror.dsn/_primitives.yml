@@ -1,0 +1,9 @@
+- id: mirror-with-filter
+  kind: primitive/static
+  static-models:
+    gltf: "ASS - 2072 - CUBDICSPL+EMIFIL_WLS485.glb"
+    step: "ASS - 2072 - CUBDICSPL+EMIFIL_WLS485.stp"
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy

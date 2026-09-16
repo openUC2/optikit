@@ -1,0 +1,16 @@
+- id: drivers
+  kind: primitive/static
+  static-models:
+    newswitch-device: mainboard.newswitch-device.yml
+  position: [0.0, 0.0, 0.0]
+  results:
+    newswitch-device-id: ""
+- id: mainboard-with-case
+  kind: primitive/static
+  static-models:
+    gltf: "ASS - 4008 - MAIBRD+CAS2X2 - B.glb"
+    step: "ASS - 4008 - MAIBRD+CAS2X2 - B.stp"
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy

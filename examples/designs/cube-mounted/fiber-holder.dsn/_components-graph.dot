@@ -1,0 +1,15 @@
+strict digraph "" {
+	graph [bb="0,0,114.3,108"];
+	node [label="\N"];
+	edge [label="\E"];
+	""	[height=0.5,
+		pos="57.152,90",
+		width=0.75];
+	"fiber-holder"	[height=0.5,
+		label="fiber-holder",
+		pos="57.152,18",
+		width=1.5876];
+	"" -> "fiber-holder"	[key=" -> fiber-holder",
+		label="",
+		pos="e,57.152,36.104 57.152,71.697 57.152,64.407 57.152,55.726 57.152,47.536"];
+}

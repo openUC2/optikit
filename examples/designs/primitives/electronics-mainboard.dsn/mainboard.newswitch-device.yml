@@ -1,0 +1,13 @@
+newswitch-version: v0.1.0-alpha.0 # minimum allowed newswitch version for this config file; earlier versions of newswitch may be unable to correctly handle this file
+
+kind: microcontroller
+microcontroller:
+  protocol: uc2-rest # can be uc2-rest or can-open
+  uc2-rest:
+    transport: serial # can be serial or HTTP
+    serial:
+      device-pattern: '/dev/ttyUSB*'
+      baudrate: 115200
+  firmware:
+    name: esp32-uc2-standalone-4
+    version: v2026.0.0-beta.3

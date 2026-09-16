@@ -53,7 +53,11 @@ func RenderObjectsGLB(
 func RenderObjectsSTEP(
 	ctx context.Context, design *designs.FSDesign,
 ) (result []byte, err error) {
-	primsReport, err := ReportPrimitives(ctx, design, designs.UC2GridSpacings, "json")
+	primsReport, err := ReportPrimitives(ctx, design, designs.UC2GridSpacings)
+	if err != nil {
+		return nil, err
+	}
+	serialized, err := SerializeReport(ctx, primsReport, "json")
 	if err != nil {
 		return nil, err
 	}
@@ -66,7 +70,7 @@ func RenderObjectsSTEP(
 		err = bc.Close()
 	}()
 
-	if result, err = bc.Assemble(primsReport); err != nil {
+	if result, err = bc.Assemble(serialized); err != nil {
 		return nil, err
 	}
 	return result, nil

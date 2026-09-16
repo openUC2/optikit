@@ -1,0 +1,23 @@
+optikit-version: v0.0.0-alpha.1
+
+design:
+  description: A fiber holder for a laser fiber
+  tags:
+    - composition/cube-mounted
+    - in/kit/fluorescence-laser-box
+
+components:
+  fiber-holder:
+    kind: primitive
+    primitive:
+      static-models:
+        gltf: ASS - 2069 - CUBFIBHOL - V04.glb
+        step: ASS - 2069 - CUBFIBHOL - V04.stp
+    pose:
+      rotation:
+        kind: grid
+    tags:
+      - optical/fiber
+      - procurement/buy
+      - procurement/3d-print
+      - in/kit/fluorescence-laser-box

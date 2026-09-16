@@ -4,7 +4,7 @@ design:
   description: A microscope slide holder mounted in a cube
   tags:
     - composition/cube-mounted
-    - in/core-box
+    - in/kit/core-box
 
 components:
   skeleton:

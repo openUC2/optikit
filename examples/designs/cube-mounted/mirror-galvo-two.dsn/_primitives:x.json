@@ -1,29 +1,22 @@
 [
   {
     "id": "mounted-mirrors/cube-insert",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "mounted-mirrors.dsn/PRT - 2164 - INSGLV - V04.glb",
       "step": "mounted-mirrors.dsn/PRT - 2164 - INSGLV - V04.stp"
     },
-    "position": [
-      0,
-      0,
-      0
-    ],
     "rotation": {
       "kind": "extrinsic",
       "order": "zxy",
       "angles": {
-        "x": 0,
-        "y": -0,
         "z": -90
       }
     }
   },
   {
     "id": "mounted-mirrors/motorized-mirror-1/motorized-mirror",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "mounted-mirrors.dsn/primitives/motorized-mirror.dsn/BUY - Galvo scanner XY --- single motor.glb",
       "step": "mounted-mirrors.dsn/primitives/motorized-mirror.dsn/BUY - Galvo scanner XY --- single motor.stp"
@@ -37,7 +30,6 @@
       "kind": "extrinsic",
       "order": "zxy",
       "angles": {
-        "x": 0,
         "y": -180,
         "z": -90
       }
@@ -45,7 +37,7 @@
   },
   {
     "id": "mounted-mirrors/motorized-mirror-1/mount-ring",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "mounted-mirrors.dsn/primitives/motorized-mirror.dsn/PRT - 2180 - DISRNG.glb",
       "step": "mounted-mirrors.dsn/primitives/motorized-mirror.dsn/PRT - 2180 - DISRNG.stp"
@@ -59,15 +51,13 @@
       "kind": "extrinsic",
       "order": "zxy",
       "angles": {
-        "x": 0,
-        "y": -180,
-        "z": -0
+        "y": -180
       }
     }
   },
   {
     "id": "mounted-mirrors/motorized-mirror-1/mount-top",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "mounted-mirrors.dsn/primitives/motorized-mirror.dsn/PRT - 2165 - CLPPCE.glb",
       "step": "mounted-mirrors.dsn/primitives/motorized-mirror.dsn/PRT - 2165 - CLPPCE.stp"
@@ -81,7 +71,6 @@
       "kind": "extrinsic",
       "order": "zxy",
       "angles": {
-        "x": 0,
         "y": -180,
         "z": -90
       }
@@ -89,49 +78,21 @@
   },
   {
     "id": "mounted-mirrors/motorized-mirror-1/screw-1",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "bom": "mounted-mirrors.dsn/primitives/motorized-mirror.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 20 - 8.8 - A2K.bom.yml"
-    },
-    "position": [
-      0,
-      0,
-      0
-    ],
-    "rotation": {
-      "kind": "",
-      "order": "",
-      "angles": {
-        "x": 0,
-        "y": 0,
-        "z": 0
-      }
     }
   },
   {
     "id": "mounted-mirrors/motorized-mirror-1/screw-2",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "bom": "mounted-mirrors.dsn/primitives/motorized-mirror.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 20 - 8.8 - A2K.bom.yml"
-    },
-    "position": [
-      0,
-      0,
-      0
-    ],
-    "rotation": {
-      "kind": "",
-      "order": "",
-      "angles": {
-        "x": 0,
-        "y": 0,
-        "z": 0
-      }
     }
   },
   {
     "id": "mounted-mirrors/motorized-mirror-2/motorized-mirror",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "mounted-mirrors.dsn/primitives/motorized-mirror.dsn/BUY - Galvo scanner XY --- single motor.glb",
       "step": "mounted-mirrors.dsn/primitives/motorized-mirror.dsn/BUY - Galvo scanner XY --- single motor.stp"
@@ -145,15 +106,13 @@
       "kind": "extrinsic",
       "order": "zxy",
       "angles": {
-        "x": 0,
-        "y": -180,
-        "z": -0
+        "y": -180
       }
     }
   },
   {
     "id": "mounted-mirrors/motorized-mirror-2/mount-ring",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "mounted-mirrors.dsn/primitives/motorized-mirror.dsn/PRT - 2180 - DISRNG.glb",
       "step": "mounted-mirrors.dsn/primitives/motorized-mirror.dsn/PRT - 2180 - DISRNG.stp"
@@ -167,7 +126,6 @@
       "kind": "extrinsic",
       "order": "zxy",
       "angles": {
-        "x": 0,
         "y": 180,
         "z": 90
       }
@@ -175,7 +133,7 @@
   },
   {
     "id": "mounted-mirrors/motorized-mirror-2/mount-top",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "mounted-mirrors.dsn/primitives/motorized-mirror.dsn/PRT - 2165 - CLPPCE.glb",
       "step": "mounted-mirrors.dsn/primitives/motorized-mirror.dsn/PRT - 2165 - CLPPCE.stp"
@@ -189,57 +147,27 @@
       "kind": "extrinsic",
       "order": "zxy",
       "angles": {
-        "x": 0,
-        "y": -180,
-        "z": -0
+        "y": -180
       }
     }
   },
   {
     "id": "mounted-mirrors/motorized-mirror-2/screw-1",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "bom": "mounted-mirrors.dsn/primitives/motorized-mirror.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 20 - 8.8 - A2K.bom.yml"
-    },
-    "position": [
-      0,
-      0,
-      0
-    ],
-    "rotation": {
-      "kind": "",
-      "order": "",
-      "angles": {
-        "x": 0,
-        "y": 0,
-        "z": 0
-      }
     }
   },
   {
     "id": "mounted-mirrors/motorized-mirror-2/screw-2",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "bom": "mounted-mirrors.dsn/primitives/motorized-mirror.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 20 - 8.8 - A2K.bom.yml"
-    },
-    "position": [
-      0,
-      0,
-      0
-    ],
-    "rotation": {
-      "kind": "",
-      "order": "",
-      "angles": {
-        "x": 0,
-        "y": 0,
-        "z": 0
-      }
     }
   },
   {
     "id": "skeleton-extra-full/lower-half",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
       "step": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -251,17 +179,12 @@
     ],
     "rotation": {
       "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
+      "order": "zxy"
     }
   },
   {
     "id": "skeleton-extra-full/upper-half",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
       "step": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -275,7 +198,6 @@
       "kind": "extrinsic",
       "order": "zxy",
       "angles": {
-        "x": 0,
         "y": -180,
         "z": -180
       }
@@ -283,7 +205,7 @@
   },
   {
     "id": "skeleton-extra-partial",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
       "step": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -297,7 +219,6 @@
       "kind": "extrinsic",
       "order": "zxy",
       "angles": {
-        "x": 0,
         "y": -180,
         "z": -180
       }
@@ -305,43 +226,27 @@
   },
   {
     "id": "skeleton/lower-half",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
       "step": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
     },
-    "position": [
-      0,
-      0,
-      0
-    ],
     "rotation": {
       "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
+      "order": "zxy"
     }
   },
   {
     "id": "skeleton/upper-half",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
       "step": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
     },
-    "position": [
-      0,
-      0,
-      0
-    ],
     "rotation": {
       "kind": "extrinsic",
       "order": "zxy",
       "angles": {
-        "x": 0,
         "y": -180,
         "z": -180
       }

@@ -1,7 +1,7 @@
 [
   {
     "id": "objective-lens/mounted-lens/insert",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2023 - INSLEND40F50 - V04.glb",
       "step": "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2023 - INSLEND40F50 - V04.stp"
@@ -15,15 +15,13 @@
       "kind": "extrinsic",
       "order": "zxy",
       "angles": {
-        "x": 0,
-        "y": 90,
-        "z": -0
+        "y": 90
       }
     }
   },
   {
     "id": "objective-lens/mounted-lens/lens",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "cube-mounted/lens.dsn/mounted-lens.dsn/BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx.glb",
       "optiland": "cube-mounted/lens.dsn/mounted-lens.dsn/AC254-100-A-Zemax-ZMX.optiland",
@@ -38,15 +36,13 @@
       "kind": "extrinsic",
       "order": "zxy",
       "angles": {
-        "x": 0,
-        "y": 90,
-        "z": -0
+        "y": 90
       }
     }
   },
   {
     "id": "objective-lens/mounted-lens/nut",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2003 - NUTD40.glb",
       "step": "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2003 - NUTD40.stp"
@@ -60,15 +56,13 @@
       "kind": "extrinsic",
       "order": "zxy",
       "angles": {
-        "x": 0,
-        "y": 90,
-        "z": -0
+        "y": 90
       }
     }
   },
   {
     "id": "objective-lens/skeleton/lower-half",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "cube-mounted/lens.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
       "step": "cube-mounted/lens.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -80,17 +74,12 @@
     ],
     "rotation": {
       "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
+      "order": "zxy"
     }
   },
   {
     "id": "objective-lens/skeleton/upper-half",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "cube-mounted/lens.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
       "step": "cube-mounted/lens.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -104,7 +93,6 @@
       "kind": "extrinsic",
       "order": "zxy",
       "angles": {
-        "x": 0,
         "y": -180,
         "z": -180
       }
@@ -112,7 +100,7 @@
   },
   {
     "id": "periscope-mirror-1/mounted-mirror/inner-insert/adhesive-pad",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "cube-mounted/mirror-static.dsn/mounted-mirror.dsn/mounted-mirror-inner.dsn/BUY - Adhesive pad - D22x1.glb",
       "step": "cube-mounted/mirror-static.dsn/mounted-mirror.dsn/mounted-mirror-inner.dsn/BUY - Adhesive pad - D22x1.stp"
@@ -126,15 +114,13 @@
       "kind": "extrinsic",
       "order": "zxy",
       "angles": {
-        "x": 0,
-        "y": -0,
         "z": 135
       }
     }
   },
   {
     "id": "periscope-mirror-1/mounted-mirror/inner-insert/mirror",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "cube-mounted/mirror-static.dsn/mounted-mirror.dsn/mounted-mirror-inner.dsn/BUY - Mirror - D24x3.glb",
       "step": "cube-mounted/mirror-static.dsn/mounted-mirror.dsn/mounted-mirror-inner.dsn/BUY - Mirror - D24x3.stp"
@@ -148,15 +134,13 @@
       "kind": "extrinsic",
       "order": "zxy",
       "angles": {
-        "x": 0,
-        "y": -0,
         "z": 135
       }
     }
   },
   {
     "id": "periscope-mirror-1/mounted-mirror/inner-insert/mount-base",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "cube-mounted/mirror-static.dsn/mounted-mirror.dsn/mounted-mirror-inner.dsn/PRT - 2110 - MASINSMIRHOLLOW - C.glb",
       "step": "cube-mounted/mirror-static.dsn/mounted-mirror.dsn/mounted-mirror-inner.dsn/PRT - 2110 - MASINSMIRHOLLOW - C.stp"
@@ -170,15 +154,13 @@
       "kind": "extrinsic",
       "order": "zxy",
       "angles": {
-        "x": 0,
-        "y": -0,
         "z": 135
       }
     }
   },
   {
     "id": "periscope-mirror-1/mounted-mirror/inner-insert/mount-top",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "cube-mounted/mirror-static.dsn/mounted-mirror.dsn/mounted-mirror-inner.dsn/PRT - 2111 - MASINSMIRHOLUPP - C.glb",
       "step": "cube-mounted/mirror-static.dsn/mounted-mirror.dsn/mounted-mirror-inner.dsn/PRT - 2111 - MASINSMIRHOLUPP - C.stp"
@@ -192,57 +174,27 @@
       "kind": "extrinsic",
       "order": "zxy",
       "angles": {
-        "x": 0,
-        "y": -0,
         "z": 135
       }
     }
   },
   {
     "id": "periscope-mirror-1/mounted-mirror/inner-insert/screw-1",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "bom": "cube-mounted/mirror-static.dsn/mounted-mirror.dsn/mounted-mirror-inner.dsn/TP lens head screw with TORX - 2.5 x 8 - St - A2K.bom.yml"
-    },
-    "position": [
-      0,
-      0,
-      0
-    ],
-    "rotation": {
-      "kind": "",
-      "order": "",
-      "angles": {
-        "x": 0,
-        "y": 0,
-        "z": 0
-      }
     }
   },
   {
     "id": "periscope-mirror-1/mounted-mirror/inner-insert/screw-2",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "bom": "cube-mounted/mirror-static.dsn/mounted-mirror.dsn/mounted-mirror-inner.dsn/TP lens head screw with TORX - 2.5 x 8 - St - A2K.bom.yml"
-    },
-    "position": [
-      0,
-      0,
-      0
-    ],
-    "rotation": {
-      "kind": "",
-      "order": "",
-      "angles": {
-        "x": 0,
-        "y": 0,
-        "z": 0
-      }
     }
   },
   {
     "id": "periscope-mirror-1/mounted-mirror/master-insert-bottom",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "cube-mounted/mirror-static.dsn/mounted-mirror.dsn/PRT - 2100 - MASINS - V04 - B.glb",
       "step": "cube-mounted/mirror-static.dsn/mounted-mirror.dsn/PRT - 2100 - MASINS - V04 - B.stp"
@@ -256,7 +208,6 @@
       "kind": "extrinsic",
       "order": "zxy",
       "angles": {
-        "x": 0,
         "y": -180,
         "z": -90
       }
@@ -264,7 +215,7 @@
   },
   {
     "id": "periscope-mirror-1/mounted-mirror/master-insert-top",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "cube-mounted/mirror-static.dsn/mounted-mirror.dsn/PRT - 2100 - MASINS - V04 - B.glb",
       "step": "cube-mounted/mirror-static.dsn/mounted-mirror.dsn/PRT - 2100 - MASINS - V04 - B.stp"
@@ -278,15 +229,13 @@
       "kind": "extrinsic",
       "order": "zxy",
       "angles": {
-        "x": 0,
-        "y": -0,
         "z": 90
       }
     }
   },
   {
     "id": "periscope-mirror-1/skeleton/lower-half",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "cube-mounted/mirror-static.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
       "step": "cube-mounted/mirror-static.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -300,15 +249,13 @@
       "kind": "extrinsic",
       "order": "zxy",
       "angles": {
-        "x": 0,
-        "y": -0,
         "z": 90
       }
     }
   },
   {
     "id": "periscope-mirror-1/skeleton/upper-half",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "cube-mounted/mirror-static.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
       "step": "cube-mounted/mirror-static.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -322,7 +269,6 @@
       "kind": "extrinsic",
       "order": "zxy",
       "angles": {
-        "x": 0,
         "y": -180,
         "z": -90
       }
@@ -330,7 +276,7 @@
   },
   {
     "id": "periscope-mirror-2/mounted-mirror/inner-insert/adhesive-pad",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "cube-mounted/mirror-static.dsn/mounted-mirror.dsn/mounted-mirror-inner.dsn/BUY - Adhesive pad - D22x1.glb",
       "step": "cube-mounted/mirror-static.dsn/mounted-mirror.dsn/mounted-mirror-inner.dsn/BUY - Adhesive pad - D22x1.stp"
@@ -352,7 +298,7 @@
   },
   {
     "id": "periscope-mirror-2/mounted-mirror/inner-insert/mirror",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "cube-mounted/mirror-static.dsn/mounted-mirror.dsn/mounted-mirror-inner.dsn/BUY - Mirror - D24x3.glb",
       "step": "cube-mounted/mirror-static.dsn/mounted-mirror.dsn/mounted-mirror-inner.dsn/BUY - Mirror - D24x3.stp"
@@ -374,7 +320,7 @@
   },
   {
     "id": "periscope-mirror-2/mounted-mirror/inner-insert/mount-base",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "cube-mounted/mirror-static.dsn/mounted-mirror.dsn/mounted-mirror-inner.dsn/PRT - 2110 - MASINSMIRHOLLOW - C.glb",
       "step": "cube-mounted/mirror-static.dsn/mounted-mirror.dsn/mounted-mirror-inner.dsn/PRT - 2110 - MASINSMIRHOLLOW - C.stp"
@@ -396,7 +342,7 @@
   },
   {
     "id": "periscope-mirror-2/mounted-mirror/inner-insert/mount-top",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "cube-mounted/mirror-static.dsn/mounted-mirror.dsn/mounted-mirror-inner.dsn/PRT - 2111 - MASINSMIRHOLUPP - C.glb",
       "step": "cube-mounted/mirror-static.dsn/mounted-mirror.dsn/mounted-mirror-inner.dsn/PRT - 2111 - MASINSMIRHOLUPP - C.stp"
@@ -418,49 +364,21 @@
   },
   {
     "id": "periscope-mirror-2/mounted-mirror/inner-insert/screw-1",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "bom": "cube-mounted/mirror-static.dsn/mounted-mirror.dsn/mounted-mirror-inner.dsn/TP lens head screw with TORX - 2.5 x 8 - St - A2K.bom.yml"
-    },
-    "position": [
-      0,
-      0,
-      0
-    ],
-    "rotation": {
-      "kind": "",
-      "order": "",
-      "angles": {
-        "x": 0,
-        "y": 0,
-        "z": 0
-      }
     }
   },
   {
     "id": "periscope-mirror-2/mounted-mirror/inner-insert/screw-2",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "bom": "cube-mounted/mirror-static.dsn/mounted-mirror.dsn/mounted-mirror-inner.dsn/TP lens head screw with TORX - 2.5 x 8 - St - A2K.bom.yml"
-    },
-    "position": [
-      0,
-      0,
-      0
-    ],
-    "rotation": {
-      "kind": "",
-      "order": "",
-      "angles": {
-        "x": 0,
-        "y": 0,
-        "z": 0
-      }
     }
   },
   {
     "id": "periscope-mirror-2/mounted-mirror/master-insert-bottom",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "cube-mounted/mirror-static.dsn/mounted-mirror.dsn/PRT - 2100 - MASINS - V04 - B.glb",
       "step": "cube-mounted/mirror-static.dsn/mounted-mirror.dsn/PRT - 2100 - MASINS - V04 - B.stp"
@@ -474,15 +392,13 @@
       "kind": "extrinsic",
       "order": "zxy",
       "angles": {
-        "x": 0,
-        "y": -90,
-        "z": 0
+        "y": -90
       }
     }
   },
   {
     "id": "periscope-mirror-2/mounted-mirror/master-insert-top",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "cube-mounted/mirror-static.dsn/mounted-mirror.dsn/PRT - 2100 - MASINS - V04 - B.glb",
       "step": "cube-mounted/mirror-static.dsn/mounted-mirror.dsn/PRT - 2100 - MASINS - V04 - B.stp"
@@ -496,7 +412,6 @@
       "kind": "extrinsic",
       "order": "zxy",
       "angles": {
-        "x": 0,
         "y": -90,
         "z": -180
       }
@@ -504,7 +419,7 @@
   },
   {
     "id": "periscope-mirror-2/skeleton/lower-half",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "cube-mounted/mirror-static.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
       "step": "cube-mounted/mirror-static.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -518,15 +433,13 @@
       "kind": "extrinsic",
       "order": "zxy",
       "angles": {
-        "x": 0,
-        "y": 0,
         "z": -90
       }
     }
   },
   {
     "id": "periscope-mirror-2/skeleton/upper-half",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "cube-mounted/mirror-static.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
       "step": "cube-mounted/mirror-static.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -540,7 +453,6 @@
       "kind": "extrinsic",
       "order": "zxy",
       "angles": {
-        "x": 0,
         "y": 180,
         "z": 90
       }
@@ -548,7 +460,7 @@
   },
   {
     "id": "sample-holder/mounted-slide-holder/clip",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "cube-mounted/slide-holder.dsn/mounted-holder.dsn/PRT - 2008 - SAMCLP.glb",
       "step": "cube-mounted/slide-holder.dsn/mounted-holder.dsn/PRT - 2008 - SAMCLP.stp"
@@ -562,15 +474,13 @@
       "kind": "extrinsic",
       "order": "zxy",
       "angles": {
-        "x": 0,
-        "y": 90,
-        "z": -0
+        "y": 90
       }
     }
   },
   {
     "id": "sample-holder/mounted-slide-holder/insert",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "cube-mounted/slide-holder.dsn/mounted-holder.dsn/PRT - 2028 - INSSAMMNT - V04.glb",
       "step": "cube-mounted/slide-holder.dsn/mounted-holder.dsn/PRT - 2028 - INSSAMMNT - V04.stp"
@@ -584,135 +494,61 @@
       "kind": "extrinsic",
       "order": "zxy",
       "angles": {
-        "x": 0,
-        "y": 90,
-        "z": -0
+        "y": 90
       }
     }
   },
   {
     "id": "sample-holder/mounted-slide-holder/magnet-1",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "bom": "cube-mounted/slide-holder.dsn/mounted-holder.dsn/BUY - NeFeB-Magnet - ø8x3 N40 Ni.bom.yml"
-    },
-    "position": [
-      0,
-      0,
-      0
-    ],
-    "rotation": {
-      "kind": "",
-      "order": "",
-      "angles": {
-        "x": 0,
-        "y": 0,
-        "z": 0
-      }
     }
   },
   {
     "id": "sample-holder/mounted-slide-holder/magnet-2",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "bom": "cube-mounted/slide-holder.dsn/mounted-holder.dsn/BUY - NeFeB-Magnet - ø8x3 N40 Ni.bom.yml"
-    },
-    "position": [
-      0,
-      0,
-      0
-    ],
-    "rotation": {
-      "kind": "",
-      "order": "",
-      "angles": {
-        "x": 0,
-        "y": 0,
-        "z": 0
-      }
     }
   },
   {
     "id": "sample-holder/mounted-slide-holder/magnet-3",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "bom": "cube-mounted/slide-holder.dsn/mounted-holder.dsn/BUY - NeFeB-Magnet - ø8x3 N40 Ni.bom.yml"
-    },
-    "position": [
-      0,
-      0,
-      0
-    ],
-    "rotation": {
-      "kind": "",
-      "order": "",
-      "angles": {
-        "x": 0,
-        "y": 0,
-        "z": 0
-      }
     }
   },
   {
     "id": "sample-holder/mounted-slide-holder/magnet-4",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "bom": "cube-mounted/slide-holder.dsn/mounted-holder.dsn/BUY - NeFeB-Magnet - ø8x3 N40 Ni.bom.yml"
-    },
-    "position": [
-      0,
-      0,
-      0
-    ],
-    "rotation": {
-      "kind": "",
-      "order": "",
-      "angles": {
-        "x": 0,
-        "y": 0,
-        "z": 0
-      }
     }
   },
   {
     "id": "sample-holder/skeleton/lower-half",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "cube-mounted/slide-holder.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
       "step": "cube-mounted/slide-holder.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
     },
-    "position": [
-      0,
-      0,
-      0
-    ],
     "rotation": {
       "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
+      "order": "zxy"
     }
   },
   {
     "id": "sample-holder/skeleton/upper-half",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "cube-mounted/slide-holder.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
       "step": "cube-mounted/slide-holder.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
     },
-    "position": [
-      0,
-      0,
-      0
-    ],
     "rotation": {
       "kind": "extrinsic",
       "order": "zxy",
       "angles": {
-        "x": 0,
         "y": -180,
         "z": -180
       }
@@ -720,7 +556,7 @@
   },
   {
     "id": "tube-lens/mounted-lens/insert",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2023 - INSLEND40F50 - V04.glb",
       "step": "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2023 - INSLEND40F50 - V04.stp"
@@ -732,17 +568,12 @@
     ],
     "rotation": {
       "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
+      "order": "zxy"
     }
   },
   {
     "id": "tube-lens/mounted-lens/lens",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "cube-mounted/lens.dsn/mounted-lens.dsn/BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx.glb",
       "optiland": "cube-mounted/lens.dsn/mounted-lens.dsn/AC254-100-A-Zemax-ZMX.optiland",
@@ -755,17 +586,12 @@
     ],
     "rotation": {
       "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
+      "order": "zxy"
     }
   },
   {
     "id": "tube-lens/mounted-lens/nut",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2003 - NUTD40.glb",
       "step": "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2003 - NUTD40.stp"
@@ -777,17 +603,12 @@
     ],
     "rotation": {
       "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
+      "order": "zxy"
     }
   },
   {
     "id": "tube-lens/skeleton/lower-half",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "cube-mounted/lens.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
       "step": "cube-mounted/lens.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -799,17 +620,12 @@
     ],
     "rotation": {
       "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
+      "order": "zxy"
     }
   },
   {
     "id": "tube-lens/skeleton/upper-half",
-    "kind": "static",
+    "kind": "primitive/static",
     "static-models": {
       "gltf": "cube-mounted/lens.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
       "step": "cube-mounted/lens.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -823,7 +639,6 @@
       "kind": "extrinsic",
       "order": "zxy",
       "angles": {
-        "x": 0,
         "y": -180,
         "z": -180
       }

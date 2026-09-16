@@ -17,7 +17,7 @@ components:
           y: 1
   camera-basic:
     kind: design
-    design: cube-mounted/hikcamera-with-objective.dsn
+    design: primitives/hikcamera-with-objective.dsn
     pose:
       rotation:
         kind: grid

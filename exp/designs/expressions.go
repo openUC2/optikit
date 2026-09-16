@@ -173,11 +173,8 @@ func (e ExprEnvInput) ToMap() map[string]any {
 
 // Expr
 
-func (e Expr) evalAsAny(env any, options ...exprl.Option) (result any, err error) {
-	options = append([]exprl.Option{}, options...)
-	options = append(options, exprl.AsAny())
-
-	raw, err := e.eval(env, options...)
+func (e Expr) evalAsAny(env any) (result any, err error) {
+	raw, err := e.eval(env, exprl.AsAny())
 	if err != nil {
 		return raw, errors.Wrapf(err, "couldn't evaluate expression for generic result")
 	}

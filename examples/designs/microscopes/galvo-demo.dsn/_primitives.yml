@@ -1,5 +1,5 @@
 - id: galvo-mirror-pair-1/mounted-mirrors/cube-insert
-  kind: static
+  kind: primitive/static
   static-models:
     gltf: "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/PRT - 2164 - INSGLV - V04.glb"
     step: "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/PRT - 2164 - INSGLV - V04.stp"
@@ -7,9 +7,10 @@
   rotation:
     kind: extrinsic
     order: zxy
-    angles: {z: -90.0}
+    angles:
+      z: -90.0
 - id: galvo-mirror-pair-1/mounted-mirrors/motorized-mirror-1/motorized-mirror
-  kind: static
+  kind: primitive/static
   static-models:
     gltf: "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/BUY - Galvo scanner XY --- single motor.glb"
     step: "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/BUY - Galvo scanner XY --- single motor.stp"
@@ -17,9 +18,11 @@
   rotation:
     kind: extrinsic
     order: zxy
-    angles: {"y": -170.0, z: -90.0}
+    angles:
+      "y": -170.0
+      z: -90.0
 - id: galvo-mirror-pair-1/mounted-mirrors/motorized-mirror-1/mount-ring
-  kind: static
+  kind: primitive/static
   static-models:
     gltf: "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/PRT - 2180 - DISRNG.glb"
     step: "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/PRT - 2180 - DISRNG.stp"
@@ -27,9 +30,10 @@
   rotation:
     kind: extrinsic
     order: zxy
-    angles: {"y": -180.0}
+    angles:
+      "y": -180.0
 - id: galvo-mirror-pair-1/mounted-mirrors/motorized-mirror-1/mount-top
-  kind: static
+  kind: primitive/static
   static-models:
     gltf: "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/PRT - 2165 - CLPPCE.glb"
     step: "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/PRT - 2165 - CLPPCE.stp"
@@ -37,27 +41,21 @@
   rotation:
     kind: extrinsic
     order: zxy
-    angles: {"y": -180.0, z: -90.0}
+    angles:
+      "y": -180.0
+      z: -90.0
 - id: galvo-mirror-pair-1/mounted-mirrors/motorized-mirror-1/screw-1
-  kind: static
+  kind: primitive/static
   static-models:
     bom: "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 20 - 8.8 - A2K.bom.yml"
   position: [0.0, 0.0, 0.0]
-  rotation:
-    kind: ""
-    order: ""
-    angles: {}
 - id: galvo-mirror-pair-1/mounted-mirrors/motorized-mirror-1/screw-2
-  kind: static
+  kind: primitive/static
   static-models:
     bom: "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 20 - 8.8 - A2K.bom.yml"
   position: [0.0, 0.0, 0.0]
-  rotation:
-    kind: ""
-    order: ""
-    angles: {}
 - id: galvo-mirror-pair-1/mounted-mirrors/motorized-mirror-2/motorized-mirror
-  kind: static
+  kind: primitive/static
   static-models:
     gltf: "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/BUY - Galvo scanner XY --- single motor.glb"
     step: "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/BUY - Galvo scanner XY --- single motor.stp"
@@ -65,9 +63,10 @@
   rotation:
     kind: extrinsic
     order: zxy
-    angles: {"y": -140.0}
+    angles:
+      "y": -140.0
 - id: galvo-mirror-pair-1/mounted-mirrors/motorized-mirror-2/mount-ring
-  kind: static
+  kind: primitive/static
   static-models:
     gltf: "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/PRT - 2180 - DISRNG.glb"
     step: "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/PRT - 2180 - DISRNG.stp"
@@ -75,9 +74,11 @@
   rotation:
     kind: extrinsic
     order: zxy
-    angles: {"y": 180.0, z: 90.0}
+    angles:
+      "y": 180.0
+      z: 90.0
 - id: galvo-mirror-pair-1/mounted-mirrors/motorized-mirror-2/mount-top
-  kind: static
+  kind: primitive/static
   static-models:
     gltf: "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/PRT - 2165 - CLPPCE.glb"
     step: "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/PRT - 2165 - CLPPCE.stp"
@@ -85,27 +86,20 @@
   rotation:
     kind: extrinsic
     order: zxy
-    angles: {"y": -180.0}
+    angles:
+      "y": -180.0
 - id: galvo-mirror-pair-1/mounted-mirrors/motorized-mirror-2/screw-1
-  kind: static
+  kind: primitive/static
   static-models:
     bom: "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 20 - 8.8 - A2K.bom.yml"
   position: [0.0, 0.0, 0.0]
-  rotation:
-    kind: ""
-    order: ""
-    angles: {}
 - id: galvo-mirror-pair-1/mounted-mirrors/motorized-mirror-2/screw-2
-  kind: static
+  kind: primitive/static
   static-models:
     bom: "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 20 - 8.8 - A2K.bom.yml"
   position: [0.0, 0.0, 0.0]
-  rotation:
-    kind: ""
-    order: ""
-    angles: {}
 - id: galvo-mirror-pair-1/skeleton-extra-full/lower-half
-  kind: static
+  kind: primitive/static
   static-models:
     gltf: "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb"
     step: "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -113,9 +107,8 @@
   rotation:
     kind: extrinsic
     order: zxy
-    angles: {}
 - id: galvo-mirror-pair-1/skeleton-extra-full/upper-half
-  kind: static
+  kind: primitive/static
   static-models:
     gltf: "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb"
     step: "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -123,9 +116,11 @@
   rotation:
     kind: extrinsic
     order: zxy
-    angles: {"y": -180.0, z: -180.0}
+    angles:
+      "y": -180.0
+      z: -180.0
 - id: galvo-mirror-pair-1/skeleton-extra-partial
-  kind: static
+  kind: primitive/static
   static-models:
     gltf: "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb"
     step: "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -133,9 +128,11 @@
   rotation:
     kind: extrinsic
     order: zxy
-    angles: {"y": -180.0, z: -180.0}
+    angles:
+      "y": -180.0
+      z: -180.0
 - id: galvo-mirror-pair-1/skeleton/lower-half
-  kind: static
+  kind: primitive/static
   static-models:
     gltf: "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb"
     step: "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -143,9 +140,8 @@
   rotation:
     kind: extrinsic
     order: zxy
-    angles: {}
 - id: galvo-mirror-pair-1/skeleton/upper-half
-  kind: static
+  kind: primitive/static
   static-models:
     gltf: "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb"
     step: "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -153,9 +149,11 @@
   rotation:
     kind: extrinsic
     order: zxy
-    angles: {"y": -180.0, z: -180.0}
+    angles:
+      "y": -180.0
+      z: -180.0
 - id: galvo-mirror-pair-2/mounted-mirrors/cube-insert
-  kind: static
+  kind: primitive/static
   static-models:
     gltf: "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/PRT - 2164 - INSGLV - V04.glb"
     step: "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/PRT - 2164 - INSGLV - V04.stp"
@@ -163,9 +161,10 @@
   rotation:
     kind: extrinsic
     order: zxy
-    angles: {z: -90.0}
+    angles:
+      z: -90.0
 - id: galvo-mirror-pair-2/mounted-mirrors/motorized-mirror-1/motorized-mirror
-  kind: static
+  kind: primitive/static
   static-models:
     gltf: "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/BUY - Galvo scanner XY --- single motor.glb"
     step: "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/BUY - Galvo scanner XY --- single motor.stp"
@@ -173,9 +172,11 @@
   rotation:
     kind: extrinsic
     order: zxy
-    angles: {"y": -160.0, z: -90.0}
+    angles:
+      "y": -160.0
+      z: -90.0
 - id: galvo-mirror-pair-2/mounted-mirrors/motorized-mirror-1/mount-ring
-  kind: static
+  kind: primitive/static
   static-models:
     gltf: "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/PRT - 2180 - DISRNG.glb"
     step: "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/PRT - 2180 - DISRNG.stp"
@@ -183,9 +184,10 @@
   rotation:
     kind: extrinsic
     order: zxy
-    angles: {"y": -180.0}
+    angles:
+      "y": -180.0
 - id: galvo-mirror-pair-2/mounted-mirrors/motorized-mirror-1/mount-top
-  kind: static
+  kind: primitive/static
   static-models:
     gltf: "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/PRT - 2165 - CLPPCE.glb"
     step: "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/PRT - 2165 - CLPPCE.stp"
@@ -193,27 +195,21 @@
   rotation:
     kind: extrinsic
     order: zxy
-    angles: {"y": -180.0, z: -90.0}
+    angles:
+      "y": -180.0
+      z: -90.0
 - id: galvo-mirror-pair-2/mounted-mirrors/motorized-mirror-1/screw-1
-  kind: static
+  kind: primitive/static
   static-models:
     bom: "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 20 - 8.8 - A2K.bom.yml"
   position: [0.0, 0.0, 0.0]
-  rotation:
-    kind: ""
-    order: ""
-    angles: {}
 - id: galvo-mirror-pair-2/mounted-mirrors/motorized-mirror-1/screw-2
-  kind: static
+  kind: primitive/static
   static-models:
     bom: "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 20 - 8.8 - A2K.bom.yml"
   position: [0.0, 0.0, 0.0]
-  rotation:
-    kind: ""
-    order: ""
-    angles: {}
 - id: galvo-mirror-pair-2/mounted-mirrors/motorized-mirror-2/motorized-mirror
-  kind: static
+  kind: primitive/static
   static-models:
     gltf: "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/BUY - Galvo scanner XY --- single motor.glb"
     step: "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/BUY - Galvo scanner XY --- single motor.stp"
@@ -221,9 +217,10 @@
   rotation:
     kind: extrinsic
     order: zxy
-    angles: {"y": -120.0}
+    angles:
+      "y": -120.0
 - id: galvo-mirror-pair-2/mounted-mirrors/motorized-mirror-2/mount-ring
-  kind: static
+  kind: primitive/static
   static-models:
     gltf: "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/PRT - 2180 - DISRNG.glb"
     step: "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/PRT - 2180 - DISRNG.stp"
@@ -231,9 +228,11 @@
   rotation:
     kind: extrinsic
     order: zxy
-    angles: {"y": 180.0, z: 90.0}
+    angles:
+      "y": 180.0
+      z: 90.0
 - id: galvo-mirror-pair-2/mounted-mirrors/motorized-mirror-2/mount-top
-  kind: static
+  kind: primitive/static
   static-models:
     gltf: "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/PRT - 2165 - CLPPCE.glb"
     step: "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/PRT - 2165 - CLPPCE.stp"
@@ -241,27 +240,20 @@
   rotation:
     kind: extrinsic
     order: zxy
-    angles: {"y": -180.0}
+    angles:
+      "y": -180.0
 - id: galvo-mirror-pair-2/mounted-mirrors/motorized-mirror-2/screw-1
-  kind: static
+  kind: primitive/static
   static-models:
     bom: "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 20 - 8.8 - A2K.bom.yml"
   position: [0.0, 0.0, 0.0]
-  rotation:
-    kind: ""
-    order: ""
-    angles: {}
 - id: galvo-mirror-pair-2/mounted-mirrors/motorized-mirror-2/screw-2
-  kind: static
+  kind: primitive/static
   static-models:
     bom: "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 20 - 8.8 - A2K.bom.yml"
   position: [0.0, 0.0, 0.0]
-  rotation:
-    kind: ""
-    order: ""
-    angles: {}
 - id: galvo-mirror-pair-2/skeleton-extra-full/lower-half
-  kind: static
+  kind: primitive/static
   static-models:
     gltf: "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb"
     step: "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -269,9 +261,8 @@
   rotation:
     kind: extrinsic
     order: zxy
-    angles: {}
 - id: galvo-mirror-pair-2/skeleton-extra-full/upper-half
-  kind: static
+  kind: primitive/static
   static-models:
     gltf: "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb"
     step: "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -279,9 +270,11 @@
   rotation:
     kind: extrinsic
     order: zxy
-    angles: {"y": -180.0, z: -180.0}
+    angles:
+      "y": -180.0
+      z: -180.0
 - id: galvo-mirror-pair-2/skeleton-extra-partial
-  kind: static
+  kind: primitive/static
   static-models:
     gltf: "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb"
     step: "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -289,9 +282,11 @@
   rotation:
     kind: extrinsic
     order: zxy
-    angles: {"y": -180.0, z: -180.0}
+    angles:
+      "y": -180.0
+      z: -180.0
 - id: galvo-mirror-pair-2/skeleton/lower-half
-  kind: static
+  kind: primitive/static
   static-models:
     gltf: "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb"
     step: "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -299,9 +294,8 @@
   rotation:
     kind: extrinsic
     order: zxy
-    angles: {}
 - id: galvo-mirror-pair-2/skeleton/upper-half
-  kind: static
+  kind: primitive/static
   static-models:
     gltf: "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb"
     step: "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -309,9 +303,11 @@
   rotation:
     kind: extrinsic
     order: zxy
-    angles: {"y": -180.0, z: -180.0}
+    angles:
+      "y": -180.0
+      z: -180.0
 - id: galvo-mirror-pair-3/mounted-mirrors/cube-insert
-  kind: static
+  kind: primitive/static
   static-models:
     gltf: "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/PRT - 2164 - INSGLV - V04.glb"
     step: "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/PRT - 2164 - INSGLV - V04.stp"
@@ -319,9 +315,10 @@
   rotation:
     kind: extrinsic
     order: zxy
-    angles: {z: -90.0}
+    angles:
+      z: -90.0
 - id: galvo-mirror-pair-3/mounted-mirrors/motorized-mirror-1/motorized-mirror
-  kind: static
+  kind: primitive/static
   static-models:
     gltf: "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/BUY - Galvo scanner XY --- single motor.glb"
     step: "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/BUY - Galvo scanner XY --- single motor.stp"
@@ -329,9 +326,11 @@
   rotation:
     kind: extrinsic
     order: zxy
-    angles: {"y": -140.0, z: -90.0}
+    angles:
+      "y": -140.0
+      z: -90.0
 - id: galvo-mirror-pair-3/mounted-mirrors/motorized-mirror-1/mount-ring
-  kind: static
+  kind: primitive/static
   static-models:
     gltf: "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/PRT - 2180 - DISRNG.glb"
     step: "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/PRT - 2180 - DISRNG.stp"
@@ -339,9 +338,10 @@
   rotation:
     kind: extrinsic
     order: zxy
-    angles: {"y": -180.0}
+    angles:
+      "y": -180.0
 - id: galvo-mirror-pair-3/mounted-mirrors/motorized-mirror-1/mount-top
-  kind: static
+  kind: primitive/static
   static-models:
     gltf: "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/PRT - 2165 - CLPPCE.glb"
     step: "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/PRT - 2165 - CLPPCE.stp"
@@ -349,27 +349,21 @@
   rotation:
     kind: extrinsic
     order: zxy
-    angles: {"y": -180.0, z: -90.0}
+    angles:
+      "y": -180.0
+      z: -90.0
 - id: galvo-mirror-pair-3/mounted-mirrors/motorized-mirror-1/screw-1
-  kind: static
+  kind: primitive/static
   static-models:
     bom: "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 20 - 8.8 - A2K.bom.yml"
   position: [0.0, 0.0, 0.0]
-  rotation:
-    kind: ""
-    order: ""
-    angles: {}
 - id: galvo-mirror-pair-3/mounted-mirrors/motorized-mirror-1/screw-2
-  kind: static
+  kind: primitive/static
   static-models:
     bom: "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 20 - 8.8 - A2K.bom.yml"
   position: [0.0, 0.0, 0.0]
-  rotation:
-    kind: ""
-    order: ""
-    angles: {}
 - id: galvo-mirror-pair-3/mounted-mirrors/motorized-mirror-2/motorized-mirror
-  kind: static
+  kind: primitive/static
   static-models:
     gltf: "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/BUY - Galvo scanner XY --- single motor.glb"
     step: "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/BUY - Galvo scanner XY --- single motor.stp"
@@ -377,9 +371,10 @@
   rotation:
     kind: extrinsic
     order: zxy
-    angles: {"y": -100.0}
+    angles:
+      "y": -100.0
 - id: galvo-mirror-pair-3/mounted-mirrors/motorized-mirror-2/mount-ring
-  kind: static
+  kind: primitive/static
   static-models:
     gltf: "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/PRT - 2180 - DISRNG.glb"
     step: "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/PRT - 2180 - DISRNG.stp"
@@ -387,9 +382,11 @@
   rotation:
     kind: extrinsic
     order: zxy
-    angles: {"y": 180.0, z: 90.0}
+    angles:
+      "y": 180.0
+      z: 90.0
 - id: galvo-mirror-pair-3/mounted-mirrors/motorized-mirror-2/mount-top
-  kind: static
+  kind: primitive/static
   static-models:
     gltf: "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/PRT - 2165 - CLPPCE.glb"
     step: "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/PRT - 2165 - CLPPCE.stp"
@@ -397,27 +394,20 @@
   rotation:
     kind: extrinsic
     order: zxy
-    angles: {"y": -180.0}
+    angles:
+      "y": -180.0
 - id: galvo-mirror-pair-3/mounted-mirrors/motorized-mirror-2/screw-1
-  kind: static
+  kind: primitive/static
   static-models:
     bom: "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 20 - 8.8 - A2K.bom.yml"
   position: [0.0, 0.0, 0.0]
-  rotation:
-    kind: ""
-    order: ""
-    angles: {}
 - id: galvo-mirror-pair-3/mounted-mirrors/motorized-mirror-2/screw-2
-  kind: static
+  kind: primitive/static
   static-models:
     bom: "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 20 - 8.8 - A2K.bom.yml"
   position: [0.0, 0.0, 0.0]
-  rotation:
-    kind: ""
-    order: ""
-    angles: {}
 - id: galvo-mirror-pair-3/skeleton-extra-full/lower-half
-  kind: static
+  kind: primitive/static
   static-models:
     gltf: "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb"
     step: "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -425,9 +415,8 @@
   rotation:
     kind: extrinsic
     order: zxy
-    angles: {}
 - id: galvo-mirror-pair-3/skeleton-extra-full/upper-half
-  kind: static
+  kind: primitive/static
   static-models:
     gltf: "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb"
     step: "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -435,9 +424,11 @@
   rotation:
     kind: extrinsic
     order: zxy
-    angles: {"y": -180.0, z: -180.0}
+    angles:
+      "y": -180.0
+      z: -180.0
 - id: galvo-mirror-pair-3/skeleton-extra-partial
-  kind: static
+  kind: primitive/static
   static-models:
     gltf: "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb"
     step: "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -445,9 +436,11 @@
   rotation:
     kind: extrinsic
     order: zxy
-    angles: {"y": -180.0, z: -180.0}
+    angles:
+      "y": -180.0
+      z: -180.0
 - id: galvo-mirror-pair-3/skeleton/lower-half
-  kind: static
+  kind: primitive/static
   static-models:
     gltf: "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb"
     step: "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -455,9 +448,8 @@
   rotation:
     kind: extrinsic
     order: zxy
-    angles: {}
 - id: galvo-mirror-pair-3/skeleton/upper-half
-  kind: static
+  kind: primitive/static
   static-models:
     gltf: "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb"
     step: "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -465,4 +457,6 @@
   rotation:
     kind: extrinsic
     order: zxy
-    angles: {"y": -180.0, z: -180.0}
+    angles:
+      "y": -180.0
+      z: -180.0

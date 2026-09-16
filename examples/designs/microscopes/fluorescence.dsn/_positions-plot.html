@@ -1,0 +1,1162 @@
+<!DOCTYPE html><html><head>
+    <meta charset="utf-8"/>
+    <title>Awesome go-echarts</title>
+    <script src="https://go-echarts.github.io/go-echarts-assets/assets/echarts.min.js"></script>
+    <script src="https://go-echarts.github.io/go-echarts-assets/assets/echarts@4.min.js"></script>
+    <script src="https://go-echarts.github.io/go-echarts-assets/assets/echarts-gl.min.js"></script>
+</head>
+
+<body><div class="container">
+    <div class="item" id="chart" style="width:1600px;height:800px;"></div>
+</div><script type="text/javascript">
+    "use strict";
+    let goecharts_chart = echarts.init(document.getElementById('chart'), "white", { renderer: "canvas" });
+    let option_chart = {
+      "color": [
+        "#5470c6",
+        "#91cc75",
+        "#fac858",
+        "#ee6666",
+        "#73c0de",
+        "#3ba272",
+        "#fc8452",
+        "#9a60b4",
+        "#ea7ccc"
+      ],
+      "grid3D": {},
+      "legend": {},
+      "series": [
+        {
+          "name": "blue-laser",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                50,
+                75,
+                0
+              ]
+            },
+            {
+              "value": [
+                50,
+                50,
+                0
+              ]
+            },
+            {
+              "value": [
+                50,
+                25,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "blue-laser",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                25,
+                50,
+                0
+              ]
+            },
+            {
+              "value": [
+                50,
+                50,
+                0
+              ]
+            },
+            {
+              "value": [
+                75,
+                50,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "blue-laser",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                50,
+                50,
+                -25
+              ]
+            },
+            {
+              "value": [
+                50,
+                50,
+                0
+              ]
+            },
+            {
+              "value": [
+                50,
+                50,
+                25
+              ]
+            }
+          ]
+        },
+        {
+          "name": "blue-laser",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                50,
+                25,
+                0
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                75,
+                50,
+                0
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                50,
+                25,
+                0
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                50,
+                50,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "camera",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -25,
+                0,
+                0
+              ]
+            },
+            {
+              "value": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "value": [
+                25,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "camera",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                0,
+                -25,
+                0
+              ]
+            },
+            {
+              "value": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "value": [
+                0,
+                25,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "camera",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                0,
+                0,
+                -25
+              ]
+            },
+            {
+              "value": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "value": [
+                0,
+                0,
+                25
+              ]
+            }
+          ]
+        },
+        {
+          "name": "camera",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                25,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                0,
+                25,
+                0
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                25,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                0,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "dichroic",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                50,
+                25,
+                0
+              ]
+            },
+            {
+              "value": [
+                50,
+                0,
+                0
+              ]
+            },
+            {
+              "value": [
+                50,
+                -25,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "dichroic",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                75,
+                0,
+                0
+              ]
+            },
+            {
+              "value": [
+                50,
+                0,
+                0
+              ]
+            },
+            {
+              "value": [
+                25,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "dichroic",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                50,
+                0,
+                25
+              ]
+            },
+            {
+              "value": [
+                50,
+                0,
+                0
+              ]
+            },
+            {
+              "value": [
+                50,
+                0,
+                -25
+              ]
+            }
+          ]
+        },
+        {
+          "name": "dichroic",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                50,
+                -25,
+                0
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                25,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                50,
+                -25,
+                0
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                50,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "electronics-controller",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                0,
+                25,
+                -35
+              ]
+            },
+            {
+              "value": [
+                25,
+                25,
+                -35
+              ]
+            },
+            {
+              "value": [
+                50,
+                25,
+                -35
+              ]
+            }
+          ]
+        },
+        {
+          "name": "electronics-controller",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                25,
+                50,
+                -35
+              ]
+            },
+            {
+              "value": [
+                25,
+                25,
+                -35
+              ]
+            },
+            {
+              "value": [
+                25,
+                0,
+                -35
+              ]
+            }
+          ]
+        },
+        {
+          "name": "electronics-controller",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                25,
+                25,
+                -10
+              ]
+            },
+            {
+              "value": [
+                25,
+                25,
+                -35
+              ]
+            },
+            {
+              "value": [
+                25,
+                25,
+                -60
+              ]
+            }
+          ]
+        },
+        {
+          "name": "electronics-controller",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                50,
+                25,
+                -35
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                25,
+                0,
+                -35
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                50,
+                25,
+                -35
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                25,
+                25,
+                -35
+              ]
+            }
+          ]
+        },
+        {
+          "name": "fiber-holder",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                0,
+                -25,
+                0
+              ]
+            },
+            {
+              "value": [
+                0,
+                -50,
+                0
+              ]
+            },
+            {
+              "value": [
+                0,
+                -75,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "fiber-holder",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                -25,
+                -50,
+                0
+              ]
+            },
+            {
+              "value": [
+                0,
+                -50,
+                0
+              ]
+            },
+            {
+              "value": [
+                25,
+                -50,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "fiber-holder",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                0,
+                -50,
+                -25
+              ]
+            },
+            {
+              "value": [
+                0,
+                -50,
+                0
+              ]
+            },
+            {
+              "value": [
+                0,
+                -50,
+                25
+              ]
+            }
+          ]
+        },
+        {
+          "name": "fiber-holder",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                0,
+                -75,
+                0
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                25,
+                -50,
+                0
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                0,
+                -75,
+                0
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                0,
+                -50,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "laser-mirror",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                50,
+                -75,
+                0
+              ]
+            },
+            {
+              "value": [
+                50,
+                -50,
+                0
+              ]
+            },
+            {
+              "value": [
+                50,
+                -25,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "laser-mirror",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                75,
+                -50,
+                0
+              ]
+            },
+            {
+              "value": [
+                50,
+                -50,
+                0
+              ]
+            },
+            {
+              "value": [
+                25,
+                -50,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "laser-mirror",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                50,
+                -50,
+                -25
+              ]
+            },
+            {
+              "value": [
+                50,
+                -50,
+                0
+              ]
+            },
+            {
+              "value": [
+                50,
+                -50,
+                25
+              ]
+            }
+          ]
+        },
+        {
+          "name": "laser-mirror",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                50,
+                -25,
+                0
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                25,
+                -50,
+                0
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                50,
+                -25,
+                0
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                50,
+                -50,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "objective",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                75,
+                0,
+                0
+              ]
+            },
+            {
+              "value": [
+                100,
+                0,
+                0
+              ]
+            },
+            {
+              "value": [
+                125,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "objective",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                100,
+                -25,
+                0
+              ]
+            },
+            {
+              "value": [
+                100,
+                0,
+                0
+              ]
+            },
+            {
+              "value": [
+                100,
+                25,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "objective",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                100,
+                0,
+                -25
+              ]
+            },
+            {
+              "value": [
+                100,
+                0,
+                0
+              ]
+            },
+            {
+              "value": [
+                100,
+                0,
+                25
+              ]
+            }
+          ]
+        },
+        {
+          "name": "objective",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                125,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                100,
+                25,
+                0
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                125,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                100,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "sample-mirror",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                175,
+                0,
+                0
+              ]
+            },
+            {
+              "value": [
+                150,
+                0,
+                0
+              ]
+            },
+            {
+              "value": [
+                125,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "sample-mirror",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                150,
+                -25,
+                0
+              ]
+            },
+            {
+              "value": [
+                150,
+                0,
+                0
+              ]
+            },
+            {
+              "value": [
+                150,
+                25,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "sample-mirror",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                150,
+                0,
+                25
+              ]
+            },
+            {
+              "value": [
+                150,
+                0,
+                0
+              ]
+            },
+            {
+              "value": [
+                150,
+                0,
+                -25
+              ]
+            }
+          ]
+        },
+        {
+          "name": "sample-mirror",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                125,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                150,
+                25,
+                0
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                125,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                150,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "sample-stage",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                125,
+                0,
+                -110
+              ]
+            },
+            {
+              "value": [
+                150,
+                0,
+                -110
+              ]
+            },
+            {
+              "value": [
+                175,
+                0,
+                -110
+              ]
+            }
+          ]
+        },
+        {
+          "name": "sample-stage",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                150,
+                -25,
+                -110
+              ]
+            },
+            {
+              "value": [
+                150,
+                0,
+                -110
+              ]
+            },
+            {
+              "value": [
+                150,
+                25,
+                -110
+              ]
+            }
+          ]
+        },
+        {
+          "name": "sample-stage",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "value": [
+                150,
+                0,
+                -135
+              ]
+            },
+            {
+              "value": [
+                150,
+                0,
+                -110
+              ]
+            },
+            {
+              "value": [
+                150,
+                0,
+                -85
+              ]
+            }
+          ]
+        },
+        {
+          "name": "sample-stage",
+          "type": "line3D",
+          "coordinateSystem": "cartesian3D",
+          "data": [
+            {
+              "name": "+x",
+              "value": [
+                175,
+                0,
+                -110
+              ]
+            },
+            {
+              "name": "+y",
+              "value": [
+                150,
+                25,
+                -110
+              ]
+            },
+            {
+              "name": "+x",
+              "value": [
+                175,
+                0,
+                -110
+              ]
+            },
+            {
+              "name": "o",
+              "value": [
+                150,
+                0,
+                -110
+              ]
+            }
+          ]
+        }
+      ],
+      "title": {},
+      "toolbox": {},
+      "tooltip": {},
+      "xAxis3D": {
+        "min": -25,
+        "max": 175
+      },
+      "yAxis3D": {
+        "min": -112.5,
+        "max": 87.5
+      },
+      "zAxis3D": {
+        "min": -155,
+        "max": 45
+      }
+    };
+
+    goecharts_chart.setOption(option_chart);
+</script>
+<style>
+    .container {margin-top:30px; display: flex;justify-content: center;align-items: center;}
+    .item {margin: auto;}
+</style>
+
+
+</body></html>
