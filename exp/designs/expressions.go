@@ -173,11 +173,14 @@ func (e ExprEnvInput) ToMap() map[string]any {
 
 // Expr
 
-func (e Expr) evalAsAny(env any, options ...exprl.Option) (result any, err error) {
-	options = append([]exprl.Option{}, options...)
-	options = append(options, exprl.AsAny())
+// evalAsAny returns the expression as a string literal if it doesn't contain the expected
+// expression prefix `~ `; otherwise, it evaluates the expression.
+func (e Expr) evalAsAny(env any) (result any, err error) {
+	if s := string(e); !strings.HasPrefix(s, ExprPrefix) {
+		return strings.TrimPrefix(s, ExprPrefix), nil
+	}
 
-	raw, err := e.eval(env, options...)
+	raw, err := e.eval(env, exprl.AsAny())
 	if err != nil {
 		return raw, errors.Wrapf(err, "couldn't evaluate expression for generic result")
 	}

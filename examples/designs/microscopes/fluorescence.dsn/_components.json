@@ -1,0 +1,811 @@
+{
+  "optikit-version": "v0.0.0-dev",
+  "components": [
+    {
+      "id": "blue-laser",
+      "kind": "design",
+      "design": "primitives/laser.dsn",
+      "instantiation": {
+        "inputs": {
+          "newswitch-controller": "my-favorite-mainboard",
+          "newswitch-device-id": "hotlaser123"
+        }
+      },
+      "position": [
+        50,
+        50,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "z": -90
+        }
+      }
+    },
+    {
+      "id": "blue-laser/drivers",
+      "kind": "primitive/static",
+      "static-models": {
+        "newswitch-device": "primitives/laser.dsn/laser.newswitch-device.yml"
+      },
+      "results": {
+        "newswitch-device-config": {
+          "controller": "my-favorite-mainboard"
+        },
+        "newswitch-device-id": "hotlaser123"
+      }
+    },
+    {
+      "id": "blue-laser/laser",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "primitives/laser.dsn/ASS - 4005 - LAS+CAS.glb",
+        "step": "primitives/laser.dsn/ASS - 4005 - LAS+CAS.stp"
+      },
+      "position": [
+        50,
+        50,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "x": 90,
+          "z": -90
+        }
+      }
+    },
+    {
+      "id": "camera",
+      "kind": "design",
+      "design": "primitives/hikcamera-with-objective.dsn",
+      "instantiation": {
+        "inputs": {
+          "newswitch-device-id": "bigcamera42"
+        }
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "camera/drivers",
+      "kind": "primitive/static",
+      "static-models": {
+        "newswitch-device": "primitives/hikcamera-with-objective.dsn/hikcamera.newswitch-device.yml"
+      },
+      "results": {
+        "newswitch-device-id": "bigcamera42"
+      }
+    },
+    {
+      "id": "camera/lens-and-camera",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "primitives/hikcamera-with-objective.dsn/ASS - 4003 - CAM+OBJ.glb",
+        "step": "primitives/hikcamera-with-objective.dsn/ASS - 4003 - CAM+OBJ.stp"
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "dichroic",
+      "kind": "design",
+      "design": "cube-mounted/dichroic-mirror.dsn",
+      "instantiation": {},
+      "position": [
+        50,
+        0,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -180,
+          "z": 90
+        }
+      }
+    },
+    {
+      "id": "dichroic/mirror-with-filter",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/dichroic-mirror.dsn/ASS - 2072 - CUBDICSPL+EMIFIL_WLS485.glb",
+        "step": "cube-mounted/dichroic-mirror.dsn/ASS - 2072 - CUBDICSPL+EMIFIL_WLS485.stp"
+      },
+      "position": [
+        50,
+        0,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": 180,
+          "z": 90
+        }
+      }
+    },
+    {
+      "id": "electronics-controller",
+      "kind": "design",
+      "design": "primitives/electronics-mainboard.dsn",
+      "instantiation": {
+        "inputs": {
+          "newswitch-device-id": "my-favorite-mainboard"
+        }
+      },
+      "position": [
+        25,
+        25,
+        -35
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -180,
+          "z": -180
+        }
+      }
+    },
+    {
+      "id": "electronics-controller/drivers",
+      "kind": "primitive/static",
+      "static-models": {
+        "newswitch-device": "primitives/electronics-mainboard.dsn/mainboard.newswitch-device.yml"
+      },
+      "results": {
+        "newswitch-device-id": "my-favorite-mainboard"
+      }
+    },
+    {
+      "id": "electronics-controller/mainboard-with-case",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "primitives/electronics-mainboard.dsn/ASS - 4008 - MAIBRD+CAS2X2 - B.glb",
+        "step": "primitives/electronics-mainboard.dsn/ASS - 4008 - MAIBRD+CAS2X2 - B.stp"
+      },
+      "position": [
+        25,
+        25,
+        -35
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -180,
+          "z": -180
+        }
+      }
+    },
+    {
+      "id": "fiber-holder",
+      "kind": "design",
+      "design": "cube-mounted/fiber-holder.dsn",
+      "instantiation": {},
+      "position": [
+        0,
+        -50,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "z": -90
+        }
+      }
+    },
+    {
+      "id": "fiber-holder/fiber-holder",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/fiber-holder.dsn/ASS - 2069 - CUBFIBHOL - V04.glb",
+        "step": "cube-mounted/fiber-holder.dsn/ASS - 2069 - CUBFIBHOL - V04.stp"
+      },
+      "position": [
+        0,
+        -50,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "z": -90
+        }
+      }
+    },
+    {
+      "id": "laser-mirror",
+      "kind": "design",
+      "design": "cube-mounted/mirror-diagonal.dsn",
+      "instantiation": {
+        "variant": "xy"
+      },
+      "position": [
+        50,
+        -50,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "z": 90
+        }
+      }
+    },
+    {
+      "id": "laser-mirror/mounted-mirror",
+      "kind": "design",
+      "design": "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn",
+      "instantiation": {},
+      "position": [
+        50,
+        -50,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "z": -180
+        }
+      }
+    },
+    {
+      "id": "laser-mirror/mounted-mirror/adhesive-pad",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/BUY - Adhesive pad - 41x29x1.glb",
+        "step": "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/BUY - Adhesive pad - 41x29x1.stp"
+      },
+      "position": [
+        50.5,
+        -50.5,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "z": 180
+        }
+      }
+    },
+    {
+      "id": "laser-mirror/mounted-mirror/insert",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/PRT - 2022 - INSMIR45TH2.glb",
+        "step": "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/PRT - 2022 - INSMIR45TH2.stp"
+      },
+      "position": [
+        50,
+        -50,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "z": -180
+        }
+      }
+    },
+    {
+      "id": "laser-mirror/mounted-mirror/mirror",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/BUY - Mirror - 40x30x2.glb",
+        "step": "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/BUY - Mirror - 40x30x2.stp"
+      },
+      "position": [
+        50,
+        -50,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "z": -180
+        }
+      }
+    },
+    {
+      "id": "laser-mirror/skeleton",
+      "kind": "design",
+      "design": "cube-mounted/mirror-diagonal.dsn/primitives/cube-skeleton.dsn",
+      "instantiation": {},
+      "position": [
+        50,
+        -50,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "z": 90
+        }
+      }
+    },
+    {
+      "id": "laser-mirror/skeleton/lower-half",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/mirror-diagonal.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
+        "step": "cube-mounted/mirror-diagonal.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
+      },
+      "position": [
+        50,
+        -50,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "z": 90
+        }
+      }
+    },
+    {
+      "id": "laser-mirror/skeleton/upper-half",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/mirror-diagonal.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
+        "step": "cube-mounted/mirror-diagonal.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
+      },
+      "position": [
+        50,
+        -50,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -180,
+          "z": -90
+        }
+      }
+    },
+    {
+      "id": "objective",
+      "kind": "design",
+      "design": "cube-mounted/lens.dsn",
+      "instantiation": {
+        "variant": "x"
+      },
+      "position": [
+        100,
+        0,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "objective/mounted-lens",
+      "kind": "design",
+      "design": "cube-mounted/lens.dsn/mounted-lens.dsn",
+      "instantiation": {},
+      "position": [
+        100,
+        0,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": 90
+        }
+      }
+    },
+    {
+      "id": "objective/mounted-lens/insert",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2023 - INSLEND40F50 - V04.glb",
+        "step": "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2023 - INSLEND40F50 - V04.stp"
+      },
+      "position": [
+        100,
+        0,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": 90
+        }
+      }
+    },
+    {
+      "id": "objective/mounted-lens/lens",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/lens.dsn/mounted-lens.dsn/BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx.glb",
+        "optiland": "cube-mounted/lens.dsn/mounted-lens.dsn/AC254-100-A-Zemax-ZMX.optiland",
+        "step": "cube-mounted/lens.dsn/mounted-lens.dsn/BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx.stp"
+      },
+      "position": [
+        100,
+        0,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": 90
+        }
+      }
+    },
+    {
+      "id": "objective/mounted-lens/nut",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2003 - NUTD40.glb",
+        "step": "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2003 - NUTD40.stp"
+      },
+      "position": [
+        100,
+        0,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": 90
+        }
+      }
+    },
+    {
+      "id": "objective/skeleton",
+      "kind": "design",
+      "design": "cube-mounted/lens.dsn/primitives/cube-skeleton.dsn",
+      "instantiation": {},
+      "position": [
+        100,
+        0,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "objective/skeleton/lower-half",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/lens.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
+        "step": "cube-mounted/lens.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
+      },
+      "position": [
+        100,
+        0,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "objective/skeleton/upper-half",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/lens.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
+        "step": "cube-mounted/lens.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
+      },
+      "position": [
+        100,
+        0,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -180,
+          "z": -180
+        }
+      }
+    },
+    {
+      "id": "sample-mirror",
+      "kind": "design",
+      "design": "cube-mounted/mirror-diagonal.dsn",
+      "instantiation": {
+        "variant": "_z"
+      },
+      "position": [
+        150,
+        0,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -180
+        }
+      }
+    },
+    {
+      "id": "sample-mirror/mounted-mirror",
+      "kind": "design",
+      "design": "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn",
+      "instantiation": {},
+      "position": [
+        150,
+        0,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "x": 90,
+          "z": 180
+        }
+      }
+    },
+    {
+      "id": "sample-mirror/mounted-mirror/adhesive-pad",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/BUY - Adhesive pad - 41x29x1.glb",
+        "step": "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/BUY - Adhesive pad - 41x29x1.stp"
+      },
+      "position": [
+        150.5,
+        0,
+        0.5
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "x": 90,
+          "z": 180
+        }
+      }
+    },
+    {
+      "id": "sample-mirror/mounted-mirror/insert",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/PRT - 2022 - INSMIR45TH2.glb",
+        "step": "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/PRT - 2022 - INSMIR45TH2.stp"
+      },
+      "position": [
+        150,
+        0,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "x": 90,
+          "z": 180
+        }
+      }
+    },
+    {
+      "id": "sample-mirror/mounted-mirror/mirror",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/BUY - Mirror - 40x30x2.glb",
+        "step": "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/BUY - Mirror - 40x30x2.stp"
+      },
+      "position": [
+        150,
+        0,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "x": 90,
+          "z": 180
+        }
+      }
+    },
+    {
+      "id": "sample-mirror/skeleton",
+      "kind": "design",
+      "design": "cube-mounted/mirror-diagonal.dsn/primitives/cube-skeleton.dsn",
+      "instantiation": {},
+      "position": [
+        150,
+        0,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -180
+        }
+      }
+    },
+    {
+      "id": "sample-mirror/skeleton/lower-half",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/mirror-diagonal.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
+        "step": "cube-mounted/mirror-diagonal.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
+      },
+      "position": [
+        150,
+        0,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -180
+        }
+      }
+    },
+    {
+      "id": "sample-mirror/skeleton/upper-half",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/mirror-diagonal.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
+        "step": "cube-mounted/mirror-diagonal.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
+      },
+      "position": [
+        150,
+        0,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "z": -180
+        }
+      }
+    },
+    {
+      "id": "sample-stage",
+      "kind": "design",
+      "design": "primitives/xyz-stage.dsn",
+      "instantiation": {
+        "inputs": {
+          "newswitch-controller": "my-favorite-mainboard",
+          "newswitch-device-id": "just-some-boring-stage",
+          "newswitch-input-variable-x": "sample-x",
+          "newswitch-input-variable-y": "sample-y",
+          "newswitch-input-variable-z": "sample-z",
+          "x-stage": 0,
+          "y-stage": 0,
+          "z-stage": 0
+        }
+      },
+      "position": [
+        150,
+        0,
+        -110
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "sample-stage/laser",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "primitives/xyz-stage.dsn/ASS - 3006 - AUTXYZSTG - V04 - A__for OST.glb",
+        "step": "primitives/xyz-stage.dsn/ASS - 3006 - AUTXYZSTG - V04 - A__for OST.stp"
+      },
+      "position": [
+        150,
+        0,
+        -110
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "sample-stage/stage-drivers",
+      "kind": "primitive/static",
+      "static-models": {
+        "newswitch-device": "primitives/xyz-stage.dsn/stage.newswitch-device.yml"
+      },
+      "results": {
+        "newswitch-device-config": {
+          "stage": {
+            "orthogonal-xyz": {
+              "devices": {
+                "x-actuator": "just-some-boring-stage-x-actuator",
+                "x-limit": null,
+                "y-actuator": "just-some-boring-stage-y-actuator",
+                "y-limit": null,
+                "z-actuator": "just-some-boring-stage-z-actuator",
+                "z-limit": null
+              }
+            }
+          }
+        },
+        "newswitch-device-id": "just-some-boring-stage"
+      }
+    },
+    {
+      "id": "sample-stage/x-drivers",
+      "kind": "primitive/static",
+      "static-models": {
+        "newswitch-device": "primitives/xyz-stage.dsn/linear-actuator.newswitch-device.yml"
+      },
+      "results": {
+        "newswitch-device-config": {
+          "controller": "my-favorite-mainboard",
+          "optikit": {
+            "dsn-input-variable": "sample-x"
+          }
+        },
+        "newswitch-device-id": "just-some-boring-stage-x-actuator"
+      }
+    },
+    {
+      "id": "sample-stage/y-drivers",
+      "kind": "primitive/static",
+      "static-models": {
+        "newswitch-device": "primitives/xyz-stage.dsn/linear-actuator.newswitch-device.yml"
+      },
+      "results": {
+        "newswitch-device-config": {
+          "controller": "my-favorite-mainboard",
+          "optikit": {
+            "dsn-input-variable": "sample-y"
+          }
+        },
+        "newswitch-device-id": "just-some-boring-stage-y-actuator"
+      }
+    },
+    {
+      "id": "sample-stage/z-drivers",
+      "kind": "primitive/static",
+      "static-models": {
+        "newswitch-device": "primitives/xyz-stage.dsn/linear-actuator.newswitch-device.yml"
+      },
+      "results": {
+        "newswitch-device-config": {
+          "controller": "my-favorite-mainboard",
+          "optikit": {
+            "dsn-input-variable": "sample-z"
+          }
+        },
+        "newswitch-device-id": "just-some-boring-stage-z-actuator"
+      }
+    }
+  ]
+}

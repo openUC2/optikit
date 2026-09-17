@@ -14,25 +14,27 @@ import (
 	"github.com/openUC2/optikit/internal/optikit"
 )
 
-func renderObjA(ctx context.Context, c *cli.Command) error {
-	inputs, err := parseInputVars(c.StringSlice("input"))
-	if err != nil {
-		return errors.Wrap(err, "couldn't parse input variables")
-	}
-	design, err := optikit.LoadFSDesign(
-		ctx, c.String("cwd"), designs.VariantID(c.String("variant")), inputs, false,
-	)
-	if err != nil {
-		return err
-	}
+func renderObjA(versions optikit.Versions) cli.ActionFunc {
+	return func(ctx context.Context, c *cli.Command) error {
+		inputs, err := parseInputVars(c.StringSlice("input"))
+		if err != nil {
+			return errors.Wrap(err, "couldn't parse input variables")
+		}
+		design, err := optikit.LoadFSDesign(
+			ctx, c.String("cwd"), designs.VariantID(c.String("variant")), inputs, false,
+		)
+		if err != nil {
+			return err
+		}
 
-	fsys := ofs.AttachPath(os.DirFS(c.String("cwd")), c.String("cwd"))
-	result, err := optikit.RenderObjects(ctx, fsys, design, c.String("format"))
-	if err != nil {
-		return err
-	}
+		fsys := ofs.AttachPath(os.DirFS(c.String("cwd")), c.String("cwd"))
+		result, err := optikit.RenderObjects(ctx, fsys, design, c.String("format"), versions.Tool)
+		if err != nil {
+			return err
+		}
 
-	return produceOutput(c.Args().First(), result)
+		return produceOutput(c.Args().First(), result)
+	}
 }
 
 func produceOutput(outputPath string, output []byte) error {

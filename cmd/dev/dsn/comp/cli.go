@@ -2,12 +2,16 @@
 package comp
 
 import (
+	"fmt"
+	"slices"
+	"strings"
+
 	"github.com/urfave/cli/v3"
 
 	"github.com/openUC2/optikit/internal/optikit"
 )
 
-func MakeCmd(_ optikit.Versions) *cli.Command {
+func MakeCmd(versions optikit.Versions) *cli.Command {
 	return &cli.Command{
 		Name:    "comp",
 		Aliases: []string{"composition"},
@@ -24,37 +28,57 @@ func MakeCmd(_ optikit.Versions) *cli.Command {
 				Usage:   "Set value of input variable, using format `variablename:variablevalue`",
 			},
 		},
-		Commands: cmds,
+		Commands: slices.Concat(
+			makeReportCmds(versions),
+			cmds,
+		),
+	}
+}
+
+func makeReportCmds(versions optikit.Versions) []*cli.Command {
+	return []*cli.Command{
+		{
+			Name:      "report-comp",
+			Aliases:   []string{"report-components"},
+			Usage:     "Generate a flattened report of all components in the design",
+			ArgsUsage: argsUsageOutputFile,
+			Flags: []cli.Flag{
+				makeRenderOutputFormatFlag("json", "yaml", "yml"),
+			},
+			Action: reportCompA(versions),
+		},
 	}
 }
 
 var cmds = []*cli.Command{
 	{
-		Name:      "render-comps-g",
+		Name:      "render-comp-g",
 		Aliases:   []string{"render-components-graph"},
 		Usage:     "Render a graph of the composition relationships between the components",
 		ArgsUsage: "output_file",
 		Flags: []cli.Flag{
-			&cli.StringFlag{
-				Name:  "format",
-				Value: "dot",
-				Usage: "Render output format (dot or svg)",
-			},
+			makeRenderOutputFormatFlag("dot", "svg"),
 		},
-		Action: renderCompsGA,
+		Action: renderCompGA,
 	},
 	{
-		Name:      "render-dsns-g",
+		Name:      "render-dsn-g",
 		Aliases:   []string{"render-designs-graph"},
 		Usage:     "Render a graph of the composition relationships between designs",
 		ArgsUsage: "output_file",
 		Flags: []cli.Flag{
-			&cli.StringFlag{
-				Name:  "format",
-				Value: "dot",
-				Usage: "Render output format (dot or svg)",
-			},
+			makeRenderOutputFormatFlag("dot", "svg"),
 		},
-		Action: renderDsnsGA,
+		Action: renderDsnGA,
 	},
+}
+
+const argsUsageOutputFile = "output_file"
+
+func makeRenderOutputFormatFlag(formats ...string) *cli.StringFlag {
+	return &cli.StringFlag{
+		Name:  "format",
+		Value: formats[0],
+		Usage: fmt.Sprintf("Render output format (%s)", strings.Join(formats, ", ")),
+	}
 }

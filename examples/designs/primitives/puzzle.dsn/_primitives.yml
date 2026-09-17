@@ -1,5 +1,7 @@
+optikit-version: v0.0.0-dev
+components:
 - id: puzzle
-  kind: static
+  kind: primitive/static
   static-models:
     gltf: "PRT - 1004 - PUZ11 - V04 - A.glb"
     pdf: "PRT - 1004 - PUZ11 - V04 - A.pdf"
@@ -8,4 +10,3 @@
   rotation:
     kind: extrinsic
     order: zxy
-    angles: {}

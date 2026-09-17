@@ -1,113 +1,85 @@
-[
-  {
-    "id": "mounted-lens/insert",
-    "kind": "static",
-    "static-models": {
-      "gltf": "mounted-lens.dsn/PRT - 2023 - INSLEND40F50 - V04.glb",
-      "step": "mounted-lens.dsn/PRT - 2023 - INSLEND40F50 - V04.stp"
+{
+  "optikit-version": "v0.0.0-dev",
+  "components": [
+    {
+      "id": "mounted-lens/insert",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "mounted-lens.dsn/PRT - 2023 - INSLEND40F50 - V04.glb",
+        "step": "mounted-lens.dsn/PRT - 2023 - INSLEND40F50 - V04.stp"
+      },
+      "position": [
+        0,
+        0,
+        7
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
     },
-    "position": [
-      0,
-      0,
-      7
-    ],
-    "rotation": {
-      "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
+    {
+      "id": "mounted-lens/lens",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "mounted-lens.dsn/BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx.glb",
+        "optiland": "mounted-lens.dsn/AC254-100-A-Zemax-ZMX.optiland",
+        "step": "mounted-lens.dsn/BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx.stp"
+      },
+      "position": [
+        0,
+        0,
+        7
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "mounted-lens/nut",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "mounted-lens.dsn/PRT - 2003 - NUTD40.glb",
+        "step": "mounted-lens.dsn/PRT - 2003 - NUTD40.stp"
+      },
+      "position": [
+        0,
+        0,
+        7
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "skeleton/lower-half",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
+        "step": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "skeleton/upper-half",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
+        "step": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -180,
+          "z": -180
+        }
       }
     }
-  },
-  {
-    "id": "mounted-lens/lens",
-    "kind": "static",
-    "static-models": {
-      "gltf": "mounted-lens.dsn/BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx.glb",
-      "optiland": "mounted-lens.dsn/AC254-100-A-Zemax-ZMX.optiland",
-      "step": "mounted-lens.dsn/BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx.stp"
-    },
-    "position": [
-      0,
-      0,
-      7
-    ],
-    "rotation": {
-      "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
-    }
-  },
-  {
-    "id": "mounted-lens/nut",
-    "kind": "static",
-    "static-models": {
-      "gltf": "mounted-lens.dsn/PRT - 2003 - NUTD40.glb",
-      "step": "mounted-lens.dsn/PRT - 2003 - NUTD40.stp"
-    },
-    "position": [
-      0,
-      0,
-      7
-    ],
-    "rotation": {
-      "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
-    }
-  },
-  {
-    "id": "skeleton/lower-half",
-    "kind": "static",
-    "static-models": {
-      "gltf": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
-      "step": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
-    },
-    "position": [
-      0,
-      0,
-      0
-    ],
-    "rotation": {
-      "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
-    }
-  },
-  {
-    "id": "skeleton/upper-half",
-    "kind": "static",
-    "static-models": {
-      "gltf": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
-      "step": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
-    },
-    "position": [
-      0,
-      0,
-      0
-    ],
-    "rotation": {
-      "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -180,
-        "z": -180
-      }
-    }
-  }
-]
+  ]
+}

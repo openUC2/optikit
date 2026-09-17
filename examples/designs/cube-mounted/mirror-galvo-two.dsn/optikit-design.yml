@@ -4,7 +4,7 @@ design:
   description: Two motorized galvo mirrors in a cube
   tags:
     - composition/cube-mounted
-    - in/galvo-box
+    - in/kit/galvo-box
 
 components:
   skeleton:

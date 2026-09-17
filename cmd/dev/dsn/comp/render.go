@@ -13,7 +13,7 @@ import (
 	"github.com/openUC2/optikit/internal/optikit"
 )
 
-func renderCompsGA(ctx context.Context, c *cli.Command) error {
+func renderCompGA(ctx context.Context, c *cli.Command) error {
 	inputs, err := parseInputVars(c.StringSlice("input"))
 	if err != nil {
 		return errors.Wrap(err, "couldn't parse input variables")
@@ -33,7 +33,7 @@ func renderCompsGA(ctx context.Context, c *cli.Command) error {
 	return produceOutput(c.Args().First(), result)
 }
 
-func renderDsnsGA(ctx context.Context, c *cli.Command) error {
+func renderDsnGA(ctx context.Context, c *cli.Command) error {
 	inputs, err := parseInputVars(c.StringSlice("input"))
 	if err != nil {
 		return errors.Wrap(err, "couldn't parse input variables")

@@ -1,0 +1,44 @@
+optikit-version: v0.0.0-alpha.1
+
+design:
+  description: A microcontroller with motor drivers and ports for a laser, a CAN bus, STEMMA, limit switches, and PWMs
+  tags:
+    - in/kit/electronics-box
+
+components:
+  mainboard-with-case:
+    kind: primitive
+    primitive:
+      kind: static
+      static-models:
+        gltf: ASS - 4008 - MAIBRD+CAS2X2 - B.glb
+        step: ASS - 4008 - MAIBRD+CAS2X2 - B.stp
+    pose:
+      rotation:
+        kind: uc2
+    tags:
+      - electronics/microcontroller
+      - procurement/buy
+      - procurement/pcba
+      - procurement/3d-print
+      - in/kit/electronics-box
+  drivers:
+    kind: primitive
+    primitive:
+      kind: static
+      static-models:
+        newswitch-device: mainboard.newswitch-device.yml
+    results:
+      newswitch-device-id: ~ inputs['newswitch-device-id'].value
+
+inputs:
+  newswitch-device-id:
+    description: A short unique name for the device in NewSwitch, which can be referenced from other parts of the overall NewSwitch config
+    kind: string
+    tags:
+      - config/newswitch/device-id
+  newswitch-controller:
+    description: The name of the microcontroller which controls this device in NewSwitch
+    kind: string
+    tags:
+      - config/newswitch/controller

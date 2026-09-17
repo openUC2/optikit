@@ -11,19 +11,31 @@ components:
   optical:
     kind: primitive
     primitive:
-      kind: optiland
-      model: ~ optiland-model
+      kind: static
+      static-model:
+        optiland: AC254-100-A-Zemax-ZMX.optiland
+        step: AC254-100-A-Step.step
     pose:
       rotation:
         kind: grid
+        [...]
       translation:
-  mechanical:
+        [...]
+  mechanical-template:
     kind: primitive
     primitive:
       kind: computed
       function: compute-geometry.py
       inputs:
         lens: ~ optiland-model
+      result: components.mechanical-realized
+  mechanical-realized:
+    kind: primitive
+    primitive:
+      kind: static
+      static-model:
+        glb: computed-insert.glb
+        step: computed-insert.step
     pose:
       rotation:
         kind: grid
@@ -31,3 +43,9 @@ components:
 inputs:
   optiland-model:
     kind: string
+
+constraints:
+  cached-results:
+    - result: components.mechanical-realized
+      input: components.optical
+      computation: components.mechanical-template

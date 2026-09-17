@@ -1,90 +1,72 @@
-[
-  {
-    "id": "adhesive-pad",
-    "kind": "static",
-    "static-models": {
-      "gltf": "BUY - Adhesive pad - D22x1.glb",
-      "step": "BUY - Adhesive pad - D22x1.stp"
+{
+  "optikit-version": "v0.0.0-dev",
+  "components": [
+    {
+      "id": "adhesive-pad",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "BUY - Adhesive pad - D22x1.glb",
+        "step": "BUY - Adhesive pad - D22x1.stp"
+      },
+      "position": [
+        -3.5,
+        0,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
     },
-    "position": [
-      -3.5,
-      0,
-      0
-    ],
-    "rotation": {
-      "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
+    {
+      "id": "mirror",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "BUY - Mirror - D24x3.glb",
+        "step": "BUY - Mirror - D24x3.stp"
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "mount-base",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "PRT - 2110 - MASINSMIRHOLLOW - C.glb",
+        "step": "PRT - 2110 - MASINSMIRHOLLOW - C.stp"
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "mount-top",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "PRT - 2111 - MASINSMIRHOLUPP - C.glb",
+        "step": "PRT - 2111 - MASINSMIRHOLUPP - C.stp"
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "screw-1",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "TP lens head screw with TORX - 2.5 x 8 - St - A2K.bom.yml"
+      }
+    },
+    {
+      "id": "screw-2",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "TP lens head screw with TORX - 2.5 x 8 - St - A2K.bom.yml"
       }
     }
-  },
-  {
-    "id": "mirror",
-    "kind": "static",
-    "static-models": {
-      "gltf": "BUY - Mirror - D24x3.glb",
-      "step": "BUY - Mirror - D24x3.stp"
-    },
-    "position": [
-      0,
-      0,
-      0
-    ],
-    "rotation": {
-      "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
-    }
-  },
-  {
-    "id": "mount-base",
-    "kind": "static",
-    "static-models": {
-      "gltf": "PRT - 2110 - MASINSMIRHOLLOW - C.glb",
-      "step": "PRT - 2110 - MASINSMIRHOLLOW - C.stp"
-    },
-    "position": [
-      0,
-      0,
-      0
-    ],
-    "rotation": {
-      "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
-    }
-  },
-  {
-    "id": "mount-top",
-    "kind": "static",
-    "static-models": {
-      "gltf": "PRT - 2111 - MASINSMIRHOLUPP - C.glb",
-      "step": "PRT - 2111 - MASINSMIRHOLUPP - C.stp"
-    },
-    "position": [
-      0,
-      0,
-      0
-    ],
-    "rotation": {
-      "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
-    }
-  }
-]
+  ]
+}

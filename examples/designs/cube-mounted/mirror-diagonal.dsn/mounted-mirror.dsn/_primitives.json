@@ -1,68 +1,46 @@
-[
-  {
-    "id": "adhesive-pad",
-    "kind": "static",
-    "static-models": {
-      "gltf": "BUY - Adhesive pad - 41x29x1.glb",
-      "step": "BUY - Adhesive pad - 41x29x1.stp"
+{
+  "optikit-version": "v0.0.0-dev",
+  "components": [
+    {
+      "id": "adhesive-pad",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "BUY - Adhesive pad - 41x29x1.glb",
+        "step": "BUY - Adhesive pad - 41x29x1.stp"
+      },
+      "position": [
+        -0.5,
+        0.5,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
     },
-    "position": [
-      -0.5,
-      0.5,
-      0
-    ],
-    "rotation": {
-      "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
+    {
+      "id": "insert",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "PRT - 2022 - INSMIR45TH2.glb",
+        "step": "PRT - 2022 - INSMIR45TH2.stp"
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "mirror",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "BUY - Mirror - 40x30x2.glb",
+        "step": "BUY - Mirror - 40x30x2.stp"
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
       }
     }
-  },
-  {
-    "id": "insert",
-    "kind": "static",
-    "static-models": {
-      "gltf": "PRT - 2022 - INSMIR45TH2.glb",
-      "step": "PRT - 2022 - INSMIR45TH2.stp"
-    },
-    "position": [
-      0,
-      0,
-      0
-    ],
-    "rotation": {
-      "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
-    }
-  },
-  {
-    "id": "mirror",
-    "kind": "static",
-    "static-models": {
-      "gltf": "BUY - Mirror - 40x30x2.glb",
-      "step": "BUY - Mirror - 40x30x2.stp"
-    },
-    "position": [
-      0,
-      0,
-      0
-    ],
-    "rotation": {
-      "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
-    }
-  }
-]
+  ]
+}

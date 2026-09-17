@@ -9,8 +9,8 @@ package example
 //go:generate mdl convert --output-format=glb "PRT - 2008 - SAMCLP.stp"
 //go:generate mdl convert --output-format=glb "PRT - 2028 - INSSAMMNT - V04.stp"
 
-//go:generate comp render-comps-g --format=dot _components-graph.dot
-//go:generate comp render-comps-g --format=svg _components-graph.svg
+//go:generate comp render-comp-g --format=dot _components-graph.dot
+//go:generate comp render-comp-g --format=svg _components-graph.svg
 
 //go:generate geom render-pos-g --format=dot _positions-graph.dot
 //go:generate geom render-pos-g --format=svg _positions-graph.svg

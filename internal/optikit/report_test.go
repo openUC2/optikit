@@ -9,6 +9,7 @@ import (
 
 	"github.com/google/go-cmp/cmp"
 
+	"github.com/openUC2/optikit/cmd"
 	"github.com/openUC2/optikit/exp/designs"
 )
 
@@ -106,11 +107,18 @@ func checkPrimitives(
 
 	var want, got []byte
 	var err error
-	if got, err = ReportPrimitives(t.Context(), design, designs.UC2GridSpacings, format); err != nil {
+	report, err := ReportPrimitives(t.Context(), design, designs.UC2GridSpacings, cmd.FallbackVersion)
+	if err != nil {
 		t.Error(err)
+		return
+	}
+	if got, err = SerializeReport(t.Context(), report, format); err != nil {
+		t.Error(err)
+		return
 	}
 	if want, err = os.ReadFile(filepath.Clean(path.Join(dp, reportName))); err != nil {
 		t.Error(err)
+		return
 	}
 	if !cmp.Equal(got, want) {
 		t.Errorf("diff (-want +got):\n%+v", cmp.Diff(want, got))

@@ -1,178 +1,162 @@
-[
-  {
-    "id": "mounted-mirror/inner-insert/adhesive-pad",
-    "kind": "static",
-    "static-models": {
-      "gltf": "mounted-mirror.dsn/mounted-mirror-inner.dsn/BUY - Adhesive pad - D22x1.glb",
-      "step": "mounted-mirror.dsn/mounted-mirror-inner.dsn/BUY - Adhesive pad - D22x1.stp"
+{
+  "optikit-version": "v0.0.0-dev",
+  "components": [
+    {
+      "id": "mounted-mirror/inner-insert/adhesive-pad",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "mounted-mirror.dsn/mounted-mirror-inner.dsn/BUY - Adhesive pad - D22x1.glb",
+        "step": "mounted-mirror.dsn/mounted-mirror-inner.dsn/BUY - Adhesive pad - D22x1.stp"
+      },
+      "position": [
+        -2.474873734152916,
+        0,
+        -2.4748737341529163
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "x": -45,
+          "y": -90,
+          "z": -90
+        }
+      }
     },
-    "position": [
-      -2.474873734152916,
-      0,
-      -2.4748737341529163
-    ],
-    "rotation": {
-      "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": -45,
-        "y": -90,
-        "z": -90
+    {
+      "id": "mounted-mirror/inner-insert/mirror",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "mounted-mirror.dsn/mounted-mirror-inner.dsn/BUY - Mirror - D24x3.glb",
+        "step": "mounted-mirror.dsn/mounted-mirror-inner.dsn/BUY - Mirror - D24x3.stp"
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "x": -45,
+          "y": -90,
+          "z": -90
+        }
+      }
+    },
+    {
+      "id": "mounted-mirror/inner-insert/mount-base",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "mounted-mirror.dsn/mounted-mirror-inner.dsn/PRT - 2110 - MASINSMIRHOLLOW - C.glb",
+        "step": "mounted-mirror.dsn/mounted-mirror-inner.dsn/PRT - 2110 - MASINSMIRHOLLOW - C.stp"
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "x": -45,
+          "y": -90,
+          "z": -90
+        }
+      }
+    },
+    {
+      "id": "mounted-mirror/inner-insert/mount-top",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "mounted-mirror.dsn/mounted-mirror-inner.dsn/PRT - 2111 - MASINSMIRHOLUPP - C.glb",
+        "step": "mounted-mirror.dsn/mounted-mirror-inner.dsn/PRT - 2111 - MASINSMIRHOLUPP - C.stp"
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "x": -45,
+          "y": -90,
+          "z": -90
+        }
+      }
+    },
+    {
+      "id": "mounted-mirror/inner-insert/screw-1",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "mounted-mirror.dsn/mounted-mirror-inner.dsn/TP lens head screw with TORX - 2.5 x 8 - St - A2K.bom.yml"
+      }
+    },
+    {
+      "id": "mounted-mirror/inner-insert/screw-2",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "mounted-mirror.dsn/mounted-mirror-inner.dsn/TP lens head screw with TORX - 2.5 x 8 - St - A2K.bom.yml"
+      }
+    },
+    {
+      "id": "mounted-mirror/master-insert-bottom",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "mounted-mirror.dsn/PRT - 2100 - MASINS - V04 - B.glb",
+        "step": "mounted-mirror.dsn/PRT - 2100 - MASINS - V04 - B.stp"
+      },
+      "position": [
+        0,
+        -15,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -90,
+          "z": 90
+        }
+      }
+    },
+    {
+      "id": "mounted-mirror/master-insert-top",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "mounted-mirror.dsn/PRT - 2100 - MASINS - V04 - B.glb",
+        "step": "mounted-mirror.dsn/PRT - 2100 - MASINS - V04 - B.stp"
+      },
+      "position": [
+        0,
+        15,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -90,
+          "z": -90
+        }
+      }
+    },
+    {
+      "id": "skeleton/lower-half",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
+        "step": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "skeleton/upper-half",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
+        "step": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -180,
+          "z": -180
+        }
       }
     }
-  },
-  {
-    "id": "mounted-mirror/inner-insert/mirror",
-    "kind": "static",
-    "static-models": {
-      "gltf": "mounted-mirror.dsn/mounted-mirror-inner.dsn/BUY - Mirror - D24x3.glb",
-      "step": "mounted-mirror.dsn/mounted-mirror-inner.dsn/BUY - Mirror - D24x3.stp"
-    },
-    "position": [
-      0,
-      0,
-      0
-    ],
-    "rotation": {
-      "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": -45,
-        "y": -90,
-        "z": -90
-      }
-    }
-  },
-  {
-    "id": "mounted-mirror/inner-insert/mount-base",
-    "kind": "static",
-    "static-models": {
-      "gltf": "mounted-mirror.dsn/mounted-mirror-inner.dsn/PRT - 2110 - MASINSMIRHOLLOW - C.glb",
-      "step": "mounted-mirror.dsn/mounted-mirror-inner.dsn/PRT - 2110 - MASINSMIRHOLLOW - C.stp"
-    },
-    "position": [
-      0,
-      0,
-      0
-    ],
-    "rotation": {
-      "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": -45,
-        "y": -90,
-        "z": -90
-      }
-    }
-  },
-  {
-    "id": "mounted-mirror/inner-insert/mount-top",
-    "kind": "static",
-    "static-models": {
-      "gltf": "mounted-mirror.dsn/mounted-mirror-inner.dsn/PRT - 2111 - MASINSMIRHOLUPP - C.glb",
-      "step": "mounted-mirror.dsn/mounted-mirror-inner.dsn/PRT - 2111 - MASINSMIRHOLUPP - C.stp"
-    },
-    "position": [
-      0,
-      0,
-      0
-    ],
-    "rotation": {
-      "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": -45,
-        "y": -90,
-        "z": -90
-      }
-    }
-  },
-  {
-    "id": "mounted-mirror/master-insert-bottom",
-    "kind": "static",
-    "static-models": {
-      "gltf": "mounted-mirror.dsn/PRT - 2100 - MASINS - V04 - B.glb",
-      "step": "mounted-mirror.dsn/PRT - 2100 - MASINS - V04 - B.stp"
-    },
-    "position": [
-      0,
-      -15,
-      0
-    ],
-    "rotation": {
-      "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -90,
-        "z": 90
-      }
-    }
-  },
-  {
-    "id": "mounted-mirror/master-insert-top",
-    "kind": "static",
-    "static-models": {
-      "gltf": "mounted-mirror.dsn/PRT - 2100 - MASINS - V04 - B.glb",
-      "step": "mounted-mirror.dsn/PRT - 2100 - MASINS - V04 - B.stp"
-    },
-    "position": [
-      0,
-      15,
-      0
-    ],
-    "rotation": {
-      "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -90,
-        "z": -90
-      }
-    }
-  },
-  {
-    "id": "skeleton/lower-half",
-    "kind": "static",
-    "static-models": {
-      "gltf": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
-      "step": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
-    },
-    "position": [
-      0,
-      0,
-      0
-    ],
-    "rotation": {
-      "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
-    }
-  },
-  {
-    "id": "skeleton/upper-half",
-    "kind": "static",
-    "static-models": {
-      "gltf": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
-      "step": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
-    },
-    "position": [
-      0,
-      0,
-      0
-    ],
-    "rotation": {
-      "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -180,
-        "z": -180
-      }
-    }
-  }
-]
+  ]
+}

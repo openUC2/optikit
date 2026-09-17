@@ -1,0 +1,146 @@
+optikit-version: v0.0.0-alpha.1
+
+design:
+  description: An x-y-z stage
+  tags:
+    - composition/cube-compatible
+    - in/kit/light-sheet-box
+
+components:
+  laser:
+    kind: primitive
+    primitive:
+      kind: static
+      static-models:
+        gltf: ASS - 3006 - AUTXYZSTG - V04 - A__for OST.glb
+        step: ASS - 3006 - AUTXYZSTG - V04 - A__for OST.stp
+    pose:
+      rotation:
+        kind: grid
+    tags:
+      - optical/fiber
+      - procurement/buy
+      - procurement/3d-print
+      - in/kit/light-sheet-box
+  stage-drivers:
+    kind: primitive
+    primitive:
+      kind: static
+      static-models:
+        newswitch-device: stage.newswitch-device.yml
+    results:
+      newswitch-device-id: ~ inputs['newswitch-device-id'].value
+      newswitch-device-config: >
+        ~ {
+          stage: {
+            "orthogonal-xyz": {
+              devices: {
+                "x-actuator": inputs['newswitch-device-id'].value + '-x-actuator',
+                "x-limit": nil,
+                "y-actuator": inputs['newswitch-device-id'].value + '-y-actuator',
+                "y-limit": nil,
+                "z-actuator": inputs['newswitch-device-id'].value + '-z-actuator',
+                "z-limit": nil,
+              },
+            },
+          },
+        }
+  x-drivers:
+    kind: primitive
+    primitive:
+      kind: static
+      static-models:
+        newswitch-device: linear-actuator.newswitch-device.yml
+    results:
+      newswitch-device-id: ~ inputs['newswitch-device-id'].value + '-x-actuator'
+      newswitch-device-config: >
+        ~ {
+          controller: inputs['newswitch-controller'].value,
+          optikit: {
+            'dsn-input-variable': inputs['newswitch-input-variable-x'].value,
+          },
+        }
+  y-drivers:
+    kind: primitive
+    primitive:
+      kind: static
+      static-models:
+        newswitch-device: linear-actuator.newswitch-device.yml
+    results:
+      newswitch-device-id: ~ inputs['newswitch-device-id'].value + '-y-actuator'
+      newswitch-device-config: >
+        ~ {
+          controller: inputs['newswitch-controller'].value,
+          optikit: {
+            'dsn-input-variable': inputs['newswitch-input-variable-y'].value,
+          },
+        }
+  z-drivers:
+    kind: primitive
+    primitive:
+      kind: static
+      static-models:
+        newswitch-device: linear-actuator.newswitch-device.yml
+    results:
+      newswitch-device-id: ~ inputs['newswitch-device-id'].value + '-z-actuator'
+      newswitch-device-config: >
+        ~ {
+          controller: inputs['newswitch-controller'].value,
+          optikit: {
+            'dsn-input-variable': inputs['newswitch-input-variable-z'].value,
+          },
+        }
+
+inputs:
+  newswitch-device-id:
+    description: A short unique name for the device in NewSwitch, which can be referenced from other parts of the overall NewSwitch config
+    kind: string
+    tags:
+      - config/newswitch/device-id
+  newswitch-controller:
+    description: The name of the microcontroller which controls this device in NewSwitch
+    kind: string
+    tags:
+      - config/newswitch/controller
+  x-stage:
+    description: Extension of the sample stage's x-axis actuator
+    kind: float64
+    units: mm
+    min: 0
+    max: 25
+    tags:
+      - pose/actuator/translation
+      - adjustment/electronic
+  newswitch-input-variable-x:
+    description: The name of the top-level Optikit design's input variable providing the value of the x-stage input variable
+    kind: string
+    tags:
+      - config/newswitch/input-variable-binding
+  y-stage:
+    description: Extension of the sample stage's y-axis actuator
+    kind: float64
+    units: mm
+    min: 0
+    max: 25
+    tags:
+      - pose/actuator/translation
+      - adjustment/electronic
+  newswitch-input-variable-y:
+    description: The name of the top-level Optikit design's input variable providing the value of the y-stage input variable
+    kind: string
+    tags:
+      - config/newswitch/input-variable-binding
+  z-stage:
+    description: Extension of the sample stage's z-axis actuator
+    kind: float64
+    units: mm
+    min: 0
+    max: 25
+    tags:
+      - pose/actuator/translation
+      - adjustment/electronic
+  newswitch-input-variable-z:
+    description: The name of the top-level Optikit design's input variable providing the value of the z-stage input variable
+    kind: string
+    tags:
+      - config/newswitch/input-variable-binding

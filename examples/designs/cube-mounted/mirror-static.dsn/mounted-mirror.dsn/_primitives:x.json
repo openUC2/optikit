@@ -1,134 +1,110 @@
-[
-  {
-    "id": "inner-insert/adhesive-pad",
-    "kind": "static",
-    "static-models": {
-      "gltf": "mounted-mirror-inner.dsn/BUY - Adhesive pad - D22x1.glb",
-      "step": "mounted-mirror-inner.dsn/BUY - Adhesive pad - D22x1.stp"
+{
+  "optikit-version": "v0.0.0-dev",
+  "components": [
+    {
+      "id": "inner-insert/adhesive-pad",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "mounted-mirror-inner.dsn/BUY - Adhesive pad - D22x1.glb",
+        "step": "mounted-mirror-inner.dsn/BUY - Adhesive pad - D22x1.stp"
+      },
+      "position": [
+        -3.5,
+        0,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
     },
-    "position": [
-      -3.5,
-      0,
-      0
-    ],
-    "rotation": {
-      "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
+    {
+      "id": "inner-insert/mirror",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "mounted-mirror-inner.dsn/BUY - Mirror - D24x3.glb",
+        "step": "mounted-mirror-inner.dsn/BUY - Mirror - D24x3.stp"
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "inner-insert/mount-base",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "mounted-mirror-inner.dsn/PRT - 2110 - MASINSMIRHOLLOW - C.glb",
+        "step": "mounted-mirror-inner.dsn/PRT - 2110 - MASINSMIRHOLLOW - C.stp"
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "inner-insert/mount-top",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "mounted-mirror-inner.dsn/PRT - 2111 - MASINSMIRHOLUPP - C.glb",
+        "step": "mounted-mirror-inner.dsn/PRT - 2111 - MASINSMIRHOLUPP - C.stp"
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "inner-insert/screw-1",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "mounted-mirror-inner.dsn/TP lens head screw with TORX - 2.5 x 8 - St - A2K.bom.yml"
+      }
+    },
+    {
+      "id": "inner-insert/screw-2",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "mounted-mirror-inner.dsn/TP lens head screw with TORX - 2.5 x 8 - St - A2K.bom.yml"
+      }
+    },
+    {
+      "id": "master-insert-bottom",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "PRT - 2100 - MASINS - V04 - B.glb",
+        "step": "PRT - 2100 - MASINS - V04 - B.stp"
+      },
+      "position": [
+        0,
+        0,
+        -15
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -180,
+          "z": -180
+        }
+      }
+    },
+    {
+      "id": "master-insert-top",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "PRT - 2100 - MASINS - V04 - B.glb",
+        "step": "PRT - 2100 - MASINS - V04 - B.stp"
+      },
+      "position": [
+        0,
+        0,
+        15
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
       }
     }
-  },
-  {
-    "id": "inner-insert/mirror",
-    "kind": "static",
-    "static-models": {
-      "gltf": "mounted-mirror-inner.dsn/BUY - Mirror - D24x3.glb",
-      "step": "mounted-mirror-inner.dsn/BUY - Mirror - D24x3.stp"
-    },
-    "position": [
-      0,
-      0,
-      0
-    ],
-    "rotation": {
-      "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
-    }
-  },
-  {
-    "id": "inner-insert/mount-base",
-    "kind": "static",
-    "static-models": {
-      "gltf": "mounted-mirror-inner.dsn/PRT - 2110 - MASINSMIRHOLLOW - C.glb",
-      "step": "mounted-mirror-inner.dsn/PRT - 2110 - MASINSMIRHOLLOW - C.stp"
-    },
-    "position": [
-      0,
-      0,
-      0
-    ],
-    "rotation": {
-      "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
-    }
-  },
-  {
-    "id": "inner-insert/mount-top",
-    "kind": "static",
-    "static-models": {
-      "gltf": "mounted-mirror-inner.dsn/PRT - 2111 - MASINSMIRHOLUPP - C.glb",
-      "step": "mounted-mirror-inner.dsn/PRT - 2111 - MASINSMIRHOLUPP - C.stp"
-    },
-    "position": [
-      0,
-      0,
-      0
-    ],
-    "rotation": {
-      "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
-    }
-  },
-  {
-    "id": "master-insert-bottom",
-    "kind": "static",
-    "static-models": {
-      "gltf": "PRT - 2100 - MASINS - V04 - B.glb",
-      "step": "PRT - 2100 - MASINS - V04 - B.stp"
-    },
-    "position": [
-      0,
-      0,
-      -15
-    ],
-    "rotation": {
-      "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -180,
-        "z": -180
-      }
-    }
-  },
-  {
-    "id": "master-insert-top",
-    "kind": "static",
-    "static-models": {
-      "gltf": "PRT - 2100 - MASINS - V04 - B.glb",
-      "step": "PRT - 2100 - MASINS - V04 - B.stp"
-    },
-    "position": [
-      0,
-      0,
-      15
-    ],
-    "rotation": {
-      "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
-    }
-  }
-]
+  ]
+}

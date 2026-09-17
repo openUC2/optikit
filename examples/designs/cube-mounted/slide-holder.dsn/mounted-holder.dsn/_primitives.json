@@ -1,46 +1,62 @@
-[
-  {
-    "id": "clip",
-    "kind": "static",
-    "static-models": {
-      "gltf": "PRT - 2008 - SAMCLP.glb",
-      "step": "PRT - 2008 - SAMCLP.stp"
+{
+  "optikit-version": "v0.0.0-dev",
+  "components": [
+    {
+      "id": "clip",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "PRT - 2008 - SAMCLP.glb",
+        "step": "PRT - 2008 - SAMCLP.stp"
+      },
+      "position": [
+        0,
+        0,
+        -10
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
     },
-    "position": [
-      0,
-      0,
-      -10
-    ],
-    "rotation": {
-      "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
+    {
+      "id": "insert",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "PRT - 2028 - INSSAMMNT - V04.glb",
+        "step": "PRT - 2028 - INSSAMMNT - V04.stp"
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "magnet-1",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "BUY - NeFeB-Magnet - ø8x3 N40 Ni.bom.yml"
+      }
+    },
+    {
+      "id": "magnet-2",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "BUY - NeFeB-Magnet - ø8x3 N40 Ni.bom.yml"
+      }
+    },
+    {
+      "id": "magnet-3",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "BUY - NeFeB-Magnet - ø8x3 N40 Ni.bom.yml"
+      }
+    },
+    {
+      "id": "magnet-4",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "BUY - NeFeB-Magnet - ø8x3 N40 Ni.bom.yml"
       }
     }
-  },
-  {
-    "id": "insert",
-    "kind": "static",
-    "static-models": {
-      "gltf": "PRT - 2028 - INSSAMMNT - V04.glb",
-      "step": "PRT - 2028 - INSSAMMNT - V04.stp"
-    },
-    "position": [
-      0,
-      0,
-      0
-    ],
-    "rotation": {
-      "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
-      }
-    }
-  }
-]
+  ]
+}

@@ -1,0 +1,70 @@
+newswitch-version: v0.1.0-alpha.0
+devices:
+  hotlaser123:
+    kind: source
+    source:
+      kind: laser
+      laser:
+        wavelength: 485 # nm
+    controller: my-favorite-mainboard
+  bigcamera42:
+    kind: detector
+    detector:
+      rgb: true
+      dimensions: # in pixels
+        width: 1000
+        height: 1000
+  my-favorite-mainboard:
+    kind: microcontroller
+    microcontroller:
+      protocol: uc2-rest # can be uc2-rest or can-open
+      uc2-rest:
+        transport: serial # can be serial or HTTP
+        serial:
+          device-pattern: '/dev/ttyUSB*'
+          baudrate: 115200
+      firmware:
+        name: esp32-uc2-standalone-4
+        version: v2026.0.0-beta.3
+  just-some-boring-stage:
+    kind: stage
+    stage:
+      kind: orthogonal-xyz
+      orthogonal-xyz:
+        devices:
+          x-actuator: just-some-boring-stage-x-actuator
+          x-limit: null
+          y-actuator: just-some-boring-stage-y-actuator
+          y-limit: null
+          z-actuator: just-some-boring-stage-z-actuator
+          z-limit: null
+  just-some-boring-stage-x-actuator:
+    kind: actuator
+    actuator:
+      kind: linear
+      linear:
+        min: 0 # mm
+        max: 25 # mm
+    controller: my-favorite-mainboard
+    optikit:
+      dsn-input-variable: sample-x
+  just-some-boring-stage-y-actuator:
+    kind: actuator
+    actuator:
+      kind: linear
+      linear:
+        min: 0 # mm
+        max: 25 # mm
+    controller: my-favorite-mainboard
+    optikit:
+      dsn-input-variable: sample-y
+  just-some-boring-stage-z-actuator:
+    kind: actuator
+    actuator:
+      kind: linear
+      linear:
+        min: 0 # mm
+        max: 25 # mm
+    controller: my-favorite-mainboard
+    optikit:
+      dsn-input-variable: sample-z

@@ -1,25 +1,18 @@
-[
-  {
-    "id": "puzzle",
-    "kind": "static",
-    "static-models": {
-      "gltf": "PRT - 1004 - PUZ11 - V04 - A.glb",
-      "pdf": "PRT - 1004 - PUZ11 - V04 - A.pdf",
-      "step": "PRT - 1004 - PUZ11 - V04 - A.stp"
-    },
-    "position": [
-      0,
-      0,
-      0
-    ],
-    "rotation": {
-      "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
+{
+  "optikit-version": "v0.0.0-dev",
+  "components": [
+    {
+      "id": "puzzle",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "PRT - 1004 - PUZ11 - V04 - A.glb",
+        "pdf": "PRT - 1004 - PUZ11 - V04 - A.pdf",
+        "step": "PRT - 1004 - PUZ11 - V04 - A.stp"
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
       }
     }
-  }
-]
+  ]
+}
