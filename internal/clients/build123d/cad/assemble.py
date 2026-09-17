@@ -14,7 +14,7 @@ axes = {
 
 def assemble_prims(prims_report: list[SimpleNamespace]) -> b.Compound:
     compounds: list[b.Compound] = []
-    for prim in prims_report:
+    for prim in prims_report.components:
         if not hasattr(prim, "static_models"):
             continue
         if not hasattr(prim.static_models, "step"):

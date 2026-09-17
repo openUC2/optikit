@@ -1,24 +1,27 @@
-[
-  {
-    "id": "drivers",
-    "kind": "primitive/static",
-    "static-models": {
-      "newswitch-device": "hikcamera.newswitch-device.yml"
+{
+  "optikit-version": "v0.0.0-dev",
+  "components": [
+    {
+      "id": "drivers",
+      "kind": "primitive/static",
+      "static-models": {
+        "newswitch-device": "hikcamera.newswitch-device.yml"
+      },
+      "results": {
+        "newswitch-device-id": ""
+      }
     },
-    "results": {
-      "newswitch-device-id": ""
+    {
+      "id": "lens-and-camera",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "ASS - 4003 - CAM+OBJ.glb",
+        "step": "ASS - 4003 - CAM+OBJ.stp"
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
     }
-  },
-  {
-    "id": "lens-and-camera",
-    "kind": "primitive/static",
-    "static-models": {
-      "gltf": "ASS - 4003 - CAM+OBJ.glb",
-      "step": "ASS - 4003 - CAM+OBJ.stp"
-    },
-    "rotation": {
-      "kind": "extrinsic",
-      "order": "zxy"
-    }
-  }
-]
+  ]
+}

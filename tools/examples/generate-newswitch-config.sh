@@ -5,6 +5,7 @@ script_dir="$(dirname "$script")"
 
 device_configs="$(
   yq '
+    .components |
     filter(.results.newswitch-device-id) |
     map({
       "id": .results.newswitch-device-id,

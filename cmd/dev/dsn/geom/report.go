@@ -10,30 +10,32 @@ import (
 	"github.com/openUC2/optikit/internal/optikit"
 )
 
-func reportPrimA(ctx context.Context, c *cli.Command) error {
-	inputs, err := parseInputVars(c.StringSlice("input"))
-	if err != nil {
-		return errors.Wrap(err, "couldn't parse input variables")
-	}
-	design, err := optikit.LoadFSDesign(
-		ctx, c.String("cwd"), designs.VariantID(c.String("variant")), inputs, false,
-	)
-	if err != nil {
-		return err
-	}
+func reportPrimA(versions optikit.Versions) cli.ActionFunc {
+	return func(ctx context.Context, c *cli.Command) error {
+		inputs, err := parseInputVars(c.StringSlice("input"))
+		if err != nil {
+			return errors.Wrap(err, "couldn't parse input variables")
+		}
+		design, err := optikit.LoadFSDesign(
+			ctx, c.String("cwd"), designs.VariantID(c.String("variant")), inputs, false,
+		)
+		if err != nil {
+			return err
+		}
 
-	format := c.String("format")
-	if format == "yml" {
-		format = "yaml"
-	}
-	report, err := optikit.ReportPrimitives(ctx, design, designs.UC2GridSpacings)
-	if err != nil {
-		return err
-	}
-	serialized, err := optikit.SerializeReport(ctx, report, format)
-	if err != nil {
-		return err
-	}
+		format := c.String("format")
+		if format == "yml" {
+			format = "yaml"
+		}
+		report, err := optikit.ReportPrimitives(ctx, design, designs.UC2GridSpacings, versions.Tool)
+		if err != nil {
+			return err
+		}
+		serialized, err := optikit.SerializeReport(ctx, report, format)
+		if err != nil {
+			return err
+		}
 
-	return produceOutput(c.Args().First(), serialized)
+		return produceOutput(c.Args().First(), serialized)
+	}
 }

@@ -1,3 +1,5 @@
+optikit-version: v0.0.0-dev
+components:
 - id: laser
   kind: primitive/static
   static-models:
@@ -15,9 +17,14 @@
   results:
     newswitch-device-config:
       stage:
-        device-x: -x
-        device-y: -y
-        device-z: -z
+        orthogonal-xyz:
+          devices:
+            x-actuator: -x-actuator
+            x-limit: null
+            y-actuator: -y-actuator
+            y-limit: null
+            z-actuator: -z-actuator
+            z-limit: null
     newswitch-device-id: ""
 - id: x-drivers
   kind: primitive/static
@@ -27,8 +34,9 @@
   results:
     newswitch-device-config:
       controller: ""
-      dsn-input-variable: ""
-    newswitch-device-id: -x
+      optikit:
+        dsn-input-variable: ""
+    newswitch-device-id: -x-actuator
 - id: y-drivers
   kind: primitive/static
   static-models:
@@ -37,8 +45,9 @@
   results:
     newswitch-device-config:
       controller: ""
-      dsn-input-variable: ""
-    newswitch-device-id: -y
+      optikit:
+        dsn-input-variable: ""
+    newswitch-device-id: -y-actuator
 - id: z-drivers
   kind: primitive/static
   static-models:
@@ -47,5 +56,6 @@
   results:
     newswitch-device-config:
       controller: ""
-      dsn-input-variable: ""
-    newswitch-device-id: -z
+      optikit:
+        dsn-input-variable: ""
+    newswitch-device-id: -z-actuator

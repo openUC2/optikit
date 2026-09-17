@@ -3,6 +3,7 @@ package comp
 
 import (
 	"fmt"
+	"slices"
 	"strings"
 
 	"github.com/urfave/cli/v3"
@@ -10,7 +11,7 @@ import (
 	"github.com/openUC2/optikit/internal/optikit"
 )
 
-func MakeCmd(_ optikit.Versions) *cli.Command {
+func MakeCmd(versions optikit.Versions) *cli.Command {
 	return &cli.Command{
 		Name:    "comp",
 		Aliases: []string{"composition"},
@@ -27,21 +28,29 @@ func MakeCmd(_ optikit.Versions) *cli.Command {
 				Usage:   "Set value of input variable, using format `variablename:variablevalue`",
 			},
 		},
-		Commands: cmds,
+		Commands: slices.Concat(
+			makeReportCmds(versions),
+			cmds,
+		),
+	}
+}
+
+func makeReportCmds(versions optikit.Versions) []*cli.Command {
+	return []*cli.Command{
+		{
+			Name:      "report-comp",
+			Aliases:   []string{"report-components"},
+			Usage:     "Generate a flattened report of all components in the design",
+			ArgsUsage: argsUsageOutputFile,
+			Flags: []cli.Flag{
+				makeRenderOutputFormatFlag("json", "yaml", "yml"),
+			},
+			Action: reportCompA(versions),
+		},
 	}
 }
 
 var cmds = []*cli.Command{
-	{
-		Name:      "report-comp",
-		Aliases:   []string{"report-components"},
-		Usage:     "Generate a flattened report of all components in the design",
-		ArgsUsage: argsUsageOutputFile,
-		Flags: []cli.Flag{
-			makeRenderOutputFormatFlag("json", "yaml", "yml"),
-		},
-		Action: reportCompA,
-	},
 	{
 		Name:      "render-comp-g",
 		Aliases:   []string{"render-components-graph"},

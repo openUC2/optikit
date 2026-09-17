@@ -19,6 +19,15 @@ import (
 	"github.com/openUC2/optikit/exp/designs"
 )
 
+// CompsReport
+
+type CompsReport struct {
+	// Optikit indicates that the design was written assuming the semantics of a given version
+	// of Optikit.
+	Optikit    string       `json:"optikit-version"      yaml:"optikit-version"`
+	Components []CompReport `json:"components,omitempty" yaml:"components,omitempty"`
+}
+
 // CompReport
 
 type CompReport struct {
@@ -79,19 +88,21 @@ func radToDeg(rad float64) float64 {
 
 func ReportComponents(
 	ctx context.Context, design *designs.FSDesign, gridSpacings designs.ContinuousXYZ[float64],
-) (report []CompReport, err error) {
+	optikitVersion string,
+) (report CompsReport, err error) {
+	report.Optikit = optikitVersion
 	d, err := design.Flattened(ctx, gridSpacings)
 	if err != nil {
-		return nil, errors.Wrapf(err, "couldn't flatten design %s", design.Path())
+		return CompsReport{}, errors.Wrapf(err, "couldn't flatten design %s", design.Path())
 	}
 	comps := d.Decl.Components
-	report = make([]CompReport, 0, len(comps))
+	report.Components = make([]CompReport, 0, len(comps))
 	for _, compID := range slices.Sorted(maps.Keys(comps)) {
 		r, err := reportComp(compID, comps[compID], gridSpacings)
 		if err != nil {
-			return nil, errors.Wrapf(err, "couldn't make report for component %s", compID)
+			return CompsReport{}, errors.Wrapf(err, "couldn't make report for component %s", compID)
 		}
-		report = append(report, r)
+		report.Components = append(report.Components, r)
 	}
 	return report, nil
 }
@@ -128,7 +139,7 @@ func reportComp(
 }
 
 func SerializeReport(
-	ctx context.Context, report []CompReport, format string,
+	ctx context.Context, report CompsReport, format string,
 ) (result []byte, err error) {
 	switch format {
 	default:
@@ -155,13 +166,15 @@ func SerializeReport(
 
 func ReportPrimitives(
 	ctx context.Context, design *designs.FSDesign, gridSpacings designs.ContinuousXYZ[float64],
-) (report []CompReport, err error) {
+	optikitVersion string,
+) (report CompsReport, err error) {
+	report.Optikit = optikitVersion
 	d, err := design.Flattened(ctx, gridSpacings)
 	if err != nil {
-		return nil, errors.Wrapf(err, "couldn't flatten design %s", design.Path())
+		return CompsReport{}, errors.Wrapf(err, "couldn't flatten design %s", design.Path())
 	}
 	comps := d.Decl.Components
-	report = make([]CompReport, 0, len(comps))
+	report.Components = make([]CompReport, 0, len(comps))
 	for _, compID := range slices.Sorted(maps.Keys(comps)) {
 		comp := comps[compID]
 		if comp.Kind != designs.CompKindPrimitive {
@@ -170,9 +183,9 @@ func ReportPrimitives(
 
 		r, err := reportComp(compID, comps[compID], gridSpacings)
 		if err != nil {
-			return nil, errors.Wrapf(err, "couldn't make report for component %s", compID)
+			return CompsReport{}, errors.Wrapf(err, "couldn't make report for component %s", compID)
 		}
-		report = append(report, r)
+		report.Components = append(report.Components, r)
 	}
 	return report, nil
 }

@@ -1,18 +1,21 @@
-[
-  {
-    "id": "axes",
-    "kind": "primitive/static",
-    "static-models": {
-      "gltf": "axes.glb",
-      "step": "axes.step"
-    },
-    "rotation": {
-      "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "y": 90,
-        "z": -180
+{
+  "optikit-version": "v0.0.0-dev",
+  "components": [
+    {
+      "id": "axes",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "axes.glb",
+        "step": "axes.step"
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": 90,
+          "z": -180
+        }
       }
     }
-  }
-]
+  ]
+}

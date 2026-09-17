@@ -1,73 +1,89 @@
-[
-  {
-    "id": "laser",
-    "kind": "primitive/static",
-    "static-models": {
-      "gltf": "ASS - 3006 - AUTXYZSTG - V04 - A__for OST.glb",
-      "step": "ASS - 3006 - AUTXYZSTG - V04 - A__for OST.stp"
-    },
-    "rotation": {
-      "kind": "extrinsic",
-      "order": "zxy"
-    }
-  },
-  {
-    "id": "stage-drivers",
-    "kind": "primitive/static",
-    "static-models": {
-      "newswitch-device": "stage.newswitch-device.yml"
-    },
-    "results": {
-      "newswitch-device-config": {
-        "stage": {
-          "device-x": "-x",
-          "device-y": "-y",
-          "device-z": "-z"
-        }
+{
+  "optikit-version": "v0.0.0-dev",
+  "components": [
+    {
+      "id": "laser",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "ASS - 3006 - AUTXYZSTG - V04 - A__for OST.glb",
+        "step": "ASS - 3006 - AUTXYZSTG - V04 - A__for OST.stp"
       },
-      "newswitch-device-id": ""
-    }
-  },
-  {
-    "id": "x-drivers",
-    "kind": "primitive/static",
-    "static-models": {
-      "newswitch-device": "linear-actuator.newswitch-device.yml"
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
     },
-    "results": {
-      "newswitch-device-config": {
-        "controller": "",
-        "dsn-input-variable": ""
+    {
+      "id": "stage-drivers",
+      "kind": "primitive/static",
+      "static-models": {
+        "newswitch-device": "stage.newswitch-device.yml"
       },
-      "newswitch-device-id": "-x"
-    }
-  },
-  {
-    "id": "y-drivers",
-    "kind": "primitive/static",
-    "static-models": {
-      "newswitch-device": "linear-actuator.newswitch-device.yml"
+      "results": {
+        "newswitch-device-config": {
+          "stage": {
+            "orthogonal-xyz": {
+              "devices": {
+                "x-actuator": "-x-actuator",
+                "x-limit": null,
+                "y-actuator": "-y-actuator",
+                "y-limit": null,
+                "z-actuator": "-z-actuator",
+                "z-limit": null
+              }
+            }
+          }
+        },
+        "newswitch-device-id": ""
+      }
     },
-    "results": {
-      "newswitch-device-config": {
-        "controller": "",
-        "dsn-input-variable": ""
+    {
+      "id": "x-drivers",
+      "kind": "primitive/static",
+      "static-models": {
+        "newswitch-device": "linear-actuator.newswitch-device.yml"
       },
-      "newswitch-device-id": "-y"
-    }
-  },
-  {
-    "id": "z-drivers",
-    "kind": "primitive/static",
-    "static-models": {
-      "newswitch-device": "linear-actuator.newswitch-device.yml"
+      "results": {
+        "newswitch-device-config": {
+          "controller": "",
+          "optikit": {
+            "dsn-input-variable": ""
+          }
+        },
+        "newswitch-device-id": "-x-actuator"
+      }
     },
-    "results": {
-      "newswitch-device-config": {
-        "controller": "",
-        "dsn-input-variable": ""
+    {
+      "id": "y-drivers",
+      "kind": "primitive/static",
+      "static-models": {
+        "newswitch-device": "linear-actuator.newswitch-device.yml"
       },
-      "newswitch-device-id": "-z"
+      "results": {
+        "newswitch-device-config": {
+          "controller": "",
+          "optikit": {
+            "dsn-input-variable": ""
+          }
+        },
+        "newswitch-device-id": "-y-actuator"
+      }
+    },
+    {
+      "id": "z-drivers",
+      "kind": "primitive/static",
+      "static-models": {
+        "newswitch-device": "linear-actuator.newswitch-device.yml"
+      },
+      "results": {
+        "newswitch-device-config": {
+          "controller": "",
+          "optikit": {
+            "dsn-input-variable": ""
+          }
+        },
+        "newswitch-device-id": "-z-actuator"
+      }
     }
-  }
-]
+  ]
+}

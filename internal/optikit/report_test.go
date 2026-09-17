@@ -9,6 +9,7 @@ import (
 
 	"github.com/google/go-cmp/cmp"
 
+	"github.com/openUC2/optikit/cmd"
 	"github.com/openUC2/optikit/exp/designs"
 )
 
@@ -106,7 +107,7 @@ func checkPrimitives(
 
 	var want, got []byte
 	var err error
-	report, err := ReportPrimitives(t.Context(), design, designs.UC2GridSpacings)
+	report, err := ReportPrimitives(t.Context(), design, designs.UC2GridSpacings, cmd.FallbackVersion)
 	if err != nil {
 		t.Error(err)
 		return

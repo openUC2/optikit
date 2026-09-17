@@ -1,39 +1,42 @@
-[
-  {
-    "id": "insert",
-    "kind": "primitive/static",
-    "static-models": {
-      "gltf": "PRT - 2023 - INSLEND40F50 - V04.glb",
-      "step": "PRT - 2023 - INSLEND40F50 - V04.stp"
+{
+  "optikit-version": "v0.0.0-dev",
+  "components": [
+    {
+      "id": "insert",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "PRT - 2023 - INSLEND40F50 - V04.glb",
+        "step": "PRT - 2023 - INSLEND40F50 - V04.stp"
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
     },
-    "rotation": {
-      "kind": "extrinsic",
-      "order": "zxy"
-    }
-  },
-  {
-    "id": "lens",
-    "kind": "primitive/static",
-    "static-models": {
-      "gltf": "BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx.glb",
-      "optiland": "AC254-100-A-Zemax-ZMX.optiland",
-      "step": "BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx.stp"
+    {
+      "id": "lens",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx.glb",
+        "optiland": "AC254-100-A-Zemax-ZMX.optiland",
+        "step": "BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx.stp"
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
     },
-    "rotation": {
-      "kind": "extrinsic",
-      "order": "zxy"
+    {
+      "id": "nut",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "PRT - 2003 - NUTD40.glb",
+        "step": "PRT - 2003 - NUTD40.stp"
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
     }
-  },
-  {
-    "id": "nut",
-    "kind": "primitive/static",
-    "static-models": {
-      "gltf": "PRT - 2003 - NUTD40.glb",
-      "step": "PRT - 2003 - NUTD40.stp"
-    },
-    "rotation": {
-      "kind": "extrinsic",
-      "order": "zxy"
-    }
-  }
-]
+  ]
+}

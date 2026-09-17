@@ -1,168 +1,171 @@
-[
-  {
-    "id": "cube-insert",
-    "kind": "primitive/static",
-    "static-models": {
-      "gltf": "PRT - 2164 - INSGLV - V04.glb",
-      "step": "PRT - 2164 - INSGLV - V04.stp"
+{
+  "optikit-version": "v0.0.0-dev",
+  "components": [
+    {
+      "id": "cube-insert",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "PRT - 2164 - INSGLV - V04.glb",
+        "step": "PRT - 2164 - INSGLV - V04.stp"
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "z": -90
+        }
+      }
     },
-    "rotation": {
-      "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "z": -90
+    {
+      "id": "motorized-mirror-1/motorized-mirror",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "primitives/motorized-mirror.dsn/BUY - Galvo scanner XY --- single motor.glb",
+        "step": "primitives/motorized-mirror.dsn/BUY - Galvo scanner XY --- single motor.stp"
+      },
+      "position": [
+        -44,
+        0,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -180,
+          "z": -90
+        }
+      }
+    },
+    {
+      "id": "motorized-mirror-1/mount-ring",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "primitives/motorized-mirror.dsn/PRT - 2180 - DISRNG.glb",
+        "step": "primitives/motorized-mirror.dsn/PRT - 2180 - DISRNG.stp"
+      },
+      "position": [
+        -27,
+        0,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -180
+        }
+      }
+    },
+    {
+      "id": "motorized-mirror-1/mount-top",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "primitives/motorized-mirror.dsn/PRT - 2165 - CLPPCE.glb",
+        "step": "primitives/motorized-mirror.dsn/PRT - 2165 - CLPPCE.stp"
+      },
+      "position": [
+        -42.3,
+        0,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -180,
+          "z": -90
+        }
+      }
+    },
+    {
+      "id": "motorized-mirror-1/screw-1",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/motorized-mirror.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 20 - 8.8 - A2K.bom.yml"
+      }
+    },
+    {
+      "id": "motorized-mirror-1/screw-2",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/motorized-mirror.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 20 - 8.8 - A2K.bom.yml"
+      }
+    },
+    {
+      "id": "motorized-mirror-2/motorized-mirror",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "primitives/motorized-mirror.dsn/BUY - Galvo scanner XY --- single motor.glb",
+        "step": "primitives/motorized-mirror.dsn/BUY - Galvo scanner XY --- single motor.stp"
+      },
+      "position": [
+        0,
+        -44,
+        -7.4
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -180
+        }
+      }
+    },
+    {
+      "id": "motorized-mirror-2/mount-ring",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "primitives/motorized-mirror.dsn/PRT - 2180 - DISRNG.glb",
+        "step": "primitives/motorized-mirror.dsn/PRT - 2180 - DISRNG.stp"
+      },
+      "position": [
+        0,
+        -27,
+        -7.4
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": 180,
+          "z": 90
+        }
+      }
+    },
+    {
+      "id": "motorized-mirror-2/mount-top",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "primitives/motorized-mirror.dsn/PRT - 2165 - CLPPCE.glb",
+        "step": "primitives/motorized-mirror.dsn/PRT - 2165 - CLPPCE.stp"
+      },
+      "position": [
+        0,
+        -42.3,
+        -7.4
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -180
+        }
+      }
+    },
+    {
+      "id": "motorized-mirror-2/screw-1",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/motorized-mirror.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 20 - 8.8 - A2K.bom.yml"
+      }
+    },
+    {
+      "id": "motorized-mirror-2/screw-2",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/motorized-mirror.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 20 - 8.8 - A2K.bom.yml"
       }
     }
-  },
-  {
-    "id": "motorized-mirror-1/motorized-mirror",
-    "kind": "primitive/static",
-    "static-models": {
-      "gltf": "primitives/motorized-mirror.dsn/BUY - Galvo scanner XY --- single motor.glb",
-      "step": "primitives/motorized-mirror.dsn/BUY - Galvo scanner XY --- single motor.stp"
-    },
-    "position": [
-      -44,
-      0,
-      0
-    ],
-    "rotation": {
-      "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "y": -180,
-        "z": -90
-      }
-    }
-  },
-  {
-    "id": "motorized-mirror-1/mount-ring",
-    "kind": "primitive/static",
-    "static-models": {
-      "gltf": "primitives/motorized-mirror.dsn/PRT - 2180 - DISRNG.glb",
-      "step": "primitives/motorized-mirror.dsn/PRT - 2180 - DISRNG.stp"
-    },
-    "position": [
-      -27,
-      0,
-      0
-    ],
-    "rotation": {
-      "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "y": -180
-      }
-    }
-  },
-  {
-    "id": "motorized-mirror-1/mount-top",
-    "kind": "primitive/static",
-    "static-models": {
-      "gltf": "primitives/motorized-mirror.dsn/PRT - 2165 - CLPPCE.glb",
-      "step": "primitives/motorized-mirror.dsn/PRT - 2165 - CLPPCE.stp"
-    },
-    "position": [
-      -42.3,
-      0,
-      0
-    ],
-    "rotation": {
-      "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "y": -180,
-        "z": -90
-      }
-    }
-  },
-  {
-    "id": "motorized-mirror-1/screw-1",
-    "kind": "primitive/static",
-    "static-models": {
-      "bom": "primitives/motorized-mirror.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 20 - 8.8 - A2K.bom.yml"
-    }
-  },
-  {
-    "id": "motorized-mirror-1/screw-2",
-    "kind": "primitive/static",
-    "static-models": {
-      "bom": "primitives/motorized-mirror.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 20 - 8.8 - A2K.bom.yml"
-    }
-  },
-  {
-    "id": "motorized-mirror-2/motorized-mirror",
-    "kind": "primitive/static",
-    "static-models": {
-      "gltf": "primitives/motorized-mirror.dsn/BUY - Galvo scanner XY --- single motor.glb",
-      "step": "primitives/motorized-mirror.dsn/BUY - Galvo scanner XY --- single motor.stp"
-    },
-    "position": [
-      0,
-      -44,
-      -7.4
-    ],
-    "rotation": {
-      "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "y": -180
-      }
-    }
-  },
-  {
-    "id": "motorized-mirror-2/mount-ring",
-    "kind": "primitive/static",
-    "static-models": {
-      "gltf": "primitives/motorized-mirror.dsn/PRT - 2180 - DISRNG.glb",
-      "step": "primitives/motorized-mirror.dsn/PRT - 2180 - DISRNG.stp"
-    },
-    "position": [
-      0,
-      -27,
-      -7.4
-    ],
-    "rotation": {
-      "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "y": 180,
-        "z": 90
-      }
-    }
-  },
-  {
-    "id": "motorized-mirror-2/mount-top",
-    "kind": "primitive/static",
-    "static-models": {
-      "gltf": "primitives/motorized-mirror.dsn/PRT - 2165 - CLPPCE.glb",
-      "step": "primitives/motorized-mirror.dsn/PRT - 2165 - CLPPCE.stp"
-    },
-    "position": [
-      0,
-      -42.3,
-      -7.4
-    ],
-    "rotation": {
-      "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "y": -180
-      }
-    }
-  },
-  {
-    "id": "motorized-mirror-2/screw-1",
-    "kind": "primitive/static",
-    "static-models": {
-      "bom": "primitives/motorized-mirror.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 20 - 8.8 - A2K.bom.yml"
-    }
-  },
-  {
-    "id": "motorized-mirror-2/screw-2",
-    "kind": "primitive/static",
-    "static-models": {
-      "bom": "primitives/motorized-mirror.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 20 - 8.8 - A2K.bom.yml"
-    }
-  }
-]
+  ]
+}

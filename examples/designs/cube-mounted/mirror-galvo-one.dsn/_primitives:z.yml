@@ -1,3 +1,5 @@
+optikit-version: v0.0.0-dev
+components:
 - id: mounted-mirror/cube-insert
   kind: primitive/static
   static-models:

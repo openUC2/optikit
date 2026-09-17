@@ -1,30 +1,33 @@
-[
-  {
-    "id": "drivers",
-    "kind": "primitive/static",
-    "static-models": {
-      "newswitch-device": "laser.newswitch-device.yml"
-    },
-    "results": {
-      "newswitch-device-config": {
-        "controller": ""
+{
+  "optikit-version": "v0.0.0-dev",
+  "components": [
+    {
+      "id": "drivers",
+      "kind": "primitive/static",
+      "static-models": {
+        "newswitch-device": "laser.newswitch-device.yml"
       },
-      "newswitch-device-id": ""
-    }
-  },
-  {
-    "id": "laser",
-    "kind": "primitive/static",
-    "static-models": {
-      "gltf": "ASS - 4005 - LAS+CAS.glb",
-      "step": "ASS - 4005 - LAS+CAS.stp"
+      "results": {
+        "newswitch-device-config": {
+          "controller": ""
+        },
+        "newswitch-device-id": ""
+      }
     },
-    "rotation": {
-      "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 90
+    {
+      "id": "laser",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "ASS - 4005 - LAS+CAS.glb",
+        "step": "ASS - 4005 - LAS+CAS.stp"
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "x": 90
+        }
       }
     }
-  }
-]
+  ]
+}
