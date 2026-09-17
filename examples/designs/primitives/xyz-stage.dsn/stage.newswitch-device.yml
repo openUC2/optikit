@@ -2,4 +2,4 @@ newswitch-version: v0.1.0-alpha.0 # minimum allowed newswitch version for this c
 
 kind: stage
 stage:
-  kind: orthogonal
+  kind: orthogonal-xyz

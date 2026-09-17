@@ -456,9 +456,16 @@
     "results": {
       "newswitch-device-config": {
         "stage": {
-          "device-x": "stage-x",
-          "device-y": "stage-y",
-          "device-z": "stage-z"
+          "orthogonal-xyz": {
+            "devices": {
+              "x-actuator": "stage-x",
+              "x-limit": null,
+              "y-actuator": "stage-y",
+              "y-limit": null,
+              "z-actuator": "stage-z",
+              "z-limit": null
+            }
+          }
         }
       },
       "newswitch-device-id": "stage"
@@ -473,7 +480,9 @@
     "results": {
       "newswitch-device-config": {
         "controller": "mainboard",
-        "dsn-input-variable": "sample-x"
+        "optikit": {
+          "dsn-input-variable": "sample-x"
+        }
       },
       "newswitch-device-id": "stage-x"
     }
@@ -487,7 +496,9 @@
     "results": {
       "newswitch-device-config": {
         "controller": "mainboard",
-        "dsn-input-variable": "sample-y"
+        "optikit": {
+          "dsn-input-variable": "sample-y"
+        }
       },
       "newswitch-device-id": "stage-y"
     }
@@ -501,7 +512,9 @@
     "results": {
       "newswitch-device-config": {
         "controller": "mainboard",
-        "dsn-input-variable": "sample-z"
+        "optikit": {
+          "dsn-input-variable": "sample-z"
+        }
       },
       "newswitch-device-id": "stage-z"
     }

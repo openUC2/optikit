@@ -33,9 +33,16 @@ components:
       newswitch-device-config: >
         {
           stage: {
-            "device-x": inputs['newswitch-device-id'].value + '-x',
-            "device-y": inputs['newswitch-device-id'].value + '-y',
-            "device-z": inputs['newswitch-device-id'].value + '-z',
+            "orthogonal-xyz": {
+              devices: {
+                "x-actuator": inputs['newswitch-device-id'].value + '-x',
+                "x-limit": nil,
+                "y-actuator": inputs['newswitch-device-id'].value + '-y',
+                "y-limit": nil,
+                "z-actuator": inputs['newswitch-device-id'].value + '-z',
+                "z-limit": nil,
+              },
+            },
           },
         }
   x-drivers:
@@ -49,7 +56,9 @@ components:
       newswitch-device-config: >
         {
           controller: inputs['newswitch-controller'].value,
-          'dsn-input-variable': inputs['newswitch-input-variable-x'].value,
+          optikit: {
+            'dsn-input-variable': inputs['newswitch-input-variable-x'].value,
+          },
         }
   y-drivers:
     kind: primitive
@@ -62,7 +71,9 @@ components:
       newswitch-device-config: >
         {
           controller: inputs['newswitch-controller'].value,
-          'dsn-input-variable': inputs['newswitch-input-variable-y'].value,
+          optikit: {
+            'dsn-input-variable': inputs['newswitch-input-variable-y'].value,
+          },
         }
   z-drivers:
     kind: primitive
@@ -75,7 +86,9 @@ components:
       newswitch-device-config: >
         {
           controller: inputs['newswitch-controller'].value,
-          'dsn-input-variable': inputs['newswitch-input-variable-z'].value,
+          optikit: {
+            'dsn-input-variable': inputs['newswitch-input-variable-z'].value,
+          },
         }
 
 inputs:
