@@ -30,9 +30,9 @@ components:
       static-models:
         newswitch-device: laser.newswitch-device.yml
     results:
-      newswitch-device-id: inputs['newswitch-device-id'].value
+      newswitch-device-id: ~ inputs['newswitch-device-id'].value
       newswitch-device-config: >
-        {
+        ~ {
           controller: inputs['newswitch-controller'].value,
         }
 

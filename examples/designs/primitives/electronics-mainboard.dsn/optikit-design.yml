@@ -29,7 +29,7 @@ components:
       static-models:
         newswitch-device: mainboard.newswitch-device.yml
     results:
-      newswitch-device-id: inputs['newswitch-device-id'].value
+      newswitch-device-id: ~ inputs['newswitch-device-id'].value
 
 inputs:
   newswitch-device-id:
