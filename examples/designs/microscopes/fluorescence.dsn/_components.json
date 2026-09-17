@@ -5,8 +5,8 @@
     "design": "primitives/laser.dsn",
     "instantiation": {
       "inputs": {
-        "newswitch-controller": "mainboard",
-        "newswitch-device-id": "laser"
+        "newswitch-controller": "my-favorite-mainboard",
+        "newswitch-device-id": "hotlaser123"
       }
     },
     "position": [
@@ -30,9 +30,9 @@
     },
     "results": {
       "newswitch-device-config": {
-        "controller": "mainboard"
+        "controller": "my-favorite-mainboard"
       },
-      "newswitch-device-id": "laser"
+      "newswitch-device-id": "hotlaser123"
     }
   },
   {
@@ -62,7 +62,7 @@
     "design": "primitives/hikcamera-with-objective.dsn",
     "instantiation": {
       "inputs": {
-        "newswitch-device-id": "hikcam"
+        "newswitch-device-id": "bigcamera42"
       }
     },
     "rotation": {
@@ -77,7 +77,7 @@
       "newswitch-device": "primitives/hikcamera-with-objective.dsn/hikcamera.newswitch-device.yml"
     },
     "results": {
-      "newswitch-device-id": "hikcam"
+      "newswitch-device-id": "bigcamera42"
     }
   },
   {
@@ -138,7 +138,7 @@
     "design": "primitives/electronics-mainboard.dsn",
     "instantiation": {
       "inputs": {
-        "newswitch-device-id": "mainboard"
+        "newswitch-device-id": "my-favorite-mainboard"
       }
     },
     "position": [
@@ -162,7 +162,7 @@
       "newswitch-device": "primitives/electronics-mainboard.dsn/mainboard.newswitch-device.yml"
     },
     "results": {
-      "newswitch-device-id": "mainboard"
+      "newswitch-device-id": "my-favorite-mainboard"
     }
   },
   {
@@ -696,8 +696,8 @@
     "design": "primitives/xyz-stage.dsn",
     "instantiation": {
       "inputs": {
-        "newswitch-controller": "mainboard",
-        "newswitch-device-id": "stage",
+        "newswitch-controller": "my-favorite-mainboard",
+        "newswitch-device-id": "just-some-boring-stage",
         "newswitch-input-variable-x": "sample-x",
         "newswitch-input-variable-y": "sample-y",
         "newswitch-input-variable-z": "sample-z",
@@ -744,17 +744,17 @@
         "stage": {
           "orthogonal-xyz": {
             "devices": {
-              "x-actuator": "stage-x",
+              "x-actuator": "just-some-boring-stage-x-actuator",
               "x-limit": null,
-              "y-actuator": "stage-y",
+              "y-actuator": "just-some-boring-stage-y-actuator",
               "y-limit": null,
-              "z-actuator": "stage-z",
+              "z-actuator": "just-some-boring-stage-z-actuator",
               "z-limit": null
             }
           }
         }
       },
-      "newswitch-device-id": "stage"
+      "newswitch-device-id": "just-some-boring-stage"
     }
   },
   {
@@ -765,12 +765,12 @@
     },
     "results": {
       "newswitch-device-config": {
-        "controller": "mainboard",
+        "controller": "my-favorite-mainboard",
         "optikit": {
           "dsn-input-variable": "sample-x"
         }
       },
-      "newswitch-device-id": "stage-x"
+      "newswitch-device-id": "just-some-boring-stage-x-actuator"
     }
   },
   {
@@ -781,12 +781,12 @@
     },
     "results": {
       "newswitch-device-config": {
-        "controller": "mainboard",
+        "controller": "my-favorite-mainboard",
         "optikit": {
           "dsn-input-variable": "sample-y"
         }
       },
-      "newswitch-device-id": "stage-y"
+      "newswitch-device-id": "just-some-boring-stage-y-actuator"
     }
   },
   {
@@ -797,12 +797,12 @@
     },
     "results": {
       "newswitch-device-config": {
-        "controller": "mainboard",
+        "controller": "my-favorite-mainboard",
         "optikit": {
           "dsn-input-variable": "sample-z"
         }
       },
-      "newswitch-device-id": "stage-z"
+      "newswitch-device-id": "just-some-boring-stage-z-actuator"
     }
   }
 ]
