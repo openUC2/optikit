@@ -1,6 +1,12 @@
 // Package cmd provides subcommands
 package cmd
 
+import (
+	"github.com/openUC2/optikit/internal/optikit"
+)
+
+type Versions = optikit.Versions
+
 const (
 	// dsnMinVersion is the minimum supported Optikit version among designs. A design with a
 	// lower Optikit version cannot be used.

@@ -11,7 +11,6 @@ import (
 
 	"github.com/openUC2/optikit/cmd"
 	"github.com/openUC2/optikit/cmd/dev"
-	"github.com/openUC2/optikit/internal/optikit"
 )
 
 func main() {
@@ -22,7 +21,7 @@ func main() {
 
 var defaultWorkspaceBase, _ = os.UserHomeDir()
 
-var ocliVersions optikit.Versions = optikit.Versions{
+var ocliVersions cmd.Versions = cmd.Versions{
 	Tool:               toolVersion,
 	MinSupportedDesign: cmd.DSNMinVersion,
 }
