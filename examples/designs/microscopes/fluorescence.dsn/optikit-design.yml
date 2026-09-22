@@ -19,6 +19,8 @@ components:
   dichroic:
     kind: design
     design: cube-mounted/dichroic-mirror.dsn
+    instantiation:
+      variant: xy
     pose:
       rotation:
         kind: uc2
@@ -53,6 +55,8 @@ components:
   fiber-holder:
     kind: design
     design: cube-mounted/fiber-holder.dsn
+    instantiation:
+      variant: x
     pose:
       rotation:
         kind: uc2

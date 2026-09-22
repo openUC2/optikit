@@ -6,7 +6,8 @@ package example
 
 //go:generate pwd
 
-//go:generate mdl convert --output-format=glb "ASS - 4008 - MAIBRD+CAS2X2 - B.stp"
+//go:generate mdl convert --output-format=glb "PRT - 1009 - CASMAIBRD2X2BAS - B.stp"
+//go:generate mdl convert --output-format=glb "PRT - 1010 - CASMAIBRD2X2LID - B.stp"
 
 //go:generate geom report-prim --format=yaml _primitives.yml
 //go:generate geom report-prim --format=json _primitives.json

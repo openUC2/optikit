@@ -19,7 +19,7 @@ components:
         offset-mm: {z: -10}
     tags:
       - procurement/3d-print
-      - in/core-box
+      - in/kit/core-box
   magnet-1:
     kind: primitive
     primitive:
@@ -28,7 +28,7 @@ components:
     tags:
       - structure/fastener/magnetic
       - procurement/buy
-      - in/core-box
+      - in/kit/core-box
   magnet-2:
     kind: primitive
     primitive:
@@ -37,7 +37,7 @@ components:
     tags:
       - structure/fastener/magnetic
       - procurement/buy
-      - in/core-box
+      - in/kit/core-box
   magnet-3:
     kind: primitive
     primitive:
@@ -46,7 +46,7 @@ components:
     tags:
       - structure/fastener/magnetic
       - procurement/buy
-      - in/core-box
+      - in/kit/core-box
   magnet-4:
     kind: primitive
     primitive:
@@ -55,7 +55,7 @@ components:
     tags:
       - structure/fastener/magnetic
       - procurement/buy
-      - in/core-box
+      - in/kit/core-box
   insert:
     kind: primitive
     primitive:
@@ -68,4 +68,4 @@ components:
     tags:
       - structure/insert
       - procurement/3d-print
-      - in/core-box
+      - in/kit/core-box

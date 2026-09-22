@@ -1,5 +1,17 @@
 optikit-version: v0.0.0-dev
 components:
+- id: camera-basic/camera
+  kind: primitive/static
+  static-models:
+    gltf: "primitives/hikcamera-with-objective.dsn/BUY - HIKROBOT - Camera - MV-CE060-10UM-PRO.glb"
+    step: "primitives/hikcamera-with-objective.dsn/BUY - HIKROBOT - Camera - MV-CE060-10UM-PRO.stp"
+  position: [52.2, 50.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+    angles:
+      "y": -90.0
+      z: -180.0
 - id: camera-basic/drivers
   kind: primitive/static
   static-models:
@@ -7,17 +19,68 @@ components:
   position: [0.0, 0.0, 0.0]
   results:
     newswitch-device-id: ""
-- id: camera-basic/lens-and-camera
+- id: camera-basic/lens
   kind: primitive/static
   static-models:
-    gltf: "primitives/hikcamera-with-objective.dsn/ASS - 4003 - CAM+OBJ.glb"
-    step: "primitives/hikcamera-with-objective.dsn/ASS - 4003 - CAM+OBJ.stp"
+    gltf: "primitives/hikcamera-with-objective.dsn/BUY - Objectiv - CLENS-100TEL.glb"
+    step: "primitives/hikcamera-with-objective.dsn/BUY - Objectiv - CLENS-100TEL.stp"
+  position: [-23.9, 50.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+    angles:
+      "y": -180.0
+- id: camera-basic/lens-holder-bottom/cube-pin-1
+  kind: primitive/static
+  static-models:
+    bom: "primitives/hikcamera-with-objective.dsn/half-case.dsn/BUY - LEGO technic - Pin - art. no. 2780.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: camera-basic/lens-holder-bottom/cube-pin-2
+  kind: primitive/static
+  static-models:
+    bom: "primitives/hikcamera-with-objective.dsn/half-case.dsn/BUY - LEGO technic - Pin - art. no. 2780.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: camera-basic/lens-holder-bottom/cube-pin-3
+  kind: primitive/static
+  static-models:
+    bom: "primitives/hikcamera-with-objective.dsn/half-case.dsn/BUY - LEGO technic - Pin - art. no. 2780.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: camera-basic/lens-holder-bottom/cube-pin-4
+  kind: primitive/static
+  static-models:
+    bom: "primitives/hikcamera-with-objective.dsn/half-case.dsn/BUY - LEGO technic - Pin - art. no. 2780.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: camera-basic/lens-holder-bottom/half-case
+  kind: primitive/static
+  static-models:
+    gltf: "primitives/hikcamera-with-objective.dsn/half-case.dsn/PRT - 1008 - OBJHOL_CLENS-100TEL.glb"
+    step: "primitives/hikcamera-with-objective.dsn/half-case.dsn/PRT - 1008 - OBJHOL_CLENS-100TEL.stp"
   position: [0.0, 50.0, 0.0]
   rotation:
     kind: extrinsic
     order: zxy
     angles:
       "y": -180.0
+- id: camera-basic/lens-holder-bottom/screw-1
+  kind: primitive/static
+  static-models:
+    bom: "primitives/hikcamera-with-objective.dsn/half-case.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 40 - 8.8 A2K.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: camera-basic/lens-holder-bottom/screw-2
+  kind: primitive/static
+  static-models:
+    bom: "primitives/hikcamera-with-objective.dsn/half-case.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 40 - 8.8 A2K.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: camera-basic/lens-holder-bottom/washer-1
+  kind: primitive/static
+  static-models:
+    bom: "primitives/hikcamera-with-objective.dsn/half-case.dsn/ISO 7092 - Washer - 3 - 200 HV - A2K.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: camera-basic/lens-holder-bottom/washer-2
+  kind: primitive/static
+  static-models:
+    bom: "primitives/hikcamera-with-objective.dsn/half-case.dsn/ISO 7092 - Washer - 3 - 200 HV - A2K.bom.yml"
+  position: [0.0, 0.0, 0.0]
 - id: cube-45-fixed/mounted-mirror/adhesive-pad
   kind: primitive/static
   static-models:

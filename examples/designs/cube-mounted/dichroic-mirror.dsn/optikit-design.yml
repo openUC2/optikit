@@ -7,18 +7,35 @@ design:
     - in/kit/fluorescence-laser-box
 
 components:
-  mirror-with-filter:
-    kind: primitive
-    primitive:
-      static-models:
-        gltf: ASS - 2072 - CUBDICSPL+EMIFIL_WLS485.glb
-        step: ASS - 2072 - CUBDICSPL+EMIFIL_WLS485.stp
+  skeleton:
+    kind: design
+    design: primitives/cube-skeleton.dsn
     pose:
       rotation:
         kind: grid
+  mounted-mirror:
+    kind: design
+    design: mounted-mirror.dsn
+    pose:
+      rotation:
+        kind: grid
+
+variants:
+  xy:
+    description: Normal vector of mirror surface in the x-y plane
+    components:
+      mounted-mirror:
+        pose:
+          rotation:
+            grid: {x: +y}
     tags:
-      - optical/mirror
-      - optical/filter/485
-      - procurement/buy
-      - procurement/3d-print
-      - in/kit/fluorescence-laser-box
+      - pose/orientation/insert/horizontal
+  _z:
+    description: Normal vector of mirror surface in the y-z plane
+    components:
+      mounted-mirror:
+        pose:
+          rotation:
+            grid: {z: +y}
+    tags:
+      - pose/orientation/insert/vertical

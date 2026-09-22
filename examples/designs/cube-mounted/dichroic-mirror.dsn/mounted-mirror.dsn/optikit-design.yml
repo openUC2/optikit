@@ -1,0 +1,80 @@
+optikit-version: v0.0.0-alpha.1
+
+design:
+  description: A dichroic filter and emission filter in a cube insert
+  tags:
+    - composition/insert-mounted
+
+components:
+  dichroic-filter:
+    kind: primitive
+    primitive:
+      static-models:
+        gltf: BUY - Dichroic filter - 30x30x1 488nm.glb
+        step: BUY - Dichroic filter - 30x30x1 488nm.stp
+    pose:
+      rotation:
+        kind: euler
+        euler: {z: -45, y: 90}
+    tags:
+      - procurement/buy
+      - in/fluo-laser-box
+  emission-filter:
+    kind: primitive
+    primitive:
+      static-models:
+        gltf: BUY - Emission filter - D25x1 WLS485.glb
+        step: BUY - Emission filter - D25x1 WLS485.stp
+    pose:
+      rotation:
+        kind: grid
+        grid: {z: -y}
+      translation:
+        offset-mm: {y: 23.35}
+    tags:
+      - procurement/buy
+      - in/fluo-laser-box
+  pin-1:
+    kind: primitive
+    primitive:
+      static-models:
+        bom: ISO 4762 - Cylinder head screw with hex socket - M2 x 6 - 8.8 - A2K.bom.yml
+    tags:
+      - structure/fastener/pin
+      - procurement/buy
+      - in/fluo-laser-box
+  pin-2:
+    kind: primitive
+    primitive:
+      static-models:
+        bom: ISO 4762 - Cylinder head screw with hex socket - M2 x 6 - 8.8 - A2K.bom.yml
+    tags:
+      - structure/fastener/pin
+      - procurement/buy
+      - in/fluo-laser-box
+  insert-bottom:
+    kind: primitive
+    primitive:
+      static-models:
+        gltf: PRT - 2020 - INSDICSPL+EMIFIL_WLS488LOW.glb
+        step: PRT - 2020 - INSDICSPL+EMIFIL_WLS488LOW.stp
+    pose:
+      rotation:
+        kind: grid
+    tags:
+      - structure/insert
+      - procurement/3d-print
+      - in/fluo-laser-box
+  insert-top:
+    kind: primitive
+    primitive:
+      static-models:
+        gltf: PRT - 2021 - INSDICSPL+EMIFIL_WLS488UPP.glb
+        step: PRT - 2021 - INSDICSPL+EMIFIL_WLS488UPP.stp
+    pose:
+      rotation:
+        kind: grid
+    tags:
+      - structure/insert
+      - procurement/3d-print
+      - in/fluo-laser-box

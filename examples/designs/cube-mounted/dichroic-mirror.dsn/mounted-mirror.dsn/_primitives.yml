@@ -1,0 +1,53 @@
+optikit-version: v0.0.0-dev
+components:
+- id: dichroic-filter
+  kind: primitive/static
+  static-models:
+    gltf: "BUY - Dichroic filter - 30x30x1 488nm.glb"
+    step: "BUY - Dichroic filter - 30x30x1 488nm.stp"
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+    angles:
+      "y": 90.0
+      z: -45.0
+- id: emission-filter
+  kind: primitive/static
+  static-models:
+    gltf: "BUY - Emission filter - D25x1 WLS485.glb"
+    step: "BUY - Emission filter - D25x1 WLS485.stp"
+  position: [0.0, 23.35, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+    angles:
+      x: 90.0
+- id: insert-bottom
+  kind: primitive/static
+  static-models:
+    gltf: "PRT - 2020 - INSDICSPL+EMIFIL_WLS488LOW.glb"
+    step: "PRT - 2020 - INSDICSPL+EMIFIL_WLS488LOW.stp"
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: insert-top
+  kind: primitive/static
+  static-models:
+    gltf: "PRT - 2021 - INSDICSPL+EMIFIL_WLS488UPP.glb"
+    step: "PRT - 2021 - INSDICSPL+EMIFIL_WLS488UPP.stp"
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: pin-1
+  kind: primitive/static
+  static-models:
+    bom: "ISO 4762 - Cylinder head screw with hex socket - M2 x 6 - 8.8 - A2K.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: pin-2
+  kind: primitive/static
+  static-models:
+    bom: "ISO 4762 - Cylinder head screw with hex socket - M2 x 6 - 8.8 - A2K.bom.yml"
+  position: [0.0, 0.0, 0.0]

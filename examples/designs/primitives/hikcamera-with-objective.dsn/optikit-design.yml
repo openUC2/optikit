@@ -7,22 +7,45 @@ design:
     - in/core-box
 
 components:
-  lens-and-camera:
+  lens:
     kind: primitive
     primitive:
       kind: static
       static-models:
-        gltf: ASS - 4003 - CAM+OBJ.glb
-        step: ASS - 4003 - CAM+OBJ.stp
+        gltf: BUY - Objectiv - CLENS-100TEL.glb
+        step: BUY - Objectiv - CLENS-100TEL.stp
     pose:
       rotation:
         kind: grid
+      translation:
+        offset-mm: {x: 23.9}
     tags:
       - optical/lens/convex
+      - procurement/buy
+      - in/kit/infinity-box
+  camera:
+    kind: primitive
+    primitive:
+      kind: static
+      static-models:
+        gltf: BUY - HIKROBOT - Camera - MV-CE060-10UM-PRO.glb
+        step: BUY - HIKROBOT - Camera - MV-CE060-10UM-PRO.stp
+    pose:
+      rotation:
+        kind: grid
+        grid: {z: -x, x: -z}
+      translation:
+        offset-mm: {x: -52.2}
+    tags:
       - optical/detector/camera
       - procurement/buy
-      - procurement/3d-print
       - in/kit/infinity-box
+  lens-holder-bottom:
+    kind: design
+    design: half-case.dsn
+    pose:
+      rotation:
+        kind: grid
   drivers:
     kind: primitive
     primitive:

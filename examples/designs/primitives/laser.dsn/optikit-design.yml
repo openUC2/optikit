@@ -4,25 +4,39 @@ design:
   description: A laser with fiber output
   tags:
     - composition/cube-compatible
-    - in/kit/fluorescence-laser-box
+    - in/kit/fluo-laser-box
 
 components:
+  case-top:
+    kind: design
+    design: half-case.dsn
+    pose:
+      rotation:
+        kind: grid
+  case-bottom:
+    kind: design
+    design: half-case.dsn
+    pose:
+      rotation:
+        kind: grid
+        grid: {x: -x}
   laser:
     kind: primitive
     primitive:
       kind: static
       static-models:
-        gltf: ASS - 4005 - LAS+CAS.glb
-        step: ASS - 4005 - LAS+CAS.stp
+        gltf: BUY - Laser 488 nm - Bosion Laser.glb
+        step: BUY - Laser 488 nm - Bosion Laser.stp
     pose:
       rotation:
         kind: grid
-        grid: {z: -y}
+      translation:
+        offset-mm: {z: 20}
     tags:
       - optical/fiber
+      - optical/source/laser/488-nm
       - procurement/buy
-      - procurement/3d-print
-      - in/kit/fluorescence-laser-box
+      - in/kit/fluo-laser-box
   drivers:
     kind: primitive
     primitive:

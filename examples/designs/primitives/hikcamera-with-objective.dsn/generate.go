@@ -6,7 +6,8 @@ package example
 
 //go:generate pwd
 
-//go:generate mdl convert --output-format=glb "ASS - 4003 - CAM+OBJ.stp"
+//go:generate mdl convert --output-format=glb "BUY - HIKROBOT - Camera - MV-CE060-10UM-PRO.stp"
+//go:generate mdl convert --output-format=glb "BUY - Objectiv - CLENS-100TEL.stp"
 
 //go:generate comp render-comp-g --format=dot _components-graph.dot
 //go:generate comp render-comp-g --format=svg _components-graph.svg

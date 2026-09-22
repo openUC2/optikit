@@ -2,6 +2,27 @@
   "optikit-version": "v0.0.0-dev",
   "components": [
     {
+      "id": "camera",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "BUY - HIKROBOT - Camera - MV-CE060-10UM-PRO.glb",
+        "step": "BUY - HIKROBOT - Camera - MV-CE060-10UM-PRO.stp"
+      },
+      "position": [
+        -52.2,
+        0,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": 90,
+          "z": -180
+        }
+      }
+    },
+    {
       "id": "drivers",
       "kind": "primitive/static",
       "static-models": {
@@ -12,15 +33,88 @@
       }
     },
     {
-      "id": "lens-and-camera",
+      "id": "lens",
       "kind": "primitive/static",
       "static-models": {
-        "gltf": "ASS - 4003 - CAM+OBJ.glb",
-        "step": "ASS - 4003 - CAM+OBJ.stp"
+        "gltf": "BUY - Objectiv - CLENS-100TEL.glb",
+        "step": "BUY - Objectiv - CLENS-100TEL.stp"
+      },
+      "position": [
+        23.9,
+        0,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "lens-holder-bottom/cube-pin-1",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "half-case.dsn/BUY - LEGO technic - Pin - art. no. 2780.bom.yml"
+      }
+    },
+    {
+      "id": "lens-holder-bottom/cube-pin-2",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "half-case.dsn/BUY - LEGO technic - Pin - art. no. 2780.bom.yml"
+      }
+    },
+    {
+      "id": "lens-holder-bottom/cube-pin-3",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "half-case.dsn/BUY - LEGO technic - Pin - art. no. 2780.bom.yml"
+      }
+    },
+    {
+      "id": "lens-holder-bottom/cube-pin-4",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "half-case.dsn/BUY - LEGO technic - Pin - art. no. 2780.bom.yml"
+      }
+    },
+    {
+      "id": "lens-holder-bottom/half-case",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "half-case.dsn/PRT - 1008 - OBJHOL_CLENS-100TEL.glb",
+        "step": "half-case.dsn/PRT - 1008 - OBJHOL_CLENS-100TEL.stp"
       },
       "rotation": {
         "kind": "extrinsic",
         "order": "zxy"
+      }
+    },
+    {
+      "id": "lens-holder-bottom/screw-1",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "half-case.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 40 - 8.8 A2K.bom.yml"
+      }
+    },
+    {
+      "id": "lens-holder-bottom/screw-2",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "half-case.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 40 - 8.8 A2K.bom.yml"
+      }
+    },
+    {
+      "id": "lens-holder-bottom/washer-1",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "half-case.dsn/ISO 7092 - Washer - 3 - 200 HV - A2K.bom.yml"
+      }
+    },
+    {
+      "id": "lens-holder-bottom/washer-2",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "half-case.dsn/ISO 7092 - Washer - 3 - 200 HV - A2K.bom.yml"
       }
     }
   ]
