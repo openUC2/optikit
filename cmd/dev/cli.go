@@ -6,14 +6,14 @@ import (
 
 	"github.com/urfave/cli/v3"
 
+	"github.com/openUC2/optikit/cmd/compat"
 	"github.com/openUC2/optikit/cmd/dev/dsn"
 	"github.com/openUC2/optikit/cmd/dev/mdl"
-	"github.com/openUC2/optikit/internal/optikit"
 )
 
 var defaultWorkingDir, _ = os.Getwd()
 
-func MakeCmd(versions optikit.Versions) *cli.Command {
+func MakeCmd(versions compat.Versions) *cli.Command {
 	return &cli.Command{
 		Name:    "dev",
 		Aliases: []string{"development"},

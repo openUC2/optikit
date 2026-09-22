@@ -8,10 +8,10 @@ import (
 
 	"github.com/urfave/cli/v3"
 
-	"github.com/openUC2/optikit/internal/optikit"
+	"github.com/openUC2/optikit/cmd/compat"
 )
 
-func MakeCmd(versions optikit.Versions) *cli.Command {
+func MakeCmd(versions compat.Versions) *cli.Command {
 	return &cli.Command{
 		Name:    "comp",
 		Aliases: []string{"composition"},
@@ -35,7 +35,7 @@ func MakeCmd(versions optikit.Versions) *cli.Command {
 	}
 }
 
-func makeReportCmds(versions optikit.Versions) []*cli.Command {
+func makeReportCmds(versions compat.Versions) []*cli.Command {
 	return []*cli.Command{
 		{
 			Name:      "report-comp",

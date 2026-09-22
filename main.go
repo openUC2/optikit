@@ -10,6 +10,7 @@ import (
 	"github.com/urfave/cli/v3"
 
 	"github.com/openUC2/optikit/cmd"
+	"github.com/openUC2/optikit/cmd/compat"
 	"github.com/openUC2/optikit/cmd/dev"
 )
 
@@ -21,7 +22,7 @@ func main() {
 
 var defaultWorkspaceBase, _ = os.UserHomeDir()
 
-var ocliVersions cmd.Versions = cmd.Versions{
+var ocliVersions compat.Versions = compat.Versions{
 	Tool:               toolVersion,
 	MinSupportedDesign: cmd.DSNMinVersion,
 }

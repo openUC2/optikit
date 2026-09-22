@@ -6,10 +6,10 @@ import (
 
 	"github.com/urfave/cli/v3"
 
-	"github.com/openUC2/optikit/internal/optikit"
+	"github.com/openUC2/optikit/cmd/compat"
 )
 
-func MakeCmd(_ optikit.Versions) *cli.Command {
+func MakeCmd(_ compat.Versions) *cli.Command {
 	return &cli.Command{
 		Name:    "mdl",
 		Aliases: []string{"model"},

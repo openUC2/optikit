@@ -4,12 +4,12 @@ package dsn
 import (
 	"github.com/urfave/cli/v3"
 
+	"github.com/openUC2/optikit/cmd/compat"
 	"github.com/openUC2/optikit/cmd/dev/dsn/comp"
 	"github.com/openUC2/optikit/cmd/dev/dsn/geom"
-	"github.com/openUC2/optikit/internal/optikit"
 )
 
-func MakeCmd(versions optikit.Versions) *cli.Command {
+func MakeCmd(versions compat.Versions) *cli.Command {
 	return &cli.Command{
 		Name:    "dsn",
 		Aliases: []string{"design"},
