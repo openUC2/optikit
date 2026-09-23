@@ -1,0 +1,63 @@
+optikit-version: v0.0.0-alpha.1
+
+design:
+  description: A laser with fiber output
+  tags:
+    - composition/cube-compatible
+    - in/kit/fluo-laser-box
+
+components:
+  case-top:
+    kind: design
+    design: half-case.dsn
+    pose:
+      rotation:
+        kind: grid
+  case-bottom:
+    kind: design
+    design: half-case.dsn
+    pose:
+      rotation:
+        kind: grid
+        grid: {x: -x}
+  laser:
+    kind: primitive
+    primitive:
+      kind: static
+      static-models:
+        gltf: BUY - Laser 488 nm - Bosion Laser.glb
+        step: BUY - Laser 488 nm - Bosion Laser.stp
+    pose:
+      rotation:
+        kind: grid
+      translation:
+        offset-mm: {z: 20}
+    tags:
+      - optical/fiber
+      - optical/source/laser/488-nm
+      - procurement/buy
+      - in/kit/fluo-laser-box
+  drivers:
+    kind: primitive
+    primitive:
+      kind: static
+      static-models:
+        newswitch-device: laser.newswitch-device.yml
+    results:
+      newswitch-device-id: ~ inputs['newswitch-device-id'].value
+      newswitch-device-config: >
+        ~ {
+          controller: inputs['newswitch-controller'].value,
+        }
+
+inputs:
+  newswitch-device-id:
+    description: A short unique name for the device in NewSwitch, which can be referenced from other parts of the overall NewSwitch config
+    kind: string
+    tags:
+      - config/newswitch/device-id
+  newswitch-controller:
+    description: The name of the microcontroller which controls this device in NewSwitch
+    kind: string
+    tags:
+      - config/newswitch/controller

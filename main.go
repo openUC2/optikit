@@ -9,8 +9,9 @@ import (
 	"github.com/carlmjohnson/versioninfo"
 	"github.com/urfave/cli/v3"
 
+	"github.com/openUC2/optikit/cmd"
+	"github.com/openUC2/optikit/cmd/compat"
 	"github.com/openUC2/optikit/cmd/dev"
-	"github.com/openUC2/optikit/internal/optikit"
 )
 
 func main() {
@@ -21,9 +22,9 @@ func main() {
 
 var defaultWorkspaceBase, _ = os.UserHomeDir()
 
-var ocliVersions optikit.Versions = optikit.Versions{
+var ocliVersions compat.Versions = compat.Versions{
 	Tool:               toolVersion,
-	MinSupportedDesign: dsnMinVersion,
+	MinSupportedDesign: cmd.DSNMinVersion,
 }
 
 var app = &cli.Command{
@@ -61,17 +62,8 @@ var app = &cli.Command{
 
 // Versioning
 
-const (
-	// dsnMinVersion is the minimum supported Optikit version among designs. A design with a
-	// lower Optikit version cannot be used.
-	dsnMinVersion = "v0.0.0"
-	// fallbackVersion is the version reported which the Optikit tool reports itself as if its actual
-	// version is unknown.
-	fallbackVersion = "v0.0.0-dev"
-)
-
 var (
-	toolVersion = determineVersion(buildSummary, fallbackVersion)
+	toolVersion = determineVersion(buildSummary, cmd.FallbackVersion)
 	// buildSummary should be overridden by ldflags, such as with GoReleaser's "Summary".
 	buildSummary = ""
 )

@@ -1,0 +1,23 @@
+optikit-version: v0.0.0-alpha.1
+
+design:
+  description: Stepper motor with captive push rod
+
+components:
+  motor:
+    kind: primitive
+    primitive:
+      kind: static
+      static-models:
+        gltf: BUY - Stepping motor with captive push rod  - L8K2105AD4-050SMSN-220(02).glb
+        step: BUY - Stepping motor with captive push rod  - L8K2105AD4-050SMSN-220(02).stp
+    pose:
+      rotation:
+        kind: grid
+      translation:
+        offset-mm: {x: -4, y: 4}
+    tags:
+      - actuation/linear/stepper
+      - control/electronic
+      - procurement/buy
+      - in/kit/light-sheet-box

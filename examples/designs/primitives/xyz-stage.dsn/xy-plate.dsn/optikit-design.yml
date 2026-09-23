@@ -1,0 +1,143 @@
+optikit-version: v0.0.0-alpha.1
+
+design:
+  description: Baseplate for stage
+  tags:
+    - in/kit/light-sheet-box
+
+components:
+  motor:
+    kind: design
+    design: primitives/motor-push-rod.dsn
+    pose:
+      rotation:
+        kind: grid
+        grid: {x: +y}
+      translation:
+        offset-mm: {x: -31, y: 29.7, z: 23}
+  motor-washer:
+    kind: primitive
+    primitive:
+      kind: static
+      static-models:
+        bom: ISO 7092 - Washer - 3 - 200 HV - A2K.bom.yml
+      tags:
+        - structure/fastener/washer
+        - procurement/buy
+        - in/kit/light-sheet-box
+  motor-hex-nut:
+    kind: primitive
+    primitive:
+      kind: static
+      static-models:
+        bom: ISO 4032 - Hex nut - M3 - A2-70.bom.yml
+      tags:
+        - structure/fastener/threaded
+        - procurement/buy
+        - in/kit/light-sheet-box
+  motor-cap-nut:
+    kind: primitive
+    primitive:
+      kind: static
+      static-models:
+        bom: DIN 1587 - Cap nut - M3 - St 6 AU - A2K.bom.yml
+      tags:
+        - structure/fastener/threaded
+        - procurement/buy
+        - in/kit/light-sheet-box
+  motor-holder:
+    kind: primitive
+    primitive:
+      kind: static
+      static-models:
+        gltf: PRT - 3022 - MOTHOLYST.glb
+        step: PRT - 3022 - MOTHOLYST.stp
+    pose:
+      rotation:
+        kind: grid
+        grid: {x: -y}
+      translation:
+        offset-mm: {x: -4, y: 4, z: 11.5}
+    tags:
+      - procurement/3d-print
+      - in/kit/light-sheet-box
+  motor-holder-hold-screw-1:
+    kind: primitive
+    primitive:
+      kind: static
+      static-models:
+        bom: ISO 4762 - Cylinder head screw with hex socket - M2.5 x 10 - A2-70.bom.yml
+      tags:
+        - structure/fastener/threaded
+        - procurement/buy
+        - in/kit/light-sheet-box
+  motor-holder-mount-screw-1:
+    kind: primitive
+    primitive:
+      kind: static
+      static-models:
+        bom: ISO 4762 - Cylinder head screw with hex socket - M2.5 x 10 - A2-70.bom.yml
+      tags:
+        - structure/fastener/threaded
+        - procurement/buy
+        - in/kit/light-sheet-box
+  motor-holder-mount-screw-2:
+    kind: primitive
+    primitive:
+      kind: static
+      static-models:
+        bom: ISO 4762 - Cylinder head screw with hex socket - M2.5 x 10 - A2-70.bom.yml
+      tags:
+        - structure/fastener/threaded
+        - procurement/buy
+        - in/kit/light-sheet-box
+  xy-plate:
+    kind: primitive
+    primitive:
+      kind: static
+      static-models:
+        gltf: BUY - XYZ linear table - LD40 --- XY plate.glb
+        step: BUY - XYZ linear table - LD40 --- XY plate.stp
+    pose:
+      rotation:
+        kind: grid
+      translation:
+        offset-mm: {x: -4, y: 4}
+    tags:
+      - procurement/buy
+      - in/kit/light-sheet-box
+  stop-bracket:
+    kind: primitive
+    primitive:
+      kind: static
+      static-models:
+        gltf: PRT - 3023 - BKTXST.glb
+        step: PRT - 3023 - BKTXST.stp
+    pose:
+      rotation:
+        kind: grid
+      translation:
+        offset-mm: {x: -4, y: 4}
+    tags:
+      - procurement/buy
+      - in/kit/light-sheet-box
+  stop-bracket-screw-1:
+    kind: primitive
+    primitive:
+      kind: static
+      static-models:
+        bom: ISO 4762 - Cylinder head screw with hex socket - M2.5 x 8 - 8.8 - A2K.bom.yml
+      tags:
+        - structure/fastener/threaded
+        - procurement/buy
+        - in/kit/light-sheet-box
+  stop-bracket-screw-2:
+    kind: primitive
+    primitive:
+      kind: static
+      static-models:
+        bom: ISO 4762 - Cylinder head screw with hex socket - M2.5 x 8 - 8.8 - A2K.bom.yml
+      tags:
+        - structure/fastener/threaded
+        - procurement/buy
+        - in/kit/light-sheet-box

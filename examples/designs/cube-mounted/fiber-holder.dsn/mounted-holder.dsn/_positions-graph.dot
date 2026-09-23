@@ -1,0 +1,21 @@
+strict digraph "" {
+	graph [bb="0,0,227.66,124.8"];
+	node [label="\N"];
+	edge [label="\E"];
+	""	[height=0.5,
+		pos="93.491,106.8",
+		width=0.75];
+	insert	[height=0.5,
+		pos="32.491,18",
+		width=0.90253];
+	"" -> insert	[key=" -> insert",
+		label="",
+		pos="e,43.923,35.268 82.586,90.282 73.646,77.562 60.812,59.3 50.373,44.445"];
+	"threaded-holder"	[height=0.5,
+		pos="155.49,18",
+		width=2.0046];
+	"" -> "threaded-holder"	[key=" -> threaded-holder",
+		label="[z+7] mm",
+		lp="157.9,62.4",
+		pos="e,143.23,36.168 104.58,90.282 113.49,77.802 126.21,59.987 136.71,45.289"];
+}

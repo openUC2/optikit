@@ -1,0 +1,33 @@
+strict digraph "" {
+	graph [bb="0,0,539.71,124.8"];
+	node [label="\N"];
+	edge [label="\E"];
+	""	[height=0.5,
+		pos="288.66,106.8",
+		width=0.75];
+	"dichroic-filter"	[height=0.5,
+		pos="64.659,18",
+		width=1.7961];
+	"" -> "dichroic-filter"	[key=" -> dichroic-filter",
+		label="",
+		pos="e,101.31,33.203 265.53,96.838 229.44,82.854 159,55.556 111.87,37.295"];
+	"emission-filter"	[height=0.5,
+		pos="214.66,18",
+		width=1.871];
+	"" -> "emission-filter"	[key=" -> emission-filter",
+		label="[y+23] mm",
+		lp="290.04,62.4",
+		pos="e,229.17,36.026 275.77,90.681 264.9,77.931 249.11,59.415 236.31,44.395"];
+	"insert-bottom"	[height=0.5,
+		pos="362.66,18",
+		width=1.7519];
+	"" -> "insert-bottom"	[key=" -> insert-bottom",
+		label="",
+		pos="e,351.77,35.945 304.43,92.123 311.26,85.899 319.15,78.267 325.66,70.8 332.55,62.894 339.41,53.734 345.32,45.334"];
+	"insert-top"	[height=0.5,
+		pos="491.66,18",
+		width=1.3346];
+	"" -> "insert-top"	[key=" -> insert-top",
+		label="",
+		pos="e,460.79,32.199 311.16,96.179 344.68,81.846 408.29,54.648 450.34,36.669"];
+}

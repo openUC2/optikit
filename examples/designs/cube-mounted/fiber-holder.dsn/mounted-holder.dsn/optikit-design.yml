@@ -1,0 +1,71 @@
+optikit-version: v0.0.0-alpha.1
+
+design:
+  description: An optical fiber holder in a cube insert
+  tags:
+    - composition/insert-mounted
+
+components:
+  threaded-holder:
+    kind: primitive
+    primitive:
+      static-models:
+        gltf: BUY - Fiber holder - FCPC.glb
+        step: BUY - Fiber holder - FCPC.stp
+    pose:
+      rotation:
+        kind: grid
+      translation:
+        offset-mm: {z: 7}
+    tags:
+      - procurement/buy
+      - in/kit/fluo-laser-box
+  screw-1:
+    kind: primitive
+    primitive:
+      static-models:
+        bom: ISO 4762 - Cylinder head screw with hex socket - M2 x 6 - 8.8 - A2K.bom.yml
+    tags:
+      - structure/fastener/threaded
+      - procurement/buy
+      - in/kit/fluo-laser-box
+  screw-2:
+    kind: primitive
+    primitive:
+      static-models:
+        bom: ISO 4762 - Cylinder head screw with hex socket - M2 x 6 - 8.8 - A2K.bom.yml
+    tags:
+      - structure/fastener/threaded
+      - procurement/buy
+      - in/kit/fluo-laser-box
+  screw-3:
+    kind: primitive
+    primitive:
+      static-models:
+        bom: ISO 4762 - Cylinder head screw with hex socket - M2 x 6 - 8.8 - A2K.bom.yml
+    tags:
+      - structure/fastener/threaded
+      - procurement/buy
+      - in/kit/fluo-laser-box
+  screw-4:
+    kind: primitive
+    primitive:
+      static-models:
+        bom: ISO 4762 - Cylinder head screw with hex socket - M2 x 6 - 8.8 - A2K.bom.yml
+    tags:
+      - structure/fastener/threaded
+      - procurement/buy
+      - in/kit/fluo-laser-box
+  insert:
+    kind: primitive
+    primitive:
+      static-models:
+        gltf: PRT - 2053 - INSFIBHOL15x15 - V04.glb
+        step: PRT - 2053 - INSFIBHOL15x15 - V04.stp
+    pose:
+      rotation:
+        kind: grid
+    tags:
+      - structure/insert
+      - procurement/3d-print
+      - in/kit/fluo-laser-box

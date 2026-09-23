@@ -203,10 +203,10 @@ func (d *FSDesign) LoadFSDesignExpr(ctx context.Context, subdesign string) (*FSD
 	return LoadFSDesignExpr(ctx, d.FS, subdesign)
 }
 
-// Flattened returns a new design in which all subassembly components have been replaced with their
-// constituent primitive components, and each non-origin component's translation anchor is just the
-// root (origin) node, and each non-origin component's orientation (if an orientation exists) is
-// relative to the root (origin) node.
+// Flattened returns a new design in which all subassembly components have been supplemented with
+// their constituent primitive components, and each non-origin component's translation anchor is
+// just the root (origin) node, and each non-origin component's orientation (if an orientation
+// exists) is relative to the root (origin) node.
 // It assumes that the design's Decl.Components does not have any errors such as a nonexistent
 // translation anchor required by a CompPosesTranslSpec.
 func (d *FSDesign) Flattened(ctx context.Context, gridSpacings ContinuousXYZ[float64]) (
@@ -214,7 +214,8 @@ func (d *FSDesign) Flattened(ctx context.Context, gridSpacings ContinuousXYZ[flo
 ) {
 	flattened = d.Cloned()
 	flattened.Decl.Components = flattened.Decl.Components.TranslFlattened()
-	for compID, component := range flattened.Decl.Components {
+	for compID := range d.Decl.Components {
+		component := flattened.Decl.Components[compID]
 		if component.Kind != CompKindDesign {
 			continue
 		}
@@ -225,7 +226,6 @@ func (d *FSDesign) Flattened(ctx context.Context, gridSpacings ContinuousXYZ[flo
 				err, "couldn't compute transformation matrix for pose of component %s", compID,
 			)
 		}
-		delete(flattened.Decl.Components, compID)
 		subdesign, err := d.LoadCompFSDesign(ctx, compID)
 		if err != nil {
 			return nil, errors.Wrapf(
@@ -251,7 +251,10 @@ func (d *FSDesign) Flattened(ctx context.Context, gridSpacings ContinuousXYZ[flo
 				subcomponent.Pose = NewPose(flattenedSubmat, gridSpacings)
 			}
 
-			if subcomponent.Kind == CompKindPrimitive {
+			switch subcomponent.Kind {
+			case CompKindDesign:
+				subcomponent.Design = prefixNonempty(subcomponent.Design, component.Design)
+			case CompKindPrimitive:
 				subcomponent.Primitive.StaticModels = subcomponent.Primitive.StaticModels.Prefixed(
 					component.Design,
 				)
@@ -294,32 +297,6 @@ func (d *FSDesign) LoadCompFSDesign(
 		return nil, gerrors.Join(errs...)
 	}
 	return subdesign, nil
-}
-
-// Primitives recursively returns all primitives in the design and its subassembly components.
-func (d *FSDesign) Primitives(ctx context.Context) (CompsSpec, error) {
-	prims := d.Decl.Components.Primitives()
-	for id, c := range d.Decl.Components {
-		if c.Kind != CompKindDesign {
-			continue
-		}
-		subdesign, err := d.LoadCompFSDesign(ctx, id)
-		if err != nil {
-			return nil, errors.Wrapf(
-				err, "couldn't load design of component %s with subdesign %s", id, c.Design,
-			)
-		}
-		subprims, err := subdesign.Primitives(ctx)
-		if err != nil {
-			return nil, errors.Wrapf(
-				err, "couldn't identify primitives of component %s with subdesign %s", id, c.Design,
-			)
-		}
-		for subID, subC := range subprims {
-			prims[JoinCompIDs(id, subID)] = subC
-		}
-	}
-	return prims, nil
 }
 
 // DesignExpr

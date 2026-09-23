@@ -1,5 +1,7 @@
+optikit-version: v0.0.0-dev
+components:
 - id: motorized-mirror
-  kind: static
+  kind: primitive/static
   static-models:
     gltf: "BUY - Galvo scanner XY --- single motor.glb"
     step: "BUY - Galvo scanner XY --- single motor.stp"
@@ -7,9 +9,10 @@
   rotation:
     kind: extrinsic
     order: zxy
-    angles: {z: -90.0}
+    angles:
+      z: -90.0
 - id: mount-ring
-  kind: static
+  kind: primitive/static
   static-models:
     gltf: "PRT - 2180 - DISRNG.glb"
     step: "PRT - 2180 - DISRNG.stp"
@@ -17,9 +20,10 @@
   rotation:
     kind: extrinsic
     order: zxy
-    angles: {z: -180.0}
+    angles:
+      z: -180.0
 - id: mount-top
-  kind: static
+  kind: primitive/static
   static-models:
     gltf: "PRT - 2165 - CLPPCE.glb"
     step: "PRT - 2165 - CLPPCE.stp"
@@ -27,4 +31,15 @@
   rotation:
     kind: extrinsic
     order: zxy
-    angles: {z: -90.0}
+    angles:
+      z: -90.0
+- id: screw-1
+  kind: primitive/static
+  static-models:
+    bom: "ISO 4762 - Cylinder head screw with hex socket - M3 x 20 - 8.8 - A2K.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: screw-2
+  kind: primitive/static
+  static-models:
+    bom: "ISO 4762 - Cylinder head screw with hex socket - M3 x 20 - 8.8 - A2K.bom.yml"
+  position: [0.0, 0.0, 0.0]

@@ -12,23 +12,23 @@ import (
 
 // ExprXYZ is a vector in an X-Y-Z coordinate system whose components are expr expressions.
 type ExprXYZ struct {
-	X Expr `json:"x" yaml:"x,omitempty"`
-	Y Expr `json:"y" yaml:"y,omitempty"`
-	Z Expr `json:"z" yaml:"z,omitempty"`
+	X Expr `json:"x,omitzero" yaml:"x,omitempty"`
+	Y Expr `json:"y,omitzero" yaml:"y,omitempty"`
+	Z Expr `json:"z,omitzero" yaml:"z,omitempty"`
 }
 
 // DiscreteXYZ is a vector in an X-Y-Z coordinate system with integer components.
 type DiscreteXYZ[Number ~int | ~uint | ~int8 | ~uint8 | ~int16 | ~uint16 | ~int32 | ~uint32 | ~int64 | ~uint64] struct {
-	X Number `json:"x" yaml:"x,omitempty"`
-	Y Number `json:"y" yaml:"y,omitempty"`
-	Z Number `json:"z" yaml:"z,omitempty"`
+	X Number `json:"x,omitzero" yaml:"x,omitempty"`
+	Y Number `json:"y,omitzero" yaml:"y,omitempty"`
+	Z Number `json:"z,omitzero" yaml:"z,omitempty"`
 }
 
 // ContinuousXYZ is a vector in an X-Y-Z coordinate system with floating-point components.
 type ContinuousXYZ[Number ~float32 | ~float64] struct {
-	X Number `json:"x" yaml:"x,omitempty"`
-	Y Number `json:"y" yaml:"y,omitempty"`
-	Z Number `json:"z" yaml:"z,omitempty"`
+	X Number `json:"x,omitzero" yaml:"x,omitempty"`
+	Y Number `json:"y,omitzero" yaml:"y,omitempty"`
+	Z Number `json:"z,omitzero" yaml:"z,omitempty"`
 }
 
 // UC2GridSpacings indicates the distance between the center of each UC2 grid space along each axis,

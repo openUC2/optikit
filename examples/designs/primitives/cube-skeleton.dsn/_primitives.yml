@@ -1,5 +1,7 @@
+optikit-version: v0.0.0-dev
+components:
 - id: lower-half
-  kind: static
+  kind: primitive/static
   static-models:
     gltf: "PRT - 1003 - CUBHLF111 - V04.glb"
     step: "PRT - 1003 - CUBHLF111 - V04.stp"
@@ -7,9 +9,8 @@
   rotation:
     kind: extrinsic
     order: zxy
-    angles: {}
 - id: upper-half
-  kind: static
+  kind: primitive/static
   static-models:
     gltf: "PRT - 1003 - CUBHLF111 - V04.glb"
     step: "PRT - 1003 - CUBHLF111 - V04.stp"
@@ -17,4 +18,6 @@
   rotation:
     kind: extrinsic
     order: zxy
-    angles: {"y": -180.0, z: -180.0}
+    angles:
+      "y": -180.0
+      z: -180.0

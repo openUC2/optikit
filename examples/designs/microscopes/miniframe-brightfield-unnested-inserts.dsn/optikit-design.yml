@@ -25,17 +25,14 @@ components:
           x: -3
           y: 1
   camera-basic:
-    kind: primitive
-    primitive:
-      static-models:
-        gltf: primitives/axes.dsn/axes.glb
-        step: primitives/axes.dsn/axes.step
+    kind: design
+    design: primitives/hikcamera-with-objective.dsn
     pose:
       rotation:
         kind: grid
         grid:
-          z: +x
-          x: -z
+          z: -z
+          x: -x
       translation:
         offset-grid:
           y: 1

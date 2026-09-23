@@ -1,0 +1,41 @@
+optikit-version: v0.0.0-alpha.1
+
+design:
+  description: A dichroic mirror cube with a 485 nm emission filter
+  tags:
+    - composition/cube-mounted
+    - in/kit/fluorescence-laser-box
+
+components:
+  skeleton:
+    kind: design
+    design: primitives/cube-skeleton.dsn
+    pose:
+      rotation:
+        kind: grid
+  mounted-mirror:
+    kind: design
+    design: mounted-mirror.dsn
+    pose:
+      rotation:
+        kind: grid
+
+variants:
+  xy:
+    description: Normal vector of mirror surface in the x-y plane
+    components:
+      mounted-mirror:
+        pose:
+          rotation:
+            grid: {x: +y}
+    tags:
+      - pose/orientation/insert/horizontal
+  _z:
+    description: Normal vector of mirror surface in the y-z plane
+    components:
+      mounted-mirror:
+        pose:
+          rotation:
+            grid: {z: +y}
+    tags:
+      - pose/orientation/insert/vertical

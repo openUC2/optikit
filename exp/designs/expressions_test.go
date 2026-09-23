@@ -62,15 +62,15 @@ var evaluateAsAnyTests = map[string]struct {
 	result     any
 }{
 	"constant-int": {
-		expression: "5 + 2",
+		expression: "~ 5 + 2",
 		result:     7,
 	},
 	"constant-float64": {
-		expression: "5 + 2.5",
+		expression: "~ 5 + 2.5",
 		result:     7.5,
 	},
 	"inputs-simple-int": {
-		expression: "inputs.offset.value + 2",
+		expression: "~ inputs.offset.value + 2",
 		env: ExprEnv{
 			Inputs: map[VarName]ExprEnvInput{
 				"offset": {Value: 7},
@@ -79,7 +79,7 @@ var evaluateAsAnyTests = map[string]struct {
 		result: 9,
 	},
 	"inputs-simple-float64": {
-		expression: "inputs.offset.value + 2",
+		expression: "~ inputs.offset.value + 2",
 		env: ExprEnv{
 			Inputs: map[VarName]ExprEnvInput{
 				"offset": {Value: 7.0},

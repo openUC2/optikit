@@ -1,0 +1,114 @@
+{
+  "optikit-version": "v0.0.0-dev",
+  "components": [
+    {
+      "id": "mounted-mirror/dichroic-filter",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "mounted-mirror.dsn/BUY - Dichroic filter - 30x30x1 488nm.glb",
+        "step": "mounted-mirror.dsn/BUY - Dichroic filter - 30x30x1 488nm.stp"
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": 90,
+          "z": 45
+        }
+      }
+    },
+    {
+      "id": "mounted-mirror/emission-filter",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "mounted-mirror.dsn/BUY - Emission filter - D25x1 WLS485.glb",
+        "step": "mounted-mirror.dsn/BUY - Emission filter - D25x1 WLS485.stp"
+      },
+      "position": [
+        -23.35,
+        0,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "x": 90,
+          "z": 90
+        }
+      }
+    },
+    {
+      "id": "mounted-mirror/insert-bottom",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "mounted-mirror.dsn/PRT - 2020 - INSDICSPL+EMIFIL_WLS488LOW.glb",
+        "step": "mounted-mirror.dsn/PRT - 2020 - INSDICSPL+EMIFIL_WLS488LOW.stp"
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "z": 90
+        }
+      }
+    },
+    {
+      "id": "mounted-mirror/insert-top",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "mounted-mirror.dsn/PRT - 2021 - INSDICSPL+EMIFIL_WLS488UPP.glb",
+        "step": "mounted-mirror.dsn/PRT - 2021 - INSDICSPL+EMIFIL_WLS488UPP.stp"
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "z": 90
+        }
+      }
+    },
+    {
+      "id": "mounted-mirror/pin-1",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "mounted-mirror.dsn/ISO 4762 - Cylinder head screw with hex socket - M2 x 6 - 8.8 - A2K.bom.yml"
+      }
+    },
+    {
+      "id": "mounted-mirror/pin-2",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "mounted-mirror.dsn/ISO 4762 - Cylinder head screw with hex socket - M2 x 6 - 8.8 - A2K.bom.yml"
+      }
+    },
+    {
+      "id": "skeleton/lower-half",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
+        "step": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "skeleton/upper-half",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
+        "step": "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -180,
+          "z": -180
+        }
+      }
+    }
+  ]
+}

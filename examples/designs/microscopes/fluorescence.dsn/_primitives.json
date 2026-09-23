@@ -1,0 +1,1504 @@
+{
+  "optikit-version": "v0.0.0-dev",
+  "components": [
+    {
+      "id": "blue-laser/case-bottom/cube-pin-1",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/laser.dsn/half-case.dsn/BUY - LEGO technic - 3_4 pin - art. no. 32002.bom.yml"
+      }
+    },
+    {
+      "id": "blue-laser/case-bottom/cube-pin-2",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/laser.dsn/half-case.dsn/BUY - LEGO technic - 3_4 pin - art. no. 32002.bom.yml"
+      }
+    },
+    {
+      "id": "blue-laser/case-bottom/cube-pin-3",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/laser.dsn/half-case.dsn/BUY - LEGO technic - 3_4 pin - art. no. 32002.bom.yml"
+      }
+    },
+    {
+      "id": "blue-laser/case-bottom/cube-pin-4",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/laser.dsn/half-case.dsn/BUY - LEGO technic - 3_4 pin - art. no. 32002.bom.yml"
+      }
+    },
+    {
+      "id": "blue-laser/case-bottom/half-case",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "primitives/laser.dsn/half-case.dsn/PRT - 3010 - CASHLFLAS.glb",
+        "step": "primitives/laser.dsn/half-case.dsn/PRT - 3010 - CASHLFLAS.stp"
+      },
+      "position": [
+        50,
+        50,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "z": 90
+        }
+      }
+    },
+    {
+      "id": "blue-laser/case-bottom/screw-1",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/laser.dsn/half-case.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 40 - 8.8 A2K.bom.yml"
+      }
+    },
+    {
+      "id": "blue-laser/case-bottom/screw-2",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/laser.dsn/half-case.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 40 - 8.8 A2K.bom.yml"
+      }
+    },
+    {
+      "id": "blue-laser/case-top/cube-pin-1",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/laser.dsn/half-case.dsn/BUY - LEGO technic - 3_4 pin - art. no. 32002.bom.yml"
+      }
+    },
+    {
+      "id": "blue-laser/case-top/cube-pin-2",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/laser.dsn/half-case.dsn/BUY - LEGO technic - 3_4 pin - art. no. 32002.bom.yml"
+      }
+    },
+    {
+      "id": "blue-laser/case-top/cube-pin-3",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/laser.dsn/half-case.dsn/BUY - LEGO technic - 3_4 pin - art. no. 32002.bom.yml"
+      }
+    },
+    {
+      "id": "blue-laser/case-top/cube-pin-4",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/laser.dsn/half-case.dsn/BUY - LEGO technic - 3_4 pin - art. no. 32002.bom.yml"
+      }
+    },
+    {
+      "id": "blue-laser/case-top/half-case",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "primitives/laser.dsn/half-case.dsn/PRT - 3010 - CASHLFLAS.glb",
+        "step": "primitives/laser.dsn/half-case.dsn/PRT - 3010 - CASHLFLAS.stp"
+      },
+      "position": [
+        50,
+        50,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "z": -90
+        }
+      }
+    },
+    {
+      "id": "blue-laser/case-top/screw-1",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/laser.dsn/half-case.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 40 - 8.8 A2K.bom.yml"
+      }
+    },
+    {
+      "id": "blue-laser/case-top/screw-2",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/laser.dsn/half-case.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 40 - 8.8 A2K.bom.yml"
+      }
+    },
+    {
+      "id": "blue-laser/drivers",
+      "kind": "primitive/static",
+      "static-models": {
+        "newswitch-device": "primitives/laser.dsn/laser.newswitch-device.yml"
+      },
+      "results": {
+        "newswitch-device-config": {
+          "controller": "my-favorite-mainboard"
+        },
+        "newswitch-device-id": "hotlaser123"
+      }
+    },
+    {
+      "id": "blue-laser/laser",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "primitives/laser.dsn/BUY - Laser 488 nm - Bosion Laser.glb",
+        "step": "primitives/laser.dsn/BUY - Laser 488 nm - Bosion Laser.stp"
+      },
+      "position": [
+        50,
+        50,
+        20
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "z": -90
+        }
+      }
+    },
+    {
+      "id": "camera/camera",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "primitives/hikcamera-with-objective.dsn/BUY - HIKROBOT - Camera - MV-CE060-10UM-PRO.glb",
+        "step": "primitives/hikcamera-with-objective.dsn/BUY - HIKROBOT - Camera - MV-CE060-10UM-PRO.stp"
+      },
+      "position": [
+        -52.2,
+        0,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": 90,
+          "z": 180
+        }
+      }
+    },
+    {
+      "id": "camera/drivers",
+      "kind": "primitive/static",
+      "static-models": {
+        "newswitch-device": "primitives/hikcamera-with-objective.dsn/hikcamera.newswitch-device.yml"
+      },
+      "results": {
+        "newswitch-device-id": "bigcamera42"
+      }
+    },
+    {
+      "id": "camera/lens",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "primitives/hikcamera-with-objective.dsn/BUY - Objectiv - CLENS-100TEL.glb",
+        "step": "primitives/hikcamera-with-objective.dsn/BUY - Objectiv - CLENS-100TEL.stp"
+      },
+      "position": [
+        23.9,
+        0,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "camera/lens-holder-bottom/cube-pin-1",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/hikcamera-with-objective.dsn/half-case.dsn/BUY - LEGO technic - Pin - art. no. 2780.bom.yml"
+      }
+    },
+    {
+      "id": "camera/lens-holder-bottom/cube-pin-2",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/hikcamera-with-objective.dsn/half-case.dsn/BUY - LEGO technic - Pin - art. no. 2780.bom.yml"
+      }
+    },
+    {
+      "id": "camera/lens-holder-bottom/cube-pin-3",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/hikcamera-with-objective.dsn/half-case.dsn/BUY - LEGO technic - Pin - art. no. 2780.bom.yml"
+      }
+    },
+    {
+      "id": "camera/lens-holder-bottom/cube-pin-4",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/hikcamera-with-objective.dsn/half-case.dsn/BUY - LEGO technic - Pin - art. no. 2780.bom.yml"
+      }
+    },
+    {
+      "id": "camera/lens-holder-bottom/half-case",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "primitives/hikcamera-with-objective.dsn/half-case.dsn/PRT - 1008 - OBJHOL_CLENS-100TEL.glb",
+        "step": "primitives/hikcamera-with-objective.dsn/half-case.dsn/PRT - 1008 - OBJHOL_CLENS-100TEL.stp"
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "camera/lens-holder-bottom/screw-1",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/hikcamera-with-objective.dsn/half-case.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 40 - 8.8 A2K.bom.yml"
+      }
+    },
+    {
+      "id": "camera/lens-holder-bottom/screw-2",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/hikcamera-with-objective.dsn/half-case.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 40 - 8.8 A2K.bom.yml"
+      }
+    },
+    {
+      "id": "camera/lens-holder-bottom/washer-1",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/hikcamera-with-objective.dsn/half-case.dsn/ISO 7092 - Washer - 3 - 200 HV - A2K.bom.yml"
+      }
+    },
+    {
+      "id": "camera/lens-holder-bottom/washer-2",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/hikcamera-with-objective.dsn/half-case.dsn/ISO 7092 - Washer - 3 - 200 HV - A2K.bom.yml"
+      }
+    },
+    {
+      "id": "dichroic/mounted-mirror/dichroic-filter",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/dichroic-mirror.dsn/mounted-mirror.dsn/BUY - Dichroic filter - 30x30x1 488nm.glb",
+        "step": "cube-mounted/dichroic-mirror.dsn/mounted-mirror.dsn/BUY - Dichroic filter - 30x30x1 488nm.stp"
+      },
+      "position": [
+        50,
+        0,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -90,
+          "z": 45
+        }
+      }
+    },
+    {
+      "id": "dichroic/mounted-mirror/emission-filter",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/dichroic-mirror.dsn/mounted-mirror.dsn/BUY - Emission filter - D25x1 WLS485.glb",
+        "step": "cube-mounted/dichroic-mirror.dsn/mounted-mirror.dsn/BUY - Emission filter - D25x1 WLS485.stp"
+      },
+      "position": [
+        50,
+        23.35,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "x": -90,
+          "z": 180
+        }
+      }
+    },
+    {
+      "id": "dichroic/mounted-mirror/insert-bottom",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/dichroic-mirror.dsn/mounted-mirror.dsn/PRT - 2020 - INSDICSPL+EMIFIL_WLS488LOW.glb",
+        "step": "cube-mounted/dichroic-mirror.dsn/mounted-mirror.dsn/PRT - 2020 - INSDICSPL+EMIFIL_WLS488LOW.stp"
+      },
+      "position": [
+        50,
+        0,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -180
+        }
+      }
+    },
+    {
+      "id": "dichroic/mounted-mirror/insert-top",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/dichroic-mirror.dsn/mounted-mirror.dsn/PRT - 2021 - INSDICSPL+EMIFIL_WLS488UPP.glb",
+        "step": "cube-mounted/dichroic-mirror.dsn/mounted-mirror.dsn/PRT - 2021 - INSDICSPL+EMIFIL_WLS488UPP.stp"
+      },
+      "position": [
+        50,
+        0,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -180
+        }
+      }
+    },
+    {
+      "id": "dichroic/mounted-mirror/pin-1",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "cube-mounted/dichroic-mirror.dsn/mounted-mirror.dsn/ISO 4762 - Cylinder head screw with hex socket - M2 x 6 - 8.8 - A2K.bom.yml"
+      }
+    },
+    {
+      "id": "dichroic/mounted-mirror/pin-2",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "cube-mounted/dichroic-mirror.dsn/mounted-mirror.dsn/ISO 4762 - Cylinder head screw with hex socket - M2 x 6 - 8.8 - A2K.bom.yml"
+      }
+    },
+    {
+      "id": "dichroic/skeleton/lower-half",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/dichroic-mirror.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
+        "step": "cube-mounted/dichroic-mirror.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
+      },
+      "position": [
+        50,
+        0,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": 180,
+          "z": 90
+        }
+      }
+    },
+    {
+      "id": "dichroic/skeleton/upper-half",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/dichroic-mirror.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
+        "step": "cube-mounted/dichroic-mirror.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
+      },
+      "position": [
+        50,
+        0,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "z": -90
+        }
+      }
+    },
+    {
+      "id": "electronics-controller/case-base",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "primitives/electronics-mainboard.dsn/PRT - 1009 - CASMAIBRD2X2BAS - B.glb",
+        "step": "primitives/electronics-mainboard.dsn/PRT - 1009 - CASMAIBRD2X2BAS - B.stp"
+      },
+      "position": [
+        25,
+        25,
+        -35
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -180,
+          "z": -180
+        }
+      }
+    },
+    {
+      "id": "electronics-controller/case-lid",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "primitives/electronics-mainboard.dsn/PRT - 1010 - CASMAIBRD2X2LID - B.glb",
+        "step": "primitives/electronics-mainboard.dsn/PRT - 1010 - CASMAIBRD2X2LID - B.stp"
+      },
+      "position": [
+        25,
+        25,
+        -35
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -180,
+          "z": -180
+        }
+      }
+    },
+    {
+      "id": "electronics-controller/drivers",
+      "kind": "primitive/static",
+      "static-models": {
+        "newswitch-device": "primitives/electronics-mainboard.dsn/mainboard.newswitch-device.yml"
+      },
+      "results": {
+        "newswitch-device-id": "my-favorite-mainboard"
+      }
+    },
+    {
+      "id": "electronics-controller/pcb",
+      "kind": "primitive/static",
+      "static-models": {}
+    },
+    {
+      "id": "electronics-controller/screw-1",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/electronics-mainboard.dsn/TP lens head screw with TORX - 3 x 6 - St - A2K.bom.yml"
+      }
+    },
+    {
+      "id": "electronics-controller/screw-2",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/electronics-mainboard.dsn/TP lens head screw with TORX - 3 x 6 - St - A2K.bom.yml"
+      }
+    },
+    {
+      "id": "electronics-controller/screw-3",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/electronics-mainboard.dsn/TP lens head screw with TORX - 3 x 6 - St - A2K.bom.yml"
+      }
+    },
+    {
+      "id": "electronics-controller/stepper-motor-driver-1",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/electronics-mainboard.dsn/BUY - Motordriver - TMC2209.bom.yml"
+      }
+    },
+    {
+      "id": "electronics-controller/stepper-motor-driver-2",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/electronics-mainboard.dsn/BUY - Motordriver - TMC2209.bom.yml"
+      }
+    },
+    {
+      "id": "electronics-controller/stepper-motor-driver-3",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/electronics-mainboard.dsn/BUY - Motordriver - TMC2209.bom.yml"
+      }
+    },
+    {
+      "id": "electronics-controller/stepper-motor-driver-4",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/electronics-mainboard.dsn/BUY - Motordriver - TMC2209.bom.yml"
+      }
+    },
+    {
+      "id": "electronics-controller/washer-1",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/electronics-mainboard.dsn/ISO 7089 A - Washer - 3 - A2 - 200 HV.bom.yml"
+      }
+    },
+    {
+      "id": "electronics-controller/washer-2",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/electronics-mainboard.dsn/ISO 7089 A - Washer - 3 - A2 - 200 HV.bom.yml"
+      }
+    },
+    {
+      "id": "electronics-controller/washer-3",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/electronics-mainboard.dsn/ISO 7089 A - Washer - 3 - A2 - 200 HV.bom.yml"
+      }
+    },
+    {
+      "id": "fiber-holder/mounted-fiber-holder/insert",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/fiber-holder.dsn/mounted-holder.dsn/PRT - 2053 - INSFIBHOL15x15 - V04.glb",
+        "step": "cube-mounted/fiber-holder.dsn/mounted-holder.dsn/PRT - 2053 - INSFIBHOL15x15 - V04.stp"
+      },
+      "position": [
+        0,
+        -50,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": 90,
+          "z": 90
+        }
+      }
+    },
+    {
+      "id": "fiber-holder/mounted-fiber-holder/screw-1",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "cube-mounted/fiber-holder.dsn/mounted-holder.dsn/ISO 4762 - Cylinder head screw with hex socket - M2 x 6 - 8.8 - A2K.bom.yml"
+      }
+    },
+    {
+      "id": "fiber-holder/mounted-fiber-holder/screw-2",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "cube-mounted/fiber-holder.dsn/mounted-holder.dsn/ISO 4762 - Cylinder head screw with hex socket - M2 x 6 - 8.8 - A2K.bom.yml"
+      }
+    },
+    {
+      "id": "fiber-holder/mounted-fiber-holder/screw-3",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "cube-mounted/fiber-holder.dsn/mounted-holder.dsn/ISO 4762 - Cylinder head screw with hex socket - M2 x 6 - 8.8 - A2K.bom.yml"
+      }
+    },
+    {
+      "id": "fiber-holder/mounted-fiber-holder/screw-4",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "cube-mounted/fiber-holder.dsn/mounted-holder.dsn/ISO 4762 - Cylinder head screw with hex socket - M2 x 6 - 8.8 - A2K.bom.yml"
+      }
+    },
+    {
+      "id": "fiber-holder/mounted-fiber-holder/threaded-holder",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/fiber-holder.dsn/mounted-holder.dsn/BUY - Fiber holder - FCPC.glb",
+        "step": "cube-mounted/fiber-holder.dsn/mounted-holder.dsn/BUY - Fiber holder - FCPC.stp"
+      },
+      "position": [
+        0,
+        -43,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": 90,
+          "z": 90
+        }
+      }
+    },
+    {
+      "id": "fiber-holder/skeleton/lower-half",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/fiber-holder.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
+        "step": "cube-mounted/fiber-holder.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
+      },
+      "position": [
+        0,
+        -50,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "z": -90
+        }
+      }
+    },
+    {
+      "id": "fiber-holder/skeleton/upper-half",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/fiber-holder.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
+        "step": "cube-mounted/fiber-holder.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
+      },
+      "position": [
+        0,
+        -50,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": 180,
+          "z": 90
+        }
+      }
+    },
+    {
+      "id": "laser-mirror/mounted-mirror/adhesive-pad",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/BUY - Adhesive pad - 41x29x1.glb",
+        "step": "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/BUY - Adhesive pad - 41x29x1.stp"
+      },
+      "position": [
+        50.5,
+        -50.5,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "z": 180
+        }
+      }
+    },
+    {
+      "id": "laser-mirror/mounted-mirror/insert",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/PRT - 2022 - INSMIR45TH2.glb",
+        "step": "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/PRT - 2022 - INSMIR45TH2.stp"
+      },
+      "position": [
+        50,
+        -50,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "z": -180
+        }
+      }
+    },
+    {
+      "id": "laser-mirror/mounted-mirror/mirror",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/BUY - Mirror - 40x30x2.glb",
+        "step": "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/BUY - Mirror - 40x30x2.stp"
+      },
+      "position": [
+        50,
+        -50,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "z": -180
+        }
+      }
+    },
+    {
+      "id": "laser-mirror/skeleton/lower-half",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/mirror-diagonal.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
+        "step": "cube-mounted/mirror-diagonal.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
+      },
+      "position": [
+        50,
+        -50,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "z": 90
+        }
+      }
+    },
+    {
+      "id": "laser-mirror/skeleton/upper-half",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/mirror-diagonal.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
+        "step": "cube-mounted/mirror-diagonal.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
+      },
+      "position": [
+        50,
+        -50,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -180,
+          "z": -90
+        }
+      }
+    },
+    {
+      "id": "objective/mounted-lens/insert",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2023 - INSLEND40F50 - V04.glb",
+        "step": "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2023 - INSLEND40F50 - V04.stp"
+      },
+      "position": [
+        100,
+        0,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": 90
+        }
+      }
+    },
+    {
+      "id": "objective/mounted-lens/lens",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/lens.dsn/mounted-lens.dsn/BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx.glb",
+        "optiland": "cube-mounted/lens.dsn/mounted-lens.dsn/AC254-100-A-Zemax-ZMX.optiland",
+        "step": "cube-mounted/lens.dsn/mounted-lens.dsn/BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx.stp"
+      },
+      "position": [
+        100,
+        0,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": 90
+        }
+      }
+    },
+    {
+      "id": "objective/mounted-lens/nut",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2003 - NUTD40.glb",
+        "step": "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2003 - NUTD40.stp"
+      },
+      "position": [
+        100,
+        0,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": 90
+        }
+      }
+    },
+    {
+      "id": "objective/skeleton/lower-half",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/lens.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
+        "step": "cube-mounted/lens.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
+      },
+      "position": [
+        100,
+        0,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "objective/skeleton/upper-half",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/lens.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
+        "step": "cube-mounted/lens.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
+      },
+      "position": [
+        100,
+        0,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -180,
+          "z": -180
+        }
+      }
+    },
+    {
+      "id": "sample-mirror/mounted-mirror/adhesive-pad",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/BUY - Adhesive pad - 41x29x1.glb",
+        "step": "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/BUY - Adhesive pad - 41x29x1.stp"
+      },
+      "position": [
+        150.5,
+        0,
+        0.5
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "x": 90,
+          "z": 180
+        }
+      }
+    },
+    {
+      "id": "sample-mirror/mounted-mirror/insert",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/PRT - 2022 - INSMIR45TH2.glb",
+        "step": "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/PRT - 2022 - INSMIR45TH2.stp"
+      },
+      "position": [
+        150,
+        0,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "x": 90,
+          "z": 180
+        }
+      }
+    },
+    {
+      "id": "sample-mirror/mounted-mirror/mirror",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/BUY - Mirror - 40x30x2.glb",
+        "step": "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/BUY - Mirror - 40x30x2.stp"
+      },
+      "position": [
+        150,
+        0,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "x": 90,
+          "z": 180
+        }
+      }
+    },
+    {
+      "id": "sample-mirror/skeleton/lower-half",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/mirror-diagonal.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
+        "step": "cube-mounted/mirror-diagonal.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
+      },
+      "position": [
+        150,
+        0,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -180
+        }
+      }
+    },
+    {
+      "id": "sample-mirror/skeleton/upper-half",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/mirror-diagonal.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
+        "step": "cube-mounted/mirror-diagonal.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
+      },
+      "position": [
+        150,
+        0,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "z": -180
+        }
+      }
+    },
+    {
+      "id": "sample-stage/base/cube-base",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "primitives/xyz-stage.dsn/base.dsn/PRT - 1017 - BASXYZSTG - V04 - A.glb",
+        "step": "primitives/xyz-stage.dsn/base.dsn/PRT - 1017 - BASXYZSTG - V04 - A.stp"
+      },
+      "position": [
+        150,
+        0,
+        -110
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": 180,
+          "z": 90
+        }
+      }
+    },
+    {
+      "id": "sample-stage/base/cube-pin-1",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/xyz-stage.dsn/base.dsn/BUY - LEGO technic - 3_4 pin - art. no. 32002.bom.yml"
+      }
+    },
+    {
+      "id": "sample-stage/base/cube-pin-2",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/xyz-stage.dsn/base.dsn/BUY - LEGO technic - 3_4 pin - art. no. 32002.bom.yml"
+      }
+    },
+    {
+      "id": "sample-stage/base/cube-pin-3",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/xyz-stage.dsn/base.dsn/BUY - LEGO technic - 3_4 pin - art. no. 32002.bom.yml"
+      }
+    },
+    {
+      "id": "sample-stage/base/cube-pin-4",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/xyz-stage.dsn/base.dsn/BUY - LEGO technic - 3_4 pin - art. no. 32002.bom.yml"
+      }
+    },
+    {
+      "id": "sample-stage/base/cube-screw-1",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/xyz-stage.dsn/base.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 16 - 8.8 A2K.bom.yml"
+      }
+    },
+    {
+      "id": "sample-stage/base/cube-screw-2",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/xyz-stage.dsn/base.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 16 - 8.8 A2K.bom.yml"
+      }
+    },
+    {
+      "id": "sample-stage/base/cube-screw-3",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/xyz-stage.dsn/base.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 16 - 8.8 A2K.bom.yml"
+      }
+    },
+    {
+      "id": "sample-stage/base/motor-cap-nut",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/xyz-stage.dsn/base.dsn/DIN 1587 - Cap nut - M3 - St 6 AU - A2K.bom.yml"
+      }
+    },
+    {
+      "id": "sample-stage/base/motor-hex-nut",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/xyz-stage.dsn/base.dsn/ISO 4032 - Hex nut - M3 - A2-70.bom.yml"
+      }
+    },
+    {
+      "id": "sample-stage/base/motor-holder",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "primitives/xyz-stage.dsn/base.dsn/PRT - 3021 - MOTHOLXST.glb",
+        "step": "primitives/xyz-stage.dsn/base.dsn/PRT - 3021 - MOTHOLXST.stp"
+      },
+      "position": [
+        146,
+        4,
+        -110
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "sample-stage/base/motor-holder-hold-screw-1",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/xyz-stage.dsn/base.dsn/ISO 4762 - Cylinder head screw with hex socket - M2.5 x 10 - A2-70.bom.yml"
+      }
+    },
+    {
+      "id": "sample-stage/base/motor-holder-mount-screw-1",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/xyz-stage.dsn/base.dsn/ISO 4762 - Cylinder head screw with hex socket - M2.5 x 10 - A2-70.bom.yml"
+      }
+    },
+    {
+      "id": "sample-stage/base/motor-holder-mount-screw-2",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/xyz-stage.dsn/base.dsn/ISO 4762 - Cylinder head screw with hex socket - M2.5 x 10 - A2-70.bom.yml"
+      }
+    },
+    {
+      "id": "sample-stage/base/motor-washer",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/xyz-stage.dsn/base.dsn/ISO 7092 - Washer - 3 - 200 HV - A2K.bom.yml"
+      }
+    },
+    {
+      "id": "sample-stage/base/motor/motor",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "primitives/xyz-stage.dsn/base.dsn/primitives/motor-push-rod.dsn/BUY - Stepping motor with captive push rod  - L8K2105AD4-050SMSN-220(02).glb",
+        "step": "primitives/xyz-stage.dsn/base.dsn/primitives/motor-push-rod.dsn/BUY - Stepping motor with captive push rod  - L8K2105AD4-050SMSN-220(02).stp"
+      },
+      "position": [
+        123.3,
+        -27,
+        -102.5
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "z": -180
+        }
+      }
+    },
+    {
+      "id": "sample-stage/base/x-rail-base",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "primitives/xyz-stage.dsn/base.dsn/BUY - XYZ linear table - LD40 --- base.glb",
+        "step": "primitives/xyz-stage.dsn/base.dsn/BUY - XYZ linear table - LD40 --- base.stp"
+      },
+      "position": [
+        146,
+        4,
+        -110
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "sample-stage/base/x-rail-base-screw-1",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/xyz-stage.dsn/base.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 10 - 8.8 - A2K.bom.yml"
+      }
+    },
+    {
+      "id": "sample-stage/base/x-rail-base-screw-2",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/xyz-stage.dsn/base.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 10 - 8.8 - A2K.bom.yml"
+      }
+    },
+    {
+      "id": "sample-stage/stage-drivers",
+      "kind": "primitive/static",
+      "static-models": {
+        "newswitch-device": "primitives/xyz-stage.dsn/stage.newswitch-device.yml"
+      },
+      "results": {
+        "newswitch-device-config": {
+          "stage": {
+            "orthogonal-xyz": {
+              "devices": {
+                "x-actuator": "just-some-boring-stage-x-actuator",
+                "x-limit": null,
+                "y-actuator": "just-some-boring-stage-y-actuator",
+                "y-limit": null,
+                "z-actuator": "just-some-boring-stage-z-actuator",
+                "z-limit": null
+              }
+            }
+          }
+        },
+        "newswitch-device-id": "just-some-boring-stage"
+      }
+    },
+    {
+      "id": "sample-stage/x-drivers",
+      "kind": "primitive/static",
+      "static-models": {
+        "newswitch-device": "primitives/xyz-stage.dsn/linear-actuator.newswitch-device.yml"
+      },
+      "results": {
+        "newswitch-device-config": {
+          "controller": "my-favorite-mainboard",
+          "optikit": {
+            "dsn-input-variable": "sample-x"
+          }
+        },
+        "newswitch-device-id": "just-some-boring-stage-x-actuator"
+      }
+    },
+    {
+      "id": "sample-stage/xy-plate/motor-cap-nut",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/xyz-stage.dsn/xy-plate.dsn/DIN 1587 - Cap nut - M3 - St 6 AU - A2K.bom.yml"
+      }
+    },
+    {
+      "id": "sample-stage/xy-plate/motor-hex-nut",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/xyz-stage.dsn/xy-plate.dsn/ISO 4032 - Hex nut - M3 - A2-70.bom.yml"
+      }
+    },
+    {
+      "id": "sample-stage/xy-plate/motor-holder",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "primitives/xyz-stage.dsn/xy-plate.dsn/PRT - 3022 - MOTHOLYST.glb",
+        "step": "primitives/xyz-stage.dsn/xy-plate.dsn/PRT - 3022 - MOTHOLYST.stp"
+      },
+      "position": [
+        146,
+        4,
+        -98.5
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "z": -90
+        }
+      }
+    },
+    {
+      "id": "sample-stage/xy-plate/motor-holder-hold-screw-1",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/xyz-stage.dsn/xy-plate.dsn/ISO 4762 - Cylinder head screw with hex socket - M2.5 x 10 - A2-70.bom.yml"
+      }
+    },
+    {
+      "id": "sample-stage/xy-plate/motor-holder-mount-screw-1",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/xyz-stage.dsn/xy-plate.dsn/ISO 4762 - Cylinder head screw with hex socket - M2.5 x 10 - A2-70.bom.yml"
+      }
+    },
+    {
+      "id": "sample-stage/xy-plate/motor-holder-mount-screw-2",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/xyz-stage.dsn/xy-plate.dsn/ISO 4762 - Cylinder head screw with hex socket - M2.5 x 10 - A2-70.bom.yml"
+      }
+    },
+    {
+      "id": "sample-stage/xy-plate/motor-washer",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/xyz-stage.dsn/xy-plate.dsn/ISO 7092 - Washer - 3 - 200 HV - A2K.bom.yml"
+      }
+    },
+    {
+      "id": "sample-stage/xy-plate/motor/motor",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "primitives/xyz-stage.dsn/xy-plate.dsn/primitives/motor-push-rod.dsn/BUY - Stepping motor with captive push rod  - L8K2105AD4-050SMSN-220(02).glb",
+        "step": "primitives/xyz-stage.dsn/xy-plate.dsn/primitives/motor-push-rod.dsn/BUY - Stepping motor with captive push rod  - L8K2105AD4-050SMSN-220(02).stp"
+      },
+      "position": [
+        115,
+        25.7,
+        -87
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "z": 90
+        }
+      }
+    },
+    {
+      "id": "sample-stage/xy-plate/stop-bracket",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "primitives/xyz-stage.dsn/xy-plate.dsn/PRT - 3023 - BKTXST.glb",
+        "step": "primitives/xyz-stage.dsn/xy-plate.dsn/PRT - 3023 - BKTXST.stp"
+      },
+      "position": [
+        146,
+        4,
+        -110
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "sample-stage/xy-plate/stop-bracket-screw-1",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/xyz-stage.dsn/xy-plate.dsn/ISO 4762 - Cylinder head screw with hex socket - M2.5 x 8 - 8.8 - A2K.bom.yml"
+      }
+    },
+    {
+      "id": "sample-stage/xy-plate/stop-bracket-screw-2",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/xyz-stage.dsn/xy-plate.dsn/ISO 4762 - Cylinder head screw with hex socket - M2.5 x 8 - 8.8 - A2K.bom.yml"
+      }
+    },
+    {
+      "id": "sample-stage/xy-plate/xy-plate",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "primitives/xyz-stage.dsn/xy-plate.dsn/BUY - XYZ linear table - LD40 --- XY plate.glb",
+        "step": "primitives/xyz-stage.dsn/xy-plate.dsn/BUY - XYZ linear table - LD40 --- XY plate.stp"
+      },
+      "position": [
+        146,
+        4,
+        -110
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "sample-stage/y-drivers",
+      "kind": "primitive/static",
+      "static-models": {
+        "newswitch-device": "primitives/xyz-stage.dsn/linear-actuator.newswitch-device.yml"
+      },
+      "results": {
+        "newswitch-device-config": {
+          "controller": "my-favorite-mainboard",
+          "optikit": {
+            "dsn-input-variable": "sample-y"
+          }
+        },
+        "newswitch-device-id": "just-some-boring-stage-y-actuator"
+      }
+    },
+    {
+      "id": "sample-stage/yz-plate/motor-holder",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "primitives/xyz-stage.dsn/yz-plate.dsn/PRT - 3024 - MOTHOLZST.glb",
+        "step": "primitives/xyz-stage.dsn/yz-plate.dsn/PRT - 3024 - MOTHOLZST.stp"
+      },
+      "position": [
+        146.5,
+        4,
+        -110
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "sample-stage/yz-plate/motor-holder-hold-screw-1",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/xyz-stage.dsn/yz-plate.dsn/ISO 4762 - Cylinder head screw with hex socket - M2.5 x 10 - A2-70.bom.yml"
+      }
+    },
+    {
+      "id": "sample-stage/yz-plate/motor-holder-mount-screw-1",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/xyz-stage.dsn/yz-plate.dsn/ISO 4762 - Cylinder head screw with hex socket - M3x8 - 8.8 - A2K.bom.yml"
+      }
+    },
+    {
+      "id": "sample-stage/yz-plate/motor-holder-mount-screw-2",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/xyz-stage.dsn/yz-plate.dsn/ISO 4762 - Cylinder head screw with hex socket - M3x8 - 8.8 - A2K.bom.yml"
+      }
+    },
+    {
+      "id": "sample-stage/yz-plate/motor-pressure-piece",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/xyz-stage.dsn/yz-plate.dsn/BUY - Pressure piece - ø6x10_M3x6 - V2A"
+      }
+    },
+    {
+      "id": "sample-stage/yz-plate/motor/motor",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "primitives/xyz-stage.dsn/yz-plate.dsn/primitives/motor-push-rod.dsn/BUY - Stepping motor with captive push rod  - L8K2105AD4-050SMSN-220(02).glb",
+        "step": "primitives/xyz-stage.dsn/yz-plate.dsn/primitives/motor-push-rod.dsn/BUY - Stepping motor with captive push rod  - L8K2105AD4-050SMSN-220(02).stp"
+      },
+      "position": [
+        157.5,
+        42.2,
+        -68
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "z": 90
+        }
+      }
+    },
+    {
+      "id": "sample-stage/yz-plate/stop-bracket",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "primitives/xyz-stage.dsn/yz-plate.dsn/BUY - XYZ linear table - LD40 --- bracket.glb",
+        "step": "primitives/xyz-stage.dsn/yz-plate.dsn/BUY - XYZ linear table - LD40 --- bracket.stp"
+      },
+      "position": [
+        146,
+        4,
+        -72.5
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -180,
+          "z": -90
+        }
+      }
+    },
+    {
+      "id": "sample-stage/yz-plate/y-plate",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "primitives/xyz-stage.dsn/yz-plate.dsn/BUY - XYZ linear table - LD40 --- Y plate.glb",
+        "step": "primitives/xyz-stage.dsn/yz-plate.dsn/BUY - XYZ linear table - LD40 --- Y plate.stp"
+      },
+      "position": [
+        146,
+        4,
+        -110
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "sample-stage/yz-plate/z-bracket",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "primitives/xyz-stage.dsn/yz-plate.dsn/BUY - Manual Z stage - LZ40 --- base.glb",
+        "step": "primitives/xyz-stage.dsn/yz-plate.dsn/BUY - Manual Z stage - LZ40 --- base.stp"
+      },
+      "position": [
+        146,
+        4,
+        -80
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "x": 90,
+          "z": 90
+        }
+      }
+    },
+    {
+      "id": "sample-stage/yz-plate/z-rotator",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "primitives/xyz-stage.dsn/yz-plate.dsn/BUY - Manual Z stage - LZ40 --- converter.glb",
+        "step": "primitives/xyz-stage.dsn/yz-plate.dsn/BUY - Manual Z stage - LZ40 --- converter.stp"
+      },
+      "position": [
+        146,
+        4,
+        -80
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "x": 90,
+          "z": 90
+        }
+      }
+    },
+    {
+      "id": "sample-stage/z-drivers",
+      "kind": "primitive/static",
+      "static-models": {
+        "newswitch-device": "primitives/xyz-stage.dsn/linear-actuator.newswitch-device.yml"
+      },
+      "results": {
+        "newswitch-device-config": {
+          "controller": "my-favorite-mainboard",
+          "optikit": {
+            "dsn-input-variable": "sample-z"
+          }
+        },
+        "newswitch-device-id": "just-some-boring-stage-z-actuator"
+      }
+    },
+    {
+      "id": "sample-stage/z-plate",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "primitives/xyz-stage.dsn/BUY - Manual Z stage - LZ40 --- slide.glb",
+        "step": "primitives/xyz-stage.dsn/BUY - Manual Z stage - LZ40 --- slide.stp"
+      },
+      "position": [
+        146,
+        4,
+        -80
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "x": 90,
+          "z": 90
+        }
+      }
+    }
+  ]
+}

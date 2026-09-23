@@ -1,46 +1,33 @@
-[
-  {
-    "id": "lower-half",
-    "kind": "static",
-    "static-models": {
-      "gltf": "PRT - 1003 - CUBHLF111 - V04.glb",
-      "step": "PRT - 1003 - CUBHLF111 - V04.stp"
+{
+  "optikit-version": "v0.0.0-dev",
+  "components": [
+    {
+      "id": "lower-half",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "PRT - 1003 - CUBHLF111 - V04.glb",
+        "step": "PRT - 1003 - CUBHLF111 - V04.stp"
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
     },
-    "position": [
-      0,
-      0,
-      0
-    ],
-    "rotation": {
-      "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -0,
-        "z": -0
+    {
+      "id": "upper-half",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "PRT - 1003 - CUBHLF111 - V04.glb",
+        "step": "PRT - 1003 - CUBHLF111 - V04.stp"
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -180,
+          "z": -180
+        }
       }
     }
-  },
-  {
-    "id": "upper-half",
-    "kind": "static",
-    "static-models": {
-      "gltf": "PRT - 1003 - CUBHLF111 - V04.glb",
-      "step": "PRT - 1003 - CUBHLF111 - V04.stp"
-    },
-    "position": [
-      0,
-      0,
-      0
-    ],
-    "rotation": {
-      "kind": "extrinsic",
-      "order": "zxy",
-      "angles": {
-        "x": 0,
-        "y": -180,
-        "z": -180
-      }
-    }
-  }
-]
+  ]
+}

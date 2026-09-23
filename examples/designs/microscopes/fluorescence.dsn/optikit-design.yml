@@ -1,0 +1,152 @@
+optikit-version: v0.0.0-alpha.1
+
+design:
+  description: A minimal fluorescence microscope with a laser and camera and xyz stage
+  tags:
+    - instrument
+    - instrument/microscope
+
+components:
+  camera:
+    kind: design
+    design: primitives/hikcamera-with-objective.dsn
+    instantiation:
+      inputs:
+        newswitch-device-id: bigcamera42
+    pose:
+      rotation:
+        kind: uc2
+  dichroic:
+    kind: design
+    design: cube-mounted/dichroic-mirror.dsn
+    instantiation:
+      variant: xy
+    pose:
+      rotation:
+        kind: uc2
+        grid: {z: -z, x: -y}
+      translation:
+        anchor: camera
+        offset-grid: {x: 1}
+  objective:
+    kind: design
+    design: cube-mounted/lens.dsn
+    instantiation:
+      variant: x
+      offset: 0
+    pose:
+      rotation:
+        kind: uc2
+      translation:
+        anchor: dichroic
+        offset-grid: {x: 1}
+  laser-mirror:
+    kind: design
+    design: cube-mounted/mirror-diagonal.dsn
+    instantiation:
+      variant: xy
+    pose:
+      rotation:
+        kind: uc2
+        grid: {x: +y}
+      translation:
+        anchor: dichroic
+        offset-grid: {y: -1}
+  fiber-holder:
+    kind: design
+    design: cube-mounted/fiber-holder.dsn
+    instantiation:
+      variant: x
+    pose:
+      rotation:
+        kind: uc2
+        grid: {x: -y}
+      translation:
+        anchor: laser-mirror
+        offset-grid: {x: -1}
+  blue-laser:
+    kind: design
+    design: primitives/laser.dsn
+    instantiation:
+      inputs:
+        newswitch-device-id: hotlaser123
+        newswitch-controller: my-favorite-mainboard
+    pose:
+      rotation:
+        kind: uc2
+        grid: {x: -y}
+      translation:
+        offset-grid: {x: 1, y: 1}
+  sample-mirror:
+    kind: design
+    design: cube-mounted/mirror-diagonal.dsn
+    instantiation:
+      variant: _z
+    pose:
+      rotation:
+        kind: uc2
+        grid: {z: -z, x: -x}
+      translation:
+        anchor: objective
+        offset-grid: {x: 1}
+  sample-stage:
+    kind: design
+    design: primitives/xyz-stage.dsn
+    instantiation:
+      inputs:
+        newswitch-device-id: just-some-boring-stage
+        newswitch-controller: my-favorite-mainboard
+        newswitch-input-variable-x: sample-x
+        newswitch-input-variable-y: sample-y
+        newswitch-input-variable-z: sample-z
+        x-stage: ~ inputs['sample-x'].value
+        y-stage: ~ inputs['sample-y'].value
+        z-stage: ~ inputs['sample-z'].value
+    pose:
+      rotation:
+        kind: grid
+      translation:
+        anchor: sample-mirror
+        offset-grid: {z: -2}
+  electronics-controller:
+    kind: design
+    design: primitives/electronics-mainboard.dsn
+    instantiation:
+      inputs:
+        newswitch-device-id: my-favorite-mainboard
+    pose:
+      rotation:
+        kind: uc2
+        grid: {z: -z}
+      translation:
+        offset-grid: {z: -1}
+        offset-mm: {x: 25, y: 25, z: ~ 25 - 5}
+
+inputs:
+  sample-x:
+    description: Extension of the sample stage's x-axis actuator
+    kind: float64
+    units: mm
+    min: 0
+    max: 25
+    tags:
+      - pose/actuator/translation
+      - adjustment/electronic
+  sample-y:
+    description: Extension of the sample stage's y-axis actuator
+    kind: float64
+    units: mm
+    min: 0
+    max: 25
+    tags:
+      - pose/actuator/translation
+      - adjustment/electronic
+  sample-z:
+    description: Extension of the sample stage's z-axis actuator
+    kind: float64
+    units: mm
+    min: 0
+    max: 25
+    tags:
+      - pose/actuator/translation
+      - adjustment/electronic

@@ -1,0 +1,42 @@
+optikit-version: v0.0.0-alpha.1
+
+design:
+  description: A fiber holder for a laser fiber
+  tags:
+    - composition/cube-mounted
+    - in/kit/fluorescence-laser-box
+
+components:
+  skeleton:
+    kind: design
+    design: primitives/cube-skeleton.dsn
+    pose:
+      rotation:
+        kind: grid
+  mounted-fiber-holder:
+    kind: design
+    design: mounted-holder.dsn
+    pose:
+      rotation:
+        kind: grid
+        grid: {z: -z}
+    tags:
+      - optical/fiber
+      - procurement/buy
+      - procurement/3d-print
+      - in/kit/fluorescence-laser-box
+
+variants:
+  z:
+    description: Direction vector of the optical fiber is the z-axis
+    tags:
+      - pose/insert/orientation/vertical
+  x:
+    description: Normal vector of the optical fiber is the x-axis
+    components:
+      mounted-fiber-holder:
+        pose:
+          rotation:
+            grid: {z: -x, x: -z}
+    tags:
+      - pose/insert/orientation/horizontal

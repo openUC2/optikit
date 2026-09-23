@@ -1,0 +1,345 @@
+optikit-version: v0.0.0-dev
+components:
+- id: base/cube-base
+  kind: primitive/static
+  static-models:
+    gltf: "base.dsn/PRT - 1017 - BASXYZSTG - V04 - A.glb"
+    step: "base.dsn/PRT - 1017 - BASXYZSTG - V04 - A.stp"
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+    angles:
+      "y": -180.0
+      z: 90.0
+- id: base/cube-pin-1
+  kind: primitive/static
+  static-models:
+    bom: "base.dsn/BUY - LEGO technic - 3_4 pin - art. no. 32002.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: base/cube-pin-2
+  kind: primitive/static
+  static-models:
+    bom: "base.dsn/BUY - LEGO technic - 3_4 pin - art. no. 32002.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: base/cube-pin-3
+  kind: primitive/static
+  static-models:
+    bom: "base.dsn/BUY - LEGO technic - 3_4 pin - art. no. 32002.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: base/cube-pin-4
+  kind: primitive/static
+  static-models:
+    bom: "base.dsn/BUY - LEGO technic - 3_4 pin - art. no. 32002.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: base/cube-screw-1
+  kind: primitive/static
+  static-models:
+    bom: "base.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 16 - 8.8 A2K.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: base/cube-screw-2
+  kind: primitive/static
+  static-models:
+    bom: "base.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 16 - 8.8 A2K.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: base/cube-screw-3
+  kind: primitive/static
+  static-models:
+    bom: "base.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 16 - 8.8 A2K.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: base/motor-cap-nut
+  kind: primitive/static
+  static-models:
+    bom: "base.dsn/DIN 1587 - Cap nut - M3 - St 6 AU - A2K.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: base/motor-hex-nut
+  kind: primitive/static
+  static-models:
+    bom: "base.dsn/ISO 4032 - Hex nut - M3 - A2-70.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: base/motor-holder
+  kind: primitive/static
+  static-models:
+    gltf: "base.dsn/PRT - 3021 - MOTHOLXST.glb"
+    step: "base.dsn/PRT - 3021 - MOTHOLXST.stp"
+  position: [-4.0, 4.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: base/motor-holder-hold-screw-1
+  kind: primitive/static
+  static-models:
+    bom: "base.dsn/ISO 4762 - Cylinder head screw with hex socket - M2.5 x 10 - A2-70.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: base/motor-holder-mount-screw-1
+  kind: primitive/static
+  static-models:
+    bom: "base.dsn/ISO 4762 - Cylinder head screw with hex socket - M2.5 x 10 - A2-70.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: base/motor-holder-mount-screw-2
+  kind: primitive/static
+  static-models:
+    bom: "base.dsn/ISO 4762 - Cylinder head screw with hex socket - M2.5 x 10 - A2-70.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: base/motor-washer
+  kind: primitive/static
+  static-models:
+    bom: "base.dsn/ISO 7092 - Washer - 3 - 200 HV - A2K.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: base/motor/motor
+  kind: primitive/static
+  static-models:
+    gltf: "base.dsn/primitives/motor-push-rod.dsn/BUY - Stepping motor with captive push rod  - L8K2105AD4-050SMSN-220(02).glb"
+    step: "base.dsn/primitives/motor-push-rod.dsn/BUY - Stepping motor with captive push rod  - L8K2105AD4-050SMSN-220(02).stp"
+  position: [-26.7, -27.0, 7.5]
+  rotation:
+    kind: extrinsic
+    order: zxy
+    angles:
+      z: -180.0
+- id: base/x-rail-base
+  kind: primitive/static
+  static-models:
+    gltf: "base.dsn/BUY - XYZ linear table - LD40 --- base.glb"
+    step: "base.dsn/BUY - XYZ linear table - LD40 --- base.stp"
+  position: [-4.0, 4.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: base/x-rail-base-screw-1
+  kind: primitive/static
+  static-models:
+    bom: "base.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 10 - 8.8 - A2K.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: base/x-rail-base-screw-2
+  kind: primitive/static
+  static-models:
+    bom: "base.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 10 - 8.8 - A2K.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: stage-drivers
+  kind: primitive/static
+  static-models:
+    newswitch-device: stage.newswitch-device.yml
+  position: [0.0, 0.0, 0.0]
+  results:
+    newswitch-device-config:
+      stage:
+        orthogonal-xyz:
+          devices:
+            x-actuator: -x-actuator
+            x-limit: null
+            y-actuator: -y-actuator
+            y-limit: null
+            z-actuator: -z-actuator
+            z-limit: null
+    newswitch-device-id: ""
+- id: x-drivers
+  kind: primitive/static
+  static-models:
+    newswitch-device: linear-actuator.newswitch-device.yml
+  position: [0.0, 0.0, 0.0]
+  results:
+    newswitch-device-config:
+      controller: ""
+      optikit:
+        dsn-input-variable: ""
+    newswitch-device-id: -x-actuator
+- id: xy-plate/motor-cap-nut
+  kind: primitive/static
+  static-models:
+    bom: "xy-plate.dsn/DIN 1587 - Cap nut - M3 - St 6 AU - A2K.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: xy-plate/motor-hex-nut
+  kind: primitive/static
+  static-models:
+    bom: "xy-plate.dsn/ISO 4032 - Hex nut - M3 - A2-70.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: xy-plate/motor-holder
+  kind: primitive/static
+  static-models:
+    gltf: "xy-plate.dsn/PRT - 3022 - MOTHOLYST.glb"
+    step: "xy-plate.dsn/PRT - 3022 - MOTHOLYST.stp"
+  position: [-4.0, 4.0, 11.5]
+  rotation:
+    kind: extrinsic
+    order: zxy
+    angles:
+      z: -90.0
+- id: xy-plate/motor-holder-hold-screw-1
+  kind: primitive/static
+  static-models:
+    bom: "xy-plate.dsn/ISO 4762 - Cylinder head screw with hex socket - M2.5 x 10 - A2-70.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: xy-plate/motor-holder-mount-screw-1
+  kind: primitive/static
+  static-models:
+    bom: "xy-plate.dsn/ISO 4762 - Cylinder head screw with hex socket - M2.5 x 10 - A2-70.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: xy-plate/motor-holder-mount-screw-2
+  kind: primitive/static
+  static-models:
+    bom: "xy-plate.dsn/ISO 4762 - Cylinder head screw with hex socket - M2.5 x 10 - A2-70.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: xy-plate/motor-washer
+  kind: primitive/static
+  static-models:
+    bom: "xy-plate.dsn/ISO 7092 - Washer - 3 - 200 HV - A2K.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: xy-plate/motor/motor
+  kind: primitive/static
+  static-models:
+    gltf: "xy-plate.dsn/primitives/motor-push-rod.dsn/BUY - Stepping motor with captive push rod  - L8K2105AD4-050SMSN-220(02).glb"
+    step: "xy-plate.dsn/primitives/motor-push-rod.dsn/BUY - Stepping motor with captive push rod  - L8K2105AD4-050SMSN-220(02).stp"
+  position: [-35.0, 25.7, 23.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+    angles:
+      z: 90.0
+- id: xy-plate/stop-bracket
+  kind: primitive/static
+  static-models:
+    gltf: "xy-plate.dsn/PRT - 3023 - BKTXST.glb"
+    step: "xy-plate.dsn/PRT - 3023 - BKTXST.stp"
+  position: [-4.0, 4.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: xy-plate/stop-bracket-screw-1
+  kind: primitive/static
+  static-models:
+    bom: "xy-plate.dsn/ISO 4762 - Cylinder head screw with hex socket - M2.5 x 8 - 8.8 - A2K.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: xy-plate/stop-bracket-screw-2
+  kind: primitive/static
+  static-models:
+    bom: "xy-plate.dsn/ISO 4762 - Cylinder head screw with hex socket - M2.5 x 8 - 8.8 - A2K.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: xy-plate/xy-plate
+  kind: primitive/static
+  static-models:
+    gltf: "xy-plate.dsn/BUY - XYZ linear table - LD40 --- XY plate.glb"
+    step: "xy-plate.dsn/BUY - XYZ linear table - LD40 --- XY plate.stp"
+  position: [-4.0, 4.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: y-drivers
+  kind: primitive/static
+  static-models:
+    newswitch-device: linear-actuator.newswitch-device.yml
+  position: [0.0, 0.0, 0.0]
+  results:
+    newswitch-device-config:
+      controller: ""
+      optikit:
+        dsn-input-variable: ""
+    newswitch-device-id: -y-actuator
+- id: yz-plate/motor-holder
+  kind: primitive/static
+  static-models:
+    gltf: "yz-plate.dsn/PRT - 3024 - MOTHOLZST.glb"
+    step: "yz-plate.dsn/PRT - 3024 - MOTHOLZST.stp"
+  position: [-3.5, 4.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: yz-plate/motor-holder-hold-screw-1
+  kind: primitive/static
+  static-models:
+    bom: "yz-plate.dsn/ISO 4762 - Cylinder head screw with hex socket - M2.5 x 10 - A2-70.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: yz-plate/motor-holder-mount-screw-1
+  kind: primitive/static
+  static-models:
+    bom: "yz-plate.dsn/ISO 4762 - Cylinder head screw with hex socket - M3x8 - 8.8 - A2K.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: yz-plate/motor-holder-mount-screw-2
+  kind: primitive/static
+  static-models:
+    bom: "yz-plate.dsn/ISO 4762 - Cylinder head screw with hex socket - M3x8 - 8.8 - A2K.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: yz-plate/motor-pressure-piece
+  kind: primitive/static
+  static-models:
+    bom: "yz-plate.dsn/BUY - Pressure piece - ø6x10_M3x6 - V2A"
+  position: [0.0, 0.0, 0.0]
+- id: yz-plate/motor/motor
+  kind: primitive/static
+  static-models:
+    gltf: "yz-plate.dsn/primitives/motor-push-rod.dsn/BUY - Stepping motor with captive push rod  - L8K2105AD4-050SMSN-220(02).glb"
+    step: "yz-plate.dsn/primitives/motor-push-rod.dsn/BUY - Stepping motor with captive push rod  - L8K2105AD4-050SMSN-220(02).stp"
+  position: [7.5, 42.2, 42.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+    angles:
+      z: 90.0
+- id: yz-plate/stop-bracket
+  kind: primitive/static
+  static-models:
+    gltf: "yz-plate.dsn/BUY - XYZ linear table - LD40 --- bracket.glb"
+    step: "yz-plate.dsn/BUY - XYZ linear table - LD40 --- bracket.stp"
+  position: [-4.0, 4.0, 37.5]
+  rotation:
+    kind: extrinsic
+    order: zxy
+    angles:
+      "y": -180.0
+      z: -90.0
+- id: yz-plate/y-plate
+  kind: primitive/static
+  static-models:
+    gltf: "yz-plate.dsn/BUY - XYZ linear table - LD40 --- Y plate.glb"
+    step: "yz-plate.dsn/BUY - XYZ linear table - LD40 --- Y plate.stp"
+  position: [-4.0, 4.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: yz-plate/z-bracket
+  kind: primitive/static
+  static-models:
+    gltf: "yz-plate.dsn/BUY - Manual Z stage - LZ40 --- base.glb"
+    step: "yz-plate.dsn/BUY - Manual Z stage - LZ40 --- base.stp"
+  position: [-4.0, 4.0, 30.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+    angles:
+      x: 90.0
+      z: 90.0
+- id: yz-plate/z-rotator
+  kind: primitive/static
+  static-models:
+    gltf: "yz-plate.dsn/BUY - Manual Z stage - LZ40 --- converter.glb"
+    step: "yz-plate.dsn/BUY - Manual Z stage - LZ40 --- converter.stp"
+  position: [-4.0, 4.0, 30.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+    angles:
+      x: 90.0
+      z: 90.0
+- id: z-drivers
+  kind: primitive/static
+  static-models:
+    newswitch-device: linear-actuator.newswitch-device.yml
+  position: [0.0, 0.0, 0.0]
+  results:
+    newswitch-device-config:
+      controller: ""
+      optikit:
+        dsn-input-variable: ""
+    newswitch-device-id: -z-actuator
+- id: z-plate
+  kind: primitive/static
+  static-models:
+    gltf: "BUY - Manual Z stage - LZ40 --- slide.glb"
+    step: "BUY - Manual Z stage - LZ40 --- slide.stp"
+  position: [-4.0, 4.0, 30.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+    angles:
+      x: 90.0
+      z: 90.0

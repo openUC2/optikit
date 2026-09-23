@@ -1,0 +1,67 @@
+optikit-version: v0.0.0-dev
+components:
+- id: mounted-fiber-holder/insert
+  kind: primitive/static
+  static-models:
+    gltf: "mounted-holder.dsn/PRT - 2053 - INSFIBHOL15x15 - V04.glb"
+    step: "mounted-holder.dsn/PRT - 2053 - INSFIBHOL15x15 - V04.stp"
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+    angles:
+      "y": -180.0
+      z: -180.0
+- id: mounted-fiber-holder/screw-1
+  kind: primitive/static
+  static-models:
+    bom: "mounted-holder.dsn/ISO 4762 - Cylinder head screw with hex socket - M2 x 6 - 8.8 - A2K.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: mounted-fiber-holder/screw-2
+  kind: primitive/static
+  static-models:
+    bom: "mounted-holder.dsn/ISO 4762 - Cylinder head screw with hex socket - M2 x 6 - 8.8 - A2K.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: mounted-fiber-holder/screw-3
+  kind: primitive/static
+  static-models:
+    bom: "mounted-holder.dsn/ISO 4762 - Cylinder head screw with hex socket - M2 x 6 - 8.8 - A2K.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: mounted-fiber-holder/screw-4
+  kind: primitive/static
+  static-models:
+    bom: "mounted-holder.dsn/ISO 4762 - Cylinder head screw with hex socket - M2 x 6 - 8.8 - A2K.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: mounted-fiber-holder/threaded-holder
+  kind: primitive/static
+  static-models:
+    gltf: "mounted-holder.dsn/BUY - Fiber holder - FCPC.glb"
+    step: "mounted-holder.dsn/BUY - Fiber holder - FCPC.stp"
+  position: [0.0, 0.0, -7.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+    angles:
+      "y": -180.0
+      z: -180.0
+- id: skeleton/lower-half
+  kind: primitive/static
+  static-models:
+    gltf: "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb"
+    step: "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: skeleton/upper-half
+  kind: primitive/static
+  static-models:
+    gltf: "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb"
+    step: "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+    angles:
+      "y": -180.0
+      z: -180.0

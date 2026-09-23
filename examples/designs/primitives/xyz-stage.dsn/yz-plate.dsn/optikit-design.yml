@@ -1,0 +1,131 @@
+optikit-version: v0.0.0-alpha.1
+
+design:
+  description: Baseplate for stage
+  tags:
+    - in/kit/light-sheet-box
+
+components:
+  motor:
+    kind: design
+    design: primitives/motor-push-rod.dsn
+    pose:
+      rotation:
+        kind: grid
+        grid: {x: +y}
+      translation:
+        offset-mm: {x: 11.5, y: 46.2, z: 42}
+  motor-pressure-piece:
+    kind: primitive
+    primitive:
+      kind: static
+      static-models:
+        bom: BUY - Pressure piece - ø6x10_M3x6 - V2A
+      tags:
+        - procurement/buy
+        - in/kit/light-sheet-box
+  motor-holder:
+    kind: primitive
+    primitive:
+      kind: static
+      static-models:
+        gltf: PRT - 3024 - MOTHOLZST.glb
+        step: PRT - 3024 - MOTHOLZST.stp
+    pose:
+      rotation:
+        kind: grid
+      translation:
+        offset-mm: {x: -3.5, y: 4}
+    tags:
+      - procurement/3d-print
+      - in/kit/light-sheet-box
+  motor-holder-hold-screw-1:
+    kind: primitive
+    primitive:
+      kind: static
+      static-models:
+        bom: ISO 4762 - Cylinder head screw with hex socket - M2.5 x 10 - A2-70.bom.yml
+      tags:
+        - structure/fastener/threaded
+        - procurement/buy
+        - in/kit/light-sheet-box
+  motor-holder-mount-screw-1:
+    kind: primitive
+    primitive:
+      kind: static
+      static-models:
+        bom: ISO 4762 - Cylinder head screw with hex socket - M3x8 - 8.8 - A2K.bom.yml
+      tags:
+        - structure/fastener/threaded
+        - procurement/buy
+        - in/kit/light-sheet-box
+  motor-holder-mount-screw-2:
+    kind: primitive
+    primitive:
+      kind: static
+      static-models:
+        bom: ISO 4762 - Cylinder head screw with hex socket - M3x8 - 8.8 - A2K.bom.yml
+      tags:
+        - structure/fastener/threaded
+        - procurement/buy
+        - in/kit/light-sheet-box
+  z-rotator:
+    kind: primitive
+    primitive:
+      kind: static
+      static-models:
+        gltf: BUY - Manual Z stage - LZ40 --- converter.glb
+        step: BUY - Manual Z stage - LZ40 --- converter.stp
+    pose:
+      rotation:
+        kind: grid
+        grid: {z: +x, x: +y}
+      translation:
+        offset-mm: {x: -4, y: 4, z: 30}
+  z-bracket:
+    kind: primitive
+    primitive:
+      kind: static
+      static-models:
+        gltf: BUY - Manual Z stage - LZ40 --- base.glb
+        step: BUY - Manual Z stage - LZ40 --- base.stp
+    pose:
+      rotation:
+        kind: grid
+        grid: {z: +x, x: +y}
+      translation:
+        offset-mm: {x: -4, y: 4, z: 30}
+    tags:
+      - procurement/buy
+      - in/kit/light-sheet-box
+  y-plate:
+    kind: primitive
+    primitive:
+      kind: static
+      static-models:
+        gltf: BUY - XYZ linear table - LD40 --- Y plate.glb
+        step: BUY - XYZ linear table - LD40 --- Y plate.stp
+    pose:
+      rotation:
+        kind: grid
+      translation:
+        offset-mm: {x: -4, y: 4}
+    tags:
+      - procurement/buy
+      - in/kit/light-sheet-box
+  stop-bracket:
+    kind: primitive
+    primitive:
+      kind: static
+      static-models:
+        gltf: BUY - XYZ linear table - LD40 --- bracket.glb
+        step: BUY - XYZ linear table - LD40 --- bracket.stp
+    pose:
+      rotation:
+        kind: grid
+        grid: {z: -z, x: +y}
+      translation:
+        offset-mm: {x: -4, y: 4, z: 37.5}
+    tags:
+      - procurement/buy
+      - in/kit/light-sheet-box

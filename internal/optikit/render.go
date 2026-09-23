@@ -27,6 +27,7 @@ import (
 
 func RenderObjects(
 	ctx context.Context, fsys ffs.PathedFS, design *designs.FSDesign, format string,
+	optikitVersion string,
 ) (result []byte, err error) {
 	switch format {
 	default:
@@ -36,7 +37,7 @@ func RenderObjects(
 	case "gltf":
 		return RenderObjectsGLB(ctx, design, true)
 	case "step":
-		return RenderObjectsSTEP(ctx, design)
+		return RenderObjectsSTEP(ctx, design, optikitVersion)
 	}
 }
 
@@ -51,9 +52,13 @@ func RenderObjectsGLB(
 }
 
 func RenderObjectsSTEP(
-	ctx context.Context, design *designs.FSDesign,
+	ctx context.Context, design *designs.FSDesign, optikitVersion string,
 ) (result []byte, err error) {
-	primsReport, err := ReportPrimitives(ctx, design, designs.UC2GridSpacings, "json")
+	primsReport, err := ReportPrimitives(ctx, design, designs.UC2GridSpacings, optikitVersion)
+	if err != nil {
+		return nil, err
+	}
+	serialized, err := SerializeReport(ctx, primsReport, "json")
 	if err != nil {
 		return nil, err
 	}
@@ -66,7 +71,7 @@ func RenderObjectsSTEP(
 		err = bc.Close()
 	}()
 
-	if result, err = bc.Assemble(primsReport); err != nil {
+	if result, err = bc.Assemble(serialized); err != nil {
 		return nil, err
 	}
 	return result, nil

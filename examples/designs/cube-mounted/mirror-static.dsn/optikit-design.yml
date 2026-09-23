@@ -4,7 +4,7 @@ design:
   description: A diagonal mirror mounted in a cube, with 90 or 45 deg rotations
   tags:
     - composition/cube-mounted
-    - in/qbox
+    - in/kit/qbox
 
 components:
   skeleton:

@@ -1,0 +1,100 @@
+optikit-version: v0.0.0-dev
+components:
+- id: case-bottom/cube-pin-1
+  kind: primitive/static
+  static-models:
+    bom: "half-case.dsn/BUY - LEGO technic - 3_4 pin - art. no. 32002.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: case-bottom/cube-pin-2
+  kind: primitive/static
+  static-models:
+    bom: "half-case.dsn/BUY - LEGO technic - 3_4 pin - art. no. 32002.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: case-bottom/cube-pin-3
+  kind: primitive/static
+  static-models:
+    bom: "half-case.dsn/BUY - LEGO technic - 3_4 pin - art. no. 32002.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: case-bottom/cube-pin-4
+  kind: primitive/static
+  static-models:
+    bom: "half-case.dsn/BUY - LEGO technic - 3_4 pin - art. no. 32002.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: case-bottom/half-case
+  kind: primitive/static
+  static-models:
+    gltf: "half-case.dsn/PRT - 3010 - CASHLFLAS.glb"
+    step: "half-case.dsn/PRT - 3010 - CASHLFLAS.stp"
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+    angles:
+      z: -180.0
+- id: case-bottom/screw-1
+  kind: primitive/static
+  static-models:
+    bom: "half-case.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 40 - 8.8 A2K.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: case-bottom/screw-2
+  kind: primitive/static
+  static-models:
+    bom: "half-case.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 40 - 8.8 A2K.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: case-top/cube-pin-1
+  kind: primitive/static
+  static-models:
+    bom: "half-case.dsn/BUY - LEGO technic - 3_4 pin - art. no. 32002.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: case-top/cube-pin-2
+  kind: primitive/static
+  static-models:
+    bom: "half-case.dsn/BUY - LEGO technic - 3_4 pin - art. no. 32002.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: case-top/cube-pin-3
+  kind: primitive/static
+  static-models:
+    bom: "half-case.dsn/BUY - LEGO technic - 3_4 pin - art. no. 32002.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: case-top/cube-pin-4
+  kind: primitive/static
+  static-models:
+    bom: "half-case.dsn/BUY - LEGO technic - 3_4 pin - art. no. 32002.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: case-top/half-case
+  kind: primitive/static
+  static-models:
+    gltf: "half-case.dsn/PRT - 3010 - CASHLFLAS.glb"
+    step: "half-case.dsn/PRT - 3010 - CASHLFLAS.stp"
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: case-top/screw-1
+  kind: primitive/static
+  static-models:
+    bom: "half-case.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 40 - 8.8 A2K.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: case-top/screw-2
+  kind: primitive/static
+  static-models:
+    bom: "half-case.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 40 - 8.8 A2K.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: drivers
+  kind: primitive/static
+  static-models:
+    newswitch-device: laser.newswitch-device.yml
+  position: [0.0, 0.0, 0.0]
+  results:
+    newswitch-device-config:
+      controller: ""
+    newswitch-device-id: ""
+- id: laser
+  kind: primitive/static
+  static-models:
+    gltf: "BUY - Laser 488 nm - Bosion Laser.glb"
+    step: "BUY - Laser 488 nm - Bosion Laser.stp"
+  position: [0.0, 0.0, 20.0]
+  rotation:
+    kind: extrinsic
+    order: zxy

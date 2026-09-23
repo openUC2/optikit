@@ -1,5 +1,7 @@
+optikit-version: v0.0.0-dev
+components:
 - id: adhesive-pad
-  kind: static
+  kind: primitive/static
   static-models:
     gltf: "BUY - Adhesive pad - D22x1.glb"
     step: "BUY - Adhesive pad - D22x1.stp"
@@ -7,9 +9,8 @@
   rotation:
     kind: extrinsic
     order: zxy
-    angles: {}
 - id: mirror
-  kind: static
+  kind: primitive/static
   static-models:
     gltf: "BUY - Mirror - D24x3.glb"
     step: "BUY - Mirror - D24x3.stp"
@@ -17,9 +18,8 @@
   rotation:
     kind: extrinsic
     order: zxy
-    angles: {}
 - id: mount-base
-  kind: static
+  kind: primitive/static
   static-models:
     gltf: "PRT - 2110 - MASINSMIRHOLLOW - C.glb"
     step: "PRT - 2110 - MASINSMIRHOLLOW - C.stp"
@@ -27,9 +27,8 @@
   rotation:
     kind: extrinsic
     order: zxy
-    angles: {}
 - id: mount-top
-  kind: static
+  kind: primitive/static
   static-models:
     gltf: "PRT - 2111 - MASINSMIRHOLUPP - C.glb"
     step: "PRT - 2111 - MASINSMIRHOLUPP - C.stp"
@@ -37,4 +36,13 @@
   rotation:
     kind: extrinsic
     order: zxy
-    angles: {}
+- id: screw-1
+  kind: primitive/static
+  static-models:
+    bom: "TP lens head screw with TORX - 2.5 x 8 - St - A2K.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: screw-2
+  kind: primitive/static
+  static-models:
+    bom: "TP lens head screw with TORX - 2.5 x 8 - St - A2K.bom.yml"
+  position: [0.0, 0.0, 0.0]

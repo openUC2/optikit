@@ -1,0 +1,82 @@
+optikit-version: v0.0.0-alpha.1
+
+design:
+  description: Half of a full case for the laser
+  tags:
+    - in/kit/fluorescence-laser-box
+
+components:
+  half-case:
+    kind: primitive
+    primitive:
+      kind: static
+      static-models:
+        gltf: PRT - 3010 - CASHLFLAS.glb
+        step: PRT - 3010 - CASHLFLAS.stp
+    pose:
+      rotation:
+        kind: grid
+    tags:
+      - structure/enclosure
+      - procurement/3d-print
+      - in/kit/fluo-laser-box
+  screw-1:
+    kind: primitive
+    primitive:
+      kind: static
+      static-models:
+        bom: ISO 4762 - Cylinder head screw with hex socket - M3 x 40 - 8.8 A2K.bom.yml
+      tags:
+        - structure/fastener/threaded
+        - procurement/buy
+        - in/kit/fluo-laser-box
+  screw-2:
+    kind: primitive
+    primitive:
+      kind: static
+      static-models:
+        bom: ISO 4762 - Cylinder head screw with hex socket - M3 x 40 - 8.8 A2K.bom.yml
+      tags:
+        - structure/fastener/threaded
+        - procurement/buy
+        - in/kit/fluo-laser-box
+  cube-pin-1:
+    kind: primitive
+    primitive:
+      kind: static
+      static-models:
+        bom: BUY - LEGO technic - 3_4 pin - art. no. 32002.bom.yml
+      tags:
+        - structure/fastener/pin
+        - procurement/buy
+        - in/kit/fluo-laser-box
+  cube-pin-2:
+    kind: primitive
+    primitive:
+      kind: static
+      static-models:
+        bom: BUY - LEGO technic - 3_4 pin - art. no. 32002.bom.yml
+      tags:
+        - structure/fastener/pin
+        - procurement/buy
+        - in/kit/fluo-laser-box
+  cube-pin-3:
+    kind: primitive
+    primitive:
+      kind: static
+      static-models:
+        bom: BUY - LEGO technic - 3_4 pin - art. no. 32002.bom.yml
+      tags:
+        - structure/fastener/pin
+        - procurement/buy
+        - in/kit/fluo-laser-box
+  cube-pin-4:
+    kind: primitive
+    primitive:
+      kind: static
+      static-models:
+        bom: BUY - LEGO technic - 3_4 pin - art. no. 32002.bom.yml
+      tags:
+        - structure/fastener/pin
+        - procurement/buy
+        - in/kit/fluo-laser-box

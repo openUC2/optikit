@@ -1,0 +1,15 @@
+strict digraph "" {
+	graph [bb="0,0,156.15,108"];
+	node [label="\N"];
+	edge [label="\E"];
+	""	[height=0.5,
+		pos="78.074,90",
+		width=0.75];
+	"mirror-with-filter"	[height=0.5,
+		label="mirror-with-filter",
+		pos="78.074,18",
+		width=2.1687];
+	"" -> "mirror-with-filter"	[key=" -> mirror-with-filter",
+		label="",
+		pos="e,78.074,36.104 78.074,71.697 78.074,64.407 78.074,55.726 78.074,47.536"];
+}

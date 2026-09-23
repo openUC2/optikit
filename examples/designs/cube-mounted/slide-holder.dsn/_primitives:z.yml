@@ -1,5 +1,7 @@
+optikit-version: v0.0.0-dev
+components:
 - id: mounted-slide-holder/clip
-  kind: static
+  kind: primitive/static
   static-models:
     gltf: "mounted-holder.dsn/PRT - 2008 - SAMCLP.glb"
     step: "mounted-holder.dsn/PRT - 2008 - SAMCLP.stp"
@@ -7,9 +9,8 @@
   rotation:
     kind: extrinsic
     order: zxy
-    angles: {}
 - id: mounted-slide-holder/insert
-  kind: static
+  kind: primitive/static
   static-models:
     gltf: "mounted-holder.dsn/PRT - 2028 - INSSAMMNT - V04.glb"
     step: "mounted-holder.dsn/PRT - 2028 - INSSAMMNT - V04.stp"
@@ -17,9 +18,28 @@
   rotation:
     kind: extrinsic
     order: zxy
-    angles: {}
+- id: mounted-slide-holder/magnet-1
+  kind: primitive/static
+  static-models:
+    bom: "mounted-holder.dsn/BUY - NeFeB-Magnet - ø8x3 N40 Ni.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: mounted-slide-holder/magnet-2
+  kind: primitive/static
+  static-models:
+    bom: "mounted-holder.dsn/BUY - NeFeB-Magnet - ø8x3 N40 Ni.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: mounted-slide-holder/magnet-3
+  kind: primitive/static
+  static-models:
+    bom: "mounted-holder.dsn/BUY - NeFeB-Magnet - ø8x3 N40 Ni.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: mounted-slide-holder/magnet-4
+  kind: primitive/static
+  static-models:
+    bom: "mounted-holder.dsn/BUY - NeFeB-Magnet - ø8x3 N40 Ni.bom.yml"
+  position: [0.0, 0.0, 0.0]
 - id: skeleton/lower-half
-  kind: static
+  kind: primitive/static
   static-models:
     gltf: "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb"
     step: "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -27,9 +47,8 @@
   rotation:
     kind: extrinsic
     order: zxy
-    angles: {}
 - id: skeleton/upper-half
-  kind: static
+  kind: primitive/static
   static-models:
     gltf: "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb"
     step: "primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
@@ -37,4 +56,6 @@
   rotation:
     kind: extrinsic
     order: zxy
-    angles: {"y": -180.0, z: -180.0}
+    angles:
+      "y": -180.0
+      z: -180.0

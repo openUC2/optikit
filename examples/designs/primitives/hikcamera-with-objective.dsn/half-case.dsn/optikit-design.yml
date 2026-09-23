@@ -1,0 +1,100 @@
+optikit-version: v0.0.0-alpha.1
+
+design:
+  description: Half of a full case for the tube lens
+  tags:
+    - in/kit/infinity-box
+
+components:
+  half-case:
+    kind: primitive
+    primitive:
+      kind: static
+      static-models:
+        gltf: PRT - 1008 - OBJHOL_CLENS-100TEL.glb
+        step: PRT - 1008 - OBJHOL_CLENS-100TEL.stp
+    pose:
+      rotation:
+        kind: grid
+    tags:
+      - structure/enclosure
+      - procurement/3d-print
+      - in/kit/infinity-box
+  screw-1:
+    kind: primitive
+    primitive:
+      kind: static
+      static-models:
+        bom: ISO 4762 - Cylinder head screw with hex socket - M3 x 40 - 8.8 A2K.bom.yml
+      tags:
+        - structure/fastener/threaded
+        - procurement/buy
+        - in/infinity-box
+  screw-2:
+    kind: primitive
+    primitive:
+      kind: static
+      static-models:
+        bom: ISO 4762 - Cylinder head screw with hex socket - M3 x 40 - 8.8 A2K.bom.yml
+      tags:
+        - structure/fastener/threaded
+        - procurement/buy
+        - in/infinity-box
+  washer-2:
+    kind: primitive
+    primitive:
+      static-models:
+        bom: ISO 7092 - Washer - 3 - 200 HV - A2K.bom.yml
+    tags:
+      - structure/fastener/washer
+      - procurement/buy
+      - in/kit/infinity-box
+  washer-1:
+    kind: primitive
+    primitive:
+      static-models:
+        bom: ISO 7092 - Washer - 3 - 200 HV - A2K.bom.yml
+    tags:
+      - structure/fastener/washer
+      - procurement/buy
+      - in/kit/infinity-box
+  cube-pin-1:
+    kind: primitive
+    primitive:
+      kind: static
+      static-models:
+        bom: BUY - LEGO technic - Pin - art. no. 2780.bom.yml
+      tags:
+        - structure/fastener/pin
+        - procurement/buy
+        - in/infinity-box
+  cube-pin-2:
+    kind: primitive
+    primitive:
+      kind: static
+      static-models:
+        bom: BUY - LEGO technic - Pin - art. no. 2780.bom.yml
+      tags:
+        - structure/fastener/pin
+        - procurement/buy
+        - in/infinity-box
+  cube-pin-3:
+    kind: primitive
+    primitive:
+      kind: static
+      static-models:
+        bom: BUY - LEGO technic - Pin - art. no. 2780.bom.yml
+      tags:
+        - structure/fastener/pin
+        - procurement/buy
+        - in/infinity-box
+  cube-pin-4:
+    kind: primitive
+    primitive:
+      kind: static
+      static-models:
+        bom: BUY - LEGO technic - Pin - art. no. 2780.bom.yml
+      tags:
+        - structure/fastener/pin
+        - procurement/buy
+        - in/infinity-box

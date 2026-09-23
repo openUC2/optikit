@@ -1,0 +1,113 @@
+{
+  "optikit-version": "v0.0.0-dev",
+  "components": [
+    {
+      "id": "case-base",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "PRT - 1009 - CASMAIBRD2X2BAS - B.glb",
+        "step": "PRT - 1009 - CASMAIBRD2X2BAS - B.stp"
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "case-lid",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "PRT - 1010 - CASMAIBRD2X2LID - B.glb",
+        "step": "PRT - 1010 - CASMAIBRD2X2LID - B.stp"
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "drivers",
+      "kind": "primitive/static",
+      "static-models": {
+        "newswitch-device": "mainboard.newswitch-device.yml"
+      },
+      "results": {
+        "newswitch-device-id": ""
+      }
+    },
+    {
+      "id": "pcb",
+      "kind": "primitive/static"
+    },
+    {
+      "id": "screw-1",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "TP lens head screw with TORX - 3 x 6 - St - A2K.bom.yml"
+      }
+    },
+    {
+      "id": "screw-2",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "TP lens head screw with TORX - 3 x 6 - St - A2K.bom.yml"
+      }
+    },
+    {
+      "id": "screw-3",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "TP lens head screw with TORX - 3 x 6 - St - A2K.bom.yml"
+      }
+    },
+    {
+      "id": "stepper-motor-driver-1",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "BUY - Motordriver - TMC2209.bom.yml"
+      }
+    },
+    {
+      "id": "stepper-motor-driver-2",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "BUY - Motordriver - TMC2209.bom.yml"
+      }
+    },
+    {
+      "id": "stepper-motor-driver-3",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "BUY - Motordriver - TMC2209.bom.yml"
+      }
+    },
+    {
+      "id": "stepper-motor-driver-4",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "BUY - Motordriver - TMC2209.bom.yml"
+      }
+    },
+    {
+      "id": "washer-1",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "ISO 7089 A - Washer - 3 - A2 - 200 HV.bom.yml"
+      }
+    },
+    {
+      "id": "washer-2",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "ISO 7089 A - Washer - 3 - A2 - 200 HV.bom.yml"
+      }
+    },
+    {
+      "id": "washer-3",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "ISO 7089 A - Washer - 3 - A2 - 200 HV.bom.yml"
+      }
+    }
+  ]
+}

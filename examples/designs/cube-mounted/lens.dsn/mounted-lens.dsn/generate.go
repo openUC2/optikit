@@ -10,8 +10,8 @@ package example
 //go:generate mdl convert --output-format=glb "PRT - 2003 - NUTD40.stp"
 //go:generate mdl convert --output-format=glb "PRT - 2023 - INSLEND40F50 - V04.stp"
 
-//go:generate comp render-comps-g --format=dot _components-graph.dot
-//go:generate comp render-comps-g --format=svg _components-graph.svg
+//go:generate comp render-comp-g --format=dot _components-graph.dot
+//go:generate comp render-comp-g --format=svg _components-graph.svg
 
 //go:generate geom report-prim --format=yaml _primitives.yml
 //go:generate geom report-prim --format=json _primitives.json
