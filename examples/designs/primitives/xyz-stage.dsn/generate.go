@@ -14,6 +14,8 @@ package example
 //go:generate comp report-comp --format=yaml _components.yml
 //go:generate comp report-comp --format=json _components.json
 
+//go:generate ./generate-newswitch-config.sh
+
 //go:generate geom report-prim --format=yaml _primitives.yml
 //go:generate geom report-prim --format=json _primitives.json
 

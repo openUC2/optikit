@@ -121,6 +121,7 @@ components:
   results:
     newswitch-device-config:
       controller: my-favorite-mainboard
+      device_id: hotlaser123
     newswitch-device-id: hotlaser123
 - id: blue-laser/laser
   kind: primitive/static
@@ -144,89 +145,183 @@ components:
     kind: extrinsic
     order: zxy
 - id: camera/camera
-  kind: primitive/static
-  static-models:
-    gltf: "primitives/hikcamera-with-objective.dsn/BUY - HIKROBOT - Camera - MV-CE060-10UM-PRO.glb"
-    step: "primitives/hikcamera-with-objective.dsn/BUY - HIKROBOT - Camera - MV-CE060-10UM-PRO.stp"
+  kind: design
+  design: primitives/hikcamera-with-objective.dsn/camera.dsn
+  instantiation:
+    inputs:
+      newswitch-device-id: bigcamera42
   position: [-52.2, 0.0, 0.0]
   rotation:
     kind: extrinsic
     order: zxy
     angles:
-      "y": 90.0
-      z: 180.0
-- id: camera/drivers
+      x: 90.0
+      z: 90.0
+- id: camera/camera/camera
   kind: primitive/static
   static-models:
-    newswitch-device: primitives/hikcamera-with-objective.dsn/hikcamera.newswitch-device.yml
+    gltf: "primitives/hikcamera-with-objective.dsn/camera.dsn/BUY - HIKROBOT - Camera - MV-CE060-10UM-PRO.glb"
+    step: "primitives/hikcamera-with-objective.dsn/camera.dsn/BUY - HIKROBOT - Camera - MV-CE060-10UM-PRO.stp"
+  position: [-52.2, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+    angles:
+      x: -90.0
+      z: 90.0
+- id: camera/camera/drivers
+  kind: primitive/static
+  static-models:
+    newswitch-device: primitives/hikcamera-with-objective.dsn/camera.dsn/hikcamera.newswitch-device.yml
   position: [0.0, 0.0, 0.0]
   results:
+    newswitch-device-config:
+      device_id: bigcamera42
     newswitch-device-id: bigcamera42
-- id: camera/lens
-  kind: primitive/static
-  static-models:
-    gltf: "primitives/hikcamera-with-objective.dsn/BUY - Objectiv - CLENS-100TEL.glb"
-    step: "primitives/hikcamera-with-objective.dsn/BUY - Objectiv - CLENS-100TEL.stp"
+- id: camera/mounted-objective
+  kind: design
+  design: primitives/hikcamera-with-objective.dsn/mounted-objective.dsn
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: camera/mounted-objective/lens
+  kind: design
+  design: primitives/hikcamera-with-objective.dsn/mounted-objective.dsn/lens.dsn
   position: [23.9, 0.0, 0.0]
   rotation:
     kind: extrinsic
     order: zxy
-- id: camera/lens-holder-bottom
+    angles:
+      "y": -90.0
+      z: -180.0
+- id: camera/mounted-objective/lens-holder-bottom
   kind: design
-  design: primitives/hikcamera-with-objective.dsn/half-case.dsn
+  design: primitives/hikcamera-with-objective.dsn/mounted-objective.dsn/half-case.dsn
   position: [0.0, 0.0, 0.0]
   rotation:
     kind: extrinsic
     order: zxy
-- id: camera/lens-holder-bottom/cube-pin-1
+    angles:
+      "y": -180.0
+      z: -180.0
+- id: camera/mounted-objective/lens-holder-bottom/cube-pin-1
   kind: primitive/static
   static-models:
-    bom: "primitives/hikcamera-with-objective.dsn/half-case.dsn/BUY - LEGO technic - Pin - art. no. 2780.bom.yml"
+    bom: "primitives/hikcamera-with-objective.dsn/mounted-objective.dsn/half-case.dsn/BUY - LEGO technic - Pin - art. no. 2780.bom.yml"
   position: [0.0, 0.0, 0.0]
-- id: camera/lens-holder-bottom/cube-pin-2
+- id: camera/mounted-objective/lens-holder-bottom/cube-pin-2
   kind: primitive/static
   static-models:
-    bom: "primitives/hikcamera-with-objective.dsn/half-case.dsn/BUY - LEGO technic - Pin - art. no. 2780.bom.yml"
+    bom: "primitives/hikcamera-with-objective.dsn/mounted-objective.dsn/half-case.dsn/BUY - LEGO technic - Pin - art. no. 2780.bom.yml"
   position: [0.0, 0.0, 0.0]
-- id: camera/lens-holder-bottom/cube-pin-3
+- id: camera/mounted-objective/lens-holder-bottom/cube-pin-3
   kind: primitive/static
   static-models:
-    bom: "primitives/hikcamera-with-objective.dsn/half-case.dsn/BUY - LEGO technic - Pin - art. no. 2780.bom.yml"
+    bom: "primitives/hikcamera-with-objective.dsn/mounted-objective.dsn/half-case.dsn/BUY - LEGO technic - Pin - art. no. 2780.bom.yml"
   position: [0.0, 0.0, 0.0]
-- id: camera/lens-holder-bottom/cube-pin-4
+- id: camera/mounted-objective/lens-holder-bottom/cube-pin-4
   kind: primitive/static
   static-models:
-    bom: "primitives/hikcamera-with-objective.dsn/half-case.dsn/BUY - LEGO technic - Pin - art. no. 2780.bom.yml"
+    bom: "primitives/hikcamera-with-objective.dsn/mounted-objective.dsn/half-case.dsn/BUY - LEGO technic - Pin - art. no. 2780.bom.yml"
   position: [0.0, 0.0, 0.0]
-- id: camera/lens-holder-bottom/half-case
+- id: camera/mounted-objective/lens-holder-bottom/half-case
   kind: primitive/static
   static-models:
-    gltf: "primitives/hikcamera-with-objective.dsn/half-case.dsn/PRT - 1008 - OBJHOL_CLENS-100TEL.glb"
-    step: "primitives/hikcamera-with-objective.dsn/half-case.dsn/PRT - 1008 - OBJHOL_CLENS-100TEL.stp"
+    gltf: "primitives/hikcamera-with-objective.dsn/mounted-objective.dsn/half-case.dsn/PRT - 1008 - OBJHOL_CLENS-100TEL.glb"
+    step: "primitives/hikcamera-with-objective.dsn/mounted-objective.dsn/half-case.dsn/PRT - 1008 - OBJHOL_CLENS-100TEL.stp"
   position: [0.0, 0.0, 0.0]
   rotation:
     kind: extrinsic
     order: zxy
-- id: camera/lens-holder-bottom/screw-1
+    angles:
+      "y": -180.0
+      z: -180.0
+- id: camera/mounted-objective/lens-holder-bottom/screw-1
   kind: primitive/static
   static-models:
-    bom: "primitives/hikcamera-with-objective.dsn/half-case.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 40 - 8.8 A2K.bom.yml"
+    bom: "primitives/hikcamera-with-objective.dsn/mounted-objective.dsn/half-case.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 40 - 8.8 A2K.bom.yml"
   position: [0.0, 0.0, 0.0]
-- id: camera/lens-holder-bottom/screw-2
+- id: camera/mounted-objective/lens-holder-bottom/screw-2
   kind: primitive/static
   static-models:
-    bom: "primitives/hikcamera-with-objective.dsn/half-case.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 40 - 8.8 A2K.bom.yml"
+    bom: "primitives/hikcamera-with-objective.dsn/mounted-objective.dsn/half-case.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 40 - 8.8 A2K.bom.yml"
   position: [0.0, 0.0, 0.0]
-- id: camera/lens-holder-bottom/washer-1
+- id: camera/mounted-objective/lens-holder-bottom/washer-1
   kind: primitive/static
   static-models:
-    bom: "primitives/hikcamera-with-objective.dsn/half-case.dsn/ISO 7092 - Washer - 3 - 200 HV - A2K.bom.yml"
+    bom: "primitives/hikcamera-with-objective.dsn/mounted-objective.dsn/half-case.dsn/ISO 7092 - Washer - 3 - 200 HV - A2K.bom.yml"
   position: [0.0, 0.0, 0.0]
-- id: camera/lens-holder-bottom/washer-2
+- id: camera/mounted-objective/lens-holder-bottom/washer-2
   kind: primitive/static
   static-models:
-    bom: "primitives/hikcamera-with-objective.dsn/half-case.dsn/ISO 7092 - Washer - 3 - 200 HV - A2K.bom.yml"
+    bom: "primitives/hikcamera-with-objective.dsn/mounted-objective.dsn/half-case.dsn/ISO 7092 - Washer - 3 - 200 HV - A2K.bom.yml"
   position: [0.0, 0.0, 0.0]
+- id: camera/mounted-objective/lens-holder-top
+  kind: design
+  design: primitives/hikcamera-with-objective.dsn/mounted-objective.dsn/half-case.dsn
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: camera/mounted-objective/lens-holder-top/cube-pin-1
+  kind: primitive/static
+  static-models:
+    bom: "primitives/hikcamera-with-objective.dsn/mounted-objective.dsn/half-case.dsn/BUY - LEGO technic - Pin - art. no. 2780.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: camera/mounted-objective/lens-holder-top/cube-pin-2
+  kind: primitive/static
+  static-models:
+    bom: "primitives/hikcamera-with-objective.dsn/mounted-objective.dsn/half-case.dsn/BUY - LEGO technic - Pin - art. no. 2780.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: camera/mounted-objective/lens-holder-top/cube-pin-3
+  kind: primitive/static
+  static-models:
+    bom: "primitives/hikcamera-with-objective.dsn/mounted-objective.dsn/half-case.dsn/BUY - LEGO technic - Pin - art. no. 2780.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: camera/mounted-objective/lens-holder-top/cube-pin-4
+  kind: primitive/static
+  static-models:
+    bom: "primitives/hikcamera-with-objective.dsn/mounted-objective.dsn/half-case.dsn/BUY - LEGO technic - Pin - art. no. 2780.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: camera/mounted-objective/lens-holder-top/half-case
+  kind: primitive/static
+  static-models:
+    gltf: "primitives/hikcamera-with-objective.dsn/mounted-objective.dsn/half-case.dsn/PRT - 1008 - OBJHOL_CLENS-100TEL.glb"
+    step: "primitives/hikcamera-with-objective.dsn/mounted-objective.dsn/half-case.dsn/PRT - 1008 - OBJHOL_CLENS-100TEL.stp"
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: camera/mounted-objective/lens-holder-top/screw-1
+  kind: primitive/static
+  static-models:
+    bom: "primitives/hikcamera-with-objective.dsn/mounted-objective.dsn/half-case.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 40 - 8.8 A2K.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: camera/mounted-objective/lens-holder-top/screw-2
+  kind: primitive/static
+  static-models:
+    bom: "primitives/hikcamera-with-objective.dsn/mounted-objective.dsn/half-case.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 40 - 8.8 A2K.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: camera/mounted-objective/lens-holder-top/washer-1
+  kind: primitive/static
+  static-models:
+    bom: "primitives/hikcamera-with-objective.dsn/mounted-objective.dsn/half-case.dsn/ISO 7092 - Washer - 3 - 200 HV - A2K.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: camera/mounted-objective/lens-holder-top/washer-2
+  kind: primitive/static
+  static-models:
+    bom: "primitives/hikcamera-with-objective.dsn/mounted-objective.dsn/half-case.dsn/ISO 7092 - Washer - 3 - 200 HV - A2K.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: camera/mounted-objective/lens/lens
+  kind: primitive/static
+  static-models:
+    gltf: "primitives/hikcamera-with-objective.dsn/mounted-objective.dsn/lens.dsn/BUY - Objectiv - CLENS-100TEL.glb"
+    step: "primitives/hikcamera-with-objective.dsn/mounted-objective.dsn/lens.dsn/BUY - Objectiv - CLENS-100TEL.stp"
+  position: [23.9, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
 - id: dichroic
   kind: design
   design: cube-mounted/dichroic-mirror.dsn
@@ -380,6 +475,8 @@ components:
     newswitch-device: primitives/electronics-mainboard.dsn/mainboard.newswitch-device.yml
   position: [0.0, 0.0, 0.0]
   results:
+    newswitch-device-config:
+      device_id: my-favorite-mainboard
     newswitch-device-id: my-favorite-mainboard
 - id: electronics-controller/pcb
   kind: primitive/static
@@ -940,27 +1037,9 @@ components:
   position: [0.0, 0.0, 0.0]
   results:
     newswitch-device-config:
-      stage:
-        orthogonal-xyz:
-          devices:
-            x-actuator: just-some-boring-stage-x-actuator
-            x-limit: null
-            y-actuator: just-some-boring-stage-y-actuator
-            y-limit: null
-            z-actuator: just-some-boring-stage-z-actuator
-            z-limit: null
-    newswitch-device-id: just-some-boring-stage
-- id: sample-stage/x-drivers
-  kind: primitive/static
-  static-models:
-    newswitch-device: primitives/xyz-stage.dsn/linear-actuator.newswitch-device.yml
-  position: [0.0, 0.0, 0.0]
-  results:
-    newswitch-device-config:
       controller: my-favorite-mainboard
-      optikit:
-        dsn-input-variable: sample-x
-    newswitch-device-id: just-some-boring-stage-x-actuator
+      device_id: just-some-boring-stage
+    newswitch-device-id: just-some-boring-stage
 - id: sample-stage/xy-plate
   kind: design
   design: primitives/xyz-stage.dsn/xy-plate.dsn
@@ -1057,17 +1136,6 @@ components:
   rotation:
     kind: extrinsic
     order: zxy
-- id: sample-stage/y-drivers
-  kind: primitive/static
-  static-models:
-    newswitch-device: primitives/xyz-stage.dsn/linear-actuator.newswitch-device.yml
-  position: [0.0, 0.0, 0.0]
-  results:
-    newswitch-device-config:
-      controller: my-favorite-mainboard
-      optikit:
-        dsn-input-variable: sample-y
-    newswitch-device-id: just-some-boring-stage-y-actuator
 - id: sample-stage/yz-plate
   kind: design
   design: primitives/xyz-stage.dsn/yz-plate.dsn
@@ -1169,17 +1237,6 @@ components:
     angles:
       x: 90.0
       z: 90.0
-- id: sample-stage/z-drivers
-  kind: primitive/static
-  static-models:
-    newswitch-device: primitives/xyz-stage.dsn/linear-actuator.newswitch-device.yml
-  position: [0.0, 0.0, 0.0]
-  results:
-    newswitch-device-config:
-      controller: my-favorite-mainboard
-      optikit:
-        dsn-input-variable: sample-z
-    newswitch-device-id: just-some-boring-stage-z-actuator
 - id: sample-stage/z-plate
   kind: primitive/static
   static-models:

@@ -120,7 +120,8 @@
       },
       "results": {
         "newswitch-device-config": {
-          "controller": ""
+          "controller": "",
+          "device_id": ""
         },
         "newswitch-device-id": ""
       }

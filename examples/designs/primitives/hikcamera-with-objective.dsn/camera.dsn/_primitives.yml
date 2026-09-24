@@ -1,0 +1,23 @@
+optikit-version: v0.0.0-dev
+components:
+- id: camera
+  kind: primitive/static
+  static-models:
+    gltf: "BUY - HIKROBOT - Camera - MV-CE060-10UM-PRO.glb"
+    step: "BUY - HIKROBOT - Camera - MV-CE060-10UM-PRO.stp"
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+    angles:
+      "y": -180.0
+      z: -180.0
+- id: drivers
+  kind: primitive/static
+  static-models:
+    newswitch-device: hikcamera.newswitch-device.yml
+  position: [0.0, 0.0, 0.0]
+  results:
+    newswitch-device-config:
+      device_id: ""
+    newswitch-device-id: ""

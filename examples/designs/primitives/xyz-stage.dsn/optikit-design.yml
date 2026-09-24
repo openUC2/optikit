@@ -60,63 +60,8 @@ components:
       newswitch-device-id: ~ inputs['newswitch-device-id'].value
       newswitch-device-config: >
         ~ {
-          stage: {
-            "orthogonal-xyz": {
-              devices: {
-                "x-actuator": inputs['newswitch-device-id'].value + '-x-actuator',
-                "x-limit": nil,
-                "y-actuator": inputs['newswitch-device-id'].value + '-y-actuator',
-                "y-limit": nil,
-                "z-actuator": inputs['newswitch-device-id'].value + '-z-actuator',
-                "z-limit": nil,
-              },
-            },
-          },
-        }
-  x-drivers:
-    kind: primitive
-    primitive:
-      kind: static
-      static-models:
-        newswitch-device: linear-actuator.newswitch-device.yml
-    results:
-      newswitch-device-id: ~ inputs['newswitch-device-id'].value + '-x-actuator'
-      newswitch-device-config: >
-        ~ {
-          controller: inputs['newswitch-controller'].value,
-          optikit: {
-            'dsn-input-variable': inputs['newswitch-input-variable-x'].value,
-          },
-        }
-  y-drivers:
-    kind: primitive
-    primitive:
-      kind: static
-      static-models:
-        newswitch-device: linear-actuator.newswitch-device.yml
-    results:
-      newswitch-device-id: ~ inputs['newswitch-device-id'].value + '-y-actuator'
-      newswitch-device-config: >
-        ~ {
-          controller: inputs['newswitch-controller'].value,
-          optikit: {
-            'dsn-input-variable': inputs['newswitch-input-variable-y'].value,
-          },
-        }
-  z-drivers:
-    kind: primitive
-    primitive:
-      kind: static
-      static-models:
-        newswitch-device: linear-actuator.newswitch-device.yml
-    results:
-      newswitch-device-id: ~ inputs['newswitch-device-id'].value + '-z-actuator'
-      newswitch-device-config: >
-        ~ {
-          controller: inputs['newswitch-controller'].value,
-          optikit: {
-            'dsn-input-variable': inputs['newswitch-input-variable-z'].value,
-          },
+          device_id: inputs['newswitch-device-id'].value,
+          controller: inputs['newswitch-controller'].value
         }
 
 inputs:

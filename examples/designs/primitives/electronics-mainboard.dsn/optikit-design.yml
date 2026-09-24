@@ -135,9 +135,14 @@ components:
     primitive:
       kind: static
       static-models:
+        # Warning: the following schema assumes a device type which is not yet defined in the NewSwitch device config schema!
         newswitch-device: mainboard.newswitch-device.yml
     results:
       newswitch-device-id: ~ inputs['newswitch-device-id'].value
+      newswitch-device-config: >
+        ~ {
+          device_id: inputs['newswitch-device-id'].value
+        }
 
 inputs:
   newswitch-device-id:
@@ -145,8 +150,3 @@ inputs:
     kind: string
     tags:
       - config/newswitch/device-id
-  newswitch-controller:
-    description: The name of the microcontroller which controls this device in NewSwitch
-    kind: string
-    tags:
-      - config/newswitch/controller

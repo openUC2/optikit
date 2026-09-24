@@ -1,0 +1,16 @@
+newswitch-version: v0.1.0-alpha.0
+devices:
+  "":
+    name: UC2-Mainboard-v4
+    manufacturer: openUC2
+    type: controller
+    protocol: uc2-rest # can be uc2-rest or can-open
+    uc2-rest:
+      transport: serial # can be serial or HTTP
+      serial:
+        device-pattern: '/dev/ttyUSB*'
+        baudrate: 115200
+    firmware:
+      name: esp32-uc2-standalone-4
+      version: v2026.0.0-beta.3
+    device_id: ""

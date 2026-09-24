@@ -6,4 +6,7 @@ package example
 
 //go:generate pwd
 
-//go:generate mdl convert --output-format=glb "PRT - 1008 - OBJHOL_CLENS-100TEL.stp"
+//go:generate mdl convert --output-format=glb "BUY - HIKROBOT - Camera - MV-CE060-10UM-PRO.stp"
+
+//go:generate geom report-prim --format=yaml _primitives.yml
+//go:generate geom report-prim --format=json _primitives.json

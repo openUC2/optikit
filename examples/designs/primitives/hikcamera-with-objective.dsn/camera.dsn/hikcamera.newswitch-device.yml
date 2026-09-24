@@ -1,0 +1,33 @@
+newswitch-version: v0.1.0-alpha.0 # minimum allowed newswitch version for this config file; earlier versions of newswitch may be unable to correctly handle this file
+
+name: MV-CA023-10UM
+manufacturer: HIK ROBOTICS
+tags:
+  - monochrome
+  - global-shutter
+  - gige
+type: camera
+pixelcount:
+  x: 1920
+  y: 1200
+  pixelpitch_um:
+    x: 10.0
+  channels: 1
+  exposure_time_ms:
+    value: 25.0
+    min: 0.024
+    max: 10000.0
+    increment: 0.001
+  framerate_per_sec:
+    value: 163.0
+    min: 0.5
+    max: 163.0
+  gain_db:
+    value: 0.0
+    min: 0.0
+    max: 23.98
+    increment: 0.01
+  binning: 1
+  trigger:
+    type: hardware
+    edge: rising

@@ -6,11 +6,13 @@ package example
 
 //go:generate pwd
 
-//go:generate mdl convert --output-format=glb "BUY - HIKROBOT - Camera - MV-CE060-10UM-PRO.stp"
-//go:generate mdl convert --output-format=glb "BUY - Objectiv - CLENS-100TEL.stp"
-
 //go:generate comp render-comp-g --format=dot _components-graph.dot
 //go:generate comp render-comp-g --format=svg _components-graph.svg
+
+//go:generate comp report-comp --format=yaml _components.yml
+//go:generate comp report-comp --format=json _components.json
+
+//go:generate ./generate-newswitch-config.sh
 
 //go:generate geom report-prim --format=yaml _primitives.yml
 //go:generate geom report-prim --format=json _primitives.json

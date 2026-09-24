@@ -139,27 +139,9 @@ components:
   position: [0.0, 0.0, 0.0]
   results:
     newswitch-device-config:
-      stage:
-        orthogonal-xyz:
-          devices:
-            x-actuator: -x-actuator
-            x-limit: null
-            y-actuator: -y-actuator
-            y-limit: null
-            z-actuator: -z-actuator
-            z-limit: null
-    newswitch-device-id: ""
-- id: x-drivers
-  kind: primitive/static
-  static-models:
-    newswitch-device: linear-actuator.newswitch-device.yml
-  position: [0.0, 0.0, 0.0]
-  results:
-    newswitch-device-config:
       controller: ""
-      optikit:
-        dsn-input-variable: ""
-    newswitch-device-id: -x-actuator
+      device_id: ""
+    newswitch-device-id: ""
 - id: xy-plate
   kind: design
   design: xy-plate.dsn
@@ -256,17 +238,6 @@ components:
   rotation:
     kind: extrinsic
     order: zxy
-- id: y-drivers
-  kind: primitive/static
-  static-models:
-    newswitch-device: linear-actuator.newswitch-device.yml
-  position: [0.0, 0.0, 0.0]
-  results:
-    newswitch-device-config:
-      controller: ""
-      optikit:
-        dsn-input-variable: ""
-    newswitch-device-id: -y-actuator
 - id: yz-plate
   kind: design
   design: yz-plate.dsn
@@ -368,17 +339,6 @@ components:
     angles:
       x: 90.0
       z: 90.0
-- id: z-drivers
-  kind: primitive/static
-  static-models:
-    newswitch-device: linear-actuator.newswitch-device.yml
-  position: [0.0, 0.0, 0.0]
-  results:
-    newswitch-device-config:
-      controller: ""
-      optikit:
-        dsn-input-variable: ""
-    newswitch-device-id: -z-actuator
 - id: z-plate
   kind: primitive/static
   static-models:
