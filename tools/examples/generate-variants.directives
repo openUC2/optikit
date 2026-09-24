@@ -4,7 +4,6 @@ comp render designs-graph dot
 comp render designs-graph svg
 geom render positions-graph dot
 geom render positions-graph svg
-geom render positions-plot html
 geom report primitives yml
 geom report primitives json
 geom render objects gltf
