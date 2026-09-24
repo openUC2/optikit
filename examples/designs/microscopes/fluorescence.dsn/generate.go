@@ -21,7 +21,6 @@ package example
 
 //go:generate geom render-pos-g --format=dot _positions-graph.dot
 //go:generate geom render-pos-g --format=svg _positions-graph.svg
-//go:generate geom render-pos-p _positions-plot.html
 
 //go:generate geom render-obj --format=gltf _objects.gltf
 //go:generate geom render-obj --format=glb _objects.glb
