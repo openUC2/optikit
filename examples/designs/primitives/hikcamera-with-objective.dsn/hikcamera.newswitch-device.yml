@@ -1,8 +1,0 @@
-newswitch-version: v0.1.0-alpha.0 # minimum allowed newswitch version for this config file; earlier versions of newswitch may be unable to correctly handle this file
-
-kind: detector
-detector:
-  rgb: true
-  dimensions: # in pixels
-    width: 1000
-    height: 1000

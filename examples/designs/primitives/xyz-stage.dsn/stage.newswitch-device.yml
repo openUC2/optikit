@@ -1,5 +1,20 @@
 newswitch-version: v0.1.0-alpha.0 # minimum allowed newswitch version for this config file; earlier versions of newswitch may be unable to correctly handle this file
 
-kind: stage
-stage:
-  kind: orthogonal-xyz
+name: xyz-linear-100
+manufacturer: openUC2
+type: stage
+axes:
+  - label: x
+    travel_um: 100000.0
+    steps_per_um: 8.0
+    inverted: false
+  - label: y
+    travel_um: 100000.0
+    steps_per_um: 8.0
+    inverted: false
+  - label: z
+    travel_um: 10000.0
+    steps_per_um: 25.0
+    inverted: true
+max_speed_um_per_sec: 5000.0
+homing_required: true

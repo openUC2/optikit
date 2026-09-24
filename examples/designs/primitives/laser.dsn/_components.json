@@ -2,6 +2,19 @@
   "optikit-version": "v0.0.0-dev",
   "components": [
     {
+      "id": "case-bottom",
+      "kind": "design",
+      "design": "half-case.dsn",
+      "instantiation": {},
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "z": -180
+        }
+      }
+    },
+    {
       "id": "case-bottom/cube-pin-1",
       "kind": "primitive/static",
       "static-models": {
@@ -56,6 +69,16 @@
       "kind": "primitive/static",
       "static-models": {
         "bom": "half-case.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 40 - 8.8 A2K.bom.yml"
+      }
+    },
+    {
+      "id": "case-top",
+      "kind": "design",
+      "design": "half-case.dsn",
+      "instantiation": {},
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
       }
     },
     {

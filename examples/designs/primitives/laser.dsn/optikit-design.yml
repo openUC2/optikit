@@ -42,11 +42,13 @@ components:
     primitive:
       kind: static
       static-models:
+        # Warning: the contents of this file are fictional; they're only provided to simulate the shape of what NewSwitch expects as its config!
         newswitch-device: laser.newswitch-device.yml
     results:
       newswitch-device-id: ~ inputs['newswitch-device-id'].value
       newswitch-device-config: >
         ~ {
+          device_id: inputs['newswitch-device-id'].value,
           controller: inputs['newswitch-controller'].value,
         }
 

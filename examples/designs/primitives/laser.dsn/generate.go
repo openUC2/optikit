@@ -8,6 +8,11 @@ package example
 
 //go:generate mdl convert --output-format=glb "BUY - Laser 488 nm - Bosion Laser.stp"
 
+//go:generate comp report-comp --format=yaml _components.yml
+//go:generate comp report-comp --format=json _components.json
+
+//go:generate ./generate-newswitch-config.sh
+
 //go:generate geom report-prim --format=yaml _primitives.yml
 //go:generate geom report-prim --format=json _primitives.json
 

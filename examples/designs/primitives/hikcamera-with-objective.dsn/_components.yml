@@ -1,5 +1,18 @@
 optikit-version: v0.0.0-dev
 components:
+- id: camera
+  kind: design
+  design: camera.dsn
+  instantiation:
+    inputs:
+      newswitch-device-id: ""
+  position: [-52.2, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+    angles:
+      x: 90.0
+      z: 90.0
 - id: camera/camera
   kind: primitive/static
   static-models:
@@ -21,6 +34,33 @@ components:
     newswitch-device-config:
       device_id: ""
     newswitch-device-id: ""
+- id: mounted-objective
+  kind: design
+  design: mounted-objective.dsn
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: mounted-objective/lens
+  kind: design
+  design: mounted-objective.dsn/lens.dsn
+  position: [23.9, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+    angles:
+      "y": -90.0
+      z: -180.0
+- id: mounted-objective/lens-holder-bottom
+  kind: design
+  design: mounted-objective.dsn/half-case.dsn
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+    angles:
+      "y": -180.0
+      z: -180.0
 - id: mounted-objective/lens-holder-bottom/cube-pin-1
   kind: primitive/static
   static-models:
@@ -73,6 +113,13 @@ components:
   static-models:
     bom: "mounted-objective.dsn/half-case.dsn/ISO 7092 - Washer - 3 - 200 HV - A2K.bom.yml"
   position: [0.0, 0.0, 0.0]
+- id: mounted-objective/lens-holder-top
+  kind: design
+  design: mounted-objective.dsn/half-case.dsn
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
 - id: mounted-objective/lens-holder-top/cube-pin-1
   kind: primitive/static
   static-models:

@@ -133,7 +133,8 @@
       },
       "results": {
         "newswitch-device-config": {
-          "controller": "my-favorite-mainboard"
+          "controller": "my-favorite-mainboard",
+          "device_id": "hotlaser123"
         },
         "newswitch-device-id": "hotlaser123"
       }
@@ -159,11 +160,11 @@
       }
     },
     {
-      "id": "camera/camera",
+      "id": "camera/camera/camera",
       "kind": "primitive/static",
       "static-models": {
-        "gltf": "primitives/hikcamera-with-objective.dsn/BUY - HIKROBOT - Camera - MV-CE060-10UM-PRO.glb",
-        "step": "primitives/hikcamera-with-objective.dsn/BUY - HIKROBOT - Camera - MV-CE060-10UM-PRO.stp"
+        "gltf": "primitives/hikcamera-with-objective.dsn/camera.dsn/BUY - HIKROBOT - Camera - MV-CE060-10UM-PRO.glb",
+        "step": "primitives/hikcamera-with-objective.dsn/camera.dsn/BUY - HIKROBOT - Camera - MV-CE060-10UM-PRO.stp"
       },
       "position": [
         -52.2,
@@ -174,27 +175,170 @@
         "kind": "extrinsic",
         "order": "zxy",
         "angles": {
-          "y": 90,
-          "z": 180
+          "x": -90,
+          "z": 90
         }
       }
     },
     {
-      "id": "camera/drivers",
+      "id": "camera/camera/drivers",
       "kind": "primitive/static",
       "static-models": {
-        "newswitch-device": "primitives/hikcamera-with-objective.dsn/hikcamera.newswitch-device.yml"
+        "newswitch-device": "primitives/hikcamera-with-objective.dsn/camera.dsn/hikcamera.newswitch-device.yml"
       },
       "results": {
+        "newswitch-device-config": {
+          "device_id": "bigcamera42"
+        },
         "newswitch-device-id": "bigcamera42"
       }
     },
     {
-      "id": "camera/lens",
+      "id": "camera/mounted-objective/lens-holder-bottom/cube-pin-1",
       "kind": "primitive/static",
       "static-models": {
-        "gltf": "primitives/hikcamera-with-objective.dsn/BUY - Objectiv - CLENS-100TEL.glb",
-        "step": "primitives/hikcamera-with-objective.dsn/BUY - Objectiv - CLENS-100TEL.stp"
+        "bom": "primitives/hikcamera-with-objective.dsn/mounted-objective.dsn/half-case.dsn/BUY - LEGO technic - Pin - art. no. 2780.bom.yml"
+      }
+    },
+    {
+      "id": "camera/mounted-objective/lens-holder-bottom/cube-pin-2",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/hikcamera-with-objective.dsn/mounted-objective.dsn/half-case.dsn/BUY - LEGO technic - Pin - art. no. 2780.bom.yml"
+      }
+    },
+    {
+      "id": "camera/mounted-objective/lens-holder-bottom/cube-pin-3",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/hikcamera-with-objective.dsn/mounted-objective.dsn/half-case.dsn/BUY - LEGO technic - Pin - art. no. 2780.bom.yml"
+      }
+    },
+    {
+      "id": "camera/mounted-objective/lens-holder-bottom/cube-pin-4",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/hikcamera-with-objective.dsn/mounted-objective.dsn/half-case.dsn/BUY - LEGO technic - Pin - art. no. 2780.bom.yml"
+      }
+    },
+    {
+      "id": "camera/mounted-objective/lens-holder-bottom/half-case",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "primitives/hikcamera-with-objective.dsn/mounted-objective.dsn/half-case.dsn/PRT - 1008 - OBJHOL_CLENS-100TEL.glb",
+        "step": "primitives/hikcamera-with-objective.dsn/mounted-objective.dsn/half-case.dsn/PRT - 1008 - OBJHOL_CLENS-100TEL.stp"
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -180,
+          "z": -180
+        }
+      }
+    },
+    {
+      "id": "camera/mounted-objective/lens-holder-bottom/screw-1",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/hikcamera-with-objective.dsn/mounted-objective.dsn/half-case.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 40 - 8.8 A2K.bom.yml"
+      }
+    },
+    {
+      "id": "camera/mounted-objective/lens-holder-bottom/screw-2",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/hikcamera-with-objective.dsn/mounted-objective.dsn/half-case.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 40 - 8.8 A2K.bom.yml"
+      }
+    },
+    {
+      "id": "camera/mounted-objective/lens-holder-bottom/washer-1",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/hikcamera-with-objective.dsn/mounted-objective.dsn/half-case.dsn/ISO 7092 - Washer - 3 - 200 HV - A2K.bom.yml"
+      }
+    },
+    {
+      "id": "camera/mounted-objective/lens-holder-bottom/washer-2",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/hikcamera-with-objective.dsn/mounted-objective.dsn/half-case.dsn/ISO 7092 - Washer - 3 - 200 HV - A2K.bom.yml"
+      }
+    },
+    {
+      "id": "camera/mounted-objective/lens-holder-top/cube-pin-1",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/hikcamera-with-objective.dsn/mounted-objective.dsn/half-case.dsn/BUY - LEGO technic - Pin - art. no. 2780.bom.yml"
+      }
+    },
+    {
+      "id": "camera/mounted-objective/lens-holder-top/cube-pin-2",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/hikcamera-with-objective.dsn/mounted-objective.dsn/half-case.dsn/BUY - LEGO technic - Pin - art. no. 2780.bom.yml"
+      }
+    },
+    {
+      "id": "camera/mounted-objective/lens-holder-top/cube-pin-3",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/hikcamera-with-objective.dsn/mounted-objective.dsn/half-case.dsn/BUY - LEGO technic - Pin - art. no. 2780.bom.yml"
+      }
+    },
+    {
+      "id": "camera/mounted-objective/lens-holder-top/cube-pin-4",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/hikcamera-with-objective.dsn/mounted-objective.dsn/half-case.dsn/BUY - LEGO technic - Pin - art. no. 2780.bom.yml"
+      }
+    },
+    {
+      "id": "camera/mounted-objective/lens-holder-top/half-case",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "primitives/hikcamera-with-objective.dsn/mounted-objective.dsn/half-case.dsn/PRT - 1008 - OBJHOL_CLENS-100TEL.glb",
+        "step": "primitives/hikcamera-with-objective.dsn/mounted-objective.dsn/half-case.dsn/PRT - 1008 - OBJHOL_CLENS-100TEL.stp"
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "camera/mounted-objective/lens-holder-top/screw-1",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/hikcamera-with-objective.dsn/mounted-objective.dsn/half-case.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 40 - 8.8 A2K.bom.yml"
+      }
+    },
+    {
+      "id": "camera/mounted-objective/lens-holder-top/screw-2",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/hikcamera-with-objective.dsn/mounted-objective.dsn/half-case.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 40 - 8.8 A2K.bom.yml"
+      }
+    },
+    {
+      "id": "camera/mounted-objective/lens-holder-top/washer-1",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/hikcamera-with-objective.dsn/mounted-objective.dsn/half-case.dsn/ISO 7092 - Washer - 3 - 200 HV - A2K.bom.yml"
+      }
+    },
+    {
+      "id": "camera/mounted-objective/lens-holder-top/washer-2",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "primitives/hikcamera-with-objective.dsn/mounted-objective.dsn/half-case.dsn/ISO 7092 - Washer - 3 - 200 HV - A2K.bom.yml"
+      }
+    },
+    {
+      "id": "camera/mounted-objective/lens/lens",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "primitives/hikcamera-with-objective.dsn/mounted-objective.dsn/lens.dsn/BUY - Objectiv - CLENS-100TEL.glb",
+        "step": "primitives/hikcamera-with-objective.dsn/mounted-objective.dsn/lens.dsn/BUY - Objectiv - CLENS-100TEL.stp"
       },
       "position": [
         23.9,
@@ -204,74 +348,6 @@
       "rotation": {
         "kind": "extrinsic",
         "order": "zxy"
-      }
-    },
-    {
-      "id": "camera/lens-holder-bottom/cube-pin-1",
-      "kind": "primitive/static",
-      "static-models": {
-        "bom": "primitives/hikcamera-with-objective.dsn/half-case.dsn/BUY - LEGO technic - Pin - art. no. 2780.bom.yml"
-      }
-    },
-    {
-      "id": "camera/lens-holder-bottom/cube-pin-2",
-      "kind": "primitive/static",
-      "static-models": {
-        "bom": "primitives/hikcamera-with-objective.dsn/half-case.dsn/BUY - LEGO technic - Pin - art. no. 2780.bom.yml"
-      }
-    },
-    {
-      "id": "camera/lens-holder-bottom/cube-pin-3",
-      "kind": "primitive/static",
-      "static-models": {
-        "bom": "primitives/hikcamera-with-objective.dsn/half-case.dsn/BUY - LEGO technic - Pin - art. no. 2780.bom.yml"
-      }
-    },
-    {
-      "id": "camera/lens-holder-bottom/cube-pin-4",
-      "kind": "primitive/static",
-      "static-models": {
-        "bom": "primitives/hikcamera-with-objective.dsn/half-case.dsn/BUY - LEGO technic - Pin - art. no. 2780.bom.yml"
-      }
-    },
-    {
-      "id": "camera/lens-holder-bottom/half-case",
-      "kind": "primitive/static",
-      "static-models": {
-        "gltf": "primitives/hikcamera-with-objective.dsn/half-case.dsn/PRT - 1008 - OBJHOL_CLENS-100TEL.glb",
-        "step": "primitives/hikcamera-with-objective.dsn/half-case.dsn/PRT - 1008 - OBJHOL_CLENS-100TEL.stp"
-      },
-      "rotation": {
-        "kind": "extrinsic",
-        "order": "zxy"
-      }
-    },
-    {
-      "id": "camera/lens-holder-bottom/screw-1",
-      "kind": "primitive/static",
-      "static-models": {
-        "bom": "primitives/hikcamera-with-objective.dsn/half-case.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 40 - 8.8 A2K.bom.yml"
-      }
-    },
-    {
-      "id": "camera/lens-holder-bottom/screw-2",
-      "kind": "primitive/static",
-      "static-models": {
-        "bom": "primitives/hikcamera-with-objective.dsn/half-case.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 40 - 8.8 A2K.bom.yml"
-      }
-    },
-    {
-      "id": "camera/lens-holder-bottom/washer-1",
-      "kind": "primitive/static",
-      "static-models": {
-        "bom": "primitives/hikcamera-with-objective.dsn/half-case.dsn/ISO 7092 - Washer - 3 - 200 HV - A2K.bom.yml"
-      }
-    },
-    {
-      "id": "camera/lens-holder-bottom/washer-2",
-      "kind": "primitive/static",
-      "static-models": {
-        "bom": "primitives/hikcamera-with-objective.dsn/half-case.dsn/ISO 7092 - Washer - 3 - 200 HV - A2K.bom.yml"
       }
     },
     {
@@ -460,6 +536,9 @@
         "newswitch-device": "primitives/electronics-mainboard.dsn/mainboard.newswitch-device.yml"
       },
       "results": {
+        "newswitch-device-config": {
+          "device_id": "my-favorite-mainboard"
+        },
         "newswitch-device-id": "my-favorite-mainboard"
       }
     },
@@ -1140,36 +1219,9 @@
       },
       "results": {
         "newswitch-device-config": {
-          "stage": {
-            "orthogonal-xyz": {
-              "devices": {
-                "x-actuator": "just-some-boring-stage-x-actuator",
-                "x-limit": null,
-                "y-actuator": "just-some-boring-stage-y-actuator",
-                "y-limit": null,
-                "z-actuator": "just-some-boring-stage-z-actuator",
-                "z-limit": null
-              }
-            }
-          }
+          "device_id": "just-some-boring-stage"
         },
         "newswitch-device-id": "just-some-boring-stage"
-      }
-    },
-    {
-      "id": "sample-stage/x-drivers",
-      "kind": "primitive/static",
-      "static-models": {
-        "newswitch-device": "primitives/xyz-stage.dsn/linear-actuator.newswitch-device.yml"
-      },
-      "results": {
-        "newswitch-device-config": {
-          "controller": "my-favorite-mainboard",
-          "optikit": {
-            "dsn-input-variable": "sample-x"
-          }
-        },
-        "newswitch-device-id": "just-some-boring-stage-x-actuator"
       }
     },
     {
@@ -1300,22 +1352,6 @@
       "rotation": {
         "kind": "extrinsic",
         "order": "zxy"
-      }
-    },
-    {
-      "id": "sample-stage/y-drivers",
-      "kind": "primitive/static",
-      "static-models": {
-        "newswitch-device": "primitives/xyz-stage.dsn/linear-actuator.newswitch-device.yml"
-      },
-      "results": {
-        "newswitch-device-config": {
-          "controller": "my-favorite-mainboard",
-          "optikit": {
-            "dsn-input-variable": "sample-y"
-          }
-        },
-        "newswitch-device-id": "just-some-boring-stage-y-actuator"
       }
     },
     {
@@ -1461,22 +1497,6 @@
           "x": 90,
           "z": 90
         }
-      }
-    },
-    {
-      "id": "sample-stage/z-drivers",
-      "kind": "primitive/static",
-      "static-models": {
-        "newswitch-device": "primitives/xyz-stage.dsn/linear-actuator.newswitch-device.yml"
-      },
-      "results": {
-        "newswitch-device-config": {
-          "controller": "my-favorite-mainboard",
-          "optikit": {
-            "dsn-input-variable": "sample-z"
-          }
-        },
-        "newswitch-device-id": "just-some-boring-stage-z-actuator"
       }
     },
     {

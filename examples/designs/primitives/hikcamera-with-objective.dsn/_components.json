@@ -2,6 +2,29 @@
   "optikit-version": "v0.0.0-dev",
   "components": [
     {
+      "id": "camera",
+      "kind": "design",
+      "design": "camera.dsn",
+      "instantiation": {
+        "inputs": {
+          "newswitch-device-id": ""
+        }
+      },
+      "position": [
+        -52.2,
+        0,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "x": 90,
+          "z": 90
+        }
+      }
+    },
+    {
       "id": "camera/camera",
       "kind": "primitive/static",
       "static-models": {
@@ -33,6 +56,49 @@
           "device_id": ""
         },
         "newswitch-device-id": ""
+      }
+    },
+    {
+      "id": "mounted-objective",
+      "kind": "design",
+      "design": "mounted-objective.dsn",
+      "instantiation": {},
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "mounted-objective/lens",
+      "kind": "design",
+      "design": "mounted-objective.dsn/lens.dsn",
+      "instantiation": {},
+      "position": [
+        23.9,
+        0,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -90,
+          "z": -180
+        }
+      }
+    },
+    {
+      "id": "mounted-objective/lens-holder-bottom",
+      "kind": "design",
+      "design": "mounted-objective.dsn/half-case.dsn",
+      "instantiation": {},
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -180,
+          "z": -180
+        }
       }
     },
     {
@@ -105,6 +171,16 @@
       "kind": "primitive/static",
       "static-models": {
         "bom": "mounted-objective.dsn/half-case.dsn/ISO 7092 - Washer - 3 - 200 HV - A2K.bom.yml"
+      }
+    },
+    {
+      "id": "mounted-objective/lens-holder-top",
+      "kind": "design",
+      "design": "mounted-objective.dsn/half-case.dsn",
+      "instantiation": {},
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
       }
     },
     {

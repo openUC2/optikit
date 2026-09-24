@@ -7,53 +7,28 @@ design:
     - in/core-box
 
 components:
-  lens:
-    kind: primitive
-    primitive:
-      kind: static
-      static-models:
-        gltf: BUY - Objectiv - CLENS-100TEL.glb
-        step: BUY - Objectiv - CLENS-100TEL.stp
+  mounted-objective:
+    kind: design
+    design: mounted-objective.dsn
     pose:
       rotation:
         kind: grid
-      translation:
-        offset-mm: {x: 23.9}
-    tags:
-      - optical/lens/convex
-      - procurement/buy
-      - in/kit/infinity-box
   camera:
-    kind: primitive
-    primitive:
-      kind: static
-      static-models:
-        gltf: BUY - HIKROBOT - Camera - MV-CE060-10UM-PRO.glb
-        step: BUY - HIKROBOT - Camera - MV-CE060-10UM-PRO.stp
+    kind: design
+    design: camera.dsn
+    instantiation:
+      inputs:
+        newswitch-device-id: ~ inputs['newswitch-device-id'].value
     pose:
       rotation:
         kind: grid
-        grid: {z: -x, x: -z}
+        grid: {z: +x, x: +y}
       translation:
         offset-mm: {x: -52.2}
     tags:
       - optical/detector/camera
       - procurement/buy
       - in/kit/infinity-box
-  lens-holder-bottom:
-    kind: design
-    design: half-case.dsn
-    pose:
-      rotation:
-        kind: grid
-  drivers:
-    kind: primitive
-    primitive:
-      kind: static
-      static-models:
-        newswitch-device: hikcamera.newswitch-device.yml
-    results:
-      newswitch-device-id: ~ inputs['newswitch-device-id'].value
 
 inputs:
   newswitch-device-id:

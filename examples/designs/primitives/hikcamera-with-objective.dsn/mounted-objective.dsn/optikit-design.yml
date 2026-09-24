@@ -1,0 +1,35 @@
+optikit-version: v0.0.0-alpha.1
+
+design:
+  description: A 100 mm lens in a cube-shaped housing
+  tags:
+    - composition/cube-compatible
+    - in/kit/infinity-box
+
+components:
+  lens:
+    kind: design
+    design: lens.dsn
+    pose:
+      rotation:
+        kind: grid
+        grid: {z: +x, x: +z}
+      translation:
+        offset-mm: {x: 23.9}
+    tags:
+      - optical/lens/convex
+      - procurement/buy
+      - in/kit/infinity-box
+  lens-holder-top:
+    kind: design
+    design: half-case.dsn
+    pose:
+      rotation:
+        kind: grid
+  lens-holder-bottom:
+    kind: design
+    design: half-case.dsn
+    pose:
+      rotation:
+        kind: grid
+        grid: {z: -z}

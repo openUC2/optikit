@@ -1,7 +1,9 @@
 newswitch-version: v0.1.0-alpha.0 # minimum allowed newswitch version for this config file; earlier versions of newswitch may be unable to correctly handle this file
 
-kind: source
-source:
-  kind: laser
-  laser:
-    wavelength: 485 # nm
+name: boison-488
+manufacturer: Boison
+type: laser
+wavelength_nm: 485
+max_power_mw: 100.0
+modulation: digital
+shutter: false
