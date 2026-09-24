@@ -60,7 +60,8 @@ components:
       newswitch-device-id: ~ inputs['newswitch-device-id'].value
       newswitch-device-config: >
         ~ {
-          device_id: inputs['newswitch-device-id'].value
+          device_id: inputs['newswitch-device-id'].value,
+          controller: inputs['newswitch-controller'].value
         }
 
 inputs:

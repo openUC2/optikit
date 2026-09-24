@@ -2,7 +2,7 @@ newswitch-version: v0.1.0-alpha.0 # minimum allowed newswitch version for this c
 
 name: UC2-Mainboard-v4
 manufacturer: openUC2
-type: controller-board
+type: controller
 protocol: uc2-rest # can be uc2-rest or can-open
 uc2-rest:
   transport: serial # can be serial or HTTP

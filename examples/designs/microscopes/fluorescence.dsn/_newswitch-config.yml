@@ -46,7 +46,7 @@ devices:
   my-favorite-mainboard:
     name: UC2-Mainboard-v4
     manufacturer: openUC2
-    type: controller-board
+    type: controller
     protocol: uc2-rest # can be uc2-rest or can-open
     uc2-rest:
       transport: serial # can be serial or HTTP
@@ -76,4 +76,5 @@ devices:
         inverted: true
     max_speed_um_per_sec: 5000.0
     homing_required: true
+    controller: my-favorite-mainboard
     device_id: just-some-boring-stage

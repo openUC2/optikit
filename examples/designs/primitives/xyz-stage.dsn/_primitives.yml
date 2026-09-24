@@ -123,6 +123,7 @@ components:
   position: [0.0, 0.0, 0.0]
   results:
     newswitch-device-config:
+      controller: ""
       device_id: ""
     newswitch-device-id: ""
 - id: xy-plate/motor-cap-nut

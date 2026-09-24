@@ -1219,6 +1219,7 @@
       },
       "results": {
         "newswitch-device-config": {
+          "controller": "my-favorite-mainboard",
           "device_id": "just-some-boring-stage"
         },
         "newswitch-device-id": "just-some-boring-stage"
