@@ -67,26 +67,6 @@ func renderPosGA(ctx context.Context, c *cli.Command) error {
 	return produceOutput(c.Args().First(), result)
 }
 
-func renderPosPA(ctx context.Context, c *cli.Command) error {
-	inputs, err := parseInputVars(c.StringSlice("input"))
-	if err != nil {
-		return errors.Wrap(err, "couldn't parse input variables")
-	}
-	design, err := optikit.LoadFSDesign(
-		ctx, c.String("cwd"), designs.VariantID(c.String("variant")), inputs, false,
-	)
-	if err != nil {
-		return err
-	}
-
-	result, err := optikit.RenderPositionPlot(design.Decl.Components)
-	if err != nil {
-		return err
-	}
-
-	return produceOutput(c.Args().First(), result)
-}
-
 func parseInputVars(args []string) (map[designs.VarName]any, error) {
 	inputs := make(map[designs.VarName]any)
 	for _, arg := range args {

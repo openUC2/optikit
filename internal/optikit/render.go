@@ -1,24 +1,18 @@
 package optikit
 
 import (
-	"bytes"
 	"context"
-	"encoding/json"
 	"fmt"
 	"maps"
 	"path"
-	"regexp"
 	"slices"
-	"strings"
 
-	"github.com/PuerkitoBio/goquery"
 	"github.com/pkg/errors"
 
 	"github.com/openUC2/optikit/exp/designs"
 	ffs "github.com/openUC2/optikit/exp/fs"
 	"github.com/openUC2/optikit/exp/structures"
 	"github.com/openUC2/optikit/internal/clients/build123d"
-	"github.com/openUC2/optikit/internal/clients/echarts"
 	"github.com/openUC2/optikit/internal/clients/gltf"
 	"github.com/openUC2/optikit/internal/clients/graphviz"
 )
@@ -372,64 +366,4 @@ func populatePositionGraph(
 		}
 	}
 	return gg, nil
-}
-
-// Plots
-
-func RenderPositionPlot(comps designs.CompsSpec) (result []byte, err error) {
-	c := echarts.NewChart3D()
-
-	flattened := comps.TranslFlattened()
-	for _, id := range slices.Sorted(maps.Keys(flattened)) {
-		cdecl := flattened[id]
-		if cdecl.Pose == (designs.CompPoseSpec{}) {
-			continue
-		}
-
-		mat, err := cdecl.Pose.TransfMat(designs.UC2GridSpacings)
-		if err != nil {
-			return nil, err
-		}
-		c.AddObject(string(id), mat, designs.UC2GridSpacings.X/2) //nolint:mnd // half isn't magic...
-	}
-	c.MakeAxesIsometric()
-
-	return formatPositionPlot(c.Render())
-}
-
-func formatPositionPlot(html []byte) (formatted []byte, err error) {
-	doc, err := goquery.NewDocumentFromReader(bytes.NewReader(html))
-	if err != nil {
-		return nil, err
-	}
-
-	chartNode := doc.Find("div.container div.item")
-	id, hasID := chartNode.Attr("id") // goecharts randomly generates this, so it's not reproducible
-	if !hasID {
-		return nil, errors.Errorf("couldn't determine randomly-generated ID of chart node!")
-	}
-	chartNode.SetAttr("id", "chart")
-
-	scriptNode := doc.Find("script[type=\"text/javascript\"]")
-	script := scriptNode.Text()
-	script = strings.ReplaceAll(script, id, "chart") // make the HTML source reproducible!
-	pattern := regexp.MustCompile(`(?m)^    let option_chart = (?P<options>.+);?$`)
-	options := []byte{}
-	for _, submatches := range pattern.FindAllSubmatchIndex([]byte(script), -1) {
-		options = pattern.ExpandString(options, "$options", script, submatches)
-	}
-	var indented bytes.Buffer
-	if err = json.Indent(&indented, options, "    ", "  "); err != nil {
-		return nil, errors.Wrapf(err, "couldn't format chart options: %s", script)
-	}
-	script = pattern.ReplaceAllString(script, "    let option_chart = "+indented.String()+";")
-	scriptNode.SetText(script)
-
-	rendered, err := doc.Html()
-	if err != nil {
-		return nil, err
-	}
-	rendered = strings.ReplaceAll(rendered, "&#34;", `"`)
-	rendered = strings.ReplaceAll(rendered, "&#39;", `'`)
-	return []byte(rendered), nil
 }

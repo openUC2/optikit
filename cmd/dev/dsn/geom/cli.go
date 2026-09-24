@@ -73,16 +73,6 @@ func makeRenderCmds(versions compat.Versions) []*cli.Command {
 			},
 			Action: renderPosGA,
 		},
-		{
-			Name:      "render-pos-p",
-			Aliases:   []string{"render-positions-plot"},
-			Usage:     "Render a scatterplot of the positions of the components",
-			ArgsUsage: argsUsageOutputFile,
-			Flags: []cli.Flag{
-				makeRenderOutputFormatFlag("html"),
-			},
-			Action: renderPosPA,
-		},
 	}
 }
 

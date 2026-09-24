@@ -3,11 +3,9 @@ module github.com/openUC2/optikit
 go 1.27.1
 
 require (
-	github.com/PuerkitoBio/goquery v1.13.0
 	github.com/bmatcuk/doublestar/v4 v4.10.0
 	github.com/carlmjohnson/versioninfo v0.22.5
 	github.com/expr-lang/expr v1.17.8
-	github.com/go-echarts/go-echarts/v2 v2.7.2
 	github.com/go-viper/mapstructure/v2 v2.5.0
 	github.com/goccy/go-graphviz v0.2.10
 	github.com/goccy/go-yaml v1.19.2
@@ -95,7 +93,6 @@ require (
 	github.com/alingse/asasalint v0.0.11 // indirect
 	github.com/alingse/nilnesserr v0.2.0 // indirect
 	github.com/anchore/go-macholibre v0.0.0-20250826193721-3cd206ca93aa // indirect
-	github.com/andybalholm/cascadia v1.3.4 // indirect
 	github.com/araddon/dateparse v0.0.0-20210429162001-6b43995a97de // indirect
 	github.com/asaskevich/govalidator v0.0.0-20230301143203-a9d515a09cc2 // indirect
 	github.com/ashanbrown/forbidigo/v2 v2.3.1 // indirect
