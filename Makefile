@@ -2,7 +2,7 @@
 
 .PHONY: dev
 dev: ## dev build
-dev: clean install install-pip freeze-pip generate fmt fix spell vet lint test mod-tidy
+dev: clean install install-pip generate fmt fix spell vet lint test mod-tidy
 
 .PHONY: ci
 ci: ## CI build
@@ -22,16 +22,13 @@ install: ## go install tool
 	$(call print-target)
 	go install tool
 	npm --prefix tools/gltf-checker install
+	uv sync
 
 .PHONY: install-pip
 install-pip: ## embedpip
 	$(call print-target)
-	cd internal/clients/build123d; go run ./cmd/embedpip requirements.frozen.txt
-
-.PHONY: freeze-pip
-freeze-pip: ## freezepip
-	$(call print-target)
-	cd internal/clients/build123d; go run ./cmd/freezepip requirements.direct.txt requirements.frozen.txt
+	uv export --format requirements.txt --output-file internal/clients/build123d/requirements.txt
+	cd internal/clients/build123d; go run ./cmd/embedpip requirements.txt
 
 .PHONY: generate
 generate: ## go generate

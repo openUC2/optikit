@@ -61,8 +61,13 @@ def clean_hyphens(d):
     return SimpleNamespace(**dehyphenated)
 
 
-prims_report: list[SimpleNamespace] = json.loads(
-    "".join([line.rstrip("\r\n") for line in sys.stdin]),
-    object_hook=clean_hyphens,
-)
-export_assembly(assemble_prims(prims_report))
+def main():
+    prims_report: list[SimpleNamespace] = json.loads(
+        "".join([line.rstrip("\r\n") for line in sys.stdin]),
+        object_hook=clean_hyphens,
+    )
+    export_assembly(assemble_prims(prims_report))
+
+
+if __name__ == "__main__":
+    main()

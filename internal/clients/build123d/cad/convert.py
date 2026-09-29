@@ -1,3 +1,5 @@
+import os
+import os.path
 import pathlib
 import sys
 
@@ -29,5 +31,31 @@ def export_model(model: b.Compound, output_format: str, output_path: str):
             raise ValueError(f"unknown output format {output_format}")
 
 
-(input_format, input_path, output_format, output_path) = sys.argv[1:5]
-export_model(load_model(input_format, input_path), output_format, output_path)
+def main_detect():
+    (output_format, input_path) = sys.argv[1:3]
+    (output_path, input_ext) = os.path.splitext(input_path)
+    match input_ext:
+        case ".stp" | ".step":
+            input_format = "step"
+        case ".gltf":
+            input_format = "gltf"
+        case ".glb":
+            input_format = "glb"
+        case _:
+            raise ValueError(f"unknown output format {output_format}")
+
+    output_path += "." + output_format
+    poe_wd = os.getenv("POE_PWD")
+    if poe_wd is not None and poe_wd != "":
+        input_path = os.path.join(poe_wd, input_path)
+        output_path = os.path.join(poe_wd, output_path)
+    export_model(load_model(input_format, input_path), output_format, output_path)
+
+
+def main():
+    (input_format, input_path, output_format, output_path) = sys.argv[1:5]
+    export_model(load_model(input_format, input_path), output_format, output_path)
+
+
+if __name__ == "__main__":
+    main()

@@ -10,7 +10,7 @@ import (
 )
 
 func main() {
-	inputFile := "requirements.frozen.txt"
+	inputFile := "requirements.txt"
 	if len(os.Args) > 1 && os.Args[1] != "" {
 		inputFile = os.Args[1]
 	}

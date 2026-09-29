@@ -2,12 +2,12 @@ package example
 
 //go:generate -command comp go run ../../../../../main.go dev dsn comp
 //go:generate -command geom go run ../../../../../main.go dev dsn geom
-//go:generate -command mdl go run ../../../../../main.go dev mdl
+//go:generate -command py uv run poe
 
 //go:generate pwd
 
-//go:generate mdl convert --output-format=glb "PRT - 2008 - SAMCLP.stp"
-//go:generate mdl convert --output-format=glb "PRT - 2028 - INSSAMMNT - V04.stp"
+//go:generate py convert glb "PRT - 2008 - SAMCLP.stp"
+//go:generate py convert glb "PRT - 2028 - INSSAMMNT - V04.stp"
 
 //go:generate comp render-comp-g --format=dot _components-graph.dot
 //go:generate comp render-comp-g --format=svg _components-graph.svg

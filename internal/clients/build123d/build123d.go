@@ -10,7 +10,6 @@ import (
 	"regexp"
 
 	"github.com/kluctl/go-embed-python/embed_util"
-	"github.com/kluctl/go-embed-python/pip"
 	"github.com/kluctl/go-embed-python/python"
 
 	"github.com/openUC2/optikit/internal/clients/build123d/data"
@@ -55,32 +54,6 @@ func (c *Client) Close() error {
 		}
 	}
 	return errors.Join(errs...)
-}
-
-// PipFreeze returns the result of running `pip freeze` with the requirements.txt file at the
-// specified path.
-// Note: this has a side-effect of adding an embedded pip library to the embedded Python instance's
-// Python path.
-func (c *Client) PipFreeze(requirementsFile string) (result []byte, err error) {
-	pipLib, err := pip.NewPipLib("pip")
-	if err != nil {
-		return nil, err
-	}
-	c.addEmbeddedPipLib(pipLib)
-
-	cmd, err := c.pyEmbed.PythonCmd("-m", "pip", "freeze", "-r", requirementsFile)
-	if err != nil {
-		return nil, err
-	}
-
-	out := bytes.Buffer{}
-	cmd.Stdout = &out
-	cmd.Stderr = os.Stderr
-	if err = cmd.Run(); err != nil {
-		fmt.Println(out.String())
-		return nil, err
-	}
-	return out.Bytes(), err
 }
 
 func (c *Client) Assemble(stdin []byte) ([]byte, error) {

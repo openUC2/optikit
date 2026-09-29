@@ -1,0 +1,14 @@
+[project]
+name = "optikit-examples"
+version = "0.1.0"
+description = "Scripts to support CI checks on examples"
+readme = "README.md"
+requires-python = "==3.13.13"
+dependencies = ["build123d>=0.13.0"]
+
+[dependency-groups]
+dev = ["poethepoet>=0.48.0"]
+
+[tool.poe.tasks]
+assemble-stp.script = "internal.clients.build123d.cad.assemble"
+convert.script = "internal.clients.build123d.cad.convert:main_detect"

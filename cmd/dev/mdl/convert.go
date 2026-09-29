@@ -43,14 +43,14 @@ func detectFormat(f, format string) (string, error) {
 	default:
 		return "", errors.Errorf("unknown file format for %s with file extension %s", f, ext)
 	case "stp":
-		return formatStep, nil
-	case "gltf", "glb", formatStep:
+		return formatSTEP, nil
+	case formatGLTF, formatGLB, formatSTEP:
 		return ext, nil
 	}
 }
 
 const (
-	formatStep = "step"
+	formatSTEP = "step"
 	formatGLTF = "gltf"
 	formatGLB  = "glb"
 )

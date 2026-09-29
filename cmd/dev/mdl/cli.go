@@ -24,14 +24,14 @@ func MakeCmd(_ compat.Versions) *cli.Command {
 				Flags: []cli.Flag{
 					&cli.StringFlag{
 						Name:  "input-format",
-						Value: formatStep,
-						Usage: fmt.Sprintf("Manually set format of input_file (%s)", formatStep),
+						Value: formatSTEP,
+						Usage: fmt.Sprintf("Manually set format of input_file (%s)", formatSTEP),
 					},
 					&cli.StringFlag{
 						Name: "output-format",
 						Usage: fmt.Sprintf(
 							"Manually set format of output_file (%s, %s, or %s)",
-							formatStep, formatGLTF, formatGLB,
+							formatSTEP, formatGLTF, formatGLB,
 						),
 					},
 				},
