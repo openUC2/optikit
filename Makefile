@@ -2,7 +2,7 @@
 
 .PHONY: dev
 dev: ## dev build
-dev: clean install install-pip generate fmt fix spell vet lint test mod-tidy
+dev: clean install install-pip generate-prim-glb generate fmt fix spell vet lint test mod-tidy
 
 .PHONY: ci
 ci: ## CI build
@@ -29,6 +29,11 @@ install-pip: ## embedpip
 	$(call print-target)
 	uv export --format requirements.txt --output-file internal/clients/build123d/requirements.txt
 	cd internal/clients/build123d; go run ./cmd/embedpip requirements.txt
+
+.PHONY: generate-prim-glb
+generate-prim-glb: ## go generate
+	$(call print-target)
+	./tools/examples/run-all.sh ./examples generate-prim-glb
 
 .PHONY: generate
 generate: ## go generate

@@ -2,14 +2,8 @@ package example
 
 //go:generate -command comp go run ../../../../../main.go dev dsn comp
 //go:generate -command geom go run ../../../../../main.go dev dsn geom
-//go:generate -command py uv run poe
 
 //go:generate pwd
-
-//go:generate py convert glb "BUY - Dichroic filter - 30x30x1 488nm.stp"
-//go:generate py convert glb "BUY - Emission filter - D25x1 WLS485.stp"
-//go:generate py convert glb "PRT - 2020 - INSDICSPL+EMIFIL_WLS488LOW.stp"
-//go:generate py convert glb "PRT - 2021 - INSDICSPL+EMIFIL_WLS488UPP.stp"
 
 //go:generate geom render-pos-g --format=dot _positions-graph.dot
 //go:generate geom render-pos-g --format=svg _positions-graph.svg

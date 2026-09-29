@@ -2,12 +2,8 @@ package example
 
 //go:generate -command comp go run ../../../../main.go dev dsn comp
 //go:generate -command geom go run ../../../../main.go dev dsn geom
-//go:generate -command py uv run poe
 
 //go:generate pwd
-
-//go:generate py convert glb "PRT - 1009 - CASMAIBRD2X2BAS - B.stp"
-//go:generate py convert glb "PRT - 1010 - CASMAIBRD2X2LID - B.stp"
 
 //go:generate comp report-comp --format=yaml _components.yml
 //go:generate comp report-comp --format=json _components.json
