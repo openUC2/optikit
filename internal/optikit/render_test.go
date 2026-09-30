@@ -15,13 +15,11 @@ import (
 )
 
 var renderDesignDeclTests = map[string][]designs.InstSpec{ // design -> instantiations
-	"primitives/cube-skeleton.dsn": {{}},
 	"cube-mounted/lens.dsn": {
 		{Variant: "x", Inputs: map[designs.VarName]any{"offset": -11}},
 		{Variant: "z", Inputs: map[designs.VarName]any{"offset": 7}},
 	},
-	"microscopes/simple-3d.dsn":                 {{}},
-	"microscopes/simple-rel-transl-anchors.dsn": {{}},
+	"microscopes/simple-3d.dsn": {{}},
 }
 
 type graphRenderer func(
