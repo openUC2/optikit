@@ -31,8 +31,7 @@ def export_model(model: b.Compound, output_format: str, output_path: str):
             raise ValueError(f"unknown output format {output_format}")
 
 
-def main_detect():
-    (output_format, input_path) = sys.argv[1:3]
+def convert_detect(output_format: str, input_path: str):
     (output_path, input_ext) = os.path.splitext(input_path)
     match input_ext:
         case ".stp" | ".step":
@@ -50,6 +49,22 @@ def main_detect():
         input_path = os.path.join(poe_wd, input_path)
         output_path = os.path.join(poe_wd, output_path)
     export_model(load_model(input_format, input_path), output_format, output_path)
+
+
+def main_detect():
+    (output_format, input_path) = sys.argv[1:3]
+    convert_detect(output_format, input_path)
+
+
+def main_batch():
+    output_format = sys.argv[1]
+    for line in sys.stdin:
+        input_path = line.strip()
+        if not input_path:
+            continue
+
+        print(input_path)
+        convert_detect(output_format, input_path)
 
 
 def main():

@@ -12,3 +12,4 @@ dev = ["poethepoet>=0.48.0"]
 [tool.poe.tasks]
 assemble-stp.script = "internal.clients.build123d.cad.assemble"
 convert.script = "internal.clients.build123d.cad.convert:main_detect"
+convert-batch.script = "internal.clients.build123d.cad.convert:main_batch"

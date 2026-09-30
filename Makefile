@@ -33,7 +33,7 @@ install-pip: ## embedpip
 .PHONY: generate-prim-glb
 generate-prim-glb: ## go generate
 	$(call print-target)
-	./tools/examples/run-all.sh ./examples generate-prim-glb
+	./tools/examples/process-all.sh ./examples list-prim uv run poe convert-batch glb
 
 .PHONY: generate
 generate: ## go generate
