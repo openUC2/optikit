@@ -12,7 +12,6 @@ import (
 	"github.com/openUC2/optikit/exp/designs"
 	ffs "github.com/openUC2/optikit/exp/fs"
 	"github.com/openUC2/optikit/exp/structures"
-	"github.com/openUC2/optikit/internal/clients/build123d"
 	"github.com/openUC2/optikit/internal/clients/gltf"
 	"github.com/openUC2/optikit/internal/clients/graphviz"
 )
@@ -30,8 +29,6 @@ func RenderObjects(
 		return RenderObjectsGLB(ctx, design, false)
 	case "gltf":
 		return RenderObjectsGLB(ctx, design, true)
-	case "step":
-		return RenderObjectsSTEP(ctx, design, optikitVersion)
 	}
 }
 
@@ -40,32 +37,6 @@ func RenderObjectsGLB(
 ) (result []byte, err error) {
 	doc := gltf.NewDocument()
 	if result, err = doc.Assemble(ctx, design, asText, designs.UC2GridSpacings); err != nil {
-		return nil, err
-	}
-	return result, nil
-}
-
-func RenderObjectsSTEP(
-	ctx context.Context, design *designs.FSDesign, optikitVersion string,
-) (result []byte, err error) {
-	primsReport, err := ReportPrimitives(ctx, design, designs.UC2GridSpacings, optikitVersion)
-	if err != nil {
-		return nil, err
-	}
-	serialized, err := SerializeReport(ctx, primsReport, "json")
-	if err != nil {
-		return nil, err
-	}
-
-	bc, err := build123d.New()
-	if err != nil {
-		return nil, err
-	}
-	defer func() {
-		err = bc.Close()
-	}()
-
-	if result, err = bc.Assemble(serialized); err != nil {
 		return nil, err
 	}
 	return result, nil

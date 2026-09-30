@@ -8,7 +8,6 @@ import (
 
 	"github.com/openUC2/optikit/cmd/compat"
 	"github.com/openUC2/optikit/cmd/dev/dsn"
-	"github.com/openUC2/optikit/cmd/dev/mdl"
 )
 
 var defaultWorkingDir, _ = os.Getwd()
@@ -20,7 +19,6 @@ func MakeCmd(versions compat.Versions) *cli.Command {
 		Usage:   "Facilitates development and maintenance in the current working directory",
 		Commands: []*cli.Command{
 			dsn.MakeCmd(versions),
-			mdl.MakeCmd(versions),
 		},
 		Flags: []cli.Flag{
 			&cli.StringFlag{

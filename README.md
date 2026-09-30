@@ -4,6 +4,30 @@ A system of record for product data management at openUC2
 
 This repo is a prototype of [DN 10: Optikit platform](https://app.notion.com/p/DN-10-Optikit-platform-2854e612c78a800cb8e3c3ca7b5a3e76?source=copy_link).
 
+## Usage
+
+### Development
+
+These instructions are for being able to run all the CI checks locally on your computer:
+
+Prerequisites:
+
+- [go](https://go.dev/doc/install)
+- [uv](https://docs.astral.sh/uv/getting-started/installation/) (for manipulating STEP files and generating NewSwitch configs)
+- [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) (for checking GLTF files)
+
+Then run:
+
+```bash
+make install
+```
+
+Now you can run the CI checks:
+```bash
+make generate
+make test
+```
+
 ## Licensing
 
 We have chosen the following licenses in order to give away our work for free, so that you can

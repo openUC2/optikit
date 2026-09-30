@@ -1,1 +1,0 @@
-../../../../tools/examples/generate-newswitch-config.sh

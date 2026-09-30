@@ -31,7 +31,7 @@ updates:
 
   # Maintain dependencies for pip
   - package-ecosystem: "pip"
-    directory: "/internal/clients/build123d"
+    directory: "/"
     schedule:
       interval: "monthly"
     commit-message:

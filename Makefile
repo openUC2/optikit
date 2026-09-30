@@ -2,7 +2,7 @@
 
 .PHONY: dev
 dev: ## dev build
-dev: clean install install-pip freeze-pip generate fmt fix spell vet lint test mod-tidy
+dev: clean install generate-prim-glb generate fmt fix spell vet lint test mod-tidy
 
 .PHONY: ci
 ci: ## CI build
@@ -11,9 +11,6 @@ ci: dev diff
 .PHONY: clean
 clean: ## remove files created during build pipeline
 	$(call print-target)
-	find internal/clients/build123d/data/*-* ! -name '.gitattributes' -type f -exec rm -f {} +
-	find internal/clients/build123d/data/*-*/* ! -name . -prune -type d -exec rm -R {} + || true
-	rm -rf examples/**/_positions-plot*.html
 	rm -rf dist
 	rm -f coverage.*
 
@@ -22,19 +19,19 @@ install: ## go install tool
 	$(call print-target)
 	go install tool
 	npm --prefix tools/gltf-checker install
+	uv sync
 
-.PHONY: install-pip
-install-pip: ## embedpip
+.PHONY: generate-prim-glb
+generate-prim-glb: ## go generate
 	$(call print-target)
-	cd internal/clients/build123d; go run ./cmd/embedpip requirements.frozen.txt
-
-.PHONY: freeze-pip
-freeze-pip: ## freezepip
-	$(call print-target)
-	cd internal/clients/build123d; go run ./cmd/freezepip requirements.direct.txt requirements.frozen.txt
+	./tools/examples/process-all.sh ./examples list-prim-step uv run poe convert-batch glb
 
 .PHONY: generate
-generate: ## go generate
+generate: ## generate outside CI
+generate: generate-prim-glb generate-go
+
+.PHONY: generate-go
+generate-go: ## go generate
 	$(call print-target)
 	go generate ./...
 
@@ -45,8 +42,7 @@ generate-unreproducible: generate-obj-step
 .PHONY: generate-obj-step
 generate-obj-step: ## generate STEP files outputs with nondeterministically-ordered contents
 	$(call print-target)
-	./tools/examples/run-all.sh ./examples generate-variants geom render objects step
-	./tools/examples/run-all.sh ./examples generate-obj-step
+	./tools/examples/process-all.sh ./examples list-prim-report uv run poe assemble-batch _primitives _objects
 
 .PHONY: vet
 vet: ## go vet
