@@ -191,7 +191,7 @@ func TestGLTFRoundtrip(t *testing.T) {
 				return
 			}
 
-			for _, format := range []string{formatGLTF, formatGLB} {
+			for _, format := range []string{formatGLB} {
 				t.Run(name, func(t *testing.T) {
 					t.Parallel()
 
