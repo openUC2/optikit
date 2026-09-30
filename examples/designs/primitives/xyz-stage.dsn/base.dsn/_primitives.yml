@@ -1,0 +1,118 @@
+optikit-version: v0.0.0-dev
+components:
+- id: cube-base
+  kind: primitive/static
+  static-models:
+    gltf: "PRT - 1017 - BASXYZSTG - V04 - A.glb"
+    step: "PRT - 1017 - BASXYZSTG - V04 - A.stp"
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+    angles:
+      "y": -180.0
+      z: 90.0
+- id: cube-pin-1
+  kind: primitive/static
+  static-models:
+    bom: "BUY - LEGO technic - 3_4 pin - art. no. 32002.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: cube-pin-2
+  kind: primitive/static
+  static-models:
+    bom: "BUY - LEGO technic - 3_4 pin - art. no. 32002.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: cube-pin-3
+  kind: primitive/static
+  static-models:
+    bom: "BUY - LEGO technic - 3_4 pin - art. no. 32002.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: cube-pin-4
+  kind: primitive/static
+  static-models:
+    bom: "BUY - LEGO technic - 3_4 pin - art. no. 32002.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: cube-screw-1
+  kind: primitive/static
+  static-models:
+    bom: "ISO 4762 - Cylinder head screw with hex socket - M3 x 16 - 8.8 A2K.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: cube-screw-2
+  kind: primitive/static
+  static-models:
+    bom: "ISO 4762 - Cylinder head screw with hex socket - M3 x 16 - 8.8 A2K.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: cube-screw-3
+  kind: primitive/static
+  static-models:
+    bom: "ISO 4762 - Cylinder head screw with hex socket - M3 x 16 - 8.8 A2K.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: motor-cap-nut
+  kind: primitive/static
+  static-models:
+    bom: "DIN 1587 - Cap nut - M3 - St 6 AU - A2K.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: motor-hex-nut
+  kind: primitive/static
+  static-models:
+    bom: "ISO 4032 - Hex nut - M3 - A2-70.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: motor-holder
+  kind: primitive/static
+  static-models:
+    gltf: "PRT - 3021 - MOTHOLXST.glb"
+    step: "PRT - 3021 - MOTHOLXST.stp"
+  position: [-4.0, 4.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: motor-holder-hold-screw-1
+  kind: primitive/static
+  static-models:
+    bom: "ISO 4762 - Cylinder head screw with hex socket - M2.5 x 10 - A2-70.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: motor-holder-mount-screw-1
+  kind: primitive/static
+  static-models:
+    bom: "ISO 4762 - Cylinder head screw with hex socket - M2.5 x 10 - A2-70.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: motor-holder-mount-screw-2
+  kind: primitive/static
+  static-models:
+    bom: "ISO 4762 - Cylinder head screw with hex socket - M2.5 x 10 - A2-70.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: motor-washer
+  kind: primitive/static
+  static-models:
+    bom: "ISO 7092 - Washer - 3 - 200 HV - A2K.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: motor/motor
+  kind: primitive/static
+  static-models:
+    gltf: "primitives/motor-push-rod.dsn/BUY - Stepping motor with captive push rod  - L8K2105AD4-050SMSN-220(02).glb"
+    step: "primitives/motor-push-rod.dsn/BUY - Stepping motor with captive push rod  - L8K2105AD4-050SMSN-220(02).stp"
+  position: [-26.7, -27.0, 7.5]
+  rotation:
+    kind: extrinsic
+    order: zxy
+    angles:
+      z: -180.0
+- id: x-rail-base
+  kind: primitive/static
+  static-models:
+    gltf: "BUY - XYZ linear table - LD40 --- base.glb"
+    step: "BUY - XYZ linear table - LD40 --- base.stp"
+  position: [-4.0, 4.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: x-rail-base-screw-1
+  kind: primitive/static
+  static-models:
+    bom: "ISO 4762 - Cylinder head screw with hex socket - M3 x 10 - 8.8 - A2K.bom.yml"
+  position: [0.0, 0.0, 0.0]
+- id: x-rail-base-screw-2
+  kind: primitive/static
+  static-models:
+    bom: "ISO 4762 - Cylinder head screw with hex socket - M3 x 10 - 8.8 - A2K.bom.yml"
+  position: [0.0, 0.0, 0.0]

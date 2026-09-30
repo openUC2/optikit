@@ -1,0 +1,1 @@
+../../../../tools/examples/list-prim-report.sh

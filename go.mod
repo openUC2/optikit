@@ -10,8 +10,6 @@ require (
 	github.com/goccy/go-graphviz v0.2.10
 	github.com/goccy/go-yaml v1.19.2
 	github.com/google/go-cmp v0.7.0
-	// Note: we need Python 3.13 because scipy currently doesn't support 3.14!
-	github.com/kluctl/go-embed-python v0.0.0-3.13.14-20260610-1
 	github.com/muesli/reflow v0.3.0
 	github.com/pkg/errors v0.9.1
 	github.com/qmuntal/gltf v0.29.0

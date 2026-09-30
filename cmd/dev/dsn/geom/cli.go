@@ -59,7 +59,7 @@ func makeRenderCmds(versions compat.Versions) []*cli.Command {
 			Usage:     "Render the assembly as a 3D model object",
 			ArgsUsage: argsUsageOutputFile,
 			Flags: []cli.Flag{
-				makeRenderOutputFormatFlag("glb", "gltf", "step"),
+				makeRenderOutputFormatFlag("glb", "gltf"),
 			},
 			Action: renderObjA(versions),
 		},

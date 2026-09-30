@@ -1,1 +1,0 @@
-../../../../../tools/examples/list-prim.sh
