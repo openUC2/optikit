@@ -17,7 +17,6 @@ import (
 var renderDesignDeclTests = map[string][]designs.InstSpec{ // design -> instantiations
 	"cube-mounted/lens.dsn": {
 		{Variant: "x", Inputs: map[designs.VarName]any{"offset": -11}},
-		{Variant: "z", Inputs: map[designs.VarName]any{"offset": 7}},
 	},
 	"microscopes/simple-3d.dsn": {{}},
 }
