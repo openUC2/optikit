@@ -83,9 +83,10 @@ func (d *Document) Document() *gltf.Document {
 
 func (d *Document) Assemble(
 	ctx context.Context,
-	design *designs.FSDesign, asText bool, gridSpacings designs.ContinuousXYZ[float64],
+	design *designs.FSDesign, assembly designs.AssmID, gridSpacings designs.ContinuousXYZ[float64],
+	asText bool,
 ) ([]byte, error) {
-	if err := d.addComponents(ctx, design, gridSpacings, d.root); err != nil {
+	if err := d.addComponents(ctx, design, assembly, gridSpacings, d.root); err != nil {
 		return nil, err
 	}
 
@@ -98,17 +99,22 @@ func (d *Document) Assemble(
 
 func (d *Document) addComponents(
 	ctx context.Context,
-	design *designs.FSDesign, gridSpacings designs.ContinuousXYZ[float64], root *gltf.Node,
+	design *designs.FSDesign, assembly designs.AssmID, gridSpacings designs.ContinuousXYZ[float64],
+	root *gltf.Node,
 ) error {
-	flattened := design.Decl.Components.TranslFlattened()
-	compIDs := slices.Sorted(maps.Keys(flattened))
-	subdesignCompIDs := make([]designs.CompID, 0, len(compIDs))
-	for _, id := range compIDs {
-		comp := flattened[id]
-		if comp.Pose.Rotation.Kind == "" {
-			continue
-		}
+	assm, ok := design.Decl.Assemblies[assembly]
+	if !ok {
+		return errors.Errorf("couldn't find assembly %s", assembly)
+	}
 
+	flattened, err := assm.Children.Flattened(gridSpacings)
+	if err != nil {
+		return errors.Wrapf(err, "couldn't flatten scene graph of assembly %s", assembly)
+	}
+
+	subdesignCompIDs := make([]designs.CompID, 0, len(flattened))
+	for _, id := range slices.Sorted(maps.Keys(flattened)) {
+		comp := design.Decl.Components[id]
 		switch t := comp.Kind; t {
 		default:
 			return errors.Errorf("unknown component kind for component %s: %s", id, t)
@@ -117,7 +123,9 @@ func (d *Document) addComponents(
 			// the location component doesn't need to be exported to GLTF.
 			continue
 		case designs.CompKindPrimitive:
-			if err := d.addPrimitiveComponent(design.FS, id, comp, gridSpacings, root); err != nil {
+			if err := d.addPrimitiveComponent(
+				design.FS, id, comp, flattened[id], gridSpacings, root,
+			); err != nil {
 				return errors.Wrapf(err, "couldn't add primitive component %s to gltf model", id)
 			}
 		case designs.CompKindDesign:
@@ -127,14 +135,14 @@ func (d *Document) addComponents(
 		}
 	}
 	for _, id := range subdesignCompIDs {
-		comp := flattened[id]
+		comp := design.Decl.Components[id]
 		subdesign, err := design.LoadCompFSDesign(ctx, id)
 		if err != nil {
-			return errors.Wrapf(
-				err, "couldn't load subdesign %s for component %s", comp.Design, id,
-			)
+			return errors.Wrapf(err, "couldn't load subdesign %s for component %s", comp.Design, id)
 		}
-		if err := d.addSubdesignComponent(ctx, id, comp, subdesign, gridSpacings, root); err != nil {
+		if err := d.addSubdesignComponent(
+			ctx, id, comp, flattened[id], subdesign, gridSpacings, root,
+		); err != nil {
 			return errors.Wrapf(err, "couldn't add subdesign component %s to gltf model", id)
 		}
 	}
@@ -142,7 +150,7 @@ func (d *Document) addComponents(
 }
 
 func (d *Document) addPrimitiveComponent(
-	fsys ffs.PathedFS, id designs.CompID, comp designs.CompSpec,
+	fsys ffs.PathedFS, id designs.CompID, comp designs.CompSpec, assmComp designs.AssmCompSpec,
 	gridSpacings designs.ContinuousXYZ[float64], parent *gltf.Node,
 ) error {
 	n := new(gltf.Node)
@@ -152,7 +160,7 @@ func (d *Document) addPrimitiveComponent(
 	parent.Children = append(parent.Children, nodeIndex)
 
 	var err error
-	if n.Rotation, n.Translation, err = computeNodePose(comp.Pose, gridSpacings); err != nil {
+	if n.Rotation, n.Translation, err = computeNodePose(assmComp.Pose, gridSpacings); err != nil {
 		return errors.Wrapf(err, "couldn't compute pose of component %s", id)
 	}
 
@@ -176,7 +184,7 @@ func addElem[T any](arr []T, elem T) (appended []T, idx int) {
 	return arr, len(arr) - 1
 }
 
-func computeNodePose(pose designs.CompPoseSpec, gridSpacings designs.ContinuousXYZ[float64]) (
+func computeNodePose(pose designs.AssmCompPoseSpec, gridSpacings designs.ContinuousXYZ[float64]) (
 	rot [4]float64, transl [3]float64, err error,
 ) {
 	mat, err := pose.TransfMat(gridSpacings)
@@ -348,7 +356,8 @@ func (d *Document) addModelExtensionsUsed(me []string) {
 
 func (d *Document) addSubdesignComponent(
 	ctx context.Context,
-	id designs.CompID, comp designs.CompSpec, subdesign *designs.FSDesign,
+	id designs.CompID, comp designs.CompSpec, assmComp designs.AssmCompSpec,
+	subdesign *designs.FSDesign,
 	gridSpacings designs.ContinuousXYZ[float64], parent *gltf.Node,
 ) error {
 	n := new(gltf.Node)
@@ -358,11 +367,11 @@ func (d *Document) addSubdesignComponent(
 	parent.Children = append(parent.Children, nodeIndex)
 
 	var err error
-	if n.Rotation, n.Translation, err = computeNodePose(comp.Pose, gridSpacings); err != nil {
+	if n.Rotation, n.Translation, err = computeNodePose(assmComp.Pose, gridSpacings); err != nil {
 		return errors.Wrapf(err, "couldn't compute pose of component %s", id)
 	}
 
-	if err = d.addComponents(ctx, subdesign, gridSpacings, n); err != nil {
+	if err = d.addComponents(ctx, subdesign, assmComp.Assm, gridSpacings, n); err != nil {
 		return errors.Wrapf(
 			err, "couldn't add subcomponents of component %s with design %s", id, comp.Design,
 		)

@@ -98,7 +98,7 @@ func ReportComponents(
 	comps := d.Decl.Components
 	report.Components = make([]CompReport, 0, len(comps))
 	for _, compID := range slices.Sorted(maps.Keys(comps)) {
-		r, err := reportComp(compID, comps[compID], gridSpacings)
+		r, err := reportComp(compID, comps[compID])
 		if err != nil {
 			return CompsReport{}, errors.Wrapf(err, "couldn't make report for component %s", compID)
 		}
@@ -107,9 +107,7 @@ func ReportComponents(
 	return report, nil
 }
 
-func reportComp(
-	compID designs.CompID, comp designs.CompSpec, gridSpacings designs.ContinuousXYZ[float64],
-) (report CompReport, err error) {
+func reportComp(compID designs.CompID, comp designs.CompSpec) (report CompReport, err error) {
 	report = CompReport{
 		ID:      compID,
 		Results: comp.Results,
@@ -126,14 +124,6 @@ func reportComp(
 	case designs.CompKindPrimitive:
 		report.Kind = path.Join(kind, cmp.Or(comp.Primitive.Kind, "static"))
 		report.StaticModels = comp.Primitive.StaticModels
-	}
-	if comp.Pose != (designs.CompPoseSpec{}) {
-		m, err := comp.Pose.TransfMat(gridSpacings)
-		if err != nil {
-			return CompReport{}, err
-		}
-		report.Position = m.MulVec3(&vec3.Zero)
-		report.Rotation = NewRotReport(m)
 	}
 	return report, nil
 }
@@ -162,10 +152,11 @@ func SerializeReport(
 	}
 }
 
-// Primitives
+// Assembly
 
-func ReportPrimitives(
-	ctx context.Context, design *designs.FSDesign, gridSpacings designs.ContinuousXYZ[float64],
+func ReportAssembly(
+	ctx context.Context, design *designs.FSDesign, assembly designs.AssmID,
+	gridSpacings designs.ContinuousXYZ[float64],
 	optikitVersion string,
 ) (report CompsReport, err error) {
 	report.Optikit = optikitVersion
@@ -173,18 +164,26 @@ func ReportPrimitives(
 	if err != nil {
 		return CompsReport{}, errors.Wrapf(err, "couldn't flatten design %s", design.Path())
 	}
+	assm, ok := d.Decl.Assemblies[assembly]
+	if !ok {
+		return report, errors.Errorf("couldn't find assembly %s in design %s", assembly, design.Path())
+	}
 	comps := d.Decl.Components
-	report.Components = make([]CompReport, 0, len(comps))
-	for _, compID := range slices.Sorted(maps.Keys(comps)) {
-		comp := comps[compID]
-		if comp.Kind != designs.CompKindPrimitive {
-			continue
-		}
-
-		r, err := reportComp(compID, comps[compID], gridSpacings)
+	assmComps := assm.Children
+	report.Components = make([]CompReport, 0, len(assmComps))
+	for _, compID := range slices.Sorted(maps.Keys(assmComps)) {
+		r, err := reportComp(compID, comps[compID])
 		if err != nil {
 			return CompsReport{}, errors.Wrapf(err, "couldn't make report for component %s", compID)
 		}
+		m, err := assmComps[compID].Pose.TransfMat(gridSpacings)
+		if err != nil {
+			return report, errors.Wrapf(
+				err, "couldn't compute transformation matrix for component %s", compID,
+			)
+		}
+		r.Position = m.MulVec3(&vec3.Zero)
+		r.Rotation = NewRotReport(m)
 		report.Components = append(report.Components, r)
 	}
 	return report, nil

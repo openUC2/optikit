@@ -13,9 +13,6 @@ components:
       static-models:
         gltf: PRT - 3010 - CASHLFLAS.glb
         step: PRT - 3010 - CASHLFLAS.stp
-    pose:
-      rotation:
-        kind: grid
     tags:
       - structure/enclosure
       - procurement/3d-print
@@ -80,3 +77,8 @@ components:
         - structure/fastener/pin
         - procurement/buy
         - in/kit/fluo-laser-box
+
+assemblies:
+  '':
+    children:
+      half-case: {}

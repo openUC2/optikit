@@ -1,0 +1,4 @@
+geom report assembly yml
+geom report assembly json
+geom render objects gltf
+geom render objects glb

@@ -6,64 +6,6 @@ design:
     - composition/cube-compatible
     - in/kit/light-sheet-box
 
-components:
-  base:
-    kind: design
-    design: base.dsn
-    pose:
-      rotation:
-        kind: grid
-  xy-plate:
-    kind: design
-    design: xy-plate.dsn
-    pose:
-      rotation:
-        kind: grid
-      translation:
-        anchor: base
-        offset-mm:
-          x: ~ inputs['x-stage'].value
-  yz-plate:
-    kind: design
-    design: yz-plate.dsn
-    pose:
-      rotation:
-        kind: grid
-      translation:
-        anchor: xy-plate
-        offset-mm:
-          y: ~ -1 * inputs['y-stage'].value
-  z-plate:
-    kind: primitive
-    primitive:
-      kind: static
-      static-models:
-        gltf: BUY - Manual Z stage - LZ40 --- slide.glb
-        step: BUY - Manual Z stage - LZ40 --- slide.stp
-    pose:
-      rotation:
-        kind: grid
-        grid: {z: +x, x: +y}
-      translation:
-        anchor: yz-plate
-        offset-mm:
-          x: -4
-          y: 4
-          z: ~ 30 + inputs['z-stage'].value
-  stage-drivers:
-    kind: primitive
-    primitive:
-      kind: static
-      static-models:
-        newswitch-device: stage.newswitch-device.yml
-    results:
-      newswitch-device-id: ~ inputs['newswitch-device-id'].value
-      newswitch-device-config: >
-        ~ {
-          device_id: inputs['newswitch-device-id'].value,
-          controller: inputs['newswitch-controller'].value
-        }
-
 inputs:
   newswitch-device-id:
     description: A short unique name for the device in NewSwitch, which can be referenced from other parts of the overall NewSwitch config
@@ -117,3 +59,62 @@ inputs:
     kind: string
     tags:
       - config/newswitch/input-variable-binding
+
+components:
+  base:
+    kind: design
+    design: base.dsn
+  xy-plate:
+    kind: design
+    design: xy-plate.dsn
+  yz-plate:
+    kind: design
+    design: yz-plate.dsn
+  z-plate:
+    kind: primitive
+    primitive:
+      kind: static
+      static-models:
+        gltf: BUY - Manual Z stage - LZ40 --- slide.glb
+        step: BUY - Manual Z stage - LZ40 --- slide.stp
+  stage-drivers:
+    kind: primitive
+    primitive:
+      kind: static
+      static-models:
+        newswitch-device: stage.newswitch-device.yml
+    results:
+      newswitch-device-id: ~ inputs['newswitch-device-id'].value
+      newswitch-device-config: >
+        ~ {
+          device_id: inputs['newswitch-device-id'].value,
+          controller: inputs['newswitch-controller'].value
+        }
+
+assemblies:
+  '':
+    children:
+      base:
+        children:
+          xy-plate:
+            pose:
+              translation:
+                offset-mm:
+                  x: ~ inputs['x-stage'].value
+            children:
+              yz-plate:
+                pose:
+                  translation:
+                    offset-mm:
+                      y: ~ -1 * inputs['y-stage'].value
+                children:
+                  z-plate:
+                    pose:
+                      rotation:
+                        kind: grid
+                        grid: {z: +x, x: +y}
+                      translation:
+                        offset-mm:
+                          x: -4
+                          y: 4
+                          z: ~ 30 + inputs['z-stage'].value

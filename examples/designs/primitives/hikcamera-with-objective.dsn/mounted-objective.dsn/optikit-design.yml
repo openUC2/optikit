@@ -10,12 +10,6 @@ components:
   lens:
     kind: design
     design: lens.dsn
-    pose:
-      rotation:
-        kind: grid
-        grid: {z: +x, x: +z}
-      translation:
-        offset-mm: {x: 23.9}
     tags:
       - optical/lens/convex
       - procurement/buy
@@ -23,13 +17,23 @@ components:
   lens-holder-top:
     kind: design
     design: half-case.dsn
-    pose:
-      rotation:
-        kind: grid
   lens-holder-bottom:
     kind: design
     design: half-case.dsn
-    pose:
-      rotation:
-        kind: grid
-        grid: {z: -z}
+
+assemblies:
+  '':
+    children:
+      lens:
+        pose:
+          rotation:
+            kind: grid
+            grid: {z: +x, x: +z}
+          translation:
+            offset-mm: {x: 23.9}
+      lens-holder-top: {}
+      lens-holder-bottom:
+        pose:
+          rotation:
+            kind: grid
+            grid: {z: -z}

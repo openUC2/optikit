@@ -5,5 +5,5 @@ package example
 
 //go:generate pwd
 
-//go:generate geom report-prim --format=yaml _primitives.yml
-//go:generate geom report-prim --format=json _primitives.json
+//go:generate geom report-assm --format=yaml _assembly.yml
+//go:generate geom report-assm --format=json _assembly.json

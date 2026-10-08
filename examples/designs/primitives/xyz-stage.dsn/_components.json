@@ -5,11 +5,7 @@
       "id": "base",
       "kind": "design",
       "design": "base.dsn",
-      "instantiation": {},
-      "rotation": {
-        "kind": "extrinsic",
-        "order": "zxy"
-      }
+      "instantiation": {}
     },
     {
       "id": "base/cube-base",
@@ -17,14 +13,6 @@
       "static-models": {
         "gltf": "base.dsn/PRT - 1017 - BASXYZSTG - V04 - A.glb",
         "step": "base.dsn/PRT - 1017 - BASXYZSTG - V04 - A.stp"
-      },
-      "rotation": {
-        "kind": "extrinsic",
-        "order": "zxy",
-        "angles": {
-          "y": -180,
-          "z": 90
-        }
       }
     },
     {
@@ -80,19 +68,7 @@
       "id": "base/motor",
       "kind": "design",
       "design": "base.dsn/primitives/motor-push-rod.dsn",
-      "instantiation": {},
-      "position": [
-        -30.7,
-        -23,
-        7.5
-      ],
-      "rotation": {
-        "kind": "extrinsic",
-        "order": "zxy",
-        "angles": {
-          "z": -180
-        }
-      }
+      "instantiation": {}
     },
     {
       "id": "base/motor-cap-nut",
@@ -114,15 +90,6 @@
       "static-models": {
         "gltf": "base.dsn/PRT - 3021 - MOTHOLXST.glb",
         "step": "base.dsn/PRT - 3021 - MOTHOLXST.stp"
-      },
-      "position": [
-        -4,
-        4,
-        0
-      ],
-      "rotation": {
-        "kind": "extrinsic",
-        "order": "zxy"
       }
     },
     {
@@ -159,18 +126,6 @@
       "static-models": {
         "gltf": "base.dsn/primitives/motor-push-rod.dsn/BUY - Stepping motor with captive push rod  - L8K2105AD4-050SMSN-220(02).glb",
         "step": "base.dsn/primitives/motor-push-rod.dsn/BUY - Stepping motor with captive push rod  - L8K2105AD4-050SMSN-220(02).stp"
-      },
-      "position": [
-        -26.7,
-        -27,
-        7.5
-      ],
-      "rotation": {
-        "kind": "extrinsic",
-        "order": "zxy",
-        "angles": {
-          "z": -180
-        }
       }
     },
     {
@@ -179,15 +134,6 @@
       "static-models": {
         "gltf": "base.dsn/BUY - XYZ linear table - LD40 --- base.glb",
         "step": "base.dsn/BUY - XYZ linear table - LD40 --- base.stp"
-      },
-      "position": [
-        -4,
-        4,
-        0
-      ],
-      "rotation": {
-        "kind": "extrinsic",
-        "order": "zxy"
       }
     },
     {
@@ -222,29 +168,13 @@
       "id": "xy-plate",
       "kind": "design",
       "design": "xy-plate.dsn",
-      "instantiation": {},
-      "rotation": {
-        "kind": "extrinsic",
-        "order": "zxy"
-      }
+      "instantiation": {}
     },
     {
       "id": "xy-plate/motor",
       "kind": "design",
       "design": "xy-plate.dsn/primitives/motor-push-rod.dsn",
-      "instantiation": {},
-      "position": [
-        -31,
-        29.7,
-        23
-      ],
-      "rotation": {
-        "kind": "extrinsic",
-        "order": "zxy",
-        "angles": {
-          "z": 90
-        }
-      }
+      "instantiation": {}
     },
     {
       "id": "xy-plate/motor-cap-nut",
@@ -266,18 +196,6 @@
       "static-models": {
         "gltf": "xy-plate.dsn/PRT - 3022 - MOTHOLYST.glb",
         "step": "xy-plate.dsn/PRT - 3022 - MOTHOLYST.stp"
-      },
-      "position": [
-        -4,
-        4,
-        11.5
-      ],
-      "rotation": {
-        "kind": "extrinsic",
-        "order": "zxy",
-        "angles": {
-          "z": -90
-        }
       }
     },
     {
@@ -314,18 +232,6 @@
       "static-models": {
         "gltf": "xy-plate.dsn/primitives/motor-push-rod.dsn/BUY - Stepping motor with captive push rod  - L8K2105AD4-050SMSN-220(02).glb",
         "step": "xy-plate.dsn/primitives/motor-push-rod.dsn/BUY - Stepping motor with captive push rod  - L8K2105AD4-050SMSN-220(02).stp"
-      },
-      "position": [
-        -35,
-        25.7,
-        23
-      ],
-      "rotation": {
-        "kind": "extrinsic",
-        "order": "zxy",
-        "angles": {
-          "z": 90
-        }
       }
     },
     {
@@ -334,15 +240,6 @@
       "static-models": {
         "gltf": "xy-plate.dsn/PRT - 3023 - BKTXST.glb",
         "step": "xy-plate.dsn/PRT - 3023 - BKTXST.stp"
-      },
-      "position": [
-        -4,
-        4,
-        0
-      ],
-      "rotation": {
-        "kind": "extrinsic",
-        "order": "zxy"
       }
     },
     {
@@ -365,44 +262,19 @@
       "static-models": {
         "gltf": "xy-plate.dsn/BUY - XYZ linear table - LD40 --- XY plate.glb",
         "step": "xy-plate.dsn/BUY - XYZ linear table - LD40 --- XY plate.stp"
-      },
-      "position": [
-        -4,
-        4,
-        0
-      ],
-      "rotation": {
-        "kind": "extrinsic",
-        "order": "zxy"
       }
     },
     {
       "id": "yz-plate",
       "kind": "design",
       "design": "yz-plate.dsn",
-      "instantiation": {},
-      "rotation": {
-        "kind": "extrinsic",
-        "order": "zxy"
-      }
+      "instantiation": {}
     },
     {
       "id": "yz-plate/motor",
       "kind": "design",
       "design": "yz-plate.dsn/primitives/motor-push-rod.dsn",
-      "instantiation": {},
-      "position": [
-        11.5,
-        46.2,
-        42
-      ],
-      "rotation": {
-        "kind": "extrinsic",
-        "order": "zxy",
-        "angles": {
-          "z": 90
-        }
-      }
+      "instantiation": {}
     },
     {
       "id": "yz-plate/motor-holder",
@@ -410,15 +282,6 @@
       "static-models": {
         "gltf": "yz-plate.dsn/PRT - 3024 - MOTHOLZST.glb",
         "step": "yz-plate.dsn/PRT - 3024 - MOTHOLZST.stp"
-      },
-      "position": [
-        -3.5,
-        4,
-        0
-      ],
-      "rotation": {
-        "kind": "extrinsic",
-        "order": "zxy"
       }
     },
     {
@@ -455,18 +318,6 @@
       "static-models": {
         "gltf": "yz-plate.dsn/primitives/motor-push-rod.dsn/BUY - Stepping motor with captive push rod  - L8K2105AD4-050SMSN-220(02).glb",
         "step": "yz-plate.dsn/primitives/motor-push-rod.dsn/BUY - Stepping motor with captive push rod  - L8K2105AD4-050SMSN-220(02).stp"
-      },
-      "position": [
-        7.5,
-        42.2,
-        42
-      ],
-      "rotation": {
-        "kind": "extrinsic",
-        "order": "zxy",
-        "angles": {
-          "z": 90
-        }
       }
     },
     {
@@ -475,19 +326,6 @@
       "static-models": {
         "gltf": "yz-plate.dsn/BUY - XYZ linear table - LD40 --- bracket.glb",
         "step": "yz-plate.dsn/BUY - XYZ linear table - LD40 --- bracket.stp"
-      },
-      "position": [
-        -4,
-        4,
-        37.5
-      ],
-      "rotation": {
-        "kind": "extrinsic",
-        "order": "zxy",
-        "angles": {
-          "y": -180,
-          "z": -90
-        }
       }
     },
     {
@@ -496,15 +334,6 @@
       "static-models": {
         "gltf": "yz-plate.dsn/BUY - XYZ linear table - LD40 --- Y plate.glb",
         "step": "yz-plate.dsn/BUY - XYZ linear table - LD40 --- Y plate.stp"
-      },
-      "position": [
-        -4,
-        4,
-        0
-      ],
-      "rotation": {
-        "kind": "extrinsic",
-        "order": "zxy"
       }
     },
     {
@@ -513,19 +342,6 @@
       "static-models": {
         "gltf": "yz-plate.dsn/BUY - Manual Z stage - LZ40 --- base.glb",
         "step": "yz-plate.dsn/BUY - Manual Z stage - LZ40 --- base.stp"
-      },
-      "position": [
-        -4,
-        4,
-        30
-      ],
-      "rotation": {
-        "kind": "extrinsic",
-        "order": "zxy",
-        "angles": {
-          "x": 90,
-          "z": 90
-        }
       }
     },
     {
@@ -534,19 +350,6 @@
       "static-models": {
         "gltf": "yz-plate.dsn/BUY - Manual Z stage - LZ40 --- converter.glb",
         "step": "yz-plate.dsn/BUY - Manual Z stage - LZ40 --- converter.stp"
-      },
-      "position": [
-        -4,
-        4,
-        30
-      ],
-      "rotation": {
-        "kind": "extrinsic",
-        "order": "zxy",
-        "angles": {
-          "x": 90,
-          "z": 90
-        }
       }
     },
     {
@@ -555,19 +358,6 @@
       "static-models": {
         "gltf": "BUY - Manual Z stage - LZ40 --- slide.glb",
         "step": "BUY - Manual Z stage - LZ40 --- slide.stp"
-      },
-      "position": [
-        -4,
-        4,
-        30
-      ],
-      "rotation": {
-        "kind": "extrinsic",
-        "order": "zxy",
-        "angles": {
-          "x": 90,
-          "z": 90
-        }
       }
     }
   ]

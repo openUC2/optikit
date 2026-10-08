@@ -68,7 +68,7 @@ func (g NonStrictEdgeDigraph[Node, Edge]) HasEdge(from, to Node, edge Edge) bool
 // StrictEdgeDigraph is a digraph represented as a list of nodes and edges, where at most one edge
 // may exist between any pair of nodes.
 
-type StrictEdgeDigraph[Node comparable, Edge comparable] map[Node]map[Node]Edge
+type StrictEdgeDigraph[Node comparable, Edge any] map[Node]map[Node]Edge
 
 // AdjDigraph copies the graph as a AdjDigraph.
 func (g StrictEdgeDigraph[Node, Edge]) AdjDigraph() AdjDigraph[Node] {

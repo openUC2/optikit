@@ -12,11 +12,6 @@ components:
       static-models:
         gltf: BUY - Fiber holder - FCPC.glb
         step: BUY - Fiber holder - FCPC.stp
-    pose:
-      rotation:
-        kind: grid
-      translation:
-        offset-mm: {z: 7}
     tags:
       - procurement/buy
       - in/kit/fluo-laser-box
@@ -62,10 +57,16 @@ components:
       static-models:
         gltf: PRT - 2053 - INSFIBHOL15x15 - V04.glb
         step: PRT - 2053 - INSFIBHOL15x15 - V04.stp
-    pose:
-      rotation:
-        kind: grid
     tags:
       - structure/insert
       - procurement/3d-print
       - in/kit/fluo-laser-box
+
+assemblies:
+  '':
+    children:
+      threaded-holder:
+        pose:
+          translation:
+            offset-mm: {z: 7}
+      insert: {}

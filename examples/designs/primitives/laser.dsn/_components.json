@@ -5,14 +5,7 @@
       "id": "case-bottom",
       "kind": "design",
       "design": "half-case.dsn",
-      "instantiation": {},
-      "rotation": {
-        "kind": "extrinsic",
-        "order": "zxy",
-        "angles": {
-          "z": -180
-        }
-      }
+      "instantiation": {}
     },
     {
       "id": "case-bottom/cube-pin-1",
@@ -48,13 +41,6 @@
       "static-models": {
         "gltf": "half-case.dsn/PRT - 3010 - CASHLFLAS.glb",
         "step": "half-case.dsn/PRT - 3010 - CASHLFLAS.stp"
-      },
-      "rotation": {
-        "kind": "extrinsic",
-        "order": "zxy",
-        "angles": {
-          "z": -180
-        }
       }
     },
     {
@@ -75,11 +61,7 @@
       "id": "case-top",
       "kind": "design",
       "design": "half-case.dsn",
-      "instantiation": {},
-      "rotation": {
-        "kind": "extrinsic",
-        "order": "zxy"
-      }
+      "instantiation": {}
     },
     {
       "id": "case-top/cube-pin-1",
@@ -115,10 +97,6 @@
       "static-models": {
         "gltf": "half-case.dsn/PRT - 3010 - CASHLFLAS.glb",
         "step": "half-case.dsn/PRT - 3010 - CASHLFLAS.stp"
-      },
-      "rotation": {
-        "kind": "extrinsic",
-        "order": "zxy"
       }
     },
     {
@@ -155,15 +133,6 @@
       "static-models": {
         "gltf": "BUY - Laser 488 nm - Bosion Laser.glb",
         "step": "BUY - Laser 488 nm - Bosion Laser.stp"
-      },
-      "position": [
-        0,
-        0,
-        20
-      ],
-      "rotation": {
-        "kind": "extrinsic",
-        "order": "zxy"
       }
     }
   ]

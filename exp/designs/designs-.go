@@ -154,9 +154,11 @@ func (d *FSDesignExpr) Path() string {
 // Cloned returns a new design which is a deep copy of the FSDesign.
 func (d *FSDesignExpr) Cloned() *FSDesignExpr {
 	return &FSDesignExpr{
-		Decl:    d.Decl.Cloned(),
-		Version: d.Version,
-		FS:      d.FS,
+		DesignExpr: DesignExpr{
+			Decl:    d.Decl.Cloned(),
+			Version: d.Version,
+		},
+		FS: d.FS,
 	}
 }
 
@@ -191,9 +193,11 @@ func (d *FSDesign) Path() string {
 // Cloned returns a new design which is a deep copy of the FSDesign.
 func (d *FSDesign) Cloned() *FSDesign {
 	return &FSDesign{
-		Decl:    d.Decl.Cloned(),
-		Version: d.Version,
-		FS:      d.FS,
+		Design: Design{
+			Decl:    d.Decl.Cloned(),
+			Version: d.Version,
+		},
+		FS: d.FS,
 	}
 }
 
@@ -203,65 +207,135 @@ func (d *FSDesign) LoadFSDesignExpr(ctx context.Context, subdesign string) (*FSD
 	return LoadFSDesignExpr(ctx, d.FS, subdesign)
 }
 
-// Flattened returns a new design in which all subassembly components have been supplemented with
-// their constituent primitive components, and each non-origin component's translation anchor is
-// just the root (origin) node, and each non-origin component's orientation (if an orientation
-// exists) is relative to the root (origin) node.
-// It assumes that the design's Decl.Components does not have any errors such as a nonexistent
-// translation anchor required by a CompPosesTranslSpec.
-func (d *FSDesign) Flattened(ctx context.Context, gridSpacings ContinuousXYZ[float64]) (
+// Flattened returns a new design in which all design components have been recursively supplemented
+// with their constituent primitive components, and each component's pose base in an assembly is
+// just that assembly.
+func (d *FSDesign) Flattened(
+	ctx context.Context, gridSpacings ContinuousXYZ[float64],
+) (
 	flattened *FSDesign, err error,
 ) {
-	flattened = d.Cloned()
-	flattened.Decl.Components = flattened.Decl.Components.TranslFlattened()
-	for compID := range d.Decl.Components {
-		component := flattened.Decl.Components[compID]
-		if component.Kind != CompKindDesign {
+	if flattened, err = d.flattenComponents(ctx, d.Cloned()); err != nil {
+		return nil, errors.Wrap(err, "couldn't flatten components")
+	}
+	for assmID, assm := range flattened.Decl.Assemblies {
+		if flattened, err = flattened.flattenAssembly(
+			ctx, flattened, assmID, assm, gridSpacings,
+		); err != nil {
+			return nil, errors.Wrapf(err, "couldn't recursively flatten assembly %s", assmID)
+		}
+	}
+	return flattened, nil
+}
+
+func (d *FSDesign) flattenComponents(
+	ctx context.Context, flattened *FSDesign,
+) (modified *FSDesign, err error) {
+	for compID, comp := range d.Decl.Components {
+		if comp.Kind != CompKindDesign {
 			continue
 		}
 
-		mat, err := component.Pose.TransfMat(gridSpacings)
-		if err != nil {
-			return nil, errors.Wrapf(
-				err, "couldn't compute transformation matrix for pose of component %s", compID,
-			)
-		}
 		subdesign, err := d.LoadCompFSDesign(ctx, compID)
 		if err != nil {
 			return nil, errors.Wrapf(
-				err, "couldn't load subdesign %s for component %s", component.Design, compID,
+				err, "couldn't load subdesign %s for component %s", comp.Design, compID,
 			)
 		}
-		subflattened, err := subdesign.Flattened(ctx, gridSpacings)
+		subflattened, err := subdesign.flattenComponents(ctx, subdesign.Cloned())
 		if err != nil {
 			return nil, errors.Wrapf(
-				err, "couldn't flatten subdesign %s for component %s", component.Design, compID,
+				err, "couldn't flatten subdesign %s for component %s", comp.Design, compID,
 			)
 		}
-		for subcompID, subcomponent := range subflattened.Decl.Components {
-			if component.Pose != (CompPoseSpec{}) && subcomponent.Pose != (CompPoseSpec{}) {
-				submat, err := subcomponent.Pose.TransfMat(gridSpacings)
-				if err != nil {
-					return nil, errors.Wrapf(
-						err, "couldn't compute transformation matrix for pose of subcomponent %s", subcompID,
-					)
-				}
-				flattenedSubmat := mat4.Ident
-				flattenedSubmat.AssignMul(&mat, &submat)
-				subcomponent.Pose = NewPose(flattenedSubmat, gridSpacings)
-			}
-
-			switch subcomponent.Kind {
+		for subcompID, subcomp := range subflattened.Decl.Components {
+			switch subcomp.Kind {
 			case CompKindDesign:
-				subcomponent.Design = prefixNonempty(subcomponent.Design, component.Design)
+				subcomp.Design = prefixNonempty(subcomp.Design, comp.Design)
 			case CompKindPrimitive:
-				subcomponent.Primitive.StaticModels = subcomponent.Primitive.StaticModels.Prefixed(
-					component.Design,
-				)
+				subcomp.Primitive.StaticModels = subcomp.Primitive.StaticModels.Prefixed(comp.Design)
 			}
-
-			flattened.Decl.Components[JoinCompIDs(compID, subcompID)] = subcomponent
+			flattenedID := JoinCompIDs(compID, subcompID)
+			flattened.Decl.Components[flattenedID] = subcomp
 		}
+	}
+	return flattened, nil
+}
+
+func (d *FSDesign) flattenAssembly(
+	ctx context.Context, flattened *FSDesign, assmID AssmID, assm AssmSpec,
+	gridSpacings ContinuousXYZ[float64],
+) (modified *FSDesign, err error) {
+	if assm.Children, err = assm.Children.Flattened(gridSpacings); err != nil {
+		return nil, errors.Wrapf(
+			err, "couldn't flatten assembly %s prior to flattening subdesigns", assmID,
+		)
+	}
+	flattened.Decl.Assemblies[assmID] = assm
+
+	for compID, assmComp := range assm.Children.Cloned() {
+		comp, ok := flattened.Decl.Components[compID]
+		if !ok {
+			return nil, errors.Errorf(
+				"couldn't find component %s required by assembly %s", compID, assmID,
+			)
+		}
+		if comp.Kind != CompKindDesign {
+			continue
+		}
+
+		if flattened, err = d.flattenSubtree(
+			ctx, flattened, assmID, compID, assmComp, comp, gridSpacings,
+		); err != nil {
+			return flattened, errors.Wrapf(err, "couldn't flatten assembly at %s as subdesign", compID)
+		}
+	}
+	return flattened, nil
+}
+
+func (d *FSDesign) flattenSubtree(
+	ctx context.Context,
+	flattened *FSDesign, assmID AssmID, compID CompID, assmComp AssmCompSpec, comp CompSpec,
+	gridSpacings ContinuousXYZ[float64],
+) (modified *FSDesign, err error) {
+	mat, err := assmComp.Pose.TransfMat(gridSpacings)
+	if err != nil {
+		return nil, errors.Wrapf(
+			err, "couldn't compute transformation matrix for pose of component %s", compID,
+		)
+	}
+	subdesign, err := d.LoadCompFSDesign(ctx, compID)
+	if err != nil {
+		return nil, errors.Wrapf(
+			err, "couldn't load subdesign %s for component %s", comp.Design, compID,
+		)
+	}
+	subflattened, err := subdesign.Flattened(ctx, gridSpacings)
+	if err != nil {
+		return nil, errors.Wrapf(
+			err, "couldn't flatten subdesign %s for component %s", comp.Design, compID,
+		)
+	}
+	subassm, ok := subflattened.Decl.Assemblies[assmComp.Assm]
+	if !ok {
+		return flattened, errors.Errorf(
+			"couldn't find assembly %s in flattened subdesign %s", assmComp.Assm, comp.Design,
+		)
+	}
+	for subcompID, subassmComp := range subassm.Children {
+		flattenedID := JoinCompIDs(compID, subcompID)
+
+		submat, err := subassmComp.Pose.TransfMat(gridSpacings)
+		if err != nil {
+			return nil, errors.Wrapf(
+				err, "couldn't compute transformation matrix for pose of subcomponent %s", subcompID,
+			)
+		}
+		flattenedSubmat := mat4.Ident
+		flattenedSubmat.AssignMul(&mat, &submat)
+		subassmComp.Pose = NewPose(flattenedSubmat, gridSpacings)
+
+		flattened.Decl.Assemblies[assmID].Children[flattenedID] = subassmComp
 	}
 	return flattened, nil
 }
@@ -289,8 +363,8 @@ func (d *FSDesign) LoadCompFSDesign(
 	subdesign = &FSDesign{FS: subdesignExpr.FS}
 	if subdesign.Design, err = subdesignExpr.Instantiated(component.Instantiation); err != nil {
 		return nil, errors.Wrapf(
-			err, "couldn't instantiate variant %s of subdesign %s for component %s",
-			component.Instantiation.Variant, component.Design, compID,
+			err, "couldn't instantiate subdesign %s for component %s as %s",
+			component.Design, compID, component.Instantiation,
 		)
 	}
 	if errs = subdesign.Check(); len(errs) > 0 {

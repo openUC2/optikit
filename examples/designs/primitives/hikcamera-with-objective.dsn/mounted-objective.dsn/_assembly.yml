@@ -1,0 +1,29 @@
+optikit-version: v0.0.0-dev
+components:
+- id: lens
+  kind: design
+  design: lens.dsn
+  position: [23.9, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+    angles:
+      "y": -90.0
+      z: -180.0
+- id: lens-holder-bottom
+  kind: design
+  design: half-case.dsn
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+    angles:
+      "y": -180.0
+      z: -180.0
+- id: lens-holder-top
+  kind: design
+  design: half-case.dsn
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy

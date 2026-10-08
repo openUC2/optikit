@@ -19,24 +19,27 @@ import (
 // Objects
 
 func RenderObjects(
-	ctx context.Context, fsys ffs.PathedFS, design *designs.FSDesign, format string,
+	ctx context.Context,
+	fsys ffs.PathedFS, design *designs.FSDesign, assembly designs.AssmID, format string,
 	optikitVersion string,
 ) (result []byte, err error) {
 	switch format {
 	default:
 		return nil, errors.Errorf("unknown format %s", format)
 	case "glb":
-		return RenderObjectsGLB(ctx, design, false)
+		return RenderObjectsGLB(ctx, design, assembly, false)
 	case "gltf":
-		return RenderObjectsGLB(ctx, design, true)
+		return RenderObjectsGLB(ctx, design, assembly, true)
 	}
 }
 
 func RenderObjectsGLB(
-	ctx context.Context, design *designs.FSDesign, asText bool,
+	ctx context.Context, design *designs.FSDesign, assembly designs.AssmID, asText bool,
 ) (result []byte, err error) {
 	doc := gltf.NewDocument()
-	if result, err = doc.Assemble(ctx, design, asText, designs.UC2GridSpacings); err != nil {
+	if result, err = doc.Assemble(
+		ctx, design, assembly, designs.UC2GridSpacings, asText,
+	); err != nil {
 		return nil, err
 	}
 	return result, nil
@@ -110,9 +113,10 @@ func populateComponentsGraph(
 		edgeLabel := ""
 		if component.Kind == designs.CompKindDesign {
 			edgeLabel = component.Design
-			if component.Instantiation.Variant != "" {
-				edgeLabel = fmt.Sprintf("%s:%s", edgeLabel, component.Instantiation.Variant)
-			}
+			// TODO: move this into the assembly graph
+			// if component.Instantiation.Variant != "" {
+			// 	edgeLabel = fmt.Sprintf("%s:%s", edgeLabel, component.Instantiation.Variant)
+			// }
 		}
 		gg.AddEdge(string(rootID), toID, edgeLabel)
 	}
@@ -203,18 +207,20 @@ func populateDesignsGraph(
 		}
 
 		child := path.Join(design.FS.Path(), component.Design)
-		if component.Instantiation.Variant != "" {
-			child += ":" + string(component.Instantiation.Variant)
-		}
+		// TODO: move this into the assembly graph
+		// if component.Instantiation.Variant != "" {
+		// 	child += ":" + string(component.Instantiation.Variant)
+		// }
 		gg.AddNode(child)
 		nodeMetadata[child] = graphviz.NodeMetadata{
 			Label: component.Design,
 		}
-		if component.Instantiation.Variant != "" {
-			nodeMetadata[child] = graphviz.NodeMetadata{
-				Label: fmt.Sprintf("%s:%s", component.Design, string(component.Instantiation.Variant)),
-			}
-		}
+		// TODO: move this into the assembly graph
+		// if component.Instantiation.Variant != "" {
+		// 	nodeMetadata[child] = graphviz.NodeMetadata{
+		// 		Label: fmt.Sprintf("%s:%s", component.Design, string(component.Instantiation.Variant)),
+		// 	}
+		// }
 		gg.AddEdge(rootID, child, string(id))
 	}
 
@@ -225,9 +231,10 @@ func populateDesignsGraph(
 		}
 
 		child := path.Join(design.FS.Path(), component.Design)
-		if component.Instantiation.Variant != "" {
-			child += ":" + string(component.Instantiation.Variant)
-		}
+		// TODO: move this into the assembly graph
+		// if component.Instantiation.Variant != "" {
+		// 	child += ":" + string(component.Instantiation.Variant)
+		// }
 		subdesign, err := design.LoadCompFSDesign(ctx, compID)
 		if err != nil {
 			return nil, nil, errors.Wrapf(
@@ -247,8 +254,9 @@ func populateDesignsGraph(
 	return gg, nodeMetadata, nil
 }
 
-func RenderPositionGraph(
-	ctx context.Context, design *designs.FSDesign, format string, recurse bool,
+func RenderAssemblyGraph(
+	ctx context.Context, design *designs.FSDesign, assembly designs.AssmID, format string,
+	recurse bool,
 ) (result []byte, err error) {
 	gvc, err := graphviz.New(ctx)
 	if err != nil {
@@ -262,7 +270,7 @@ func RenderPositionGraph(
 	}()
 
 	gg := make(structures.StrictEdgeDigraph[string, string])
-	if gg, err = populatePositionGraph(ctx, gg, design, recurse, ""); err != nil {
+	if gg, err = populateAssemblyGraph(ctx, gg, design, assembly, recurse, ""); err != nil {
 		return nil, errors.Wrapf(err, "couldn't populate position graph for design %s", design.Path())
 	}
 	gvg, err := gvc.NewStrictDigraph("", gg, nil)
@@ -285,29 +293,30 @@ func RenderPositionGraph(
 	return result, nil
 }
 
-func populatePositionGraph(
+func populateAssemblyGraph(
 	ctx context.Context,
-	gg structures.StrictEdgeDigraph[string, string], design *designs.FSDesign,
+	gg structures.StrictEdgeDigraph[string, string],
+	design *designs.FSDesign, assembly designs.AssmID,
 	recurse bool, nodePrefix designs.CompID,
 ) (structures.StrictEdgeDigraph[string, string], error) {
-	tg := design.Decl.Components.TranslDigraph()
+	assm, ok := design.Decl.Assemblies[assembly]
+	if !ok {
+		return nil, errors.Errorf("couldn't find assembly %s in design %s", assembly, design.Path())
+	}
+	tg, err := assm.Children.PoseDigraph()
+	if err != nil {
+		return nil, errors.Wrapf(err, "couldn't build scene graph of assembly %s", assembly)
+	}
+
 	fromIDs := slices.Sorted(maps.Keys(tg))
 	for _, fromID := range fromIDs {
-		if fromID != "" && design.Decl.Components[fromID].Pose == (designs.CompPoseSpec{}) {
-			continue
-		}
-
 		from := tg[fromID]
 		fromID = designs.JoinCompIDs(nodePrefix, fromID)
 		gg.AddNode(string(fromID))
 		for _, toID := range slices.Sorted(maps.Keys(from)) {
-			if design.Decl.Components[toID].Pose == (designs.CompPoseSpec{}) {
-				continue
-			}
-
 			edge := from[toID]
 			toID = designs.JoinCompIDs(nodePrefix, toID)
-			gg.AddEdge(string(fromID), string(toID), edge.String())
+			gg.AddEdge(string(fromID), string(toID), edge.Pose.String())
 		}
 	}
 	if !recurse {
@@ -315,24 +324,26 @@ func populatePositionGraph(
 	}
 
 	for _, compID := range fromIDs {
-		component := design.Decl.Components[compID]
-		if component.Kind != designs.CompKindDesign {
+		assmComp := assm.Children[compID]
+		comp := design.Decl.Components[compID]
+		if comp.Kind != designs.CompKindDesign {
 			continue
 		}
 
+		// TODO: annotate the node or parent edge with the included assembly
 		subdesign, err := design.LoadCompFSDesign(ctx, compID)
 		if err != nil {
 			return nil, errors.Wrapf(
-				err, "couldn't load subdesign %s for component %s", component.Design, compID,
+				err, "couldn't load subdesign %s for component %s", comp.Design, compID,
 			)
 		}
 
-		if gg, err = populatePositionGraph(
-			ctx, gg, subdesign, recurse, designs.JoinCompIDs(nodePrefix, compID),
+		if gg, err = populateAssemblyGraph(
+			ctx, gg, subdesign, assmComp.Assm, recurse, designs.JoinCompIDs(nodePrefix, compID),
 		); err != nil {
 			return nil, errors.Wrapf(
 				err, "couldn't populate position graph by recursing into subdesign %s for component %s",
-				component.Design, compID,
+				comp.Design, compID,
 			)
 		}
 	}

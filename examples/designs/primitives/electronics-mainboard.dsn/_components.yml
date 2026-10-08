@@ -6,18 +6,12 @@ components:
     gltf: "PRT - 1009 - CASMAIBRD2X2BAS - B.glb"
     step: "PRT - 1009 - CASMAIBRD2X2BAS - B.stp"
   position: [0.0, 0.0, 0.0]
-  rotation:
-    kind: extrinsic
-    order: zxy
 - id: case-lid
   kind: primitive/static
   static-models:
     gltf: "PRT - 1010 - CASMAIBRD2X2LID - B.glb"
     step: "PRT - 1010 - CASMAIBRD2X2LID - B.stp"
   position: [0.0, 0.0, 0.0]
-  rotation:
-    kind: extrinsic
-    order: zxy
 - id: drivers
   kind: primitive/static
   static-models:

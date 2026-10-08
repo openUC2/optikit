@@ -1,0 +1,51 @@
+optikit-version: v0.0.0-dev
+components:
+- id: motor
+  kind: design
+  design: primitives/motor-push-rod.dsn
+  position: [-31.0, 29.7, 23.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+    angles:
+      z: 90.0
+- id: motor-holder
+  kind: primitive/static
+  static-models:
+    gltf: "PRT - 3022 - MOTHOLYST.glb"
+    step: "PRT - 3022 - MOTHOLYST.stp"
+  position: [-4.0, 4.0, 11.5]
+  rotation:
+    kind: extrinsic
+    order: zxy
+    angles:
+      z: -90.0
+- id: motor/motor
+  kind: primitive/static
+  static-models:
+    gltf: "primitives/motor-push-rod.dsn/BUY - Stepping motor with captive push rod  - L8K2105AD4-050SMSN-220(02).glb"
+    step: "primitives/motor-push-rod.dsn/BUY - Stepping motor with captive push rod  - L8K2105AD4-050SMSN-220(02).stp"
+  position: [-35.0, 25.7, 23.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+    angles:
+      z: 90.0
+- id: stop-bracket
+  kind: primitive/static
+  static-models:
+    gltf: "PRT - 3023 - BKTXST.glb"
+    step: "PRT - 3023 - BKTXST.stp"
+  position: [-4.0, 4.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: xy-plate
+  kind: primitive/static
+  static-models:
+    gltf: "BUY - XYZ linear table - LD40 --- XY plate.glb"
+    step: "BUY - XYZ linear table - LD40 --- XY plate.stp"
+  position: [-4.0, 4.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy

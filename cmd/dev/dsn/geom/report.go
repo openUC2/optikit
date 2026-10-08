@@ -11,14 +11,14 @@ import (
 	"github.com/openUC2/optikit/internal/optikit"
 )
 
-func reportPrimA(versions compat.Versions) cli.ActionFunc {
+func reportAssmA(versions compat.Versions) cli.ActionFunc {
 	return func(ctx context.Context, c *cli.Command) error {
 		inputs, err := parseInputVars(c.StringSlice("input"))
 		if err != nil {
 			return errors.Wrap(err, "couldn't parse input variables")
 		}
 		design, err := optikit.LoadFSDesign(
-			ctx, c.String("cwd"), designs.VariantID(c.String("variant")), inputs, false,
+			ctx, c.String("cwd"), inputs, false,
 		)
 		if err != nil {
 			return err
@@ -28,7 +28,9 @@ func reportPrimA(versions compat.Versions) cli.ActionFunc {
 		if format == "yml" {
 			format = "yaml"
 		}
-		report, err := optikit.ReportPrimitives(ctx, design, designs.UC2GridSpacings, versions.Tool)
+		report, err := optikit.ReportAssembly(
+			ctx, design, designs.AssmID(c.String("assembly")), designs.UC2GridSpacings, versions.Tool,
+		)
 		if err != nil {
 			return err
 		}

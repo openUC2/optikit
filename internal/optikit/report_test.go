@@ -13,42 +13,57 @@ import (
 	"github.com/openUC2/optikit/exp/designs"
 )
 
-var reports = map[string][]designs.InstSpec{ // design -> instantiations
-	"primitives/cube-skeleton.dsn": {{}},
+var reportTests = map[string][]struct {
+	Assembly      designs.AssmID
+	Instantiation designs.InstSpec
+}{
+	"primitives/cube-skeleton.dsn": {{Assembly: ""}},
 	"primitives/axes.dsn": {
-		{Variant: "ZposXpos"},
-		{Variant: "ZposYpos"},
-		{Variant: "ZposXneg"},
-		{Variant: "ZposYneg"},
-		{Variant: "ZnegXpos"},
-		{Variant: "ZnegYpos"},
-		{Variant: "ZnegXneg"},
-		{Variant: "ZnegYneg"},
-		{Variant: "YposXpos"},
-		{Variant: "YposZneg"},
-		{Variant: "YposXneg"},
-		{Variant: "YposZpos"},
-		{Variant: "YnegXpos"},
-		{Variant: "YnegZneg"},
-		{Variant: "YnegXneg"},
-		{Variant: "YnegZpos"},
-		{Variant: "XposZneg"},
-		{Variant: "XposYpos"},
-		{Variant: "XposZpos"},
-		{Variant: "XposYneg"},
-		{Variant: "XnegZneg"},
-		{Variant: "XnegYpos"},
-		{Variant: "XnegZpos"},
-		{Variant: "XnegYneg"},
+		{Assembly: "ZposXpos"},
+		{Assembly: "ZposYpos"},
+		{Assembly: "ZposXneg"},
+		{Assembly: "ZposYneg"},
+		{Assembly: "ZnegXpos"},
+		{Assembly: "ZnegYpos"},
+		{Assembly: "ZnegXneg"},
+		{Assembly: "ZnegYneg"},
+		{Assembly: "YposXpos"},
+		{Assembly: "YposZneg"},
+		{Assembly: "YposXneg"},
+		{Assembly: "YposZpos"},
+		{Assembly: "YnegXpos"},
+		{Assembly: "YnegZneg"},
+		{Assembly: "YnegXneg"},
+		{Assembly: "YnegZpos"},
+		{Assembly: "XposZneg"},
+		{Assembly: "XposYpos"},
+		{Assembly: "XposZpos"},
+		{Assembly: "XposYneg"},
+		{Assembly: "XnegZneg"},
+		{Assembly: "XnegYpos"},
+		{Assembly: "XnegZpos"},
+		{Assembly: "XnegYneg"},
 	},
 	"cube-mounted/lens.dsn": {
-		{Variant: "x", Inputs: map[designs.VarName]any{"offset": -11}},
-		{Variant: "z", Inputs: map[designs.VarName]any{"offset": 7}},
+		{
+			Assembly:      "x",
+			Instantiation: designs.InstSpec{Inputs: map[designs.VarName]any{"offset": -11}},
+		},
+		{
+			Assembly:      "z",
+			Instantiation: designs.InstSpec{Inputs: map[designs.VarName]any{"offset": 7}},
+		},
 	},
-	"cube-mounted/mirror-diagonal.dsn": {{Variant: "_z"}, {Variant: "xy"}},
+	"cube-mounted/mirror-diagonal.dsn": {{Assembly: "3d:_z"}, {Assembly: "3d:xy"}},
 	"cube-mounted/slide-holder.dsn": {
-		{Variant: "x", Inputs: map[designs.VarName]any{"offset": -12}},
-		{Variant: "z", Inputs: map[designs.VarName]any{"offset": 7}},
+		{
+			Assembly:      "x",
+			Instantiation: designs.InstSpec{Inputs: map[designs.VarName]any{"offset": -12}},
+		},
+		{
+			Assembly:      "z",
+			Instantiation: designs.InstSpec{Inputs: map[designs.VarName]any{"offset": 7}},
+		},
 	},
 	"microscopes/simple-3d.dsn":                 {{}},
 	"microscopes/simple-rel-transl-anchors.dsn": {{}},
@@ -63,25 +78,24 @@ func TestReportPrims(t *testing.T) {
 	}
 	examplesPath := path.Join(path.Dir(path.Dir(cwd)), "examples")
 
-	for design, instantiations := range reports {
-		for _, instantiation := range instantiations {
-			name := fmt.Sprintf("%s:%s", design, instantiation)
+	for design, reports := range reportTests {
+		for _, report := range reports {
+			name := fmt.Sprintf("%s:%s", design, report)
 			t.Run(name, func(t *testing.T) {
 				t.Parallel()
 
 				dp := path.Join(examplesPath, "designs", design)
 
-				t.Logf("load %s:%s", design, instantiation)
-				design, err := LoadFSDesign(
-					t.Context(), dp, instantiation.Variant, instantiation.Inputs, false,
-				)
+				t.Logf("load %s:%s", design, report)
+				design, err := LoadFSDesign(t.Context(), dp, report.Instantiation.Inputs, false)
 				if err != nil {
 					t.Error(err)
 					return
 				}
 
 				for format := range fileExts {
-					checkPrimitives(t, instantiation.Variant, design, dp, format)
+					checkComponents(t, design, dp, format)
+					checkAssembly(t, report.Assembly, design, dp, format)
 				}
 			})
 		}
@@ -93,21 +107,52 @@ var fileExts = map[string]string{
 	"yaml": "yml",
 }
 
-func checkPrimitives(
-	t *testing.T, variant designs.VariantID, design *designs.FSDesign, dp, format string,
+func checkComponents(
+	t *testing.T, design *designs.FSDesign, dp, format string,
 ) {
 	t.Helper()
 
-	reportName := "_primitives"
-	if variant != "" {
-		reportName += ":" + string(variant)
+	reportName := "_components"
+	t.Logf("report %s to %s", reportName, format)
+	reportName += "." + fileExts[format]
+
+	var want, got []byte
+	var err error
+	report, err := ReportComponents(t.Context(), design, designs.UC2GridSpacings, cmd.FallbackVersion)
+	if err != nil {
+		t.Error(err)
+		return
+	}
+	if got, err = SerializeReport(t.Context(), report, format); err != nil {
+		t.Error(err)
+		return
+	}
+	if want, err = os.ReadFile(filepath.Clean(path.Join(dp, reportName))); err != nil {
+		t.Error(err)
+		return
+	}
+	if !cmp.Equal(got, want) {
+		t.Errorf("diff (-want +got):\n%+v", cmp.Diff(want, got))
+	}
+}
+
+func checkAssembly(
+	t *testing.T, assembly designs.AssmID, design *designs.FSDesign, dp, format string,
+) {
+	t.Helper()
+
+	reportName := "_assembly"
+	if assembly != "" {
+		reportName += ":" + string(assembly)
 	}
 	t.Logf("report %s to %s", reportName, format)
 	reportName += "." + fileExts[format]
 
 	var want, got []byte
 	var err error
-	report, err := ReportPrimitives(t.Context(), design, designs.UC2GridSpacings, cmd.FallbackVersion)
+	report, err := ReportAssembly(
+		t.Context(), design, assembly, designs.UC2GridSpacings, cmd.FallbackVersion,
+	)
 	if err != nil {
 		t.Error(err)
 		return

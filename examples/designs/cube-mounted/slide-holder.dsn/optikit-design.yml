@@ -6,20 +6,6 @@ design:
     - composition/cube-mounted
     - in/kit/core-box
 
-components:
-  skeleton:
-    kind: design
-    design: primitives/cube-skeleton.dsn
-    pose:
-      rotation:
-        kind: grid
-  mounted-slide-holder:
-    kind: design
-    design: mounted-holder.dsn
-    pose:
-      rotation:
-        kind: grid
-
 inputs:
   offset:
     description: Translation of mounted-slide-holder along its normal vector
@@ -31,10 +17,19 @@ inputs:
       - pose/insert/translation
       - adjustment/manual-assembly
 
-variants:
+components:
+  skeleton:
+    kind: design
+    design: primitives/cube-skeleton.dsn
+  mounted-slide-holder:
+    kind: design
+    design: mounted-holder.dsn
+
+assemblies:
   z:
     description: Normal vector of the sample slide is the z-axis
-    components:
+    children:
+      skeleton: {}
       mounted-slide-holder:
         pose:
           translation:
@@ -44,10 +39,12 @@ variants:
       - pose/insert/orientation/vertical
   x:
     description: Normal vector of the sample slide is the x-axis
-    components:
+    children:
+      skeleton: {}
       mounted-slide-holder:
         pose:
           rotation:
+            kind: grid
             grid: {z: +x, x: -z}
           translation:
             offset-mm:

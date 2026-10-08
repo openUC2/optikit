@@ -6,20 +6,6 @@ design:
     - composition/cube-mounted
     - in/kit/core-box
 
-components:
-  skeleton:
-    kind: design
-    design: primitives/cube-skeleton.dsn
-    pose:
-      rotation:
-        kind: grid
-  mounted-lens:
-    kind: design
-    design: mounted-lens.dsn
-    pose:
-      rotation:
-        kind: grid
-
 inputs:
   offset:
     description: Translation of mounted-lens along its normal vector
@@ -31,13 +17,23 @@ inputs:
       - pose/insert/translation
       - adjustment/manual-assembly
 
-variants:
+components:
+  skeleton:
+    kind: design
+    design: primitives/cube-skeleton.dsn
+  mounted-lens:
+    kind: design
+    design: mounted-lens.dsn
+
+assemblies:
   x:
     description: Normal vector of lens is x-axis
-    components:
+    children:
+      skeleton: {}
       mounted-lens:
         pose:
           rotation:
+            kind: grid
             grid: {z: +x, x: -z}
           translation:
             offset-mm:
@@ -46,7 +42,8 @@ variants:
       - pose/insert/orientation/horizontal
   z:
     description: Normal vector of lens is z-axis
-    components:
+    children:
+      skeleton: {}
       mounted-lens:
         pose:
           translation:

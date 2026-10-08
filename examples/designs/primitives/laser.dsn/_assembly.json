@@ -1,0 +1,72 @@
+{
+  "optikit-version": "v0.0.0-dev",
+  "components": [
+    {
+      "id": "case-bottom",
+      "kind": "design",
+      "design": "half-case.dsn",
+      "instantiation": {},
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "z": -180
+        }
+      }
+    },
+    {
+      "id": "case-bottom/half-case",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "half-case.dsn/PRT - 3010 - CASHLFLAS.glb",
+        "step": "half-case.dsn/PRT - 3010 - CASHLFLAS.stp"
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "z": -180
+        }
+      }
+    },
+    {
+      "id": "case-top",
+      "kind": "design",
+      "design": "half-case.dsn",
+      "instantiation": {},
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "case-top/half-case",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "half-case.dsn/PRT - 3010 - CASHLFLAS.glb",
+        "step": "half-case.dsn/PRT - 3010 - CASHLFLAS.stp"
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "laser",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "BUY - Laser 488 nm - Bosion Laser.glb",
+        "step": "BUY - Laser 488 nm - Bosion Laser.stp"
+      },
+      "position": [
+        0,
+        0,
+        20
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    }
+  ]
+}

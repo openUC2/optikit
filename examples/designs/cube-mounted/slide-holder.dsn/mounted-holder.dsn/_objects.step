@@ -1,8 +1,9 @@
 ISO-10303-21;
 HEADER;
 FILE_DESCRIPTION(('Open CASCADE Model'),'2;1');
-FILE_NAME('design','1970-01-01T00:00:00',('Author'),('Open CASCADE'),
-  'Open CASCADE STEP processor 8.0','build123d','Unknown');
+FILE_NAME('design','1970-01-01T00:00:00+00:00',('Author'),(
+    'Open CASCADE'),'Open CASCADE STEP processor 8.0','build123d',
+  'Unknown');
 FILE_SCHEMA(('AUTOMOTIVE_DESIGN { 1 0 10303 214 1 1 1 1 }'));
 ENDSEC;
 DATA;
@@ -52323,4 +52324,3 @@ SHAPE_REPRESENTATION_RELATIONSHIP() );
 #42578 = DRAUGHTING_PRE_DEFINED_CURVE_FONT('continuous');
 ENDSEC;
 END-ISO-10303-21;
-

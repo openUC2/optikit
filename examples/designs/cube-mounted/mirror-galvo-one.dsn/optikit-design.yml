@@ -5,29 +5,6 @@ design:
   tags:
     - composition/cube-mounted
 
-components:
-  skeleton:
-    kind: design
-    design: primitives/cube-skeleton.dsn
-    pose:
-      rotation:
-        kind: grid
-  mounted-mirror:
-    kind: design
-    design: mounted-mirror.dsn
-    instantiation:
-      inputs:
-        mirror-rotation: ~ inputs['mirror-rotation'].value
-    pose:
-      rotation:
-        kind: grid
-  skeleton-extra:
-    kind: design
-    design: primitives/cube-skeleton.dsn
-    pose:
-      rotation:
-        kind: grid
-
 inputs:
   mirror-rotation:
     description: Rotation of mirror about the rotation axis of its motor
@@ -39,22 +16,40 @@ inputs:
       - actuation/rotational/stepper
       - control/electronic
 
-variants:
+components:
+  skeleton:
+    kind: design
+    design: primitives/cube-skeleton.dsn
+  mounted-mirror:
+    kind: design
+    design: mounted-mirror.dsn
+    instantiation:
+      inputs:
+        mirror-rotation: ~ inputs['mirror-rotation'].value
+  skeleton-extra:
+    kind: design
+    design: primitives/cube-skeleton.dsn
+
+assemblies:
   x:
     description: Rotational axis of motor is x-axis
-    tags:
-      - pose/insert/orientation/horizontal
-    components:
+    children:
+      skeleton: {}
+      mounted-mirror: {}
       skeleton-extra:
         pose:
           translation:
             offset-grid: {x: -1}
+    tags:
+      - pose/insert/orientation/horizontal
   z:
     description: Rotational axis of motor is z-axis
-    components:
+    children:
+      skeleton: {}
       mounted-mirror:
         pose:
           rotation:
+            kind: grid
             grid: {z: +x, x: -z}
       skeleton-extra:
         pose:

@@ -88,7 +88,7 @@ def assemble_file(input_path: str, output_path: str, wd: str):
     p = pathlib.Path(os.path.join(wd, input_path))
     report_text = p.read_text()
     assembled = assemble_prims(read_json_report(report_text), wd)
-    export_assembly(assembled, output_path)
+    export_assembly(assembled, os.path.join(wd, output_path))
 
 
 def main_file():

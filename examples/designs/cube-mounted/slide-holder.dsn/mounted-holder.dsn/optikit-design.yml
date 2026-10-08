@@ -12,11 +12,6 @@ components:
       static-models:
         gltf: PRT - 2008 - SAMCLP.glb
         step: PRT - 2008 - SAMCLP.stp
-    pose:
-      rotation:
-        kind: grid
-      translation:
-        offset-mm: {z: -10}
     tags:
       - procurement/3d-print
       - in/kit/core-box
@@ -62,10 +57,16 @@ components:
       static-models:
         gltf: PRT - 2028 - INSSAMMNT - V04.glb
         step: PRT - 2028 - INSSAMMNT - V04.stp
-    pose:
-      rotation:
-        kind: grid
     tags:
       - structure/insert
       - procurement/3d-print
       - in/kit/core-box
+
+assemblies:
+  '':
+    children:
+      clip:
+        pose:
+          translation:
+            offset-mm: {z: -10}
+      insert: {}

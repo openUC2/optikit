@@ -1,0 +1,34 @@
+{
+  "optikit-version": "v0.0.0-dev",
+  "components": [
+    {
+      "id": "insert",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "PRT - 2053 - INSFIBHOL15x15 - V04.glb",
+        "step": "PRT - 2053 - INSFIBHOL15x15 - V04.stp"
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "threaded-holder",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "BUY - Fiber holder - FCPC.glb",
+        "step": "BUY - Fiber holder - FCPC.stp"
+      },
+      "position": [
+        0,
+        0,
+        7
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    }
+  ]
+}

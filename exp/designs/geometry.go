@@ -239,6 +239,19 @@ var GridRotMats = map[string]map[string]mat4.T{
 	},
 }
 
+// RotGridSpec specifies the component's orientation relative to the specified base's orientation by
+// two discrete parameters: the orientation of the component's z-axis, and the orientation of the
+// component's x-axis.
+// The component's y-axis is derived from the component's x- and z-axes via the right-hand rule.
+type RotGridSpec struct {
+	// Z specifies the axis of the base's coordinate system which the component's coordinate
+	// system's +z direction should point in. The zero value is interpreted as +z.
+	Z string `json:"z,omitzero" yaml:"z,omitempty"`
+	// X specifies the axis of the base's coordinate system which the component's coordinate
+	// system's +x direction should point in. The zero value is interpreted as +x.
+	X string `json:"x,omitzero" yaml:"x,omitempty"`
+}
+
 // ExprXYZ
 
 // Merged returns a new ExprXYZ created by applying the specified overlay, without modifying
@@ -375,3 +388,22 @@ func (s ContinuousXYZ[Number]) Added(t ContinuousXYZ[Number]) ContinuousXYZ[Numb
 		Z: s.Z + t.Z,
 	}
 }
+
+// RotGridSpec
+
+// Check looks for errors in the construction of the component grid orientation spec.
+func (s RotGridSpec) Check() (errs []error) {
+	if s.Z[1] == s.X[1] {
+		errs = append(errs, errors.Errorf("component's z and x axes are coaxial: z=%s, x=%s", s.Z, s.X))
+	}
+	return errs
+}
+
+// Merged returns a new CompPoseRotGridSpec created by applying the specified overlay, without
+// modifying this current CompsPoseSpec or the overlay.
+/*func (s RotGridSpec) Merged(overlay RotGridSpec) RotGridSpec {
+	return RotGridSpec{
+		Z: cmp.Or(overlay.Z, s.Z),
+		X: cmp.Or(overlay.X, s.X),
+	}
+}*/

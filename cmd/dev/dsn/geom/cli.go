@@ -18,9 +18,9 @@ func MakeCmd(versions compat.Versions) *cli.Command {
 		Usage:   "Facilitates development and maintenance of the design's geometry",
 		Flags: []cli.Flag{
 			&cli.StringFlag{
-				Name:    "variant",
-				Aliases: []string{"v"},
-				Usage:   "Select design variant",
+				Name:    "assembly",
+				Aliases: []string{"a"},
+				Usage:   "Select design assembly",
 			},
 			&cli.StringSliceFlag{
 				Name:    "input",
@@ -38,15 +38,15 @@ func MakeCmd(versions compat.Versions) *cli.Command {
 func makeReportCmds(versions compat.Versions) []*cli.Command {
 	return []*cli.Command{
 		{
-			Name:    "report-prim",
-			Aliases: []string{"report-primitives"},
-			Usage: "Generate a report of the model files and poses of all primitives in the " +
-				"design",
+			Name:    "report-assm",
+			Aliases: []string{"report-assembly"},
+			Usage: "Generate a report of the model files and poses of all components in the " +
+				"specified assembly",
 			ArgsUsage: argsUsageOutputFile,
 			Flags: []cli.Flag{
 				makeRenderOutputFormatFlag("json", "yaml", "yml"),
 			},
-			Action: reportPrimA(versions),
+			Action: reportAssmA(versions),
 		},
 	}
 }
@@ -64,14 +64,14 @@ func makeRenderCmds(versions compat.Versions) []*cli.Command {
 			Action: renderObjA(versions),
 		},
 		{
-			Name:      "render-pos-g",
-			Aliases:   []string{"render-positions-graph"},
-			Usage:     "Render a graph of the position relationships between the components",
+			Name:      "render-assm-g",
+			Aliases:   []string{"render-assembly-graph"},
+			Usage:     "Render a graph of the assembly relationships between the components",
 			ArgsUsage: argsUsageOutputFile,
 			Flags: []cli.Flag{
 				makeRenderOutputFormatFlag("dot", "svg"),
 			},
-			Action: renderPosGA,
+			Action: renderAssmGA,
 		},
 	}
 }

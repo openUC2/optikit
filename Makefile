@@ -42,7 +42,7 @@ generate-unreproducible: generate-obj-step
 .PHONY: generate-obj-step
 generate-obj-step: ## generate STEP files outputs with nondeterministically-ordered contents
 	$(call print-target)
-	./tools/examples/process-all.sh ./examples list-prim-report uv run poe assemble-batch _primitives _objects
+	./tools/examples/process-all.sh ./examples list-assm-report uv run poe assemble-batch _assembly _objects
 
 .PHONY: vet
 vet: ## go vet
