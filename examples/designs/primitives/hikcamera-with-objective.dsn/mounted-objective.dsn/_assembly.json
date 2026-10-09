@@ -35,10 +35,55 @@
       }
     },
     {
+      "id": "lens-holder-bottom/half-case",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "half-case.dsn/PRT - 1008 - OBJHOL_CLENS-100TEL.glb",
+        "step": "half-case.dsn/PRT - 1008 - OBJHOL_CLENS-100TEL.stp"
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -180,
+          "z": -180
+        }
+      }
+    },
+    {
       "id": "lens-holder-top",
       "kind": "design",
       "design": "half-case.dsn",
       "instantiation": {},
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "lens-holder-top/half-case",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "half-case.dsn/PRT - 1008 - OBJHOL_CLENS-100TEL.glb",
+        "step": "half-case.dsn/PRT - 1008 - OBJHOL_CLENS-100TEL.stp"
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "lens/lens",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "lens.dsn/BUY - Objectiv - CLENS-100TEL.glb",
+        "step": "lens.dsn/BUY - Objectiv - CLENS-100TEL.stp"
+      },
+      "position": [
+        23.9,
+        0,
+        0
+      ],
       "rotation": {
         "kind": "extrinsic",
         "order": "zxy"
