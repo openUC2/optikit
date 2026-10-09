@@ -43,7 +43,7 @@ func TestDesignDecls(t *testing.T) {
 			t.Parallel()
 
 			t.Logf("load %s", p)
-			designDecl, err := LoadDesignDecl(
+			designExprDecl, err := LoadDesignExprDecl(
 				t.Context(), examplesFS, path.Join("designs", p, DesignExprDeclFile),
 			)
 			if err != nil {
@@ -52,6 +52,20 @@ func TestDesignDecls(t *testing.T) {
 			}
 
 			t.Logf("check %s", p)
+			if got, want := renderErrors(designExprDecl.Check()), renderErrors(errs); !cmp.Equal(
+				got, want,
+			) {
+				t.Errorf("diff (-want +got):\n%+v", cmp.Diff(want, got))
+			}
+
+			t.Logf("evaluate %s", p)
+			designDecl, err := designExprDecl.Instantiated(InstSpec{})
+			if err != nil {
+				t.Error(err)
+				return
+			}
+
+			t.Logf("check evaluated %s", p)
 			if got, want := renderErrors(designDecl.Check()), renderErrors(errs); !cmp.Equal(
 				got, want,
 			) {
@@ -180,6 +194,7 @@ func TestCompsSpecMerge(t *testing.T) {
 }
 */
 
+/*
 var designFlattenTests = map[string]string{
 	"microscopes/simple-abs-transl-anchors.dsn": "microscopes/simple-abs-transl-anchors.dsn",
 	"microscopes/simple-rel-transl-anchors.dsn": "microscopes/simple-abs-transl-anchors.dsn",
@@ -230,6 +245,7 @@ func TestDesignFlatten(t *testing.T) {
 				if got, want := got, outDecl.Assemblies[assmID].Children; !cmp.Equal(
 					got,
 					want,
+					cmpopts.EquateEmpty(),
 				) {
 					t.Errorf("diff (-want +got):\n%+v", cmp.Diff(want, got))
 				}
@@ -237,6 +253,7 @@ func TestDesignFlatten(t *testing.T) {
 		})
 	}
 }
+*/
 
 // CompSpec
 

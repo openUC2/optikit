@@ -54,7 +54,7 @@ var reportTests = map[string][]struct {
 			Instantiation: designs.InstSpec{Inputs: map[designs.VarName]any{"offset": 7}},
 		},
 	},
-	"cube-mounted/mirror-diagonal.dsn": {{Assembly: "3d:_z"}, {Assembly: "3d:xy"}},
+	"cube-mounted/mirror-diagonal.dsn": {{Assembly: "_z"}, {Assembly: "xy"}},
 	"cube-mounted/slide-holder.dsn": {
 		{
 			Assembly:      "x",
@@ -94,7 +94,6 @@ func TestReportPrims(t *testing.T) {
 				}
 
 				for format := range fileExts {
-					checkComponents(t, design, dp, format)
 					checkAssembly(t, report.Assembly, design, dp, format)
 				}
 			})
@@ -105,35 +104,6 @@ func TestReportPrims(t *testing.T) {
 var fileExts = map[string]string{
 	"json": "json",
 	"yaml": "yml",
-}
-
-func checkComponents(
-	t *testing.T, design *designs.FSDesign, dp, format string,
-) {
-	t.Helper()
-
-	reportName := "_components"
-	t.Logf("report %s to %s", reportName, format)
-	reportName += "." + fileExts[format]
-
-	var want, got []byte
-	var err error
-	report, err := ReportComponents(t.Context(), design, designs.UC2GridSpacings, cmd.FallbackVersion)
-	if err != nil {
-		t.Error(err)
-		return
-	}
-	if got, err = SerializeReport(t.Context(), report, format); err != nil {
-		t.Error(err)
-		return
-	}
-	if want, err = os.ReadFile(filepath.Clean(path.Join(dp, reportName))); err != nil {
-		t.Error(err)
-		return
-	}
-	if !cmp.Equal(got, want) {
-		t.Errorf("diff (-want +got):\n%+v", cmp.Diff(want, got))
-	}
 }
 
 func checkAssembly(

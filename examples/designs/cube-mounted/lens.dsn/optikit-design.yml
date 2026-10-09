@@ -37,7 +37,7 @@ assemblies:
             grid: {z: +x, x: -z}
           translation:
             offset-mm:
-              x: inputs.offset.value
+              x: ~ inputs.offset.value
     tags:
       - pose/insert/orientation/horizontal
   z:
@@ -48,6 +48,6 @@ assemblies:
         pose:
           translation:
             offset-mm:
-              z: inputs.offset.value
+              z: ~ inputs.offset.value
     tags:
       - pose/insert/orientation/vertical
