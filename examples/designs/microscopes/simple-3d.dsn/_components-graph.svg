@@ -10,46 +10,46 @@
 <polygon fill="white" stroke="none" points="-4,4 -4,-379.4 3259.74,-379.4 3259.74,4 -4,4"/>
 <g id="node1" class="node">
 <title></title>
-<ellipse fill="none" stroke="black" cx="1417.49" cy="-357.4" rx="27" ry="18"/>
+<ellipse fill="none" stroke="black" cx="1422.49" cy="-357.4" rx="27" ry="18"/>
 </g>
 <!-- light&#45;source -->
 <g id="node2" class="node">
 <title>light&#45;source</title>
-<ellipse fill="none" stroke="black" cx="533.49" cy="-268.6" rx="57.16" ry="18"/>
-<text text-anchor="middle" x="533.49" y="-264.4" font-family="Times,serif" font-size="14.00">light&#45;source</text>
+<ellipse fill="none" stroke="black" cx="507.49" cy="-268.6" rx="57.16" ry="18"/>
+<text text-anchor="middle" x="507.49" y="-264.4" font-family="Times,serif" font-size="14.00">light&#45;source</text>
 </g>
 <!-- &#45;&gt;light&#45;source -->
 <g id="edge1" class="edge">
 <title>&#45;&gt;light&#45;source</title>
-<path fill="none" stroke="black" d="M1390.26,-356.25C1301.68,-355.47 1013.85,-350.7 778,-321.4 711.48,-313.14 636.22,-295.99 586.98,-283.68"/>
-<polygon fill="black" stroke="black" points="587.98,-280.33 577.43,-281.27 586.27,-287.11 587.98,-280.33"/>
-<text text-anchor="middle" x="846.24" y="-308.8" font-family="Times,serif" font-size="14.00">primitives/flashlight.dsn</text>
+<path fill="none" stroke="black" d="M1395.2,-356C1306.44,-354.47 1017.96,-347.65 781,-321.4 688.05,-311.1 664.97,-306.01 573.49,-286.6 569.25,-285.7 564.87,-284.71 560.48,-283.67"/>
+<polygon fill="black" stroke="black" points="561.63,-280.35 551.08,-281.38 559.97,-287.15 561.63,-280.35"/>
+<text text-anchor="middle" x="849.24" y="-308.8" font-family="Times,serif" font-size="14.00">primitives/flashlight.dsn</text>
 </g>
 <!-- objective&#45;lens -->
 <g id="node3" class="node">
 <title>objective&#45;lens</title>
-<ellipse fill="none" stroke="black" cx="673.49" cy="-268.6" rx="65.2" ry="18"/>
-<text text-anchor="middle" x="673.49" y="-264.4" font-family="Times,serif" font-size="14.00">objective&#45;lens</text>
+<ellipse fill="none" stroke="black" cx="647.49" cy="-268.6" rx="65.2" ry="18"/>
+<text text-anchor="middle" x="647.49" y="-264.4" font-family="Times,serif" font-size="14.00">objective&#45;lens</text>
 </g>
 <!-- &#45;&gt;objective&#45;lens -->
 <g id="edge2" class="edge">
 <title>&#45;&gt;objective&#45;lens</title>
-<path fill="none" stroke="black" d="M1390.45,-354.34C1328.42,-349.51 1171.16,-336.72 1040.13,-321.4 935.28,-309.14 814.08,-291.29 740.65,-280.07"/>
-<polygon fill="black" stroke="black" points="741.2,-276.62 730.78,-278.56 740.14,-283.53 741.2,-276.62"/>
-<text text-anchor="middle" x="1110.31" y="-308.8" font-family="Times,serif" font-size="14.00">cube&#45;mounted/lens.dsn:x</text>
+<path fill="none" stroke="black" d="M1395.87,-354.13C1335.52,-348.92 1183.72,-335.48 1057.02,-321.4 936.95,-308.06 797.44,-289.83 716.15,-278.93"/>
+<polygon fill="black" stroke="black" points="716.95,-275.51 706.57,-277.64 716.02,-282.44 716.95,-275.51"/>
+<text text-anchor="middle" x="1121.75" y="-308.8" font-family="Times,serif" font-size="14.00">cube&#45;mounted/lens.dsn</text>
 </g>
 <!-- periscope&#45;mirror&#45;1 -->
 <g id="node11" class="node">
 <title>periscope&#45;mirror&#45;1</title>
-<ellipse fill="none" stroke="black" cx="1115.49" cy="-268.6" rx="83.97" ry="18"/>
-<text text-anchor="middle" x="1115.49" y="-264.4" font-family="Times,serif" font-size="14.00">periscope&#45;mirror&#45;1</text>
+<ellipse fill="none" stroke="black" cx="1103.49" cy="-268.6" rx="83.97" ry="18"/>
+<text text-anchor="middle" x="1103.49" y="-264.4" font-family="Times,serif" font-size="14.00">periscope&#45;mirror&#45;1</text>
 </g>
 <!-- &#45;&gt;periscope&#45;mirror&#45;1 -->
 <g id="edge3" class="edge">
 <title>&#45;&gt;periscope&#45;mirror&#45;1</title>
-<path fill="none" stroke="black" d="M1390.76,-353.8C1353.04,-349.62 1282.35,-339.94 1224.71,-321.4 1200.55,-313.63 1174.85,-301.64 1154.45,-291.16"/>
-<polygon fill="black" stroke="black" points="1156.12,-288.08 1145.64,-286.54 1152.87,-294.28 1156.12,-288.08"/>
-<text text-anchor="middle" x="1318.6" y="-308.8" font-family="Times,serif" font-size="14.00">cube&#45;mounted/mirror&#45;static.dsn:x</text>
+<path fill="none" stroke="black" d="M1395.95,-352.75C1360.24,-347.51 1294.9,-336.76 1240.6,-321.4 1209.82,-312.7 1176.22,-300.05 1149.98,-289.44"/>
+<polygon fill="black" stroke="black" points="1151.56,-286.3 1140.98,-285.75 1148.91,-292.78 1151.56,-286.3"/>
+<text text-anchor="middle" x="1329.04" y="-308.8" font-family="Times,serif" font-size="14.00">cube&#45;mounted/mirror&#45;static.dsn</text>
 </g>
 <!-- periscope&#45;mirror&#45;2 -->
 <g id="node25" class="node">
@@ -60,35 +60,35 @@
 <!-- &#45;&gt;periscope&#45;mirror&#45;2 -->
 <g id="edge4" class="edge">
 <title>&#45;&gt;periscope&#45;mirror&#45;2</title>
-<path fill="none" stroke="black" d="M1416.09,-339.39C1415.68,-329.18 1415.9,-316 1418.49,-304.6 1419.03,-302.26 1419.73,-299.89 1420.53,-297.53"/>
-<polygon fill="black" stroke="black" points="1423.76,-298.89 1424.31,-288.31 1417.28,-296.24 1423.76,-298.89"/>
-<text text-anchor="middle" x="1511.99" y="-308.8" font-family="Times,serif" font-size="14.00">cube&#45;mounted/mirror&#45;static.dsn:z</text>
+<path fill="none" stroke="black" d="M1421.66,-339.02C1421.47,-328.91 1421.75,-315.96 1423.6,-304.6 1423.96,-302.39 1424.43,-300.12 1424.97,-297.85"/>
+<polygon fill="black" stroke="black" points="1428.32,-298.85 1427.67,-288.27 1421.58,-296.95 1428.32,-298.85"/>
+<text text-anchor="middle" x="1512.04" y="-308.8" font-family="Times,serif" font-size="14.00">cube&#45;mounted/mirror&#45;static.dsn</text>
 </g>
 <!-- projector&#45;screen -->
 <g id="node39" class="node">
 <title>projector&#45;screen</title>
-<ellipse fill="none" stroke="black" cx="1627.49" cy="-268.6" rx="73.77" ry="18"/>
-<text text-anchor="middle" x="1627.49" y="-264.4" font-family="Times,serif" font-size="14.00">projector&#45;screen</text>
+<ellipse fill="none" stroke="black" cx="1622.49" cy="-268.6" rx="73.77" ry="18"/>
+<text text-anchor="middle" x="1622.49" y="-264.4" font-family="Times,serif" font-size="14.00">projector&#45;screen</text>
 </g>
 <!-- &#45;&gt;projector&#45;screen -->
 <g id="edge5" class="edge">
 <title>&#45;&gt;projector&#45;screen</title>
-<path fill="none" stroke="black" d="M1444.36,-354.5C1490.22,-350.76 1581.03,-341.04 1605.49,-321.4 1612.99,-315.38 1617.97,-306.33 1621.27,-297.47"/>
-<polygon fill="black" stroke="black" points="1624.58,-298.63 1624.16,-288.04 1617.88,-296.58 1624.58,-298.63"/>
-<text text-anchor="middle" x="1705.47" y="-308.8" font-family="Times,serif" font-size="14.00">primitives/projector&#45;screen.dsn</text>
+<path fill="none" stroke="black" d="M1449.33,-354.19C1493.19,-350.08 1577.62,-339.95 1600.49,-321.4 1607.85,-315.43 1612.79,-306.54 1616.09,-297.81"/>
+<polygon fill="black" stroke="black" points="1619.36,-299.09 1619,-288.5 1612.68,-297 1619.36,-299.09"/>
+<text text-anchor="middle" x="1700.44" y="-308.8" font-family="Times,serif" font-size="14.00">primitives/projector&#45;screen.dsn</text>
 </g>
 <!-- sample&#45;holder -->
 <g id="node40" class="node">
 <title>sample&#45;holder</title>
-<ellipse fill="none" stroke="black" cx="2216.49" cy="-268.6" rx="66.28" ry="18"/>
-<text text-anchor="middle" x="2216.49" y="-264.4" font-family="Times,serif" font-size="14.00">sample&#45;holder</text>
+<ellipse fill="none" stroke="black" cx="2215.49" cy="-268.6" rx="66.28" ry="18"/>
+<text text-anchor="middle" x="2215.49" y="-264.4" font-family="Times,serif" font-size="14.00">sample&#45;holder</text>
 </g>
 <!-- &#45;&gt;sample&#45;holder -->
 <g id="edge6" class="edge">
 <title>&#45;&gt;sample&#45;holder</title>
-<path fill="none" stroke="black" d="M1444.17,-354.22C1506.11,-349.09 1664.44,-335.64 1796.49,-321.4 1919.97,-308.09 2063.52,-289.77 2146.78,-278.86"/>
-<polygon fill="black" stroke="black" points="2147.16,-282.34 2156.62,-277.57 2146.25,-275.4 2147.16,-282.34"/>
-<text text-anchor="middle" x="2027.56" y="-308.8" font-family="Times,serif" font-size="14.00">cube&#45;mounted/slide&#45;holder.dsn:x</text>
+<path fill="none" stroke="black" d="M1449.37,-354.1C1510.29,-348.84 1663.54,-335.28 1791.49,-321.4 1916.43,-307.85 2061.75,-289.54 2145.72,-278.71"/>
+<polygon fill="black" stroke="black" points="2145.94,-282.21 2155.41,-277.46 2145.04,-275.27 2145.94,-282.21"/>
+<text text-anchor="middle" x="2018.42" y="-308.8" font-family="Times,serif" font-size="14.00">cube&#45;mounted/slide&#45;holder.dsn</text>
 </g>
 <!-- tube&#45;lens -->
 <g id="node51" class="node">
@@ -99,9 +99,9 @@
 <!-- &#45;&gt;tube&#45;lens -->
 <g id="edge7" class="edge">
 <title>&#45;&gt;tube&#45;lens</title>
-<path fill="none" stroke="black" d="M1444.76,-355.2C1538.92,-351.04 1859.16,-336.6 2123.49,-321.4 2399.24,-305.55 2728.74,-282.76 2858.75,-273.62"/>
-<polygon fill="black" stroke="black" points="2858.73,-277.13 2868.46,-272.94 2858.24,-270.15 2858.73,-277.13"/>
-<text text-anchor="middle" x="2454.7" y="-308.8" font-family="Times,serif" font-size="14.00">cube&#45;mounted/lens.dsn:z</text>
+<path fill="none" stroke="black" d="M1449.66,-355.15C1542.09,-350.85 1852.85,-336.18 2109.49,-321.4 2390.78,-305.2 2727.05,-282.52 2858.7,-273.51"/>
+<polygon fill="black" stroke="black" points="2858.81,-277.01 2868.55,-272.84 2858.33,-270.03 2858.81,-277.01"/>
+<text text-anchor="middle" x="2440.25" y="-308.8" font-family="Times,serif" font-size="14.00">cube&#45;mounted/lens.dsn</text>
 </g>
 <!-- objective&#45;lens/mounted&#45;lens -->
 <g id="node4" class="node">
@@ -112,9 +112,9 @@
 <!-- objective&#45;lens&#45;&gt;objective&#45;lens/mounted&#45;lens -->
 <g id="edge8" class="edge">
 <title>objective&#45;lens&#45;&gt;objective&#45;lens/mounted&#45;lens</title>
-<path fill="none" stroke="black" d="M626.3,-255.78C617.43,-253.84 608.21,-252.01 599.49,-250.6 515.25,-237.02 492.78,-244.87 408.34,-232.6 338.01,-222.39 258,-205.91 204.92,-194.29"/>
-<polygon fill="black" stroke="black" points="205.68,-190.87 195.16,-192.14 204.18,-197.71 205.68,-190.87"/>
-<text text-anchor="middle" x="457.91" y="-220" font-family="Times,serif" font-size="14.00">mounted&#45;lens.dsn</text>
+<path fill="none" stroke="black" d="M600.29,-255.84C591.43,-253.89 582.2,-252.04 573.49,-250.6 495.85,-237.77 475.12,-244.54 397.34,-232.6 330.68,-222.37 254.99,-206.17 204.14,-194.61"/>
+<polygon fill="black" stroke="black" points="205.05,-191.23 194.52,-192.41 203.49,-198.06 205.05,-191.23"/>
+<text text-anchor="middle" x="446.91" y="-220" font-family="Times,serif" font-size="14.00">mounted&#45;lens.dsn</text>
 </g>
 <!-- objective&#45;lens/skeleton -->
 <g id="node8" class="node">
@@ -125,9 +125,9 @@
 <!-- objective&#45;lens&#45;&gt;objective&#45;lens/skeleton -->
 <g id="edge9" class="edge">
 <title>objective&#45;lens&#45;&gt;objective&#45;lens/skeleton</title>
-<path fill="none" stroke="black" d="M631.72,-254.42C580.77,-238.33 495,-211.26 442.88,-194.81"/>
-<polygon fill="black" stroke="black" points="444.01,-191.5 433.42,-191.83 441.91,-198.17 444.01,-191.5"/>
-<text text-anchor="middle" x="641.3" y="-220" font-family="Times,serif" font-size="14.00">primitives/cube&#45;skeleton.dsn</text>
+<path fill="none" stroke="black" d="M608.04,-253.85C562.71,-238.05 488.59,-212.21 441.73,-195.87"/>
+<polygon fill="black" stroke="black" points="443.04,-192.62 432.45,-192.64 440.74,-199.23 443.04,-192.62"/>
+<text text-anchor="middle" x="625.97" y="-220" font-family="Times,serif" font-size="14.00">primitives/cube&#45;skeleton.dsn</text>
 </g>
 <!-- objective&#45;lens/mounted&#45;lens/insert -->
 <g id="node5" class="node">
@@ -192,28 +192,28 @@
 <!-- periscope&#45;mirror&#45;1/mounted&#45;mirror -->
 <g id="node12" class="node">
 <title>periscope&#45;mirror&#45;1/mounted&#45;mirror</title>
-<ellipse fill="none" stroke="black" cx="783.49" cy="-179.8" rx="72.72" ry="18"/>
-<text text-anchor="middle" x="783.49" y="-175.6" font-family="Times,serif" font-size="14.00">mounted&#45;mirror</text>
+<ellipse fill="none" stroke="black" cx="769.49" cy="-179.8" rx="72.72" ry="18"/>
+<text text-anchor="middle" x="769.49" y="-175.6" font-family="Times,serif" font-size="14.00">mounted&#45;mirror</text>
 </g>
 <!-- periscope&#45;mirror&#45;1&#45;&gt;periscope&#45;mirror&#45;1/mounted&#45;mirror -->
 <g id="edge15" class="edge">
 <title>periscope&#45;mirror&#45;1&#45;&gt;periscope&#45;mirror&#45;1/mounted&#45;mirror</title>
-<path fill="none" stroke="black" d="M1063.53,-254.07C1038.63,-247.58 1008.38,-239.7 981.23,-232.6 934.88,-220.49 882.43,-206.75 843.2,-196.46"/>
-<polygon fill="black" stroke="black" points="844.27,-193.12 833.71,-193.97 842.49,-199.89 844.27,-193.12"/>
-<text text-anchor="middle" x="1046.36" y="-220" font-family="Times,serif" font-size="14.00">mounted&#45;mirror.dsn:xy</text>
+<path fill="none" stroke="black" d="M1051.67,-254.13C991.6,-238.52 892.78,-212.84 829.45,-196.38"/>
+<polygon fill="black" stroke="black" points="830.46,-193.03 819.91,-193.9 828.7,-199.8 830.46,-193.03"/>
+<text text-anchor="middle" x="1022.59" y="-220" font-family="Times,serif" font-size="14.00">mounted&#45;mirror.dsn</text>
 </g>
 <!-- periscope&#45;mirror&#45;1/skeleton -->
 <g id="node22" class="node">
 <title>periscope&#45;mirror&#45;1/skeleton</title>
-<ellipse fill="none" stroke="black" cx="1115.49" cy="-179.8" rx="43.22" ry="18"/>
-<text text-anchor="middle" x="1115.49" y="-175.6" font-family="Times,serif" font-size="14.00">skeleton</text>
+<ellipse fill="none" stroke="black" cx="1103.49" cy="-179.8" rx="43.22" ry="18"/>
+<text text-anchor="middle" x="1103.49" y="-175.6" font-family="Times,serif" font-size="14.00">skeleton</text>
 </g>
 <!-- periscope&#45;mirror&#45;1&#45;&gt;periscope&#45;mirror&#45;1/skeleton -->
 <g id="edge16" class="edge">
 <title>periscope&#45;mirror&#45;1&#45;&gt;periscope&#45;mirror&#45;1/skeleton</title>
-<path fill="none" stroke="black" d="M1115.49,-250.45C1115.49,-238.76 1115.49,-222.99 1115.49,-209.42"/>
-<polygon fill="black" stroke="black" points="1118.99,-209.72 1115.49,-199.72 1111.99,-209.72 1118.99,-209.72"/>
-<text text-anchor="middle" x="1196.17" y="-220" font-family="Times,serif" font-size="14.00">primitives/cube&#45;skeleton.dsn</text>
+<path fill="none" stroke="black" d="M1103.49,-250.45C1103.49,-238.76 1103.49,-222.99 1103.49,-209.42"/>
+<polygon fill="black" stroke="black" points="1106.99,-209.72 1103.49,-199.72 1099.99,-209.72 1106.99,-209.72"/>
+<text text-anchor="middle" x="1184.17" y="-220" font-family="Times,serif" font-size="14.00">primitives/cube&#45;skeleton.dsn</text>
 </g>
 <!-- periscope&#45;mirror&#45;1/mounted&#45;mirror/inner&#45;insert -->
 <g id="node13" class="node">
@@ -224,9 +224,9 @@
 <!-- periscope&#45;mirror&#45;1/mounted&#45;mirror&#45;&gt;periscope&#45;mirror&#45;1/mounted&#45;mirror/inner&#45;insert -->
 <g id="edge17" class="edge">
 <title>periscope&#45;mirror&#45;1/mounted&#45;mirror&#45;&gt;periscope&#45;mirror&#45;1/mounted&#45;mirror/inner&#45;insert</title>
-<path fill="none" stroke="black" d="M711.62,-176.67C670.84,-173.04 619.87,-164.28 578.69,-143.8 565.77,-137.37 553.77,-126.93 544.29,-117.09"/>
-<polygon fill="black" stroke="black" points="546.99,-114.86 537.66,-109.84 541.83,-119.58 546.99,-114.86"/>
-<text text-anchor="middle" x="651.59" y="-131.2" font-family="Times,serif" font-size="14.00">mounted&#45;mirror&#45;inner.dsn</text>
+<path fill="none" stroke="black" d="M697.64,-176.83C658.71,-173.18 610.9,-164.35 572.69,-143.8 560.94,-137.48 550.37,-127.32 542.07,-117.66"/>
+<polygon fill="black" stroke="black" points="544.8,-115.47 535.8,-109.88 539.35,-119.86 544.8,-115.47"/>
+<text text-anchor="middle" x="645.59" y="-131.2" font-family="Times,serif" font-size="14.00">mounted&#45;mirror&#45;inner.dsn</text>
 </g>
 <!-- periscope&#45;mirror&#45;1/mounted&#45;mirror/master&#45;insert&#45;bottom -->
 <g id="node20" class="node">
@@ -237,8 +237,8 @@
 <!-- periscope&#45;mirror&#45;1/mounted&#45;mirror&#45;&gt;periscope&#45;mirror&#45;1/mounted&#45;mirror/master&#45;insert&#45;bottom -->
 <g id="edge18" class="edge">
 <title>periscope&#45;mirror&#45;1/mounted&#45;mirror&#45;&gt;periscope&#45;mirror&#45;1/mounted&#45;mirror/master&#45;insert&#45;bottom</title>
-<path fill="none" stroke="black" d="M765.37,-162.06C751.41,-149.18 731.91,-131.17 716.18,-116.64"/>
-<polygon fill="black" stroke="black" points="718.71,-114.22 708.99,-110.01 713.96,-119.36 718.71,-114.22"/>
+<path fill="none" stroke="black" d="M754.07,-162.06C742.3,-149.3 725.9,-131.51 712.58,-117.05"/>
+<polygon fill="black" stroke="black" points="715.52,-115.07 706.17,-110.09 710.37,-119.82 715.52,-115.07"/>
 </g>
 <!-- periscope&#45;mirror&#45;1/mounted&#45;mirror/master&#45;insert&#45;top -->
 <g id="node21" class="node">
@@ -249,8 +249,8 @@
 <!-- periscope&#45;mirror&#45;1/mounted&#45;mirror&#45;&gt;periscope&#45;mirror&#45;1/mounted&#45;mirror/master&#45;insert&#45;top -->
 <g id="edge19" class="edge">
 <title>periscope&#45;mirror&#45;1/mounted&#45;mirror&#45;&gt;periscope&#45;mirror&#45;1/mounted&#45;mirror/master&#45;insert&#45;top</title>
-<path fill="none" stroke="black" d="M801.42,-162.06C815.23,-149.18 834.52,-131.17 850.09,-116.64"/>
-<polygon fill="black" stroke="black" points="852.27,-119.4 857.19,-110.01 847.49,-114.28 852.27,-119.4"/>
+<path fill="none" stroke="black" d="M790.12,-162.06C806.4,-148.86 829.32,-130.27 847.45,-115.55"/>
+<polygon fill="black" stroke="black" points="849.19,-118.66 854.75,-109.64 844.78,-113.22 849.19,-118.66"/>
 </g>
 <!-- periscope&#45;mirror&#45;1/mounted&#45;mirror/inner&#45;insert/adhesive&#45;pad -->
 <g id="node14" class="node">
@@ -333,8 +333,8 @@
 <!-- periscope&#45;mirror&#45;1/skeleton&#45;&gt;periscope&#45;mirror&#45;1/skeleton/lower&#45;half -->
 <g id="edge26" class="edge">
 <title>periscope&#45;mirror&#45;1/skeleton&#45;&gt;periscope&#45;mirror&#45;1/skeleton/lower&#45;half</title>
-<path fill="none" stroke="black" d="M1098.43,-162.88C1084.36,-149.75 1064.18,-130.91 1048.16,-115.96"/>
-<polygon fill="black" stroke="black" points="1050.56,-113.41 1040.86,-109.15 1045.78,-118.53 1050.56,-113.41"/>
+<path fill="none" stroke="black" d="M1088.26,-162.47C1076.23,-149.58 1059.25,-131.39 1045.55,-116.71"/>
+<polygon fill="black" stroke="black" points="1048.35,-114.58 1038.97,-109.65 1043.23,-119.35 1048.35,-114.58"/>
 </g>
 <!-- periscope&#45;mirror&#45;1/skeleton/upper&#45;half -->
 <g id="node24" class="node">
@@ -345,8 +345,8 @@
 <!-- periscope&#45;mirror&#45;1/skeleton&#45;&gt;periscope&#45;mirror&#45;1/skeleton/upper&#45;half -->
 <g id="edge27" class="edge">
 <title>periscope&#45;mirror&#45;1/skeleton&#45;&gt;periscope&#45;mirror&#45;1/skeleton/upper&#45;half</title>
-<path fill="none" stroke="black" d="M1121.02,-161.65C1124.86,-149.76 1130.05,-133.66 1134.48,-119.94"/>
-<polygon fill="black" stroke="black" points="1137.77,-121.15 1137.51,-110.55 1131.1,-119 1137.77,-121.15"/>
+<path fill="none" stroke="black" d="M1111.39,-161.65C1116.93,-149.64 1124.44,-133.34 1130.81,-119.53"/>
+<polygon fill="black" stroke="black" points="1133.96,-121.03 1134.97,-110.49 1127.61,-118.11 1133.96,-121.03"/>
 </g>
 <!-- periscope&#45;mirror&#45;2/mounted&#45;mirror -->
 <g id="node26" class="node">
@@ -359,7 +359,7 @@
 <title>periscope&#45;mirror&#45;2&#45;&gt;periscope&#45;mirror&#45;2/mounted&#45;mirror</title>
 <path fill="none" stroke="black" d="M1434.49,-250.45C1434.49,-238.76 1434.49,-222.99 1434.49,-209.42"/>
 <polygon fill="black" stroke="black" points="1437.99,-209.72 1434.49,-199.72 1430.99,-209.72 1437.99,-209.72"/>
-<text text-anchor="middle" x="1499.62" y="-220" font-family="Times,serif" font-size="14.00">mounted&#45;mirror.dsn:xy</text>
+<text text-anchor="middle" x="1490.68" y="-220" font-family="Times,serif" font-size="14.00">mounted&#45;mirror.dsn</text>
 </g>
 <!-- periscope&#45;mirror&#45;2/skeleton -->
 <g id="node36" class="node">
@@ -510,15 +510,15 @@
 <!-- sample&#45;holder/mounted&#45;slide&#45;holder -->
 <g id="node41" class="node">
 <title>sample&#45;holder/mounted&#45;slide&#45;holder</title>
-<ellipse fill="none" stroke="black" cx="2216.49" cy="-179.8" rx="94.17" ry="18"/>
-<text text-anchor="middle" x="2216.49" y="-175.6" font-family="Times,serif" font-size="14.00">mounted&#45;slide&#45;holder</text>
+<ellipse fill="none" stroke="black" cx="2215.49" cy="-179.8" rx="94.17" ry="18"/>
+<text text-anchor="middle" x="2215.49" y="-175.6" font-family="Times,serif" font-size="14.00">mounted&#45;slide&#45;holder</text>
 </g>
 <!-- sample&#45;holder&#45;&gt;sample&#45;holder/mounted&#45;slide&#45;holder -->
 <g id="edge41" class="edge">
 <title>sample&#45;holder&#45;&gt;sample&#45;holder/mounted&#45;slide&#45;holder</title>
-<path fill="none" stroke="black" d="M2216.49,-250.45C2216.49,-238.76 2216.49,-222.99 2216.49,-209.42"/>
-<polygon fill="black" stroke="black" points="2219.99,-209.72 2216.49,-199.72 2212.99,-209.72 2219.99,-209.72"/>
-<text text-anchor="middle" x="2272.68" y="-220" font-family="Times,serif" font-size="14.00">mounted&#45;holder.dsn</text>
+<path fill="none" stroke="black" d="M2215.49,-250.45C2215.49,-238.76 2215.49,-222.99 2215.49,-209.42"/>
+<polygon fill="black" stroke="black" points="2218.99,-209.72 2215.49,-199.72 2211.99,-209.72 2218.99,-209.72"/>
+<text text-anchor="middle" x="2271.68" y="-220" font-family="Times,serif" font-size="14.00">mounted&#45;holder.dsn</text>
 </g>
 <!-- sample&#45;holder/skeleton -->
 <g id="node48" class="node">
@@ -529,9 +529,9 @@
 <!-- sample&#45;holder&#45;&gt;sample&#45;holder/skeleton -->
 <g id="edge42" class="edge">
 <title>sample&#45;holder&#45;&gt;sample&#45;holder/skeleton</title>
-<path fill="none" stroke="black" d="M2267.02,-256.61C2344.22,-239.81 2490.53,-207.98 2566.68,-191.42"/>
-<polygon fill="black" stroke="black" points="2567.33,-194.86 2576.35,-189.31 2565.84,-188.02 2567.33,-194.86"/>
-<text text-anchor="middle" x="2532.41" y="-220" font-family="Times,serif" font-size="14.00">primitives/cube&#45;skeleton.dsn</text>
+<path fill="none" stroke="black" d="M2266.15,-256.61C2343.54,-239.81 2490.22,-207.98 2566.56,-191.42"/>
+<polygon fill="black" stroke="black" points="2567.23,-194.85 2576.26,-189.31 2565.75,-188.01 2567.23,-194.85"/>
+<text text-anchor="middle" x="2532" y="-220" font-family="Times,serif" font-size="14.00">primitives/cube&#45;skeleton.dsn</text>
 </g>
 <!-- sample&#45;holder/mounted&#45;slide&#45;holder/clip -->
 <g id="node42" class="node">
@@ -542,8 +542,8 @@
 <!-- sample&#45;holder/mounted&#45;slide&#45;holder&#45;&gt;sample&#45;holder/mounted&#45;slide&#45;holder/clip -->
 <g id="edge43" class="edge">
 <title>sample&#45;holder/mounted&#45;slide&#45;holder&#45;&gt;sample&#45;holder/mounted&#45;slide&#45;holder/clip</title>
-<path fill="none" stroke="black" d="M2170.06,-163.71C2130.04,-150.36 2070.9,-129.82 2020.49,-109 2018.97,-108.37 2017.43,-107.72 2015.87,-107.04"/>
-<polygon fill="black" stroke="black" points="2017.59,-103.98 2007.03,-103.04 2014.7,-110.35 2017.59,-103.98"/>
+<path fill="none" stroke="black" d="M2169.31,-163.69C2129.49,-150.32 2070.66,-129.77 2020.49,-109 2018.97,-108.37 2017.43,-107.71 2015.87,-107.04"/>
+<polygon fill="black" stroke="black" points="2017.59,-103.97 2007.04,-103.04 2014.7,-110.35 2017.59,-103.97"/>
 </g>
 <!-- sample&#45;holder/mounted&#45;slide&#45;holder/insert -->
 <g id="node43" class="node">
@@ -554,8 +554,8 @@
 <!-- sample&#45;holder/mounted&#45;slide&#45;holder&#45;&gt;sample&#45;holder/mounted&#45;slide&#45;holder/insert -->
 <g id="edge44" class="edge">
 <title>sample&#45;holder/mounted&#45;slide&#45;holder&#45;&gt;sample&#45;holder/mounted&#45;slide&#45;holder/insert</title>
-<path fill="none" stroke="black" d="M2186.97,-162.27C2160.34,-147.35 2121.23,-125.45 2093.77,-110.08"/>
-<polygon fill="black" stroke="black" points="2095.63,-107.1 2085.19,-105.27 2092.21,-113.21 2095.63,-107.1"/>
+<path fill="none" stroke="black" d="M2186.16,-162.27C2159.7,-147.35 2120.85,-125.45 2093.57,-110.08"/>
+<polygon fill="black" stroke="black" points="2095.47,-107.14 2085.04,-105.28 2092.04,-113.23 2095.47,-107.14"/>
 </g>
 <!-- sample&#45;holder/mounted&#45;slide&#45;holder/magnet&#45;1 -->
 <g id="node44" class="node">
@@ -566,8 +566,8 @@
 <!-- sample&#45;holder/mounted&#45;slide&#45;holder&#45;&gt;sample&#45;holder/mounted&#45;slide&#45;holder/magnet&#45;1 -->
 <g id="edge45" class="edge">
 <title>sample&#45;holder/mounted&#45;slide&#45;holder&#45;&gt;sample&#45;holder/mounted&#45;slide&#45;holder/magnet&#45;1</title>
-<path fill="none" stroke="black" d="M2205.23,-161.65C2197.14,-149.33 2186.07,-132.48 2176.85,-118.44"/>
-<polygon fill="black" stroke="black" points="2179.78,-116.52 2171.37,-110.08 2173.93,-120.36 2179.78,-116.52"/>
+<path fill="none" stroke="black" d="M2204.43,-161.65C2196.48,-149.33 2185.61,-132.48 2176.55,-118.44"/>
+<polygon fill="black" stroke="black" points="2179.52,-116.6 2171.16,-110.09 2173.64,-120.39 2179.52,-116.6"/>
 </g>
 <!-- sample&#45;holder/mounted&#45;slide&#45;holder/magnet&#45;2 -->
 <g id="node45" class="node">
@@ -578,8 +578,8 @@
 <!-- sample&#45;holder/mounted&#45;slide&#45;holder&#45;&gt;sample&#45;holder/mounted&#45;slide&#45;holder/magnet&#45;2 -->
 <g id="edge46" class="edge">
 <title>sample&#45;holder/mounted&#45;slide&#45;holder&#45;&gt;sample&#45;holder/mounted&#45;slide&#45;holder/magnet&#45;2</title>
-<path fill="none" stroke="black" d="M2227.55,-161.65C2235.51,-149.33 2246.38,-132.48 2255.43,-118.44"/>
-<polygon fill="black" stroke="black" points="2258.34,-120.39 2260.82,-110.09 2252.46,-116.6 2258.34,-120.39"/>
+<path fill="none" stroke="black" d="M2226.75,-161.65C2234.85,-149.33 2245.91,-132.48 2255.13,-118.44"/>
+<polygon fill="black" stroke="black" points="2258.05,-120.36 2260.62,-110.08 2252.2,-116.52 2258.05,-120.36"/>
 </g>
 <!-- sample&#45;holder/mounted&#45;slide&#45;holder/magnet&#45;3 -->
 <g id="node46" class="node">
@@ -590,8 +590,8 @@
 <!-- sample&#45;holder/mounted&#45;slide&#45;holder&#45;&gt;sample&#45;holder/mounted&#45;slide&#45;holder/magnet&#45;3 -->
 <g id="edge47" class="edge">
 <title>sample&#45;holder/mounted&#45;slide&#45;holder&#45;&gt;sample&#45;holder/mounted&#45;slide&#45;holder/magnet&#45;3</title>
-<path fill="none" stroke="black" d="M2248.28,-162.47C2276.59,-147.93 2318.04,-126.64 2347.97,-111.27"/>
-<polygon fill="black" stroke="black" points="2349.39,-114.47 2356.69,-106.79 2346.2,-108.25 2349.39,-114.47"/>
+<path fill="none" stroke="black" d="M2247.47,-162.47C2275.95,-147.93 2317.65,-126.64 2347.75,-111.27"/>
+<polygon fill="black" stroke="black" points="2349.21,-114.45 2356.53,-106.79 2346.03,-108.22 2349.21,-114.45"/>
 </g>
 <!-- sample&#45;holder/mounted&#45;slide&#45;holder/magnet&#45;4 -->
 <g id="node47" class="node">
@@ -602,8 +602,8 @@
 <!-- sample&#45;holder/mounted&#45;slide&#45;holder&#45;&gt;sample&#45;holder/mounted&#45;slide&#45;holder/magnet&#45;4 -->
 <g id="edge48" class="edge">
 <title>sample&#45;holder/mounted&#45;slide&#45;holder&#45;&gt;sample&#45;holder/mounted&#45;slide&#45;holder/magnet&#45;4</title>
-<path fill="none" stroke="black" d="M2264.65,-163.98C2316.97,-147.87 2399.99,-122.32 2451.75,-106.39"/>
-<polygon fill="black" stroke="black" points="2452.64,-109.78 2461.17,-103.49 2450.58,-103.09 2452.64,-109.78"/>
+<path fill="none" stroke="black" d="M2263.82,-163.98C2316.33,-147.87 2399.64,-122.32 2451.58,-106.39"/>
+<polygon fill="black" stroke="black" points="2452.51,-109.77 2461.04,-103.49 2450.45,-103.07 2452.51,-109.77"/>
 </g>
 <!-- sample&#45;holder/skeleton/lower&#45;half -->
 <g id="node49" class="node">

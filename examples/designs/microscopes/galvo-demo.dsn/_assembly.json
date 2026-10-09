@@ -1,0 +1,1038 @@
+{
+  "optikit-version": "v0.0.0-dev",
+  "components": [
+    {
+      "id": "galvo-mirror-pair-1",
+      "kind": "design",
+      "design": "cube-mounted/mirror-galvo-two.dsn",
+      "instantiation": {
+        "inputs": {
+          "mirror-1-rotation": "10",
+          "mirror-2-rotation": "40"
+        }
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "galvo-mirror-pair-1/mounted-mirrors",
+      "kind": "design",
+      "design": "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn",
+      "instantiation": {
+        "inputs": {
+          "mirror-1-rotation": 10,
+          "mirror-2-rotation": 40
+        }
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "galvo-mirror-pair-1/mounted-mirrors/cube-insert",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/PRT - 2164 - INSGLV - V04.glb",
+        "step": "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/PRT - 2164 - INSGLV - V04.stp"
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "z": -90
+        }
+      }
+    },
+    {
+      "id": "galvo-mirror-pair-1/mounted-mirrors/motorized-mirror-1",
+      "kind": "design",
+      "design": "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn",
+      "instantiation": {
+        "inputs": {
+          "mirror-rotation": 10
+        }
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -180,
+          "z": -180
+        }
+      }
+    },
+    {
+      "id": "galvo-mirror-pair-1/mounted-mirrors/motorized-mirror-1/motorized-mirror",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/BUY - Galvo scanner XY --- single motor.glb",
+        "step": "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/BUY - Galvo scanner XY --- single motor.stp"
+      },
+      "position": [
+        -44,
+        0,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -170,
+          "z": -90
+        }
+      }
+    },
+    {
+      "id": "galvo-mirror-pair-1/mounted-mirrors/motorized-mirror-1/mount-ring",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/PRT - 2180 - DISRNG.glb",
+        "step": "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/PRT - 2180 - DISRNG.stp"
+      },
+      "position": [
+        -27,
+        0,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -180
+        }
+      }
+    },
+    {
+      "id": "galvo-mirror-pair-1/mounted-mirrors/motorized-mirror-1/mount-top",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/PRT - 2165 - CLPPCE.glb",
+        "step": "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/PRT - 2165 - CLPPCE.stp"
+      },
+      "position": [
+        -42.3,
+        0,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -180,
+          "z": -90
+        }
+      }
+    },
+    {
+      "id": "galvo-mirror-pair-1/mounted-mirrors/motorized-mirror-2",
+      "kind": "design",
+      "design": "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn",
+      "instantiation": {
+        "inputs": {
+          "mirror-rotation": 40
+        }
+      },
+      "position": [
+        0,
+        0,
+        -7.4
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -180,
+          "z": -90
+        }
+      }
+    },
+    {
+      "id": "galvo-mirror-pair-1/mounted-mirrors/motorized-mirror-2/motorized-mirror",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/BUY - Galvo scanner XY --- single motor.glb",
+        "step": "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/BUY - Galvo scanner XY --- single motor.stp"
+      },
+      "position": [
+        0,
+        -44,
+        -7.4
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -140
+        }
+      }
+    },
+    {
+      "id": "galvo-mirror-pair-1/mounted-mirrors/motorized-mirror-2/mount-ring",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/PRT - 2180 - DISRNG.glb",
+        "step": "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/PRT - 2180 - DISRNG.stp"
+      },
+      "position": [
+        0,
+        -27,
+        -7.4
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": 180,
+          "z": 90
+        }
+      }
+    },
+    {
+      "id": "galvo-mirror-pair-1/mounted-mirrors/motorized-mirror-2/mount-top",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/PRT - 2165 - CLPPCE.glb",
+        "step": "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/PRT - 2165 - CLPPCE.stp"
+      },
+      "position": [
+        0,
+        -42.3,
+        -7.4
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -180
+        }
+      }
+    },
+    {
+      "id": "galvo-mirror-pair-1/skeleton",
+      "kind": "design",
+      "design": "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn",
+      "instantiation": {},
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "galvo-mirror-pair-1/skeleton-extra-full",
+      "kind": "design",
+      "design": "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn",
+      "instantiation": {},
+      "position": [
+        -50,
+        0,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "galvo-mirror-pair-1/skeleton-extra-full/lower-half",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
+        "step": "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
+      },
+      "position": [
+        -50,
+        0,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "galvo-mirror-pair-1/skeleton-extra-full/upper-half",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
+        "step": "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
+      },
+      "position": [
+        -50,
+        0,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -180,
+          "z": -180
+        }
+      }
+    },
+    {
+      "id": "galvo-mirror-pair-1/skeleton-extra-partial",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
+        "step": "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
+      },
+      "position": [
+        0,
+        -50,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -180,
+          "z": -180
+        }
+      }
+    },
+    {
+      "id": "galvo-mirror-pair-1/skeleton/lower-half",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
+        "step": "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "galvo-mirror-pair-1/skeleton/upper-half",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
+        "step": "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -180,
+          "z": -180
+        }
+      }
+    },
+    {
+      "id": "galvo-mirror-pair-2",
+      "kind": "design",
+      "design": "cube-mounted/mirror-galvo-two.dsn",
+      "instantiation": {
+        "inputs": {
+          "mirror-1-rotation": "20",
+          "mirror-2-rotation": "60"
+        }
+      },
+      "position": [
+        50,
+        50,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "galvo-mirror-pair-2/mounted-mirrors",
+      "kind": "design",
+      "design": "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn",
+      "instantiation": {
+        "inputs": {
+          "mirror-1-rotation": 20,
+          "mirror-2-rotation": 60
+        }
+      },
+      "position": [
+        50,
+        50,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "galvo-mirror-pair-2/mounted-mirrors/cube-insert",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/PRT - 2164 - INSGLV - V04.glb",
+        "step": "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/PRT - 2164 - INSGLV - V04.stp"
+      },
+      "position": [
+        50,
+        50,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "z": -90
+        }
+      }
+    },
+    {
+      "id": "galvo-mirror-pair-2/mounted-mirrors/motorized-mirror-1",
+      "kind": "design",
+      "design": "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn",
+      "instantiation": {
+        "inputs": {
+          "mirror-rotation": 20
+        }
+      },
+      "position": [
+        50,
+        50,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -180,
+          "z": -180
+        }
+      }
+    },
+    {
+      "id": "galvo-mirror-pair-2/mounted-mirrors/motorized-mirror-1/motorized-mirror",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/BUY - Galvo scanner XY --- single motor.glb",
+        "step": "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/BUY - Galvo scanner XY --- single motor.stp"
+      },
+      "position": [
+        6,
+        50,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -160,
+          "z": -90
+        }
+      }
+    },
+    {
+      "id": "galvo-mirror-pair-2/mounted-mirrors/motorized-mirror-1/mount-ring",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/PRT - 2180 - DISRNG.glb",
+        "step": "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/PRT - 2180 - DISRNG.stp"
+      },
+      "position": [
+        23,
+        50,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -180
+        }
+      }
+    },
+    {
+      "id": "galvo-mirror-pair-2/mounted-mirrors/motorized-mirror-1/mount-top",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/PRT - 2165 - CLPPCE.glb",
+        "step": "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/PRT - 2165 - CLPPCE.stp"
+      },
+      "position": [
+        7.700000000000003,
+        50,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -180,
+          "z": -90
+        }
+      }
+    },
+    {
+      "id": "galvo-mirror-pair-2/mounted-mirrors/motorized-mirror-2",
+      "kind": "design",
+      "design": "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn",
+      "instantiation": {
+        "inputs": {
+          "mirror-rotation": 60
+        }
+      },
+      "position": [
+        50,
+        50,
+        -7.4
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -180,
+          "z": -90
+        }
+      }
+    },
+    {
+      "id": "galvo-mirror-pair-2/mounted-mirrors/motorized-mirror-2/motorized-mirror",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/BUY - Galvo scanner XY --- single motor.glb",
+        "step": "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/BUY - Galvo scanner XY --- single motor.stp"
+      },
+      "position": [
+        50,
+        6,
+        -7.4
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -120
+        }
+      }
+    },
+    {
+      "id": "galvo-mirror-pair-2/mounted-mirrors/motorized-mirror-2/mount-ring",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/PRT - 2180 - DISRNG.glb",
+        "step": "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/PRT - 2180 - DISRNG.stp"
+      },
+      "position": [
+        50,
+        23,
+        -7.4
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": 180,
+          "z": 90
+        }
+      }
+    },
+    {
+      "id": "galvo-mirror-pair-2/mounted-mirrors/motorized-mirror-2/mount-top",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/PRT - 2165 - CLPPCE.glb",
+        "step": "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/PRT - 2165 - CLPPCE.stp"
+      },
+      "position": [
+        50,
+        7.700000000000003,
+        -7.4
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -180
+        }
+      }
+    },
+    {
+      "id": "galvo-mirror-pair-2/skeleton",
+      "kind": "design",
+      "design": "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn",
+      "instantiation": {},
+      "position": [
+        50,
+        50,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "galvo-mirror-pair-2/skeleton-extra-full",
+      "kind": "design",
+      "design": "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn",
+      "instantiation": {},
+      "position": [
+        0,
+        50,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "galvo-mirror-pair-2/skeleton-extra-full/lower-half",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
+        "step": "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
+      },
+      "position": [
+        0,
+        50,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "galvo-mirror-pair-2/skeleton-extra-full/upper-half",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
+        "step": "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
+      },
+      "position": [
+        0,
+        50,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -180,
+          "z": -180
+        }
+      }
+    },
+    {
+      "id": "galvo-mirror-pair-2/skeleton-extra-partial",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
+        "step": "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
+      },
+      "position": [
+        50,
+        0,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -180,
+          "z": -180
+        }
+      }
+    },
+    {
+      "id": "galvo-mirror-pair-2/skeleton/lower-half",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
+        "step": "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
+      },
+      "position": [
+        50,
+        50,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "galvo-mirror-pair-2/skeleton/upper-half",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
+        "step": "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
+      },
+      "position": [
+        50,
+        50,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -180,
+          "z": -180
+        }
+      }
+    },
+    {
+      "id": "galvo-mirror-pair-3",
+      "kind": "design",
+      "design": "cube-mounted/mirror-galvo-two.dsn",
+      "instantiation": {
+        "inputs": {
+          "mirror-1-rotation": "40",
+          "mirror-2-rotation": "80"
+        }
+      },
+      "position": [
+        100,
+        100,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "galvo-mirror-pair-3/mounted-mirrors",
+      "kind": "design",
+      "design": "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn",
+      "instantiation": {
+        "inputs": {
+          "mirror-1-rotation": 40,
+          "mirror-2-rotation": 80
+        }
+      },
+      "position": [
+        100,
+        100,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "galvo-mirror-pair-3/mounted-mirrors/cube-insert",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/PRT - 2164 - INSGLV - V04.glb",
+        "step": "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/PRT - 2164 - INSGLV - V04.stp"
+      },
+      "position": [
+        100,
+        100,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "z": -90
+        }
+      }
+    },
+    {
+      "id": "galvo-mirror-pair-3/mounted-mirrors/motorized-mirror-1",
+      "kind": "design",
+      "design": "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn",
+      "instantiation": {
+        "inputs": {
+          "mirror-rotation": 40
+        }
+      },
+      "position": [
+        100,
+        100,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -180,
+          "z": -180
+        }
+      }
+    },
+    {
+      "id": "galvo-mirror-pair-3/mounted-mirrors/motorized-mirror-1/motorized-mirror",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/BUY - Galvo scanner XY --- single motor.glb",
+        "step": "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/BUY - Galvo scanner XY --- single motor.stp"
+      },
+      "position": [
+        56,
+        100,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -140,
+          "z": -90
+        }
+      }
+    },
+    {
+      "id": "galvo-mirror-pair-3/mounted-mirrors/motorized-mirror-1/mount-ring",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/PRT - 2180 - DISRNG.glb",
+        "step": "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/PRT - 2180 - DISRNG.stp"
+      },
+      "position": [
+        73,
+        100,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -180
+        }
+      }
+    },
+    {
+      "id": "galvo-mirror-pair-3/mounted-mirrors/motorized-mirror-1/mount-top",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/PRT - 2165 - CLPPCE.glb",
+        "step": "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/PRT - 2165 - CLPPCE.stp"
+      },
+      "position": [
+        57.7,
+        100,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -180,
+          "z": -90
+        }
+      }
+    },
+    {
+      "id": "galvo-mirror-pair-3/mounted-mirrors/motorized-mirror-2",
+      "kind": "design",
+      "design": "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn",
+      "instantiation": {
+        "inputs": {
+          "mirror-rotation": 80
+        }
+      },
+      "position": [
+        100,
+        100,
+        -7.4
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -180,
+          "z": -90
+        }
+      }
+    },
+    {
+      "id": "galvo-mirror-pair-3/mounted-mirrors/motorized-mirror-2/motorized-mirror",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/BUY - Galvo scanner XY --- single motor.glb",
+        "step": "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/BUY - Galvo scanner XY --- single motor.stp"
+      },
+      "position": [
+        100,
+        56,
+        -7.4
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -100
+        }
+      }
+    },
+    {
+      "id": "galvo-mirror-pair-3/mounted-mirrors/motorized-mirror-2/mount-ring",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/PRT - 2180 - DISRNG.glb",
+        "step": "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/PRT - 2180 - DISRNG.stp"
+      },
+      "position": [
+        100,
+        73,
+        -7.4
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": 180,
+          "z": 90
+        }
+      }
+    },
+    {
+      "id": "galvo-mirror-pair-3/mounted-mirrors/motorized-mirror-2/mount-top",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/PRT - 2165 - CLPPCE.glb",
+        "step": "cube-mounted/mirror-galvo-two.dsn/mounted-mirrors.dsn/primitives/motorized-mirror.dsn/PRT - 2165 - CLPPCE.stp"
+      },
+      "position": [
+        100,
+        57.7,
+        -7.4
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -180
+        }
+      }
+    },
+    {
+      "id": "galvo-mirror-pair-3/skeleton",
+      "kind": "design",
+      "design": "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn",
+      "instantiation": {},
+      "position": [
+        100,
+        100,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "galvo-mirror-pair-3/skeleton-extra-full",
+      "kind": "design",
+      "design": "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn",
+      "instantiation": {},
+      "position": [
+        50,
+        100,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "galvo-mirror-pair-3/skeleton-extra-full/lower-half",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
+        "step": "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
+      },
+      "position": [
+        50,
+        100,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "galvo-mirror-pair-3/skeleton-extra-full/upper-half",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
+        "step": "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
+      },
+      "position": [
+        50,
+        100,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -180,
+          "z": -180
+        }
+      }
+    },
+    {
+      "id": "galvo-mirror-pair-3/skeleton-extra-partial",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
+        "step": "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
+      },
+      "position": [
+        100,
+        50,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -180,
+          "z": -180
+        }
+      }
+    },
+    {
+      "id": "galvo-mirror-pair-3/skeleton/lower-half",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
+        "step": "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
+      },
+      "position": [
+        100,
+        100,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "galvo-mirror-pair-3/skeleton/upper-half",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb",
+        "step": "cube-mounted/mirror-galvo-two.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
+      },
+      "position": [
+        100,
+        100,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -180,
+          "z": -180
+        }
+      }
+    }
+  ]
+}

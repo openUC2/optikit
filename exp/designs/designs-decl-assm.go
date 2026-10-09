@@ -3,6 +3,7 @@ package designs
 import (
 	"cmp"
 	"fmt"
+	"maps"
 	"math"
 	"slices"
 
@@ -192,8 +193,21 @@ func (s AssmCompsSpec) poseDigraph(
 	return g, nil
 }
 
+// Subtrees gathers all direct and indirect descendants of the assembly into a single map keyed
+// by those descendants' component IDs. The descendants' declared poses and children are left
+// unmodified, unlike the Flattened method. In other words, the returned map includes every subtree
+// of the AssmCompsSpec, keyed by the component ID of the root of that subtree.
+func (s AssmCompsSpec) Subtrees() map[CompID]AssmCompSpec {
+	collected := s.Cloned()
+	for _, assmComp := range s {
+		maps.Insert(collected, maps.All(assmComp.Children.Subtrees()))
+	}
+	return collected
+}
+
 // Flattened returns a new AssmCompsSpec in which each non-origin component's pose base
-// is just the root coordinate system of the assembly itself.
+// is just the root coordinate system of the assembly itself, and all components are direct children
+// of the assembly itself.
 func (s AssmCompsSpec) Flattened(
 	gridSpacings ContinuousXYZ[float64],
 ) (AssmCompsSpec, error) {
@@ -219,6 +233,8 @@ func (s AssmCompsSpec) Flattened(
 			c := g[parent][child].Cloned()
 			var basePose AssmCompPoseSpec
 			switch c.Pose.Base.Kind {
+			default:
+				return flattened, errors.Errorf("unknown pose base kind %s", c.Pose.Base.Kind)
 			case "", AssmCompPoseBaseKindParent:
 				if parent == "" {
 					flattened[child] = c
@@ -233,13 +249,11 @@ func (s AssmCompsSpec) Flattened(
 				continue
 			}
 			switch c.Pose.Kind {
+			default:
+				return flattened, errors.Errorf("unknown pose kind %s", c.Pose.Kind)
 			case "", AssmCompPoseKindAffine:
 				if c.Pose, err = popPose(
-					child,
-					parent,
-					c.Pose,
-					flattened[parent].Pose,
-					gridSpacings,
+					child, parent, c.Pose, flattened[parent].Pose, gridSpacings,
 				); err != nil {
 					return flattened, errors.Wrapf(
 						err, "couldn't bring affine-type pose of child %s up to the assembly's frame", child,
@@ -247,6 +261,7 @@ func (s AssmCompsSpec) Flattened(
 				}
 			case AssmCompPoseKindRelativePosition:
 				c.Pose.Translation = basePose.Translation.Added(c.Pose.Translation)
+				c.Pose.Kind = ""
 			}
 			c.Pose.Base = AssmCompPoseBaseSpec{
 				Kind: AssmCompPoseBaseKindAssembly,
@@ -327,6 +342,10 @@ func (s AssmCompSpec) Cloned() AssmCompSpec {
 
 // Evaluated evaluates the pose expressions with the given ExprEnv into a CompPoseSpec.
 func (s AssmCompPoseExprSpec) Evaluated(env ExprEnv) (result AssmCompPoseSpec, err error) {
+	result = AssmCompPoseSpec{
+		Kind: s.Kind,
+		Base: s.Base,
+	}
 	if result.Rotation, err = s.Rotation.Evaluated(env); err != nil {
 		return AssmCompPoseSpec{}, errors.Wrap(err, "couldn't evaluate rotation")
 	}

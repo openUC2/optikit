@@ -21,9 +21,9 @@
 <!-- &#45;&gt;blue&#45;laser -->
 <g id="edge1" class="edge">
 <title>&#45;&gt;blue&#45;laser</title>
-<path fill="none" stroke="black" d="M5446.48,-356.13C5254.51,-354.18 4090.8,-341.91 3143.83,-321.4 2597.09,-309.56 2460.51,-302.3 1913.87,-286.6 1723.14,-281.12 1497.32,-274.5 1391.4,-271.38"/>
-<polygon fill="black" stroke="black" points="1391.62,-267.89 1381.52,-271.09 1391.41,-274.88 1391.62,-267.89"/>
-<text text-anchor="middle" x="3198.85" y="-308.8" font-family="Times,serif" font-size="14.00">primitives/laser.dsn</text>
+<path fill="none" stroke="black" d="M5446.57,-356.12C5255.27,-354.16 4095.55,-341.78 3151.83,-321.4 2601.53,-309.52 2464.06,-302.35 1913.87,-286.6 1723.14,-281.14 1497.32,-274.51 1391.4,-271.39"/>
+<polygon fill="black" stroke="black" points="1391.62,-267.89 1381.52,-271.09 1391.41,-274.89 1391.62,-267.89"/>
+<text text-anchor="middle" x="3206.85" y="-308.8" font-family="Times,serif" font-size="14.00">primitives/laser.dsn</text>
 </g>
 <!-- camera -->
 <g id="node21" class="node">
@@ -34,9 +34,9 @@
 <!-- &#45;&gt;camera -->
 <g id="edge2" class="edge">
 <title>&#45;&gt;camera</title>
-<path fill="none" stroke="black" d="M5446.61,-355.84C5293.47,-352.7 4524.57,-336.78 3896.43,-321.4 3146.56,-303.04 2233.28,-277.31 2011.92,-271.02"/>
-<polygon fill="black" stroke="black" points="2012.31,-267.53 2002.22,-270.75 2012.11,-274.53 2012.31,-267.53"/>
-<text text-anchor="middle" x="4010.15" y="-308.8" font-family="Times,serif" font-size="14.00">primitives/hikcamera&#45;with&#45;objective.dsn</text>
+<path fill="none" stroke="black" d="M5446.57,-355.83C5294.01,-352.66 4531.45,-336.65 3908.43,-321.4 3153.91,-302.93 2234.96,-277.28 2012.23,-271.02"/>
+<polygon fill="black" stroke="black" points="2012.55,-267.53 2002.46,-270.74 2012.35,-274.52 2012.55,-267.53"/>
+<text text-anchor="middle" x="4022.15" y="-308.8" font-family="Times,serif" font-size="14.00">primitives/hikcamera&#45;with&#45;objective.dsn</text>
 </g>
 <!-- dichroic -->
 <g id="node48" class="node">
@@ -47,9 +47,9 @@
 <!-- &#45;&gt;dichroic -->
 <g id="edge3" class="edge">
 <title>&#45;&gt;dichroic</title>
-<path fill="none" stroke="black" d="M5446.58,-355.5C5332.15,-351.7 4879.63,-336.5 4507.76,-321.4 4084.99,-304.23 3575.03,-280.06 3410.68,-272.19"/>
-<polygon fill="black" stroke="black" points="3411.11,-268.71 3400.96,-271.72 3410.78,-275.7 3411.11,-268.71"/>
-<text text-anchor="middle" x="4613.31" y="-308.8" font-family="Times,serif" font-size="14.00">cube&#45;mounted/dichroic&#45;mirror.dsn:xy</text>
+<path fill="none" stroke="black" d="M5446.71,-355.47C5333.78,-351.59 4890.23,-336.21 4525.65,-321.4 4095.58,-303.93 3576.63,-279.89 3410.65,-272.13"/>
+<polygon fill="black" stroke="black" points="3410.98,-268.64 3400.83,-271.67 3410.65,-275.63 3410.98,-268.64"/>
+<text text-anchor="middle" x="4622.26" y="-308.8" font-family="Times,serif" font-size="14.00">cube&#45;mounted/dichroic&#45;mirror.dsn</text>
 </g>
 <!-- electronics&#45;controller -->
 <g id="node59" class="node">
@@ -75,7 +75,7 @@
 <title>&#45;&gt;fiber&#45;holder</title>
 <path fill="none" stroke="black" d="M5473.87,-339.25C5473.87,-327.56 5473.87,-311.79 5473.87,-298.22"/>
 <polygon fill="black" stroke="black" points="5477.37,-298.52 5473.87,-288.52 5470.37,-298.52 5477.37,-298.52"/>
-<text text-anchor="middle" x="5566.2" y="-308.8" font-family="Times,serif" font-size="14.00">cube&#45;mounted/fiber&#45;holder.dsn:x</text>
+<text text-anchor="middle" x="5560.75" y="-308.8" font-family="Times,serif" font-size="14.00">cube&#45;mounted/fiber&#45;holder.dsn</text>
 </g>
 <!-- laser&#45;mirror -->
 <g id="node85" class="node">
@@ -86,9 +86,9 @@
 <!-- &#45;&gt;laser&#45;mirror -->
 <g id="edge6" class="edge">
 <title>&#45;&gt;laser&#45;mirror</title>
-<path fill="none" stroke="black" d="M5499.89,-351.79C5536.37,-345.28 5604.76,-332.9 5662.87,-321.4 5727.61,-308.59 5801.7,-292.84 5851.51,-282.09"/>
-<polygon fill="black" stroke="black" points="5852.17,-285.53 5861.21,-279.99 5850.7,-278.69 5852.17,-285.53"/>
-<text text-anchor="middle" x="5850.88" y="-308.8" font-family="Times,serif" font-size="14.00">cube&#45;mounted/mirror&#45;diagonal.dsn:xy</text>
+<path fill="none" stroke="black" d="M5499.81,-351.34C5534.48,-344.57 5597.81,-332.16 5651.87,-321.4 5720.28,-307.78 5798.88,-291.9 5850.96,-281.35"/>
+<polygon fill="black" stroke="black" points="5851.39,-284.84 5860.5,-279.42 5850,-277.98 5851.39,-284.84"/>
+<text text-anchor="middle" x="5827.37" y="-308.8" font-family="Times,serif" font-size="14.00">cube&#45;mounted/mirror&#45;diagonal.dsn</text>
 </g>
 <!-- objective -->
 <g id="node93" class="node">
@@ -99,9 +99,9 @@
 <!-- &#45;&gt;objective -->
 <g id="edge7" class="edge">
 <title>&#45;&gt;objective</title>
-<path fill="none" stroke="black" d="M5500.88,-354.9C5574.77,-350.71 5786.4,-338.06 5961.87,-321.4 6100.05,-308.28 6262.16,-287.77 6345.02,-276.91"/>
-<polygon fill="black" stroke="black" points="6345.46,-280.38 6354.92,-275.61 6344.55,-273.44 6345.46,-280.38"/>
-<text text-anchor="middle" x="6188.83" y="-308.8" font-family="Times,serif" font-size="14.00">cube&#45;mounted/lens.dsn:x</text>
+<path fill="none" stroke="black" d="M5500.82,-354.64C5571.24,-349.96 5766.56,-336.56 5928.87,-321.4 6079.57,-307.32 6256.94,-286.72 6344.8,-276.25"/>
+<polygon fill="black" stroke="black" points="6345.07,-279.74 6354.58,-275.08 6344.24,-272.79 6345.07,-279.74"/>
+<text text-anchor="middle" x="6149.17" y="-308.8" font-family="Times,serif" font-size="14.00">cube&#45;mounted/lens.dsn</text>
 </g>
 <!-- sample&#45;mirror -->
 <g id="node101" class="node">
@@ -112,22 +112,22 @@
 <!-- &#45;&gt;sample&#45;mirror -->
 <g id="edge8" class="edge">
 <title>&#45;&gt;sample&#45;mirror</title>
-<path fill="none" stroke="black" d="M5501.14,-355.52C5602.14,-352.17 5964.51,-339.56 6262.87,-321.4 6479.64,-308.2 6735.48,-286.76 6858.53,-276.07"/>
-<polygon fill="black" stroke="black" points="6858.49,-279.59 6868.15,-275.24 6857.88,-272.62 6858.49,-279.59"/>
-<text text-anchor="middle" x="6608.5" y="-308.8" font-family="Times,serif" font-size="14.00">cube&#45;mounted/mirror&#45;diagonal.dsn:_z</text>
+<path fill="none" stroke="black" d="M5500.9,-355.38C5597.94,-351.65 5937.76,-338.15 6217.87,-321.4 6451.5,-307.43 6727.77,-285.98 6857.52,-275.62"/>
+<polygon fill="black" stroke="black" points="6857.67,-279.12 6867.36,-274.83 6857.11,-272.14 6857.67,-279.12"/>
+<text text-anchor="middle" x="6571" y="-308.8" font-family="Times,serif" font-size="14.00">cube&#45;mounted/mirror&#45;diagonal.dsn</text>
 </g>
 <!-- sample&#45;stage -->
 <g id="node109" class="node">
 <title>sample&#45;stage</title>
-<ellipse fill="none" stroke="black" cx="11271.87" cy="-268.6" rx="61.45" ry="18"/>
-<text text-anchor="middle" x="11271.87" y="-264.4" font-family="Times,serif" font-size="14.00">sample&#45;stage</text>
+<ellipse fill="none" stroke="black" cx="11272.87" cy="-268.6" rx="61.45" ry="18"/>
+<text text-anchor="middle" x="11272.87" y="-264.4" font-family="Times,serif" font-size="14.00">sample&#45;stage</text>
 </g>
 <!-- &#45;&gt;sample&#45;stage -->
 <g id="edge9" class="edge">
 <title>&#45;&gt;sample&#45;stage</title>
-<path fill="none" stroke="black" d="M5501.01,-355.99C5899.36,-350.03 10558.43,-280.28 11199.03,-270.69"/>
-<polygon fill="black" stroke="black" points="11198.91,-274.19 11208.86,-270.54 11198.81,-267.19 11198.91,-274.19"/>
-<text text-anchor="middle" x="8960.81" y="-308.8" font-family="Times,serif" font-size="14.00">primitives/xyz&#45;stage.dsn</text>
+<path fill="none" stroke="black" d="M5501.01,-355.99C5899.44,-350.03 10559.31,-280.28 11200.01,-270.69"/>
+<polygon fill="black" stroke="black" points="11199.9,-274.19 11209.85,-270.54 11199.79,-267.19 11199.9,-274.19"/>
+<text text-anchor="middle" x="8961.4" y="-308.8" font-family="Times,serif" font-size="14.00">primitives/xyz&#45;stage.dsn</text>
 </g>
 <!-- blue&#45;laser/case&#45;bottom -->
 <g id="node3" class="node">
@@ -1343,9 +1343,9 @@
 <!-- sample&#45;stage&#45;&gt;sample&#45;stage/base -->
 <g id="edge109" class="edge">
 <title>sample&#45;stage&#45;&gt;sample&#45;stage/base</title>
-<path fill="none" stroke="black" d="M11210.88,-265.6C10846.13,-253.66 8958.93,-191.87 8660.6,-182.1"/>
-<polygon fill="black" stroke="black" points="8660.74,-178.6 8650.63,-181.77 8660.51,-185.6 8660.74,-178.6"/>
-<text text-anchor="middle" x="10207.72" y="-220" font-family="Times,serif" font-size="14.00">base.dsn</text>
+<path fill="none" stroke="black" d="M11211.86,-265.6C10846.96,-253.66 8959.05,-191.87 8660.62,-182.1"/>
+<polygon fill="black" stroke="black" points="8660.75,-178.6 8650.64,-181.77 8660.52,-185.6 8660.75,-178.6"/>
+<text text-anchor="middle" x="10208.31" y="-220" font-family="Times,serif" font-size="14.00">base.dsn</text>
 </g>
 <!-- sample&#45;stage/stage&#45;drivers -->
 <g id="node131" class="node">
@@ -1356,8 +1356,8 @@
 <!-- sample&#45;stage&#45;&gt;sample&#45;stage/stage&#45;drivers -->
 <g id="edge110" class="edge">
 <title>sample&#45;stage&#45;&gt;sample&#45;stage/stage&#45;drivers</title>
-<path fill="none" stroke="black" d="M11264.36,-250.45C11259.1,-238.44 11251.97,-222.14 11245.92,-208.33"/>
-<polygon fill="black" stroke="black" points="11249.18,-207.06 11241.96,-199.3 11242.77,-209.86 11249.18,-207.06"/>
+<path fill="none" stroke="black" d="M11265.16,-250.45C11259.77,-238.44 11252.44,-222.14 11246.23,-208.33"/>
+<polygon fill="black" stroke="black" points="11249.47,-206.98 11242.18,-199.29 11243.08,-209.85 11249.47,-206.98"/>
 </g>
 <!-- sample&#45;stage/xy&#45;plate -->
 <g id="node132" class="node">
@@ -1368,34 +1368,34 @@
 <!-- sample&#45;stage&#45;&gt;sample&#45;stage/xy&#45;plate -->
 <g id="edge111" class="edge">
 <title>sample&#45;stage&#45;&gt;sample&#45;stage/xy&#45;plate</title>
-<path fill="none" stroke="black" d="M11288.06,-250.86C11300.66,-237.85 11318.3,-219.62 11332.44,-205.01"/>
-<polygon fill="black" stroke="black" points="11334.8,-207.61 11339.24,-197.99 11329.77,-202.74 11334.8,-207.61"/>
-<text text-anchor="middle" x="11355.8" y="-220" font-family="Times,serif" font-size="14.00">xy&#45;plate.dsn</text>
+<path fill="none" stroke="black" d="M11288.87,-250.86C11301.31,-237.85 11318.75,-219.62 11332.72,-205.01"/>
+<polygon fill="black" stroke="black" points="11335.05,-207.64 11339.43,-197.99 11329.99,-202.8 11335.05,-207.64"/>
+<text text-anchor="middle" x="11356.21" y="-220" font-family="Times,serif" font-size="14.00">xy&#45;plate.dsn</text>
 </g>
 <!-- sample&#45;stage/yz&#45;plate -->
 <g id="node146" class="node">
 <title>sample&#45;stage/yz&#45;plate</title>
-<ellipse fill="none" stroke="black" cx="13155.87" cy="-179.8" rx="42.13" ry="18"/>
-<text text-anchor="middle" x="13155.87" y="-175.6" font-family="Times,serif" font-size="14.00">yz&#45;plate</text>
+<ellipse fill="none" stroke="black" cx="13154.87" cy="-179.8" rx="42.13" ry="18"/>
+<text text-anchor="middle" x="13154.87" y="-175.6" font-family="Times,serif" font-size="14.00">yz&#45;plate</text>
 </g>
 <!-- sample&#45;stage&#45;&gt;sample&#45;stage/yz&#45;plate -->
 <g id="edge112" class="edge">
 <title>sample&#45;stage&#45;&gt;sample&#45;stage/yz&#45;plate</title>
-<path fill="none" stroke="black" d="M11332.42,-264.81C11618.52,-251.63 12832.24,-195.71 13102.42,-183.26"/>
-<polygon fill="black" stroke="black" points="13102.5,-186.76 13112.32,-182.81 13102.17,-179.77 13102.5,-186.76"/>
-<text text-anchor="middle" x="12416.63" y="-220" font-family="Times,serif" font-size="14.00">yz&#45;plate.dsn</text>
+<path fill="none" stroke="black" d="M11333.35,-264.81C11619.15,-251.63 12831.59,-195.71 13101.48,-183.26"/>
+<polygon fill="black" stroke="black" points="13101.54,-186.76 13111.37,-182.81 13101.22,-179.77 13101.54,-186.76"/>
+<text text-anchor="middle" x="12416.45" y="-220" font-family="Times,serif" font-size="14.00">yz&#45;plate.dsn</text>
 </g>
 <!-- sample&#45;stage/z&#45;plate -->
 <g id="node158" class="node">
 <title>sample&#45;stage/z&#45;plate</title>
-<ellipse fill="none" stroke="black" cx="13252.87" cy="-179.8" rx="37.31" ry="18"/>
-<text text-anchor="middle" x="13252.87" y="-175.6" font-family="Times,serif" font-size="14.00">z&#45;plate</text>
+<ellipse fill="none" stroke="black" cx="13251.87" cy="-179.8" rx="37.31" ry="18"/>
+<text text-anchor="middle" x="13251.87" y="-175.6" font-family="Times,serif" font-size="14.00">z&#45;plate</text>
 </g>
 <!-- sample&#45;stage&#45;&gt;sample&#45;stage/z&#45;plate -->
 <g id="edge113" class="edge">
 <title>sample&#45;stage&#45;&gt;sample&#45;stage/z&#45;plate</title>
-<path fill="none" stroke="black" d="M11333.14,-266.15C11508.19,-261.92 12025.48,-248.89 12454.87,-232.6 12789.21,-219.92 12878.96,-264.31 13206.87,-197.8 13209.47,-197.27 13212.12,-196.62 13214.78,-195.88"/>
-<polygon fill="black" stroke="black" points="13215.62,-199.28 13224.09,-192.92 13213.5,-192.61 13215.62,-199.28"/>
+<path fill="none" stroke="black" d="M11334.09,-266.15C11508.99,-261.92 12025.85,-248.89 12454.87,-232.6 12788.76,-219.92 12878.4,-264.23 13205.87,-197.8 13208.47,-197.27 13211.12,-196.62 13213.78,-195.88"/>
+<polygon fill="black" stroke="black" points="13214.62,-199.28 13223.09,-192.92 13212.5,-192.61 13214.62,-199.28"/>
 </g>
 <!-- sample&#45;stage/base/cube&#45;base -->
 <g id="node111" class="node">
@@ -1804,7 +1804,7 @@
 <!-- sample&#45;stage/yz&#45;plate&#45;&gt;sample&#45;stage/yz&#45;plate/motor -->
 <g id="edge147" class="edge">
 <title>sample&#45;stage/yz&#45;plate&#45;&gt;sample&#45;stage/yz&#45;plate/motor</title>
-<path fill="none" stroke="black" d="M13113.57,-178.12C12997.96,-175.95 12678.52,-167.89 12576.38,-143.8 12545.22,-136.45 12511.9,-121.71 12488.05,-109.83"/>
+<path fill="none" stroke="black" d="M13112.64,-178.11C12997.23,-175.94 12678.35,-167.86 12576.38,-143.8 12545.22,-136.45 12511.9,-121.71 12488.05,-109.82"/>
 <polygon fill="black" stroke="black" points="12489.65,-106.71 12479.15,-105.29 12486.47,-112.95 12489.65,-106.71"/>
 <text text-anchor="middle" x="12662.12" y="-131.2" font-family="Times,serif" font-size="14.00">primitives/motor&#45;push&#45;rod.dsn</text>
 </g>
@@ -1817,8 +1817,8 @@
 <!-- sample&#45;stage/yz&#45;plate&#45;&gt;sample&#45;stage/yz&#45;plate/motor&#45;holder -->
 <g id="edge148" class="edge">
 <title>sample&#45;stage/yz&#45;plate&#45;&gt;sample&#45;stage/yz&#45;plate/motor&#45;holder</title>
-<path fill="none" stroke="black" d="M13115.17,-174.7C13027.73,-165.59 12815.59,-141.84 12639.87,-109 12635.04,-108.1 12630.05,-107.08 12625.05,-106"/>
-<polygon fill="black" stroke="black" points="12626.17,-102.67 12615.65,-103.9 12624.64,-109.5 12626.17,-102.67"/>
+<path fill="none" stroke="black" d="M13113.92,-174.66C13026.44,-165.51 12815.03,-141.75 12639.87,-109 12635.04,-108.1 12630.05,-107.08 12625.05,-106"/>
+<polygon fill="black" stroke="black" points="12626.17,-102.66 12615.65,-103.89 12624.64,-109.49 12626.17,-102.66"/>
 </g>
 <!-- sample&#45;stage/yz&#45;plate/motor&#45;holder&#45;hold&#45;screw&#45;1 -->
 <g id="node149" class="node">
@@ -1829,8 +1829,8 @@
 <!-- sample&#45;stage/yz&#45;plate&#45;&gt;sample&#45;stage/yz&#45;plate/motor&#45;holder&#45;hold&#45;screw&#45;1 -->
 <g id="edge149" class="edge">
 <title>sample&#45;stage/yz&#45;plate&#45;&gt;sample&#45;stage/yz&#45;plate/motor&#45;holder&#45;hold&#45;screw&#45;1</title>
-<path fill="none" stroke="black" d="M13119.08,-170.63C13055.65,-156.55 12924.46,-127.43 12840.77,-108.85"/>
-<polygon fill="black" stroke="black" points="12841.53,-105.43 12831.01,-106.68 12840.02,-112.27 12841.53,-105.43"/>
+<path fill="none" stroke="black" d="M13118.18,-170.63C13054.91,-156.55 12924.05,-127.43 12840.57,-108.85"/>
+<polygon fill="black" stroke="black" points="12841.37,-105.44 12830.85,-106.69 12839.85,-112.27 12841.37,-105.44"/>
 </g>
 <!-- sample&#45;stage/yz&#45;plate/motor&#45;holder&#45;mount&#45;screw&#45;1 -->
 <g id="node150" class="node">
@@ -1841,8 +1841,8 @@
 <!-- sample&#45;stage/yz&#45;plate&#45;&gt;sample&#45;stage/yz&#45;plate/motor&#45;holder&#45;mount&#45;screw&#45;1 -->
 <g id="edge150" class="edge">
 <title>sample&#45;stage/yz&#45;plate&#45;&gt;sample&#45;stage/yz&#45;plate/motor&#45;holder&#45;mount&#45;screw&#45;1</title>
-<path fill="none" stroke="black" d="M13133.6,-164.27C13113.07,-150.87 13082.23,-130.74 13058.3,-115.13"/>
-<polygon fill="black" stroke="black" points="13060.41,-112.32 13050.12,-109.79 13056.58,-118.18 13060.41,-112.32"/>
+<path fill="none" stroke="black" d="M13132.47,-164.08C13112.05,-150.64 13081.53,-130.57 13057.88,-115.02"/>
+<polygon fill="black" stroke="black" points="13060.08,-112.28 13049.8,-109.71 13056.23,-118.13 13060.08,-112.28"/>
 </g>
 <!-- sample&#45;stage/yz&#45;plate/motor&#45;holder&#45;mount&#45;screw&#45;2 -->
 <g id="node151" class="node">
@@ -1853,8 +1853,8 @@
 <!-- sample&#45;stage/yz&#45;plate&#45;&gt;sample&#45;stage/yz&#45;plate/motor&#45;holder&#45;mount&#45;screw&#45;2 -->
 <g id="edge151" class="edge">
 <title>sample&#45;stage/yz&#45;plate&#45;&gt;sample&#45;stage/yz&#45;plate/motor&#45;holder&#45;mount&#45;screw&#45;2</title>
-<path fill="none" stroke="black" d="M13178.26,-164.08C13198.69,-150.64 13229.2,-130.57 13252.85,-115.02"/>
-<polygon fill="black" stroke="black" points="13254.5,-118.13 13260.93,-109.71 13250.65,-112.28 13254.5,-118.13"/>
+<path fill="none" stroke="black" d="M13177.13,-164.27C13197.67,-150.87 13228.51,-130.74 13252.43,-115.13"/>
+<polygon fill="black" stroke="black" points="13254.15,-118.18 13260.61,-109.79 13250.32,-112.32 13254.15,-118.18"/>
 </g>
 <!-- sample&#45;stage/yz&#45;plate/motor&#45;pressure&#45;piece -->
 <g id="node152" class="node">
@@ -1865,8 +1865,8 @@
 <!-- sample&#45;stage/yz&#45;plate&#45;&gt;sample&#45;stage/yz&#45;plate/motor&#45;pressure&#45;piece -->
 <g id="edge152" class="edge">
 <title>sample&#45;stage/yz&#45;plate&#45;&gt;sample&#45;stage/yz&#45;plate/motor&#45;pressure&#45;piece</title>
-<path fill="none" stroke="black" d="M13187.81,-167.58C13194.09,-165.54 13200.66,-163.52 13206.87,-161.8 13287.97,-139.39 13382.32,-119.31 13446.67,-106.51"/>
-<polygon fill="black" stroke="black" points="13447.31,-109.95 13456.44,-104.58 13445.95,-103.08 13447.31,-109.95"/>
+<path fill="none" stroke="black" d="M13186.81,-167.58C13193.09,-165.54 13199.66,-163.51 13205.87,-161.8 13287.22,-139.35 13381.87,-119.28 13446.43,-106.49"/>
+<polygon fill="black" stroke="black" points="13447.1,-109.92 13456.23,-104.56 13445.75,-103.05 13447.1,-109.92"/>
 </g>
 <!-- sample&#45;stage/yz&#45;plate/stop&#45;bracket -->
 <g id="node154" class="node">
@@ -1877,8 +1877,8 @@
 <!-- sample&#45;stage/yz&#45;plate&#45;&gt;sample&#45;stage/yz&#45;plate/stop&#45;bracket -->
 <g id="edge153" class="edge">
 <title>sample&#45;stage/yz&#45;plate&#45;&gt;sample&#45;stage/yz&#45;plate/stop&#45;bracket</title>
-<path fill="none" stroke="black" d="M13187.15,-167.3C13193.6,-165.23 13200.4,-163.27 13206.87,-161.8 13252.51,-151.41 13578.85,-117.63 13624.87,-109 13629.44,-108.14 13634.17,-107.16 13638.9,-106.11"/>
-<polygon fill="black" stroke="black" points="13639.44,-109.58 13648.39,-103.91 13637.86,-102.76 13639.44,-109.58"/>
+<path fill="none" stroke="black" d="M13186.15,-167.3C13192.6,-165.23 13199.4,-163.27 13205.87,-161.8 13251.62,-151.4 13578.74,-117.64 13624.87,-109 13629.44,-108.14 13634.17,-107.16 13638.9,-106.11"/>
+<polygon fill="black" stroke="black" points="13639.44,-109.58 13648.4,-103.92 13637.86,-102.76 13639.44,-109.58"/>
 </g>
 <!-- sample&#45;stage/yz&#45;plate/y&#45;plate -->
 <g id="node155" class="node">
@@ -1889,7 +1889,7 @@
 <!-- sample&#45;stage/yz&#45;plate&#45;&gt;sample&#45;stage/yz&#45;plate/y&#45;plate -->
 <g id="edge154" class="edge">
 <title>sample&#45;stage/yz&#45;plate&#45;&gt;sample&#45;stage/yz&#45;plate/y&#45;plate</title>
-<path fill="none" stroke="black" d="M13186.83,-167.17C13193.37,-165.08 13200.28,-163.15 13206.87,-161.8 13302.11,-142.29 13328.07,-152.81 13424.87,-143.8 13574.35,-129.89 13614.52,-142.51 13760.87,-109 13763.6,-108.37 13766.4,-107.63 13769.2,-106.82"/>
+<path fill="none" stroke="black" d="M13185.83,-167.17C13192.37,-165.08 13199.28,-163.15 13205.87,-161.8 13301.11,-142.29 13327.06,-152.79 13423.87,-143.8 13573.79,-129.87 13614.09,-142.59 13760.87,-109 13763.6,-108.37 13766.4,-107.63 13769.2,-106.82"/>
 <polygon fill="black" stroke="black" points="13769.98,-110.24 13778.43,-103.85 13767.84,-103.58 13769.98,-110.24"/>
 </g>
 <!-- sample&#45;stage/yz&#45;plate/z&#45;bracket -->
@@ -1901,7 +1901,7 @@
 <!-- sample&#45;stage/yz&#45;plate&#45;&gt;sample&#45;stage/yz&#45;plate/z&#45;bracket -->
 <g id="edge155" class="edge">
 <title>sample&#45;stage/yz&#45;plate&#45;&gt;sample&#45;stage/yz&#45;plate/z&#45;bracket</title>
-<path fill="none" stroke="black" d="M13186.53,-167.09C13193.15,-164.99 13200.17,-163.06 13206.87,-161.8 13360.8,-132.77 13402.77,-156.95 13558.87,-143.8 13690.86,-132.68 13725.2,-136.08 13854.87,-109 13858.24,-108.3 13861.7,-107.48 13865.17,-106.59"/>
+<path fill="none" stroke="black" d="M13185.53,-167.09C13192.15,-164.99 13199.17,-163.06 13205.87,-161.8 13359.8,-132.77 13401.77,-156.92 13557.87,-143.8 13690.3,-132.67 13724.76,-136.14 13854.87,-109 13858.24,-108.3 13861.7,-107.48 13865.17,-106.6"/>
 <polygon fill="black" stroke="black" points="13865.98,-110 13874.7,-103.98 13864.13,-103.25 13865.98,-110"/>
 </g>
 <!-- sample&#45;stage/yz&#45;plate/z&#45;rotator -->
@@ -1913,7 +1913,7 @@
 <!-- sample&#45;stage/yz&#45;plate&#45;&gt;sample&#45;stage/yz&#45;plate/z&#45;rotator -->
 <g id="edge156" class="edge">
 <title>sample&#45;stage/yz&#45;plate&#45;&gt;sample&#45;stage/yz&#45;plate/z&#45;rotator</title>
-<path fill="none" stroke="black" d="M13186.51,-167.03C13193.14,-164.93 13200.16,-163.02 13206.87,-161.8 13409.46,-124.87 13464.55,-159.79 13669.87,-143.8 13802.37,-133.48 13836.98,-137.16 13966.87,-109 13970.01,-108.32 13973.23,-107.53 13976.46,-106.67"/>
+<path fill="none" stroke="black" d="M13185.51,-167.03C13192.14,-164.93 13199.16,-163.02 13205.87,-161.8 13408.9,-124.8 13464.11,-159.82 13669.87,-143.8 13802.37,-133.48 13836.98,-137.16 13966.87,-109 13970.01,-108.32 13973.23,-107.53 13976.46,-106.67"/>
 <polygon fill="black" stroke="black" points="13977.25,-110.08 13985.89,-103.94 13975.31,-103.35 13977.25,-110.08"/>
 </g>
 <!-- sample&#45;stage/yz&#45;plate/motor/motor -->

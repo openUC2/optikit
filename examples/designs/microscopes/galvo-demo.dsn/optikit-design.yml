@@ -11,40 +11,36 @@ components:
     kind: design
     design: cube-mounted/mirror-galvo-two.dsn
     instantiation:
-      variant: x
       inputs:
         mirror-1-rotation: 10
         mirror-2-rotation: 40
-    pose:
-      rotation:
-        kind: uc2
   galvo-mirror-pair-2:
     kind: design
     design: cube-mounted/mirror-galvo-two.dsn
     instantiation:
-      variant: x
       inputs:
         mirror-1-rotation: 20
         mirror-2-rotation: 60
-    pose:
-      rotation:
-        kind: uc2
-      translation:
-        offset-grid: {x: 1, y: 1}
   galvo-mirror-pair-3:
     kind: design
     design: cube-mounted/mirror-galvo-two.dsn
     instantiation:
-      variant: x
       inputs:
         mirror-1-rotation: 40
         mirror-2-rotation: 80
-    pose:
-      rotation:
-        kind: uc2
-      translation:
-        offset-grid: {x: 2, y: 2}
 
-relations:
-  geometry:
-  logic:
+assemblies:
+  '':
+    children:
+      galvo-mirror-pair-1:
+        assembly: x
+      galvo-mirror-pair-2:
+        assembly: x
+        pose:
+          translation:
+            offset-grid: {x: 1, y: 1}
+      galvo-mirror-pair-3:
+        assembly: x
+        pose:
+          translation:
+            offset-grid: {x: 2, y: 2}

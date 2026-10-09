@@ -10,88 +10,91 @@ components:
   light-source:
     kind: design
     design: primitives/flashlight.dsn
-    pose:
-      rotation:
-        kind: grid
-        grid: {z: +x, x: -z}
-      translation:
-        anchor: sample-holder
-        offset-mm: {x: -80}
   sample-holder:
     kind: design
     design: cube-mounted/slide-holder.dsn
     instantiation:
-      variant: x
       inputs:
         offset: 7
-    pose:
-      rotation:
-        kind: uc2
   objective-lens:
     kind: design
     design: cube-mounted/lens.dsn
     instantiation:
-      variant: x
       inputs:
         offset: 5
-    pose:
-      rotation:
-        kind: uc2
-      translation:
-        anchor: sample-holder
-        offset-grid: {x: 1}
   periscope-mirror-1:
     kind: design
     design: cube-mounted/mirror-static.dsn
     instantiation:
-      variant: x
       inputs:
         off-axis: true
-    pose:
-      rotation:
-        kind: uc2
-        grid: {x: +y}
-      translation:
-        anchor: objective-lens
-        offset-grid: {x: 1}
   periscope-mirror-2:
     kind: design
     design: cube-mounted/mirror-static.dsn
     instantiation:
-      variant: z
       inputs:
         off-axis: true
-    pose:
-      rotation:
-        kind: uc2
-        grid: {x: -y}
-      translation:
-        anchor: periscope-mirror-1
-        offset-grid: {y: 5}
   tube-lens:
     kind: design
     design: cube-mounted/lens.dsn
     instantiation:
-      variant: z
       inputs:
         offset: -8
-    pose:
-      rotation:
-        kind: uc2
-      translation:
-        anchor: periscope-mirror-2
-        offset-grid: {z: 3}
   projector-screen:
     kind: design
     design: primitives/projector-screen.dsn
-    pose:
-      rotation:
-        kind: grid
-      translation:
-        kind: mm
-        anchor: tube-lens
-        offset-mm: {z: 100}
 
-relations:
-  geometry:
-  logic:
+assemblies:
+  '':
+    children:
+      sample-holder:
+        assembly: x
+        children:
+          light-source:
+            pose:
+              kind: relative-position
+              rotation:
+                kind: grid
+                grid: {z: +x, x: -z}
+              translation:
+                offset-mm: {x: -80}
+          objective-lens:
+            assembly: x
+            pose:
+              kind: relative-position
+              translation:
+                offset-grid: {x: 1}
+            children:
+              periscope-mirror-1:
+                assembly: x
+                pose:
+                  kind: relative-position
+                  rotation:
+                    kind: uc2
+                    grid: {x: +y}
+                  translation:
+                    offset-grid: {x: 1}
+                children:
+                  periscope-mirror-2:
+                    assembly: z
+                    pose:
+                      kind: relative-position
+                      rotation:
+                        kind: uc2
+                        grid: {x: -y}
+                      translation:
+                        offset-grid: {y: 5}
+                    children:
+                      tube-lens:
+                        assembly: z
+                        pose:
+                          kind: relative-position
+                          translation:
+                            offset-grid: {z: 3}
+                        children:
+                          projector-screen:
+                            pose:
+                              kind: relative-position
+                              translation:
+                                kind: mm
+                                offset-mm: {z: 100}

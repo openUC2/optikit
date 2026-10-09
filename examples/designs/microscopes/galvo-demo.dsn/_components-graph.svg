@@ -23,7 +23,7 @@
 <title>&#45;&gt;galvo&#45;mirror&#45;pair&#45;1</title>
 <path fill="none" stroke="black" d="M2382.18,-354.25C2247.51,-343.51 1643.74,-295.34 1412.02,-276.86"/>
 <polygon fill="black" stroke="black" points="1412.36,-273.37 1402.12,-276.07 1411.81,-280.35 1412.36,-273.37"/>
-<text text-anchor="middle" x="2070.03" y="-308.8" font-family="Times,serif" font-size="14.00">cube&#45;mounted/mirror&#45;galvo&#45;two.dsn:x</text>
+<text text-anchor="middle" x="2064.58" y="-308.8" font-family="Times,serif" font-size="14.00">cube&#45;mounted/mirror&#45;galvo&#45;two.dsn</text>
 </g>
 <!-- galvo&#45;mirror&#45;pair&#45;2 -->
 <g id="node24" class="node">
@@ -36,7 +36,7 @@
 <title>&#45;&gt;galvo&#45;mirror&#45;pair&#45;2</title>
 <path fill="none" stroke="black" d="M2409.07,-339.25C2409.07,-327.56 2409.07,-311.79 2409.07,-298.22"/>
 <polygon fill="black" stroke="black" points="2412.57,-298.52 2409.07,-288.52 2405.57,-298.52 2412.57,-298.52"/>
-<text text-anchor="middle" x="2516.58" y="-308.8" font-family="Times,serif" font-size="14.00">cube&#45;mounted/mirror&#45;galvo&#45;two.dsn:x</text>
+<text text-anchor="middle" x="2511.13" y="-308.8" font-family="Times,serif" font-size="14.00">cube&#45;mounted/mirror&#45;galvo&#45;two.dsn</text>
 </g>
 <!-- galvo&#45;mirror&#45;pair&#45;3 -->
 <g id="node46" class="node">
@@ -49,7 +49,7 @@
 <title>&#45;&gt;galvo&#45;mirror&#45;pair&#45;3</title>
 <path fill="none" stroke="black" d="M2436.14,-354.25C2571.76,-343.5 3180.06,-295.28 3412.96,-276.82"/>
 <polygon fill="black" stroke="black" points="3413.23,-280.31 3422.92,-276.03 3412.67,-273.33 3413.23,-280.31"/>
-<text text-anchor="middle" x="3162.15" y="-308.8" font-family="Times,serif" font-size="14.00">cube&#45;mounted/mirror&#45;galvo&#45;two.dsn:x</text>
+<text text-anchor="middle" x="3156.71" y="-308.8" font-family="Times,serif" font-size="14.00">cube&#45;mounted/mirror&#45;galvo&#45;two.dsn</text>
 </g>
 <!-- galvo&#45;mirror&#45;pair&#45;1/mounted&#45;mirrors -->
 <g id="node3" class="node">

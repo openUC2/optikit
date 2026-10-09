@@ -10,79 +10,77 @@ components:
   light-source:
     kind: design
     design: primitives/flashlight.dsn
-    pose:
-      rotation:
-        kind: grid
-        grid: {z: +x, x: -z}
-      translation:
-        offset-mm: {x: -80}
   sample-holder:
     kind: design
     design: cube-mounted/slide-holder.dsn
     instantiation:
-      variant: x
       inputs:
         offset: 7
-    pose:
-      rotation:
-        kind: uc2
   objective-lens:
     kind: design
     design: cube-mounted/lens.dsn
     instantiation:
-      variant: x
       inputs:
         offset: 5
-    pose:
-      rotation:
-        kind: uc2
-      translation:
-        offset-grid: {x: 1}
   periscope-mirror-1:
     kind: design
     design: cube-mounted/mirror-diagonal.dsn
-    instantiation:
-      variant: xy
-    pose:
-      rotation:
-        kind: uc2
-        grid: {x: +y}
-      translation:
-        offset-grid: {x: 2}
   periscope-mirror-2:
     kind: design
     design: cube-mounted/mirror-diagonal.dsn
-    instantiation:
-      variant: xy
-    pose:
-      rotation:
-        kind: uc2
-        grid: {x: -y}
-      translation:
-        offset-grid: {x: 2, y: 10}
   tube-lens:
     kind: design
     design: cube-mounted/lens.dsn
     instantiation:
-      variant: x
       inputs:
         offset: -8
-    pose:
-      rotation:
-        kind: uc2
-      translation:
-        offset-grid: {x: 5, y: 10}
   projector-screen:
     kind: design
     design: primitives/projector-screen.dsn
-    pose:
-      rotation:
-        kind: grid
-        grid: {z: -x, x: +z}
-      translation:
-        offset-grid: {x: 5, y: 10}
-        offset-mm: {x: 100}
 
-relations:
-  geometry:
-  logic:
+assemblies:
+  '':
+    children:
+      light-source:
+        pose:
+          rotation:
+            kind: grid
+            grid: {z: +x, x: -z}
+          translation:
+            offset-mm: {x: -80}
+      sample-holder:
+        assembly: x
+      objective-lens:
+        assembly: x
+        pose:
+          translation:
+            offset-grid: {x: 1}
+      periscope-mirror-1:
+        assembly: xy
+        pose:
+          rotation:
+            kind: uc2
+            grid: {x: +y}
+          translation:
+            offset-grid: {x: 2}
+      periscope-mirror-2:
+        assembly: xy
+        pose:
+          rotation:
+            kind: uc2
+            grid: {x: -y}
+          translation:
+            offset-grid: {x: 2, y: 10}
+      tube-lens:
+        assembly: x
+        pose:
+          translation:
+            offset-grid: {x: 5, y: 10}
+      projector-screen:
+        pose:
+          rotation:
+            kind: grid
+            grid: {z: -x, x: +z}
+          translation:
+            offset-grid: {x: 5, y: 10}
+            offset-mm: {x: 100}

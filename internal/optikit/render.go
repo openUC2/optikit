@@ -271,7 +271,7 @@ func RenderAssemblyGraph(
 
 	gg := make(structures.StrictEdgeDigraph[string, string])
 	if gg, err = populateAssemblyGraph(ctx, gg, design, assembly, recurse, ""); err != nil {
-		return nil, errors.Wrapf(err, "couldn't populate position graph for design %s", design.Path())
+		return nil, errors.Wrapf(err, "couldn't populate assembly graph for design %s", design.Path())
 	}
 	gvg, err := gvc.NewStrictDigraph("", gg, nil)
 	if err != nil {
@@ -323,8 +323,18 @@ func populateAssemblyGraph(
 		return gg, nil
 	}
 
+	assmComps := assm.Children.Subtrees()
 	for _, compID := range fromIDs {
-		assmComp := assm.Children[compID]
+		if compID == "" {
+			continue // root node
+		}
+		assmComp, ok := assmComps[compID]
+		if !ok {
+			return nil, errors.Errorf(
+				"couldn't find component %s among children of assembly %s: %+v",
+				compID, assembly, slices.Collect(maps.Keys(assm.Children)),
+			)
+		}
 		comp := design.Decl.Components[compID]
 		if comp.Kind != designs.CompKindDesign {
 			continue
@@ -341,8 +351,9 @@ func populateAssemblyGraph(
 		if gg, err = populateAssemblyGraph(
 			ctx, gg, subdesign, assmComp.Assm, recurse, designs.JoinCompIDs(nodePrefix, compID),
 		); err != nil {
+			fmt.Printf("%+v\n", assmComp)
 			return nil, errors.Wrapf(
-				err, "couldn't populate position graph by recursing into subdesign %s for component %s",
+				err, "couldn't populate assembly graph by recursing into subdesign %s for component %s",
 				comp.Design, compID,
 			)
 		}

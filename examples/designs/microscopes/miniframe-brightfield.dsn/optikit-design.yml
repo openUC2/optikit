@@ -6,528 +6,481 @@ components:
   lens-galvo-160:
     kind: design
     design: cube-mounted/lens.dsn
-    instantiation:
-      variant: x
-    pose:
-      rotation:
-        kind: uc2
-      translation:
-        offset-grid:
-          x: -3
-          y: 1
   camera-basic:
     kind: design
     design: primitives/hikcamera-with-objective.dsn
-    pose:
-      rotation:
-        kind: grid
-        grid:
-          z: -z
-          x: -x
-      translation:
-        offset-grid:
-          y: 1
   cube-45-fixed:
     kind: design
     design: cube-mounted/mirror-diagonal.dsn
-    instantiation:
-      variant: _z
-    pose:
-      rotation:
-        kind: uc2
-      translation:
-        offset-grid:
-          x: -4
-          y: 1
   scaffolding-1:
     kind: design
     design: primitives/cube-skeleton.dsn
-    pose:
-      rotation:
-        kind: uc2
-      translation:
-        offset-grid:
-          x: -2
-          y: 1
   scaffolding-2:
     kind: design
     design: primitives/cube-skeleton.dsn
-    pose:
-      rotation:
-        kind: uc2
-      translation:
-        offset-grid:
-          x: -1
-          y: 1
   scaffolding-3:
     kind: design
     design: primitives/cube-skeleton.dsn
-    pose:
-      rotation:
-        kind: uc2
-      translation:
-        offset-grid:
-          x: -4
-  scaffolding-5:
-    kind: design
-    design: primitives/cube-skeleton.dsn
-    pose:
-      rotation:
-        kind: uc2
-      translation:
-        offset-grid:
-          x: -2
-  scaffolding-7:
-    kind: design
-    design: primitives/cube-skeleton.dsn
-    pose:
-      rotation:
-        kind: uc2
-      translation:
-        offset-grid:
-          x: -4
-          y: 2
-  scaffolding-8:
-    kind: design
-    design: primitives/cube-skeleton.dsn
-    pose:
-      rotation:
-        kind: uc2
-      translation:
-        offset-grid:
-          x: -3
-          y: 2
-  scaffolding-9:
-    kind: design
-    design: primitives/cube-skeleton.dsn
-    pose:
-      rotation:
-        kind: uc2
-      translation:
-        offset-grid:
-          x: -2
-          y: 2
   scaffolding-4:
     kind: design
     design: primitives/cube-skeleton.dsn
-    pose:
-      rotation:
-        kind: uc2
-      translation:
-        offset-grid:
-          x: -3
+  scaffolding-5:
+    kind: design
+    design: primitives/cube-skeleton.dsn
+  scaffolding-7:
+    kind: design
+    design: primitives/cube-skeleton.dsn
+  scaffolding-8:
+    kind: design
+    design: primitives/cube-skeleton.dsn
+  scaffolding-9:
+    kind: design
+    design: primitives/cube-skeleton.dsn
   scaffolding-6:
     kind: design
     design: primitives/cube-skeleton.dsn
-    pose:
-      rotation:
-        kind: uc2
-      translation:
-        offset-grid:
-          x: -4
-          y: 1
-          z: 1
   scaffolding-10:
     kind: design
     design: primitives/cube-skeleton.dsn
-    pose:
-      rotation:
-        kind: uc2
-      translation:
-        offset-grid:
-          x: -3
-          y: 2
-          z: 1
   scaffolding-11:
     kind: design
     design: primitives/cube-skeleton.dsn
-    pose:
-      rotation:
-        kind: uc2
-      translation:
-        offset-grid:
-          x: -3
-          z: 1
   scaffolding-12:
     kind: design
     design: primitives/cube-skeleton.dsn
-    pose:
-      rotation:
-        kind: uc2
-      translation:
-        offset-grid:
-          x: -2
-          y: 1
-          z: 1
   scaffolding-13:
     kind: design
     design: primitives/cube-skeleton.dsn
-    pose:
-      rotation:
-        kind: uc2
-      translation:
-        offset-grid:
-          x: -2
-          y: 2
-          z: 1
   scaffolding-14:
     kind: design
     design: primitives/cube-skeleton.dsn
-    pose:
-      rotation:
-        kind: uc2
-      translation:
-        offset-grid:
-          x: -4
-          y: 2
-          z: 1
   scaffolding-15:
     kind: design
     design: primitives/cube-skeleton.dsn
-    pose:
-      rotation:
-        kind: uc2
-      translation:
-        offset-grid:
-          x: -4
-          z: 1
   scaffolding-16:
     kind: design
     design: primitives/cube-skeleton.dsn
-    pose:
-      rotation:
-        kind: uc2
-      translation:
-        offset-grid:
-          x: -2
-          z: 1
   scaffolding-17:
     kind: design
     design: primitives/cube-skeleton.dsn
-    pose:
-      rotation:
-        kind: uc2
-      translation:
-        offset-grid:
-          x: -3
-          y: 1
-          z: 1
   puzzle-1:
     kind: design
     design: primitives/puzzle.dsn
-    pose:
-      rotation:
-        kind: grid
-      translation:
-        offset-grid:
-          x: -3
-          y: 1
   puzzle-2:
     kind: design
     design: primitives/puzzle.dsn
-    pose:
-      rotation:
-        kind: grid
-      translation:
-        offset-grid:
-          x: -3
-          y: 1
-          z: 1
   puzzle-3:
     kind: design
     design: primitives/puzzle.dsn
-    pose:
-      rotation:
-        kind: grid
-      translation:
-        offset-grid:
-          y: 1
   puzzle-4:
     kind: design
     design: primitives/puzzle.dsn
-    pose:
-      rotation:
-        kind: grid
-      translation:
-        offset-grid:
-          y: 1
-          z: 1
   puzzle-5:
     kind: design
     design: primitives/puzzle.dsn
-    pose:
-      rotation:
-        kind: grid
-      translation:
-        offset-grid:
-          x: -4
-          y: 1
   puzzle-6:
     kind: design
     design: primitives/puzzle.dsn
-    pose:
-      rotation:
-        kind: grid
-      translation:
-        offset-grid:
-          x: -4
-          y: 1
-          z: 1
   puzzle-7:
     kind: design
     design: primitives/puzzle.dsn
-    pose:
-      rotation:
-        kind: grid
-      translation:
-        offset-grid:
-          x: -2
-          y: 1
   puzzle-8:
     kind: design
     design: primitives/puzzle.dsn
-    pose:
-      rotation:
-        kind: grid
-      translation:
-        offset-grid:
-          x: -2
-          y: 1
-          z: 1
   puzzle-9:
     kind: design
     design: primitives/puzzle.dsn
-    pose:
-      rotation:
-        kind: grid
-      translation:
-        offset-grid:
-          x: -1
-          y: 1
   puzzle-10:
     kind: design
     design: primitives/puzzle.dsn
-    pose:
-      rotation:
-        kind: grid
-      translation:
-        offset-grid:
-          x: -1
-          y: 1
-          z: 1
   puzzle-11:
     kind: design
     design: primitives/puzzle.dsn
-    pose:
-      rotation:
-        kind: grid
-      translation:
-        offset-grid:
-          x: -4
   puzzle-12:
     kind: design
     design: primitives/puzzle.dsn
-    pose:
-      rotation:
-        kind: grid
-      translation:
-        offset-grid:
-          x: -4
-          z: 1
   puzzle-13:
     kind: design
     design: primitives/puzzle.dsn
-    pose:
-      rotation:
-        kind: grid
-      translation:
-        offset-grid:
-          x: -2
   puzzle-14:
     kind: design
     design: primitives/puzzle.dsn
-    pose:
-      rotation:
-        kind: grid
-      translation:
-        offset-grid:
-          x: -2
-          z: 1
   puzzle-15:
     kind: design
     design: primitives/puzzle.dsn
-    pose:
-      rotation:
-        kind: grid
-      translation:
-        offset-grid:
-          x: -4
-          y: 2
   puzzle-16:
     kind: design
     design: primitives/puzzle.dsn
-    pose:
-      rotation:
-        kind: grid
-      translation:
-        offset-grid:
-          x: -4
-          y: 2
-          z: 1
   puzzle-17:
     kind: design
     design: primitives/puzzle.dsn
-    pose:
-      rotation:
-        kind: grid
-      translation:
-        offset-grid:
-          x: -3
-          y: 2
   puzzle-18:
     kind: design
     design: primitives/puzzle.dsn
-    pose:
-      rotation:
-        kind: grid
-      translation:
-        offset-grid:
-          x: -3
-          y: 2
-          z: 1
   puzzle-19:
     kind: design
     design: primitives/puzzle.dsn
-    pose:
-      rotation:
-        kind: grid
-      translation:
-        offset-grid:
-          x: -2
-          y: 2
   puzzle-20:
     kind: design
     design: primitives/puzzle.dsn
-    pose:
-      rotation:
-        kind: grid
-      translation:
-        offset-grid:
-          x: -2
-          y: 2
-          z: 1
   puzzle-21:
     kind: design
     design: primitives/puzzle.dsn
-    pose:
-      rotation:
-        kind: grid
-      translation:
-        offset-grid:
-          x: -3
   puzzle-22:
     kind: design
     design: primitives/puzzle.dsn
-    pose:
-      rotation:
-        kind: grid
-      translation:
-        offset-grid:
-          x: -3
-          z: 1
   puzzle-23:
     kind: design
     design: primitives/puzzle.dsn
-    pose:
-      rotation:
-        kind: grid
-      translation:
-        offset-grid:
-          x: -4
-          y: 1
-          z: 2
   puzzle-24:
     kind: design
     design: primitives/puzzle.dsn
-    pose:
-      rotation:
-        kind: grid
-      translation:
-        offset-grid:
-          x: -3
-          y: 2
-          z: 2
   puzzle-25:
     kind: design
     design: primitives/puzzle.dsn
-    pose:
-      rotation:
-        kind: grid
-      translation:
-        offset-grid:
-          x: -3
-          z: 2
   puzzle-26:
     kind: design
     design: primitives/puzzle.dsn
-    pose:
-      rotation:
-        kind: grid
-      translation:
-        offset-grid:
-          x: -2
-          y: 1
-          z: 2
   puzzle-27:
     kind: design
     design: primitives/puzzle.dsn
-    pose:
-      rotation:
-        kind: grid
-      translation:
-        offset-grid:
-          x: -2
-          y: 2
-          z: 2
   puzzle-28:
     kind: design
     design: primitives/puzzle.dsn
-    pose:
-      rotation:
-        kind: grid
-      translation:
-        offset-grid:
-          x: -4
-          y: 2
-          z: 2
   puzzle-29:
     kind: design
     design: primitives/puzzle.dsn
-    pose:
-      rotation:
-        kind: grid
-      translation:
-        offset-grid:
-          x: -4
-          z: 2
   puzzle-30:
     kind: design
     design: primitives/puzzle.dsn
-    pose:
-      rotation:
-        kind: grid
-      translation:
-        offset-grid:
-          x: -2
-          z: 2
   puzzle-31:
     kind: design
     design: primitives/puzzle.dsn
-    pose:
-      rotation:
-        kind: grid
-      translation:
-        offset-grid:
-          x: -3
-          y: 1
-          z: 2
+
+assemblies:
+  '':
+    children:
+      lens-galvo-160:
+        assembly: x
+        pose:
+          translation:
+            offset-grid:
+              x: -3
+              y: 1
+      camera-basic:
+        pose:
+          rotation:
+            kind: grid
+            grid:
+              z: -z
+              x: -x
+          translation:
+            offset-grid:
+              y: 1
+      cube-45-fixed:
+        assembly: _z
+        pose:
+          translation:
+            offset-grid:
+              x: -4
+              y: 1
+      scaffolding-1:
+        pose:
+          translation:
+            offset-grid:
+              x: -2
+              y: 1
+      scaffolding-2:
+        pose:
+          translation:
+            offset-grid:
+              x: -1
+              y: 1
+      scaffolding-3:
+        pose:
+          translation:
+            offset-grid:
+              x: -4
+      scaffolding-4:
+        pose:
+          translation:
+            offset-grid:
+              x: -3
+      scaffolding-5:
+        pose:
+          translation:
+            offset-grid:
+              x: -2
+      scaffolding-7:
+        pose:
+          translation:
+            offset-grid:
+              x: -4
+              y: 2
+      scaffolding-8:
+        pose:
+          translation:
+            offset-grid:
+              x: -3
+              y: 2
+      scaffolding-9:
+        pose:
+          translation:
+            offset-grid:
+              x: -2
+              y: 2
+      scaffolding-6:
+        pose:
+          translation:
+            offset-grid:
+              x: -4
+              y: 1
+              z: 1
+      scaffolding-10:
+        pose:
+          translation:
+            offset-grid:
+              x: -3
+              y: 2
+              z: 1
+      scaffolding-11:
+        pose:
+          translation:
+            offset-grid:
+              x: -3
+              z: 1
+      scaffolding-12:
+        pose:
+          translation:
+            offset-grid:
+              x: -2
+              y: 1
+              z: 1
+      scaffolding-13:
+        pose:
+          translation:
+            offset-grid:
+              x: -2
+              y: 2
+              z: 1
+      scaffolding-14:
+        pose:
+          translation:
+            offset-grid:
+              x: -4
+              y: 2
+              z: 1
+      scaffolding-15:
+        pose:
+          translation:
+            offset-grid:
+              x: -4
+              z: 1
+      scaffolding-16:
+        pose:
+          translation:
+            offset-grid:
+              x: -2
+              z: 1
+      scaffolding-17:
+        pose:
+          translation:
+            offset-grid:
+              x: -3
+              y: 1
+              z: 1
+      puzzle-1:
+        pose:
+          translation:
+            offset-grid:
+              x: -3
+              y: 1
+      puzzle-2:
+        pose:
+          translation:
+            offset-grid:
+              x: -3
+              y: 1
+              z: 1
+      puzzle-3:
+        pose:
+          translation:
+            offset-grid:
+              y: 1
+      puzzle-4:
+        pose:
+          translation:
+            offset-grid:
+              y: 1
+              z: 1
+      puzzle-5:
+        pose:
+          translation:
+            offset-grid:
+              x: -4
+              y: 1
+      puzzle-6:
+        pose:
+          translation:
+            offset-grid:
+              x: -4
+              y: 1
+              z: 1
+      puzzle-7:
+        pose:
+          translation:
+            offset-grid:
+              x: -2
+              y: 1
+      puzzle-8:
+        pose:
+          translation:
+            offset-grid:
+              x: -2
+              y: 1
+              z: 1
+      puzzle-9:
+        pose:
+          translation:
+            offset-grid:
+              x: -1
+              y: 1
+      puzzle-10:
+        pose:
+          translation:
+            offset-grid:
+              x: -1
+              y: 1
+              z: 1
+      puzzle-11:
+        pose:
+          translation:
+            offset-grid:
+              x: -4
+      puzzle-12:
+        pose:
+          translation:
+            offset-grid:
+              x: -4
+              z: 1
+      puzzle-13:
+        pose:
+          translation:
+            offset-grid:
+              x: -2
+      puzzle-14:
+        pose:
+          translation:
+            offset-grid:
+              x: -2
+              z: 1
+      puzzle-15:
+        pose:
+          translation:
+            offset-grid:
+              x: -4
+              y: 2
+      puzzle-16:
+        pose:
+          translation:
+            offset-grid:
+              x: -4
+              y: 2
+              z: 1
+      puzzle-17:
+        pose:
+          translation:
+            offset-grid:
+              x: -3
+              y: 2
+      puzzle-18:
+        pose:
+          translation:
+            offset-grid:
+              x: -3
+              y: 2
+              z: 1
+      puzzle-19:
+        pose:
+          translation:
+            offset-grid:
+              x: -2
+              y: 2
+      puzzle-20:
+        pose:
+          translation:
+            offset-grid:
+              x: -2
+              y: 2
+              z: 1
+      puzzle-21:
+        pose:
+          translation:
+            offset-grid:
+              x: -3
+      puzzle-22:
+        pose:
+          translation:
+            offset-grid:
+              x: -3
+              z: 1
+      puzzle-23:
+        pose:
+          translation:
+            offset-grid:
+              x: -4
+              y: 1
+              z: 2
+      puzzle-24:
+        pose:
+          translation:
+            offset-grid:
+              x: -3
+              y: 2
+              z: 2
+      puzzle-25:
+        pose:
+          translation:
+            offset-grid:
+              x: -3
+              z: 2
+      puzzle-26:
+        pose:
+          translation:
+            offset-grid:
+              x: -2
+              y: 1
+              z: 2
+      puzzle-27:
+        pose:
+          translation:
+            offset-grid:
+              x: -2
+              y: 2
+              z: 2
+      puzzle-28:
+        pose:
+          translation:
+            offset-grid:
+              x: -4
+              y: 2
+              z: 2
+      puzzle-29:
+        pose:
+          translation:
+            offset-grid:
+              x: -4
+              z: 2
+      puzzle-30:
+        pose:
+          translation:
+            offset-grid:
+              x: -2
+              z: 2
+      puzzle-31:
+        pose:
+          translation:
+            offset-grid:
+              x: -3
+              y: 1
+              z: 2
