@@ -139,14 +139,13 @@ assemblies:
                       kind: relative-position
                       rotation:
                         kind: uc2
-                        grid: {x: -y}
                       translation:
                         offset-grid: {x: -1}
       blue-laser:
         pose:
           rotation:
             kind: uc2
-            grid: {x: -y}
+            grid: {z: +x, x: -y}
           translation:
             offset-grid: {x: 1, y: 1}
       electronics-controller:

@@ -20,6 +20,7 @@
         "kind": "extrinsic",
         "order": "zxy",
         "angles": {
+          "x": -90,
           "z": -90
         }
       }
@@ -38,6 +39,7 @@
         "kind": "extrinsic",
         "order": "zxy",
         "angles": {
+          "x": 90,
           "z": 90
         }
       }
@@ -58,6 +60,7 @@
         "kind": "extrinsic",
         "order": "zxy",
         "angles": {
+          "x": 90,
           "z": 90
         }
       }
@@ -76,6 +79,7 @@
         "kind": "extrinsic",
         "order": "zxy",
         "angles": {
+          "x": -90,
           "z": -90
         }
       }
@@ -96,6 +100,7 @@
         "kind": "extrinsic",
         "order": "zxy",
         "angles": {
+          "x": -90,
           "z": -90
         }
       }
@@ -108,14 +113,15 @@
         "step": "primitives/laser.dsn/BUY - Laser 488 nm - Bosion Laser.stp"
       },
       "position": [
+        70,
         50,
-        50,
-        20
+        0
       ],
       "rotation": {
         "kind": "extrinsic",
         "order": "zxy",
         "angles": {
+          "x": -90,
           "z": -90
         }
       }
@@ -532,10 +538,7 @@
       ],
       "rotation": {
         "kind": "extrinsic",
-        "order": "zxy",
-        "angles": {
-          "z": -90
-        }
+        "order": "zxy"
       }
     },
     {
@@ -553,7 +556,7 @@
         "order": "zxy",
         "angles": {
           "y": 90,
-          "z": 90
+          "z": 180
         }
       }
     },
@@ -574,7 +577,7 @@
         "order": "zxy",
         "angles": {
           "y": 90,
-          "z": 90
+          "z": 180
         }
       }
     },
@@ -586,8 +589,8 @@
         "step": "cube-mounted/fiber-holder.dsn/mounted-holder.dsn/BUY - Fiber holder - FCPC.stp"
       },
       "position": [
-        0,
-        -43,
+        -7,
+        -50,
         0
       ],
       "rotation": {
@@ -595,7 +598,7 @@
         "order": "zxy",
         "angles": {
           "y": 90,
-          "z": 90
+          "z": 180
         }
       }
     },
@@ -611,10 +614,7 @@
       ],
       "rotation": {
         "kind": "extrinsic",
-        "order": "zxy",
-        "angles": {
-          "z": -90
-        }
+        "order": "zxy"
       }
     },
     {
@@ -631,10 +631,7 @@
       ],
       "rotation": {
         "kind": "extrinsic",
-        "order": "zxy",
-        "angles": {
-          "z": -90
-        }
+        "order": "zxy"
       }
     },
     {
@@ -653,8 +650,8 @@
         "kind": "extrinsic",
         "order": "zxy",
         "angles": {
-          "y": 180,
-          "z": 90
+          "y": -180,
+          "z": -180
         }
       }
     },

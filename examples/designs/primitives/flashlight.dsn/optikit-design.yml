@@ -4,3 +4,6 @@ design:
   description: A flashlight
   tags:
     - light-source
+
+assemblies:
+  '': {}

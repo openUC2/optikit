@@ -4,3 +4,6 @@ design:
   description: A sheet of white card stock
   tags:
     - detector
+
+assemblies:
+  '': {}
