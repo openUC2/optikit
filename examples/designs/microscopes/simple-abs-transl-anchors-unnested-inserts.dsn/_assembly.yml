@@ -9,7 +9,7 @@ components:
     order: zxy
     angles:
       "y": 90.0
-- id: objective-lens-gridded-anchor
+- id: objective-lens
   kind: location
   position: [50.0, 0.0, 0.0]
   rotation:
@@ -230,7 +230,7 @@ components:
     order: zxy
     angles:
       "y": -90.0
-- id: sample-holder-gridded-anchor
+- id: sample-holder
   kind: location
   position: [0.0, 0.0, 0.0]
   rotation:
@@ -295,7 +295,7 @@ components:
     angles:
       "y": -180.0
       z: -180.0
-- id: tube-lens-anchor
+- id: tube-lens
   kind: location
   position: [250.0, 500.0, 0.0]
   rotation:

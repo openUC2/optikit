@@ -786,6 +786,18 @@ components:
   rotation:
     kind: extrinsic
     order: zxy
+- id: puzzles
+  kind: location
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: scaffolding
+  kind: location
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
 - id: scaffolding-1
   kind: design
   design: primitives/cube-skeleton.dsn

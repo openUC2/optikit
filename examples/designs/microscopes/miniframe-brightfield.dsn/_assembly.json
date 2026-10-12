@@ -1513,6 +1513,22 @@
       }
     },
     {
+      "id": "puzzles",
+      "kind": "location",
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "scaffolding",
+      "kind": "location",
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
       "id": "scaffolding-1",
       "kind": "design",
       "design": "primitives/cube-skeleton.dsn",

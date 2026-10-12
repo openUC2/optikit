@@ -118,9 +118,10 @@ func (d *Document) addComponents(
 		switch t := comp.Kind; t {
 		default:
 			return errors.Errorf("unknown component kind for component %s: %s", id, t)
-		case designs.CompKindLocation:
-			// Note: the component positions have already been flattened using the location component, so
-			// the location component doesn't need to be exported to GLTF.
+		case designs.CompKindLocation, designs.CompKindResults:
+			// Note: child component positions have already been flattened using the location component,
+			// so the location component itself doesn't need to be exported to GLTF.
+			// Similarly, there's nothing to export to GLTF for results components.
 			continue
 		case designs.CompKindPrimitive:
 			if err := d.addPrimitiveComponent(
@@ -202,7 +203,9 @@ func (d *Document) addComponentPrimitive(fsys ffs.PathedFS, prim designs.CompPri
 ) {
 	model := prim.StaticModels.GLTF
 	if model == "" {
-		return "", nil, errors.Errorf("primitive component has no glTF/glb model file: %+v", prim)
+		// Note: we assume that any omission of GLTF models is intentional, because some primitives
+		// don't necessarily need to be included in the GLTF render.
+		return "", nil, nil
 	}
 	contents, err := fs.ReadFile(fsys, model)
 	if err != nil {

@@ -197,6 +197,19 @@
       }
     },
     {
+      "id": "lens",
+      "kind": "location",
+      "position": [
+        -150,
+        50,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
       "id": "lens-insert",
       "kind": "design",
       "design": "cube-mounted/lens.dsn/mounted-lens.dsn",
@@ -326,6 +339,19 @@
           "y": -180,
           "z": -180
         }
+      }
+    },
+    {
+      "id": "mirror-diagonal-fixed",
+      "kind": "location",
+      "position": [
+        -200,
+        50,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
       }
     },
     {
@@ -1477,6 +1503,22 @@
         50,
         0
       ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "puzzles",
+      "kind": "location",
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "scaffolding",
+      "kind": "location",
       "rotation": {
         "kind": "extrinsic",
         "order": "zxy"

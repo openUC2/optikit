@@ -125,9 +125,10 @@ type (
 // CompExprSpec declares a component of an Optikit design.
 // Some parameters are string expressions which can be evaluated to produce a CompSpec.
 type CompExprSpec struct {
-	// Kind is the type of component in the design. It can be either `location`, `primitive`, or
-	// `design`.
+	// Kind is the type of component in the design. It can be either `location`, `results`,
+	// `primitive`, or `design`.
 	Kind string `json:"kind" yaml:"kind"`
+
 	// Design is the path of the design which the component (of kind `design`) instantiates, relative
 	// to the root directory of the Optikit design.
 	Design string `json:"design,omitzero" yaml:"design,omitempty"`
@@ -139,7 +140,9 @@ type CompExprSpec struct {
 	// Primitive declares information about the model primitive which the component (of kind
 	// `primitive`) is.
 	Primitive CompPrimSpec `json:"primitive,omitzero" yaml:"primitive,omitempty"`
-	// Results declares expressions to be evaluated with a given set of input variables.
+
+	// Results declares expressions to be evaluated with a given set of input variables, for any
+	// kind of component (not limited to kind `results`).
 	Results map[string]Expr `json:"results,omitempty" yaml:"results,omitempty"`
 	// Tags is a list of human-readable string tags for describing the component to software.
 	Tags Tags `json:"tags,omitempty" yaml:"tags,omitempty"`
@@ -167,8 +170,9 @@ type CompSpec struct {
 
 const (
 	CompKindLocation  = "location"
-	CompKindDesign    = "design"
+	CompKindResults   = "results"
 	CompKindPrimitive = "primitive"
+	CompKindDesign    = "design"
 )
 
 // InstExprSpec declares how an indeterminate design is made determinate by specifying a particular

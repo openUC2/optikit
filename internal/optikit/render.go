@@ -299,7 +299,7 @@ func populateAssemblyGraph(
 		for _, toID := range slices.Sorted(maps.Keys(from)) {
 			edge := from[toID]
 			toNode := labelNode(nodePrefix, toID, assmComps[toID].Assm)
-			gg.AddEdge(fromNode, toNode, edge.Pose.ShortString())
+			gg.AddEdge(fromNode, toNode, labelEdge(edge, design.Decl.Components[toID]))
 		}
 	}
 	if !recurse {
@@ -307,11 +307,8 @@ func populateAssemblyGraph(
 	}
 
 	for _, compID := range fromIDs {
-		if compID == "" {
-			continue // root node
-		}
 		comp := design.Decl.Components[compID]
-		if comp.Kind != designs.CompKindDesign {
+		if compID == "" || comp.Kind != designs.CompKindDesign {
 			continue
 		}
 
@@ -339,9 +336,12 @@ func populateAssemblyGraph(
 }
 
 func labelNode(nodePrefix string, compID designs.CompID, assmID designs.AssmID) string {
-	nodeLabel := string(compID)
-	if assmID != "" {
-		nodeLabel = fmt.Sprintf("%s:%s", nodeLabel, assmID)
+	return string(designs.JoinCompIDs(designs.CompID(nodePrefix), compID))
+}
+
+func labelEdge(assmComp designs.AssmCompSpec, comp designs.CompSpec) string {
+	if comp.Kind != designs.CompKindDesign || assmComp.Assm == "" {
+		return assmComp.Pose.ShortString()
 	}
-	return string(designs.JoinCompIDs(designs.CompID(nodePrefix), designs.CompID(nodeLabel)))
+	return fmt.Sprintf(":%s %s", assmComp.Assm, assmComp.Pose.ShortString())
 }

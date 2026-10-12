@@ -104,6 +104,12 @@ components:
     order: zxy
     angles:
       "y": -180.0
+- id: lens
+  kind: location
+  position: [-150.0, 50.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
 - id: lens-insert
   kind: design
   design: cube-mounted/lens.dsn/mounted-lens.dsn
@@ -175,6 +181,12 @@ components:
     angles:
       "y": -180.0
       z: -180.0
+- id: mirror-diagonal-fixed
+  kind: location
+  position: [-200.0, 50.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
 - id: mirror-diagonal-fixed-insert
   kind: design
   design: cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn
@@ -769,6 +781,18 @@ components:
     pdf: "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.pdf"
     step: "primitives/puzzle.dsn/PRT - 1004 - PUZ11 - V04 - A.stp"
   position: [-50.0, 50.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: puzzles
+  kind: location
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: scaffolding
+  kind: location
+  position: [0.0, 0.0, 0.0]
   rotation:
     kind: extrinsic
     order: zxy

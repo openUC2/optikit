@@ -20,7 +20,7 @@
       }
     },
     {
-      "id": "objective-lens-gridded-anchor",
+      "id": "objective-lens",
       "kind": "location",
       "position": [
         50,
@@ -437,7 +437,7 @@
       }
     },
     {
-      "id": "sample-holder-gridded-anchor",
+      "id": "sample-holder",
       "kind": "location",
       "rotation": {
         "kind": "extrinsic",
@@ -541,7 +541,7 @@
       }
     },
     {
-      "id": "tube-lens-anchor",
+      "id": "tube-lens",
       "kind": "location",
       "position": [
         250,
