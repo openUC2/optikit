@@ -188,11 +188,16 @@ func ReportAssembly(
 	assmComps := assm.Children
 	report.Components = make([]AssmCompReport, 0, len(assmComps))
 	for _, compID := range slices.Sorted(maps.Keys(assmComps)) {
+		assmComp := assmComps[compID]
+		if assmComp.Disabled {
+			continue
+		}
+
 		var r AssmCompReport
 		if r.CompReport, err = reportComp(compID, comps[compID]); err != nil {
 			return AssmReport{}, errors.Wrapf(err, "couldn't make report for component %s", compID)
 		}
-		m, err := assmComps[compID].Pose.TransfMat(gridSpacings)
+		m, err := assmComp.Pose.TransfMat(gridSpacings)
 		if err != nil {
 			return report, errors.Wrapf(
 				err, "couldn't compute transformation matrix for component %s", compID,

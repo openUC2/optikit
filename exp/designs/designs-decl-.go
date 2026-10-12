@@ -241,6 +241,8 @@ type (
 // AssmCompExprSpec declares the placement of a component in an assembly.
 // Some parameters are string expressions which can be evaluated to produce a AssmCompSpec.
 type AssmCompExprSpec struct {
+	// Disabled prevents the component (and all its descendants) from being included in the assembly.
+	Disabled Expr `json:"disabled,omitzero" yaml:"disabled,omitempty"`
 	// Assm declares the assembly of the component which will be included.
 	Assm Expr `json:"assembly,omitzero" yaml:"assembly,omitempty"`
 	// Pose declares the geometry of the component.
@@ -252,6 +254,8 @@ type AssmCompExprSpec struct {
 
 // AssmCompSpec declares the placement of a component in an assembly.
 type AssmCompSpec struct {
+	// Disabled prevents the component (and all its descendants) from being included in the assembly.
+	Disabled bool `json:"disabled,omitzero" yaml:"disabled,omitempty"`
 	// Assm declares the assembly of the component which will be included, if the component is an
 	// instance of a design.
 	Assm AssmID `json:"assembly,omitzero" yaml:"assembly,omitempty"`

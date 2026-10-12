@@ -182,10 +182,18 @@ func (s AssmCompsSpec) poseDigraph(
 				"child %s of parent %s was already added to the pose digraph", childID, rootID,
 			)
 		}
+		if child.Disabled {
+			continue
+		}
+
 		g.AddNode(childID)
 		g.AddEdge(rootID, childID, child)
 	}
 	for childID, child := range children {
+		if child.Disabled {
+			continue
+		}
+
 		if g, err = s.poseDigraph(g, childID, child.Children); err != nil {
 			return g, errors.Wrapf(err, "couldn't recurse into subtree rooted at %s", childID)
 		}
@@ -200,6 +208,10 @@ func (s AssmCompsSpec) poseDigraph(
 func (s AssmCompsSpec) Subtrees() map[CompID]AssmCompSpec {
 	collected := s.Cloned()
 	for _, assmComp := range s {
+		if assmComp.Disabled {
+			continue
+		}
+
 		maps.Insert(collected, maps.All(assmComp.Children.Subtrees()))
 	}
 	return collected
@@ -304,6 +316,7 @@ func popPose(
 // Cloned returns a deep copy of the CompExprSpec.
 func (s AssmCompExprSpec) Cloned() AssmCompExprSpec {
 	return AssmCompExprSpec{
+		Disabled: s.Disabled,
 		Assm:     s.Assm,
 		Pose:     s.Pose,
 		Children: s.Children.Cloned(),
@@ -313,6 +326,9 @@ func (s AssmCompExprSpec) Cloned() AssmCompExprSpec {
 // Evaluated evaluates the expressions with the given ExprEnv into a AssmCompSpec.
 func (s AssmCompExprSpec) Evaluated(env ExprEnv) (result AssmCompSpec, err error) {
 	result = AssmCompSpec{}
+	if result.Disabled, err = s.Disabled.evalAs[bool](env.ToMap()); err != nil {
+		return result, errors.Wrap(err, "couldn't evaluate expression for whether to disable component")
+	}
 	if result.Assm, err = s.Assm.evalAsString[AssmID](env.ToMap()); err != nil {
 		return result, errors.Wrap(err, "couldn't evaluate expression for assembly to include")
 	}
@@ -330,6 +346,7 @@ func (s AssmCompExprSpec) Evaluated(env ExprEnv) (result AssmCompSpec, err error
 // Cloned returns a deep copy of the AssmCompSpec.
 func (s AssmCompSpec) Cloned() AssmCompSpec {
 	return AssmCompSpec{
+		Disabled: s.Disabled,
 		Assm:     s.Assm,
 		Pose:     s.Pose,
 		Children: s.Children.Cloned(),
