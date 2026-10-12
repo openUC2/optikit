@@ -294,11 +294,11 @@ func populateAssemblyGraph(
 	fromIDs := slices.Sorted(maps.Keys(tg))
 	for _, fromID := range fromIDs {
 		from := tg[fromID]
-		fromNode := labelNode(nodePrefix, fromID, assmComps[fromID].Assm)
+		fromNode := labelNode(nodePrefix, fromID)
 		gg.AddNode(fromNode)
 		for _, toID := range slices.Sorted(maps.Keys(from)) {
 			edge := from[toID]
-			toNode := labelNode(nodePrefix, toID, assmComps[toID].Assm)
+			toNode := labelNode(nodePrefix, toID)
 			gg.AddEdge(fromNode, toNode, labelEdge(edge, design.Decl.Components[toID]))
 		}
 	}
@@ -312,20 +312,19 @@ func populateAssemblyGraph(
 			continue
 		}
 
+		subdesign, err := design.LoadCompFSDesign(ctx, compID)
+		if err != nil {
+			return nil, errors.Wrapf(err, "couldn't load subdesign for component %s", compID)
+		}
 		assmComp, ok := assmComps[compID]
 		if !ok {
 			return nil, errors.Errorf(
 				"couldn't find component %s among children of assembly %s", compID, assembly,
 			)
 		}
-		subdesign, err := design.LoadCompFSDesign(ctx, compID)
-		if err != nil {
-			return nil, errors.Wrapf(err, "couldn't load subdesign for component %s", compID)
-		}
 		if gg, err = populateAssemblyGraph(
-			ctx, gg, subdesign, assmComp.Assm, recurse, labelNode(nodePrefix, compID, assmComp.Assm),
+			ctx, gg, subdesign, assmComp.Assm, recurse, labelNode(nodePrefix, compID),
 		); err != nil {
-			fmt.Printf("%+v\n", assmComp)
 			return nil, errors.Wrapf(
 				err, "couldn't populate assembly graph by recursing into subdesign %s for component %s",
 				comp.Design, compID,
@@ -335,7 +334,7 @@ func populateAssemblyGraph(
 	return gg, nil
 }
 
-func labelNode(nodePrefix string, compID designs.CompID, assmID designs.AssmID) string {
+func labelNode(nodePrefix string, compID designs.CompID) string {
 	return string(designs.JoinCompIDs(designs.CompID(nodePrefix), compID))
 }
 
