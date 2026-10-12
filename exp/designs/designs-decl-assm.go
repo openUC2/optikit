@@ -208,9 +208,7 @@ func (s AssmCompsSpec) Subtrees() map[CompID]AssmCompSpec {
 // Flattened returns a new AssmCompsSpec in which each non-origin component's pose base
 // is just the root coordinate system of the assembly itself, and all components are direct children
 // of the assembly itself.
-func (s AssmCompsSpec) Flattened(
-	gridSpacings ContinuousXYZ[float64],
-) (AssmCompsSpec, error) {
+func (s AssmCompsSpec) Flattened(gridSpacings ContinuousXYZ[float64]) (AssmCompsSpec, error) {
 	flattened := make(AssmCompsSpec)
 	g, err := s.PoseDigraph()
 	if err != nil {
@@ -230,46 +228,55 @@ func (s AssmCompsSpec) Flattened(
 			}
 
 			nextParents = append(nextParents, child)
-			c := g[parent][child].Cloned()
-			var basePose AssmCompPoseSpec
-			switch c.Pose.Base.Kind {
-			default:
-				return flattened, errors.Errorf("unknown pose base kind %s", c.Pose.Base.Kind)
-			case "", AssmCompPoseBaseKindParent:
-				if parent == "" {
-					flattened[child] = c
-					continue
-				}
-				basePose = flattened[parent].Pose
-			case AssmCompPoseBaseKindAssembly:
-				flattened[child] = c
-				continue
-			case AssmCompPoseBaseKindMate:
-				// TODO: implement!
-				continue
+			if flattened[child], err = flattenedChild(
+				parent, flattened[parent].Pose, child, g[parent][child].Cloned(), gridSpacings,
+			); err != nil {
+				return flattened, errors.Wrapf(err, "couldn't flatten child %s of parent %s", child, parent)
 			}
-			switch c.Pose.Kind {
-			default:
-				return flattened, errors.Errorf("unknown pose kind %s", c.Pose.Kind)
-			case "", AssmCompPoseKindAffine:
-				if c.Pose, err = popPose(
-					child, parent, c.Pose, flattened[parent].Pose, gridSpacings,
-				); err != nil {
-					return flattened, errors.Wrapf(
-						err, "couldn't bring affine-type pose of child %s up to the assembly's frame", child,
-					)
-				}
-			case AssmCompPoseKindRelativePosition:
-				c.Pose.Translation = basePose.Translation.Added(c.Pose.Translation)
-				c.Pose.Kind = ""
-			}
-			c.Pose.Base = AssmCompPoseBaseSpec{
-				Kind: AssmCompPoseBaseKindAssembly,
-			}
-			flattened[child] = c
 		}
 	}
 	return flattened, nil
+}
+
+func flattenedChild(
+	parentID CompID, parentPose AssmCompPoseSpec, childID CompID, child AssmCompSpec,
+	gridSpacings ContinuousXYZ[float64],
+) (flattened AssmCompSpec, err error) {
+	var basePose AssmCompPoseSpec
+	switch child.Pose.Base.Kind {
+	default:
+		return flattened, errors.Errorf("unknown pose base kind %s", child.Pose.Base.Kind)
+	case "", AssmCompPoseBaseKindParent:
+		if parentID == "" {
+			return child, nil
+		}
+		basePose = parentPose
+	case AssmCompPoseBaseKindAssembly:
+		return child, nil
+	case AssmCompPoseBaseKindMate:
+		// TODO: implement!
+		return child, nil
+	}
+	switch child.Pose.Kind {
+	default:
+		return flattened, errors.Errorf("unknown pose kind %s", child.Pose.Kind)
+	case "", AssmCompPoseKindAffine:
+		if child.Pose, err = popPose(
+			childID, parentID, child.Pose, parentPose, gridSpacings,
+		); err != nil {
+			return flattened, errors.Wrapf(
+				err, "couldn't bring affine-type pose of child %s up to the assembly's frame", childID,
+			)
+		}
+	case AssmCompPoseKindRelativePosition:
+		child.Pose.Translation = basePose.Translation.Added(child.Pose.Translation)
+		child.Pose.Kind = ""
+	}
+	child.Pose.Base = AssmCompPoseBaseSpec{
+		Kind: AssmCompPoseBaseKindAssembly,
+	}
+	child.Children = nil
+	return child, nil
 }
 
 func popPose(
@@ -372,14 +379,27 @@ func NewPose(mat mat4.T, gridSpacings ContinuousXYZ[float64]) AssmCompPoseSpec {
 	}
 }
 
-func (s AssmCompPoseSpec) String() string {
-	if s.Kind == "" || s.Kind == AssmCompPoseKindAffine {
-		if s.Base.Kind == "" || s.Base.Kind == AssmCompPoseBaseKindParent {
-			return ""
-		}
-		return s.Base.Kind
+func (s AssmCompPoseSpec) ShortString() string {
+	baseKind := s.Base.Kind
+	switch baseKind {
+	case "", AssmCompPoseBaseKindParent:
+		baseKind = ""
+	case AssmCompPoseBaseKindAssembly:
+		baseKind = "assm"
 	}
-	return fmt.Sprintf("%s:%s", s.Kind, s.Base.Kind)
+
+	kind := s.Kind
+	switch kind {
+	case "", AssmCompPoseKindAffine:
+		return baseKind
+	case AssmCompPoseKindRelativePosition:
+		kind = "rel-pos"
+	}
+
+	if baseKind == "" {
+		return kind
+	}
+	return fmt.Sprintf("%s %s", kind, baseKind)
 }
 
 // TransfMat returns a homogeneous affine transformation matrix representing the pose of the

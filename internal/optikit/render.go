@@ -113,10 +113,6 @@ func populateComponentsGraph(
 		edgeLabel := ""
 		if component.Kind == designs.CompKindDesign {
 			edgeLabel = component.Design
-			// TODO: move this into the assembly graph
-			// if component.Instantiation.Variant != "" {
-			// 	edgeLabel = fmt.Sprintf("%s:%s", edgeLabel, component.Instantiation.Variant)
-			// }
 		}
 		gg.AddEdge(string(rootID), toID, edgeLabel)
 	}
@@ -207,20 +203,10 @@ func populateDesignsGraph(
 		}
 
 		child := path.Join(design.FS.Path(), component.Design)
-		// TODO: move this into the assembly graph
-		// if component.Instantiation.Variant != "" {
-		// 	child += ":" + string(component.Instantiation.Variant)
-		// }
 		gg.AddNode(child)
 		nodeMetadata[child] = graphviz.NodeMetadata{
 			Label: component.Design,
 		}
-		// TODO: move this into the assembly graph
-		// if component.Instantiation.Variant != "" {
-		// 	nodeMetadata[child] = graphviz.NodeMetadata{
-		// 		Label: fmt.Sprintf("%s:%s", component.Design, string(component.Instantiation.Variant)),
-		// 	}
-		// }
 		gg.AddEdge(rootID, child, string(id))
 	}
 
@@ -231,10 +217,6 @@ func populateDesignsGraph(
 		}
 
 		child := path.Join(design.FS.Path(), component.Design)
-		// TODO: move this into the assembly graph
-		// if component.Instantiation.Variant != "" {
-		// 	child += ":" + string(component.Instantiation.Variant)
-		// }
 		subdesign, err := design.LoadCompFSDesign(ctx, compID)
 		if err != nil {
 			return nil, nil, errors.Wrapf(
@@ -297,7 +279,7 @@ func populateAssemblyGraph(
 	ctx context.Context,
 	gg structures.StrictEdgeDigraph[string, string],
 	design *designs.FSDesign, assembly designs.AssmID,
-	recurse bool, nodePrefix designs.CompID,
+	recurse bool, nodePrefix string,
 ) (structures.StrictEdgeDigraph[string, string], error) {
 	assm, ok := design.Decl.Assemblies[assembly]
 	if !ok {
@@ -307,49 +289,44 @@ func populateAssemblyGraph(
 	if err != nil {
 		return nil, errors.Wrapf(err, "couldn't build scene graph of assembly %s", assembly)
 	}
+	assmComps := assm.Children.Subtrees()
 
 	fromIDs := slices.Sorted(maps.Keys(tg))
 	for _, fromID := range fromIDs {
 		from := tg[fromID]
-		fromID = designs.JoinCompIDs(nodePrefix, fromID)
-		gg.AddNode(string(fromID))
+		fromNode := labelNode(nodePrefix, fromID, assmComps[fromID].Assm)
+		gg.AddNode(fromNode)
 		for _, toID := range slices.Sorted(maps.Keys(from)) {
 			edge := from[toID]
-			toID = designs.JoinCompIDs(nodePrefix, toID)
-			gg.AddEdge(string(fromID), string(toID), edge.Pose.String())
+			toNode := labelNode(nodePrefix, toID, assmComps[toID].Assm)
+			gg.AddEdge(fromNode, toNode, edge.Pose.ShortString())
 		}
 	}
 	if !recurse {
 		return gg, nil
 	}
 
-	assmComps := assm.Children.Subtrees()
 	for _, compID := range fromIDs {
 		if compID == "" {
 			continue // root node
-		}
-		assmComp, ok := assmComps[compID]
-		if !ok {
-			return nil, errors.Errorf(
-				"couldn't find component %s among children of assembly %s: %+v",
-				compID, assembly, slices.Collect(maps.Keys(assm.Children)),
-			)
 		}
 		comp := design.Decl.Components[compID]
 		if comp.Kind != designs.CompKindDesign {
 			continue
 		}
 
-		// TODO: annotate the node or parent edge with the included assembly
-		subdesign, err := design.LoadCompFSDesign(ctx, compID)
-		if err != nil {
-			return nil, errors.Wrapf(
-				err, "couldn't load subdesign %s for component %s", comp.Design, compID,
+		assmComp, ok := assmComps[compID]
+		if !ok {
+			return nil, errors.Errorf(
+				"couldn't find component %s among children of assembly %s", compID, assembly,
 			)
 		}
-
+		subdesign, err := design.LoadCompFSDesign(ctx, compID)
+		if err != nil {
+			return nil, errors.Wrapf(err, "couldn't load subdesign for component %s", compID)
+		}
 		if gg, err = populateAssemblyGraph(
-			ctx, gg, subdesign, assmComp.Assm, recurse, designs.JoinCompIDs(nodePrefix, compID),
+			ctx, gg, subdesign, assmComp.Assm, recurse, labelNode(nodePrefix, compID, assmComp.Assm),
 		); err != nil {
 			fmt.Printf("%+v\n", assmComp)
 			return nil, errors.Wrapf(
@@ -359,4 +336,12 @@ func populateAssemblyGraph(
 		}
 	}
 	return gg, nil
+}
+
+func labelNode(nodePrefix string, compID designs.CompID, assmID designs.AssmID) string {
+	nodeLabel := string(compID)
+	if assmID != "" {
+		nodeLabel = fmt.Sprintf("%s:%s", nodeLabel, assmID)
+	}
+	return string(designs.JoinCompIDs(designs.CompID(nodePrefix), designs.CompID(nodeLabel)))
 }
