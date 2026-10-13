@@ -13,6 +13,8 @@ inputs:
       - config/newswitch/device-id
 
 components:
+  root:
+    kind: location
   case-base:
     kind: primitive
     primitive:
@@ -148,5 +150,11 @@ components:
 assemblies:
   '':
     children:
-      case-base: {}
-      case-lid: {}
+      root:
+        pose:
+          translation:
+            offset-mm:
+              z: 4
+        children:
+          case-base: {}
+          case-lid: {}

@@ -134,6 +134,10 @@
         "gltf": "BUY - Laser 488 nm - Bosion Laser.glb",
         "step": "BUY - Laser 488 nm - Bosion Laser.stp"
       }
+    },
+    {
+      "id": "root",
+      "kind": "location"
     }
   ]
 }

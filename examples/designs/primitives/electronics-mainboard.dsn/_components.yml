@@ -20,6 +20,8 @@ components:
     newswitch-device-id: ""
 - id: pcb
   kind: primitive/static
+- id: root
+  kind: location
 - id: screw-1
   kind: primitive/static
   static-models:

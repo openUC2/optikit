@@ -6,6 +6,11 @@
       "kind": "design",
       "design": "base.dsn",
       "instantiation": {},
+      "position": [
+        0,
+        0,
+        13.6
+      ],
       "rotation": {
         "kind": "extrinsic",
         "order": "zxy"
@@ -18,11 +23,16 @@
         "gltf": "base.dsn/PRT - 1017 - BASXYZSTG - V04 - A.glb",
         "step": "base.dsn/PRT - 1017 - BASXYZSTG - V04 - A.stp"
       },
+      "position": [
+        0,
+        0,
+        13.6
+      ],
       "rotation": {
         "kind": "extrinsic",
         "order": "zxy",
         "angles": {
-          "y": -180,
+          "y": 180,
           "z": 90
         }
       }
@@ -35,7 +45,7 @@
       "position": [
         -30.7,
         -23,
-        7.5
+        21.1
       ],
       "rotation": {
         "kind": "extrinsic",
@@ -55,7 +65,7 @@
       "position": [
         -4,
         4,
-        0
+        13.6
       ],
       "rotation": {
         "kind": "extrinsic",
@@ -72,7 +82,7 @@
       "position": [
         -26.7,
         -27,
-        7.5
+        21.1
       ],
       "rotation": {
         "kind": "extrinsic",
@@ -92,7 +102,20 @@
       "position": [
         -4,
         4,
-        0
+        13.6
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "stage-center",
+      "kind": "mate",
+      "position": [
+        -8,
+        8,
+        80.6
       ],
       "rotation": {
         "kind": "extrinsic",
@@ -104,6 +127,11 @@
       "kind": "design",
       "design": "xy-plate.dsn",
       "instantiation": {},
+      "position": [
+        0,
+        0,
+        13.6
+      ],
       "rotation": {
         "kind": "extrinsic",
         "order": "zxy"
@@ -117,7 +145,7 @@
       "position": [
         -31,
         29.7,
-        23
+        36.6
       ],
       "rotation": {
         "kind": "extrinsic",
@@ -137,7 +165,7 @@
       "position": [
         -4,
         4,
-        11.5
+        25.1
       ],
       "rotation": {
         "kind": "extrinsic",
@@ -157,7 +185,7 @@
       "position": [
         -35,
         25.7,
-        23
+        36.6
       ],
       "rotation": {
         "kind": "extrinsic",
@@ -177,7 +205,7 @@
       "position": [
         -4,
         4,
-        0
+        13.6
       ],
       "rotation": {
         "kind": "extrinsic",
@@ -194,7 +222,7 @@
       "position": [
         -4,
         4,
-        0
+        13.6
       ],
       "rotation": {
         "kind": "extrinsic",
@@ -206,6 +234,11 @@
       "kind": "design",
       "design": "yz-plate.dsn",
       "instantiation": {},
+      "position": [
+        0,
+        0,
+        13.6
+      ],
       "rotation": {
         "kind": "extrinsic",
         "order": "zxy"
@@ -219,7 +252,7 @@
       "position": [
         11.5,
         46.2,
-        42
+        55.6
       ],
       "rotation": {
         "kind": "extrinsic",
@@ -239,7 +272,7 @@
       "position": [
         -3.5,
         4,
-        0
+        13.6
       ],
       "rotation": {
         "kind": "extrinsic",
@@ -256,7 +289,7 @@
       "position": [
         7.5,
         42.2,
-        42
+        55.6
       ],
       "rotation": {
         "kind": "extrinsic",
@@ -276,7 +309,7 @@
       "position": [
         -4,
         4,
-        37.5
+        51.1
       ],
       "rotation": {
         "kind": "extrinsic",
@@ -297,7 +330,7 @@
       "position": [
         -4,
         4,
-        0
+        13.6
       ],
       "rotation": {
         "kind": "extrinsic",
@@ -314,7 +347,7 @@
       "position": [
         -4,
         4,
-        30
+        43.6
       ],
       "rotation": {
         "kind": "extrinsic",
@@ -335,7 +368,7 @@
       "position": [
         -4,
         4,
-        30
+        43.6
       ],
       "rotation": {
         "kind": "extrinsic",
@@ -356,7 +389,7 @@
       "position": [
         -4,
         4,
-        30
+        43.6
       ],
       "rotation": {
         "kind": "extrinsic",

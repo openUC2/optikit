@@ -19,6 +19,8 @@ inputs:
       - config/newswitch/controller
 
 components:
+  root:
+    kind: location
   case-top:
     kind: design
     design: half-case.dsn
@@ -55,15 +57,21 @@ components:
 assemblies:
   '':
     children:
-      case-top: {}
-      case-bottom:
+      root:
         pose:
           rotation:
             kind: grid
-            grid: {x: -x}
-      laser:
-        pose:
-          rotation:
-            kind: grid
-          translation:
-            offset-mm: {z: 20}
+            grid: {z: +x, x: -y}
+        children:
+          case-top: {}
+          case-bottom:
+            pose:
+              rotation:
+                kind: grid
+                grid: {x: -x}
+          laser:
+            pose:
+              rotation:
+                kind: grid
+              translation:
+                offset-mm: {z: 20}

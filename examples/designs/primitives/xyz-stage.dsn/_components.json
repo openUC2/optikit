@@ -151,6 +151,10 @@
       }
     },
     {
+      "id": "stage-center",
+      "kind": "mate"
+    },
+    {
       "id": "stage-drivers",
       "kind": "primitive/static",
       "static-models": {

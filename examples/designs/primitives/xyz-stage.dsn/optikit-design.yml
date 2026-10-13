@@ -77,6 +77,9 @@ components:
       static-models:
         gltf: BUY - Manual Z stage - LZ40 --- slide.glb
         step: BUY - Manual Z stage - LZ40 --- slide.stp
+  stage-center:
+    kind: mate
+    # design: primitives/axes.dsn
   stage-drivers:
     kind: primitive
     primitive:
@@ -95,6 +98,10 @@ assemblies:
   '':
     children:
       base:
+        pose:
+          translation:
+            offset-mm:
+              z: 13.6
         children:
           xy-plate:
             pose:
@@ -118,3 +125,13 @@ assemblies:
                           x: -4
                           y: 4
                           z: ~ 30 + inputs['z-stage'].value
+                    children:
+                      stage-center:
+                        # assembly: ZposXpos
+                        pose:
+                          kind: relative-position
+                          translation:
+                            offset-mm:
+                              x: -4
+                              y: 4
+                              z: 37

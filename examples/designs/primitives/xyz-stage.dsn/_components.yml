@@ -86,6 +86,8 @@ components:
   kind: primitive/static
   static-models:
     bom: "base.dsn/ISO 4762 - Cylinder head screw with hex socket - M3 x 10 - 8.8 - A2K.bom.yml"
+- id: stage-center
+  kind: mate
 - id: stage-drivers
   kind: primitive/static
   static-models:

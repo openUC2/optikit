@@ -3,8 +3,7 @@ optikit-version: v0.0.0-alpha.1
 design:
   description: A minimal 2-D microscope consisting of components whose 3-D positions are specified relative to each other.
   tags:
-    - instrument
-    - instrument/microscope
+    - assembly
 
 components:
   galvo-mirror-pair-1:

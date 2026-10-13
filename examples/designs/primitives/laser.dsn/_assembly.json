@@ -10,7 +10,8 @@
         "kind": "extrinsic",
         "order": "zxy",
         "angles": {
-          "z": -180
+          "x": 90,
+          "z": 90
         }
       }
     },
@@ -25,7 +26,8 @@
         "kind": "extrinsic",
         "order": "zxy",
         "angles": {
-          "z": -180
+          "x": 90,
+          "z": 90
         }
       }
     },
@@ -36,7 +38,11 @@
       "instantiation": {},
       "rotation": {
         "kind": "extrinsic",
-        "order": "zxy"
+        "order": "zxy",
+        "angles": {
+          "x": -90,
+          "z": -90
+        }
       }
     },
     {
@@ -48,7 +54,11 @@
       },
       "rotation": {
         "kind": "extrinsic",
-        "order": "zxy"
+        "order": "zxy",
+        "angles": {
+          "x": -90,
+          "z": -90
+        }
       }
     },
     {
@@ -59,13 +69,29 @@
         "step": "BUY - Laser 488 nm - Bosion Laser.stp"
       },
       "position": [
+        20,
         0,
-        0,
-        20
+        0
       ],
       "rotation": {
         "kind": "extrinsic",
-        "order": "zxy"
+        "order": "zxy",
+        "angles": {
+          "x": -90,
+          "z": -90
+        }
+      }
+    },
+    {
+      "id": "root",
+      "kind": "location",
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "x": -90,
+          "z": -90
+        }
       }
     }
   ]
