@@ -218,8 +218,10 @@ func (s AssmCompsSpec) Subtrees() map[CompID]AssmCompSpec {
 }
 
 // Flattened returns a new AssmCompsSpec in which each non-origin component's pose base
-// is just the root coordinate system of the assembly itself, and all components are direct children
-// of the assembly itself.
+// is just the root coordinate system of the assembly itself, and all components (besides
+// components dependent on mate connectors) are direct children of the assembly itself.
+// Components dependent on mate connectors are kept as children of their parent components, but
+// their component subtree is flattened.
 func (s AssmCompsSpec) Flattened(gridSpacings ContinuousXYZ[float64]) (AssmCompsSpec, error) {
 	flattened := make(AssmCompsSpec)
 	g, err := s.PoseDigraph()
@@ -239,12 +241,20 @@ func (s AssmCompsSpec) Flattened(gridSpacings ContinuousXYZ[float64]) (AssmComps
 				)
 			}
 
-			nextParents = append(nextParents, child)
-			if flattened[child], err = flattenedChild(
-				parent, flattened[parent].Pose, child, g[parent][child].Cloned(), gridSpacings,
-			); err != nil {
+			c := g[parent][child].Cloned()
+			fc, err := flattenedChild(
+				parent, flattened[parent].Pose, child, c.Cloned(), gridSpacings,
+			)
+			if err != nil {
 				return flattened, errors.Wrapf(err, "couldn't flatten child %s of parent %s", child, parent)
 			}
+			if c.Pose.Base.Kind == AssmCompPoseBaseKindMate {
+				flattened[parent].Children[child] = fc
+				continue
+			}
+
+			flattened[child] = fc
+			nextParents = append(nextParents, child)
 		}
 	}
 	return flattened, nil
@@ -258,17 +268,28 @@ func flattenedChild(
 	switch child.Pose.Base.Kind {
 	default:
 		return flattened, errors.Errorf("unknown pose base kind %s", child.Pose.Base.Kind)
+	case AssmCompPoseBaseKindAssembly:
+		child.Children = make(AssmCompsSpec)
+		return child, nil
+	case AssmCompPoseBaseKindMate:
+		if child.Children, err = child.Children.Flattened(gridSpacings); err != nil {
+			return child, errors.Wrapf(
+				err, "couldn't flatten subtree of component %s mated under %s", childID, parentID,
+			)
+		}
+		for grandchild, gc := range child.Children {
+			gc.Pose.Base = AssmCompPoseBaseSpec{Kind: AssmCompPoseBaseKindParent}
+			child.Children[grandchild] = gc
+		}
+		return child, nil
 	case "", AssmCompPoseBaseKindParent:
 		if parentID == "" {
+			child.Children = make(AssmCompsSpec)
 			return child, nil
 		}
 		basePose = parentPose
-	case AssmCompPoseBaseKindAssembly:
-		return child, nil
-	case AssmCompPoseBaseKindMate:
-		// TODO: implement!
-		return child, nil
 	}
+
 	switch child.Pose.Kind {
 	default:
 		return flattened, errors.Errorf("unknown pose kind %s", child.Pose.Kind)
@@ -284,10 +305,8 @@ func flattenedChild(
 		child.Pose.Translation = basePose.Translation.Added(child.Pose.Translation)
 		child.Pose.Kind = ""
 	}
-	child.Pose.Base = AssmCompPoseBaseSpec{
-		Kind: AssmCompPoseBaseKindAssembly,
-	}
-	child.Children = nil
+	child.Pose.Base = AssmCompPoseBaseSpec{}
+	child.Children = make(AssmCompsSpec)
 	return child, nil
 }
 
@@ -309,6 +328,29 @@ func popPose(
 	result := &mat4.T{}
 	result.AssignMul(&parentMat, &mat)
 	return NewPose(*result, gridSpacings), nil
+}
+
+// Prefixed returns a copy of the AssmCompsSpec but with the specified parent CompID prefixed to all
+// component IDs of all descendants.
+func (s AssmCompsSpec) Prefixed(parent CompID) AssmCompsSpec {
+	prefixed := make(AssmCompsSpec)
+	for compID, comp := range s {
+		c := comp.Cloned()
+		c.Children = c.Children.Prefixed(parent)
+		prefixed[JoinCompIDs(parent, compID)] = c
+	}
+	return prefixed
+}
+
+// Print prints the entire tree structure.
+func (s AssmCompsSpec) Print(indent int) {
+	for _, compID := range slices.Sorted(maps.Keys(s)) {
+		for i := 0; i < indent; i++ {
+			fmt.Printf("  ")
+		}
+		fmt.Printf("%s %s\n", compID, s[compID].Pose.ShortString())
+		s[compID].Children.Print(indent + 1)
+	}
 }
 
 // AssmCompExprSpec
@@ -351,6 +393,17 @@ func (s AssmCompSpec) Cloned() AssmCompSpec {
 		Pose:     s.Pose,
 		Children: s.Children.Cloned(),
 	}
+}
+
+func (s AssmCompSpec) MateChildren() AssmCompsSpec {
+	mates := make(AssmCompsSpec)
+	for id, comp := range s.Children {
+		if comp.Pose.Base.Kind != AssmCompPoseBaseKindMate {
+			continue
+		}
+		mates[id] = comp
+	}
+	return mates
 }
 
 // AssmCompPoseExprSpec
@@ -403,6 +456,8 @@ func (s AssmCompPoseSpec) ShortString() string {
 		baseKind = ""
 	case AssmCompPoseBaseKindAssembly:
 		baseKind = "assm"
+	case AssmCompPoseBaseKindMate:
+		baseKind = fmt.Sprintf("mate: %s", s.Base.Mate)
 	}
 
 	kind := s.Kind
@@ -420,13 +475,15 @@ func (s AssmCompPoseSpec) ShortString() string {
 }
 
 // TransfMat returns a homogeneous affine transformation matrix representing the pose of the
-// component relative to the frame of the overall assembly.
-// The pose must be of kind `affine` (or “, which is equivalent to `affine`), or else an error will be returned.
+// component relative to the frame of the base.
+// The pose must be of kind `affine` (or “, which is equivalent to `affine`), or else an error will
+// be returned.
 // The translation component of the matrix is in mm.
 // This is the matrix H^a_b for homogeneous pose vectors p^a_h and p^b_h, which are homogeneous
 // representations of vectors p^a and p^b, where p^b is in the frame of the component and p^b is in
 // the frame of the overall assembly. In other words, this matrix can be multiplied with a point in
-// the frame of the component to get the position of that point in the frame of the overall assembly.
+// the frame of the component to get the position of that point in the frame of the overall
+// assembly.
 func (s AssmCompPoseSpec) TransfMat(gridSpacings ContinuousXYZ[float64]) (mat4.T, error) {
 	switch s.Kind {
 	default:

@@ -118,7 +118,7 @@ func (d *Document) addComponents(
 		switch t := comp.Kind; t {
 		default:
 			return errors.Errorf("unknown component kind for component %s: %s", id, t)
-		case designs.CompKindLocation, designs.CompKindResults:
+		case designs.CompKindLocation, designs.CompKindMate, designs.CompKindResults:
 			// Note: child component positions have already been flattened using the location component,
 			// so the location component itself doesn't need to be exported to GLTF.
 			// Similarly, there's nothing to export to GLTF for results components.

@@ -113,7 +113,7 @@ func reportComp(compID designs.CompID, comp designs.CompSpec) (report CompReport
 	switch kind := comp.Kind; kind {
 	default:
 		return CompReport{}, errors.Errorf("unknown component kind %s", kind)
-	case designs.CompKindLocation, designs.CompKindResults:
+	case designs.CompKindLocation, designs.CompKindMate, designs.CompKindResults:
 		report.Kind = kind
 	case designs.CompKindPrimitive:
 		report.Kind = path.Join(kind, cmp.Or(comp.Primitive.Kind, "static"))

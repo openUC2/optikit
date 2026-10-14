@@ -170,6 +170,7 @@ type CompSpec struct {
 
 const (
 	CompKindLocation  = "location"
+	CompKindMate      = "mate"
 	CompKindResults   = "results"
 	CompKindPrimitive = "primitive"
 	CompKindDesign    = "design"
@@ -324,6 +325,9 @@ type AssmCompPoseBaseSpec struct {
 	// component of the component's parent as the base). If the component has no parent component,
 	// then its parent is automatically just the parent assembly.
 	Kind string `json:"kind,omitzero" yaml:"kind,omitempty"`
+	// Mate is the component ID of the child component (of kind `mate`) in this assembly component's
+	// parent which should be used as the base coordinate system for this assembly component's pose.
+	Mate CompID `json:"mate,omitzero" yaml:"mate,omitempty"`
 }
 
 const (

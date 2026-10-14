@@ -6,13 +6,14 @@ import (
 	"context"
 	gerrors "errors"
 	"fmt"
+	"maps"
 	"os"
 	"path"
 	"path/filepath"
+	"slices"
 
 	"github.com/bmatcuk/doublestar/v4"
 	"github.com/pkg/errors"
-	"github.com/ungerik/go3d/float64/mat4"
 	"golang.org/x/mod/semver"
 
 	ffs "github.com/openUC2/optikit/exp/fs"
@@ -212,25 +213,40 @@ func (d *FSDesign) LoadFSDesignExpr(ctx context.Context, subdesign string) (*FSD
 // just that assembly.
 func (d *FSDesign) Flattened(
 	ctx context.Context, gridSpacings ContinuousXYZ[float64],
-) (
-	flattened *FSDesign, err error,
-) {
-	if flattened, err = d.flattenComponents(ctx, d.Cloned()); err != nil {
-		return nil, errors.Wrap(err, "couldn't flatten components")
+) (flattened *FSDesign, err error) {
+	design := d.Cloned()
+	if err = design.addSubdesignComps(ctx); err != nil {
+		return nil, errors.Wrap(err, "couldn't recurse into subdesigns of components")
 	}
-	for assmID, assm := range flattened.Decl.Assemblies {
-		if flattened, err = flattened.flattenAssembly(
-			ctx, flattened, assmID, assm, gridSpacings,
-		); err != nil {
-			return nil, errors.Wrapf(err, "couldn't recursively flatten assembly %s", assmID)
+	// fmt.Printf("all components: %+v\n", slices.Collect(maps.Keys(design.Decl.Components)))
+	for assmID, assm := range design.Decl.Assemblies {
+		if err = design.addAssmSubdesignComps(ctx, assm.Children, ""); err != nil {
+			return nil, errors.Wrapf(err, "couldn't recurse into subdesigns of assembly %s", assmID)
 		}
+		// fmt.Printf("assembly %s\n", assmID)
+		// assm.Children.Print(1)
+		// fmt.Println()
+		if err = relocateMatedComps(assm.Children, nil); err != nil {
+			return nil, errors.Wrapf(err, "couldn't relocate mated components in assembly %s", assmID)
+		}
+		// fmt.Printf("assembly %s\n", assmID)
+		// assm.Children.Print(1)
+		// fmt.Println()
+		if assm.Children, err = assm.Children.Flattened(gridSpacings); err != nil {
+			return nil, errors.Wrapf(err, "couldn't flatten assembly %s", assmID)
+		}
+		design.Decl.Assemblies[assmID] = assm
+		// fmt.Printf("assembly %s\n", assmID)
+		// assm.Children.Print(1)
+		// fmt.Println()
 	}
-	return flattened, nil
+	return design, nil
 }
 
-func (d *FSDesign) flattenComponents(
-	ctx context.Context, flattened *FSDesign,
-) (modified *FSDesign, err error) {
+// addSubdesignComps recursively adds components from subdesigns and prefixes the IDs of
+// those components, as well as any file path references in those components. It does not modify
+// assemblies.
+func (d *FSDesign) addSubdesignComps(ctx context.Context) error {
 	for compID, comp := range d.Decl.Components {
 		if comp.Kind != CompKindDesign {
 			continue
@@ -238,106 +254,119 @@ func (d *FSDesign) flattenComponents(
 
 		subdesign, err := d.LoadCompFSDesign(ctx, compID)
 		if err != nil {
-			return nil, errors.Wrapf(
+			return errors.Wrapf(
 				err, "couldn't load subdesign %s for component %s", comp.Design, compID,
 			)
 		}
-		subflattened, err := subdesign.flattenComponents(ctx, subdesign.Cloned())
-		if err != nil {
-			return nil, errors.Wrapf(
+		if err = subdesign.addSubdesignComps(ctx); err != nil {
+			return errors.Wrapf(
 				err, "couldn't flatten subdesign %s for component %s", comp.Design, compID,
 			)
 		}
-		for subcompID, subcomp := range subflattened.Decl.Components {
+		for subcompID, subcomp := range subdesign.Decl.Components {
 			switch subcomp.Kind {
 			case CompKindDesign:
 				subcomp.Design = prefixNonempty(subcomp.Design, comp.Design)
 			case CompKindPrimitive:
 				subcomp.Primitive.StaticModels = subcomp.Primitive.StaticModels.Prefixed(comp.Design)
 			}
-			flattenedID := JoinCompIDs(compID, subcompID)
-			flattened.Decl.Components[flattenedID] = subcomp
+			d.Decl.Components[JoinCompIDs(compID, subcompID)] = subcomp
 		}
 	}
-	return flattened, nil
+	return nil
 }
 
-func (d *FSDesign) flattenAssembly(
-	ctx context.Context, flattened *FSDesign, assmID AssmID, assm AssmSpec,
-	gridSpacings ContinuousXYZ[float64],
-) (modified *FSDesign, err error) {
-	if assm.Children, err = assm.Children.Flattened(gridSpacings); err != nil {
-		return nil, errors.Wrapf(
-			err, "couldn't flatten assembly %s prior to flattening subdesigns", assmID,
-		)
-	}
-	flattened.Decl.Assemblies[assmID] = assm
-
-	for compID, assmComp := range assm.Children.Cloned() {
-		comp, ok := flattened.Decl.Components[compID]
+// addAssmSubdesignComps recursively adds assembly components from subdesigns into the assembly
+// subtree. All component IDs (including mate connector IDs) of components from subdesigns are fully
+// prefixed.
+func (d *FSDesign) addAssmSubdesignComps(
+	ctx context.Context, subtree AssmCompsSpec, parentID CompID,
+) error {
+	for compID, assmComp := range subtree {
+		comp, ok := d.Decl.Components[compID]
 		if !ok {
-			return nil, errors.Errorf(
-				"couldn't find component %s required by assembly %s", compID, assmID,
-			)
+			return errors.Errorf("couldn't find component %s", compID)
+		}
+		if assmComp.Pose.Base.Kind == AssmCompPoseBaseKindMate {
+			assmComp.Pose.Base.Mate = JoinCompIDs(parentID, assmComp.Pose.Base.Mate)
+			subtree[compID] = assmComp
 		}
 		if comp.Kind != CompKindDesign {
+			if err := d.addAssmSubdesignComps(ctx, assmComp.Children, compID); err != nil {
+				return errors.Wrapf(
+					err, "couldn't add assembly components from subdesigns of components under %s", compID,
+				)
+			}
 			continue
 		}
 
-		if flattened, err = d.flattenSubtree(
-			ctx, flattened, assmID, compID, assmComp, comp, gridSpacings,
-		); err != nil {
-			return flattened, errors.Wrapf(err, "couldn't flatten assembly at %s as subdesign", compID)
-		}
-	}
-	return flattened, nil
-}
-
-func (d *FSDesign) flattenSubtree(
-	ctx context.Context,
-	flattened *FSDesign, assmID AssmID, compID CompID, assmComp AssmCompSpec, comp CompSpec,
-	gridSpacings ContinuousXYZ[float64],
-) (modified *FSDesign, err error) {
-	mat, err := assmComp.Pose.TransfMat(gridSpacings)
-	if err != nil {
-		return nil, errors.Wrapf(
-			err, "couldn't compute transformation matrix for pose of component %s", compID,
-		)
-	}
-	subdesign, err := d.LoadCompFSDesign(ctx, compID)
-	if err != nil {
-		return nil, errors.Wrapf(
-			err, "couldn't load subdesign %s for component %s", comp.Design, compID,
-		)
-	}
-	subflattened, err := subdesign.Flattened(ctx, gridSpacings)
-	if err != nil {
-		return nil, errors.Wrapf(
-			err, "couldn't flatten subdesign %s for component %s", comp.Design, compID,
-		)
-	}
-	subassm, ok := subflattened.Decl.Assemblies[assmComp.Assm]
-	if !ok {
-		return flattened, errors.Errorf(
-			"couldn't find assembly %s in flattened subdesign %s", assmComp.Assm, comp.Design,
-		)
-	}
-	for subcompID, subassmComp := range subassm.Children {
-		flattenedID := JoinCompIDs(compID, subcompID)
-
-		submat, err := subassmComp.Pose.TransfMat(gridSpacings)
+		subdesign, err := d.LoadCompFSDesign(ctx, compID)
 		if err != nil {
-			return nil, errors.Wrapf(
-				err, "couldn't compute transformation matrix for pose of subcomponent %s", subcompID,
+			return errors.Wrapf(err, "couldn't load subdesign %s for component %s", comp.Design, compID)
+		}
+		subassm, ok := subdesign.Decl.Assemblies[assmComp.Assm]
+		if !ok {
+			return errors.Errorf(
+				"couldn't find assembly %s in flattened subdesign %s", assmComp.Assm, comp.Design,
 			)
 		}
-		flattenedSubmat := mat4.Ident
-		flattenedSubmat.AssignMul(&mat, &submat)
-		subassmComp.Pose = NewPose(flattenedSubmat, gridSpacings)
 
-		flattened.Decl.Assemblies[assmID].Children[flattenedID] = subassmComp
+		for subcompID, subassmComp := range subassm.Children.Prefixed(compID) {
+			assmComp.Children[subcompID] = subassmComp
+		}
+		if err := d.addAssmSubdesignComps(
+			ctx, assmComp.Children, JoinCompIDs(parentID, compID),
+		); err != nil {
+			return errors.Wrapf(
+				err, "couldn't add assembly components from subdesigns of components under %s", compID,
+			)
+		}
 	}
-	return flattened, nil
+
+	return nil
+}
+
+// relocateMatedComps recursively moves all mate-posed components to be non-mate children of their
+// required mate connectors.
+func relocateMatedComps(
+	subtree AssmCompsSpec, relocations map[CompID]map[CompID]AssmCompSpec,
+) error {
+	if relocations == nil {
+		relocations = make(map[CompID]map[CompID]AssmCompSpec)
+	}
+
+	for compID, assmComp := range subtree {
+		if len(relocations[compID]) > 0 {
+			for matedCompID, matedComp := range relocations[compID] {
+				assmComp.Children[matedCompID] = matedComp
+			}
+			delete(relocations, compID)
+		}
+
+		if assmComp.Pose.Base.Kind != AssmCompPoseBaseKindMate {
+			continue
+		}
+
+		mateConnID := assmComp.Pose.Base.Mate
+		assmComp.Pose.Base = AssmCompPoseBaseSpec{Kind: AssmCompPoseBaseKindParent}
+		if relocations[mateConnID] == nil {
+			relocations[mateConnID] = make(map[CompID]AssmCompSpec)
+		}
+		relocations[mateConnID][compID] = assmComp
+
+		delete(subtree, compID)
+	}
+
+	for _, assmComp := range subtree {
+		relocateMatedComps(assmComp.Children, relocations)
+	}
+
+	if len(relocations) > 0 {
+		return errors.Errorf(
+			"couldn't find mate connectors: %+v", slices.Collect(maps.Keys(relocations)),
+		)
+	}
+	return nil
 }
 
 func (d *FSDesign) LoadCompFSDesign(
