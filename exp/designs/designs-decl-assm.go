@@ -345,7 +345,7 @@ func (s AssmCompsSpec) Prefixed(parent CompID) AssmCompsSpec {
 // Print prints the entire tree structure.
 func (s AssmCompsSpec) Print(indent int) {
 	for _, compID := range slices.Sorted(maps.Keys(s)) {
-		for i := 0; i < indent; i++ {
+		for range indent {
 			fmt.Printf("  ")
 		}
 		fmt.Printf("%s %s\n", compID, s[compID].Pose.ShortString())

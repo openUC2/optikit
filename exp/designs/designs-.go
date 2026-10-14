@@ -155,11 +155,9 @@ func (d *FSDesignExpr) Path() string {
 // Cloned returns a new design which is a deep copy of the FSDesign.
 func (d *FSDesignExpr) Cloned() *FSDesignExpr {
 	return &FSDesignExpr{
-		DesignExpr: DesignExpr{
-			Decl:    d.Decl.Cloned(),
-			Version: d.Version,
-		},
-		FS: d.FS,
+		Decl:    d.Decl.Cloned(),
+		Version: d.Version,
+		FS:      d.FS,
 	}
 }
 
@@ -194,11 +192,9 @@ func (d *FSDesign) Path() string {
 // Cloned returns a new design which is a deep copy of the FSDesign.
 func (d *FSDesign) Cloned() *FSDesign {
 	return &FSDesign{
-		Design: Design{
-			Decl:    d.Decl.Cloned(),
-			Version: d.Version,
-		},
-		FS: d.FS,
+		Decl:    d.Decl.Cloned(),
+		Version: d.Version,
+		FS:      d.FS,
 	}
 }
 
@@ -317,9 +313,7 @@ func (d *FSDesign) addAssmSubdesignComps(
 			)
 		}
 
-		for subcompID, subassmComp := range subassm.Children.Prefixed(compID) {
-			assmComp.Children[subcompID] = subassmComp
-		}
+		maps.Copy(assmComp.Children, subassm.Children.Prefixed(compID))
 		if err := d.addAssmSubdesignComps(
 			ctx, assmComp.Children, JoinCompIDs(parentID, compID),
 		); err != nil {
@@ -339,9 +333,7 @@ func relocateMatedComps(
 ) error {
 	for compID, assmComp := range subtree {
 		if len(relocations[compID]) > 0 {
-			for matedCompID, matedComp := range relocations[compID] {
-				assmComp.Children[matedCompID] = matedComp
-			}
+			maps.Copy(assmComp.Children, relocations[compID])
 			delete(relocations, compID)
 		}
 
