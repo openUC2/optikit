@@ -226,8 +226,14 @@ func (d *FSDesign) Flattened(
 		// fmt.Printf("assembly %s\n", assmID)
 		// assm.Children.Print(1)
 		// fmt.Println()
-		if err = relocateMatedComps(assm.Children, nil); err != nil {
+		relocations := make(map[CompID]map[CompID]AssmCompSpec)
+		if err = relocateMatedComps(assm.Children, relocations); err != nil {
 			return nil, errors.Wrapf(err, "couldn't relocate mated components in assembly %s", assmID)
+		}
+		if len(relocations) > 0 {
+			return nil, errors.Errorf(
+				"couldn't find mate connectors: %+v", slices.Collect(maps.Keys(relocations)),
+			)
 		}
 		// fmt.Printf("assembly %s\n", assmID)
 		// assm.Children.Print(1)
@@ -331,10 +337,6 @@ func (d *FSDesign) addAssmSubdesignComps(
 func relocateMatedComps(
 	subtree AssmCompsSpec, relocations map[CompID]map[CompID]AssmCompSpec,
 ) error {
-	if relocations == nil {
-		relocations = make(map[CompID]map[CompID]AssmCompSpec)
-	}
-
 	for compID, assmComp := range subtree {
 		if len(relocations[compID]) > 0 {
 			for matedCompID, matedComp := range relocations[compID] {
@@ -357,14 +359,13 @@ func relocateMatedComps(
 		delete(subtree, compID)
 	}
 
-	for _, assmComp := range subtree {
-		relocateMatedComps(assmComp.Children, relocations)
-	}
-
-	if len(relocations) > 0 {
-		return errors.Errorf(
-			"couldn't find mate connectors: %+v", slices.Collect(maps.Keys(relocations)),
-		)
+	for compID, assmComp := range subtree {
+		if err := relocateMatedComps(assmComp.Children, relocations); err != nil {
+			return errors.Wrapf(
+				err, "couldn't relocate mate-posed components (%+v) under %s",
+				slices.Collect(maps.Keys(relocations)), compID,
+			)
+		}
 	}
 	return nil
 }

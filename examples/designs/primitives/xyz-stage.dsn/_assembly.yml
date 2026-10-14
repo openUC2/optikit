@@ -59,7 +59,7 @@ components:
     order: zxy
 - id: stage-center
   kind: mate
-  position: [-8.0, 8.0, 80.6]
+  position: [-2.0, 2.0, 80.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -149,7 +149,7 @@ components:
   static-models:
     gltf: "yz-plate.dsn/primitives/motor-push-rod.dsn/BUY - Stepping motor with captive push rod  - L8K2105AD4-050SMSN-220(02).glb"
     step: "yz-plate.dsn/primitives/motor-push-rod.dsn/BUY - Stepping motor with captive push rod  - L8K2105AD4-050SMSN-220(02).stp"
-  position: [7.5, 42.2, 55.6]
+  position: [7.499999999999999, 42.2, 55.6]
   rotation:
     kind: extrinsic
     order: zxy

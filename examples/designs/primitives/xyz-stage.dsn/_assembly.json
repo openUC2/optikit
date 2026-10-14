@@ -113,8 +113,8 @@
       "id": "stage-center",
       "kind": "mate",
       "position": [
-        -8,
-        8,
+        -2,
+        2,
         80.6
       ],
       "rotation": {
@@ -287,7 +287,7 @@
         "step": "yz-plate.dsn/primitives/motor-push-rod.dsn/BUY - Stepping motor with captive push rod  - L8K2105AD4-050SMSN-220(02).stp"
       },
       "position": [
-        7.5,
+        7.499999999999999,
         42.2,
         55.6
       ],
