@@ -204,12 +204,9 @@ func (d *FSDesign) LoadFSDesignExpr(ctx context.Context, subdesign string) (*FSD
 	return LoadFSDesignExpr(ctx, d.FS, subdesign)
 }
 
-// Flattened returns a new design in which all design components have been recursively supplemented
-// with their constituent primitive components, and each component's pose base in an assembly is
-// just that assembly.
-func (d *FSDesign) Flattened(
-	ctx context.Context, gridSpacings ContinuousXYZ[float64],
-) (flattened *FSDesign, err error) {
+// WithDescendants returns a new design in which all design components have been recursively
+// supplemented with their constituent primitive components as descendants.
+func (d *FSDesign) WithDescendants(ctx context.Context) (flattened *FSDesign, err error) {
 	design := d.Cloned()
 	if err = design.addSubdesignComps(ctx); err != nil {
 		return nil, errors.Wrap(err, "couldn't recurse into subdesigns of components")
@@ -222,6 +219,19 @@ func (d *FSDesign) Flattened(
 		// fmt.Printf("assembly %s\n", assmID)
 		// assm.Children.Print(1)
 		// fmt.Println()
+	}
+	return design, nil
+}
+
+// RelocatedMates returns a new design in which all design components have been recursively
+// supplemented with their constituent primitive components, and all mate-posed components have been
+// relocated to be descendants of their respective mate connectors.
+func (d *FSDesign) RelocatedMates(ctx context.Context) (flattened *FSDesign, err error) {
+	design, err := d.WithDescendants(ctx)
+	if err != nil {
+		return nil, err
+	}
+	for assmID, assm := range design.Decl.Assemblies {
 		relocations := make(map[CompID]map[CompID]AssmCompSpec)
 		if err = relocateMatedComps(assm.Children, relocations); err != nil {
 			return nil, errors.Wrapf(err, "couldn't relocate mated components in assembly %s", assmID)
@@ -234,6 +244,21 @@ func (d *FSDesign) Flattened(
 		// fmt.Printf("assembly %s\n", assmID)
 		// assm.Children.Print(1)
 		// fmt.Println()
+	}
+	return design, nil
+}
+
+// Flattened returns a new design in which all design components have been recursively supplemented
+// with their constituent primitive components, and all mate-posed components have been relocated
+// to be descendants of their respective mate connectors.
+func (d *FSDesign) Flattened(
+	ctx context.Context, gridSpacings ContinuousXYZ[float64],
+) (flattened *FSDesign, err error) {
+	design, err := d.RelocatedMates(ctx)
+	if err != nil {
+		return nil, err
+	}
+	for assmID, assm := range design.Decl.Assemblies {
 		if assm.Children, err = assm.Children.Flattened(gridSpacings); err != nil {
 			return nil, errors.Wrapf(err, "couldn't flatten assembly %s", assmID)
 		}
@@ -324,8 +349,9 @@ func (d *FSDesign) addAssmSubdesignComps(
 	return nil
 }
 
-// relocateMatedComps recursively moves all mate-posed components to be non-mate children of their
-// required mate connectors.
+// relocateMatedComps recursively moves all mate-posed components in a subtree to be non-mate
+// children of their required mate connectors. It assumes that the subtree has already been fully
+// populated with all descendant components
 func relocateMatedComps(
 	subtree AssmCompsSpec, relocations map[CompID]map[CompID]AssmCompSpec,
 ) error {

@@ -89,8 +89,11 @@ func ReportComponents(
 	optikitVersion string,
 ) (report CompsReport, err error) {
 	report.Optikit = optikitVersion
-	d, err := design.Flattened(ctx, gridSpacings)
+	d, err := design.RelocatedMates(ctx)
 	if err != nil {
+		return CompsReport{}, errors.Wrapf(err, "couldn't relocate mates in design %s", design.Path())
+	}
+	if d.Decl.Assemblies, err = d.Decl.Assemblies.Flattened(gridSpacings); err != nil {
 		return CompsReport{}, errors.Wrapf(err, "couldn't flatten design %s", design.Path())
 	}
 	comps := d.Decl.Components
@@ -176,9 +179,12 @@ func ReportAssembly(
 	optikitVersion string,
 ) (report AssmReport, err error) {
 	report.Optikit = optikitVersion
-	d, err := design.Flattened(ctx, gridSpacings)
+	d, err := design.RelocatedMates(ctx)
 	if err != nil {
-		return AssmReport{}, errors.Wrapf(err, "couldn't flatten design %s", design.Path())
+		return report, errors.Wrapf(err, "couldn't relocate mates in design %s", design.Path())
+	}
+	if d.Decl.Assemblies, err = d.Decl.Assemblies.Flattened(gridSpacings); err != nil {
+		return report, errors.Wrapf(err, "couldn't flatten design %s", design.Path())
 	}
 	assm, ok := d.Decl.Assemblies[assembly]
 	if !ok {

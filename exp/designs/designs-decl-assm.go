@@ -85,6 +85,22 @@ func (s AssmsSpec) Cloned() AssmsSpec {
 	return result
 }
 
+// Flattened returns a new AssmsSpec in which, for each assembly, each non-origin component's pose
+// base is just the root coordinate system of the assembly itself, and all components (besides
+// components dependent on mate connectors) are direct children of the assembly itself.
+// Components dependent on mate connectors are kept as children of their parent components, but
+// their component subtree is flattened.
+func (s AssmsSpec) Flattened(gridSpacings ContinuousXYZ[float64]) (flattened AssmsSpec, err error) {
+	flattened = s.Cloned()
+	for assmID, assm := range s {
+		if assm.Children, err = assm.Children.Flattened(gridSpacings); err != nil {
+			return nil, errors.Wrapf(err, "couldn't flatten assembly %s", assmID)
+		}
+		flattened[assmID] = assm
+	}
+	return flattened, nil
+}
+
 // AssmExprSpec
 
 // Check looks for errors in the construction of the assembly spec.
