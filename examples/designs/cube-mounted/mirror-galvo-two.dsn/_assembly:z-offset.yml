@@ -97,7 +97,7 @@ components:
     order: zxy
     angles:
       x: -90.0
-      z: -180.0
+      z: 180.0
 - id: mounted-mirrors/motorized-mirror-2/mount-ring
   kind: primitive/static
   static-models:

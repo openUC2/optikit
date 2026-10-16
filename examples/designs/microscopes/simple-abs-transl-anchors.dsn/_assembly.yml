@@ -118,7 +118,7 @@ components:
     kind: extrinsic
     order: zxy
     angles:
-      z: 180.0
+      z: -180.0
 - id: periscope-mirror-1/mounted-mirror/insert
   kind: primitive/static
   static-models:
@@ -246,7 +246,7 @@ components:
     kind: extrinsic
     order: zxy
     angles:
-      "y": 180.0
+      "y": -180.0
       z: 90.0
 - id: projector-screen
   kind: design

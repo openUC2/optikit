@@ -458,7 +458,7 @@
         "kind": "extrinsic",
         "order": "zxy",
         "angles": {
-          "y": 180,
+          "y": -180,
           "z": 90
         }
       }
@@ -479,7 +479,7 @@
         "kind": "extrinsic",
         "order": "zxy",
         "angles": {
-          "y": 180,
+          "y": -180,
           "z": 90
         }
       }
@@ -534,7 +534,7 @@
         "order": "zxy",
         "angles": {
           "y": 90,
-          "z": 180
+          "z": -180
         }
       }
     },
@@ -555,7 +555,7 @@
         "order": "zxy",
         "angles": {
           "y": 90,
-          "z": 180
+          "z": -180
         }
       }
     },
@@ -576,7 +576,7 @@
         "order": "zxy",
         "angles": {
           "y": 90,
-          "z": 180
+          "z": -180
         }
       }
     },
@@ -1005,7 +1005,7 @@
         "kind": "extrinsic",
         "order": "zxy",
         "angles": {
-          "y": 180,
+          "y": -180,
           "z": 90
         }
       }
@@ -1260,7 +1260,7 @@
         "step": "primitives/xyz-stage.dsn/yz-plate.dsn/primitives/motor-push-rod.dsn/BUY - Stepping motor with captive push rod  - L8K2105AD4-050SMSN-220(02).stp"
       },
       "position": [
-        7.499999999999999,
+        7.5,
         42.2,
         110.6
       ],
@@ -1588,7 +1588,7 @@
         "kind": "extrinsic",
         "order": "zxy",
         "angles": {
-          "y": 180,
+          "y": -180,
           "z": 90
         }
       }

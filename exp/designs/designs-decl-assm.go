@@ -8,6 +8,7 @@ import (
 	"slices"
 
 	"github.com/pkg/errors"
+	"github.com/ungerik/go3d/float64/mat3"
 	"github.com/ungerik/go3d/float64/mat4"
 	"github.com/ungerik/go3d/float64/vec3"
 
@@ -450,8 +451,8 @@ func (s AssmCompPoseExprSpec) Evaluated(env ExprEnv) (result AssmCompPoseSpec, e
 
 // AssmCompPoseSpec
 
-// NewPose builds a new AssmCompPoseSpec from an affine transformation matrix with respect to the assembly's
-// coordinate system.
+// NewPose builds a new AssmCompPoseSpec from an affine transformation matrix with respect to the
+// assembly's coordinate system.
 // The translation component is decomposed into a discrete component (for any non-zero grid
 // spacings) and any remaining non-discrete component.
 func NewPose(mat mat4.T, gridSpacings ContinuousXYZ[float64]) AssmCompPoseSpec {
@@ -594,9 +595,15 @@ func NewPoseRot(mat mat4.T) AssmCompPoseRotSpec {
 			},
 		}
 	}
+	rotMat := mat3.T{}
+	for col := 0; col < rotMat.Cols(); col++ {
+		for row := 0; row < rotMat.Rows(); row++ {
+			rotMat[col][row] = mat.Get(col, row)
+		}
+	}
 	return AssmCompPoseRotSpec{
-		Kind:       RotKindQuaternion,
-		Quaternion: mat.Quaternion(),
+		Kind:   RotKindMatrix,
+		Matrix: rotMat,
 	}
 }
 
@@ -627,6 +634,13 @@ func (s AssmCompPoseRotSpec) Check() (errs []error) {
 			return append(errs, errors.Errorf("quaternion is not a unit quaternion: %+v", s.Quaternion))
 		}
 		return nil
+	case RotKindMatrix:
+		const tolerance = 1e-6
+		determinant := s.Matrix.Determinant()
+		if determinant < (1.0-tolerance) || determinant > (1.0+tolerance) {
+			return append(errs, errors.Errorf("matrix does not have determinant of 1: %+v", s.Quaternion))
+		}
+		return nil
 	}
 }
 
@@ -653,6 +667,14 @@ func (s AssmCompPoseRotSpec) TransfMat() mat4.T {
 	case RotKindQuaternion:
 		mat := mat4.Zero
 		mat.AssignQuaternion(&s.Quaternion)
+		return mat
+	case RotKindMatrix:
+		mat := mat4.Ident
+		for col := 0; col < s.Matrix.Cols(); col++ {
+			for row := 0; row < s.Matrix.Rows(); row++ {
+				mat[col][row] = s.Matrix.Get(col, row)
+			}
+		}
 		return mat
 	}
 }

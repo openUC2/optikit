@@ -8,6 +8,7 @@ import (
 
 	"github.com/goccy/go-yaml"
 	"github.com/pkg/errors"
+	"github.com/ungerik/go3d/float64/mat3"
 	"github.com/ungerik/go3d/float64/quaternion"
 
 	ffs "github.com/openUC2/optikit/exp/fs"
@@ -366,7 +367,8 @@ type AssmCompPoseRotExprSpec struct {
 type AssmCompPoseRotSpec struct {
 	// Kind is the type of orientation of the component. It can be either `` (implying no rotation),
 	// `uc2` (implying a UC2 cube), `grid` (for any orientation aligned with the design's axes, even
-	// if violating UC2 cube orientation constraints), or `quaternion` (for arbitrary rotations).
+	// if violating UC2 cube orientation constraints), `quaternion` (for arbitrary rotations), or
+	// `matrix` (for arbitrary rotations).
 	// If the kind is uc2, then Grid.Z is only allowed to be +z or -z, and Grid.X is not allowed to
 	// be +z or -z.
 	Kind string `json:"kind,omitzero" yaml:"kind,omitempty"`
@@ -380,6 +382,9 @@ type AssmCompPoseRotSpec struct {
 	// Quaternion declares the orientation parameters of the component if its rotation kind is
 	// `quaternion`.
 	Quaternion quaternion.T `json:"quaternion,omitzero" yaml:"quaternion,omitzero"`
+	// Matrix declares the full rotation matrix of the component if its rotation kind is `matrix`.
+	// Currently there is no support for serializing/deserializing rotations of type `matrix`.
+	Matrix mat3.T
 }
 
 const (
@@ -387,6 +392,7 @@ const (
 	RotKindGrid       = "grid"
 	RotKindEuler      = "euler"
 	RotKindQuaternion = "quaternion"
+	RotKindMatrix     = "matrix" // for internal use only
 )
 
 // AssmCompPoseTranslExprSpec declares the position of the component as linear translation relative to

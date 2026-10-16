@@ -222,7 +222,7 @@
         "kind": "extrinsic",
         "order": "zxy",
         "angles": {
-          "z": 180
+          "z": -180
         }
       }
     },
@@ -463,7 +463,7 @@
         "kind": "extrinsic",
         "order": "zxy",
         "angles": {
-          "y": 180,
+          "y": -180,
           "z": 90
         }
       }

@@ -104,7 +104,7 @@ components:
     kind: extrinsic
     order: zxy
     angles:
-      "y": 180.0
+      "y": -180.0
       z: 90.0
 - id: mounted-mirrors/motorized-mirror-2/mount-top
   kind: primitive/static

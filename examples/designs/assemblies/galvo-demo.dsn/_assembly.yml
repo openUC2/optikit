@@ -115,7 +115,7 @@ components:
     kind: extrinsic
     order: zxy
     angles:
-      "y": 180.0
+      "y": -180.0
       z: 90.0
 - id: galvo-mirror-pair-1/mounted-mirrors/motorized-mirror-2/mount-top
   kind: primitive/static
@@ -311,7 +311,7 @@ components:
     kind: extrinsic
     order: zxy
     angles:
-      "y": 180.0
+      "y": -180.0
       z: 90.0
 - id: galvo-mirror-pair-2/mounted-mirrors/motorized-mirror-2/mount-top
   kind: primitive/static
@@ -507,7 +507,7 @@ components:
     kind: extrinsic
     order: zxy
     angles:
-      "y": 180.0
+      "y": -180.0
       z: 90.0
 - id: galvo-mirror-pair-3/mounted-mirrors/motorized-mirror-2/mount-top
   kind: primitive/static

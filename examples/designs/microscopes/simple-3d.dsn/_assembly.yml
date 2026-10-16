@@ -251,7 +251,7 @@ components:
     angles:
       x: -45.0
       "y": -90.0
-      z: 180.0
+      z: -180.0
 - id: periscope-mirror-2/mounted-mirror/inner-insert/adhesive-pad
   kind: primitive/static
   static-models:
@@ -357,7 +357,7 @@ components:
     kind: extrinsic
     order: zxy
     angles:
-      "y": 180.0
+      "y": -180.0
       z: 90.0
 - id: projector-screen
   kind: design

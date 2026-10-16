@@ -248,7 +248,7 @@ components:
     kind: extrinsic
     order: zxy
     angles:
-      "y": 180.0
+      "y": -180.0
       z: 90.0
 - id: dichroic/skeleton/lower-half
   kind: primitive/static
@@ -260,7 +260,7 @@ components:
     kind: extrinsic
     order: zxy
     angles:
-      "y": 180.0
+      "y": -180.0
       z: 90.0
 - id: dichroic/skeleton/upper-half
   kind: primitive/static
@@ -289,7 +289,7 @@ components:
     order: zxy
     angles:
       "y": 90.0
-      z: 180.0
+      z: -180.0
 - id: fiber-holder/mounted-fiber-holder/insert
   kind: primitive/static
   static-models:
@@ -301,7 +301,7 @@ components:
     order: zxy
     angles:
       "y": 90.0
-      z: 180.0
+      z: -180.0
 - id: fiber-holder/mounted-fiber-holder/threaded-holder
   kind: primitive/static
   static-models:
@@ -313,7 +313,7 @@ components:
     order: zxy
     angles:
       "y": 90.0
-      z: 180.0
+      z: -180.0
 - id: fiber-holder/skeleton
   kind: design
   design: cube-mounted/fiber-holder.dsn/primitives/cube-skeleton.dsn
@@ -543,7 +543,7 @@ components:
     kind: extrinsic
     order: zxy
     angles:
-      "y": 180.0
+      "y": -180.0
       z: 90.0
 - id: optics-stage/base/motor
   kind: design
@@ -675,7 +675,7 @@ components:
   static-models:
     gltf: "primitives/xyz-stage.dsn/yz-plate.dsn/primitives/motor-push-rod.dsn/BUY - Stepping motor with captive push rod  - L8K2105AD4-050SMSN-220(02).glb"
     step: "primitives/xyz-stage.dsn/yz-plate.dsn/primitives/motor-push-rod.dsn/BUY - Stepping motor with captive push rod  - L8K2105AD4-050SMSN-220(02).stp"
-  position: [7.499999999999999, 42.2, 110.6]
+  position: [7.5, 42.2, 110.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -858,7 +858,7 @@ components:
     kind: extrinsic
     order: zxy
     angles:
-      "y": 180.0
+      "y": -180.0
       z: 90.0
 - id: sample-stage/base/motor
   kind: design

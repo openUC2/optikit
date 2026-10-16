@@ -248,7 +248,7 @@ components:
     kind: extrinsic
     order: zxy
     angles:
-      "y": 180.0
+      "y": -180.0
       z: 90.0
 - id: dichroic/skeleton/lower-half
   kind: primitive/static
@@ -260,7 +260,7 @@ components:
     kind: extrinsic
     order: zxy
     angles:
-      "y": 180.0
+      "y": -180.0
       z: 90.0
 - id: dichroic/skeleton/upper-half
   kind: primitive/static
@@ -335,7 +335,7 @@ components:
     order: zxy
     angles:
       "y": 90.0
-      z: 180.0
+      z: -180.0
 - id: fiber-holder/mounted-fiber-holder/insert
   kind: primitive/static
   static-models:
@@ -347,19 +347,19 @@ components:
     order: zxy
     angles:
       "y": 90.0
-      z: 180.0
+      z: -180.0
 - id: fiber-holder/mounted-fiber-holder/threaded-holder
   kind: primitive/static
   static-models:
     gltf: "cube-mounted/fiber-holder.dsn/mounted-holder.dsn/BUY - Fiber holder - FCPC.glb"
     step: "cube-mounted/fiber-holder.dsn/mounted-holder.dsn/BUY - Fiber holder - FCPC.stp"
-  position: [-7.0, -50.0, 1.5543122344752192e-15]
+  position: [-7.0, -50.0, 0.0]
   rotation:
     kind: extrinsic
     order: zxy
     angles:
       "y": 90.0
-      z: 180.0
+      z: -180.0
 - id: fiber-holder/skeleton
   kind: design
   design: cube-mounted/fiber-holder.dsn/primitives/cube-skeleton.dsn
@@ -573,7 +573,7 @@ components:
   static-models:
     gltf: "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/BUY - Adhesive pad - 41x29x1.glb"
     step: "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/BUY - Adhesive pad - 41x29x1.stp"
-  position: [150.5, -1.1102230246251565e-16, 0.5]
+  position: [150.5, 0.0, 0.5]
   rotation:
     kind: extrinsic
     order: zxy
@@ -669,7 +669,7 @@ components:
     kind: extrinsic
     order: zxy
     angles:
-      "y": 180.0
+      "y": -180.0
       z: 90.0
 - id: sample-stage/base/motor
   kind: design

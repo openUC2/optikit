@@ -33,7 +33,7 @@ components:
     order: zxy
     angles:
       "y": 90.0
-      z: 180.0
+      z: -180.0
 - id: skeleton
   kind: design
   design: primitives/cube-skeleton.dsn
