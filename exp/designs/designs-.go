@@ -314,9 +314,7 @@ func (d *FSDesign) addAssmSubdesignComps(
 		}
 
 		maps.Copy(assmComp.Children, subassm.Children.Prefixed(compID))
-		if err := d.addAssmSubdesignComps(
-			ctx, assmComp.Children, JoinCompIDs(parentID, compID),
-		); err != nil {
+		if err := d.addAssmSubdesignComps(ctx, assmComp.Children, compID); err != nil {
 			return errors.Wrapf(
 				err, "couldn't add assembly components from subdesigns of components under %s", compID,
 			)

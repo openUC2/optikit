@@ -82,7 +82,7 @@ components:
   instantiation:
     inputs:
       newswitch-device-id: bigcamera42
-  position: [0.0, -4.0, 176.6]
+  position: [-4.0, 4.0, 160.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -92,7 +92,7 @@ components:
   instantiation:
     inputs:
       newswitch-device-id: bigcamera42
-  position: [-52.2, -4.0, 176.6]
+  position: [-56.2, 4.0, 160.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -104,7 +104,7 @@ components:
   static-models:
     gltf: "primitives/hikcamera-with-objective.dsn/camera.dsn/BUY - HIKROBOT - Camera - MV-CE060-10UM-PRO.glb"
     step: "primitives/hikcamera-with-objective.dsn/camera.dsn/BUY - HIKROBOT - Camera - MV-CE060-10UM-PRO.stp"
-  position: [-52.2, -4.0, 176.6]
+  position: [-56.2, 4.0, 160.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -114,14 +114,14 @@ components:
 - id: camera/mounted-objective
   kind: design
   design: primitives/hikcamera-with-objective.dsn/mounted-objective.dsn
-  position: [0.0, -4.0, 176.6]
+  position: [-4.0, 4.0, 160.6]
   rotation:
     kind: extrinsic
     order: zxy
 - id: camera/mounted-objective/lens
   kind: design
   design: primitives/hikcamera-with-objective.dsn/mounted-objective.dsn/lens.dsn
-  position: [23.9, -4.0, 176.6]
+  position: [19.9, 4.0, 160.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -131,7 +131,7 @@ components:
 - id: camera/mounted-objective/lens-holder-bottom
   kind: design
   design: primitives/hikcamera-with-objective.dsn/mounted-objective.dsn/half-case.dsn
-  position: [0.0, -4.0, 176.6]
+  position: [-4.0, 4.0, 160.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -143,7 +143,7 @@ components:
   static-models:
     gltf: "primitives/hikcamera-with-objective.dsn/mounted-objective.dsn/half-case.dsn/PRT - 1008 - OBJHOL_CLENS-100TEL.glb"
     step: "primitives/hikcamera-with-objective.dsn/mounted-objective.dsn/half-case.dsn/PRT - 1008 - OBJHOL_CLENS-100TEL.stp"
-  position: [0.0, -4.0, 176.6]
+  position: [-4.0, 4.0, 160.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -153,7 +153,7 @@ components:
 - id: camera/mounted-objective/lens-holder-top
   kind: design
   design: primitives/hikcamera-with-objective.dsn/mounted-objective.dsn/half-case.dsn
-  position: [0.0, -4.0, 176.6]
+  position: [-4.0, 4.0, 160.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -162,7 +162,7 @@ components:
   static-models:
     gltf: "primitives/hikcamera-with-objective.dsn/mounted-objective.dsn/half-case.dsn/PRT - 1008 - OBJHOL_CLENS-100TEL.glb"
     step: "primitives/hikcamera-with-objective.dsn/mounted-objective.dsn/half-case.dsn/PRT - 1008 - OBJHOL_CLENS-100TEL.stp"
-  position: [0.0, -4.0, 176.6]
+  position: [-4.0, 4.0, 160.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -171,14 +171,14 @@ components:
   static-models:
     gltf: "primitives/hikcamera-with-objective.dsn/mounted-objective.dsn/lens.dsn/BUY - Objectiv - CLENS-100TEL.glb"
     step: "primitives/hikcamera-with-objective.dsn/mounted-objective.dsn/lens.dsn/BUY - Objectiv - CLENS-100TEL.stp"
-  position: [23.9, -4.0, 176.6]
+  position: [19.9, 4.0, 160.6]
   rotation:
     kind: extrinsic
     order: zxy
 - id: dichroic
   kind: design
   design: cube-mounted/dichroic-mirror.dsn
-  position: [50.0, -4.0, 176.6]
+  position: [46.0, 4.0, 160.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -188,7 +188,7 @@ components:
 - id: dichroic/mounted-mirror
   kind: design
   design: cube-mounted/dichroic-mirror.dsn/mounted-mirror.dsn
-  position: [50.0, -4.0, 176.6]
+  position: [46.0, 4.0, 160.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -199,7 +199,7 @@ components:
   static-models:
     gltf: "cube-mounted/dichroic-mirror.dsn/mounted-mirror.dsn/BUY - Dichroic filter - 30x30x1 488nm.glb"
     step: "cube-mounted/dichroic-mirror.dsn/mounted-mirror.dsn/BUY - Dichroic filter - 30x30x1 488nm.stp"
-  position: [50.0, -4.0, 176.6]
+  position: [46.0, 4.0, 160.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -211,7 +211,7 @@ components:
   static-models:
     gltf: "cube-mounted/dichroic-mirror.dsn/mounted-mirror.dsn/BUY - Emission filter - D25x1 WLS485.glb"
     step: "cube-mounted/dichroic-mirror.dsn/mounted-mirror.dsn/BUY - Emission filter - D25x1 WLS485.stp"
-  position: [50.0, 19.35, 176.6]
+  position: [46.0, 27.35, 160.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -223,7 +223,7 @@ components:
   static-models:
     gltf: "cube-mounted/dichroic-mirror.dsn/mounted-mirror.dsn/PRT - 2020 - INSDICSPL+EMIFIL_WLS488LOW.glb"
     step: "cube-mounted/dichroic-mirror.dsn/mounted-mirror.dsn/PRT - 2020 - INSDICSPL+EMIFIL_WLS488LOW.stp"
-  position: [50.0, -4.0, 176.6]
+  position: [46.0, 4.0, 160.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -234,7 +234,7 @@ components:
   static-models:
     gltf: "cube-mounted/dichroic-mirror.dsn/mounted-mirror.dsn/PRT - 2021 - INSDICSPL+EMIFIL_WLS488UPP.glb"
     step: "cube-mounted/dichroic-mirror.dsn/mounted-mirror.dsn/PRT - 2021 - INSDICSPL+EMIFIL_WLS488UPP.stp"
-  position: [50.0, -4.0, 176.6]
+  position: [46.0, 4.0, 160.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -243,7 +243,7 @@ components:
 - id: dichroic/skeleton
   kind: design
   design: cube-mounted/dichroic-mirror.dsn/primitives/cube-skeleton.dsn
-  position: [50.0, -4.0, 176.6]
+  position: [46.0, 4.0, 160.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -255,7 +255,7 @@ components:
   static-models:
     gltf: "cube-mounted/dichroic-mirror.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb"
     step: "cube-mounted/dichroic-mirror.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
-  position: [50.0, -4.0, 176.6]
+  position: [46.0, 4.0, 160.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -267,7 +267,7 @@ components:
   static-models:
     gltf: "cube-mounted/dichroic-mirror.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb"
     step: "cube-mounted/dichroic-mirror.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
-  position: [50.0, -4.0, 176.6]
+  position: [46.0, 4.0, 160.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -276,14 +276,14 @@ components:
 - id: fiber-holder
   kind: design
   design: cube-mounted/fiber-holder.dsn
-  position: [0.0, -54.0, 176.6]
+  position: [-4.0, -46.0, 160.6]
   rotation:
     kind: extrinsic
     order: zxy
 - id: fiber-holder/mounted-fiber-holder
   kind: design
   design: cube-mounted/fiber-holder.dsn/mounted-holder.dsn
-  position: [0.0, -54.0, 176.6]
+  position: [-4.0, -46.0, 160.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -295,7 +295,7 @@ components:
   static-models:
     gltf: "cube-mounted/fiber-holder.dsn/mounted-holder.dsn/PRT - 2053 - INSFIBHOL15x15 - V04.glb"
     step: "cube-mounted/fiber-holder.dsn/mounted-holder.dsn/PRT - 2053 - INSFIBHOL15x15 - V04.stp"
-  position: [0.0, -54.0, 176.6]
+  position: [-4.0, -46.0, 160.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -307,7 +307,7 @@ components:
   static-models:
     gltf: "cube-mounted/fiber-holder.dsn/mounted-holder.dsn/BUY - Fiber holder - FCPC.glb"
     step: "cube-mounted/fiber-holder.dsn/mounted-holder.dsn/BUY - Fiber holder - FCPC.stp"
-  position: [-7.0, -54.0, 176.6]
+  position: [-11.0, -46.0, 160.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -317,7 +317,7 @@ components:
 - id: fiber-holder/skeleton
   kind: design
   design: cube-mounted/fiber-holder.dsn/primitives/cube-skeleton.dsn
-  position: [0.0, -54.0, 176.6]
+  position: [-4.0, -46.0, 160.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -326,7 +326,7 @@ components:
   static-models:
     gltf: "cube-mounted/fiber-holder.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb"
     step: "cube-mounted/fiber-holder.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
-  position: [0.0, -54.0, 176.6]
+  position: [-4.0, -46.0, 160.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -335,7 +335,7 @@ components:
   static-models:
     gltf: "cube-mounted/fiber-holder.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb"
     step: "cube-mounted/fiber-holder.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
-  position: [0.0, -54.0, 176.6]
+  position: [-4.0, -46.0, 160.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -345,7 +345,7 @@ components:
 - id: laser-mirror
   kind: design
   design: cube-mounted/mirror-diagonal.dsn
-  position: [50.0, -54.0, 176.6]
+  position: [46.0, -46.0, 160.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -354,7 +354,7 @@ components:
 - id: laser-mirror/mounted-mirror
   kind: design
   design: cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn
-  position: [50.0, -54.0, 176.6]
+  position: [46.0, -46.0, 160.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -365,7 +365,7 @@ components:
   static-models:
     gltf: "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/BUY - Adhesive pad - 41x29x1.glb"
     step: "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/BUY - Adhesive pad - 41x29x1.stp"
-  position: [50.5, -54.5, 176.6]
+  position: [46.5, -46.5, 160.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -376,7 +376,7 @@ components:
   static-models:
     gltf: "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/PRT - 2022 - INSMIR45TH2.glb"
     step: "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/PRT - 2022 - INSMIR45TH2.stp"
-  position: [50.0, -54.0, 176.6]
+  position: [46.0, -46.0, 160.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -387,7 +387,7 @@ components:
   static-models:
     gltf: "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/BUY - Mirror - 40x30x2.glb"
     step: "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/BUY - Mirror - 40x30x2.stp"
-  position: [50.0, -54.0, 176.6]
+  position: [46.0, -46.0, 160.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -396,7 +396,7 @@ components:
 - id: laser-mirror/skeleton
   kind: design
   design: cube-mounted/mirror-diagonal.dsn/primitives/cube-skeleton.dsn
-  position: [50.0, -54.0, 176.6]
+  position: [46.0, -46.0, 160.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -407,7 +407,7 @@ components:
   static-models:
     gltf: "cube-mounted/mirror-diagonal.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb"
     step: "cube-mounted/mirror-diagonal.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
-  position: [50.0, -54.0, 176.6]
+  position: [46.0, -46.0, 160.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -418,7 +418,7 @@ components:
   static-models:
     gltf: "cube-mounted/mirror-diagonal.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb"
     step: "cube-mounted/mirror-diagonal.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
-  position: [50.0, -54.0, 176.6]
+  position: [46.0, -46.0, 160.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -428,14 +428,14 @@ components:
 - id: objective
   kind: design
   design: cube-mounted/lens.dsn
-  position: [100.0, -4.0, 176.6]
+  position: [96.0, 4.0, 160.6]
   rotation:
     kind: extrinsic
     order: zxy
 - id: objective/mounted-lens
   kind: design
   design: cube-mounted/lens.dsn/mounted-lens.dsn
-  position: [100.0, -4.0, 176.6]
+  position: [96.0, 4.0, 160.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -446,7 +446,7 @@ components:
   static-models:
     gltf: "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2023 - INSLEND40F50 - V04.glb"
     step: "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2023 - INSLEND40F50 - V04.stp"
-  position: [100.0, -4.0, 176.6]
+  position: [96.0, 4.0, 160.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -458,7 +458,7 @@ components:
     gltf: "cube-mounted/lens.dsn/mounted-lens.dsn/BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx.glb"
     optiland: cube-mounted/lens.dsn/mounted-lens.dsn/AC254-100-A-Zemax-ZMX.optiland
     step: "cube-mounted/lens.dsn/mounted-lens.dsn/BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx.stp"
-  position: [100.0, -4.0, 176.6]
+  position: [96.0, 4.0, 160.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -469,7 +469,7 @@ components:
   static-models:
     gltf: "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2003 - NUTD40.glb"
     step: "cube-mounted/lens.dsn/mounted-lens.dsn/PRT - 2003 - NUTD40.stp"
-  position: [100.0, -4.0, 176.6]
+  position: [96.0, 4.0, 160.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -478,7 +478,7 @@ components:
 - id: objective/skeleton
   kind: design
   design: cube-mounted/lens.dsn/primitives/cube-skeleton.dsn
-  position: [100.0, -4.0, 176.6]
+  position: [96.0, 4.0, 160.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -487,7 +487,7 @@ components:
   static-models:
     gltf: "cube-mounted/lens.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb"
     step: "cube-mounted/lens.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
-  position: [100.0, -4.0, 176.6]
+  position: [96.0, 4.0, 160.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -496,7 +496,7 @@ components:
   static-models:
     gltf: "cube-mounted/lens.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb"
     step: "cube-mounted/lens.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
-  position: [100.0, -4.0, 176.6]
+  position: [96.0, 4.0, 160.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -505,7 +505,7 @@ components:
       z: -180.0
 - id: optics
   kind: location
-  position: [0.0, -4.0, 176.6]
+  position: [-4.0, 4.0, 160.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -519,9 +519,9 @@ components:
       newswitch-input-variable-x: optics-x
       newswitch-input-variable-y: optics-y
       newswitch-input-variable-z: optics-z
-      x-stage: "4"
-      y-stage: "8"
-      z-stage: "16"
+      x-stage: 0.0
+      y-stage: 0.0
+      z-stage: 0.0
   position: [0.0, 0.0, 55.0]
   rotation:
     kind: extrinsic
@@ -585,21 +585,21 @@ components:
     order: zxy
 - id: optics-stage/stage-center
   kind: mate
-  position: [0.0, -4.0, 151.6]
+  position: [-4.0, 4.0, 135.6]
   rotation:
     kind: extrinsic
     order: zxy
 - id: optics-stage/xy-plate
   kind: design
   design: primitives/xyz-stage.dsn/xy-plate.dsn
-  position: [4.0, 0.0, 68.6]
+  position: [0.0, 0.0, 68.6]
   rotation:
     kind: extrinsic
     order: zxy
 - id: optics-stage/xy-plate/motor
   kind: design
   design: primitives/xyz-stage.dsn/xy-plate.dsn/primitives/motor-push-rod.dsn
-  position: [-27.0, 29.7, 91.6]
+  position: [-31.0, 29.7, 91.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -610,7 +610,7 @@ components:
   static-models:
     gltf: "primitives/xyz-stage.dsn/xy-plate.dsn/PRT - 3022 - MOTHOLYST.glb"
     step: "primitives/xyz-stage.dsn/xy-plate.dsn/PRT - 3022 - MOTHOLYST.stp"
-  position: [0.0, 4.0, 80.1]
+  position: [-4.0, 4.0, 80.1]
   rotation:
     kind: extrinsic
     order: zxy
@@ -621,7 +621,7 @@ components:
   static-models:
     gltf: "primitives/xyz-stage.dsn/xy-plate.dsn/primitives/motor-push-rod.dsn/BUY - Stepping motor with captive push rod  - L8K2105AD4-050SMSN-220(02).glb"
     step: "primitives/xyz-stage.dsn/xy-plate.dsn/primitives/motor-push-rod.dsn/BUY - Stepping motor with captive push rod  - L8K2105AD4-050SMSN-220(02).stp"
-  position: [-31.0, 25.7, 91.6]
+  position: [-35.0, 25.7, 91.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -632,7 +632,7 @@ components:
   static-models:
     gltf: "primitives/xyz-stage.dsn/xy-plate.dsn/PRT - 3023 - BKTXST.glb"
     step: "primitives/xyz-stage.dsn/xy-plate.dsn/PRT - 3023 - BKTXST.stp"
-  position: [0.0, 4.0, 68.6]
+  position: [-4.0, 4.0, 68.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -641,21 +641,21 @@ components:
   static-models:
     gltf: "primitives/xyz-stage.dsn/xy-plate.dsn/BUY - XYZ linear table - LD40 --- XY plate.glb"
     step: "primitives/xyz-stage.dsn/xy-plate.dsn/BUY - XYZ linear table - LD40 --- XY plate.stp"
-  position: [0.0, 4.0, 68.6]
+  position: [-4.0, 4.0, 68.6]
   rotation:
     kind: extrinsic
     order: zxy
 - id: optics-stage/yz-plate
   kind: design
   design: primitives/xyz-stage.dsn/yz-plate.dsn
-  position: [4.0, -8.0, 68.6]
+  position: [0.0, 0.0, 68.6]
   rotation:
     kind: extrinsic
     order: zxy
 - id: optics-stage/yz-plate/motor
   kind: design
   design: primitives/xyz-stage.dsn/yz-plate.dsn/primitives/motor-push-rod.dsn
-  position: [15.5, 38.2, 110.6]
+  position: [11.5, 46.2, 110.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -666,7 +666,7 @@ components:
   static-models:
     gltf: "primitives/xyz-stage.dsn/yz-plate.dsn/PRT - 3024 - MOTHOLZST.glb"
     step: "primitives/xyz-stage.dsn/yz-plate.dsn/PRT - 3024 - MOTHOLZST.stp"
-  position: [0.5, -4.0, 68.6]
+  position: [-3.5, 4.0, 68.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -675,7 +675,7 @@ components:
   static-models:
     gltf: "primitives/xyz-stage.dsn/yz-plate.dsn/primitives/motor-push-rod.dsn/BUY - Stepping motor with captive push rod  - L8K2105AD4-050SMSN-220(02).glb"
     step: "primitives/xyz-stage.dsn/yz-plate.dsn/primitives/motor-push-rod.dsn/BUY - Stepping motor with captive push rod  - L8K2105AD4-050SMSN-220(02).stp"
-  position: [11.5, 34.2, 110.6]
+  position: [7.499999999999999, 42.2, 110.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -686,7 +686,7 @@ components:
   static-models:
     gltf: "primitives/xyz-stage.dsn/yz-plate.dsn/BUY - XYZ linear table - LD40 --- bracket.glb"
     step: "primitives/xyz-stage.dsn/yz-plate.dsn/BUY - XYZ linear table - LD40 --- bracket.stp"
-  position: [0.0, -4.0, 106.1]
+  position: [-4.0, 4.0, 106.1]
   rotation:
     kind: extrinsic
     order: zxy
@@ -698,7 +698,7 @@ components:
   static-models:
     gltf: "primitives/xyz-stage.dsn/yz-plate.dsn/BUY - XYZ linear table - LD40 --- Y plate.glb"
     step: "primitives/xyz-stage.dsn/yz-plate.dsn/BUY - XYZ linear table - LD40 --- Y plate.stp"
-  position: [0.0, -4.0, 68.6]
+  position: [-4.0, 4.0, 68.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -707,7 +707,7 @@ components:
   static-models:
     gltf: "primitives/xyz-stage.dsn/yz-plate.dsn/BUY - Manual Z stage - LZ40 --- base.glb"
     step: "primitives/xyz-stage.dsn/yz-plate.dsn/BUY - Manual Z stage - LZ40 --- base.stp"
-  position: [0.0, -4.0, 98.6]
+  position: [-4.0, 4.0, 98.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -719,7 +719,7 @@ components:
   static-models:
     gltf: "primitives/xyz-stage.dsn/yz-plate.dsn/BUY - Manual Z stage - LZ40 --- converter.glb"
     step: "primitives/xyz-stage.dsn/yz-plate.dsn/BUY - Manual Z stage - LZ40 --- converter.stp"
-  position: [0.0, -4.0, 98.6]
+  position: [-4.0, 4.0, 98.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -731,7 +731,7 @@ components:
   static-models:
     gltf: "primitives/xyz-stage.dsn/BUY - Manual Z stage - LZ40 --- slide.glb"
     step: "primitives/xyz-stage.dsn/BUY - Manual Z stage - LZ40 --- slide.stp"
-  position: [0.0, -4.0, 114.6]
+  position: [-4.0, 4.0, 98.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -741,7 +741,7 @@ components:
 - id: sample-mirror
   kind: design
   design: cube-mounted/mirror-diagonal.dsn
-  position: [150.0, -4.0, 176.6]
+  position: [146.0, 4.0, 160.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -750,7 +750,7 @@ components:
 - id: sample-mirror/mounted-mirror
   kind: design
   design: cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn
-  position: [150.0, -4.0, 176.6]
+  position: [146.0, 4.0, 160.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -762,7 +762,7 @@ components:
   static-models:
     gltf: "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/BUY - Adhesive pad - 41x29x1.glb"
     step: "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/BUY - Adhesive pad - 41x29x1.stp"
-  position: [150.5, -4.0, 177.1]
+  position: [146.5, 4.0, 161.1]
   rotation:
     kind: extrinsic
     order: zxy
@@ -774,7 +774,7 @@ components:
   static-models:
     gltf: "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/PRT - 2022 - INSMIR45TH2.glb"
     step: "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/PRT - 2022 - INSMIR45TH2.stp"
-  position: [150.0, -4.0, 176.6]
+  position: [146.0, 4.0, 160.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -786,7 +786,7 @@ components:
   static-models:
     gltf: "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/BUY - Mirror - 40x30x2.glb"
     step: "cube-mounted/mirror-diagonal.dsn/mounted-mirror.dsn/BUY - Mirror - 40x30x2.stp"
-  position: [150.0, -4.0, 176.6]
+  position: [146.0, 4.0, 160.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -796,7 +796,7 @@ components:
 - id: sample-mirror/skeleton
   kind: design
   design: cube-mounted/mirror-diagonal.dsn/primitives/cube-skeleton.dsn
-  position: [150.0, -4.0, 176.6]
+  position: [146.0, 4.0, 160.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -807,7 +807,7 @@ components:
   static-models:
     gltf: "cube-mounted/mirror-diagonal.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb"
     step: "cube-mounted/mirror-diagonal.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
-  position: [150.0, -4.0, 176.6]
+  position: [146.0, 4.0, 160.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -818,7 +818,7 @@ components:
   static-models:
     gltf: "cube-mounted/mirror-diagonal.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb"
     step: "cube-mounted/mirror-diagonal.dsn/primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp"
-  position: [150.0, -4.0, 176.6]
+  position: [146.0, 4.0, 160.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -834,9 +834,9 @@ components:
       newswitch-input-variable-x: sample-x
       newswitch-input-variable-y: sample-y
       newswitch-input-variable-z: sample-z
-      x-stage: "8"
-      y-stage: "16"
-      z-stage: "32"
+      x-stage: 0.0
+      y-stage: 0.0
+      z-stage: 0.0
   position: [150.0, 0.0, 0.0]
   rotation:
     kind: extrinsic
@@ -900,21 +900,21 @@ components:
     order: zxy
 - id: sample-stage/stage-center
   kind: mate
-  position: [154.0, -12.0, 112.6]
+  position: [146.0, 4.0, 80.6]
   rotation:
     kind: extrinsic
     order: zxy
 - id: sample-stage/xy-plate
   kind: design
   design: primitives/xyz-stage.dsn/xy-plate.dsn
-  position: [158.0, 0.0, 13.6]
+  position: [150.0, 0.0, 13.6]
   rotation:
     kind: extrinsic
     order: zxy
 - id: sample-stage/xy-plate/motor
   kind: design
   design: primitives/xyz-stage.dsn/xy-plate.dsn/primitives/motor-push-rod.dsn
-  position: [127.0, 29.7, 36.6]
+  position: [119.0, 29.7, 36.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -925,7 +925,7 @@ components:
   static-models:
     gltf: "primitives/xyz-stage.dsn/xy-plate.dsn/PRT - 3022 - MOTHOLYST.glb"
     step: "primitives/xyz-stage.dsn/xy-plate.dsn/PRT - 3022 - MOTHOLYST.stp"
-  position: [154.0, 4.0, 25.1]
+  position: [146.0, 4.0, 25.1]
   rotation:
     kind: extrinsic
     order: zxy
@@ -936,7 +936,7 @@ components:
   static-models:
     gltf: "primitives/xyz-stage.dsn/xy-plate.dsn/primitives/motor-push-rod.dsn/BUY - Stepping motor with captive push rod  - L8K2105AD4-050SMSN-220(02).glb"
     step: "primitives/xyz-stage.dsn/xy-plate.dsn/primitives/motor-push-rod.dsn/BUY - Stepping motor with captive push rod  - L8K2105AD4-050SMSN-220(02).stp"
-  position: [123.0, 25.7, 36.6]
+  position: [115.0, 25.7, 36.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -947,7 +947,7 @@ components:
   static-models:
     gltf: "primitives/xyz-stage.dsn/xy-plate.dsn/PRT - 3023 - BKTXST.glb"
     step: "primitives/xyz-stage.dsn/xy-plate.dsn/PRT - 3023 - BKTXST.stp"
-  position: [154.0, 4.0, 13.6]
+  position: [146.0, 4.0, 13.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -956,21 +956,21 @@ components:
   static-models:
     gltf: "primitives/xyz-stage.dsn/xy-plate.dsn/BUY - XYZ linear table - LD40 --- XY plate.glb"
     step: "primitives/xyz-stage.dsn/xy-plate.dsn/BUY - XYZ linear table - LD40 --- XY plate.stp"
-  position: [154.0, 4.0, 13.6]
+  position: [146.0, 4.0, 13.6]
   rotation:
     kind: extrinsic
     order: zxy
 - id: sample-stage/yz-plate
   kind: design
   design: primitives/xyz-stage.dsn/yz-plate.dsn
-  position: [158.0, -16.0, 13.6]
+  position: [150.0, 0.0, 13.6]
   rotation:
     kind: extrinsic
     order: zxy
 - id: sample-stage/yz-plate/motor
   kind: design
   design: primitives/xyz-stage.dsn/yz-plate.dsn/primitives/motor-push-rod.dsn
-  position: [169.5, 30.200000000000003, 55.6]
+  position: [161.5, 46.2, 55.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -981,7 +981,7 @@ components:
   static-models:
     gltf: "primitives/xyz-stage.dsn/yz-plate.dsn/PRT - 3024 - MOTHOLZST.glb"
     step: "primitives/xyz-stage.dsn/yz-plate.dsn/PRT - 3024 - MOTHOLZST.stp"
-  position: [154.5, -12.0, 13.6]
+  position: [146.5, 4.0, 13.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -990,7 +990,7 @@ components:
   static-models:
     gltf: "primitives/xyz-stage.dsn/yz-plate.dsn/primitives/motor-push-rod.dsn/BUY - Stepping motor with captive push rod  - L8K2105AD4-050SMSN-220(02).glb"
     step: "primitives/xyz-stage.dsn/yz-plate.dsn/primitives/motor-push-rod.dsn/BUY - Stepping motor with captive push rod  - L8K2105AD4-050SMSN-220(02).stp"
-  position: [165.5, 26.200000000000003, 55.6]
+  position: [157.5, 42.2, 55.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -1001,7 +1001,7 @@ components:
   static-models:
     gltf: "primitives/xyz-stage.dsn/yz-plate.dsn/BUY - XYZ linear table - LD40 --- bracket.glb"
     step: "primitives/xyz-stage.dsn/yz-plate.dsn/BUY - XYZ linear table - LD40 --- bracket.stp"
-  position: [154.0, -12.0, 51.1]
+  position: [146.0, 4.0, 51.1]
   rotation:
     kind: extrinsic
     order: zxy
@@ -1013,7 +1013,7 @@ components:
   static-models:
     gltf: "primitives/xyz-stage.dsn/yz-plate.dsn/BUY - XYZ linear table - LD40 --- Y plate.glb"
     step: "primitives/xyz-stage.dsn/yz-plate.dsn/BUY - XYZ linear table - LD40 --- Y plate.stp"
-  position: [154.0, -12.0, 13.6]
+  position: [146.0, 4.0, 13.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -1022,7 +1022,7 @@ components:
   static-models:
     gltf: "primitives/xyz-stage.dsn/yz-plate.dsn/BUY - Manual Z stage - LZ40 --- base.glb"
     step: "primitives/xyz-stage.dsn/yz-plate.dsn/BUY - Manual Z stage - LZ40 --- base.stp"
-  position: [154.0, -12.0, 43.6]
+  position: [146.0, 4.0, 43.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -1034,7 +1034,7 @@ components:
   static-models:
     gltf: "primitives/xyz-stage.dsn/yz-plate.dsn/BUY - Manual Z stage - LZ40 --- converter.glb"
     step: "primitives/xyz-stage.dsn/yz-plate.dsn/BUY - Manual Z stage - LZ40 --- converter.stp"
-  position: [154.0, -12.0, 43.6]
+  position: [146.0, 4.0, 43.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -1046,7 +1046,7 @@ components:
   static-models:
     gltf: "primitives/xyz-stage.dsn/BUY - Manual Z stage - LZ40 --- slide.glb"
     step: "primitives/xyz-stage.dsn/BUY - Manual Z stage - LZ40 --- slide.stp"
-  position: [154.0, -12.0, 75.6]
+  position: [146.0, 4.0, 43.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -1056,7 +1056,7 @@ components:
 - id: slide-holder
   kind: design
   design: cube-mounted/slide-holder.dsn/mounted-holder.dsn
-  position: [154.0, -12.0, 115.6]
+  position: [146.0, 4.0, 83.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -1068,7 +1068,7 @@ components:
   static-models:
     gltf: "cube-mounted/slide-holder.dsn/mounted-holder.dsn/PRT - 2008 - SAMCLP.glb"
     step: "cube-mounted/slide-holder.dsn/mounted-holder.dsn/PRT - 2008 - SAMCLP.stp"
-  position: [154.0, -12.0, 125.6]
+  position: [146.0, 4.0, 93.6]
   rotation:
     kind: extrinsic
     order: zxy
@@ -1080,7 +1080,7 @@ components:
   static-models:
     gltf: "cube-mounted/slide-holder.dsn/mounted-holder.dsn/PRT - 2028 - INSSAMMNT - V04.glb"
     step: "cube-mounted/slide-holder.dsn/mounted-holder.dsn/PRT - 2028 - INSSAMMNT - V04.stp"
-  position: [154.0, -12.0, 115.6]
+  position: [146.0, 4.0, 83.6]
   rotation:
     kind: extrinsic
     order: zxy

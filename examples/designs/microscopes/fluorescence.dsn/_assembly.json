@@ -18,11 +18,7 @@
       ],
       "rotation": {
         "kind": "extrinsic",
-        "order": "zxy",
-        "angles": {
-          "x": -90,
-          "z": -90
-        }
+        "order": "zxy"
       }
     },
     {
@@ -114,6 +110,23 @@
       },
       "position": [
         70,
+        50,
+        0
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "x": -90,
+          "z": -90
+        }
+      }
+    },
+    {
+      "id": "blue-laser/root",
+      "kind": "location",
+      "position": [
+        50,
         50,
         0
       ],
@@ -473,7 +486,7 @@
       "position": [
         25,
         25,
-        -35
+        -30
       ],
       "rotation": {
         "kind": "extrinsic",
@@ -494,7 +507,7 @@
       "position": [
         25,
         25,
-        -35
+        -34
       ],
       "rotation": {
         "kind": "extrinsic",
@@ -515,7 +528,24 @@
       "position": [
         25,
         25,
-        -35
+        -34
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -180,
+          "z": -180
+        }
+      }
+    },
+    {
+      "id": "electronics-controller/root",
+      "kind": "location",
+      "position": [
+        25,
+        25,
+        -34
       ],
       "rotation": {
         "kind": "extrinsic",
@@ -591,7 +621,7 @@
       "position": [
         -7,
         -50,
-        0
+        1.5543122344752192e-15
       ],
       "rotation": {
         "kind": "extrinsic",
@@ -707,7 +737,7 @@
         "kind": "extrinsic",
         "order": "zxy",
         "angles": {
-          "z": 180
+          "z": -180
         }
       }
     },
@@ -1003,7 +1033,7 @@
       },
       "position": [
         150.5,
-        0,
+        -1.1102230246251565e-16,
         0.5
       ],
       "rotation": {
@@ -1134,7 +1164,7 @@
       "position": [
         150,
         0,
-        -110
+        -135
       ],
       "rotation": {
         "kind": "extrinsic",
@@ -1149,7 +1179,7 @@
       "position": [
         150,
         0,
-        -110
+        -121.4
       ],
       "rotation": {
         "kind": "extrinsic",
@@ -1166,7 +1196,7 @@
       "position": [
         150,
         0,
-        -110
+        -121.4
       ],
       "rotation": {
         "kind": "extrinsic",
@@ -1185,7 +1215,7 @@
       "position": [
         119.3,
         -23,
-        -102.5
+        -113.9
       ],
       "rotation": {
         "kind": "extrinsic",
@@ -1205,7 +1235,7 @@
       "position": [
         146,
         4,
-        -110
+        -121.4
       ],
       "rotation": {
         "kind": "extrinsic",
@@ -1222,7 +1252,7 @@
       "position": [
         123.3,
         -27,
-        -102.5
+        -113.9
       ],
       "rotation": {
         "kind": "extrinsic",
@@ -1242,7 +1272,20 @@
       "position": [
         146,
         4,
-        -110
+        -121.4
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "sample-stage/stage-center",
+      "kind": "mate",
+      "position": [
+        146,
+        4,
+        -54.400000000000006
       ],
       "rotation": {
         "kind": "extrinsic",
@@ -1257,7 +1300,7 @@
       "position": [
         150,
         0,
-        -110
+        -121.4
       ],
       "rotation": {
         "kind": "extrinsic",
@@ -1272,7 +1315,7 @@
       "position": [
         119,
         29.7,
-        -87
+        -98.4
       ],
       "rotation": {
         "kind": "extrinsic",
@@ -1292,7 +1335,7 @@
       "position": [
         146,
         4,
-        -98.5
+        -109.9
       ],
       "rotation": {
         "kind": "extrinsic",
@@ -1312,7 +1355,7 @@
       "position": [
         115,
         25.7,
-        -87
+        -98.4
       ],
       "rotation": {
         "kind": "extrinsic",
@@ -1332,7 +1375,7 @@
       "position": [
         146,
         4,
-        -110
+        -121.4
       ],
       "rotation": {
         "kind": "extrinsic",
@@ -1349,7 +1392,7 @@
       "position": [
         146,
         4,
-        -110
+        -121.4
       ],
       "rotation": {
         "kind": "extrinsic",
@@ -1364,7 +1407,7 @@
       "position": [
         150,
         0,
-        -110
+        -121.4
       ],
       "rotation": {
         "kind": "extrinsic",
@@ -1379,7 +1422,7 @@
       "position": [
         161.5,
         46.2,
-        -68
+        -79.4
       ],
       "rotation": {
         "kind": "extrinsic",
@@ -1399,7 +1442,7 @@
       "position": [
         146.5,
         4,
-        -110
+        -121.4
       ],
       "rotation": {
         "kind": "extrinsic",
@@ -1416,7 +1459,7 @@
       "position": [
         157.5,
         42.2,
-        -68
+        -79.4
       ],
       "rotation": {
         "kind": "extrinsic",
@@ -1436,7 +1479,7 @@
       "position": [
         146,
         4,
-        -72.5
+        -83.9
       ],
       "rotation": {
         "kind": "extrinsic",
@@ -1457,7 +1500,7 @@
       "position": [
         146,
         4,
-        -110
+        -121.4
       ],
       "rotation": {
         "kind": "extrinsic",
@@ -1474,7 +1517,7 @@
       "position": [
         146,
         4,
-        -80
+        -91.4
       ],
       "rotation": {
         "kind": "extrinsic",
@@ -1495,7 +1538,7 @@
       "position": [
         146,
         4,
-        -80
+        -91.4
       ],
       "rotation": {
         "kind": "extrinsic",
@@ -1516,7 +1559,7 @@
       "position": [
         146,
         4,
-        -80
+        -91.4
       ],
       "rotation": {
         "kind": "extrinsic",
@@ -1524,6 +1567,67 @@
         "angles": {
           "x": 90,
           "z": 90
+        }
+      }
+    },
+    {
+      "id": "slide-holder",
+      "kind": "design",
+      "design": "cube-mounted/slide-holder.dsn/mounted-holder.dsn",
+      "instantiation": {},
+      "position": [
+        146,
+        4,
+        -51.400000000000006
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -180,
+          "z": -180
+        }
+      }
+    },
+    {
+      "id": "slide-holder/clip",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/slide-holder.dsn/mounted-holder.dsn/PRT - 2008 - SAMCLP.glb",
+        "step": "cube-mounted/slide-holder.dsn/mounted-holder.dsn/PRT - 2008 - SAMCLP.stp"
+      },
+      "position": [
+        146,
+        4,
+        -41.400000000000006
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -180,
+          "z": -180
+        }
+      }
+    },
+    {
+      "id": "slide-holder/insert",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/slide-holder.dsn/mounted-holder.dsn/PRT - 2028 - INSSAMMNT - V04.glb",
+        "step": "cube-mounted/slide-holder.dsn/mounted-holder.dsn/PRT - 2028 - INSSAMMNT - V04.stp"
+      },
+      "position": [
+        146,
+        4,
+        -51.400000000000006
+      ],
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy",
+        "angles": {
+          "y": -180,
+          "z": -180
         }
       }
     }

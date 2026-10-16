@@ -147,6 +147,10 @@
       }
     },
     {
+      "id": "blue-laser/root",
+      "kind": "location"
+    },
+    {
       "id": "camera",
       "kind": "design",
       "design": "primitives/hikcamera-with-objective.dsn",
@@ -470,6 +474,10 @@
       "id": "electronics-controller/pcb",
       "kind": "primitive/static",
       "static-models": {}
+    },
+    {
+      "id": "electronics-controller/root",
+      "kind": "location"
     },
     {
       "id": "electronics-controller/screw-1",
@@ -961,6 +969,10 @@
       }
     },
     {
+      "id": "sample-stage/stage-center",
+      "kind": "mate"
+    },
+    {
       "id": "sample-stage/stage-drivers",
       "kind": "primitive/static",
       "static-models": {
@@ -1168,6 +1180,56 @@
       "static-models": {
         "gltf": "primitives/xyz-stage.dsn/BUY - Manual Z stage - LZ40 --- slide.glb",
         "step": "primitives/xyz-stage.dsn/BUY - Manual Z stage - LZ40 --- slide.stp"
+      }
+    },
+    {
+      "id": "slide-holder",
+      "kind": "design",
+      "design": "cube-mounted/slide-holder.dsn/mounted-holder.dsn",
+      "instantiation": {}
+    },
+    {
+      "id": "slide-holder/clip",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/slide-holder.dsn/mounted-holder.dsn/PRT - 2008 - SAMCLP.glb",
+        "step": "cube-mounted/slide-holder.dsn/mounted-holder.dsn/PRT - 2008 - SAMCLP.stp"
+      }
+    },
+    {
+      "id": "slide-holder/insert",
+      "kind": "primitive/static",
+      "static-models": {
+        "gltf": "cube-mounted/slide-holder.dsn/mounted-holder.dsn/PRT - 2028 - INSSAMMNT - V04.glb",
+        "step": "cube-mounted/slide-holder.dsn/mounted-holder.dsn/PRT - 2028 - INSSAMMNT - V04.stp"
+      }
+    },
+    {
+      "id": "slide-holder/magnet-1",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "cube-mounted/slide-holder.dsn/mounted-holder.dsn/BUY - NeFeB-Magnet - ø8x3 N40 Ni.bom.yml"
+      }
+    },
+    {
+      "id": "slide-holder/magnet-2",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "cube-mounted/slide-holder.dsn/mounted-holder.dsn/BUY - NeFeB-Magnet - ø8x3 N40 Ni.bom.yml"
+      }
+    },
+    {
+      "id": "slide-holder/magnet-3",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "cube-mounted/slide-holder.dsn/mounted-holder.dsn/BUY - NeFeB-Magnet - ø8x3 N40 Ni.bom.yml"
+      }
+    },
+    {
+      "id": "slide-holder/magnet-4",
+      "kind": "primitive/static",
+      "static-models": {
+        "bom": "cube-mounted/slide-holder.dsn/mounted-holder.dsn/BUY - NeFeB-Magnet - ø8x3 N40 Ni.bom.yml"
       }
     }
   ]

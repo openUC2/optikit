@@ -1,9 +1,10 @@
 optikit-version: v0.0.0-alpha.1
 
 design:
-  description: Arbitrary subassemblies mounted on xyz stages
+  description: An overengineered fluorescence microscope with optics mounted on a stage and a sample mounted on another stage
   tags:
-    - assembly
+    - instrument
+    - instrument/microscope
 
 inputs:
   optics-x:

@@ -79,6 +79,12 @@ components:
         x-stage: ~ inputs['sample-x'].value
         y-stage: ~ inputs['sample-y'].value
         z-stage: ~ inputs['sample-z'].value
+        # x-stage: 2
+        # y-stage: 4
+        # z-stage: 8
+  slide-holder:
+    kind: design
+    design: cube-mounted/slide-holder.dsn/mounted-holder.dsn
   electronics-controller:
     kind: design
     design: primitives/electronics-mainboard.dsn
@@ -123,6 +129,18 @@ assemblies:
                           kind: relative-position
                           translation:
                             offset-grid: {z: -2}
+                            offset-mm: {z: -25}
+                        children:
+                          slide-holder:
+                            pose:
+                              base:
+                                kind: mate
+                                mate: stage-center
+                              rotation:
+                                kind: grid
+                                grid: {z: -z}
+                              translation:
+                                offset-mm: {z: 3}
               laser-mirror:
                 assembly: xy
                 pose:

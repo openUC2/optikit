@@ -376,9 +376,9 @@ components:
       newswitch-input-variable-x: optics-x
       newswitch-input-variable-y: optics-y
       newswitch-input-variable-z: optics-z
-      x-stage: "4"
-      y-stage: "8"
-      z-stage: "16"
+      x-stage: 0.0
+      y-stage: 0.0
+      z-stage: 0.0
 - id: optics-stage/base
   kind: design
   design: primitives/xyz-stage.dsn/base.dsn
@@ -635,9 +635,9 @@ components:
       newswitch-input-variable-x: sample-x
       newswitch-input-variable-y: sample-y
       newswitch-input-variable-z: sample-z
-      x-stage: "8"
-      y-stage: "16"
-      z-stage: "32"
+      x-stage: 0.0
+      y-stage: 0.0
+      z-stage: 0.0
 - id: sample-stage/base
   kind: design
   design: primitives/xyz-stage.dsn/base.dsn
