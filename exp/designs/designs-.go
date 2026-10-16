@@ -206,7 +206,7 @@ func (d *FSDesign) LoadFSDesignExpr(ctx context.Context, subdesign string) (*FSD
 
 // WithDescendants returns a new design in which all design components have been recursively
 // supplemented with their constituent primitive components as descendants.
-func (d *FSDesign) WithDescendants(ctx context.Context) (flattened *FSDesign, err error) {
+func (d *FSDesign) WithDescendants(ctx context.Context) (supplemented *FSDesign, err error) {
 	design := d.Cloned()
 	if err = design.addSubdesignComps(ctx); err != nil {
 		return nil, errors.Wrap(err, "couldn't recurse into subdesigns of components")
@@ -226,7 +226,7 @@ func (d *FSDesign) WithDescendants(ctx context.Context) (flattened *FSDesign, er
 // RelocatedMates returns a new design in which all design components have been recursively
 // supplemented with their constituent primitive components, and all mate-posed components have been
 // relocated to be descendants of their respective mate connectors.
-func (d *FSDesign) RelocatedMates(ctx context.Context) (flattened *FSDesign, err error) {
+func (d *FSDesign) RelocatedMates(ctx context.Context) (restructured *FSDesign, err error) {
 	design, err := d.WithDescendants(ctx)
 	if err != nil {
 		return nil, err

@@ -251,6 +251,9 @@ func RenderAssemblyGraph(
 		}
 	}()
 
+	if design, err = design.RelocatedMates(ctx); err != nil {
+		return nil, errors.Wrap(err, "couldn't restructure design to handle possible mate connectors")
+	}
 	gg := make(structures.StrictEdgeDigraph[string, string])
 	if gg, err = populateAssemblyGraph(ctx, gg, design, assembly, recurse, ""); err != nil {
 		return nil, errors.Wrapf(err, "couldn't populate assembly graph for design %s", design.Path())
@@ -289,7 +292,6 @@ func populateAssemblyGraph(
 	if err != nil {
 		return nil, errors.Wrapf(err, "couldn't build scene graph of assembly %s", assembly)
 	}
-	assmComps := assm.Children.Subtrees()
 
 	fromIDs := slices.Sorted(maps.Keys(tg))
 	for _, fromID := range fromIDs {
@@ -300,35 +302,6 @@ func populateAssemblyGraph(
 			edge := from[toID]
 			toNode := labelNode(nodePrefix, toID)
 			gg.AddEdge(fromNode, toNode, labelEdge(edge, design.Decl.Components[toID]))
-		}
-	}
-	if !recurse {
-		return gg, nil
-	}
-
-	for _, compID := range fromIDs {
-		comp := design.Decl.Components[compID]
-		if compID == "" || comp.Kind != designs.CompKindDesign {
-			continue
-		}
-
-		subdesign, err := design.LoadCompFSDesign(ctx, compID)
-		if err != nil {
-			return nil, errors.Wrapf(err, "couldn't load subdesign for component %s", compID)
-		}
-		assmComp, ok := assmComps[compID]
-		if !ok {
-			return nil, errors.Errorf(
-				"couldn't find component %s among children of assembly %s", compID, assembly,
-			)
-		}
-		if gg, err = populateAssemblyGraph(
-			ctx, gg, subdesign, assmComp.Assm, recurse, labelNode(nodePrefix, compID),
-		); err != nil {
-			return nil, errors.Wrapf(
-				err, "couldn't populate assembly graph by recursing into subdesign %s for component %s",
-				comp.Design, compID,
-			)
 		}
 	}
 	return gg, nil
