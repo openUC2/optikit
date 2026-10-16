@@ -10,32 +10,30 @@ components:
   skeleton:
     kind: design
     design: primitives/cube-skeleton.dsn
-    pose:
-      rotation:
-        kind: grid
   mounted-mirror:
     kind: design
     design: mounted-mirror.dsn
-    pose:
-      rotation:
-        kind: grid
 
-variants:
+assemblies:
   xy:
     description: Normal vector of mirror surface in the x-y plane
-    components:
+    children:
+      skeleton: {}
       mounted-mirror:
         pose:
           rotation:
+            kind: grid
             grid: {x: +y}
     tags:
       - pose/orientation/insert/horizontal
   _z:
     description: Normal vector of mirror surface in the y-z plane
-    components:
+    children:
+      skeleton: {}
       mounted-mirror:
         pose:
           rotation:
+            kind: grid
             grid: {z: +y}
     tags:
       - pose/orientation/insert/vertical

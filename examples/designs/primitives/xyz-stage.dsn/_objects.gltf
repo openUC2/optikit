@@ -45837,7 +45837,7 @@
       "translation": [
         -0.004,
         0.004,
-        0.03
+        0.0436
       ],
       "name": "z-plate",
       "children": [
@@ -45849,6 +45849,11 @@
       "mesh": 0
     },
     {
+      "translation": [
+        0,
+        0,
+        0.0136
+      ],
       "name": "base",
       "children": [
         4,
@@ -45936,6 +45941,11 @@
       "mesh": 4
     },
     {
+      "translation": [
+        0,
+        0,
+        0.0136
+      ],
       "name": "xy-plate",
       "children": [
         14,
@@ -46028,6 +46038,11 @@
       "mesh": 4
     },
     {
+      "translation": [
+        0,
+        0,
+        0.0136
+      ],
       "name": "yz-plate",
       "children": [
         24,

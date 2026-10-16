@@ -10,33 +10,35 @@ components:
   skeleton:
     kind: design
     design: primitives/cube-skeleton.dsn
-    pose:
-      rotation:
-        kind: grid
   mounted-fiber-holder:
     kind: design
     design: mounted-holder.dsn
-    pose:
-      rotation:
-        kind: grid
-        grid: {z: -z}
     tags:
       - optical/fiber
       - procurement/buy
       - procurement/3d-print
       - in/kit/fluorescence-laser-box
 
-variants:
+assemblies:
   z:
     description: Direction vector of the optical fiber is the z-axis
+    children:
+      skeleton: {}
+      mounted-fiber-holder:
+        pose:
+          rotation:
+            kind: grid
+            grid: {z: -z}
     tags:
       - pose/insert/orientation/vertical
   x:
     description: Normal vector of the optical fiber is the x-axis
-    components:
+    children:
+      skeleton: {}
       mounted-fiber-holder:
         pose:
           rotation:
+            kind: grid
             grid: {z: -x, x: -z}
     tags:
       - pose/insert/orientation/horizontal

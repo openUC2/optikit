@@ -42735,6 +42735,11 @@
       ]
     },
     {
+      "translation": [
+        0,
+        0,
+        0.004
+      ],
       "name": "case-base",
       "children": [
         2
@@ -42745,6 +42750,11 @@
       "mesh": 0
     },
     {
+      "translation": [
+        0,
+        0,
+        0.004
+      ],
       "name": "case-lid",
       "children": [
         4

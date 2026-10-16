@@ -5,6 +5,9 @@ package example
 
 //go:generate pwd
 
+//go:generate comp render-dsn-g --format=dot _designs-graph.dot
+//go:generate comp render-dsn-g --format=svg _designs-graph.svg
+
 //go:generate comp render-comp-g --format=dot _components-graph.dot
 //go:generate comp render-comp-g --format=svg _components-graph.svg
 
@@ -13,8 +16,11 @@ package example
 
 //go:generate ./generate-newswitch-config.sh
 
-//go:generate geom report-prim --format=yaml _primitives.yml
-//go:generate geom report-prim --format=json _primitives.json
+//go:generate geom render-assm-g --format=dot _assembly-graph.dot
+//go:generate geom render-assm-g --format=svg _assembly-graph.svg
+
+//go:generate geom report-assm --format=yaml _assembly.yml
+//go:generate geom report-assm --format=json _assembly.json
 
 //go:generate geom render-obj --format=gltf _objects.gltf
 //go:generate geom render-obj --format=glb _objects.glb

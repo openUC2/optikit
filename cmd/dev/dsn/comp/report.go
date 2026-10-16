@@ -17,9 +17,7 @@ func reportCompA(versions compat.Versions) cli.ActionFunc {
 		if err != nil {
 			return errors.Wrap(err, "couldn't parse input variables")
 		}
-		design, err := optikit.LoadFSDesign(
-			ctx, c.String("cwd"), designs.VariantID(c.String("variant")), inputs, false,
-		)
+		design, err := optikit.LoadFSDesign(ctx, c.String("cwd"), inputs, false)
 		if err != nil {
 			return err
 		}

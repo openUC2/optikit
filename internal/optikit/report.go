@@ -41,9 +41,7 @@ type CompReport struct {
 	// Primitive components:
 	StaticModels designs.CompPrimStaticModelsSpec `json:"static-models,omitzero" yaml:"static-models,omitempty"`
 
-	Position vec3.T         `json:"position,omitzero" yaml:"position,omitzero,flow"`
-	Rotation RotReport      `json:"rotation,omitzero" yaml:"rotation,omitempty"`
-	Results  map[string]any `json:"results,omitempty" yaml:"results,omitempty"`
+	Results map[string]any `json:"results,omitempty" yaml:"results,omitempty"`
 }
 
 type RotReport struct {
@@ -91,14 +89,17 @@ func ReportComponents(
 	optikitVersion string,
 ) (report CompsReport, err error) {
 	report.Optikit = optikitVersion
-	d, err := design.Flattened(ctx, gridSpacings)
+	d, err := design.RelocatedMates(ctx)
 	if err != nil {
+		return CompsReport{}, errors.Wrapf(err, "couldn't relocate mates in design %s", design.Path())
+	}
+	if d.Decl.Assemblies, err = d.Decl.Assemblies.Flattened(gridSpacings); err != nil {
 		return CompsReport{}, errors.Wrapf(err, "couldn't flatten design %s", design.Path())
 	}
 	comps := d.Decl.Components
 	report.Components = make([]CompReport, 0, len(comps))
 	for _, compID := range slices.Sorted(maps.Keys(comps)) {
-		r, err := reportComp(compID, comps[compID], gridSpacings)
+		r, err := reportComp(compID, comps[compID])
 		if err != nil {
 			return CompsReport{}, errors.Wrapf(err, "couldn't make report for component %s", compID)
 		}
@@ -107,9 +108,7 @@ func ReportComponents(
 	return report, nil
 }
 
-func reportComp(
-	compID designs.CompID, comp designs.CompSpec, gridSpacings designs.ContinuousXYZ[float64],
-) (report CompReport, err error) {
+func reportComp(compID designs.CompID, comp designs.CompSpec) (report CompReport, err error) {
 	report = CompReport{
 		ID:      compID,
 		Results: comp.Results,
@@ -117,29 +116,21 @@ func reportComp(
 	switch kind := comp.Kind; kind {
 	default:
 		return CompReport{}, errors.Errorf("unknown component kind %s", kind)
-	case designs.CompKindLocation:
+	case designs.CompKindLocation, designs.CompKindMate, designs.CompKindResults:
 		report.Kind = kind
+	case designs.CompKindPrimitive:
+		report.Kind = path.Join(kind, cmp.Or(comp.Primitive.Kind, "static"))
+		report.StaticModels = comp.Primitive.StaticModels
 	case designs.CompKindDesign:
 		report.Kind = kind
 		report.Design = comp.Design
 		report.Instantiation = comp.Instantiation
-	case designs.CompKindPrimitive:
-		report.Kind = path.Join(kind, cmp.Or(comp.Primitive.Kind, "static"))
-		report.StaticModels = comp.Primitive.StaticModels
-	}
-	if comp.Pose != (designs.CompPoseSpec{}) {
-		m, err := comp.Pose.TransfMat(gridSpacings)
-		if err != nil {
-			return CompReport{}, err
-		}
-		report.Position = m.MulVec3(&vec3.Zero)
-		report.Rotation = NewRotReport(m)
 	}
 	return report, nil
 }
 
-func SerializeReport(
-	ctx context.Context, report CompsReport, format string,
+func SerializeReport[Report any](
+	ctx context.Context, report Report, format string,
 ) (result []byte, err error) {
 	switch format {
 	default:
@@ -162,29 +153,64 @@ func SerializeReport(
 	}
 }
 
-// Primitives
+// Assembly
 
-func ReportPrimitives(
-	ctx context.Context, design *designs.FSDesign, gridSpacings designs.ContinuousXYZ[float64],
+// AssmReport
+
+type AssmReport struct {
+	// Optikit indicates that the design was written assuming the semantics of a given version
+	// of Optikit.
+	Optikit    string           `json:"optikit-version"      yaml:"optikit-version"`
+	Components []AssmCompReport `json:"components,omitempty" yaml:"components,omitempty"`
+}
+
+// AssmCompReport
+
+type AssmCompReport struct {
+	CompReport `json:",inline" yaml:",inline"`
+
+	Position vec3.T    `json:"position,omitzero" yaml:"position,omitzero,flow"`
+	Rotation RotReport `json:"rotation,omitzero" yaml:"rotation,omitempty"`
+}
+
+func ReportAssembly(
+	ctx context.Context, design *designs.FSDesign, assembly designs.AssmID,
+	gridSpacings designs.ContinuousXYZ[float64],
 	optikitVersion string,
-) (report CompsReport, err error) {
+) (report AssmReport, err error) {
 	report.Optikit = optikitVersion
-	d, err := design.Flattened(ctx, gridSpacings)
+	d, err := design.RelocatedMates(ctx)
 	if err != nil {
-		return CompsReport{}, errors.Wrapf(err, "couldn't flatten design %s", design.Path())
+		return report, errors.Wrapf(err, "couldn't relocate mates in design %s", design.Path())
+	}
+	if d.Decl.Assemblies, err = d.Decl.Assemblies.Flattened(gridSpacings); err != nil {
+		return report, errors.Wrapf(err, "couldn't flatten design %s", design.Path())
+	}
+	assm, ok := d.Decl.Assemblies[assembly]
+	if !ok {
+		return report, errors.Errorf("couldn't find assembly %s in design %s", assembly, design.Path())
 	}
 	comps := d.Decl.Components
-	report.Components = make([]CompReport, 0, len(comps))
-	for _, compID := range slices.Sorted(maps.Keys(comps)) {
-		comp := comps[compID]
-		if comp.Kind != designs.CompKindPrimitive {
+	assmComps := assm.Children
+	report.Components = make([]AssmCompReport, 0, len(assmComps))
+	for _, compID := range slices.Sorted(maps.Keys(assmComps)) {
+		assmComp := assmComps[compID]
+		if assmComp.Disabled {
 			continue
 		}
 
-		r, err := reportComp(compID, comps[compID], gridSpacings)
-		if err != nil {
-			return CompsReport{}, errors.Wrapf(err, "couldn't make report for component %s", compID)
+		var r AssmCompReport
+		if r.CompReport, err = reportComp(compID, comps[compID]); err != nil {
+			return AssmReport{}, errors.Wrapf(err, "couldn't make report for component %s", compID)
 		}
+		m, err := assmComp.Pose.TransfMat(gridSpacings)
+		if err != nil {
+			return report, errors.Wrapf(
+				err, "couldn't compute transformation matrix for component %s", compID,
+			)
+		}
+		r.Position = m.MulVec3(&vec3.Zero)
+		r.Rotation = NewRotReport(m)
 		report.Components = append(report.Components, r)
 	}
 	return report, nil

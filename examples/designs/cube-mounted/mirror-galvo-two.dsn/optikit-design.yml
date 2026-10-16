@@ -6,42 +6,6 @@ design:
     - composition/cube-mounted
     - in/kit/galvo-box
 
-components:
-  skeleton:
-    kind: design
-    design: primitives/cube-skeleton.dsn
-    pose:
-      rotation:
-        kind: grid
-  mounted-mirrors:
-    kind: design
-    design: mounted-mirrors.dsn
-    instantiation:
-      inputs:
-        mirror-1-rotation: ~ inputs['mirror-1-rotation'].value
-        mirror-2-rotation: ~ inputs['mirror-2-rotation'].value
-    pose:
-      rotation:
-        kind: grid
-  skeleton-extra-full:
-    kind: design
-    design: primitives/cube-skeleton.dsn
-    pose:
-      rotation:
-        kind: grid
-  skeleton-extra-partial:
-    kind: primitive
-    primitive:
-      static-models:
-        gltf: primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb
-        step: primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp
-    pose:
-      rotation:
-        kind: grid
-    tags:
-      - procurement/injection-mold
-      - in/kit/galvo-box
-
 inputs:
   mirror-1-rotation:
     description: Rotation of mirror 1 about the rotation axis of its motor
@@ -62,12 +26,36 @@ inputs:
       - actuation/rotational/stepper
       - control/electronic
 
-variants:
+components:
+  skeleton:
+    kind: design
+    design: primitives/cube-skeleton.dsn
+  mounted-mirrors:
+    kind: design
+    design: mounted-mirrors.dsn
+    instantiation:
+      inputs:
+        mirror-1-rotation: ~ inputs['mirror-1-rotation'].value
+        mirror-2-rotation: ~ inputs['mirror-2-rotation'].value
+  skeleton-extra-full:
+    kind: design
+    design: primitives/cube-skeleton.dsn
+  skeleton-extra-partial:
+    kind: primitive
+    primitive:
+      static-models:
+        gltf: primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.glb
+        step: primitives/cube-skeleton.dsn/PRT - 1003 - CUBHLF111 - V04.stp
+    tags:
+      - procurement/injection-mold
+      - in/kit/galvo-box
+
+assemblies:
   x:
     description: Rotational axes of motors are in the x-y plane
-    tags:
-      - pose/insert/orientation/horizontal
-    components:
+    children:
+      skeleton: {}
+      mounted-mirrors: {}
       skeleton-extra-full:
         pose:
           translation:
@@ -75,15 +63,20 @@ variants:
       skeleton-extra-partial:
         pose:
           rotation:
+            kind: grid
             grid: {z: -z}
           translation:
             offset-grid: {y: -1}
+    tags:
+      - pose/insert/orientation/horizontal
   z:
     description: Rotational axis of the non-offset motor is in the z-axis
-    components:
+    children:
+      skeleton: {}
       mounted-mirrors:
         pose:
           rotation:
+            kind: grid
             grid: {z: -y, x: -z}
       skeleton-extra-full:
         pose:
@@ -97,10 +90,12 @@ variants:
       - pose/insert/orientation/vertical
   z-offset:
     description: Rotational axis of the offset motor is in the z-axis
-    components:
+    children:
+      skeleton: {}
       mounted-mirrors:
         pose:
           rotation:
+            kind: grid
             grid: {z: +y}
       skeleton-extra-full:
         pose:
@@ -109,6 +104,7 @@ variants:
       skeleton-extra-partial:
         pose:
           rotation:
+            kind: grid
             grid: {z: -z}
           translation:
             offset-grid: {z: 1}

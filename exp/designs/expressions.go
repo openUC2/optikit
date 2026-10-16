@@ -211,7 +211,13 @@ func (e Expr) evalAsString[T ~string](env any, options ...exprl.Option) (result 
 	return T(asString), nil
 }
 
+// evalAs evaluates the expression as a value of the specified type, ignoring any expression prefix
+// `~ `. If the expression is empty, it instead returns the zero value for the result type.
 func (e Expr) evalAs[T any](env any, options ...exprl.Option) (result T, err error) {
+	if strings.TrimPrefix(string(e), ExprPrefix) == "" {
+		return result, nil
+	}
+
 	options = append([]exprl.Option{}, options...)
 	options = append(options, exprl.AsKind(reflect.ValueOf(result).Kind()))
 

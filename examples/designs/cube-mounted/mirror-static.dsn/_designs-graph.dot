@@ -1,0 +1,32 @@
+digraph "" {
+	graph [bb="0,0,462.94,213.6"];
+	node [label="\N"];
+	edge [label="\E"];
+	""	[height=0.5,
+		pos="226.6,195.6",
+		width=0.75];
+	"mounted-mirror.dsn"	[height=0.5,
+		label="mounted-mirror.dsn",
+		pos="111.6,106.8",
+		width=2.4596];
+	"" -> "mounted-mirror.dsn"	[key=" -> mounted-mirror.dsn: mounted-mirror",
+		label="mounted-mirror",
+		lp="224.89,151.2",
+		pos="e,133.84,124.6 209.41,181.64 200.66,175.04 189.85,166.9 180.18,159.6 167.97,150.38 154.53,140.23 142.81,131.38"];
+	"primitives/cube-skeleton.dsn"	[height=0.5,
+		label="primitives/cube-skeleton.dsn",
+		pos="340.6,106.8",
+		width=3.3982];
+	"" -> "primitives/cube-skeleton.dsn"	[key=" -> primitives/cube-skeleton.dsn: skeleton",
+		label=skeleton,
+		lp="317.14,151.2",
+		pos="e,318.42,124.69 243.92,181.42 261.28,168.2 288.4,147.55 309.5,131.48"];
+	"mounted-mirror.dsn/mounted-mirror-inner.dsn"	[height=0.5,
+		label="mounted-mirror-inner.dsn",
+		pos="111.6,18",
+		width=3.1001];
+	"mounted-mirror.dsn" -> "mounted-mirror.dsn/mounted-mirror-inner.dsn"	[key="mounted-mirror.dsn -> mounted-mirror.dsn/mounted-mirror-inner.dsn: inner-insert",
+		label="inner-insert",
+		lp="143.87,62.4",
+		pos="e,111.6,36.41 111.6,88.651 111.6,76.958 111.6,61.192 111.6,47.618"];
+}

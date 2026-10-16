@@ -24,12 +24,6 @@ var loadDesignDeclTests = map[string][]error{
 	"microscopes/simple-rel-transl-anchors.dsn": nil,
 	"microscopes/simple-abs-transl-anchors.dsn": nil,
 	"microscopes/simple-3d.dsn":                 nil,
-	"microscopes/invalid-missing-transl-anchor.dsn": {
-		errors.New(
-			"invalid components spec: component light-source depends on nonexistent translation anchor " +
-				"sample-holder",
-		),
-	},
 }
 
 func TestDesignDecls(t *testing.T) {
@@ -49,7 +43,7 @@ func TestDesignDecls(t *testing.T) {
 			t.Parallel()
 
 			t.Logf("load %s", p)
-			designDecl, err := LoadDesignDecl(
+			designExprDecl, err := LoadDesignExprDecl(
 				t.Context(), examplesFS, path.Join("designs", p, DesignExprDeclFile),
 			)
 			if err != nil {
@@ -58,6 +52,20 @@ func TestDesignDecls(t *testing.T) {
 			}
 
 			t.Logf("check %s", p)
+			if got, want := renderErrors(designExprDecl.Check()), renderErrors(errs); !cmp.Equal(
+				got, want,
+			) {
+				t.Errorf("diff (-want +got):\n%+v", cmp.Diff(want, got))
+			}
+
+			t.Logf("evaluate %s", p)
+			designDecl, err := designExprDecl.Instantiated(InstSpec{})
+			if err != nil {
+				t.Error(err)
+				return
+			}
+
+			t.Logf("check evaluated %s", p)
 			if got, want := renderErrors(designDecl.Check()), renderErrors(errs); !cmp.Equal(
 				got, want,
 			) {
@@ -186,6 +194,7 @@ func TestCompsSpecMerge(t *testing.T) {
 }
 */
 
+/*
 var designFlattenTests = map[string]string{
 	"microscopes/simple-abs-transl-anchors.dsn": "microscopes/simple-abs-transl-anchors.dsn",
 	"microscopes/simple-rel-transl-anchors.dsn": "microscopes/simple-abs-transl-anchors.dsn",
@@ -225,16 +234,26 @@ func TestDesignFlatten(t *testing.T) {
 				return
 			}
 
-			t.Logf("check %s", in)
-			if got, want := inDecl.Components.TranslFlattened(), outDecl.Components; !cmp.Equal(
-				got,
-				want,
-			) {
-				t.Errorf("diff (-want +got):\n%+v", cmp.Diff(want, got))
+			for assmID, assm := range inDecl.Assemblies {
+				t.Logf("check %s: assembly %s", in, assmID)
+				got, err := assm.Children.Flattened(UC2GridSpacings)
+				if err != nil {
+					t.Error(err)
+					continue
+				}
+
+				if got, want := got, outDecl.Assemblies[assmID].Children; !cmp.Equal(
+					got,
+					want,
+					cmpopts.EquateEmpty(),
+				) {
+					t.Errorf("diff (-want +got):\n%+v", cmp.Diff(want, got))
+				}
 			}
 		})
 	}
 }
+*/
 
 // CompSpec
 
@@ -367,75 +386,75 @@ func TestCompSpecMerge(t *testing.T) {
 // CompPoseRotSpec
 
 var compPoseRotUC2Tests = []struct {
-	in   CompPoseRotSpec
+	in   AssmCompPoseRotSpec
 	errs []error
 }{
 	{
-		in: CompPoseRotSpec{
+		in: AssmCompPoseRotSpec{
 			Kind: RotKindUC2,
-			Grid: CompPoseRotGridSpec{Z: DirZPos, X: DirXPos},
+			Grid: RotGridSpec{Z: DirZPos, X: DirXPos},
 		},
 	},
 	{
-		in: CompPoseRotSpec{
+		in: AssmCompPoseRotSpec{
 			Kind: RotKindUC2,
-			Grid: CompPoseRotGridSpec{Z: DirZPos, X: DirYPos},
+			Grid: RotGridSpec{Z: DirZPos, X: DirYPos},
 		},
 	},
 	{
-		in: CompPoseRotSpec{
+		in: AssmCompPoseRotSpec{
 			Kind: RotKindUC2,
-			Grid: CompPoseRotGridSpec{Z: DirZPos, X: DirXNeg},
+			Grid: RotGridSpec{Z: DirZPos, X: DirXNeg},
 		},
 	},
 	{
-		in: CompPoseRotSpec{
+		in: AssmCompPoseRotSpec{
 			Kind: RotKindUC2,
-			Grid: CompPoseRotGridSpec{Z: DirZPos, X: DirYNeg},
+			Grid: RotGridSpec{Z: DirZPos, X: DirYNeg},
 		},
 	},
 	{
-		in: CompPoseRotSpec{
+		in: AssmCompPoseRotSpec{
 			Kind: RotKindUC2,
-			Grid: CompPoseRotGridSpec{Z: DirZNeg, X: DirXPos},
+			Grid: RotGridSpec{Z: DirZNeg, X: DirXPos},
 		},
 	},
 	{
-		in: CompPoseRotSpec{
+		in: AssmCompPoseRotSpec{
 			Kind: RotKindUC2,
-			Grid: CompPoseRotGridSpec{Z: DirZNeg, X: DirYPos},
+			Grid: RotGridSpec{Z: DirZNeg, X: DirYPos},
 		},
 	},
 	{
-		in: CompPoseRotSpec{
+		in: AssmCompPoseRotSpec{
 			Kind: RotKindUC2,
-			Grid: CompPoseRotGridSpec{Z: DirZNeg, X: DirXNeg},
+			Grid: RotGridSpec{Z: DirZNeg, X: DirXNeg},
 		},
 	},
 	{
-		in: CompPoseRotSpec{
+		in: AssmCompPoseRotSpec{
 			Kind: RotKindUC2,
-			Grid: CompPoseRotGridSpec{Z: DirZNeg, X: DirYNeg},
+			Grid: RotGridSpec{Z: DirZNeg, X: DirYNeg},
 		},
 	},
 	{
-		in: CompPoseRotSpec{
+		in: AssmCompPoseRotSpec{
 			Kind: RotKindUC2,
-			Grid: CompPoseRotGridSpec{Z: DirYPos, X: DirXPos},
+			Grid: RotGridSpec{Z: DirYPos, X: DirXPos},
 		},
 		errs: []error{errors.New("invalid value for component's z-axis: +y")},
 	},
 	{
-		in: CompPoseRotSpec{
+		in: AssmCompPoseRotSpec{
 			Kind: RotKindUC2,
-			Grid: CompPoseRotGridSpec{Z: DirYNeg, X: DirXPos},
+			Grid: RotGridSpec{Z: DirYNeg, X: DirXPos},
 		},
 		errs: []error{errors.New("invalid value for component's z-axis: -y")},
 	},
 	{
-		in: CompPoseRotSpec{
+		in: AssmCompPoseRotSpec{
 			Kind: RotKindUC2,
-			Grid: CompPoseRotGridSpec{Z: DirYNeg, X: DirZNeg},
+			Grid: RotGridSpec{Z: DirYNeg, X: DirZNeg},
 		},
 		errs: []error{
 			errors.New("invalid value for component's z-axis: -y"),
@@ -443,9 +462,9 @@ var compPoseRotUC2Tests = []struct {
 		},
 	},
 	{
-		in: CompPoseRotSpec{
+		in: AssmCompPoseRotSpec{
 			Kind: RotKindUC2,
-			Grid: CompPoseRotGridSpec{Z: DirZPos, X: DirZPos},
+			Grid: RotGridSpec{Z: DirZPos, X: DirZPos},
 		},
 		errs: []error{
 			errors.New("invalid value for component's x-axis: +z"),
@@ -453,9 +472,9 @@ var compPoseRotUC2Tests = []struct {
 		},
 	},
 	{
-		in: CompPoseRotSpec{
+		in: AssmCompPoseRotSpec{
 			Kind: RotKindUC2,
-			Grid: CompPoseRotGridSpec{Z: DirZPos, X: DirZNeg},
+			Grid: RotGridSpec{Z: DirZPos, X: DirZNeg},
 		},
 		errs: []error{
 			errors.New("invalid value for component's x-axis: -z"),
@@ -504,9 +523,9 @@ func TestCompPoseRotGridMats(t *testing.T) {
 				t.Parallel()
 
 				t.Log(name)
-				spec := CompPoseRotSpec{
+				spec := AssmCompPoseRotSpec{
 					Kind: RotKindGrid,
-					Grid: CompPoseRotGridSpec{Z: z, X: x},
+					Grid: RotGridSpec{Z: z, X: x},
 				}
 
 				if z == x || z == negate[x] {

@@ -1,0 +1,1 @@
+../../../../tools/examples/generate-obj-step.sh

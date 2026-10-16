@@ -9,20 +9,12 @@ components:
   inner-insert:
     kind: design
     design: mounted-mirror-inner.dsn
-    pose:
-      rotation:
-        kind: grid
   master-insert-top:
     kind: primitive
     primitive:
       static-models:
         gltf: PRT - 2100 - MASINS - V04 - B.glb
         step: PRT - 2100 - MASINS - V04 - B.stp
-    pose:
-      rotation:
-        kind: grid
-      translation:
-        offset-mm: {z: 15}
     tags:
       - procurement/3d-print
       - in/kit/qbox
@@ -32,24 +24,42 @@ components:
       static-models:
         gltf: PRT - 2100 - MASINS - V04 - B.glb
         step: PRT - 2100 - MASINS - V04 - B.stp
-    pose:
-      rotation:
-        kind: grid
-        grid: {z: -z}
-      translation:
-        offset-mm: {z: -15}
     tags:
       - procurement/3d-print
       - in/kit/qbox
 
-variants:
+assemblies:
   x:
     description: Normal vector of the mirror is the design's +x basis vector
+    children:
+      inner-insert: {}
+      master-insert-top:
+        pose:
+          translation:
+            offset-mm: {z: 15}
+      master-insert-bottom:
+        pose:
+          rotation:
+            kind: grid
+            grid: {z: -z}
+          translation:
+            offset-mm: {z: -15}
   xy:
     description: Normal vector of the mirror is halfway between the design's +x and +y basis vectors
-    components:
+    children:
       inner-insert:
         pose:
           rotation:
             kind: euler
             euler: {z: 45}
+      master-insert-top:
+        pose:
+          translation:
+            offset-mm: {z: 15}
+      master-insert-bottom:
+        pose:
+          rotation:
+            kind: grid
+            grid: {z: -z}
+          translation:
+            offset-mm: {z: -15}

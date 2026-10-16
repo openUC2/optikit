@@ -9,12 +9,6 @@ components:
   motor:
     kind: design
     design: primitives/motor-push-rod.dsn
-    pose:
-      rotation:
-        kind: grid
-        grid: {x: -x}
-      translation:
-        offset-mm: {x: -30.7, y: -23, z: 7.5}
   motor-washer:
     kind: primitive
     primitive:
@@ -52,11 +46,6 @@ components:
       static-models:
         gltf: PRT - 3021 - MOTHOLXST.glb
         step: PRT - 3021 - MOTHOLXST.stp
-    pose:
-      rotation:
-        kind: grid
-      translation:
-        offset-mm: {x: -4, y: 4}
     tags:
       - procurement/3d-print
       - in/kit/light-sheet-box
@@ -97,11 +86,6 @@ components:
       static-models:
         gltf: BUY - XYZ linear table - LD40 --- base.glb
         step: BUY - XYZ linear table - LD40 --- base.stp
-    pose:
-      rotation:
-        kind: grid
-      translation:
-        offset-mm: {x: -4, y: 4}
     tags:
       - procurement/buy
       - in/kit/light-sheet-box
@@ -132,10 +116,6 @@ components:
       static-models:
         gltf: PRT - 1017 - BASXYZSTG - V04 - A.glb
         step: PRT - 1017 - BASXYZSTG - V04 - A.stp
-    pose:
-      rotation:
-        kind: grid
-        grid: {z: -z, x: -y}
     tags:
       - procurement/3d-print
       - in/kit/light-sheet-box
@@ -209,3 +189,31 @@ components:
         - structure/fastener/pin
         - procurement/buy
         - in/kit/light-sheet-box
+
+assemblies:
+  '':
+    children:
+      motor:
+        pose:
+          rotation:
+            kind: grid
+            grid: {x: -x}
+          translation:
+            offset-mm: {x: -30.7, y: -23, z: 7.5}
+      motor-holder:
+        pose:
+          rotation:
+            kind: grid
+          translation:
+            offset-mm: {x: -4, y: 4}
+      x-rail-base:
+        pose:
+          rotation:
+            kind: grid
+          translation:
+            offset-mm: {x: -4, y: 4}
+      cube-base:
+        pose:
+          rotation:
+            kind: grid
+            grid: {z: -z, x: -y}

@@ -22,14 +22,16 @@ func renderObjA(versions compat.Versions) cli.ActionFunc {
 			return errors.Wrap(err, "couldn't parse input variables")
 		}
 		design, err := optikit.LoadFSDesign(
-			ctx, c.String("cwd"), designs.VariantID(c.String("variant")), inputs, false,
+			ctx, c.String("cwd"), inputs, false,
 		)
 		if err != nil {
 			return err
 		}
 
 		fsys := ofs.AttachPath(os.DirFS(c.String("cwd")), c.String("cwd"))
-		result, err := optikit.RenderObjects(ctx, fsys, design, c.String("format"), versions.Tool)
+		result, err := optikit.RenderObjects(
+			ctx, fsys, design, designs.AssmID(c.String("assembly")), c.String("format"), versions.Tool,
+		)
 		if err != nil {
 			return err
 		}
@@ -47,19 +49,19 @@ func produceOutput(outputPath string, output []byte) error {
 	return os.WriteFile(outputPath, output, perms)
 }
 
-func renderPosGA(ctx context.Context, c *cli.Command) error {
+func renderAssmGA(ctx context.Context, c *cli.Command) error {
 	inputs, err := parseInputVars(c.StringSlice("input"))
 	if err != nil {
 		return errors.Wrap(err, "couldn't parse input variables")
 	}
-	design, err := optikit.LoadFSDesign(
-		ctx, c.String("cwd"), designs.VariantID(c.String("variant")), inputs, false,
-	)
+	design, err := optikit.LoadFSDesign(ctx, c.String("cwd"), inputs, false)
 	if err != nil {
 		return err
 	}
 
-	result, err := optikit.RenderPositionGraph(ctx, design, c.String("format"), true)
+	result, err := optikit.RenderAssemblyGraph(
+		ctx, design, designs.AssmID(c.String("assembly")), c.String("format"), true,
+	)
 	if err != nil {
 		return err
 	}

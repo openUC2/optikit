@@ -13,7 +13,7 @@ import (
 
 func LoadFSDesign(
 	ctx context.Context,
-	path string, variant designs.VariantID, inputs map[designs.VarName]any, isolate bool,
+	path string, inputs map[designs.VarName]any, isolate bool,
 ) (d *designs.FSDesign, err error) {
 	fsys := os.DirFS(path)
 	if isolate {
@@ -38,10 +38,9 @@ func LoadFSDesign(
 	}
 	i := de.Decl.Inputs.ZeroValues().Merged(inputs)
 	if d.Design, err = de.Instantiated(designs.InstSpec{
-		Variant: variant,
-		Inputs:  i,
+		Inputs: i,
 	}); err != nil {
-		return d, errors.Wrapf(err, "couldn't instantiate with variant %s & inputs %+v", variant, i)
+		return d, errors.Wrapf(err, "couldn't instantiate with inputs %+v", i)
 	}
 	if errs = d.Check(); len(errs) > 0 {
 		return d, gerrors.Join(errs...)

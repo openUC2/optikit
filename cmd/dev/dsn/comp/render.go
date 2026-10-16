@@ -18,9 +18,7 @@ func renderCompGA(ctx context.Context, c *cli.Command) error {
 	if err != nil {
 		return errors.Wrap(err, "couldn't parse input variables")
 	}
-	design, err := optikit.LoadFSDesign(
-		ctx, c.String("cwd"), designs.VariantID(c.String("variant")), inputs, false,
-	)
+	design, err := optikit.LoadFSDesign(ctx, c.String("cwd"), inputs, false)
 	if err != nil {
 		return err
 	}
@@ -38,9 +36,7 @@ func renderDsnGA(ctx context.Context, c *cli.Command) error {
 	if err != nil {
 		return errors.Wrap(err, "couldn't parse input variables")
 	}
-	design, err := optikit.LoadFSDesign(
-		ctx, c.String("cwd"), designs.VariantID(c.String("variant")), inputs, false,
-	)
+	design, err := optikit.LoadFSDesign(ctx, c.String("cwd"), inputs, false)
 	if err != nil {
 		return err
 	}

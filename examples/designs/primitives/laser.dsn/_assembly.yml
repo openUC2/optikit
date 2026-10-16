@@ -1,0 +1,67 @@
+optikit-version: v0.0.0-dev
+components:
+- id: case-bottom
+  kind: design
+  design: half-case.dsn
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+    angles:
+      x: 90.0
+      z: 90.0
+- id: case-bottom/half-case
+  kind: primitive/static
+  static-models:
+    gltf: "half-case.dsn/PRT - 3010 - CASHLFLAS.glb"
+    step: "half-case.dsn/PRT - 3010 - CASHLFLAS.stp"
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+    angles:
+      x: 90.0
+      z: 90.0
+- id: case-top
+  kind: design
+  design: half-case.dsn
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+    angles:
+      x: -90.0
+      z: -90.0
+- id: case-top/half-case
+  kind: primitive/static
+  static-models:
+    gltf: "half-case.dsn/PRT - 3010 - CASHLFLAS.glb"
+    step: "half-case.dsn/PRT - 3010 - CASHLFLAS.stp"
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+    angles:
+      x: -90.0
+      z: -90.0
+- id: laser
+  kind: primitive/static
+  static-models:
+    gltf: "BUY - Laser 488 nm - Bosion Laser.glb"
+    step: "BUY - Laser 488 nm - Bosion Laser.stp"
+  position: [20.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+    angles:
+      x: -90.0
+      z: -90.0
+- id: root
+  kind: location
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+    angles:
+      x: -90.0
+      z: -90.0
