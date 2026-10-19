@@ -52,7 +52,7 @@ assemblies:
         children:
           light-source:
             pose:
-              kind: relative-position
+              kind: relative-translation
               rotation:
                 kind: grid
                 grid: {z: +x, x: -z}
@@ -61,14 +61,14 @@ assemblies:
           objective-lens:
             assembly: x
             pose:
-              kind: relative-position
+              kind: relative-translation
               translation:
                 offset-grid: {x: 1}
             children:
               periscope-mirror-1:
                 assembly: x
                 pose:
-                  kind: relative-position
+                  kind: relative-translation
                   rotation:
                     kind: uc2
                     grid: {x: +y}
@@ -78,7 +78,7 @@ assemblies:
                   periscope-mirror-2:
                     assembly: z
                     pose:
-                      kind: relative-position
+                      kind: relative-translation
                       rotation:
                         kind: uc2
                         grid: {x: -y}
@@ -88,13 +88,13 @@ assemblies:
                       tube-lens:
                         assembly: z
                         pose:
-                          kind: relative-position
+                          kind: relative-translation
                           translation:
                             offset-grid: {z: 3}
                         children:
                           projector-screen:
                             pose:
-                              kind: relative-position
+                              kind: relative-translation
                               translation:
                                 kind: mm
                                 offset-mm: {z: 100}

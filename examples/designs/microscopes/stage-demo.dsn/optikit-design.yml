@@ -170,7 +170,7 @@ assemblies:
                   dichroic:
                     assembly: xy
                     pose:
-                      kind: relative-position
+                      kind: relative-translation
                       rotation:
                         kind: uc2
                         grid: {z: -z}
@@ -180,14 +180,14 @@ assemblies:
                       objective:
                         assembly: x
                         pose:
-                          kind: relative-position
+                          kind: relative-translation
                           translation:
                             offset-grid: {x: 1}
                         children:
                           sample-mirror:
                             assembly: _z
                             pose:
-                              kind: relative-position
+                              kind: relative-translation
                               rotation:
                                 kind: uc2
                                 grid: {z: -z, x: -x}
@@ -196,7 +196,7 @@ assemblies:
                       laser-mirror:
                         assembly: xy
                         pose:
-                          kind: relative-position
+                          kind: relative-translation
                           rotation:
                             kind: uc2
                             grid: {x: +y}
@@ -206,7 +206,7 @@ assemblies:
                           fiber-holder:
                             assembly: x
                             pose:
-                              kind: relative-position
+                              kind: relative-translation
                               rotation:
                                 kind: uc2
                               translation:

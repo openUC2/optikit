@@ -73,7 +73,7 @@ assemblies:
         children:
           sample-holder-insert:
             pose:
-              kind: relative-position
+              kind: relative-translation
               rotation:
                 kind: grid
                 grid: {z: +x, x: -z}
@@ -82,7 +82,7 @@ assemblies:
                   x: ~ 5 + 7
           sample-holder-skeleton:
             pose:
-              kind: relative-position
+              kind: relative-translation
       objective-lens:
         pose:
           translation:
@@ -90,7 +90,7 @@ assemblies:
         children:
           objective-lens-insert:
             pose:
-              kind: relative-position
+              kind: relative-translation
               rotation:
                 kind: grid
                 grid: {z: +x, x: -z}
@@ -99,7 +99,7 @@ assemblies:
                   x: 5
           objective-lens-skeleton:
             pose:
-              kind: relative-position
+              kind: relative-translation
       periscope-mirror-1:
         pose:
           rotation:
@@ -110,7 +110,7 @@ assemblies:
         children:
           periscope-mirror-1-skeleton:
             pose:
-              kind: relative-position
+              kind: relative-translation
       periscope-mirror-2:
         pose:
           translation:
@@ -118,7 +118,7 @@ assemblies:
         children:
           periscope-mirror-2-skeleton:
             pose:
-              kind: relative-position
+              kind: relative-translation
       tube-lens:
         pose:
           translation:
@@ -126,7 +126,7 @@ assemblies:
         children:
           tube-lens-insert:
             pose:
-              kind: relative-position
+              kind: relative-translation
               rotation:
                 kind: grid
                 grid: {z: +x, x: -z}
@@ -134,7 +134,7 @@ assemblies:
                 offset-mm: {x: -8}
           tube-lens-skeleton:
             pose:
-              kind: relative-position
+              kind: relative-translation
       projector-screen:
         pose:
           rotation:

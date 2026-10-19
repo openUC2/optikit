@@ -340,7 +340,7 @@ func flattenedChild(
 				err, "couldn't bring affine-type pose of child %s up to the assembly's frame", childID,
 			)
 		}
-	case AssmCompPoseKindRelativePosition:
+	case AssmCompPoseKindRelTransl:
 		child.Pose.Translation = basePose.Translation.Added(child.Pose.Translation)
 		child.Pose.Kind = ""
 	}
@@ -499,7 +499,7 @@ func (s AssmCompPoseSpec) ShortString() string {
 	switch kind {
 	case "", AssmCompPoseKindAffine:
 		return baseKind
-	case AssmCompPoseKindRelativePosition:
+	case AssmCompPoseKindRelTransl:
 		kind = "rel-pos"
 	}
 

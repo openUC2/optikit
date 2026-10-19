@@ -280,7 +280,7 @@ type AssmCompSpec struct {
 type AssmCompPoseExprSpec struct {
 	// Kind declares the kind of geometric transformation for the component's pose. It can be
 	// either `` (equivalent to `affine`), `affine` (for a standard affine transformation
-	// relative to the base coordinate system), or `relative-position` (in which the component
+	// relative to the base coordinate system), or `relative-translation` (in which the component
 	// is rotated with respect to the assembly's basis vectors and then translated from the base's
 	// origin).
 	Kind string `json:"kind,omitzero" yaml:"kind,omitempty"`
@@ -302,7 +302,7 @@ type AssmCompPoseExprSpec struct {
 type AssmCompPoseSpec struct {
 	// Kind declares the kind of geometric transformation for the component's pose. It can be either
 	// `` (equivalent to `affine`), `affine` (for a standard affine transformation relative to the
-	// base coordinate system), or `relative-position` (in which the component is rotated with respect
+	// base coordinate system), or `relative-translation` (in which the component is rotated with respect
 	// to the assembly's basis vectors and then translated from the base's origin).
 	Kind string `json:"kind,omitzero" yaml:"kind,omitempty"`
 	// Base declares the base coordinate system for the geometric transformation which sets the
@@ -315,8 +315,8 @@ type AssmCompPoseSpec struct {
 }
 
 const (
-	AssmCompPoseKindAffine           = "affine"
-	AssmCompPoseKindRelativePosition = "relative-position"
+	AssmCompPoseKindAffine    = "affine"
+	AssmCompPoseKindRelTransl = "relative-translation"
 )
 
 // AssmCompPoseBaseSpec declares the coordinate system used as the base for the rotation or

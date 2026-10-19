@@ -403,8 +403,8 @@ func (d *FSDesign) Canonicalized(
 		// assm.Children.Print(1)
 		// fmt.Println()
 		relocations := make(map[CompID]map[CompID]relPosRelocation)
-		identifyRelPosCompRelocations(assm.Children, relocations)
-		if err = relocateRelPosComps(assm.Children, relocations, gridSpacings); err != nil {
+		identifyRelTranslCompRelocations(assm.Children, relocations)
+		if err = relocateRelTranslComps(assm.Children, relocations, gridSpacings); err != nil {
 			return nil, errors.Wrapf(
 				err, "couldn't relocate relative-position components for assembly %s", assmID,
 			)
@@ -426,15 +426,15 @@ type relPosRelocation struct {
 	translAnchor CompID
 }
 
-// identifyRelPosCompRelocations recursively identifies all necessary relocations of
+// identifyRelTranslCompRelocations recursively identifies all necessary relocations of
 // relative-position-posed components in a subtree. It assumes that the subtree has already been
 // fully populated with all descendant components.
-func identifyRelPosCompRelocations(
+func identifyRelTranslCompRelocations(
 	subtree AssmCompsSpec, relocations map[CompID]map[CompID]relPosRelocation,
 ) {
 	for compID, assmComp := range subtree {
 		for gcCompID, gcAssmComp := range assmComp.Children {
-			if gcAssmComp.Pose.Kind != AssmCompPoseKindRelativePosition {
+			if gcAssmComp.Pose.Kind != AssmCompPoseKindRelTransl {
 				continue
 			}
 
@@ -453,16 +453,16 @@ func identifyRelPosCompRelocations(
 	}
 
 	for _, assmComp := range subtree {
-		identifyRelPosCompRelocations(assmComp.Children, relocations)
+		identifyRelTranslCompRelocations(assmComp.Children, relocations)
 	}
 }
 
-// relocateRelPosComps recursively moves relative-position posed components in a subtree to be
+// relocateRelTranslComps recursively moves relative-position posed components in a subtree to be
 // affine-posed children of their parent design components, so that all descendant components have
 // poses of kind `affine`. It assumes that the subtree has already been fully populated with
 // all descendant components, and that mate-posed components have already been relocated to be under
 // their respective mate connectors.
-func relocateRelPosComps(
+func relocateRelTranslComps(
 	tree AssmCompsSpec, relocations map[CompID]map[CompID]relPosRelocation,
 	gridSpacings ContinuousXYZ[float64],
 ) error {

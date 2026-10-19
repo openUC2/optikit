@@ -130,7 +130,7 @@ assemblies:
                       stage-center:
                         # assembly: ZposXpos
                         pose:
-                          kind: relative-position
+                          kind: relative-translation
                           translation:
                             offset-mm:
                               z: 37
