@@ -11,6 +11,7 @@ import (
 	"path"
 	"path/filepath"
 	"slices"
+	"strings"
 
 	"github.com/bmatcuk/doublestar/v4"
 	"github.com/pkg/errors"
@@ -223,53 +224,6 @@ func (d *FSDesign) WithDescendants(ctx context.Context) (supplemented *FSDesign,
 	return design, nil
 }
 
-// RelocatedMates returns a new design in which all design components have been recursively
-// supplemented with their constituent primitive components, and all mate-posed components have been
-// relocated to be descendants of their respective mate connectors.
-func (d *FSDesign) RelocatedMates(ctx context.Context) (restructured *FSDesign, err error) {
-	design, err := d.WithDescendants(ctx)
-	if err != nil {
-		return nil, err
-	}
-	for assmID, assm := range design.Decl.Assemblies {
-		relocations := make(map[CompID]map[CompID]AssmCompSpec)
-		if err = relocateMatedComps(assm.Children, relocations); err != nil {
-			return nil, errors.Wrapf(err, "couldn't relocate mated components in assembly %s", assmID)
-		}
-		if len(relocations) > 0 {
-			return nil, errors.Errorf(
-				"couldn't find mate connectors: %+v", slices.Collect(maps.Keys(relocations)),
-			)
-		}
-		// fmt.Printf("assembly %s\n", assmID)
-		// assm.Children.Print(1)
-		// fmt.Println()
-	}
-	return design, nil
-}
-
-// Flattened returns a new design in which all design components have been recursively supplemented
-// with their constituent primitive components, and all mate-posed components have been relocated
-// to be descendants of their respective mate connectors.
-func (d *FSDesign) Flattened(
-	ctx context.Context, gridSpacings ContinuousXYZ[float64],
-) (flattened *FSDesign, err error) {
-	design, err := d.RelocatedMates(ctx)
-	if err != nil {
-		return nil, err
-	}
-	for assmID, assm := range design.Decl.Assemblies {
-		if assm.Children, err = assm.Children.Flattened(gridSpacings); err != nil {
-			return nil, errors.Wrapf(err, "couldn't flatten assembly %s", assmID)
-		}
-		design.Decl.Assemblies[assmID] = assm
-		// fmt.Printf("assembly %s\n", assmID)
-		// assm.Children.Print(1)
-		// fmt.Println()
-	}
-	return design, nil
-}
-
 // addSubdesignComps recursively adds components from subdesigns and prefixes the IDs of
 // those components, as well as any file path references in those components. It does not modify
 // assemblies.
@@ -349,43 +303,247 @@ func (d *FSDesign) addAssmSubdesignComps(
 	return nil
 }
 
-// relocateMatedComps recursively moves all mate-posed components in a subtree to be non-mate
-// children of their required mate connectors. It assumes that the subtree has already been fully
-// populated with all descendant components
-func relocateMatedComps(
-	subtree AssmCompsSpec, relocations map[CompID]map[CompID]AssmCompSpec,
-) error {
-	for compID, assmComp := range subtree {
-		if len(relocations[compID]) > 0 {
-			maps.Copy(assmComp.Children, relocations[compID])
-			delete(relocations, compID)
+// RelocatedMates returns a new design in which all design components have been recursively
+// supplemented with their constituent primitive components, and all mate-posed components have been
+// relocated to be descendants of their respective mate connectors.
+func (d *FSDesign) RelocatedMates(ctx context.Context) (restructured *FSDesign, err error) {
+	design, err := d.WithDescendants(ctx)
+	if err != nil {
+		return nil, err
+	}
+	for _, assm := range design.Decl.Assemblies {
+		relocations := make(map[CompID]map[CompID]AssmCompSpec)
+		identifyMatedCompRelocations(assm.Children, relocations)
+		relocateMatedComps(assm.Children, relocations)
+		if len(relocations) > 0 {
+			return nil, errors.Errorf(
+				"couldn't apply some relocations: %+v", slices.Collect(maps.Keys(relocations)),
+			)
 		}
+		// fmt.Printf("assembly %s\n", assmID)
+		// assm.Children.Print(1)
+		// fmt.Println()
+	}
+	return design, nil
+}
 
+// identifyMatedCompRelocations recursively identifies all necessary relocations of mate-posed
+// components in a subtree. It assumes that the subtree has already been fully populated with all
+// descendant components.
+func identifyMatedCompRelocations(
+	subtree AssmCompsSpec, relocations map[CompID]map[CompID]AssmCompSpec,
+) {
+	for compID, assmComp := range subtree {
 		if assmComp.Pose.Base.Kind != AssmCompPoseBaseKindMate {
 			continue
 		}
 
 		mateConnID := assmComp.Pose.Base.Mate
-		assmComp.Pose.Base = AssmCompPoseBaseSpec{Kind: AssmCompPoseBaseKindParent}
 		if relocations[mateConnID] == nil {
 			relocations[mateConnID] = make(map[CompID]AssmCompSpec)
 		}
 		relocations[mateConnID][compID] = assmComp
+	}
 
-		delete(subtree, compID)
+	for _, assmComp := range subtree {
+		identifyMatedCompRelocations(assmComp.Children, relocations)
+	}
+}
+
+// relocateMatedComps recursively moves mate-posed components in a subtree to be non-mate
+// children of their required mate connectors, so that all descendant components have poses of base
+// kind `parent` or `assembly`. It assumes that the subtree has already been fully populated with
+// all descendant components.
+func relocateMatedComps(subtree AssmCompsSpec, relocations map[CompID]map[CompID]AssmCompSpec) {
+	// FIXME: reimplement this via breadth-first search!
+
+	// Mark mated components for deletion after recursion:
+	deletions := make([]CompID, 0, len(subtree))
+	for compID, assmComp := range subtree {
+		if assmComp.Pose.Base.Kind != AssmCompPoseBaseKindMate {
+			continue
+		}
+
+		deletions = append(deletions, compID)
 	}
 
 	for compID, assmComp := range subtree {
-		if err := relocateMatedComps(assmComp.Children, relocations); err != nil {
-			return errors.Wrapf(
-				err, "couldn't relocate mate-posed components (%+v) under %s",
-				slices.Collect(maps.Keys(relocations)), compID,
+		if len(relocations[compID]) == 0 { // i.e. the comp isn't a mate connector needed by relocations
+			continue
+		}
+
+		// Apply the relocations involving this mate connector:
+		for matedCompID, matedAssmComp := range relocations[compID] {
+			matedAssmComp.Pose.Base = AssmCompPoseBaseSpec{Kind: AssmCompPoseBaseKindParent}
+			assmComp.Children[matedCompID] = matedAssmComp
+		}
+		delete(relocations, compID)
+	}
+
+	for _, assmComp := range subtree {
+		relocateMatedComps(assmComp.Children, relocations)
+	}
+
+	for _, compID := range deletions {
+		delete(subtree, compID)
+	}
+}
+
+// Canonicalized returns a new design in which all descendant components have been restructured so
+// that all component poses are of kind `affine` with base kind `parent` or `assembly`.
+func (d *FSDesign) Canonicalized(
+	ctx context.Context, gridSpacings ContinuousXYZ[float64],
+) (restructured *FSDesign, err error) {
+	design, err := d.RelocatedMates(ctx)
+	if err != nil {
+		return nil, err
+	}
+	for assmID, assm := range design.Decl.Assemblies {
+		// fmt.Printf("assembly %s\n", assmID)
+		// assm.Children.Print(1)
+		// fmt.Println()
+		relocations := make(map[CompID]map[CompID]relPosRelocation)
+		identifyRelPosCompRelocations(assm.Children, relocations)
+		if err = relocateRelPosComps(assm.Children, relocations, gridSpacings); err != nil {
+			return nil, errors.Wrapf(
+				err, "couldn't relocate relative-position components for assembly %s", assmID,
 			)
 		}
+		if len(relocations) > 0 {
+			return nil, errors.Errorf(
+				"couldn't apply some relocations: %+v", slices.Collect(maps.Keys(relocations)),
+			)
+		}
+		// fmt.Printf("assembly %s\n", assmID)
+		// assm.Children.Print(1)
+		// fmt.Println()
 	}
+	return design, nil
+}
+
+type relPosRelocation struct {
+	assmComp     AssmCompSpec
+	translAnchor CompID
+}
+
+// identifyRelPosCompRelocations recursively identifies all necessary relocations of
+// relative-position-posed components in a subtree. It assumes that the subtree has already been
+// fully populated with all descendant components.
+func identifyRelPosCompRelocations(
+	subtree AssmCompsSpec, relocations map[CompID]map[CompID]relPosRelocation,
+) {
+	for compID, assmComp := range subtree {
+		for gcCompID, gcAssmComp := range assmComp.Children {
+			if gcAssmComp.Pose.Kind != AssmCompPoseKindRelativePosition {
+				continue
+			}
+
+			parentCompID, _, found := strings.Cut(string(gcCompID), "/")
+			if !found {
+				parentCompID = ""
+			}
+			if relocations[CompID(parentCompID)] == nil {
+				relocations[CompID(parentCompID)] = make(map[CompID]relPosRelocation)
+			}
+			relocations[CompID(parentCompID)][gcCompID] = relPosRelocation{
+				assmComp:     gcAssmComp,
+				translAnchor: compID,
+			}
+		}
+	}
+
+	for _, assmComp := range subtree {
+		identifyRelPosCompRelocations(assmComp.Children, relocations)
+	}
+}
+
+// relocateRelPosComps recursively moves relative-position posed components in a subtree to be
+// affine-posed children of their parent design components, so that all descendant components have
+// poses of kind `affine`. It assumes that the subtree has already been fully populated with
+// all descendant components, and that mate-posed components have already been relocated to be under
+// their respective mate connectors.
+func relocateRelPosComps(
+	tree AssmCompsSpec, relocations map[CompID]map[CompID]relPosRelocation,
+	gridSpacings ContinuousXYZ[float64],
+) error {
+	if len(relocations) == 0 {
+		// Skip the tree-traversal computation needed for getting the editable subtrees
+		return nil
+	}
+
+	// Build an map of subtrees for in-place restructuring, unlike tree.Subtrees() which returns a
+	// clone which doesn't allow in-place restructuring
+	subtrees, err := tree.EditableSubtrees()
+	if err != nil {
+		return errors.Wrap(err, "couldn't enumerate all subtrees of assembly tree")
+	}
+	subtrees[""] = AssmCompSpec{Children: tree}
+
+	g, err := tree.PoseDigraph()
+	if err != nil {
+		return errors.Wrap(err, "couldn't construct pose digraph from tree")
+	}
+	// We relocate items in breadth-first tree traversal order because some components may themselves
+	// be translation anchors for other components and thus will need to be relocated before those
+	// components.
+	nextParents := make([]CompID, 0, len(g))
+	nextParents = append(nextParents, "")
+	for len(nextParents) > 0 {
+		parent := nextParents[0]
+		nextParents = nextParents[1:]
+		for child := range g[parent] {
+			nextParents = append(nextParents, child)
+		}
+
+		if len(relocations[parent]) == 0 {
+			continue // skip the tree-traversal computation needed for flattening of the parent
+		}
+		flattenedParent, err := subtrees[parent].Children.Flattened(gridSpacings)
+		if err != nil {
+			return errors.Wrapf(err, "couldn't compute flattening of subtree %s", parent)
+		}
+
+		for newChild, relocation := range relocations[parent] {
+			child := subtrees[newChild]
+			child.Pose.Translation = flattenedParent[relocation.translAnchor].Pose.Translation.Added(
+				child.Pose.Translation,
+			)
+			child.Pose.Kind = ""
+
+			subtrees[parent].Children[newChild] = child
+			delete(subtrees[relocation.translAnchor].Children, newChild)
+			delete(relocations[parent], newChild)
+			nextParents = append(nextParents, newChild)
+		}
+		delete(relocations, parent)
+	}
+
 	return nil
 }
 
+// Flattened returns a new design in which all descendant components have been restructured
+// so that all components are direct children of the assembly, and their poses are of kind `affine`
+// with base kind `parent`.
+func (d *FSDesign) Flattened(
+	ctx context.Context, gridSpacings ContinuousXYZ[float64],
+) (flattened *FSDesign, err error) {
+	design, err := d.RelocatedMates(ctx)
+	if err != nil {
+		return nil, err
+	}
+	for assmID, assm := range design.Decl.Assemblies {
+		if assm.Children, err = assm.Children.Flattened(gridSpacings); err != nil {
+			return nil, errors.Wrapf(err, "couldn't flatten assembly %s", assmID)
+		}
+		design.Decl.Assemblies[assmID] = assm
+		// fmt.Printf("assembly %s\n", assmID)
+		// assm.Children.Print(1)
+		// fmt.Println()
+	}
+	return design, nil
+}
+
+// LoadCompFSDesign loads and returns the FSDesign for the specified component.
 func (d *FSDesign) LoadCompFSDesign(
 	ctx context.Context, compID CompID,
 ) (subdesign *FSDesign, err error) {

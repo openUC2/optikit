@@ -184,7 +184,7 @@ components:
     order: zxy
     angles:
       "y": -180.0
-      z: 90.0
+      z: -180.0
 - id: dichroic/mounted-mirror
   kind: design
   design: cube-mounted/dichroic-mirror.dsn/mounted-mirror.dsn
@@ -194,6 +194,7 @@ components:
     order: zxy
     angles:
       "y": -180.0
+      z: 90.0
 - id: dichroic/mounted-mirror/dichroic-filter
   kind: primitive/static
   static-models:
@@ -205,19 +206,19 @@ components:
     order: zxy
     angles:
       "y": -90.0
-      z: 45.0
+      z: 135.0
 - id: dichroic/mounted-mirror/emission-filter
   kind: primitive/static
   static-models:
     gltf: "cube-mounted/dichroic-mirror.dsn/mounted-mirror.dsn/BUY - Emission filter - D25x1 WLS485.glb"
     step: "cube-mounted/dichroic-mirror.dsn/mounted-mirror.dsn/BUY - Emission filter - D25x1 WLS485.stp"
-  position: [46.0, 27.35, 160.6]
+  position: [22.65, 4.0, 160.6]
   rotation:
     kind: extrinsic
     order: zxy
     angles:
       x: -90.0
-      z: 180.0
+      z: -90.0
 - id: dichroic/mounted-mirror/insert-bottom
   kind: primitive/static
   static-models:
@@ -229,6 +230,7 @@ components:
     order: zxy
     angles:
       "y": -180.0
+      z: 90.0
 - id: dichroic/mounted-mirror/insert-top
   kind: primitive/static
   static-models:
@@ -240,6 +242,7 @@ components:
     order: zxy
     angles:
       "y": -180.0
+      z: 90.0
 - id: dichroic/skeleton
   kind: design
   design: cube-mounted/dichroic-mirror.dsn/primitives/cube-skeleton.dsn
@@ -249,7 +252,7 @@ components:
     order: zxy
     angles:
       "y": -180.0
-      z: 90.0
+      z: -180.0
 - id: dichroic/skeleton/lower-half
   kind: primitive/static
   static-models:
@@ -261,7 +264,7 @@ components:
     order: zxy
     angles:
       "y": -180.0
-      z: 90.0
+      z: -180.0
 - id: dichroic/skeleton/upper-half
   kind: primitive/static
   static-models:
@@ -271,8 +274,6 @@ components:
   rotation:
     kind: extrinsic
     order: zxy
-    angles:
-      z: -90.0
 - id: fiber-holder
   kind: design
   design: cube-mounted/fiber-holder.dsn

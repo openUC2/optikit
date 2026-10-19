@@ -72113,10 +72113,10 @@
   ],
   "nodes": [
     {
-      "name": "design",
+      "name": "_z",
       "children": [
         1,
-        10
+        2
       ]
     },
     {
@@ -72128,10 +72128,17 @@
       ],
       "name": "mounted-mirror",
       "children": [
-        2,
-        4,
-        6,
-        8
+        3,
+        5,
+        7,
+        9
+      ]
+    },
+    {
+      "name": "skeleton",
+      "children": [
+        11,
+        13
       ]
     },
     {
@@ -72141,9 +72148,9 @@
         -0.27059805007309845,
         0.6532814824381883
       ],
-      "name": "dichroic-filter",
+      "name": "mounted-mirror/dichroic-filter",
       "children": [
-        3
+        4
       ]
     },
     {
@@ -72162,9 +72169,9 @@
         0.023350000000000003,
         0
       ],
-      "name": "emission-filter",
+      "name": "mounted-mirror/emission-filter",
       "children": [
-        5
+        6
       ]
     },
     {
@@ -72172,9 +72179,9 @@
       "mesh": 1
     },
     {
-      "name": "insert-bottom",
+      "name": "mounted-mirror/insert-bottom",
       "children": [
-        7
+        8
       ]
     },
     {
@@ -72182,9 +72189,9 @@
       "mesh": 2
     },
     {
-      "name": "insert-top",
+      "name": "mounted-mirror/insert-top",
       "children": [
-        9
+        10
       ]
     },
     {
@@ -72192,14 +72199,7 @@
       "mesh": 3
     },
     {
-      "name": "skeleton",
-      "children": [
-        11,
-        13
-      ]
-    },
-    {
-      "name": "lower-half",
+      "name": "skeleton/lower-half",
       "children": [
         12
       ]
@@ -72215,7 +72215,7 @@
         0,
         0
       ],
-      "name": "upper-half",
+      "name": "skeleton/upper-half",
       "children": [
         14
       ]

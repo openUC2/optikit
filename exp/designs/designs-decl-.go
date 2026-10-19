@@ -118,6 +118,9 @@ const (
 )
 
 type (
+	// A CompID is a unique identifier for a component within a design.
+	// It is not allowed to have `/`, `.`, or `:` characters, as those are reserved. It also is not
+	// allowed to be the empty string, as that is reserved.
 	CompID        string
 	CompExprsSpec map[CompID]CompExprSpec
 	CompsSpec     map[CompID]CompSpec
@@ -321,10 +324,10 @@ const (
 // translation.
 type AssmCompPoseBaseSpec struct {
 	// Kind is the type of base. It can be either `` (equivalent to `parent`), `parent` (to use the
-	// component's parent's coordinate system as the base), `assembly` (to use the overall assembly's
-	// coordinate system as the base) or `mate` (to use the coordinate system of a specified mate
-	// component of the component's parent as the base). If the component has no parent component,
-	// then its parent is automatically just the parent assembly.
+	// component's parent's coordinate system as the base), or `mate` (to use the coordinate system of
+	// a specified mate component of the component's parent as the base).
+	// If the component has no parent component, then its parent is automatically just the parent
+	// assembly.
 	Kind string `json:"kind,omitzero" yaml:"kind,omitempty"`
 	// Mate is the component ID of the child component (of kind `mate`) in this assembly component's
 	// parent which should be used as the base coordinate system for this assembly component's pose.
@@ -332,9 +335,8 @@ type AssmCompPoseBaseSpec struct {
 }
 
 const (
-	AssmCompPoseBaseKindParent   = "parent"
-	AssmCompPoseBaseKindAssembly = "assembly"
-	AssmCompPoseBaseKindMate     = "mate"
+	AssmCompPoseBaseKindParent = "parent"
+	AssmCompPoseBaseKindMate   = "mate"
 )
 
 // AssmCompPoseRotExprSpec declares the orientation of the component as a rotation relative to the

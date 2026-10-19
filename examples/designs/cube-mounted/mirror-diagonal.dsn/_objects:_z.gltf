@@ -48612,10 +48612,10 @@
   ],
   "nodes": [
     {
-      "name": "design",
+      "name": "_z",
       "children": [
         1,
-        8
+        2
       ]
     },
     {
@@ -48627,45 +48627,10 @@
       ],
       "name": "mounted-mirror",
       "children": [
-        2,
-        4,
-        6
-      ]
-    },
-    {
-      "translation": [
-        -0.0005,
-        0.0005,
-        0
-      ],
-      "name": "adhesive-pad",
-      "children": [
-        3
-      ]
-    },
-    {
-      "name": "BUY - Adhesive pad - 41x29x1",
-      "mesh": 0
-    },
-    {
-      "name": "insert",
-      "children": [
-        5
-      ]
-    },
-    {
-      "name": "PRT - 2022 - INSMIR45TH2",
-      "mesh": 1
-    },
-    {
-      "name": "mirror",
-      "children": [
+        3,
+        5,
         7
       ]
-    },
-    {
-      "name": "BUY - Mirror - 40x30x2",
-      "mesh": 2
     },
     {
       "name": "skeleton",
@@ -48675,7 +48640,42 @@
       ]
     },
     {
-      "name": "lower-half",
+      "translation": [
+        -0.0005,
+        0.0005,
+        0
+      ],
+      "name": "mounted-mirror/adhesive-pad",
+      "children": [
+        4
+      ]
+    },
+    {
+      "name": "BUY - Adhesive pad - 41x29x1",
+      "mesh": 0
+    },
+    {
+      "name": "mounted-mirror/insert",
+      "children": [
+        6
+      ]
+    },
+    {
+      "name": "PRT - 2022 - INSMIR45TH2",
+      "mesh": 1
+    },
+    {
+      "name": "mounted-mirror/mirror",
+      "children": [
+        8
+      ]
+    },
+    {
+      "name": "BUY - Mirror - 40x30x2",
+      "mesh": 2
+    },
+    {
+      "name": "skeleton/lower-half",
       "children": [
         10
       ]
@@ -48691,7 +48691,7 @@
         0,
         0
       ],
-      "name": "upper-half",
+      "name": "skeleton/upper-half",
       "children": [
         12
       ]

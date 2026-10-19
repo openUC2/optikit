@@ -340,7 +340,7 @@
         "order": "zxy",
         "angles": {
           "y": -180,
-          "z": 90
+          "z": -180
         }
       }
     },
@@ -358,7 +358,8 @@
         "kind": "extrinsic",
         "order": "zxy",
         "angles": {
-          "y": -180
+          "y": -180,
+          "z": 90
         }
       }
     },
@@ -379,7 +380,7 @@
         "order": "zxy",
         "angles": {
           "y": -90,
-          "z": 45
+          "z": 135
         }
       }
     },
@@ -391,8 +392,8 @@
         "step": "cube-mounted/dichroic-mirror.dsn/mounted-mirror.dsn/BUY - Emission filter - D25x1 WLS485.stp"
       },
       "position": [
-        46,
-        27.35,
+        22.65,
+        4,
         160.6
       ],
       "rotation": {
@@ -400,7 +401,7 @@
         "order": "zxy",
         "angles": {
           "x": -90,
-          "z": 180
+          "z": -90
         }
       }
     },
@@ -420,7 +421,8 @@
         "kind": "extrinsic",
         "order": "zxy",
         "angles": {
-          "y": -180
+          "y": -180,
+          "z": 90
         }
       }
     },
@@ -440,7 +442,8 @@
         "kind": "extrinsic",
         "order": "zxy",
         "angles": {
-          "y": -180
+          "y": -180,
+          "z": 90
         }
       }
     },
@@ -459,7 +462,7 @@
         "order": "zxy",
         "angles": {
           "y": -180,
-          "z": 90
+          "z": -180
         }
       }
     },
@@ -480,7 +483,7 @@
         "order": "zxy",
         "angles": {
           "y": -180,
-          "z": 90
+          "z": -180
         }
       }
     },
@@ -498,10 +501,7 @@
       ],
       "rotation": {
         "kind": "extrinsic",
-        "order": "zxy",
-        "angles": {
-          "z": -90
-        }
+        "order": "zxy"
       }
     },
     {

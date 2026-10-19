@@ -42728,10 +42728,8 @@
   ],
   "nodes": [
     {
-      "name": "design",
       "children": [
-        1,
-        3
+        1
       ]
     },
     {
@@ -42740,9 +42738,16 @@
         0,
         0.004
       ],
+      "name": "root",
+      "children": [
+        2,
+        4
+      ]
+    },
+    {
       "name": "case-base",
       "children": [
-        2
+        3
       ]
     },
     {
@@ -42750,14 +42755,9 @@
       "mesh": 0
     },
     {
-      "translation": [
-        0,
-        0,
-        0.004
-      ],
       "name": "case-lid",
       "children": [
-        4
+        5
       ]
     },
     {

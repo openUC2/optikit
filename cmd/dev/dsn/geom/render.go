@@ -60,7 +60,7 @@ func renderAssmGA(ctx context.Context, c *cli.Command) error {
 	}
 
 	result, err := optikit.RenderAssemblyGraph(
-		ctx, design, designs.AssmID(c.String("assembly")), c.String("format"), true,
+		ctx, design, designs.AssmID(c.String("assembly")), c.String("format"),
 	)
 	if err != nil {
 		return err

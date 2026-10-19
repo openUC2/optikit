@@ -53,7 +53,7 @@ const (
 )
 
 func RenderComponentsGraph(
-	ctx context.Context, design *designs.FSDesign, format string, recurse bool,
+	ctx context.Context, design *designs.FSDesign, format string,
 ) (result []byte, err error) {
 	gvc, err := graphviz.New(ctx)
 	if err != nil {
@@ -143,7 +143,7 @@ func populateComponentsGraph(
 }
 
 func RenderDesignsGraph(
-	ctx context.Context, design *designs.FSDesign, format string, recurse bool,
+	ctx context.Context, design *designs.FSDesign, format string,
 ) (result []byte, err error) {
 	gvc, err := graphviz.New(ctx)
 	if err != nil {
@@ -238,7 +238,6 @@ func populateDesignsGraph(
 
 func RenderAssemblyGraph(
 	ctx context.Context, design *designs.FSDesign, assembly designs.AssmID, format string,
-	recurse bool,
 ) (result []byte, err error) {
 	gvc, err := graphviz.New(ctx)
 	if err != nil {
@@ -252,11 +251,11 @@ func RenderAssemblyGraph(
 	}()
 
 	if design, err = design.RelocatedMates(ctx); err != nil {
-		return nil, errors.Wrap(err, "couldn't restructure design to handle possible mate connectors")
+		return nil, errors.Wrapf(err, "couldn't canonicalize structure of assembly %s", assembly)
 	}
 	gg := make(structures.StrictEdgeDigraph[string, string])
-	if gg, err = populateAssemblyGraph(ctx, gg, design, assembly, recurse, ""); err != nil {
-		return nil, errors.Wrapf(err, "couldn't populate assembly graph for design %s", design.Path())
+	if gg, err = populateAssemblyGraph(ctx, gg, design, assembly, ""); err != nil {
+		return nil, errors.Wrapf(err, "couldn't populate graph for assembly %s", assembly)
 	}
 	gvg, err := gvc.NewStrictDigraph("", gg, nil)
 	if err != nil {
@@ -281,21 +280,20 @@ func RenderAssemblyGraph(
 func populateAssemblyGraph(
 	ctx context.Context,
 	gg structures.StrictEdgeDigraph[string, string],
-	design *designs.FSDesign, assembly designs.AssmID,
-	recurse bool, nodePrefix string,
+	design *designs.FSDesign, assembly designs.AssmID, nodePrefix string,
 ) (structures.StrictEdgeDigraph[string, string], error) {
 	assm, ok := design.Decl.Assemblies[assembly]
 	if !ok {
 		return nil, errors.Errorf("couldn't find assembly %s in design %s", assembly, design.Path())
 	}
-	tg, err := assm.Children.PoseDigraph()
+	g, err := assm.Children.PoseDigraph()
 	if err != nil {
 		return nil, errors.Wrapf(err, "couldn't build scene graph of assembly %s", assembly)
 	}
 
-	fromIDs := slices.Sorted(maps.Keys(tg))
+	fromIDs := slices.Sorted(maps.Keys(g))
 	for _, fromID := range fromIDs {
-		from := tg[fromID]
+		from := g[fromID]
 		fromNode := labelNode(nodePrefix, fromID)
 		gg.AddNode(fromNode)
 		for _, toID := range slices.Sorted(maps.Keys(from)) {

@@ -46,10 +46,8 @@ type indexMappings struct {
 
 func NewDocument() *Document {
 	d := Document{
-		d: gltf.NewDocument(),
-		root: &gltf.Node{
-			Name: "design",
-		},
+		d:              gltf.NewDocument(),
+		root:           &gltf.Node{},
 		modelInstances: make(map[string][][]int),
 		indexMappings:  make(map[string]indexMappings),
 	}
@@ -85,8 +83,12 @@ func (d *Document) Assemble(
 	ctx context.Context,
 	design *designs.FSDesign, assembly designs.AssmID, gridSpacings designs.ContinuousXYZ[float64],
 	asText bool,
-) ([]byte, error) {
-	if err := d.addComponents(ctx, design, assembly, gridSpacings, d.root); err != nil {
+) (encoded []byte, err error) {
+	d.root.Name = string(assembly)
+	if design, err = design.Canonicalized(ctx, gridSpacings); err != nil {
+		return nil, errors.Wrap(err, "couldn't canonicalize design")
+	}
+	if err = d.addComponents(ctx, design, assembly, d.root, gridSpacings); err != nil {
 		return nil, err
 	}
 
@@ -99,85 +101,101 @@ func (d *Document) Assemble(
 
 func (d *Document) addComponents(
 	ctx context.Context,
-	design *designs.FSDesign, assembly designs.AssmID, gridSpacings designs.ContinuousXYZ[float64],
+	design *designs.FSDesign, assembly designs.AssmID,
 	root *gltf.Node,
+	gridSpacings designs.ContinuousXYZ[float64],
 ) error {
 	assm, ok := design.Decl.Assemblies[assembly]
 	if !ok {
 		return errors.Errorf("couldn't find assembly %s", assembly)
 	}
-
-	flattened, err := assm.Children.Flattened(gridSpacings)
+	g, err := assm.Children.PoseDigraph()
 	if err != nil {
-		return errors.Wrapf(err, "couldn't flatten scene graph of assembly %s", assembly)
+		return errors.Wrapf(err, "couldn't build scene graph of assembly %s", assembly)
 	}
+	subtrees := assm.Children.Subtrees()
 
-	subdesignCompIDs := make([]designs.CompID, 0, len(flattened))
-	for _, id := range slices.Sorted(maps.Keys(flattened)) {
-		comp := design.Decl.Components[id]
-		switch t := comp.Kind; t {
-		default:
-			return errors.Errorf("unknown component kind for component %s: %s", id, t)
-		case designs.CompKindLocation, designs.CompKindMate, designs.CompKindResults:
-			// Note: child component positions have already been flattened using the location component,
-			// so the location component itself doesn't need to be exported to GLTF.
-			// Similarly, there's nothing to export to GLTF for results components.
-			continue
-		case designs.CompKindPrimitive:
-			if err := d.addPrimitiveComponent(
-				design.FS, id, comp, flattened[id], gridSpacings, root,
-			); err != nil {
-				return errors.Wrapf(err, "couldn't add primitive component %s to gltf model", id)
+	nextParents := make([]subtree, 0) // for breadth-first tree traversal
+	nextParents = append(nextParents, subtree{id: "", node: root})
+	for len(nextParents) > 0 {
+		nextParent := nextParents[0]
+		nextParents = nextParents[1:]
+
+		// Add leaf nodes first, to get an easier-to-inspect ordering of nodes in the resulting GLTF
+		// file:
+		intermediateNodes := make([]designs.CompID, 0)
+		for _, child := range slices.Sorted(maps.Keys(g[nextParent.id])) {
+			if len(subtrees[child].Children) > 0 {
+				intermediateNodes = append(intermediateNodes, child)
+				continue
 			}
-		case designs.CompKindDesign:
-			// We recurse into subdesigns only after adding all other nodes, in order to construct the
-			// glTF scene graph in breadth-first order instead of depth-first order:
-			subdesignCompIDs = append(subdesignCompIDs, id)
+			if design.Decl.Components[child].Kind != designs.CompKindPrimitive {
+				// This leaf-node component has no models to add to the scene.
+				continue
+			}
+
+			if _, err = d.addComponent(
+				design.FS, child, design.Decl.Components[child], subtrees[child],
+				nextParent.node, gridSpacings,
+			); err != nil {
+				return errors.Wrapf(err, "couldn't add leaf node %s", child)
+			}
 		}
-	}
-	for _, id := range subdesignCompIDs {
-		comp := design.Decl.Components[id]
-		subdesign, err := design.LoadCompFSDesign(ctx, id)
-		if err != nil {
-			return errors.Wrapf(err, "couldn't load subdesign %s for component %s", comp.Design, id)
-		}
-		if err := d.addSubdesignComponent(
-			ctx, id, comp, flattened[id], subdesign, gridSpacings, root,
-		); err != nil {
-			return errors.Wrapf(err, "couldn't add subdesign component %s to gltf model", id)
+
+		// Add non-leaf nodes:
+		for _, child := range intermediateNodes {
+			var added *gltf.Node
+			comp := design.Decl.Components[child]
+			if added, err = d.addComponent(
+				design.FS, child, comp, subtrees[child], nextParent.node, gridSpacings,
+			); err != nil {
+				return errors.Wrapf(err, "couldn't add non-leaf node %s", child)
+			}
+			nextParent := subtree{id: child, node: added}
+			nextParents = append(nextParents, nextParent)
 		}
 	}
 	return nil
 }
 
-func (d *Document) addPrimitiveComponent(
-	fsys ffs.PathedFS, id designs.CompID, comp designs.CompSpec, assmComp designs.AssmCompSpec,
-	gridSpacings designs.ContinuousXYZ[float64], parent *gltf.Node,
-) error {
-	n := new(gltf.Node)
-	n.Name = string(id)
-	var nodeIndex int
-	d.d.Nodes, nodeIndex = addElem(d.d.Nodes, n)
-	parent.Children = append(parent.Children, nodeIndex)
+type subtree struct {
+	id   designs.CompID
+	node *gltf.Node
+}
 
-	var err error
-	if n.Rotation, n.Translation, err = computeNodePose(assmComp.Pose, gridSpacings); err != nil {
-		return errors.Wrapf(err, "couldn't compute pose of component %s", id)
+func (d *Document) addComponent(
+	designFS ffs.PathedFS, child designs.CompID, comp designs.CompSpec, assmComp designs.AssmCompSpec,
+	root *gltf.Node,
+	gridSpacings designs.ContinuousXYZ[float64],
+) (added *gltf.Node, err error) {
+	added = new(gltf.Node)
+	added.Name = string(child)
+	var nodeIndex int
+	d.d.Nodes, nodeIndex = addElem(d.d.Nodes, added)
+	root.Children = append(root.Children, nodeIndex)
+	if added.Rotation, added.Translation, err = computeNodePose(
+		assmComp.Pose, gridSpacings,
+	); err != nil {
+		return added, errors.Wrapf(err, "couldn't compute pose of component %s", child)
+	}
+
+	if comp.Kind != designs.CompKindPrimitive {
+		return added, nil
 	}
 
 	// Add the node's primitive model to document:
-	switch pt := comp.Primitive.Kind; pt {
+	switch pk := comp.Primitive.Kind; pk {
 	default:
-		return errors.Errorf("unknown model kind for primitive %s: %s", id, pt)
+		return added, errors.Errorf("unknown model kind for primitive %s: %s", child, pk)
 	case "", "static":
-		modelHash, nodeIndices, err := d.addComponentPrimitive(fsys, comp.Primitive)
+		modelHash, nodeIndices, err := d.addComponentPrimitive(designFS, comp.Primitive)
 		if err != nil {
-			return errors.Wrapf(err, "couldn't add primitive component: %+v", comp.Primitive)
+			return added, errors.Wrapf(err, "couldn't add primitive component: %+v", comp.Primitive)
 		}
-		n.Children = append(n.Children, nodeIndices...)
-		d.modelInstances[modelHash] = append(d.modelInstances[modelHash], n.Children)
+		added.Children = append(added.Children, nodeIndices...)
+		d.modelInstances[modelHash] = append(d.modelInstances[modelHash], added.Children)
 	}
-	return nil
+	return added, nil
 }
 
 func addElem[T any](arr []T, elem T) (appended []T, idx int) {
@@ -355,31 +373,6 @@ func (d *Document) addModelExtensionsUsed(me []string) {
 		eu.Add(e)
 	}
 	d.d.ExtensionsUsed = slices.Sorted(eu.All())
-}
-
-func (d *Document) addSubdesignComponent(
-	ctx context.Context,
-	id designs.CompID, comp designs.CompSpec, assmComp designs.AssmCompSpec,
-	subdesign *designs.FSDesign,
-	gridSpacings designs.ContinuousXYZ[float64], parent *gltf.Node,
-) error {
-	n := new(gltf.Node)
-	n.Name = string(id)
-	var nodeIndex int
-	d.d.Nodes, nodeIndex = addElem(d.d.Nodes, n)
-	parent.Children = append(parent.Children, nodeIndex)
-
-	var err error
-	if n.Rotation, n.Translation, err = computeNodePose(assmComp.Pose, gridSpacings); err != nil {
-		return errors.Wrapf(err, "couldn't compute pose of component %s", id)
-	}
-
-	if err = d.addComponents(ctx, subdesign, assmComp.Assm, gridSpacings, n); err != nil {
-		return errors.Wrapf(
-			err, "couldn't add subcomponents of component %s with design %s", id, comp.Design,
-		)
-	}
-	return nil
 }
 
 func (d *Document) Encode(asText bool) ([]byte, error) {

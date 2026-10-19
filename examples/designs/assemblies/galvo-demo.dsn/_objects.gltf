@@ -67031,20 +67031,47 @@
   ],
   "nodes": [
     {
-      "name": "design",
       "children": [
         1,
-        31,
-        61
+        2,
+        3
       ]
     },
     {
       "name": "galvo-mirror-pair-1",
       "children": [
-        2,
         4,
-        21,
-        26
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "translation": [
+        0.05,
+        0.05,
+        0
+      ],
+      "name": "galvo-mirror-pair-2",
+      "children": [
+        9,
+        11,
+        12,
+        13
+      ]
+    },
+    {
+      "translation": [
+        0.1,
+        0.1,
+        0
+      ],
+      "name": "galvo-mirror-pair-3",
+      "children": [
+        14,
+        16,
+        17,
+        18
       ]
     },
     {
@@ -67059,9 +67086,9 @@
         -0.05,
         0
       ],
-      "name": "skeleton-extra-partial",
+      "name": "galvo-mirror-pair-1/skeleton-extra-partial",
       "children": [
-        3
+        5
       ]
     },
     {
@@ -67069,11 +67096,126 @@
       "mesh": 0
     },
     {
-      "name": "mounted-mirrors",
+      "name": "galvo-mirror-pair-1/mounted-mirrors",
       "children": [
-        5,
-        7,
-        14
+        19,
+        21,
+        22
+      ]
+    },
+    {
+      "name": "galvo-mirror-pair-1/skeleton",
+      "children": [
+        23,
+        25
+      ]
+    },
+    {
+      "translation": [
+        -0.05,
+        0,
+        0
+      ],
+      "name": "galvo-mirror-pair-1/skeleton-extra-full",
+      "children": [
+        27,
+        29
+      ]
+    },
+    {
+      "rotation": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "translation": [
+        0,
+        -0.05,
+        0
+      ],
+      "name": "galvo-mirror-pair-2/skeleton-extra-partial",
+      "children": [
+        10
+      ]
+    },
+    {
+      "name": "PRT - 1003 - CUBHLF111 - V04",
+      "mesh": 0
+    },
+    {
+      "name": "galvo-mirror-pair-2/mounted-mirrors",
+      "children": [
+        31,
+        33,
+        34
+      ]
+    },
+    {
+      "name": "galvo-mirror-pair-2/skeleton",
+      "children": [
+        35,
+        37
+      ]
+    },
+    {
+      "translation": [
+        -0.05,
+        0,
+        0
+      ],
+      "name": "galvo-mirror-pair-2/skeleton-extra-full",
+      "children": [
+        39,
+        41
+      ]
+    },
+    {
+      "rotation": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "translation": [
+        0,
+        -0.05,
+        0
+      ],
+      "name": "galvo-mirror-pair-3/skeleton-extra-partial",
+      "children": [
+        15
+      ]
+    },
+    {
+      "name": "PRT - 1003 - CUBHLF111 - V04",
+      "mesh": 0
+    },
+    {
+      "name": "galvo-mirror-pair-3/mounted-mirrors",
+      "children": [
+        43,
+        45,
+        46
+      ]
+    },
+    {
+      "name": "galvo-mirror-pair-3/skeleton",
+      "children": [
+        47,
+        49
+      ]
+    },
+    {
+      "translation": [
+        -0.05,
+        0,
+        0
+      ],
+      "name": "galvo-mirror-pair-3/skeleton-extra-full",
+      "children": [
+        51,
+        53
       ]
     },
     {
@@ -67083,9 +67225,9 @@
         -0.7071067811865475,
         0.7071067811865476
       ],
-      "name": "cube-insert",
+      "name": "galvo-mirror-pair-1/mounted-mirrors/cube-insert",
       "children": [
-        6
+        20
       ]
     },
     {
@@ -67099,75 +67241,12 @@
         0,
         0
       ],
-      "name": "motorized-mirror-1",
+      "name": "galvo-mirror-pair-1/mounted-mirrors/motorized-mirror-1",
       "children": [
-        8,
-        10,
-        12
+        55,
+        57,
+        59
       ]
-    },
-    {
-      "rotation": [
-        0.061628416716219346,
-        0.061628416716219346,
-        -0.7044160264027587,
-        0.7044160264027587
-      ],
-      "translation": [
-        -0.044,
-        0,
-        0
-      ],
-      "name": "motorized-mirror",
-      "children": [
-        9
-      ]
-    },
-    {
-      "name": "BUY - Galvo scanner XY --- single motor",
-      "mesh": 2
-    },
-    {
-      "rotation": [
-        0,
-        0,
-        1,
-        0
-      ],
-      "translation": [
-        -0.027,
-        0,
-        0
-      ],
-      "name": "mount-ring",
-      "children": [
-        11
-      ]
-    },
-    {
-      "name": "PRT - 2180 - DISRNG",
-      "mesh": 3
-    },
-    {
-      "rotation": [
-        0,
-        0,
-        -0.7071067811865475,
-        0.7071067811865476
-      ],
-      "translation": [
-        -0.0423,
-        0,
-        0
-      ],
-      "name": "mount-top",
-      "children": [
-        13
-      ]
-    },
-    {
-      "name": "PRT - 2165 - CLPPCE",
-      "mesh": 4
     },
     {
       "rotation": [
@@ -67181,90 +67260,20 @@
         0,
         -0.0074
       ],
-      "name": "motorized-mirror-2",
+      "name": "galvo-mirror-pair-1/mounted-mirrors/motorized-mirror-2",
       "children": [
-        15,
-        17,
-        19
+        61,
+        63,
+        65
       ]
     },
     {
-      "rotation": [
-        0.24184476264797522,
-        0.24184476264797522,
-        -0.6644630243886747,
-        0.6644630243886748
-      ],
-      "translation": [
-        -0.044,
-        0,
-        0
-      ],
-      "name": "motorized-mirror",
+      "name": "galvo-mirror-pair-1/skeleton/lower-half",
       "children": [
-        16
-      ]
-    },
-    {
-      "name": "BUY - Galvo scanner XY --- single motor",
-      "mesh": 2
-    },
-    {
-      "rotation": [
-        0,
-        0,
-        1,
-        0
-      ],
-      "translation": [
-        -0.027,
-        0,
-        0
-      ],
-      "name": "mount-ring",
-      "children": [
-        18
-      ]
-    },
-    {
-      "name": "PRT - 2180 - DISRNG",
-      "mesh": 3
-    },
-    {
-      "rotation": [
-        0,
-        0,
-        -0.7071067811865475,
-        0.7071067811865476
-      ],
-      "translation": [
-        -0.0423,
-        0,
-        0
-      ],
-      "name": "mount-top",
-      "children": [
-        20
-      ]
-    },
-    {
-      "name": "PRT - 2165 - CLPPCE",
-      "mesh": 4
-    },
-    {
-      "name": "skeleton",
-      "children": [
-        22,
         24
       ]
     },
     {
-      "name": "lower-half",
-      "children": [
-        23
-      ]
-    },
-    {
       "name": "PRT - 1003 - CUBHLF111 - V04",
       "mesh": 0
     },
@@ -67275,9 +67284,9 @@
         0,
         0
       ],
-      "name": "upper-half",
+      "name": "galvo-mirror-pair-1/skeleton/upper-half",
       "children": [
-        25
+        26
       ]
     },
     {
@@ -67285,19 +67294,7 @@
       "mesh": 0
     },
     {
-      "translation": [
-        -0.05,
-        0,
-        0
-      ],
-      "name": "skeleton-extra-full",
-      "children": [
-        27,
-        29
-      ]
-    },
-    {
-      "name": "lower-half",
+      "name": "galvo-mirror-pair-1/skeleton-extra-full/lower-half",
       "children": [
         28
       ]
@@ -67313,7 +67310,7 @@
         0,
         0
       ],
-      "name": "upper-half",
+      "name": "galvo-mirror-pair-1/skeleton-extra-full/upper-half",
       "children": [
         30
       ]
@@ -67323,58 +67320,15 @@
       "mesh": 0
     },
     {
-      "translation": [
-        0.05,
-        0.05,
-        0
-      ],
-      "name": "galvo-mirror-pair-2",
-      "children": [
-        32,
-        34,
-        51,
-        56
-      ]
-    },
-    {
-      "rotation": [
-        1,
-        0,
-        0,
-        0
-      ],
-      "translation": [
-        0,
-        -0.05,
-        0
-      ],
-      "name": "skeleton-extra-partial",
-      "children": [
-        33
-      ]
-    },
-    {
-      "name": "PRT - 1003 - CUBHLF111 - V04",
-      "mesh": 0
-    },
-    {
-      "name": "mounted-mirrors",
-      "children": [
-        35,
-        37,
-        44
-      ]
-    },
-    {
       "rotation": [
         0,
         0,
         -0.7071067811865475,
         0.7071067811865476
       ],
-      "name": "cube-insert",
+      "name": "galvo-mirror-pair-2/mounted-mirrors/cube-insert",
       "children": [
-        36
+        32
       ]
     },
     {
@@ -67388,75 +67342,12 @@
         0,
         0
       ],
-      "name": "motorized-mirror-1",
+      "name": "galvo-mirror-pair-2/mounted-mirrors/motorized-mirror-1",
       "children": [
-        38,
-        40,
-        42
+        67,
+        69,
+        71
       ]
-    },
-    {
-      "rotation": [
-        0.12278780396897283,
-        0.12278780396897283,
-        -0.6963642403200189,
-        0.696364240320019
-      ],
-      "translation": [
-        -0.044,
-        0,
-        0
-      ],
-      "name": "motorized-mirror",
-      "children": [
-        39
-      ]
-    },
-    {
-      "name": "BUY - Galvo scanner XY --- single motor",
-      "mesh": 2
-    },
-    {
-      "rotation": [
-        0,
-        0,
-        1,
-        0
-      ],
-      "translation": [
-        -0.027,
-        0,
-        0
-      ],
-      "name": "mount-ring",
-      "children": [
-        41
-      ]
-    },
-    {
-      "name": "PRT - 2180 - DISRNG",
-      "mesh": 3
-    },
-    {
-      "rotation": [
-        0,
-        0,
-        -0.7071067811865475,
-        0.7071067811865476
-      ],
-      "translation": [
-        -0.0423,
-        0,
-        0
-      ],
-      "name": "mount-top",
-      "children": [
-        43
-      ]
-    },
-    {
-      "name": "PRT - 2165 - CLPPCE",
-      "mesh": 4
     },
     {
       "rotation": [
@@ -67470,28 +67361,181 @@
         0,
         -0.0074
       ],
-      "name": "motorized-mirror-2",
+      "name": "galvo-mirror-pair-2/mounted-mirrors/motorized-mirror-2",
       "children": [
-        45,
-        47,
-        49
+        73,
+        75,
+        77
+      ]
+    },
+    {
+      "name": "galvo-mirror-pair-2/skeleton/lower-half",
+      "children": [
+        36
+      ]
+    },
+    {
+      "name": "PRT - 1003 - CUBHLF111 - V04",
+      "mesh": 0
+    },
+    {
+      "rotation": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "name": "galvo-mirror-pair-2/skeleton/upper-half",
+      "children": [
+        38
+      ]
+    },
+    {
+      "name": "PRT - 1003 - CUBHLF111 - V04",
+      "mesh": 0
+    },
+    {
+      "name": "galvo-mirror-pair-2/skeleton-extra-full/lower-half",
+      "children": [
+        40
+      ]
+    },
+    {
+      "name": "PRT - 1003 - CUBHLF111 - V04",
+      "mesh": 0
+    },
+    {
+      "rotation": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "name": "galvo-mirror-pair-2/skeleton-extra-full/upper-half",
+      "children": [
+        42
+      ]
+    },
+    {
+      "name": "PRT - 1003 - CUBHLF111 - V04",
+      "mesh": 0
+    },
+    {
+      "rotation": [
+        0,
+        0,
+        -0.7071067811865475,
+        0.7071067811865476
+      ],
+      "name": "galvo-mirror-pair-3/mounted-mirrors/cube-insert",
+      "children": [
+        44
+      ]
+    },
+    {
+      "name": "PRT - 2164 - INSGLV - V04",
+      "mesh": 1
+    },
+    {
+      "rotation": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "name": "galvo-mirror-pair-3/mounted-mirrors/motorized-mirror-1",
+      "children": [
+        79,
+        81,
+        83
       ]
     },
     {
       "rotation": [
-        0.3535533905932737,
-        0.3535533905932737,
-        -0.6123724356957945,
-        0.6123724356957946
+        0.7071067811865475,
+        0.7071067811865476,
+        0,
+        0
+      ],
+      "translation": [
+        0,
+        0,
+        -0.0074
+      ],
+      "name": "galvo-mirror-pair-3/mounted-mirrors/motorized-mirror-2",
+      "children": [
+        85,
+        87,
+        89
+      ]
+    },
+    {
+      "name": "galvo-mirror-pair-3/skeleton/lower-half",
+      "children": [
+        48
+      ]
+    },
+    {
+      "name": "PRT - 1003 - CUBHLF111 - V04",
+      "mesh": 0
+    },
+    {
+      "rotation": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "name": "galvo-mirror-pair-3/skeleton/upper-half",
+      "children": [
+        50
+      ]
+    },
+    {
+      "name": "PRT - 1003 - CUBHLF111 - V04",
+      "mesh": 0
+    },
+    {
+      "name": "galvo-mirror-pair-3/skeleton-extra-full/lower-half",
+      "children": [
+        52
+      ]
+    },
+    {
+      "name": "PRT - 1003 - CUBHLF111 - V04",
+      "mesh": 0
+    },
+    {
+      "rotation": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "name": "galvo-mirror-pair-3/skeleton-extra-full/upper-half",
+      "children": [
+        54
+      ]
+    },
+    {
+      "name": "PRT - 1003 - CUBHLF111 - V04",
+      "mesh": 0
+    },
+    {
+      "rotation": [
+        0.061628416716219346,
+        0.061628416716219346,
+        -0.7044160264027587,
+        0.7044160264027587
       ],
       "translation": [
         -0.044,
         0,
         0
       ],
-      "name": "motorized-mirror",
+      "name": "galvo-mirror-pair-1/mounted-mirrors/motorized-mirror-1/motorized-mirror",
       "children": [
-        46
+        56
       ]
     },
     {
@@ -67510,9 +67554,9 @@
         0,
         0
       ],
-      "name": "mount-ring",
+      "name": "galvo-mirror-pair-1/mounted-mirrors/motorized-mirror-1/mount-ring",
       "children": [
-        48
+        58
       ]
     },
     {
@@ -67531,158 +67575,14 @@
         0,
         0
       ],
-      "name": "mount-top",
-      "children": [
-        50
-      ]
-    },
-    {
-      "name": "PRT - 2165 - CLPPCE",
-      "mesh": 4
-    },
-    {
-      "name": "skeleton",
-      "children": [
-        52,
-        54
-      ]
-    },
-    {
-      "name": "lower-half",
-      "children": [
-        53
-      ]
-    },
-    {
-      "name": "PRT - 1003 - CUBHLF111 - V04",
-      "mesh": 0
-    },
-    {
-      "rotation": [
-        1,
-        0,
-        0,
-        0
-      ],
-      "name": "upper-half",
-      "children": [
-        55
-      ]
-    },
-    {
-      "name": "PRT - 1003 - CUBHLF111 - V04",
-      "mesh": 0
-    },
-    {
-      "translation": [
-        -0.05,
-        0,
-        0
-      ],
-      "name": "skeleton-extra-full",
-      "children": [
-        57,
-        59
-      ]
-    },
-    {
-      "name": "lower-half",
-      "children": [
-        58
-      ]
-    },
-    {
-      "name": "PRT - 1003 - CUBHLF111 - V04",
-      "mesh": 0
-    },
-    {
-      "rotation": [
-        1,
-        0,
-        0,
-        0
-      ],
-      "name": "upper-half",
+      "name": "galvo-mirror-pair-1/mounted-mirrors/motorized-mirror-1/mount-top",
       "children": [
         60
       ]
     },
     {
-      "name": "PRT - 1003 - CUBHLF111 - V04",
-      "mesh": 0
-    },
-    {
-      "translation": [
-        0.1,
-        0.1,
-        0
-      ],
-      "name": "galvo-mirror-pair-3",
-      "children": [
-        62,
-        64,
-        81,
-        86
-      ]
-    },
-    {
-      "rotation": [
-        1,
-        0,
-        0,
-        0
-      ],
-      "translation": [
-        0,
-        -0.05,
-        0
-      ],
-      "name": "skeleton-extra-partial",
-      "children": [
-        63
-      ]
-    },
-    {
-      "name": "PRT - 1003 - CUBHLF111 - V04",
-      "mesh": 0
-    },
-    {
-      "name": "mounted-mirrors",
-      "children": [
-        65,
-        67,
-        74
-      ]
-    },
-    {
-      "rotation": [
-        0,
-        0,
-        -0.7071067811865475,
-        0.7071067811865476
-      ],
-      "name": "cube-insert",
-      "children": [
-        66
-      ]
-    },
-    {
-      "name": "PRT - 2164 - INSGLV - V04",
-      "mesh": 1
-    },
-    {
-      "rotation": [
-        1,
-        0,
-        0,
-        0
-      ],
-      "name": "motorized-mirror-1",
-      "children": [
-        68,
-        70,
-        72
-      ]
+      "name": "PRT - 2165 - CLPPCE",
+      "mesh": 4
     },
     {
       "rotation": [
@@ -67696,9 +67596,9 @@
         0,
         0
       ],
-      "name": "motorized-mirror",
+      "name": "galvo-mirror-pair-1/mounted-mirrors/motorized-mirror-2/motorized-mirror",
       "children": [
-        69
+        62
       ]
     },
     {
@@ -67717,9 +67617,9 @@
         0,
         0
       ],
-      "name": "mount-ring",
+      "name": "galvo-mirror-pair-1/mounted-mirrors/motorized-mirror-2/mount-ring",
       "children": [
-        71
+        64
       ]
     },
     {
@@ -67738,9 +67638,9 @@
         0,
         0
       ],
-      "name": "mount-top",
+      "name": "galvo-mirror-pair-1/mounted-mirrors/motorized-mirror-2/mount-top",
       "children": [
-        73
+        66
       ]
     },
     {
@@ -67749,22 +67649,192 @@
     },
     {
       "rotation": [
-        0.7071067811865475,
-        0.7071067811865476,
+        0.12278780396897283,
+        0.12278780396897283,
+        -0.6963642403200189,
+        0.696364240320019
+      ],
+      "translation": [
+        -0.044,
         0,
         0
       ],
-      "translation": [
-        0,
-        0,
-        -0.0074
-      ],
-      "name": "motorized-mirror-2",
+      "name": "galvo-mirror-pair-2/mounted-mirrors/motorized-mirror-1/motorized-mirror",
       "children": [
-        75,
-        77,
-        79
+        68
       ]
+    },
+    {
+      "name": "BUY - Galvo scanner XY --- single motor",
+      "mesh": 2
+    },
+    {
+      "rotation": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "translation": [
+        -0.027,
+        0,
+        0
+      ],
+      "name": "galvo-mirror-pair-2/mounted-mirrors/motorized-mirror-1/mount-ring",
+      "children": [
+        70
+      ]
+    },
+    {
+      "name": "PRT - 2180 - DISRNG",
+      "mesh": 3
+    },
+    {
+      "rotation": [
+        0,
+        0,
+        -0.7071067811865475,
+        0.7071067811865476
+      ],
+      "translation": [
+        -0.0423,
+        0,
+        0
+      ],
+      "name": "galvo-mirror-pair-2/mounted-mirrors/motorized-mirror-1/mount-top",
+      "children": [
+        72
+      ]
+    },
+    {
+      "name": "PRT - 2165 - CLPPCE",
+      "mesh": 4
+    },
+    {
+      "rotation": [
+        0.3535533905932737,
+        0.3535533905932737,
+        -0.6123724356957945,
+        0.6123724356957946
+      ],
+      "translation": [
+        -0.044,
+        0,
+        0
+      ],
+      "name": "galvo-mirror-pair-2/mounted-mirrors/motorized-mirror-2/motorized-mirror",
+      "children": [
+        74
+      ]
+    },
+    {
+      "name": "BUY - Galvo scanner XY --- single motor",
+      "mesh": 2
+    },
+    {
+      "rotation": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "translation": [
+        -0.027,
+        0,
+        0
+      ],
+      "name": "galvo-mirror-pair-2/mounted-mirrors/motorized-mirror-2/mount-ring",
+      "children": [
+        76
+      ]
+    },
+    {
+      "name": "PRT - 2180 - DISRNG",
+      "mesh": 3
+    },
+    {
+      "rotation": [
+        0,
+        0,
+        -0.7071067811865475,
+        0.7071067811865476
+      ],
+      "translation": [
+        -0.0423,
+        0,
+        0
+      ],
+      "name": "galvo-mirror-pair-2/mounted-mirrors/motorized-mirror-2/mount-top",
+      "children": [
+        78
+      ]
+    },
+    {
+      "name": "PRT - 2165 - CLPPCE",
+      "mesh": 4
+    },
+    {
+      "rotation": [
+        0.24184476264797522,
+        0.24184476264797522,
+        -0.6644630243886747,
+        0.6644630243886748
+      ],
+      "translation": [
+        -0.044,
+        0,
+        0
+      ],
+      "name": "galvo-mirror-pair-3/mounted-mirrors/motorized-mirror-1/motorized-mirror",
+      "children": [
+        80
+      ]
+    },
+    {
+      "name": "BUY - Galvo scanner XY --- single motor",
+      "mesh": 2
+    },
+    {
+      "rotation": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "translation": [
+        -0.027,
+        0,
+        0
+      ],
+      "name": "galvo-mirror-pair-3/mounted-mirrors/motorized-mirror-1/mount-ring",
+      "children": [
+        82
+      ]
+    },
+    {
+      "name": "PRT - 2180 - DISRNG",
+      "mesh": 3
+    },
+    {
+      "rotation": [
+        0,
+        0,
+        -0.7071067811865475,
+        0.7071067811865476
+      ],
+      "translation": [
+        -0.0423,
+        0,
+        0
+      ],
+      "name": "galvo-mirror-pair-3/mounted-mirrors/motorized-mirror-1/mount-top",
+      "children": [
+        84
+      ]
+    },
+    {
+      "name": "PRT - 2165 - CLPPCE",
+      "mesh": 4
     },
     {
       "rotation": [
@@ -67778,9 +67848,9 @@
         0,
         0
       ],
-      "name": "motorized-mirror",
+      "name": "galvo-mirror-pair-3/mounted-mirrors/motorized-mirror-2/motorized-mirror",
       "children": [
-        76
+        86
       ]
     },
     {
@@ -67799,9 +67869,9 @@
         0,
         0
       ],
-      "name": "mount-ring",
+      "name": "galvo-mirror-pair-3/mounted-mirrors/motorized-mirror-2/mount-ring",
       "children": [
-        78
+        88
       ]
     },
     {
@@ -67820,85 +67890,14 @@
         0,
         0
       ],
-      "name": "mount-top",
-      "children": [
-        80
-      ]
-    },
-    {
-      "name": "PRT - 2165 - CLPPCE",
-      "mesh": 4
-    },
-    {
-      "name": "skeleton",
-      "children": [
-        82,
-        84
-      ]
-    },
-    {
-      "name": "lower-half",
-      "children": [
-        83
-      ]
-    },
-    {
-      "name": "PRT - 1003 - CUBHLF111 - V04",
-      "mesh": 0
-    },
-    {
-      "rotation": [
-        1,
-        0,
-        0,
-        0
-      ],
-      "name": "upper-half",
-      "children": [
-        85
-      ]
-    },
-    {
-      "name": "PRT - 1003 - CUBHLF111 - V04",
-      "mesh": 0
-    },
-    {
-      "translation": [
-        -0.05,
-        0,
-        0
-      ],
-      "name": "skeleton-extra-full",
-      "children": [
-        87,
-        89
-      ]
-    },
-    {
-      "name": "lower-half",
-      "children": [
-        88
-      ]
-    },
-    {
-      "name": "PRT - 1003 - CUBHLF111 - V04",
-      "mesh": 0
-    },
-    {
-      "rotation": [
-        1,
-        0,
-        0,
-        0
-      ],
-      "name": "upper-half",
+      "name": "galvo-mirror-pair-3/mounted-mirrors/motorized-mirror-2/mount-top",
       "children": [
         90
       ]
     },
     {
-      "name": "PRT - 1003 - CUBHLF111 - V04",
-      "mesh": 0
+      "name": "PRT - 2165 - CLPPCE",
+      "mesh": 4
     }
   ],
   "scene": 0,

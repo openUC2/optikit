@@ -88126,7 +88126,7 @@
   ],
   "nodes": [
     {
-      "name": "design",
+      "name": "x",
       "children": [
         1,
         3,
@@ -88184,7 +88184,7 @@
         0,
         0
       ],
-      "name": "adhesive-pad",
+      "name": "inner-insert/adhesive-pad",
       "children": [
         7
       ]
@@ -88194,7 +88194,7 @@
       "mesh": 1
     },
     {
-      "name": "mirror",
+      "name": "inner-insert/mirror",
       "children": [
         9
       ]
@@ -88204,7 +88204,7 @@
       "mesh": 2
     },
     {
-      "name": "mount-base",
+      "name": "inner-insert/mount-base",
       "children": [
         11
       ]
@@ -88214,7 +88214,7 @@
       "mesh": 3
     },
     {
-      "name": "mount-top",
+      "name": "inner-insert/mount-top",
       "children": [
         13
       ]

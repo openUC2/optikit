@@ -23,7 +23,7 @@ func renderCompGA(ctx context.Context, c *cli.Command) error {
 		return err
 	}
 
-	result, err := optikit.RenderComponentsGraph(ctx, design, c.String("format"), true)
+	result, err := optikit.RenderComponentsGraph(ctx, design, c.String("format"))
 	if err != nil {
 		return err
 	}
@@ -41,7 +41,7 @@ func renderDsnGA(ctx context.Context, c *cli.Command) error {
 		return err
 	}
 
-	result, err := optikit.RenderDesignsGraph(ctx, design, c.String("format"), true)
+	result, err := optikit.RenderDesignsGraph(ctx, design, c.String("format"))
 	if err != nil {
 		return err
 	}

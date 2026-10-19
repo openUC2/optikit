@@ -173,7 +173,7 @@ assemblies:
                       kind: relative-position
                       rotation:
                         kind: uc2
-                        grid: {z: -z, x: -y}
+                        grid: {z: -z}
                       translation:
                         offset-grid: {x: 1}
                     children:
@@ -240,8 +240,6 @@ assemblies:
             children:
               standalone-board-2:
                 pose:
-                  rotation:
-                    kind: uc2
                   translation:
                     offset-mm: {z: 25}
           blue-laser:

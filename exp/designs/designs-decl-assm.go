@@ -222,6 +222,7 @@ func (s AssmCompsSpec) poseDigraph(
 // by those descendants' component IDs. The descendants' declared poses and children are left
 // unmodified, unlike the Flattened method. In other words, the returned map includes every subtree
 // of the AssmCompsSpec, keyed by the component ID of the root of that subtree.
+// The subtrees are cloned, so they cannot be used to restructure or edit the assembly tree.
 func (s AssmCompsSpec) Subtrees() map[CompID]AssmCompSpec {
 	collected := s.Cloned()
 	for _, assmComp := range s {
@@ -232,6 +233,28 @@ func (s AssmCompsSpec) Subtrees() map[CompID]AssmCompSpec {
 		maps.Insert(collected, maps.All(assmComp.Children.Subtrees()))
 	}
 	return collected
+}
+
+// EditableSubtrees returns a similar output as Subtrees, except the values can be used to
+// restructure/edit the assembly tree.
+func (s AssmCompsSpec) EditableSubtrees() (map[CompID]AssmCompSpec, error) {
+	subtrees := make(map[CompID]AssmCompSpec)
+	g, err := s.PoseDigraph()
+	if err != nil {
+		return nil, errors.Wrap(err, "couldn't construct pose digraph from tree")
+	}
+	nextParents := make([]CompID, 0, len(g))
+	nextParents = append(nextParents, "")
+	for len(nextParents) > 0 {
+		parent := nextParents[0]
+		nextParents = nextParents[1:]
+		for child := range g[parent] {
+			subtrees[child] = g[parent][child]
+			nextParents = append(nextParents, child)
+		}
+	}
+
+	return subtrees, nil
 }
 
 // Flattened returns a new AssmCompsSpec in which each non-origin component's pose base
@@ -246,8 +269,8 @@ func (s AssmCompsSpec) Flattened(gridSpacings ContinuousXYZ[float64]) (AssmComps
 		return nil, errors.Wrap(err, "couldn't construct pose digraph from assembly")
 	}
 
-	nextParents := make([]CompID, 0, len(g))
-	nextParents = append(nextParents, "") // add the root node
+	nextParents := make([]CompID, 0, len(g)) // for breadth-first tree traversal
+	nextParents = append(nextParents, "")    // add the root node
 	for len(nextParents) > 0 {
 		parent := nextParents[0]
 		nextParents = nextParents[1:]
@@ -267,6 +290,8 @@ func (s AssmCompsSpec) Flattened(gridSpacings ContinuousXYZ[float64]) (AssmComps
 			}
 			if c.Pose.Base.Kind == AssmCompPoseBaseKindMate {
 				flattened[parent].Children[child] = fc
+				// Note: we treat this child as a leaf node for the breadth-first tree traversal because its
+				// subtree has already been flattened.
 				continue
 			}
 
@@ -285,9 +310,6 @@ func flattenedChild(
 	switch child.Pose.Base.Kind {
 	default:
 		return flattened, errors.Errorf("unknown pose base kind %s", child.Pose.Base.Kind)
-	case AssmCompPoseBaseKindAssembly:
-		child.Children = make(AssmCompsSpec)
-		return child, nil
 	case AssmCompPoseBaseKindMate:
 		if child.Children, err = child.Children.Flattened(gridSpacings); err != nil {
 			return child, errors.Wrapf(
@@ -457,10 +479,8 @@ func (s AssmCompPoseExprSpec) Evaluated(env ExprEnv) (result AssmCompPoseSpec, e
 // spacings) and any remaining non-discrete component.
 func NewPose(mat mat4.T, gridSpacings ContinuousXYZ[float64]) AssmCompPoseSpec {
 	return AssmCompPoseSpec{
-		Kind: AssmCompPoseKindAffine,
-		Base: AssmCompPoseBaseSpec{
-			Kind: AssmCompPoseBaseKindAssembly,
-		},
+		Kind:        AssmCompPoseKindAffine,
+		Base:        AssmCompPoseBaseSpec{},
 		Rotation:    NewPoseRot(mat),
 		Translation: NewPoseTransl(mat, gridSpacings),
 	}
@@ -471,8 +491,6 @@ func (s AssmCompPoseSpec) ShortString() string {
 	switch baseKind {
 	case "", AssmCompPoseBaseKindParent:
 		baseKind = ""
-	case AssmCompPoseBaseKindAssembly:
-		baseKind = "assm"
 	case AssmCompPoseBaseKindMate:
 		baseKind = fmt.Sprintf("mate: %s", s.Base.Mate)
 	}
@@ -770,7 +788,8 @@ var (
 
 // Added returns the vector sum of the translation specified by this CompPoseTranslSpec and the
 // translation specified by the provided CompPoseTranslSpec.
-// It assumes that the Bases are the same between the two CompPoseTranslSpecs.
+// It assumes that the pose Bases and basis vectors are the same between the two
+// CompPoseTranslSpecs.
 func (s AssmCompPoseTranslSpec) Added(t AssmCompPoseTranslSpec) AssmCompPoseTranslSpec {
 	return AssmCompPoseTranslSpec{
 		OffsetGrid: s.OffsetGrid.Added(t.OffsetGrid),

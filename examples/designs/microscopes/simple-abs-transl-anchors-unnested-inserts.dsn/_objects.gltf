@@ -133447,35 +133447,18 @@
   ],
   "nodes": [
     {
-      "name": "design",
       "children": [
         1,
         2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
         9,
-        14,
-        21,
-        26,
-        33,
-        38,
-        39,
-        44,
-        49,
-        56
+        10
       ]
-    },
-    {
-      "rotation": [
-        0,
-        0.7071067811865475,
-        0,
-        0.7071067811865476
-      ],
-      "translation": [
-        -0.08,
-        0,
-        0
-      ],
-      "name": "light-source"
     },
     {
       "rotation": [
@@ -133491,40 +133474,10 @@
       ],
       "name": "objective-lens-insert",
       "children": [
-        3,
-        5,
-        7
+        11,
+        13,
+        15
       ]
-    },
-    {
-      "name": "insert",
-      "children": [
-        4
-      ]
-    },
-    {
-      "name": "PRT - 2023 - INSLEND40F50 - V04",
-      "mesh": 0
-    },
-    {
-      "name": "lens",
-      "children": [
-        6
-      ]
-    },
-    {
-      "name": "BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx",
-      "mesh": 1
-    },
-    {
-      "name": "nut",
-      "children": [
-        8
-      ]
-    },
-    {
-      "name": "PRT - 2003 - NUTD40",
-      "mesh": 2
     },
     {
       "translation": [
@@ -133534,35 +133487,9 @@
       ],
       "name": "objective-lens-skeleton",
       "children": [
-        10,
-        12
+        17,
+        19
       ]
-    },
-    {
-      "name": "lower-half",
-      "children": [
-        11
-      ]
-    },
-    {
-      "name": "PRT - 1003 - CUBHLF111 - V04",
-      "mesh": 3
-    },
-    {
-      "rotation": [
-        1,
-        0,
-        0,
-        0
-      ],
-      "name": "upper-half",
-      "children": [
-        13
-      ]
-    },
-    {
-      "name": "PRT - 1003 - CUBHLF111 - V04",
-      "mesh": 3
     },
     {
       "rotation": [
@@ -133578,45 +133505,10 @@
       ],
       "name": "periscope-mirror-1",
       "children": [
-        15,
-        17,
-        19
+        21,
+        23,
+        25
       ]
-    },
-    {
-      "translation": [
-        -0.0005,
-        0.0005,
-        0
-      ],
-      "name": "adhesive-pad",
-      "children": [
-        16
-      ]
-    },
-    {
-      "name": "BUY - Adhesive pad - 41x29x1",
-      "mesh": 4
-    },
-    {
-      "name": "insert",
-      "children": [
-        18
-      ]
-    },
-    {
-      "name": "PRT - 2022 - INSMIR45TH2",
-      "mesh": 5
-    },
-    {
-      "name": "mirror",
-      "children": [
-        20
-      ]
-    },
-    {
-      "name": "BUY - Mirror - 40x30x2",
-      "mesh": 6
     },
     {
       "translation": [
@@ -133626,35 +133518,9 @@
       ],
       "name": "periscope-mirror-1-skeleton",
       "children": [
-        22,
-        24
+        27,
+        29
       ]
-    },
-    {
-      "name": "lower-half",
-      "children": [
-        23
-      ]
-    },
-    {
-      "name": "PRT - 1003 - CUBHLF111 - V04",
-      "mesh": 3
-    },
-    {
-      "rotation": [
-        1,
-        0,
-        0,
-        0
-      ],
-      "name": "upper-half",
-      "children": [
-        25
-      ]
-    },
-    {
-      "name": "PRT - 1003 - CUBHLF111 - V04",
-      "mesh": 3
     },
     {
       "translation": [
@@ -133664,45 +133530,10 @@
       ],
       "name": "periscope-mirror-2",
       "children": [
-        27,
-        29,
-        31
+        31,
+        33,
+        35
       ]
-    },
-    {
-      "translation": [
-        -0.0005,
-        0.0005,
-        0
-      ],
-      "name": "adhesive-pad",
-      "children": [
-        28
-      ]
-    },
-    {
-      "name": "BUY - Adhesive pad - 41x29x1",
-      "mesh": 4
-    },
-    {
-      "name": "insert",
-      "children": [
-        30
-      ]
-    },
-    {
-      "name": "PRT - 2022 - INSMIR45TH2",
-      "mesh": 5
-    },
-    {
-      "name": "mirror",
-      "children": [
-        32
-      ]
-    },
-    {
-      "name": "BUY - Mirror - 40x30x2",
-      "mesh": 6
     },
     {
       "translation": [
@@ -133712,49 +133543,9 @@
       ],
       "name": "periscope-mirror-2-skeleton",
       "children": [
-        34,
-        36
+        37,
+        39
       ]
-    },
-    {
-      "name": "lower-half",
-      "children": [
-        35
-      ]
-    },
-    {
-      "name": "PRT - 1003 - CUBHLF111 - V04",
-      "mesh": 3
-    },
-    {
-      "rotation": [
-        1,
-        0,
-        0,
-        0
-      ],
-      "name": "upper-half",
-      "children": [
-        37
-      ]
-    },
-    {
-      "name": "PRT - 1003 - CUBHLF111 - V04",
-      "mesh": 3
-    },
-    {
-      "rotation": [
-        0,
-        -0.7071067811865475,
-        0,
-        0.7071067811865476
-      ],
-      "translation": [
-        0.35000000000000003,
-        0.5,
-        0
-      ],
-      "name": "projector-screen"
     },
     {
       "rotation": [
@@ -133770,34 +133561,9 @@
       ],
       "name": "sample-holder-insert",
       "children": [
-        40,
-        42
-      ]
-    },
-    {
-      "translation": [
-        0,
-        0,
-        -0.01
-      ],
-      "name": "clip",
-      "children": [
-        41
-      ]
-    },
-    {
-      "name": "PRT - 2008 - SAMCLP",
-      "mesh": 7
-    },
-    {
-      "name": "insert",
-      "children": [
+        41,
         43
       ]
-    },
-    {
-      "name": "PRT - 2028 - INSSAMMNT - V04",
-      "mesh": 8
     },
     {
       "name": "sample-holder-skeleton",
@@ -133805,32 +133571,6 @@
         45,
         47
       ]
-    },
-    {
-      "name": "lower-half",
-      "children": [
-        46
-      ]
-    },
-    {
-      "name": "PRT - 1003 - CUBHLF111 - V04",
-      "mesh": 3
-    },
-    {
-      "rotation": [
-        1,
-        0,
-        0,
-        0
-      ],
-      "name": "upper-half",
-      "children": [
-        48
-      ]
-    },
-    {
-      "name": "PRT - 1003 - CUBHLF111 - V04",
-      "mesh": 3
     },
     {
       "rotation": [
@@ -133846,40 +133586,10 @@
       ],
       "name": "tube-lens-insert",
       "children": [
-        50,
-        52,
-        54
-      ]
-    },
-    {
-      "name": "insert",
-      "children": [
-        51
-      ]
-    },
-    {
-      "name": "PRT - 2023 - INSLEND40F50 - V04",
-      "mesh": 0
-    },
-    {
-      "name": "lens",
-      "children": [
+        49,
+        51,
         53
       ]
-    },
-    {
-      "name": "BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx",
-      "mesh": 1
-    },
-    {
-      "name": "nut",
-      "children": [
-        55
-      ]
-    },
-    {
-      "name": "PRT - 2003 - NUTD40",
-      "mesh": 2
     },
     {
       "translation": [
@@ -133889,14 +133599,44 @@
       ],
       "name": "tube-lens-skeleton",
       "children": [
-        57,
-        59
+        55,
+        57
       ]
     },
     {
-      "name": "lower-half",
+      "name": "objective-lens-insert/insert",
       "children": [
-        58
+        12
+      ]
+    },
+    {
+      "name": "PRT - 2023 - INSLEND40F50 - V04",
+      "mesh": 0
+    },
+    {
+      "name": "objective-lens-insert/lens",
+      "children": [
+        14
+      ]
+    },
+    {
+      "name": "BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx",
+      "mesh": 1
+    },
+    {
+      "name": "objective-lens-insert/nut",
+      "children": [
+        16
+      ]
+    },
+    {
+      "name": "PRT - 2003 - NUTD40",
+      "mesh": 2
+    },
+    {
+      "name": "objective-lens-skeleton/lower-half",
+      "children": [
+        18
       ]
     },
     {
@@ -133910,9 +133650,238 @@
         0,
         0
       ],
-      "name": "upper-half",
+      "name": "objective-lens-skeleton/upper-half",
       "children": [
-        60
+        20
+      ]
+    },
+    {
+      "name": "PRT - 1003 - CUBHLF111 - V04",
+      "mesh": 3
+    },
+    {
+      "translation": [
+        -0.0005,
+        0.0005,
+        0
+      ],
+      "name": "periscope-mirror-1/adhesive-pad",
+      "children": [
+        22
+      ]
+    },
+    {
+      "name": "BUY - Adhesive pad - 41x29x1",
+      "mesh": 4
+    },
+    {
+      "name": "periscope-mirror-1/insert",
+      "children": [
+        24
+      ]
+    },
+    {
+      "name": "PRT - 2022 - INSMIR45TH2",
+      "mesh": 5
+    },
+    {
+      "name": "periscope-mirror-1/mirror",
+      "children": [
+        26
+      ]
+    },
+    {
+      "name": "BUY - Mirror - 40x30x2",
+      "mesh": 6
+    },
+    {
+      "name": "periscope-mirror-1-skeleton/lower-half",
+      "children": [
+        28
+      ]
+    },
+    {
+      "name": "PRT - 1003 - CUBHLF111 - V04",
+      "mesh": 3
+    },
+    {
+      "rotation": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "name": "periscope-mirror-1-skeleton/upper-half",
+      "children": [
+        30
+      ]
+    },
+    {
+      "name": "PRT - 1003 - CUBHLF111 - V04",
+      "mesh": 3
+    },
+    {
+      "translation": [
+        -0.0005,
+        0.0005,
+        0
+      ],
+      "name": "periscope-mirror-2/adhesive-pad",
+      "children": [
+        32
+      ]
+    },
+    {
+      "name": "BUY - Adhesive pad - 41x29x1",
+      "mesh": 4
+    },
+    {
+      "name": "periscope-mirror-2/insert",
+      "children": [
+        34
+      ]
+    },
+    {
+      "name": "PRT - 2022 - INSMIR45TH2",
+      "mesh": 5
+    },
+    {
+      "name": "periscope-mirror-2/mirror",
+      "children": [
+        36
+      ]
+    },
+    {
+      "name": "BUY - Mirror - 40x30x2",
+      "mesh": 6
+    },
+    {
+      "name": "periscope-mirror-2-skeleton/lower-half",
+      "children": [
+        38
+      ]
+    },
+    {
+      "name": "PRT - 1003 - CUBHLF111 - V04",
+      "mesh": 3
+    },
+    {
+      "rotation": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "name": "periscope-mirror-2-skeleton/upper-half",
+      "children": [
+        40
+      ]
+    },
+    {
+      "name": "PRT - 1003 - CUBHLF111 - V04",
+      "mesh": 3
+    },
+    {
+      "translation": [
+        0,
+        0,
+        -0.01
+      ],
+      "name": "sample-holder-insert/clip",
+      "children": [
+        42
+      ]
+    },
+    {
+      "name": "PRT - 2008 - SAMCLP",
+      "mesh": 7
+    },
+    {
+      "name": "sample-holder-insert/insert",
+      "children": [
+        44
+      ]
+    },
+    {
+      "name": "PRT - 2028 - INSSAMMNT - V04",
+      "mesh": 8
+    },
+    {
+      "name": "sample-holder-skeleton/lower-half",
+      "children": [
+        46
+      ]
+    },
+    {
+      "name": "PRT - 1003 - CUBHLF111 - V04",
+      "mesh": 3
+    },
+    {
+      "rotation": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "name": "sample-holder-skeleton/upper-half",
+      "children": [
+        48
+      ]
+    },
+    {
+      "name": "PRT - 1003 - CUBHLF111 - V04",
+      "mesh": 3
+    },
+    {
+      "name": "tube-lens-insert/insert",
+      "children": [
+        50
+      ]
+    },
+    {
+      "name": "PRT - 2023 - INSLEND40F50 - V04",
+      "mesh": 0
+    },
+    {
+      "name": "tube-lens-insert/lens",
+      "children": [
+        52
+      ]
+    },
+    {
+      "name": "BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx",
+      "mesh": 1
+    },
+    {
+      "name": "tube-lens-insert/nut",
+      "children": [
+        54
+      ]
+    },
+    {
+      "name": "PRT - 2003 - NUTD40",
+      "mesh": 2
+    },
+    {
+      "name": "tube-lens-skeleton/lower-half",
+      "children": [
+        56
+      ]
+    },
+    {
+      "name": "PRT - 1003 - CUBHLF111 - V04",
+      "mesh": 3
+    },
+    {
+      "rotation": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "name": "tube-lens-skeleton/upper-half",
+      "children": [
+        58
       ]
     },
     {
