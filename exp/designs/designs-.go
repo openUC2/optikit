@@ -311,10 +311,14 @@ func (d *FSDesign) RelocatedMates(ctx context.Context) (restructured *FSDesign, 
 	if err != nil {
 		return nil, err
 	}
-	for _, assm := range design.Decl.Assemblies {
-		relocations := make(map[CompID]map[CompID]AssmCompSpec)
+	for assmID, assm := range design.Decl.Assemblies {
+		relocations := make(map[CompID]map[CompID]compRelocation)
 		identifyMatedCompRelocations(assm.Children, relocations)
-		relocateMatedComps(assm.Children, relocations)
+		if err = relocateMatedComps(assm.Children, relocations); err != nil {
+			return nil, errors.Wrapf(
+				err, "couldn't relocate mate-posed components for assembly %s", assmID,
+			)
+		}
 		if len(relocations) > 0 {
 			return nil, errors.Errorf(
 				"couldn't apply some relocations: %+v", slices.Collect(maps.Keys(relocations)),
@@ -327,22 +331,32 @@ func (d *FSDesign) RelocatedMates(ctx context.Context) (restructured *FSDesign, 
 	return design, nil
 }
 
+type compRelocation struct {
+	assmComp   AssmCompSpec
+	prevParent CompID
+}
+
 // identifyMatedCompRelocations recursively identifies all necessary relocations of mate-posed
 // components in a subtree. It assumes that the subtree has already been fully populated with all
 // descendant components.
 func identifyMatedCompRelocations(
-	subtree AssmCompsSpec, relocations map[CompID]map[CompID]AssmCompSpec,
+	subtree AssmCompsSpec, relocations map[CompID]map[CompID]compRelocation,
 ) {
 	for compID, assmComp := range subtree {
-		if assmComp.Pose.Base.Kind != AssmCompPoseBaseKindMate {
-			continue
-		}
+		for gcCompID, gcAssmComp := range assmComp.Children {
+			if gcAssmComp.Pose.Base.Kind != AssmCompPoseBaseKindMate {
+				continue
+			}
 
-		mateConnID := assmComp.Pose.Base.Mate
-		if relocations[mateConnID] == nil {
-			relocations[mateConnID] = make(map[CompID]AssmCompSpec)
+			mateConnID := gcAssmComp.Pose.Base.Mate
+			if relocations[mateConnID] == nil {
+				relocations[mateConnID] = make(map[CompID]compRelocation)
+			}
+			relocations[mateConnID][gcCompID] = compRelocation{
+				assmComp:   gcAssmComp,
+				prevParent: compID,
+			}
 		}
-		relocations[mateConnID][compID] = assmComp
 	}
 
 	for _, assmComp := range subtree {
@@ -354,39 +368,55 @@ func identifyMatedCompRelocations(
 // children of their required mate connectors, so that all descendant components have poses of base
 // kind `parent` or `assembly`. It assumes that the subtree has already been fully populated with
 // all descendant components.
-func relocateMatedComps(subtree AssmCompsSpec, relocations map[CompID]map[CompID]AssmCompSpec) {
-	// FIXME: reimplement this via breadth-first search!
+func relocateMatedComps(
+	tree AssmCompsSpec, relocations map[CompID]map[CompID]compRelocation,
+) error {
+	if len(relocations) == 0 {
+		// Skip the tree-traversal computation needed for getting the editable subtrees
+		return nil
+	}
 
-	// Mark mated components for deletion after recursion:
-	deletions := make([]CompID, 0, len(subtree))
-	for compID, assmComp := range subtree {
-		if assmComp.Pose.Base.Kind != AssmCompPoseBaseKindMate {
-			continue
+	// Build an map of subtrees for in-place restructuring, unlike tree.Subtrees() which returns a
+	// clone which doesn't allow in-place restructuring
+	subtrees, err := tree.EditableSubtrees()
+	if err != nil {
+		return errors.Wrap(err, "couldn't enumerate all subtrees of assembly tree")
+	}
+	subtrees[""] = AssmCompSpec{Children: tree}
+
+	g, err := tree.PoseDigraph()
+	if err != nil {
+		return errors.Wrap(err, "couldn't construct pose digraph from tree")
+	}
+
+	// We relocate items in breadth-first tree traversal order because some mate-posed components may
+	// themselves have mate connectors for other components, and if we relocate them before those
+	// components, the logic is slightly easier to understand.
+	nextParents := make([]CompID, 0, len(g))
+	nextParents = append(nextParents, "")
+	for len(nextParents) > 0 {
+		parent := nextParents[0]
+		nextParents = nextParents[1:]
+		for child := range g[parent] {
+			nextParents = append(nextParents, child)
 		}
 
-		deletions = append(deletions, compID)
-	}
+		for newChild, relocation := range relocations[parent] {
+			nextParents = append(nextParents, newChild)
 
-	for compID, assmComp := range subtree {
-		if len(relocations[compID]) == 0 { // i.e. the comp isn't a mate connector needed by relocations
-			continue
+			// Modify the child
+			child := subtrees[newChild]
+			child.Pose.Base = AssmCompPoseBaseSpec{}
+
+			// Move the child
+			subtrees[parent].Children[newChild] = child
+			delete(subtrees[relocation.prevParent].Children, newChild)
+			delete(relocations[parent], newChild)
 		}
-
-		// Apply the relocations involving this mate connector:
-		for matedCompID, matedAssmComp := range relocations[compID] {
-			matedAssmComp.Pose.Base = AssmCompPoseBaseSpec{Kind: AssmCompPoseBaseKindParent}
-			assmComp.Children[matedCompID] = matedAssmComp
-		}
-		delete(relocations, compID)
+		delete(relocations, parent)
 	}
 
-	for _, assmComp := range subtree {
-		relocateMatedComps(assmComp.Children, relocations)
-	}
-
-	for _, compID := range deletions {
-		delete(subtree, compID)
-	}
+	return nil
 }
 
 // Canonicalized returns a new design in which all descendant components have been restructured so
@@ -402,7 +432,7 @@ func (d *FSDesign) Canonicalized(
 		// fmt.Printf("assembly %s\n", assmID)
 		// assm.Children.Print(1)
 		// fmt.Println()
-		relocations := make(map[CompID]map[CompID]relPosRelocation)
+		relocations := make(map[CompID]map[CompID]compRelocation)
 		identifyRelTranslCompRelocations(assm.Children, relocations)
 		if err = relocateRelTranslComps(assm.Children, relocations, gridSpacings); err != nil {
 			return nil, errors.Wrapf(
@@ -421,16 +451,11 @@ func (d *FSDesign) Canonicalized(
 	return design, nil
 }
 
-type relPosRelocation struct {
-	assmComp     AssmCompSpec
-	translAnchor CompID
-}
-
 // identifyRelTranslCompRelocations recursively identifies all necessary relocations of
 // relative-position-posed components in a subtree. It assumes that the subtree has already been
 // fully populated with all descendant components.
 func identifyRelTranslCompRelocations(
-	subtree AssmCompsSpec, relocations map[CompID]map[CompID]relPosRelocation,
+	subtree AssmCompsSpec, relocations map[CompID]map[CompID]compRelocation,
 ) {
 	for compID, assmComp := range subtree {
 		for gcCompID, gcAssmComp := range assmComp.Children {
@@ -443,11 +468,11 @@ func identifyRelTranslCompRelocations(
 				parentCompID = ""
 			}
 			if relocations[CompID(parentCompID)] == nil {
-				relocations[CompID(parentCompID)] = make(map[CompID]relPosRelocation)
+				relocations[CompID(parentCompID)] = make(map[CompID]compRelocation)
 			}
-			relocations[CompID(parentCompID)][gcCompID] = relPosRelocation{
-				assmComp:     gcAssmComp,
-				translAnchor: compID,
+			relocations[CompID(parentCompID)][gcCompID] = compRelocation{
+				assmComp:   gcAssmComp,
+				prevParent: compID,
 			}
 		}
 	}
@@ -463,7 +488,7 @@ func identifyRelTranslCompRelocations(
 // all descendant components, and that mate-posed components have already been relocated to be under
 // their respective mate connectors.
 func relocateRelTranslComps(
-	tree AssmCompsSpec, relocations map[CompID]map[CompID]relPosRelocation,
+	tree AssmCompsSpec, relocations map[CompID]map[CompID]compRelocation,
 	gridSpacings ContinuousXYZ[float64],
 ) error {
 	if len(relocations) == 0 {
@@ -504,16 +529,19 @@ func relocateRelTranslComps(
 		}
 
 		for newChild, relocation := range relocations[parent] {
+			nextParents = append(nextParents, newChild)
+
+			// Modify the child
 			child := subtrees[newChild]
-			child.Pose.Translation = flattenedParent[relocation.translAnchor].Pose.Translation.Added(
+			child.Pose.Translation = flattenedParent[relocation.prevParent].Pose.Translation.Added(
 				child.Pose.Translation,
 			)
 			child.Pose.Kind = ""
 
+			// Move the child
 			subtrees[parent].Children[newChild] = child
-			delete(subtrees[relocation.translAnchor].Children, newChild)
+			delete(subtrees[relocation.prevParent].Children, newChild)
 			delete(relocations[parent], newChild)
-			nextParents = append(nextParents, newChild)
 		}
 		delete(relocations, parent)
 	}
