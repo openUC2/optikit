@@ -254,7 +254,7 @@ func RenderAssemblyGraph(
 		return nil, errors.Wrapf(err, "couldn't canonicalize structure of assembly %s", assembly)
 	}
 	gg := make(structures.StrictEdgeDigraph[string, string])
-	if gg, err = populateAssemblyGraph(ctx, gg, design, assembly, ""); err != nil {
+	if gg, err = populateAssemblyGraph(gg, design, assembly, ""); err != nil {
 		return nil, errors.Wrapf(err, "couldn't populate graph for assembly %s", assembly)
 	}
 	gvg, err := gvc.NewStrictDigraph("", gg, nil)
@@ -278,7 +278,6 @@ func RenderAssemblyGraph(
 }
 
 func populateAssemblyGraph(
-	ctx context.Context,
 	gg structures.StrictEdgeDigraph[string, string],
 	design *designs.FSDesign, assembly designs.AssmID, nodePrefix string,
 ) (structures.StrictEdgeDigraph[string, string], error) {

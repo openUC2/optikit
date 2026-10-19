@@ -88,7 +88,7 @@ func (d *Document) Assemble(
 	if design, err = design.Canonicalized(ctx, gridSpacings); err != nil {
 		return nil, errors.Wrap(err, "couldn't canonicalize design")
 	}
-	if err = d.addComponents(ctx, design, assembly, d.root, gridSpacings); err != nil {
+	if err = d.addComponents(design, assembly, d.root, gridSpacings); err != nil {
 		return nil, err
 	}
 
@@ -100,7 +100,6 @@ func (d *Document) Assemble(
 }
 
 func (d *Document) addComponents(
-	ctx context.Context,
 	design *designs.FSDesign, assembly designs.AssmID,
 	root *gltf.Node,
 	gridSpacings designs.ContinuousXYZ[float64],
