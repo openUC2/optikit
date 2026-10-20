@@ -4,8 +4,8 @@ package cmd
 const (
 	// dsnMinVersion is the minimum supported Optikit version among designs. A design with a
 	// lower Optikit version cannot be used.
-	DSNMinVersion = "v0.0.0"
+	DSNMinVersion = "v0.1.0-alpha.1"
 	// fallbackVersion is the version reported which the Optikit tool reports itself as if its actual
 	// version is unknown.
-	FallbackVersion = "v0.0.0-dev"
+	FallbackVersion = "v0.1.0-dev"
 )

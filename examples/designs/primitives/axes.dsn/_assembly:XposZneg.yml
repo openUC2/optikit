@@ -1,4 +1,4 @@
-optikit-version: v0.0.0-dev
+optikit-version: v0.1.0-dev
 components:
 - id: axes
   kind: primitive/static

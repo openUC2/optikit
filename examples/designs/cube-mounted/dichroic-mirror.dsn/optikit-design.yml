@@ -1,4 +1,4 @@
-optikit-version: v0.0.0-alpha.1
+optikit-version: v0.1.0-alpha.1
 
 design:
   description: A dichroic mirror cube with a 485 nm emission filter
