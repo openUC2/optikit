@@ -7,7 +7,6 @@
       "design": "primitives/laser.dsn",
       "instantiation": {
         "inputs": {
-          "newswitch-controller": "my-favorite-mainboard",
           "newswitch-device-id": "hotlaser123"
         }
       },
@@ -1154,14 +1153,16 @@
       "design": "primitives/xyz-stage.dsn",
       "instantiation": {
         "inputs": {
-          "newswitch-controller": "my-favorite-mainboard",
           "newswitch-device-id": "just-some-boring-stage",
+          "newswitch-device-id-x": "just-some-boring-stage/x",
+          "newswitch-device-id-y": "just-some-boring-stage/y",
+          "newswitch-device-id-z": "just-some-boring-stage/z",
           "newswitch-input-variable-x": "sample-x",
           "newswitch-input-variable-y": "sample-y",
           "newswitch-input-variable-z": "sample-z",
-          "x-stage": 0,
-          "y-stage": 0,
-          "z-stage": 0
+          "position-x": 0,
+          "position-y": 0,
+          "position-z": 0
         }
       },
       "position": [

@@ -94,8 +94,18 @@ components:
     newswitch-device: stage.newswitch-device.yml
   results:
     newswitch-device-config:
-      controller: ""
-      device_id: ""
+      axes:
+        x: ""
+        "y": ""
+        z: ""
+    newswitch-device-id: ""
+- id: x-axis-driver
+  kind: primitive/static
+  static-models:
+    newswitch-device: axis.newswitch-device.yml
+  results:
+    newswitch-device-config:
+      optikit_dsn_variable: ""
     newswitch-device-id: ""
 - id: xy-plate
   kind: design
@@ -155,6 +165,14 @@ components:
   static-models:
     gltf: "xy-plate.dsn/BUY - XYZ linear table - LD40 --- XY plate.glb"
     step: "xy-plate.dsn/BUY - XYZ linear table - LD40 --- XY plate.stp"
+- id: y-axis-driver
+  kind: primitive/static
+  static-models:
+    newswitch-device: axis.newswitch-device.yml
+  results:
+    newswitch-device-config:
+      optikit_dsn_variable: ""
+    newswitch-device-id: ""
 - id: yz-plate
   kind: design
   design: yz-plate.dsn
@@ -207,6 +225,14 @@ components:
   static-models:
     gltf: "yz-plate.dsn/BUY - Manual Z stage - LZ40 --- converter.glb"
     step: "yz-plate.dsn/BUY - Manual Z stage - LZ40 --- converter.stp"
+- id: z-axis-driver
+  kind: primitive/static
+  static-models:
+    newswitch-device: axis.newswitch-device.yml
+  results:
+    newswitch-device-config:
+      optikit_dsn_variable: ""
+    newswitch-device-id: ""
 - id: z-plate
   kind: primitive/static
   static-models:

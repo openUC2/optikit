@@ -34,10 +34,6 @@ components:
         newswitch-device: hikcamera.newswitch-device.yml
     results:
       newswitch-device-id: ~ inputs['newswitch-device-id'].value
-      newswitch-device-config: >
-        ~ {
-          device_id: inputs['newswitch-device-id'].value
-        }
 
 assemblies:
   '':
@@ -47,3 +43,6 @@ assemblies:
           rotation:
             kind: grid
             grid: {z: -z}
+  wiring:
+    children:
+      drivers: {}

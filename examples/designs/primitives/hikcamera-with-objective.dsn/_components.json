@@ -26,9 +26,6 @@
         "newswitch-device": "camera.dsn/hikcamera.newswitch-device.yml"
       },
       "results": {
-        "newswitch-device-config": {
-          "device_id": ""
-        },
         "newswitch-device-id": ""
       }
     },

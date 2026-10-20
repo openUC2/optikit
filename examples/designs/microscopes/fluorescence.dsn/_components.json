@@ -7,7 +7,6 @@
       "design": "primitives/laser.dsn",
       "instantiation": {
         "inputs": {
-          "newswitch-controller": "my-favorite-mainboard",
           "newswitch-device-id": "hotlaser123"
         }
       }
@@ -131,10 +130,6 @@
         "newswitch-device": "primitives/laser.dsn/laser.newswitch-device.yml"
       },
       "results": {
-        "newswitch-device-config": {
-          "controller": "my-favorite-mainboard",
-          "device_id": "hotlaser123"
-        },
         "newswitch-device-id": "hotlaser123"
       }
     },
@@ -185,9 +180,6 @@
         "newswitch-device": "primitives/hikcamera-with-objective.dsn/camera.dsn/hikcamera.newswitch-device.yml"
       },
       "results": {
-        "newswitch-device-config": {
-          "device_id": "bigcamera42"
-        },
         "newswitch-device-id": "bigcamera42"
       }
     },
@@ -442,6 +434,126 @@
       }
     },
     {
+      "id": "electronics-controller-mapping-laser",
+      "kind": "design",
+      "design": "primitives/controller-mapping.dsn",
+      "instantiation": {
+        "inputs": {
+          "id": "0",
+          "newswitch-controller-id": "my-favorite-mainboard",
+          "newswitch-mapping-type": "serial-laser",
+          "newswitch-peripheral-id": "hotlaser123"
+        }
+      }
+    },
+    {
+      "id": "electronics-controller-mapping-laser/mapping",
+      "kind": "results",
+      "results": {
+        "newswitch-device-config": {
+          "mapping": {
+            "hotlaser123": {
+              "id": 0,
+              "pwm_max": 0,
+              "subid": 0,
+              "type": "serial-laser"
+            }
+          }
+        },
+        "newswitch-device-id": "my-favorite-mainboard"
+      }
+    },
+    {
+      "id": "electronics-controller-mapping-sample-stage-x",
+      "kind": "design",
+      "design": "primitives/controller-mapping.dsn",
+      "instantiation": {
+        "inputs": {
+          "id": "0",
+          "newswitch-controller-id": "my-favorite-mainboard",
+          "newswitch-mapping-type": "serial-motor",
+          "newswitch-peripheral-id": "just-some-boring-stage/x"
+        }
+      }
+    },
+    {
+      "id": "electronics-controller-mapping-sample-stage-x/mapping",
+      "kind": "results",
+      "results": {
+        "newswitch-device-config": {
+          "mapping": {
+            "just-some-boring-stage/x": {
+              "id": 0,
+              "pwm_max": 0,
+              "subid": 0,
+              "type": "serial-motor"
+            }
+          }
+        },
+        "newswitch-device-id": "my-favorite-mainboard"
+      }
+    },
+    {
+      "id": "electronics-controller-mapping-sample-stage-y",
+      "kind": "design",
+      "design": "primitives/controller-mapping.dsn",
+      "instantiation": {
+        "inputs": {
+          "id": "1",
+          "newswitch-controller-id": "my-favorite-mainboard",
+          "newswitch-mapping-type": "serial-motor",
+          "newswitch-peripheral-id": "just-some-boring-stage/y"
+        }
+      }
+    },
+    {
+      "id": "electronics-controller-mapping-sample-stage-y/mapping",
+      "kind": "results",
+      "results": {
+        "newswitch-device-config": {
+          "mapping": {
+            "just-some-boring-stage/y": {
+              "id": 1,
+              "pwm_max": 0,
+              "subid": 0,
+              "type": "serial-motor"
+            }
+          }
+        },
+        "newswitch-device-id": "my-favorite-mainboard"
+      }
+    },
+    {
+      "id": "electronics-controller-mapping-sample-stage-z",
+      "kind": "design",
+      "design": "primitives/controller-mapping.dsn",
+      "instantiation": {
+        "inputs": {
+          "id": "2",
+          "newswitch-controller-id": "my-favorite-mainboard",
+          "newswitch-mapping-type": "serial-motor",
+          "newswitch-peripheral-id": "just-some-boring-stage/z"
+        }
+      }
+    },
+    {
+      "id": "electronics-controller-mapping-sample-stage-z/mapping",
+      "kind": "results",
+      "results": {
+        "newswitch-device-config": {
+          "mapping": {
+            "just-some-boring-stage/z": {
+              "id": 2,
+              "pwm_max": 0,
+              "subid": 0,
+              "type": "serial-motor"
+            }
+          }
+        },
+        "newswitch-device-id": "my-favorite-mainboard"
+      }
+    },
+    {
       "id": "electronics-controller/case-base",
       "kind": "primitive/static",
       "static-models": {
@@ -464,9 +576,6 @@
         "newswitch-device": "primitives/electronics-mainboard.dsn/mainboard.newswitch-device.yml"
       },
       "results": {
-        "newswitch-device-config": {
-          "device_id": "my-favorite-mainboard"
-        },
         "newswitch-device-id": "my-favorite-mainboard"
       }
     },
@@ -808,14 +917,16 @@
       "design": "primitives/xyz-stage.dsn",
       "instantiation": {
         "inputs": {
-          "newswitch-controller": "my-favorite-mainboard",
           "newswitch-device-id": "just-some-boring-stage",
+          "newswitch-device-id-x": "just-some-boring-stage/x",
+          "newswitch-device-id-y": "just-some-boring-stage/y",
+          "newswitch-device-id-z": "just-some-boring-stage/z",
           "newswitch-input-variable-x": "sample-x",
           "newswitch-input-variable-y": "sample-y",
           "newswitch-input-variable-z": "sample-z",
-          "x-stage": 0,
-          "y-stage": 0,
-          "z-stage": 0
+          "position-x": 0,
+          "position-y": 0,
+          "position-z": 0
         }
       }
     },
@@ -980,10 +1091,26 @@
       },
       "results": {
         "newswitch-device-config": {
-          "controller": "my-favorite-mainboard",
-          "device_id": "just-some-boring-stage"
+          "axes": {
+            "x": "just-some-boring-stage/x",
+            "y": "just-some-boring-stage/y",
+            "z": "just-some-boring-stage/z"
+          }
         },
         "newswitch-device-id": "just-some-boring-stage"
+      }
+    },
+    {
+      "id": "sample-stage/x-axis-driver",
+      "kind": "primitive/static",
+      "static-models": {
+        "newswitch-device": "primitives/xyz-stage.dsn/axis.newswitch-device.yml"
+      },
+      "results": {
+        "newswitch-device-config": {
+          "optikit_dsn_variable": "sample-x"
+        },
+        "newswitch-device-id": "just-some-boring-stage/x"
       }
     },
     {
@@ -1087,6 +1214,19 @@
       }
     },
     {
+      "id": "sample-stage/y-axis-driver",
+      "kind": "primitive/static",
+      "static-models": {
+        "newswitch-device": "primitives/xyz-stage.dsn/axis.newswitch-device.yml"
+      },
+      "results": {
+        "newswitch-device-config": {
+          "optikit_dsn_variable": "sample-y"
+        },
+        "newswitch-device-id": "just-some-boring-stage/y"
+      }
+    },
+    {
       "id": "sample-stage/yz-plate",
       "kind": "design",
       "design": "primitives/xyz-stage.dsn/yz-plate.dsn",
@@ -1172,6 +1312,19 @@
       "static-models": {
         "gltf": "primitives/xyz-stage.dsn/yz-plate.dsn/BUY - Manual Z stage - LZ40 --- converter.glb",
         "step": "primitives/xyz-stage.dsn/yz-plate.dsn/BUY - Manual Z stage - LZ40 --- converter.stp"
+      }
+    },
+    {
+      "id": "sample-stage/z-axis-driver",
+      "kind": "primitive/static",
+      "static-models": {
+        "newswitch-device": "primitives/xyz-stage.dsn/axis.newswitch-device.yml"
+      },
+      "results": {
+        "newswitch-device-config": {
+          "optikit_dsn_variable": "sample-z"
+        },
+        "newswitch-device-id": "just-some-boring-stage/z"
       }
     },
     {

@@ -5,7 +5,6 @@ components:
   design: primitives/laser.dsn
   instantiation:
     inputs:
-      newswitch-controller: mainboard-2
       newswitch-device-id: hotlaser123
   position: [0.0, -50.0, 80.0]
   rotation:
@@ -515,14 +514,16 @@ components:
   design: primitives/xyz-stage.dsn
   instantiation:
     inputs:
-      newswitch-controller: mainboard-2
       newswitch-device-id: optics-stage
+      newswitch-device-id-x: optics-stage/x
+      newswitch-device-id-y: optics-stage/y
+      newswitch-device-id-z: optics-stage/z
       newswitch-input-variable-x: optics-x
       newswitch-input-variable-y: optics-y
       newswitch-input-variable-z: optics-z
-      x-stage: 0.0
-      y-stage: 0.0
-      z-stage: 0.0
+      position-x: 0.0
+      position-y: 0.0
+      position-z: 0.0
   position: [0.0, 0.0, 55.0]
   rotation:
     kind: extrinsic
@@ -830,14 +831,16 @@ components:
   design: primitives/xyz-stage.dsn
   instantiation:
     inputs:
-      newswitch-controller: mainboard-1
       newswitch-device-id: sample-stage
+      newswitch-device-id-x: sample-stage/x
+      newswitch-device-id-y: sample-stage/y
+      newswitch-device-id-z: sample-stage/z
       newswitch-input-variable-x: sample-x
       newswitch-input-variable-y: sample-y
       newswitch-input-variable-z: sample-z
-      x-stage: 0.0
-      y-stage: 0.0
-      z-stage: 0.0
+      position-x: 0.0
+      position-y: 0.0
+      position-z: 0.0
   position: [150.0, 0.0, 0.0]
   rotation:
     kind: extrinsic

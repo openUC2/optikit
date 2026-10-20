@@ -15,8 +15,6 @@ components:
   static-models:
     newswitch-device: mainboard.newswitch-device.yml
   results:
-    newswitch-device-config:
-      device_id: ""
     newswitch-device-id: ""
 - id: pcb
   kind: primitive/static

@@ -24,9 +24,6 @@
         "newswitch-device": "mainboard.newswitch-device.yml"
       },
       "results": {
-        "newswitch-device-config": {
-          "device_id": ""
-        },
         "newswitch-device-id": ""
       }
     },

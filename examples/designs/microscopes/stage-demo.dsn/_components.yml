@@ -5,7 +5,6 @@ components:
   design: primitives/laser.dsn
   instantiation:
     inputs:
-      newswitch-controller: mainboard-2
       newswitch-device-id: hotlaser123
 - id: blue-laser/case-bottom
   kind: design
@@ -76,9 +75,6 @@ components:
   static-models:
     newswitch-device: primitives/laser.dsn/laser.newswitch-device.yml
   results:
-    newswitch-device-config:
-      controller: mainboard-2
-      device_id: hotlaser123
     newswitch-device-id: hotlaser123
 - id: blue-laser/laser
   kind: primitive/static
@@ -109,8 +105,6 @@ components:
   static-models:
     newswitch-device: primitives/hikcamera-with-objective.dsn/camera.dsn/hikcamera.newswitch-device.yml
   results:
-    newswitch-device-config:
-      device_id: bigcamera42
     newswitch-device-id: bigcamera42
 - id: camera/mounted-objective
   kind: design
@@ -371,14 +365,16 @@ components:
   design: primitives/xyz-stage.dsn
   instantiation:
     inputs:
-      newswitch-controller: mainboard-2
       newswitch-device-id: optics-stage
+      newswitch-device-id-x: optics-stage/x
+      newswitch-device-id-y: optics-stage/y
+      newswitch-device-id-z: optics-stage/z
       newswitch-input-variable-x: optics-x
       newswitch-input-variable-y: optics-y
       newswitch-input-variable-z: optics-z
-      x-stage: 0.0
-      y-stage: 0.0
-      z-stage: 0.0
+      position-x: 0.0
+      position-y: 0.0
+      position-z: 0.0
 - id: optics-stage/base
   kind: design
   design: primitives/xyz-stage.dsn/base.dsn
@@ -473,9 +469,19 @@ components:
     newswitch-device: primitives/xyz-stage.dsn/stage.newswitch-device.yml
   results:
     newswitch-device-config:
-      controller: mainboard-2
-      device_id: optics-stage
+      axes:
+        x: optics-stage/x
+        "y": optics-stage/y
+        z: optics-stage/z
     newswitch-device-id: optics-stage
+- id: optics-stage/x-axis-driver
+  kind: primitive/static
+  static-models:
+    newswitch-device: primitives/xyz-stage.dsn/axis.newswitch-device.yml
+  results:
+    newswitch-device-config:
+      optikit_dsn_variable: optics-x
+    newswitch-device-id: optics-stage/x
 - id: optics-stage/xy-plate
   kind: design
   design: primitives/xyz-stage.dsn/xy-plate.dsn
@@ -534,6 +540,14 @@ components:
   static-models:
     gltf: "primitives/xyz-stage.dsn/xy-plate.dsn/BUY - XYZ linear table - LD40 --- XY plate.glb"
     step: "primitives/xyz-stage.dsn/xy-plate.dsn/BUY - XYZ linear table - LD40 --- XY plate.stp"
+- id: optics-stage/y-axis-driver
+  kind: primitive/static
+  static-models:
+    newswitch-device: primitives/xyz-stage.dsn/axis.newswitch-device.yml
+  results:
+    newswitch-device-config:
+      optikit_dsn_variable: optics-y
+    newswitch-device-id: optics-stage/y
 - id: optics-stage/yz-plate
   kind: design
   design: primitives/xyz-stage.dsn/yz-plate.dsn
@@ -586,6 +600,14 @@ components:
   static-models:
     gltf: "primitives/xyz-stage.dsn/yz-plate.dsn/BUY - Manual Z stage - LZ40 --- converter.glb"
     step: "primitives/xyz-stage.dsn/yz-plate.dsn/BUY - Manual Z stage - LZ40 --- converter.stp"
+- id: optics-stage/z-axis-driver
+  kind: primitive/static
+  static-models:
+    newswitch-device: primitives/xyz-stage.dsn/axis.newswitch-device.yml
+  results:
+    newswitch-device-config:
+      optikit_dsn_variable: optics-z
+    newswitch-device-id: optics-stage/z
 - id: optics-stage/z-plate
   kind: primitive/static
   static-models:
@@ -630,14 +652,16 @@ components:
   design: primitives/xyz-stage.dsn
   instantiation:
     inputs:
-      newswitch-controller: mainboard-1
       newswitch-device-id: sample-stage
+      newswitch-device-id-x: sample-stage/x
+      newswitch-device-id-y: sample-stage/y
+      newswitch-device-id-z: sample-stage/z
       newswitch-input-variable-x: sample-x
       newswitch-input-variable-y: sample-y
       newswitch-input-variable-z: sample-z
-      x-stage: 0.0
-      y-stage: 0.0
-      z-stage: 0.0
+      position-x: 0.0
+      position-y: 0.0
+      position-z: 0.0
 - id: sample-stage/base
   kind: design
   design: primitives/xyz-stage.dsn/base.dsn
@@ -732,9 +756,19 @@ components:
     newswitch-device: primitives/xyz-stage.dsn/stage.newswitch-device.yml
   results:
     newswitch-device-config:
-      controller: mainboard-1
-      device_id: sample-stage
+      axes:
+        x: sample-stage/x
+        "y": sample-stage/y
+        z: sample-stage/z
     newswitch-device-id: sample-stage
+- id: sample-stage/x-axis-driver
+  kind: primitive/static
+  static-models:
+    newswitch-device: primitives/xyz-stage.dsn/axis.newswitch-device.yml
+  results:
+    newswitch-device-config:
+      optikit_dsn_variable: sample-x
+    newswitch-device-id: sample-stage/x
 - id: sample-stage/xy-plate
   kind: design
   design: primitives/xyz-stage.dsn/xy-plate.dsn
@@ -793,6 +827,14 @@ components:
   static-models:
     gltf: "primitives/xyz-stage.dsn/xy-plate.dsn/BUY - XYZ linear table - LD40 --- XY plate.glb"
     step: "primitives/xyz-stage.dsn/xy-plate.dsn/BUY - XYZ linear table - LD40 --- XY plate.stp"
+- id: sample-stage/y-axis-driver
+  kind: primitive/static
+  static-models:
+    newswitch-device: primitives/xyz-stage.dsn/axis.newswitch-device.yml
+  results:
+    newswitch-device-config:
+      optikit_dsn_variable: sample-y
+    newswitch-device-id: sample-stage/y
 - id: sample-stage/yz-plate
   kind: design
   design: primitives/xyz-stage.dsn/yz-plate.dsn
@@ -845,6 +887,14 @@ components:
   static-models:
     gltf: "primitives/xyz-stage.dsn/yz-plate.dsn/BUY - Manual Z stage - LZ40 --- converter.glb"
     step: "primitives/xyz-stage.dsn/yz-plate.dsn/BUY - Manual Z stage - LZ40 --- converter.stp"
+- id: sample-stage/z-axis-driver
+  kind: primitive/static
+  static-models:
+    newswitch-device: primitives/xyz-stage.dsn/axis.newswitch-device.yml
+  results:
+    newswitch-device-config:
+      optikit_dsn_variable: sample-z
+    newswitch-device-id: sample-stage/z
 - id: sample-stage/z-plate
   kind: primitive/static
   static-models:
@@ -887,6 +937,86 @@ components:
   instantiation:
     inputs:
       newswitch-device-id: mainboard-1
+- id: standalone-board-1-mapping-laser
+  kind: design
+  design: primitives/controller-mapping.dsn
+  instantiation:
+    inputs:
+      id: "0"
+      newswitch-controller-id: mainboard-1
+      newswitch-mapping-type: serial-laser
+      newswitch-peripheral-id: hotlaser123
+- id: standalone-board-1-mapping-laser/mapping
+  kind: results
+  results:
+    newswitch-device-config:
+      mapping:
+        hotlaser123:
+          id: 0
+          pwm_max: 0
+          subid: 0
+          type: serial-laser
+    newswitch-device-id: mainboard-1
+- id: standalone-board-1-mapping-optics-stage-x
+  kind: design
+  design: primitives/controller-mapping.dsn
+  instantiation:
+    inputs:
+      id: "0"
+      newswitch-controller-id: mainboard-1
+      newswitch-mapping-type: serial-motor
+      newswitch-peripheral-id: optics-stage/x
+- id: standalone-board-1-mapping-optics-stage-x/mapping
+  kind: results
+  results:
+    newswitch-device-config:
+      mapping:
+        optics-stage/x:
+          id: 0
+          pwm_max: 0
+          subid: 0
+          type: serial-motor
+    newswitch-device-id: mainboard-1
+- id: standalone-board-1-mapping-optics-stage-y
+  kind: design
+  design: primitives/controller-mapping.dsn
+  instantiation:
+    inputs:
+      id: "1"
+      newswitch-controller-id: mainboard-1
+      newswitch-mapping-type: serial-motor
+      newswitch-peripheral-id: optics-stage/y
+- id: standalone-board-1-mapping-optics-stage-y/mapping
+  kind: results
+  results:
+    newswitch-device-config:
+      mapping:
+        optics-stage/y:
+          id: 1
+          pwm_max: 0
+          subid: 0
+          type: serial-motor
+    newswitch-device-id: mainboard-1
+- id: standalone-board-1-mapping-optics-stage-z
+  kind: design
+  design: primitives/controller-mapping.dsn
+  instantiation:
+    inputs:
+      id: "2"
+      newswitch-controller-id: mainboard-1
+      newswitch-mapping-type: serial-motor
+      newswitch-peripheral-id: optics-stage/z
+- id: standalone-board-1-mapping-optics-stage-z/mapping
+  kind: results
+  results:
+    newswitch-device-config:
+      mapping:
+        optics-stage/z:
+          id: 2
+          pwm_max: 0
+          subid: 0
+          type: serial-motor
+    newswitch-device-id: mainboard-1
 - id: standalone-board-1/case-base
   kind: primitive/static
   static-models:
@@ -902,8 +1032,6 @@ components:
   static-models:
     newswitch-device: primitives/electronics-mainboard.dsn/mainboard.newswitch-device.yml
   results:
-    newswitch-device-config:
-      device_id: mainboard-1
     newswitch-device-id: mainboard-1
 - id: standalone-board-1/pcb
   kind: primitive/static
@@ -955,6 +1083,66 @@ components:
   instantiation:
     inputs:
       newswitch-device-id: mainboard-2
+- id: standalone-board-2-mapping-sample-stage-x
+  kind: design
+  design: primitives/controller-mapping.dsn
+  instantiation:
+    inputs:
+      id: "0"
+      newswitch-controller-id: mainboard-2
+      newswitch-mapping-type: serial-motor
+      newswitch-peripheral-id: sample-stage/x
+- id: standalone-board-2-mapping-sample-stage-x/mapping
+  kind: results
+  results:
+    newswitch-device-config:
+      mapping:
+        sample-stage/x:
+          id: 0
+          pwm_max: 0
+          subid: 0
+          type: serial-motor
+    newswitch-device-id: mainboard-2
+- id: standalone-board-2-mapping-sample-stage-y
+  kind: design
+  design: primitives/controller-mapping.dsn
+  instantiation:
+    inputs:
+      id: "1"
+      newswitch-controller-id: mainboard-2
+      newswitch-mapping-type: serial-motor
+      newswitch-peripheral-id: sample-stage/y
+- id: standalone-board-2-mapping-sample-stage-y/mapping
+  kind: results
+  results:
+    newswitch-device-config:
+      mapping:
+        sample-stage/y:
+          id: 1
+          pwm_max: 0
+          subid: 0
+          type: serial-motor
+    newswitch-device-id: mainboard-2
+- id: standalone-board-2-mapping-sample-stage-z
+  kind: design
+  design: primitives/controller-mapping.dsn
+  instantiation:
+    inputs:
+      id: "2"
+      newswitch-controller-id: mainboard-2
+      newswitch-mapping-type: serial-motor
+      newswitch-peripheral-id: sample-stage/z
+- id: standalone-board-2-mapping-sample-stage-z/mapping
+  kind: results
+  results:
+    newswitch-device-config:
+      mapping:
+        sample-stage/z:
+          id: 2
+          pwm_max: 0
+          subid: 0
+          type: serial-motor
+    newswitch-device-id: mainboard-2
 - id: standalone-board-2/case-base
   kind: primitive/static
   static-models:
@@ -970,8 +1158,6 @@ components:
   static-models:
     newswitch-device: primitives/electronics-mainboard.dsn/mainboard.newswitch-device.yml
   results:
-    newswitch-device-config:
-      device_id: mainboard-2
     newswitch-device-id: mainboard-2
 - id: standalone-board-2/pcb
   kind: primitive/static

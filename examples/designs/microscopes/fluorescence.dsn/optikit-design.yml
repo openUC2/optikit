@@ -62,7 +62,6 @@ components:
     instantiation:
       inputs:
         newswitch-device-id: hotlaser123
-        newswitch-controller: my-favorite-mainboard
   sample-mirror:
     kind: design
     design: cube-mounted/mirror-diagonal.dsn
@@ -72,16 +71,18 @@ components:
     instantiation:
       inputs:
         newswitch-device-id: just-some-boring-stage
-        newswitch-controller: my-favorite-mainboard
+        newswitch-device-id-x: just-some-boring-stage/x
+        newswitch-device-id-y: just-some-boring-stage/y
+        newswitch-device-id-z: just-some-boring-stage/z
         newswitch-input-variable-x: sample-x
         newswitch-input-variable-y: sample-y
         newswitch-input-variable-z: sample-z
-        x-stage: ~ inputs['sample-x'].value
-        y-stage: ~ inputs['sample-y'].value
-        z-stage: ~ inputs['sample-z'].value
-        # x-stage: 2
-        # y-stage: 4
-        # z-stage: 8
+        position-x: ~ inputs['sample-x'].value
+        position-y: ~ inputs['sample-y'].value
+        position-z: ~ inputs['sample-z'].value
+        # position-x: 2
+        # position-y: 4
+        # position-z: 8
   slide-holder:
     kind: design
     design: cube-mounted/slide-holder.dsn/mounted-holder.dsn
@@ -91,6 +92,42 @@ components:
     instantiation:
       inputs:
         newswitch-device-id: my-favorite-mainboard
+  electronics-controller-mapping-laser:
+    kind: design
+    design: primitives/controller-mapping.dsn
+    instantiation:
+      inputs:
+        newswitch-controller-id: my-favorite-mainboard
+        newswitch-peripheral-id: hotlaser123
+        newswitch-mapping-type: serial-laser
+        id: 0
+  electronics-controller-mapping-sample-stage-x:
+    kind: design
+    design: primitives/controller-mapping.dsn
+    instantiation:
+      inputs:
+        newswitch-controller-id: my-favorite-mainboard
+        newswitch-peripheral-id: just-some-boring-stage/x
+        newswitch-mapping-type: serial-motor
+        id: 0
+  electronics-controller-mapping-sample-stage-y:
+    kind: design
+    design: primitives/controller-mapping.dsn
+    instantiation:
+      inputs:
+        newswitch-controller-id: my-favorite-mainboard
+        newswitch-peripheral-id: just-some-boring-stage/y
+        newswitch-mapping-type: serial-motor
+        id: 1
+  electronics-controller-mapping-sample-stage-z:
+    kind: design
+    design: primitives/controller-mapping.dsn
+    instantiation:
+      inputs:
+        newswitch-controller-id: my-favorite-mainboard
+        newswitch-peripheral-id: just-some-boring-stage/z
+        newswitch-mapping-type: serial-motor
+        id: 2
 
 assemblies:
   '':
@@ -174,3 +211,11 @@ assemblies:
           translation:
             offset-grid: {z: -1}
             offset-mm: {x: 25, y: 25, z: ~ 25}
+  wiring:
+    children:
+      electronics-controller-mapping-sample-stage-x:
+        assembly: wiring
+      electronics-controller-mapping-sample-stage-y:
+        assembly: wiring
+      electronics-controller-mapping-sample-stage-z:
+        assembly: wiring

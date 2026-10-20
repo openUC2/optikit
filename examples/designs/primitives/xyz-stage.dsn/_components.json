@@ -162,8 +162,24 @@
       },
       "results": {
         "newswitch-device-config": {
-          "controller": "",
-          "device_id": ""
+          "axes": {
+            "x": "",
+            "y": "",
+            "z": ""
+          }
+        },
+        "newswitch-device-id": ""
+      }
+    },
+    {
+      "id": "x-axis-driver",
+      "kind": "primitive/static",
+      "static-models": {
+        "newswitch-device": "axis.newswitch-device.yml"
+      },
+      "results": {
+        "newswitch-device-config": {
+          "optikit_dsn_variable": ""
         },
         "newswitch-device-id": ""
       }
@@ -269,6 +285,19 @@
       }
     },
     {
+      "id": "y-axis-driver",
+      "kind": "primitive/static",
+      "static-models": {
+        "newswitch-device": "axis.newswitch-device.yml"
+      },
+      "results": {
+        "newswitch-device-config": {
+          "optikit_dsn_variable": ""
+        },
+        "newswitch-device-id": ""
+      }
+    },
+    {
       "id": "yz-plate",
       "kind": "design",
       "design": "yz-plate.dsn",
@@ -354,6 +383,19 @@
       "static-models": {
         "gltf": "yz-plate.dsn/BUY - Manual Z stage - LZ40 --- converter.glb",
         "step": "yz-plate.dsn/BUY - Manual Z stage - LZ40 --- converter.stp"
+      }
+    },
+    {
+      "id": "z-axis-driver",
+      "kind": "primitive/static",
+      "static-models": {
+        "newswitch-device": "axis.newswitch-device.yml"
+      },
+      "results": {
+        "newswitch-device-config": {
+          "optikit_dsn_variable": ""
+        },
+        "newswitch-device-id": ""
       }
     },
     {

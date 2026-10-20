@@ -38,12 +38,15 @@ def assemble_devices(
             config = load_yaml(component["static-models"]["newswitch-device"], wd)
         if "newswitch-device-config" in results:
             override = results["newswitch-device-config"]
-            deepmerge.always_merger.merge(config, override)
+            config = deepmerge.always_merger.merge(config, override)
 
-        v: str = config["newswitch-version"]
-        version = max(version, v)
-        config.pop("newswitch-version")
+        if "newswitch_version" in config:
+            v: str = config["newswitch_version"]
+            version = max(version, v)
+            config.pop("newswitch_version")
 
+        if id in devices:
+            config = deepmerge.always_merger.merge(devices[id], config)
         devices[id] = config
 
     return (version, devices)
@@ -54,7 +57,7 @@ def assemble(
 ) -> Mapping[str, object]:
     (version, devices) = assemble_devices(components_report["components"], wd)
     return {
-        "newswitch-version": version,
+        "newswitch_version": version,
         "devices": devices,
     }
 
