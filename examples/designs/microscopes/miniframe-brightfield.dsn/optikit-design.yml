@@ -1,4 +1,4 @@
-optikit-version: v0.0.0-alpha.1
+optikit-version: v0.1.0-alpha.1
 design:
   description: 'The FRAME inner cube (OPM-0003 Brightfield): 3x3x2 stack, sandwich plates, puzzle joints,
     camera arm — expanded from openuc2.group.miniframe_brightfield (WP-53)'
