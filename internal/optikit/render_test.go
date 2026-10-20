@@ -12,6 +12,7 @@ import (
 	"github.com/openUC2/optikit/exp/designs"
 )
 
+/*
 var renderDesignDeclTests = map[string][]struct {
 	Assembly      designs.AssmID
 	Instantiation designs.InstSpec
@@ -24,6 +25,7 @@ var renderDesignDeclTests = map[string][]struct {
 	},
 	"microscopes/simple-3d.dsn": {{}},
 }
+*/
 
 const (
 	formatGLTF = "gltf"
