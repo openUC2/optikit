@@ -31,7 +31,7 @@ builds:
     - CGO_ENABLED=0
   targets:
     - linux_amd64_v1
-    # - linux_arm64
+    - linux_arm64
     - darwin_amd64_v1
     - darwin_arm64
   overrides:
@@ -41,25 +41,11 @@ builds:
       flags:
         - -trimpath
         - -buildmode=pie
-      env:
-        # CGo is needed for github.com/fsnotify/fsevents, which is needed by (probably) the Docker
-        # Compose CLI
-        - CGO_ENABLED=1
-        # These toolchains are the ones provided by the goreleaser-cross Docker image:
-        - CC=o64-clang
-        - CXX=o64-clang++
     - goos: darwin
       goarch: arm64
       flags:
         - -trimpath
         - -buildmode=pie
-      env:
-        # CGo is needed for github.com/fsnotify/fsevents, which is needed by (probably) the Docker
-        # Compose CLI
-        - CGO_ENABLED=1
-        # These toolchains are the ones provided by the goreleaser-cross Docker image:
-        - CC=oa64-clang
-        - CXX=oa64-clang++
 
 archives:
   - id: optikit
@@ -137,25 +123,6 @@ dockers:
     - "--label=org.opencontainers.image.version={{.Version}}"
     - "--label=org.opencontainers.image.source={{.GitURL}}"
     - "--label=org.opencontainers.image.licenses=(Apache-2.0 OR BlueOak-1.0.0)"
-  - id: optikit-armv7
-    ids:
-      - optikit
-    dockerfile: "Dockerfile"
-    use: buildx
-    goarch: arm
-    goarm: 7
-    image_templates:
-    - "ghcr.io/openuc2/optikit:latest-armv7"
-    - "ghcr.io/openuc2/optikit:{{ .Version }}-armv7"
-    build_flag_templates:
-    - "--pull"
-    - "--platform=linux/arm/v7"
-    - "--label=org.opencontainers.image.created={{.Date}}"
-    - "--label=org.opencontainers.image.name={{.ProjectName}}"
-    - "--label=org.opencontainers.image.revision={{.FullCommit}}"
-    - "--label=org.opencontainers.image.version={{.Version}}"
-    - "--label=org.opencontainers.image.source={{.GitURL}}"
-    - "--label=org.opencontainers.image.licenses=(Apache-2.0 OR BlueOak-1.0.0)"
 
 docker_manifests:
   # optikit
@@ -163,9 +130,7 @@ docker_manifests:
     image_templates:
       - "ghcr.io/openuc2/optikit:latest-amd64"
       - "ghcr.io/openuc2/optikit:latest-arm64v8"
-      - "ghcr.io/openuc2/optikit:latest-armv7"
   - name_template: "ghcr.io/openuc2/optikit:{{ .Major }}.{{ .Minor }}.{{ .Patch }}"
     image_templates:
       - "ghcr.io/openuc2/optikit:{{ .Version }}-amd64"
       - "ghcr.io/openuc2/optikit:{{ .Version }}-arm64v8"
-      - "ghcr.io/openuc2/optikit:{{ .Version }}-armv7"
