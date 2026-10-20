@@ -93,12 +93,12 @@ archives:
 
 release:
   prerelease: auto
-  footer: |
-    {{ if and .Tag .PreviousTag -}}
-      **Commit history**: [{{ .PreviousTag }}...{{ .Tag }}]({{ .GitURL }}/compare/{{ .Tag }}...{{ .PreviousTag }})
-    {{- else if .PreviousTag -}}
-      **Commit history**: [{{ .PreviousTag }}...{{ .ShortCommit }}]({{ .GitURL }}/compare/{{ .Commit }}...{{ .PreviousTag }})
-    {{- end }}
+  # footer: |
+  #   {{ if and .Tag .PreviousTag -}}
+  #     **Commit history**: [{{ .PreviousTag }}...{{ .Tag }}]({{ .GitURL }}/compare/{{ .Tag }}...{{ .PreviousTag }})
+  #   {{- else if .PreviousTag -}}
+  #     **Commit history**: [{{ .PreviousTag }}...{{ .ShortCommit }}]({{ .GitURL }}/compare/{{ .Commit }}...{{ .PreviousTag }})
+  #   {{- end }}
 
 dockers:
   # optikit
