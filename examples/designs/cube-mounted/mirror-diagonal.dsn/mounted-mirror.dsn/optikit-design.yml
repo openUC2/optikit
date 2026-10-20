@@ -12,9 +12,6 @@ components:
       static-models:
         gltf: BUY - Mirror - 40x30x2.glb
         step: BUY - Mirror - 40x30x2.stp
-    pose:
-      rotation:
-        kind: grid
     tags:
       - optical/mirror/flat
       - optical/mirror/single-sided
@@ -26,11 +23,6 @@ components:
       static-models:
         gltf: BUY - Adhesive pad - 41x29x1.glb
         step: BUY - Adhesive pad - 41x29x1.stp
-    pose:
-      rotation:
-        kind: grid
-      translation:
-        offset-mm: {x: -0.5, y: 0.5}
     tags:
       - structure/fastener/adhesive
       - procurement/buy
@@ -41,10 +33,17 @@ components:
       static-models:
         gltf: PRT - 2022 - INSMIR45TH2.glb
         step: PRT - 2022 - INSMIR45TH2.stp
-    pose:
-      rotation:
-        kind: grid
     tags:
       - structure/insert
       - procurement/3d-print
       - in/kit/core-box
+
+assemblies:
+  '':
+    children:
+      mirror: {}
+      adhesive-pad:
+        pose:
+          translation:
+            offset-mm: {x: -0.5, y: 0.5}
+      insert: {}

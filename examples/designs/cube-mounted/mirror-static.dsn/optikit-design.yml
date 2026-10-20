@@ -6,22 +6,6 @@ design:
     - composition/cube-mounted
     - in/kit/qbox
 
-components:
-  skeleton:
-    kind: design
-    design: primitives/cube-skeleton.dsn
-    pose:
-      rotation:
-        kind: grid
-  mounted-mirror:
-    kind: design
-    design: mounted-mirror.dsn
-    instantiation:
-      variant: "~ inputs['off-axis'].value ? 'xy' : 'x'"
-    pose:
-      rotation:
-        kind: grid
-
 inputs:
   off-axis:
     description: >
@@ -32,17 +16,32 @@ inputs:
       - pose/insert/orientation
       - adjustment/manual-assembly
 
-variants:
+components:
+  skeleton:
+    kind: design
+    design: primitives/cube-skeleton.dsn
+  mounted-mirror:
+    kind: design
+    design: mounted-mirror.dsn
+
+assemblies:
   x:
     description: Base direction in the x-axis for the normal vector of the mirror before any off-axis deflection
+    children:
+      skeleton: {}
+      mounted-mirror:
+        assembly: "~ inputs['off-axis'].value ? 'xy' : 'x'"
     tags:
       - pose/insert/orientation/horizontal
   z:
     description: Base direction in the z-axis for the normal vector of the mirror before any off-axis deflection
-    components:
+    children:
+      skeleton: {}
       mounted-mirror:
+        assembly: "~ inputs['off-axis'].value ? 'xy' : 'x'"
         pose:
           rotation:
+            kind: grid
             grid: {z: +y, x: +z}
     tags:
       - pose/insert/orientation/vertical

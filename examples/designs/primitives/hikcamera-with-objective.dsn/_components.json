@@ -9,19 +9,6 @@
         "inputs": {
           "newswitch-device-id": ""
         }
-      },
-      "position": [
-        -52.2,
-        0,
-        0
-      ],
-      "rotation": {
-        "kind": "extrinsic",
-        "order": "zxy",
-        "angles": {
-          "x": 90,
-          "z": 90
-        }
       }
     },
     {
@@ -30,19 +17,6 @@
       "static-models": {
         "gltf": "camera.dsn/BUY - HIKROBOT - Camera - MV-CE060-10UM-PRO.glb",
         "step": "camera.dsn/BUY - HIKROBOT - Camera - MV-CE060-10UM-PRO.stp"
-      },
-      "position": [
-        -52.2,
-        0,
-        0
-      ],
-      "rotation": {
-        "kind": "extrinsic",
-        "order": "zxy",
-        "angles": {
-          "x": -90,
-          "z": 90
-        }
       }
     },
     {
@@ -62,44 +36,19 @@
       "id": "mounted-objective",
       "kind": "design",
       "design": "mounted-objective.dsn",
-      "instantiation": {},
-      "rotation": {
-        "kind": "extrinsic",
-        "order": "zxy"
-      }
+      "instantiation": {}
     },
     {
       "id": "mounted-objective/lens",
       "kind": "design",
       "design": "mounted-objective.dsn/lens.dsn",
-      "instantiation": {},
-      "position": [
-        23.9,
-        0,
-        0
-      ],
-      "rotation": {
-        "kind": "extrinsic",
-        "order": "zxy",
-        "angles": {
-          "y": -90,
-          "z": -180
-        }
-      }
+      "instantiation": {}
     },
     {
       "id": "mounted-objective/lens-holder-bottom",
       "kind": "design",
       "design": "mounted-objective.dsn/half-case.dsn",
-      "instantiation": {},
-      "rotation": {
-        "kind": "extrinsic",
-        "order": "zxy",
-        "angles": {
-          "y": -180,
-          "z": -180
-        }
-      }
+      "instantiation": {}
     },
     {
       "id": "mounted-objective/lens-holder-bottom/cube-pin-1",
@@ -135,14 +84,6 @@
       "static-models": {
         "gltf": "mounted-objective.dsn/half-case.dsn/PRT - 1008 - OBJHOL_CLENS-100TEL.glb",
         "step": "mounted-objective.dsn/half-case.dsn/PRT - 1008 - OBJHOL_CLENS-100TEL.stp"
-      },
-      "rotation": {
-        "kind": "extrinsic",
-        "order": "zxy",
-        "angles": {
-          "y": -180,
-          "z": -180
-        }
       }
     },
     {
@@ -177,11 +118,7 @@
       "id": "mounted-objective/lens-holder-top",
       "kind": "design",
       "design": "mounted-objective.dsn/half-case.dsn",
-      "instantiation": {},
-      "rotation": {
-        "kind": "extrinsic",
-        "order": "zxy"
-      }
+      "instantiation": {}
     },
     {
       "id": "mounted-objective/lens-holder-top/cube-pin-1",
@@ -217,10 +154,6 @@
       "static-models": {
         "gltf": "mounted-objective.dsn/half-case.dsn/PRT - 1008 - OBJHOL_CLENS-100TEL.glb",
         "step": "mounted-objective.dsn/half-case.dsn/PRT - 1008 - OBJHOL_CLENS-100TEL.stp"
-      },
-      "rotation": {
-        "kind": "extrinsic",
-        "order": "zxy"
       }
     },
     {
@@ -257,15 +190,6 @@
       "static-models": {
         "gltf": "mounted-objective.dsn/lens.dsn/BUY - Objectiv - CLENS-100TEL.glb",
         "step": "mounted-objective.dsn/lens.dsn/BUY - Objectiv - CLENS-100TEL.stp"
-      },
-      "position": [
-        23.9,
-        0,
-        0
-      ],
-      "rotation": {
-        "kind": "extrinsic",
-        "order": "zxy"
       }
     }
   ]

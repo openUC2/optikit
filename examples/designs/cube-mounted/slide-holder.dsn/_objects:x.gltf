@@ -62863,10 +62863,10 @@
   ],
   "nodes": [
     {
-      "name": "design",
+      "name": "x",
       "children": [
         1,
-        6
+        2
       ]
     },
     {
@@ -62883,34 +62883,9 @@
       ],
       "name": "mounted-slide-holder",
       "children": [
-        2,
-        4
-      ]
-    },
-    {
-      "translation": [
-        0,
-        0,
-        -0.01
-      ],
-      "name": "clip",
-      "children": [
-        3
-      ]
-    },
-    {
-      "name": "PRT - 2008 - SAMCLP",
-      "mesh": 0
-    },
-    {
-      "name": "insert",
-      "children": [
+        3,
         5
       ]
-    },
-    {
-      "name": "PRT - 2028 - INSSAMMNT - V04",
-      "mesh": 1
     },
     {
       "name": "skeleton",
@@ -62920,7 +62895,32 @@
       ]
     },
     {
-      "name": "lower-half",
+      "translation": [
+        0,
+        0,
+        -0.01
+      ],
+      "name": "mounted-slide-holder/clip",
+      "children": [
+        4
+      ]
+    },
+    {
+      "name": "PRT - 2008 - SAMCLP",
+      "mesh": 0
+    },
+    {
+      "name": "mounted-slide-holder/insert",
+      "children": [
+        6
+      ]
+    },
+    {
+      "name": "PRT - 2028 - INSSAMMNT - V04",
+      "mesh": 1
+    },
+    {
+      "name": "skeleton/lower-half",
       "children": [
         8
       ]
@@ -62936,7 +62936,7 @@
         0,
         0
       ],
-      "name": "upper-half",
+      "name": "skeleton/upper-half",
       "children": [
         10
       ]

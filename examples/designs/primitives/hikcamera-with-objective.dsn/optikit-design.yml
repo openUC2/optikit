@@ -6,6 +6,13 @@ design:
     - composition/cube-compatible
     - in/core-box
 
+inputs:
+  newswitch-device-id:
+    description: A short unique name for the device in NewSwitch, which can be referenced from other parts of the overall NewSwitch config
+    kind: string
+    tags:
+      - config/newswitch/device-id
+
 components:
   mounted-objective:
     kind: design
@@ -19,20 +26,19 @@ components:
     instantiation:
       inputs:
         newswitch-device-id: ~ inputs['newswitch-device-id'].value
-    pose:
-      rotation:
-        kind: grid
-        grid: {z: +x, x: +y}
-      translation:
-        offset-mm: {x: -52.2}
     tags:
       - optical/detector/camera
       - procurement/buy
       - in/kit/infinity-box
 
-inputs:
-  newswitch-device-id:
-    description: A short unique name for the device in NewSwitch, which can be referenced from other parts of the overall NewSwitch config
-    kind: string
-    tags:
-      - config/newswitch/device-id
+assemblies:
+  '':
+    children:
+      mounted-objective: {}
+      camera:
+        pose:
+          rotation:
+            kind: grid
+            grid: {z: +x, x: +y}
+          translation:
+            offset-mm: {x: -52.2}

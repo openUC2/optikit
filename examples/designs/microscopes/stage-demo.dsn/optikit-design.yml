@@ -1,0 +1,249 @@
+optikit-version: v0.0.0-alpha.1
+
+design:
+  description: An overengineered fluorescence microscope with optics mounted on a stage and a sample mounted on another stage
+  tags:
+    - instrument
+    - instrument/microscope
+
+inputs:
+  optics-x:
+    description: Extension of the optics stage's x-axis actuator
+    kind: float64
+    units: mm
+    min: 0
+    max: 25
+    tags:
+      - pose/actuator/translation
+      - adjustment/electronic
+  optics-y:
+    description: Extension of the optics stage's y-axis actuator
+    kind: float64
+    units: mm
+    min: 0
+    max: 25
+    tags:
+      - pose/actuator/translation
+      - adjustment/electronic
+  optics-z:
+    description: Extension of the optics stage's z-axis actuator
+    kind: float64
+    units: mm
+    min: 0
+    max: 25
+    tags:
+      - pose/actuator/translation
+      - adjustment/electronic
+  sample-x:
+    description: Extension of the sample stage's x-axis actuator
+    kind: float64
+    units: mm
+    min: 0
+    max: 25
+    tags:
+      - pose/actuator/translation
+      - adjustment/electronic
+  sample-y:
+    description: Extension of the sample stage's y-axis actuator
+    kind: float64
+    units: mm
+    min: 0
+    max: 25
+    tags:
+      - pose/actuator/translation
+      - adjustment/electronic
+  sample-z:
+    description: Extension of the sample stage's z-axis actuator
+    kind: float64
+    units: mm
+    min: 0
+    max: 25
+    tags:
+      - pose/actuator/translation
+      - adjustment/electronic
+
+components:
+  sample-stage:
+    kind: design
+    design: primitives/xyz-stage.dsn
+    instantiation:
+      inputs:
+        newswitch-device-id: sample-stage
+        newswitch-controller: mainboard-1
+        newswitch-input-variable-x: sample-x
+        newswitch-input-variable-y: sample-y
+        newswitch-input-variable-z: sample-z
+        x-stage: ~ inputs['sample-x'].value
+        y-stage: ~ inputs['sample-y'].value
+        z-stage: ~ inputs['sample-z'].value
+        # x-stage: 8
+        # y-stage: 16
+        # z-stage: 32
+  slide-holder:
+    kind: design
+    design: cube-mounted/slide-holder.dsn/mounted-holder.dsn
+  stack:
+    kind: location
+    tags:
+      - subkind/group
+  optics-stage:
+    kind: design
+    design: primitives/xyz-stage.dsn
+    instantiation:
+      inputs:
+        newswitch-device-id: optics-stage
+        newswitch-controller: mainboard-2
+        newswitch-input-variable-x: optics-x
+        newswitch-input-variable-y: optics-y
+        newswitch-input-variable-z: optics-z
+        x-stage: ~ inputs['optics-x'].value
+        y-stage: ~ inputs['optics-y'].value
+        z-stage: ~ inputs['optics-z'].value
+        # x-stage: 4
+        # y-stage: 8
+        # z-stage: 16
+  optics:
+    kind: location
+    tags:
+      - subkind/group
+  camera:
+    kind: design
+    design: primitives/hikcamera-with-objective.dsn
+    instantiation:
+      inputs:
+        newswitch-device-id: bigcamera42
+  dichroic:
+    kind: design
+    design: cube-mounted/dichroic-mirror.dsn
+  objective:
+    kind: design
+    design: cube-mounted/lens.dsn
+    instantiation:
+      offset: 0
+  laser-mirror:
+    kind: design
+    design: cube-mounted/mirror-diagonal.dsn
+  fiber-holder:
+    kind: design
+    design: cube-mounted/fiber-holder.dsn
+  blue-laser:
+    kind: design
+    design: primitives/laser.dsn
+    instantiation:
+      inputs:
+        newswitch-device-id: hotlaser123
+        newswitch-controller: mainboard-2
+  sample-mirror:
+    kind: design
+    design: cube-mounted/mirror-diagonal.dsn
+  standalone-board-1:
+    kind: design
+    design: primitives/electronics-mainboard.dsn
+    instantiation:
+      inputs:
+        newswitch-device-id: mainboard-1
+  standalone-board-2:
+    kind: design
+    design: primitives/electronics-mainboard.dsn
+    instantiation:
+      inputs:
+        newswitch-device-id: mainboard-2
+
+assemblies:
+  '':
+    children:
+      optics-stage:
+        pose:
+          translation:
+            offset-grid: {z: 1}
+        children:
+          optics:
+            pose:
+              base:
+                kind: mate
+                mate: stage-center
+              translation:
+                offset-mm: {z: 25}
+            children:
+              camera:
+                children:
+                  dichroic:
+                    assembly: xy
+                    pose:
+                      kind: relative-translation
+                      rotation:
+                        kind: uc2
+                        grid: {z: -z}
+                      translation:
+                        offset-grid: {x: 1}
+                    children:
+                      objective:
+                        assembly: x
+                        pose:
+                          kind: relative-translation
+                          translation:
+                            offset-grid: {x: 1}
+                        children:
+                          sample-mirror:
+                            assembly: _z
+                            pose:
+                              kind: relative-translation
+                              rotation:
+                                kind: uc2
+                                grid: {z: -z, x: -x}
+                              translation:
+                                offset-grid: {x: 1}
+                      laser-mirror:
+                        assembly: xy
+                        pose:
+                          kind: relative-translation
+                          rotation:
+                            kind: uc2
+                            grid: {x: +y}
+                          translation:
+                            offset-grid: {y: -1}
+                        children:
+                          fiber-holder:
+                            assembly: x
+                            pose:
+                              kind: relative-translation
+                              rotation:
+                                kind: uc2
+                              translation:
+                                offset-grid: {x: -1}
+      sample-stage:
+        pose:
+          translation:
+            offset-grid: {x: 3}
+        children:
+          slide-holder:
+            pose:
+              base:
+                kind: mate
+                mate: stage-center
+              rotation:
+                kind: grid
+                grid: {z: -z}
+              translation:
+                offset-mm: {z: 3}
+      stack:
+        pose:
+          translation:
+            offset-grid: {y: -1}
+        children:
+          standalone-board-1:
+            pose:
+              rotation:
+                kind: uc2
+              translation:
+                offset-mm: {x: 25, y: 25, z: 5}
+            children:
+              standalone-board-2:
+                pose:
+                  translation:
+                    offset-mm: {z: 25}
+          blue-laser:
+            pose:
+              translation:
+                offset-grid: {z: 1}
+                offset-mm: {z: 25}

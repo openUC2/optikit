@@ -43068,7 +43068,6 @@
   ],
   "nodes": [
     {
-      "name": "design",
       "children": [
         1,
         3
@@ -43116,7 +43115,7 @@
         0,
         0
       ],
-      "name": "motorized-mirror",
+      "name": "motorized-mirror/motorized-mirror",
       "children": [
         5
       ]
@@ -43137,7 +43136,7 @@
         0,
         0
       ],
-      "name": "mount-ring",
+      "name": "motorized-mirror/mount-ring",
       "children": [
         7
       ]
@@ -43158,7 +43157,7 @@
         0,
         0
       ],
-      "name": "mount-top",
+      "name": "motorized-mirror/mount-top",
       "children": [
         9
       ]

@@ -13,11 +13,13 @@ components:
         gltf: PRT - 1004 - PUZ11 - V04 - A.glb
         step: PRT - 1004 - PUZ11 - V04 - A.stp
         pdf: PRT - 1004 - PUZ11 - V04 - A.pdf
-    pose:
-      rotation:
-        kind: uc2
     tags:
       - procurement/injection-mold
       - in/kit/core-box
       - in/kit/qbox
       - in/kit/galvo-box
+
+assemblies:
+  '':
+    children:
+      puzzle: {}

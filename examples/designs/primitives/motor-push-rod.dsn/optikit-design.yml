@@ -11,13 +11,18 @@ components:
       static-models:
         gltf: BUY - Stepping motor with captive push rod  - L8K2105AD4-050SMSN-220(02).glb
         step: BUY - Stepping motor with captive push rod  - L8K2105AD4-050SMSN-220(02).stp
-    pose:
-      rotation:
-        kind: grid
-      translation:
-        offset-mm: {x: -4, y: 4}
     tags:
       - actuation/linear/stepper
       - control/electronic
       - procurement/buy
       - in/kit/light-sheet-box
+
+assemblies:
+  '':
+    children:
+      motor:
+        pose:
+          rotation:
+            kind: grid
+          translation:
+            offset-mm: {x: -4, y: 4}

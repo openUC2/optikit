@@ -69930,10 +69930,10 @@
   ],
   "nodes": [
     {
-      "name": "design",
+      "name": "z",
       "children": [
         1,
-        8
+        2
       ]
     },
     {
@@ -69944,40 +69944,10 @@
       ],
       "name": "mounted-lens",
       "children": [
-        2,
-        4,
-        6
-      ]
-    },
-    {
-      "name": "insert",
-      "children": [
-        3
-      ]
-    },
-    {
-      "name": "PRT - 2023 - INSLEND40F50 - V04",
-      "mesh": 0
-    },
-    {
-      "name": "lens",
-      "children": [
-        5
-      ]
-    },
-    {
-      "name": "BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx",
-      "mesh": 1
-    },
-    {
-      "name": "nut",
-      "children": [
+        3,
+        5,
         7
       ]
-    },
-    {
-      "name": "PRT - 2003 - NUTD40",
-      "mesh": 2
     },
     {
       "name": "skeleton",
@@ -69987,7 +69957,37 @@
       ]
     },
     {
-      "name": "lower-half",
+      "name": "mounted-lens/insert",
+      "children": [
+        4
+      ]
+    },
+    {
+      "name": "PRT - 2023 - INSLEND40F50 - V04",
+      "mesh": 0
+    },
+    {
+      "name": "mounted-lens/lens",
+      "children": [
+        6
+      ]
+    },
+    {
+      "name": "BUY - Lens - f50 D40 sA2.1 sI10.1 cx-cx",
+      "mesh": 1
+    },
+    {
+      "name": "mounted-lens/nut",
+      "children": [
+        8
+      ]
+    },
+    {
+      "name": "PRT - 2003 - NUTD40",
+      "mesh": 2
+    },
+    {
+      "name": "skeleton/lower-half",
       "children": [
         10
       ]
@@ -70003,7 +70003,7 @@
         0,
         0
       ],
-      "name": "upper-half",
+      "name": "skeleton/upper-half",
       "children": [
         12
       ]

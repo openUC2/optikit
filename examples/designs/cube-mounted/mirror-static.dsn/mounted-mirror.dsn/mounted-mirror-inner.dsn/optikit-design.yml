@@ -12,9 +12,6 @@ components:
       static-models:
         gltf: BUY - Mirror - D24x3.glb
         step: BUY - Mirror - D24x3.stp
-    pose:
-      rotation:
-        kind: grid
     tags:
       - optical/mirror/flat
       - optical/mirror/single-sided
@@ -26,12 +23,6 @@ components:
       static-models:
         gltf: BUY - Adhesive pad - D22x1.glb
         step: BUY - Adhesive pad - D22x1.stp
-    pose:
-      rotation:
-        kind: grid
-      translation:
-        offset-mm:
-          x: ~ -0.5 - 3
     tags:
       - structure/fastener/adhesive
       - procurement/buy
@@ -42,9 +33,6 @@ components:
       static-models:
         gltf: PRT - 2110 - MASINSMIRHOLLOW - C.glb
         step: PRT - 2110 - MASINSMIRHOLLOW - C.stp
-    pose:
-      rotation:
-        kind: grid
     tags:
       - structure/insert
       - procurement/3d-print
@@ -73,10 +61,19 @@ components:
       static-models:
         gltf: PRT - 2111 - MASINSMIRHOLUPP - C.glb
         step: PRT - 2111 - MASINSMIRHOLUPP - C.stp
-    pose:
-      rotation:
-        kind: grid
     tags:
       - structure/insert
       - procurement/3d-print
       - in/kit/qbox
+
+assemblies:
+  '':
+    children:
+      mirror: {}
+      adhesive-pad:
+        pose:
+          translation:
+            offset-mm:
+              x: ~ -0.5 - 3
+      mount-base: {}
+      mount-top: {}

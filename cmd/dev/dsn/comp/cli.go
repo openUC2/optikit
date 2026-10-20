@@ -17,11 +17,6 @@ func MakeCmd(versions compat.Versions) *cli.Command {
 		Aliases: []string{"composition"},
 		Usage:   "Facilitates development and maintenance of the design's composition",
 		Flags: []cli.Flag{
-			&cli.StringFlag{
-				Name:    "variant",
-				Aliases: []string{"v"},
-				Usage:   "Select design variant",
-			},
 			&cli.StringSliceFlag{
 				Name:    "input",
 				Aliases: []string{"i"},

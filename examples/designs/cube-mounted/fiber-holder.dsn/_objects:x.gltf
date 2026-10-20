@@ -56791,10 +56791,10 @@
   ],
   "nodes": [
     {
-      "name": "design",
+      "name": "x",
       "children": [
         1,
-        6
+        2
       ]
     },
     {
@@ -56806,14 +56806,21 @@
       ],
       "name": "mounted-fiber-holder",
       "children": [
-        2,
-        4
+        3,
+        5
       ]
     },
     {
-      "name": "insert",
+      "name": "skeleton",
       "children": [
-        3
+        7,
+        9
+      ]
+    },
+    {
+      "name": "mounted-fiber-holder/insert",
+      "children": [
+        4
       ]
     },
     {
@@ -56826,9 +56833,9 @@
         0,
         0.007
       ],
-      "name": "threaded-holder",
+      "name": "mounted-fiber-holder/threaded-holder",
       "children": [
-        5
+        6
       ]
     },
     {
@@ -56836,14 +56843,7 @@
       "mesh": 1
     },
     {
-      "name": "skeleton",
-      "children": [
-        7,
-        9
-      ]
-    },
-    {
-      "name": "lower-half",
+      "name": "skeleton/lower-half",
       "children": [
         8
       ]
@@ -56859,7 +56859,7 @@
         0,
         0
       ],
-      "name": "upper-half",
+      "name": "skeleton/upper-half",
       "children": [
         10
       ]

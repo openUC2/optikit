@@ -13,9 +13,6 @@ components:
       static-models:
         gltf: PRT - 1008 - OBJHOL_CLENS-100TEL.glb
         step: PRT - 1008 - OBJHOL_CLENS-100TEL.stp
-    pose:
-      rotation:
-        kind: grid
     tags:
       - structure/enclosure
       - procurement/3d-print
@@ -98,3 +95,8 @@ components:
         - structure/fastener/pin
         - procurement/buy
         - in/infinity-box
+
+assemblies:
+  '':
+    children:
+      half-case: {}

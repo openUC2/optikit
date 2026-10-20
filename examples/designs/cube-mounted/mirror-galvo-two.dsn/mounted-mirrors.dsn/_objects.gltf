@@ -43068,11 +43068,10 @@
   ],
   "nodes": [
     {
-      "name": "design",
       "children": [
         1,
         3,
-        10
+        4
       ]
     },
     {
@@ -43100,73 +43099,10 @@
       ],
       "name": "motorized-mirror-1",
       "children": [
-        4,
-        6,
-        8
-      ]
-    },
-    {
-      "rotation": [
-        0,
-        0,
-        -0.7071067811865475,
-        0.7071067811865476
-      ],
-      "translation": [
-        -0.044,
-        0,
-        0
-      ],
-      "name": "motorized-mirror",
-      "children": [
-        5
-      ]
-    },
-    {
-      "name": "BUY - Galvo scanner XY --- single motor",
-      "mesh": 1
-    },
-    {
-      "rotation": [
-        0,
-        0,
-        1,
-        0
-      ],
-      "translation": [
-        -0.027,
-        0,
-        0
-      ],
-      "name": "mount-ring",
-      "children": [
-        7
-      ]
-    },
-    {
-      "name": "PRT - 2180 - DISRNG",
-      "mesh": 2
-    },
-    {
-      "rotation": [
-        0,
-        0,
-        -0.7071067811865475,
-        0.7071067811865476
-      ],
-      "translation": [
-        -0.0423,
-        0,
-        0
-      ],
-      "name": "mount-top",
-      "children": [
+        5,
+        7,
         9
       ]
-    },
-    {
-      "name": "PRT - 2165 - CLPPCE",
-      "mesh": 3
     },
     {
       "rotation": [
@@ -43199,7 +43135,70 @@
         0,
         0
       ],
-      "name": "motorized-mirror",
+      "name": "motorized-mirror-1/motorized-mirror",
+      "children": [
+        6
+      ]
+    },
+    {
+      "name": "BUY - Galvo scanner XY --- single motor",
+      "mesh": 1
+    },
+    {
+      "rotation": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "translation": [
+        -0.027,
+        0,
+        0
+      ],
+      "name": "motorized-mirror-1/mount-ring",
+      "children": [
+        8
+      ]
+    },
+    {
+      "name": "PRT - 2180 - DISRNG",
+      "mesh": 2
+    },
+    {
+      "rotation": [
+        0,
+        0,
+        -0.7071067811865475,
+        0.7071067811865476
+      ],
+      "translation": [
+        -0.0423,
+        0,
+        0
+      ],
+      "name": "motorized-mirror-1/mount-top",
+      "children": [
+        10
+      ]
+    },
+    {
+      "name": "PRT - 2165 - CLPPCE",
+      "mesh": 3
+    },
+    {
+      "rotation": [
+        0,
+        0,
+        -0.7071067811865475,
+        0.7071067811865476
+      ],
+      "translation": [
+        -0.044,
+        0,
+        0
+      ],
+      "name": "motorized-mirror-2/motorized-mirror",
       "children": [
         12
       ]
@@ -43220,7 +43219,7 @@
         0,
         0
       ],
-      "name": "mount-ring",
+      "name": "motorized-mirror-2/mount-ring",
       "children": [
         14
       ]
@@ -43241,7 +43240,7 @@
         0,
         0
       ],
-      "name": "mount-top",
+      "name": "motorized-mirror-2/mount-top",
       "children": [
         16
       ]
