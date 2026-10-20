@@ -1,0 +1,22 @@
+optikit-version: v0.0.0-dev
+components:
+- id: camera
+  kind: design
+  design: camera.dsn
+  instantiation:
+    inputs:
+      newswitch-device-id: ""
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: camera/drivers
+  kind: primitive/static
+  static-models:
+    newswitch-device: camera.dsn/hikcamera.newswitch-device.yml
+  results:
+    newswitch-device-id: ""
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy

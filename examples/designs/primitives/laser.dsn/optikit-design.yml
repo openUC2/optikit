@@ -12,11 +12,6 @@ inputs:
     kind: string
     tags:
       - config/newswitch/device-id
-  newswitch-controller:
-    description: The name of the microcontroller which controls this device in NewSwitch
-    kind: string
-    tags:
-      - config/newswitch/controller
 
 components:
   root:
@@ -48,11 +43,6 @@ components:
         newswitch-device: laser.newswitch-device.yml
     results:
       newswitch-device-id: ~ inputs['newswitch-device-id'].value
-      newswitch-device-config: >
-        ~ {
-          device_id: inputs['newswitch-device-id'].value,
-          controller: inputs['newswitch-controller'].value,
-        }
 
 assemblies:
   '':
@@ -75,3 +65,6 @@ assemblies:
                 kind: grid
               translation:
                 offset-mm: {z: 20}
+  wiring:
+    children:
+      drivers: {}

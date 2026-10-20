@@ -1,0 +1,12 @@
+optikit-version: v0.0.0-dev
+components:
+- id: drivers
+  kind: primitive/static
+  static-models:
+    newswitch-device: laser.newswitch-device.yml
+  results:
+    newswitch-device-id: ""
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy

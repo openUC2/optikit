@@ -12,12 +12,12 @@ inputs:
     kind: string
     tags:
       - config/newswitch/device-id
-  newswitch-controller:
-    description: The name of the microcontroller which controls this device in NewSwitch
+  newswitch-device-id-x:
+    description: A short unique name for the device's x-axis device in NewSwitch, which can be referenced from other parts of the overall NewSwitch config
     kind: string
     tags:
-      - config/newswitch/controller
-  x-stage:
+      - config/newswitch/device-id
+  position-x:
     description: Extension of the sample stage's x-axis actuator
     kind: float64
     units: mm
@@ -31,7 +31,12 @@ inputs:
     kind: string
     tags:
       - config/newswitch/input-variable-binding
-  y-stage:
+  newswitch-device-id-y:
+    description: A short unique name for the device's y-axis device in NewSwitch, which can be referenced from other parts of the overall NewSwitch config
+    kind: string
+    tags:
+      - config/newswitch/device-id
+  position-y:
     description: Extension of the sample stage's y-axis actuator
     kind: float64
     units: mm
@@ -45,7 +50,12 @@ inputs:
     kind: string
     tags:
       - config/newswitch/input-variable-binding
-  z-stage:
+  newswitch-device-id-z:
+    description: A short unique name for the device's z-axis device in NewSwitch, which can be referenced from other parts of the overall NewSwitch config
+    kind: string
+    tags:
+      - config/newswitch/device-id
+  position-z:
     description: Extension of the sample stage's z-axis actuator
     kind: float64
     units: mm
@@ -81,6 +91,42 @@ components:
     kind: mate
     # kind: design
     # design: primitives/axes.dsn
+  x-axis-driver:
+    kind: primitive
+    primitive:
+      kind: static
+      static-models:
+        newswitch-device: axis.newswitch-device.yml
+    results:
+      newswitch-device-id: ~ inputs['newswitch-device-id-x'].value
+      newswitch-device-config: >
+        ~ {
+          optikit_dsn_variable: inputs['newswitch-input-variable-x'].value
+        }
+  y-axis-driver:
+    kind: primitive
+    primitive:
+      kind: static
+      static-models:
+        newswitch-device: axis.newswitch-device.yml
+    results:
+      newswitch-device-id: ~ inputs['newswitch-device-id-y'].value
+      newswitch-device-config: >
+        ~ {
+          optikit_dsn_variable: inputs['newswitch-input-variable-y'].value
+        }
+  z-axis-driver:
+    kind: primitive
+    primitive:
+      kind: static
+      static-models:
+        newswitch-device: axis.newswitch-device.yml
+    results:
+      newswitch-device-id: ~ inputs['newswitch-device-id-z'].value
+      newswitch-device-config: >
+        ~ {
+          optikit_dsn_variable: inputs['newswitch-input-variable-z'].value
+        }
   stage-drivers:
     kind: primitive
     primitive:
@@ -91,8 +137,11 @@ components:
       newswitch-device-id: ~ inputs['newswitch-device-id'].value
       newswitch-device-config: >
         ~ {
-          device_id: inputs['newswitch-device-id'].value,
-          controller: inputs['newswitch-controller'].value
+          axes: {
+            x: inputs['newswitch-device-id-x'].value,
+            y: inputs['newswitch-device-id-y'].value,
+            z: inputs['newswitch-device-id-z'].value,
+          }
         }
 
 assemblies:
@@ -108,13 +157,13 @@ assemblies:
             pose:
               translation:
                 offset-mm:
-                  x: ~ inputs['x-stage'].value
+                  x: ~ inputs['position-x'].value
             children:
               yz-plate:
                 pose:
                   translation:
                     offset-mm:
-                      y: ~ -1 * inputs['y-stage'].value
+                      y: ~ -1 * inputs['position-y'].value
                 children:
                   z-plate:
                     pose:
@@ -125,7 +174,7 @@ assemblies:
                         offset-mm:
                           x: -4
                           y: 4
-                          z: ~ 30 + inputs['z-stage'].value
+                          z: ~ 30 + inputs['position-z'].value
                     children:
                       stage-center:
                         # assembly: ZposXpos
@@ -134,3 +183,10 @@ assemblies:
                           translation:
                             offset-mm:
                               z: 37
+  wiring:
+    children:
+      stage-drivers:
+        children:
+          x-axis-driver: {}
+          y-axis-driver: {}
+          z-axis-driver: {}

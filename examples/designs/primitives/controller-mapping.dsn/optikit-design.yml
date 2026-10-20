@@ -1,0 +1,58 @@
+optikit-version: v0.0.0-alpha.1
+
+design:
+  description: A mapping from a controller board to an arbitrary peripheral device
+  tags:
+    - config/newswitch/device-relation
+
+inputs:
+  newswitch-controller-id:
+    description: The ID of the controller device in NewSwitch
+    kind: string
+    tags:
+      - config/newswitch/device-id
+  newswitch-peripheral-id:
+    description: The ID of the peripheral device in NewSwitch
+    kind: string
+    tags:
+      - config/newswitch/device-id
+  newswitch-mapping-type:
+    description: The kind of connection to the peripheral device
+    kind: string
+    tags:
+      - config/newswitch/controller-mapping-type
+  id:
+    description: ID of the peripheral device
+    kind: int
+    tags:
+      - config/newswitch/firmware-id
+  subid:
+    description: Sub-ID of the peripheral device
+    kind: int
+    tags:
+      - config/newswitch/firmware-subid
+  pwm-max:
+    description: PWM resolution for the peripheral device, if the device mapping type supports it
+    kind: int
+
+components:
+  mapping:
+    kind: results
+    results:
+      newswitch-device-id: ~ inputs['newswitch-controller-id'].value
+      newswitch-device-config: >
+        ~ {
+          mapping: fromPairs([
+            [inputs['newswitch-peripheral-id'].value, {
+              type: inputs['newswitch-mapping-type'].value,
+              id: inputs['id'].value,
+              subid: inputs['subid'].value,
+              pwm_max: inputs['pwm-max'].value,
+            }],
+          ]),
+        }
+
+assemblies:
+  wiring:
+    children:
+      mapping: {}

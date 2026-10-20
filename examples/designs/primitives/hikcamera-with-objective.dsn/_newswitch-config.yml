@@ -1,35 +1,36 @@
-newswitch-version: v0.1.0-alpha.0
 devices:
-  "":
-    name: MV-CA023-10UM
+  '':
+    binning: 1
+    channels: 1
+    exposure_time_ms:
+      inc: 0.001
+      max: 10000.0
+      min: 0.024
+      unit: ms
+      value: 25.0
+    framerate_per_sec:
+      max: 163.0
+      min: 0.5
+      unit: Hz
+      value: 163.0
+    gain_db:
+      inc: 0.01
+      max: 23.98
+      min: 0.0
+      unit: dB
+      value: 0.0
     manufacturer: HIK ROBOTICS
-    tags:
-      - monochrome
-      - global-shutter
-      - gige
-    type: camera
+    name: MV-CA023-10UM
     pixelcount:
-      x: 1920
-      y: 1200
-      pixelpitch_um:
-        x: 10.0
-      channels: 1
-      exposure_time_ms:
-        value: 25.0
-        min: 0.024
-        max: 10000.0
-        increment: 0.001
-      framerate_per_sec:
-        value: 163.0
-        min: 0.5
-        max: 163.0
-      gain_db:
-        value: 0.0
-        min: 0.0
-        max: 23.98
-        increment: 0.01
-      binning: 1
-      trigger:
-        type: hardware
-        edge: rising
-    device_id: ""
+    - 1920
+    - 1200
+    pixelpitch_um: 10.0
+    tags:
+    - monochrome
+    - global-shutter
+    - gige
+    trigger:
+      edge: rising
+      type: hardware
+    type: detector
+newswitch_version: v1.0.2

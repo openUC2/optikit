@@ -1,0 +1,53 @@
+optikit-version: v0.0.0-dev
+components:
+- id: stage-drivers
+  kind: primitive/static
+  static-models:
+    newswitch-device: stage.newswitch-device.yml
+  results:
+    newswitch-device-config:
+      axes:
+        x: ""
+        "y": ""
+        z: ""
+    newswitch-device-id: ""
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: x-axis-driver
+  kind: primitive/static
+  static-models:
+    newswitch-device: axis.newswitch-device.yml
+  results:
+    newswitch-device-config:
+      optikit_dsn_variable: ""
+    newswitch-device-id: ""
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: y-axis-driver
+  kind: primitive/static
+  static-models:
+    newswitch-device: axis.newswitch-device.yml
+  results:
+    newswitch-device-config:
+      optikit_dsn_variable: ""
+    newswitch-device-id: ""
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: z-axis-driver
+  kind: primitive/static
+  static-models:
+    newswitch-device: axis.newswitch-device.yml
+  results:
+    newswitch-device-config:
+      optikit_dsn_variable: ""
+    newswitch-device-id: ""
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy

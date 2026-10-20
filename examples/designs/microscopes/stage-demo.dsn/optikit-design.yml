@@ -63,25 +63,6 @@ inputs:
       - adjustment/electronic
 
 components:
-  sample-stage:
-    kind: design
-    design: primitives/xyz-stage.dsn
-    instantiation:
-      inputs:
-        newswitch-device-id: sample-stage
-        newswitch-controller: mainboard-1
-        newswitch-input-variable-x: sample-x
-        newswitch-input-variable-y: sample-y
-        newswitch-input-variable-z: sample-z
-        x-stage: ~ inputs['sample-x'].value
-        y-stage: ~ inputs['sample-y'].value
-        z-stage: ~ inputs['sample-z'].value
-        # x-stage: 8
-        # y-stage: 16
-        # z-stage: 32
-  slide-holder:
-    kind: design
-    design: cube-mounted/slide-holder.dsn/mounted-holder.dsn
   stack:
     kind: location
     tags:
@@ -92,16 +73,18 @@ components:
     instantiation:
       inputs:
         newswitch-device-id: optics-stage
-        newswitch-controller: mainboard-2
+        newswitch-device-id-x: optics-stage/x
+        newswitch-device-id-y: optics-stage/y
+        newswitch-device-id-z: optics-stage/z
         newswitch-input-variable-x: optics-x
         newswitch-input-variable-y: optics-y
         newswitch-input-variable-z: optics-z
-        x-stage: ~ inputs['optics-x'].value
-        y-stage: ~ inputs['optics-y'].value
-        z-stage: ~ inputs['optics-z'].value
-        # x-stage: 4
-        # y-stage: 8
-        # z-stage: 16
+        position-x: ~ inputs['optics-x'].value
+        position-y: ~ inputs['optics-y'].value
+        position-z: ~ inputs['optics-z'].value
+        # position-x: 4
+        # position-y: 8
+        # position-z: 16
   optics:
     kind: location
     tags:
@@ -132,26 +115,130 @@ components:
     instantiation:
       inputs:
         newswitch-device-id: hotlaser123
-        newswitch-controller: mainboard-2
   sample-mirror:
     kind: design
     design: cube-mounted/mirror-diagonal.dsn
+  sample-stage:
+    kind: design
+    design: primitives/xyz-stage.dsn
+    instantiation:
+      inputs:
+        newswitch-device-id: sample-stage
+        newswitch-device-id-x: sample-stage/x
+        newswitch-device-id-y: sample-stage/y
+        newswitch-device-id-z: sample-stage/z
+        newswitch-input-variable-x: sample-x
+        newswitch-input-variable-y: sample-y
+        newswitch-input-variable-z: sample-z
+        position-x: ~ inputs['sample-x'].value
+        position-y: ~ inputs['sample-y'].value
+        position-z: ~ inputs['sample-z'].value
+        # position-x: 8
+        # position-y: 16
+        # position-z: 32
+  slide-holder:
+    kind: design
+    design: cube-mounted/slide-holder.dsn/mounted-holder.dsn
   standalone-board-1:
     kind: design
     design: primitives/electronics-mainboard.dsn
     instantiation:
       inputs:
         newswitch-device-id: mainboard-1
+  standalone-board-1-mapping-laser:
+    kind: design
+    design: primitives/controller-mapping.dsn
+    instantiation:
+      inputs:
+        newswitch-controller-id: mainboard-1
+        newswitch-peripheral-id: hotlaser123
+        newswitch-mapping-type: serial-laser
+        id: 0
+  standalone-board-1-mapping-optics-stage-x:
+    kind: design
+    design: primitives/controller-mapping.dsn
+    instantiation:
+      inputs:
+        newswitch-controller-id: mainboard-1
+        newswitch-peripheral-id: optics-stage/x
+        newswitch-mapping-type: serial-motor
+        id: 0
+  standalone-board-1-mapping-optics-stage-y:
+    kind: design
+    design: primitives/controller-mapping.dsn
+    instantiation:
+      inputs:
+        newswitch-controller-id: mainboard-1
+        newswitch-peripheral-id: optics-stage/y
+        newswitch-mapping-type: serial-motor
+        id: 1
+  standalone-board-1-mapping-optics-stage-z:
+    kind: design
+    design: primitives/controller-mapping.dsn
+    instantiation:
+      inputs:
+        newswitch-controller-id: mainboard-1
+        newswitch-peripheral-id: optics-stage/z
+        newswitch-mapping-type: serial-motor
+        id: 2
   standalone-board-2:
     kind: design
     design: primitives/electronics-mainboard.dsn
     instantiation:
       inputs:
         newswitch-device-id: mainboard-2
+  standalone-board-2-mapping-sample-stage-x:
+    kind: design
+    design: primitives/controller-mapping.dsn
+    instantiation:
+      inputs:
+        newswitch-controller-id: mainboard-2
+        newswitch-peripheral-id: sample-stage/x
+        newswitch-mapping-type: serial-motor
+        id: 0
+  standalone-board-2-mapping-sample-stage-y:
+    kind: design
+    design: primitives/controller-mapping.dsn
+    instantiation:
+      inputs:
+        newswitch-controller-id: mainboard-2
+        newswitch-peripheral-id: sample-stage/y
+        newswitch-mapping-type: serial-motor
+        id: 1
+  standalone-board-2-mapping-sample-stage-z:
+    kind: design
+    design: primitives/controller-mapping.dsn
+    instantiation:
+      inputs:
+        newswitch-controller-id: mainboard-2
+        newswitch-peripheral-id: sample-stage/z
+        newswitch-mapping-type: serial-motor
+        id: 2
 
 assemblies:
   '':
     children:
+      stack:
+        pose:
+          translation:
+            offset-grid: {y: -1}
+        children:
+          standalone-board-1:
+            pose:
+              rotation:
+                kind: uc2
+              translation:
+                offset-mm: {x: 25, y: 25, z: 5}
+            children:
+              standalone-board-2:
+                pose:
+                  translation:
+                    offset-mm: {z: 25}
+          blue-laser:
+            pose:
+              translation:
+                offset-grid: {z: 1}
+                offset-mm: {z: 25}
       optics-stage:
         pose:
           translation:
@@ -226,24 +313,33 @@ assemblies:
                 grid: {z: -z}
               translation:
                 offset-mm: {z: 3}
-      stack:
-        pose:
-          translation:
-            offset-grid: {y: -1}
+  wiring:
+    children:
+      camera:
+        assembly: wiring
+      standalone-board-1:
+        assembly: wiring
         children:
-          standalone-board-1:
-            pose:
-              rotation:
-                kind: uc2
-              translation:
-                offset-mm: {x: 25, y: 25, z: 5}
-            children:
-              standalone-board-2:
-                pose:
-                  translation:
-                    offset-mm: {z: 25}
-          blue-laser:
-            pose:
-              translation:
-                offset-grid: {z: 1}
-                offset-mm: {z: 25}
+          standalone-board-1-mapping-laser:
+            assembly: wiring
+          standalone-board-1-mapping-optics-stage-x:
+            assembly: wiring
+          standalone-board-1-mapping-optics-stage-y:
+            assembly: wiring
+          standalone-board-1-mapping-optics-stage-z:
+            assembly: wiring
+      blue-laser:
+        assembly: wiring
+      sample-stage:
+        assembly: wiring
+      standalone-board-2:
+        assembly: wiring
+        children:
+          standalone-board-2-mapping-sample-stage-x:
+            assembly: wiring
+          standalone-board-2-mapping-sample-stage-y:
+            assembly: wiring
+          standalone-board-2-mapping-sample-stage-z:
+            assembly: wiring
+      optics-stage:
+        assembly: wiring

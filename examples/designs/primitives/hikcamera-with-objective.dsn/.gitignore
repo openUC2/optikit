@@ -1,4 +1,9 @@
 # These files are huge!
-_objects.glb
-_objects.gltf
-_objects.step
+_objects:.glb
+_objects:.gltf
+_objects:.step
+
+# These files are useless!
+_objects:wiring.glb
+_objects:wiring.gltf
+_objects:wiring.step

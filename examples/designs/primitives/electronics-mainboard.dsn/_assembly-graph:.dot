@@ -1,0 +1,26 @@
+strict digraph "" {
+	graph [bb="0,0,196.09,180"];
+	node [label="\N"];
+	edge [label="\E"];
+	""	[height=0.5,
+		pos="101.03,162",
+		width=0.75];
+	root	[height=0.5,
+		pos="101.03,90",
+		width=0.75];
+	"" -> root	[key=" -> root",
+		label="",
+		pos="e,101.03,108.1 101.03,143.7 101.03,136.41 101.03,127.73 101.03,119.54"];
+	"case-base"	[height=0.5,
+		pos="48.028,18",
+		width=1.3341];
+	"case-lid"	[height=0.5,
+		pos="155.03,18",
+		width=1.1407];
+	root -> "case-base"	[key="root -> case-base",
+		label="",
+		pos="e,60.496,35.467 89.266,73.465 82.795,64.918 74.605,54.101 67.232,44.363"];
+	root -> "case-lid"	[key="root -> case-lid",
+		label="",
+		pos="e,142.32,35.467 113.01,73.465 119.61,64.918 127.95,54.101 135.46,44.363"];
+}

@@ -142,10 +142,6 @@ components:
         newswitch-device: mainboard.newswitch-device.yml
     results:
       newswitch-device-id: ~ inputs['newswitch-device-id'].value
-      newswitch-device-config: >
-        ~ {
-          device_id: inputs['newswitch-device-id'].value
-        }
 
 assemblies:
   '':
@@ -158,3 +154,6 @@ assemblies:
         children:
           case-base: {}
           case-lid: {}
+  wiring:
+    children:
+      drivers: {}

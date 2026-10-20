@@ -1,0 +1,19 @@
+{
+  "optikit-version": "v0.0.0-dev",
+  "components": [
+    {
+      "id": "drivers",
+      "kind": "primitive/static",
+      "static-models": {
+        "newswitch-device": "laser.newswitch-device.yml"
+      },
+      "results": {
+        "newswitch-device-id": ""
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    }
+  ]
+}
