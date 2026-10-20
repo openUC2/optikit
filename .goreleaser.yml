@@ -1,7 +1,9 @@
 version: 2
 
-gomod:
-  proxy: true
+# The Go modules proxy's checksum service seems to choke on this repo - maybe this repo is
+# too big?
+# gomod:
+#   proxy: true
 
 before:
   hooks:
