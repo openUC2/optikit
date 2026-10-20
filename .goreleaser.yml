@@ -70,32 +70,30 @@ archives:
       formats:
         - zip
 
-changelog:
-  use: github
-  groups:
-    - title: Features
-      regexp: '^.*?feat(\([[:word:]]+\))??!?:.+$'
-      order: 0
-    - title: Fixes
-      regexp: '^.*?fix(\([[:word:]]+\))??!?:.+$'
-      order: 10
-    - title: Builds
-      regexp: '^.*?build(\([[:word:]]+\))??!?:.+$'
-      order: 20
-    - title: etc
-      order: 30
-  filters:
-    exclude:
-      - '^.*?chore(\([[:word:]]+\))??!?:.+$'
-      - '^.*?docs(\([[:word:]]+\))??!?:.+$'
-      - '^.*?test(\([[:word:]]+\))??!?:.+$'
-      - '^.*?ci(\([[:word:]]+\))??!?:.+$'
+# changelog:
+#   use: github
+#   groups:
+#     - title: Features
+#       regexp: '^.*?feat(\([[:word:]]+\))??!?:.+$'
+#       order: 0
+#     - title: Fixes
+#       regexp: '^.*?fix(\([[:word:]]+\))??!?:.+$'
+#       order: 10
+#     - title: Builds
+#       regexp: '^.*?build(\([[:word:]]+\))??!?:.+$'
+#       order: 20
+#     - title: etc
+#       order: 30
+#   filters:
+#     exclude:
+#       - '^.*?chore(\([[:word:]]+\))??!?:.+$'
+#       - '^.*?docs(\([[:word:]]+\))??!?:.+$'
+#       - '^.*?test(\([[:word:]]+\))??!?:.+$'
+#       - '^.*?ci(\([[:word:]]+\))??!?:.+$'
 
 release:
   prerelease: auto
   footer: |
-    **Full hand-crafted changelog**: [`CHANGELOG.md`]({{ .GitURL }}/blob/main/CHANGELOG.md)
-
     {{ if and .Tag .PreviousTag -}}
       **Commit history**: [{{ .PreviousTag }}...{{ .Tag }}]({{ .GitURL }}/compare/{{ .Tag }}...{{ .PreviousTag }})
     {{- else if .PreviousTag -}}
