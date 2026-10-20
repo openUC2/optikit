@@ -57,10 +57,10 @@ formatters:
       sections:
         - standard
         - default
-        - prefix(github.com/openUC2/optikit)
+        - prefix(github.com/openuc2/optikit)
     goimports:
       local-prefixes:
-        - github.com/openUC2/optikit
+        - github.com/openuc2/optikit
   exclusions:
     generated: lax
     paths:

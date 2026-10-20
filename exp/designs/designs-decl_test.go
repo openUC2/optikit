@@ -9,7 +9,7 @@ import (
 
 	"github.com/google/go-cmp/cmp"
 
-	"github.com/openUC2/optikit/exp/fs"
+	"github.com/openuc2/optikit/exp/fs"
 )
 
 // Design Decl

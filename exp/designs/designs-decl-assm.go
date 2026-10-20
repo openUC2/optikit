@@ -12,7 +12,7 @@ import (
 	"github.com/ungerik/go3d/float64/mat4"
 	"github.com/ungerik/go3d/float64/vec3"
 
-	"github.com/openUC2/optikit/exp/structures"
+	"github.com/openuc2/optikit/exp/structures"
 )
 
 // AssmExprsSpec

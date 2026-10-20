@@ -9,7 +9,7 @@ import (
 
 	"github.com/google/go-cmp/cmp"
 
-	"github.com/openUC2/optikit/exp/designs"
+	"github.com/openuc2/optikit/exp/designs"
 )
 
 /*

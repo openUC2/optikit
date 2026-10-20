@@ -11,7 +11,7 @@ import (
 	"github.com/goccy/go-graphviz"
 	"github.com/pkg/errors"
 
-	"github.com/openUC2/optikit/exp/structures"
+	"github.com/openuc2/optikit/exp/structures"
 )
 
 type Client struct {

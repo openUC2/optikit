@@ -6,8 +6,8 @@ import (
 
 	"github.com/urfave/cli/v3"
 
-	"github.com/openUC2/optikit/cmd/compat"
-	"github.com/openUC2/optikit/cmd/dev/dsn"
+	"github.com/openuc2/optikit/cmd/compat"
+	"github.com/openuc2/optikit/cmd/dev/dsn"
 )
 
 var defaultWorkingDir, _ = os.Getwd()

@@ -9,10 +9,10 @@ import (
 	"github.com/pkg/errors"
 	"github.com/urfave/cli/v3"
 
-	"github.com/openUC2/optikit/cmd/compat"
-	"github.com/openUC2/optikit/exp/designs"
-	ofs "github.com/openUC2/optikit/exp/fs"
-	"github.com/openUC2/optikit/internal/optikit"
+	"github.com/openuc2/optikit/cmd/compat"
+	"github.com/openuc2/optikit/exp/designs"
+	ofs "github.com/openuc2/optikit/exp/fs"
+	"github.com/openuc2/optikit/internal/optikit"
 )
 
 func renderObjA(versions compat.Versions) cli.ActionFunc {

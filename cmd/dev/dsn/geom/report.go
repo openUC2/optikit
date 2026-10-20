@@ -6,9 +6,9 @@ import (
 	"github.com/pkg/errors"
 	"github.com/urfave/cli/v3"
 
-	"github.com/openUC2/optikit/cmd/compat"
-	"github.com/openUC2/optikit/exp/designs"
-	"github.com/openUC2/optikit/internal/optikit"
+	"github.com/openuc2/optikit/cmd/compat"
+	"github.com/openuc2/optikit/exp/designs"
+	"github.com/openuc2/optikit/internal/optikit"
 )
 
 func reportAssmA(versions compat.Versions) cli.ActionFunc {

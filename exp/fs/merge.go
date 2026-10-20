@@ -11,7 +11,7 @@ import (
 	"github.com/bmatcuk/doublestar/v4"
 	"github.com/pkg/errors"
 
-	"github.com/openUC2/optikit/exp/structures"
+	"github.com/openuc2/optikit/exp/structures"
 )
 
 // A FileRef is a reference to a file in a [PathedFS] by its file path.

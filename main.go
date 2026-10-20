@@ -9,9 +9,9 @@ import (
 	"github.com/carlmjohnson/versioninfo"
 	"github.com/urfave/cli/v3"
 
-	"github.com/openUC2/optikit/cmd"
-	"github.com/openUC2/optikit/cmd/compat"
-	"github.com/openUC2/optikit/cmd/dev"
+	"github.com/openuc2/optikit/cmd"
+	"github.com/openuc2/optikit/cmd/compat"
+	"github.com/openuc2/optikit/cmd/dev"
 )
 
 func main() {

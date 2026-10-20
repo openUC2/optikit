@@ -9,8 +9,8 @@ import (
 
 	"github.com/google/go-cmp/cmp"
 
-	"github.com/openUC2/optikit/cmd"
-	"github.com/openUC2/optikit/exp/designs"
+	"github.com/openuc2/optikit/cmd"
+	"github.com/openuc2/optikit/exp/designs"
 )
 
 var reportTests = map[string][]struct {

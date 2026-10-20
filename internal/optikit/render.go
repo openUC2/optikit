@@ -9,11 +9,11 @@ import (
 
 	"github.com/pkg/errors"
 
-	"github.com/openUC2/optikit/exp/designs"
-	ffs "github.com/openUC2/optikit/exp/fs"
-	"github.com/openUC2/optikit/exp/structures"
-	"github.com/openUC2/optikit/internal/clients/gltf"
-	"github.com/openUC2/optikit/internal/clients/graphviz"
+	"github.com/openuc2/optikit/exp/designs"
+	ffs "github.com/openuc2/optikit/exp/fs"
+	"github.com/openuc2/optikit/exp/structures"
+	"github.com/openuc2/optikit/internal/clients/gltf"
+	"github.com/openuc2/optikit/internal/clients/graphviz"
 )
 
 // Objects

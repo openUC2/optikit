@@ -17,7 +17,7 @@ import (
 	"github.com/pkg/errors"
 	"golang.org/x/mod/semver"
 
-	ffs "github.com/openUC2/optikit/exp/fs"
+	ffs "github.com/openuc2/optikit/exp/fs"
 )
 
 // A FSDesignExpr is an Optikit design stored at the root of a [fs.FS] filesystem.

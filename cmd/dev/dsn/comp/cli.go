@@ -8,7 +8,7 @@ import (
 
 	"github.com/urfave/cli/v3"
 
-	"github.com/openUC2/optikit/cmd/compat"
+	"github.com/openuc2/optikit/cmd/compat"
 )
 
 func MakeCmd(versions compat.Versions) *cli.Command {

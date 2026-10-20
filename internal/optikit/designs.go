@@ -7,8 +7,8 @@ import (
 
 	"github.com/pkg/errors"
 
-	"github.com/openUC2/optikit/exp/designs"
-	ofs "github.com/openUC2/optikit/exp/fs"
+	"github.com/openuc2/optikit/exp/designs"
+	ofs "github.com/openuc2/optikit/exp/fs"
 )
 
 func LoadFSDesign(

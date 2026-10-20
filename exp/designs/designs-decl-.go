@@ -11,8 +11,8 @@ import (
 	"github.com/ungerik/go3d/float64/mat3"
 	"github.com/ungerik/go3d/float64/quaternion"
 
-	ffs "github.com/openUC2/optikit/exp/fs"
-	"github.com/openUC2/optikit/exp/structures"
+	ffs "github.com/openuc2/optikit/exp/fs"
+	"github.com/openuc2/optikit/exp/structures"
 )
 
 // DesignExprDeclFile is the name of the file defining each Optikit design.

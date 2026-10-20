@@ -4,9 +4,9 @@ package dsn
 import (
 	"github.com/urfave/cli/v3"
 
-	"github.com/openUC2/optikit/cmd/compat"
-	"github.com/openUC2/optikit/cmd/dev/dsn/comp"
-	"github.com/openUC2/optikit/cmd/dev/dsn/geom"
+	"github.com/openuc2/optikit/cmd/compat"
+	"github.com/openuc2/optikit/cmd/dev/dsn/comp"
+	"github.com/openuc2/optikit/cmd/dev/dsn/geom"
 )
 
 func MakeCmd(versions compat.Versions) *cli.Command {

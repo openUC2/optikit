@@ -15,9 +15,9 @@ import (
 	"github.com/qmuntal/gltf/modeler"
 	"github.com/ungerik/go3d/float64/vec3"
 
-	"github.com/openUC2/optikit/exp/designs"
-	ffs "github.com/openUC2/optikit/exp/fs"
-	"github.com/openUC2/optikit/exp/structures"
+	"github.com/openuc2/optikit/exp/designs"
+	ffs "github.com/openuc2/optikit/exp/fs"
+	"github.com/openuc2/optikit/exp/structures"
 )
 
 type Document struct {

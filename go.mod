@@ -1,4 +1,4 @@
-module github.com/openUC2/optikit
+module github.com/openuc2/optikit
 
 go 1.27.1
 
