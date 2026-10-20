@@ -313,3 +313,33 @@ assemblies:
                 grid: {z: -z}
               translation:
                 offset-mm: {z: 3}
+  wiring:
+    children:
+      camera:
+        assembly: wiring
+      standalone-board-1:
+        assembly: wiring
+        children:
+          standalone-board-1-mapping-laser:
+            assembly: wiring
+          standalone-board-1-mapping-optics-stage-x:
+            assembly: wiring
+          standalone-board-1-mapping-optics-stage-y:
+            assembly: wiring
+          standalone-board-1-mapping-optics-stage-z:
+            assembly: wiring
+      blue-laser:
+        assembly: wiring
+      sample-stage:
+        assembly: wiring
+      standalone-board-2:
+        assembly: wiring
+        children:
+          standalone-board-2-mapping-sample-stage-x:
+            assembly: wiring
+          standalone-board-2-mapping-sample-stage-y:
+            assembly: wiring
+          standalone-board-2-mapping-sample-stage-z:
+            assembly: wiring
+      optics-stage:
+        assembly: wiring

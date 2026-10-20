@@ -42,3 +42,7 @@ assemblies:
             grid: {z: +x, x: +y}
           translation:
             offset-mm: {x: -52.2}
+  wiring:
+    children:
+      camera:
+        assembly: wiring

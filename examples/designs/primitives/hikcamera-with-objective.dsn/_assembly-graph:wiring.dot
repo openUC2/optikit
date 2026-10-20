@@ -1,0 +1,21 @@
+strict digraph "" {
+	graph [bb="0,0,136.82,197.8"];
+	node [label="\N"];
+	edge [label="\E"];
+	""	[height=0.5,
+		pos="68.408,179.8",
+		width=0.75];
+	camera	[height=0.5,
+		pos="68.408,91",
+		width=1.0808];
+	"" -> camera	[key=" -> camera",
+		label=":wiring ",
+		lp="90.378,135.4",
+		pos="e,68.408,109.41 68.408,161.65 68.408,149.96 68.408,134.19 68.408,120.62"];
+	"camera/drivers"	[height=0.5,
+		pos="68.408,18",
+		width=1.9002];
+	camera -> "camera/drivers"	[key="camera -> camera/drivers",
+		label="",
+		pos="e,68.408,36.029 68.408,72.813 68.408,65.226 68.408,56.101 68.408,47.539"];
+}

@@ -183,3 +183,10 @@ assemblies:
                           translation:
                             offset-mm:
                               z: 37
+  wiring:
+    children:
+      stage-drivers:
+        children:
+          x-axis-driver: {}
+          y-axis-driver: {}
+          z-axis-driver: {}

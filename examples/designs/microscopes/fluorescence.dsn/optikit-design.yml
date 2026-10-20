@@ -213,9 +213,20 @@ assemblies:
             offset-mm: {x: 25, y: 25, z: ~ 25}
   wiring:
     children:
-      electronics-controller-mapping-sample-stage-x:
+      camera:
         assembly: wiring
-      electronics-controller-mapping-sample-stage-y:
+      blue-laser:
         assembly: wiring
-      electronics-controller-mapping-sample-stage-z:
+      sample-stage:
         assembly: wiring
+      electronics-controller:
+        assembly: wiring
+        children:
+          electronics-controller-mapping-laser:
+            assembly: wiring
+          electronics-controller-mapping-sample-stage-x:
+            assembly: wiring
+          electronics-controller-mapping-sample-stage-y:
+            assembly: wiring
+          electronics-controller-mapping-sample-stage-z:
+            assembly: wiring

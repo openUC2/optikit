@@ -1,0 +1,32 @@
+strict digraph "" {
+	graph [bb="0,0,400.28,180"];
+	node [label="\N"];
+	edge [label="\E"];
+	""	[height=0.5,
+		pos="200.91,162",
+		width=0.75];
+	"stage-drivers"	[height=0.5,
+		pos="200.91,90",
+		width=1.692];
+	"" -> "stage-drivers"	[key=" -> stage-drivers",
+		label="",
+		pos="e,200.91,108.1 200.91,143.7 200.91,136.41 200.91,127.73 200.91,119.54"];
+	"x-axis-driver"	[height=0.5,
+		pos="60.91,18",
+		width=1.692];
+	"stage-drivers" -> "x-axis-driver"	[key="stage-drivers -> x-axis-driver",
+		label="",
+		pos="e,90.894,33.992 170.88,73.983 150.48,63.787 123.29,50.189 101.04,39.067"];
+	"y-axis-driver"	[height=0.5,
+		pos="200.91,18",
+		width=1.692];
+	"stage-drivers" -> "y-axis-driver"	[key="stage-drivers -> y-axis-driver",
+		label="",
+		pos="e,200.91,36.104 200.91,71.697 200.91,64.407 200.91,55.726 200.91,47.536"];
+	"z-axis-driver"	[height=0.5,
+		pos="339.91,18",
+		width=1.6769];
+	"stage-drivers" -> "z-axis-driver"	[key="stage-drivers -> z-axis-driver",
+		label="",
+		pos="e,310.14,33.992 230.73,73.983 250.98,63.787 277.98,50.189 300.06,39.067"];
+}

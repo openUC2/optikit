@@ -1,0 +1,587 @@
+{
+  "optikit-version": "v0.0.0-dev",
+  "components": [
+    {
+      "id": "blue-laser",
+      "kind": "design",
+      "design": "primitives/laser.dsn",
+      "instantiation": {
+        "inputs": {
+          "newswitch-device-id": "hotlaser123"
+        }
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "blue-laser/drivers",
+      "kind": "primitive/static",
+      "static-models": {
+        "newswitch-device": "primitives/laser.dsn/laser.newswitch-device.yml"
+      },
+      "results": {
+        "newswitch-device-id": "hotlaser123"
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "camera",
+      "kind": "design",
+      "design": "primitives/hikcamera-with-objective.dsn",
+      "instantiation": {
+        "inputs": {
+          "newswitch-device-id": "bigcamera42"
+        }
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "camera/camera",
+      "kind": "design",
+      "design": "primitives/hikcamera-with-objective.dsn/camera.dsn",
+      "instantiation": {
+        "inputs": {
+          "newswitch-device-id": "bigcamera42"
+        }
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "camera/camera/drivers",
+      "kind": "primitive/static",
+      "static-models": {
+        "newswitch-device": "primitives/hikcamera-with-objective.dsn/camera.dsn/hikcamera.newswitch-device.yml"
+      },
+      "results": {
+        "newswitch-device-id": "bigcamera42"
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "optics-stage",
+      "kind": "design",
+      "design": "primitives/xyz-stage.dsn",
+      "instantiation": {
+        "inputs": {
+          "newswitch-device-id": "optics-stage",
+          "newswitch-device-id-x": "optics-stage/x",
+          "newswitch-device-id-y": "optics-stage/y",
+          "newswitch-device-id-z": "optics-stage/z",
+          "newswitch-input-variable-x": "optics-x",
+          "newswitch-input-variable-y": "optics-y",
+          "newswitch-input-variable-z": "optics-z",
+          "position-x": 0,
+          "position-y": 0,
+          "position-z": 0
+        }
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "optics-stage/stage-drivers",
+      "kind": "primitive/static",
+      "static-models": {
+        "newswitch-device": "primitives/xyz-stage.dsn/stage.newswitch-device.yml"
+      },
+      "results": {
+        "newswitch-device-config": {
+          "axes": {
+            "x": "optics-stage/x",
+            "y": "optics-stage/y",
+            "z": "optics-stage/z"
+          }
+        },
+        "newswitch-device-id": "optics-stage"
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "optics-stage/x-axis-driver",
+      "kind": "primitive/static",
+      "static-models": {
+        "newswitch-device": "primitives/xyz-stage.dsn/axis.newswitch-device.yml"
+      },
+      "results": {
+        "newswitch-device-config": {
+          "optikit_dsn_variable": "optics-x"
+        },
+        "newswitch-device-id": "optics-stage/x"
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "optics-stage/y-axis-driver",
+      "kind": "primitive/static",
+      "static-models": {
+        "newswitch-device": "primitives/xyz-stage.dsn/axis.newswitch-device.yml"
+      },
+      "results": {
+        "newswitch-device-config": {
+          "optikit_dsn_variable": "optics-y"
+        },
+        "newswitch-device-id": "optics-stage/y"
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "optics-stage/z-axis-driver",
+      "kind": "primitive/static",
+      "static-models": {
+        "newswitch-device": "primitives/xyz-stage.dsn/axis.newswitch-device.yml"
+      },
+      "results": {
+        "newswitch-device-config": {
+          "optikit_dsn_variable": "optics-z"
+        },
+        "newswitch-device-id": "optics-stage/z"
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "sample-stage",
+      "kind": "design",
+      "design": "primitives/xyz-stage.dsn",
+      "instantiation": {
+        "inputs": {
+          "newswitch-device-id": "sample-stage",
+          "newswitch-device-id-x": "sample-stage/x",
+          "newswitch-device-id-y": "sample-stage/y",
+          "newswitch-device-id-z": "sample-stage/z",
+          "newswitch-input-variable-x": "sample-x",
+          "newswitch-input-variable-y": "sample-y",
+          "newswitch-input-variable-z": "sample-z",
+          "position-x": 0,
+          "position-y": 0,
+          "position-z": 0
+        }
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "sample-stage/stage-drivers",
+      "kind": "primitive/static",
+      "static-models": {
+        "newswitch-device": "primitives/xyz-stage.dsn/stage.newswitch-device.yml"
+      },
+      "results": {
+        "newswitch-device-config": {
+          "axes": {
+            "x": "sample-stage/x",
+            "y": "sample-stage/y",
+            "z": "sample-stage/z"
+          }
+        },
+        "newswitch-device-id": "sample-stage"
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "sample-stage/x-axis-driver",
+      "kind": "primitive/static",
+      "static-models": {
+        "newswitch-device": "primitives/xyz-stage.dsn/axis.newswitch-device.yml"
+      },
+      "results": {
+        "newswitch-device-config": {
+          "optikit_dsn_variable": "sample-x"
+        },
+        "newswitch-device-id": "sample-stage/x"
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "sample-stage/y-axis-driver",
+      "kind": "primitive/static",
+      "static-models": {
+        "newswitch-device": "primitives/xyz-stage.dsn/axis.newswitch-device.yml"
+      },
+      "results": {
+        "newswitch-device-config": {
+          "optikit_dsn_variable": "sample-y"
+        },
+        "newswitch-device-id": "sample-stage/y"
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "sample-stage/z-axis-driver",
+      "kind": "primitive/static",
+      "static-models": {
+        "newswitch-device": "primitives/xyz-stage.dsn/axis.newswitch-device.yml"
+      },
+      "results": {
+        "newswitch-device-config": {
+          "optikit_dsn_variable": "sample-z"
+        },
+        "newswitch-device-id": "sample-stage/z"
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "standalone-board-1",
+      "kind": "design",
+      "design": "primitives/electronics-mainboard.dsn",
+      "instantiation": {
+        "inputs": {
+          "newswitch-device-id": "mainboard-1"
+        }
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "standalone-board-1-mapping-laser",
+      "kind": "design",
+      "design": "primitives/controller-mapping.dsn",
+      "instantiation": {
+        "inputs": {
+          "id": "0",
+          "newswitch-controller-id": "mainboard-1",
+          "newswitch-mapping-type": "serial-laser",
+          "newswitch-peripheral-id": "hotlaser123"
+        }
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "standalone-board-1-mapping-laser/mapping",
+      "kind": "results",
+      "results": {
+        "newswitch-device-config": {
+          "mapping": {
+            "hotlaser123": {
+              "id": 0,
+              "pwm_max": 0,
+              "subid": 0,
+              "type": "serial-laser"
+            }
+          }
+        },
+        "newswitch-device-id": "mainboard-1"
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "standalone-board-1-mapping-optics-stage-x",
+      "kind": "design",
+      "design": "primitives/controller-mapping.dsn",
+      "instantiation": {
+        "inputs": {
+          "id": "0",
+          "newswitch-controller-id": "mainboard-1",
+          "newswitch-mapping-type": "serial-motor",
+          "newswitch-peripheral-id": "optics-stage/x"
+        }
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "standalone-board-1-mapping-optics-stage-x/mapping",
+      "kind": "results",
+      "results": {
+        "newswitch-device-config": {
+          "mapping": {
+            "optics-stage/x": {
+              "id": 0,
+              "pwm_max": 0,
+              "subid": 0,
+              "type": "serial-motor"
+            }
+          }
+        },
+        "newswitch-device-id": "mainboard-1"
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "standalone-board-1-mapping-optics-stage-y",
+      "kind": "design",
+      "design": "primitives/controller-mapping.dsn",
+      "instantiation": {
+        "inputs": {
+          "id": "1",
+          "newswitch-controller-id": "mainboard-1",
+          "newswitch-mapping-type": "serial-motor",
+          "newswitch-peripheral-id": "optics-stage/y"
+        }
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "standalone-board-1-mapping-optics-stage-y/mapping",
+      "kind": "results",
+      "results": {
+        "newswitch-device-config": {
+          "mapping": {
+            "optics-stage/y": {
+              "id": 1,
+              "pwm_max": 0,
+              "subid": 0,
+              "type": "serial-motor"
+            }
+          }
+        },
+        "newswitch-device-id": "mainboard-1"
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "standalone-board-1-mapping-optics-stage-z",
+      "kind": "design",
+      "design": "primitives/controller-mapping.dsn",
+      "instantiation": {
+        "inputs": {
+          "id": "2",
+          "newswitch-controller-id": "mainboard-1",
+          "newswitch-mapping-type": "serial-motor",
+          "newswitch-peripheral-id": "optics-stage/z"
+        }
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "standalone-board-1-mapping-optics-stage-z/mapping",
+      "kind": "results",
+      "results": {
+        "newswitch-device-config": {
+          "mapping": {
+            "optics-stage/z": {
+              "id": 2,
+              "pwm_max": 0,
+              "subid": 0,
+              "type": "serial-motor"
+            }
+          }
+        },
+        "newswitch-device-id": "mainboard-1"
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "standalone-board-1/drivers",
+      "kind": "primitive/static",
+      "static-models": {
+        "newswitch-device": "primitives/electronics-mainboard.dsn/mainboard.newswitch-device.yml"
+      },
+      "results": {
+        "newswitch-device-id": "mainboard-1"
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "standalone-board-2",
+      "kind": "design",
+      "design": "primitives/electronics-mainboard.dsn",
+      "instantiation": {
+        "inputs": {
+          "newswitch-device-id": "mainboard-2"
+        }
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "standalone-board-2-mapping-sample-stage-x",
+      "kind": "design",
+      "design": "primitives/controller-mapping.dsn",
+      "instantiation": {
+        "inputs": {
+          "id": "0",
+          "newswitch-controller-id": "mainboard-2",
+          "newswitch-mapping-type": "serial-motor",
+          "newswitch-peripheral-id": "sample-stage/x"
+        }
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "standalone-board-2-mapping-sample-stage-x/mapping",
+      "kind": "results",
+      "results": {
+        "newswitch-device-config": {
+          "mapping": {
+            "sample-stage/x": {
+              "id": 0,
+              "pwm_max": 0,
+              "subid": 0,
+              "type": "serial-motor"
+            }
+          }
+        },
+        "newswitch-device-id": "mainboard-2"
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "standalone-board-2-mapping-sample-stage-y",
+      "kind": "design",
+      "design": "primitives/controller-mapping.dsn",
+      "instantiation": {
+        "inputs": {
+          "id": "1",
+          "newswitch-controller-id": "mainboard-2",
+          "newswitch-mapping-type": "serial-motor",
+          "newswitch-peripheral-id": "sample-stage/y"
+        }
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "standalone-board-2-mapping-sample-stage-y/mapping",
+      "kind": "results",
+      "results": {
+        "newswitch-device-config": {
+          "mapping": {
+            "sample-stage/y": {
+              "id": 1,
+              "pwm_max": 0,
+              "subid": 0,
+              "type": "serial-motor"
+            }
+          }
+        },
+        "newswitch-device-id": "mainboard-2"
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "standalone-board-2-mapping-sample-stage-z",
+      "kind": "design",
+      "design": "primitives/controller-mapping.dsn",
+      "instantiation": {
+        "inputs": {
+          "id": "2",
+          "newswitch-controller-id": "mainboard-2",
+          "newswitch-mapping-type": "serial-motor",
+          "newswitch-peripheral-id": "sample-stage/z"
+        }
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "standalone-board-2-mapping-sample-stage-z/mapping",
+      "kind": "results",
+      "results": {
+        "newswitch-device-config": {
+          "mapping": {
+            "sample-stage/z": {
+              "id": 2,
+              "pwm_max": 0,
+              "subid": 0,
+              "type": "serial-motor"
+            }
+          }
+        },
+        "newswitch-device-id": "mainboard-2"
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    },
+    {
+      "id": "standalone-board-2/drivers",
+      "kind": "primitive/static",
+      "static-models": {
+        "newswitch-device": "primitives/electronics-mainboard.dsn/mainboard.newswitch-device.yml"
+      },
+      "results": {
+        "newswitch-device-id": "mainboard-2"
+      },
+      "rotation": {
+        "kind": "extrinsic",
+        "order": "zxy"
+      }
+    }
+  ]
+}
