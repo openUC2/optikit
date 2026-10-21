@@ -1,0 +1,63 @@
+devices:
+  laser-1:
+    bandwidth: 2.0
+    coherence: coherent
+    manufacturer: Boison
+    name: boison-488
+    spec_shape: gauss
+    type: lightsource
+    wavelength_nm: 488
+  laser-2:
+    bandwidth: 2.0
+    coherence: coherent
+    manufacturer: Boison
+    name: boison-488
+    spec_shape: gauss
+    type: lightsource
+    wavelength_nm: 488
+  laser-3:
+    bandwidth: 2.0
+    coherence: coherent
+    manufacturer: Boison
+    name: boison-488
+    spec_shape: gauss
+    type: lightsource
+    wavelength_nm: 488
+  led-ring:
+    channels: 1
+    type: lightsource
+  standalone-board:
+    connection:
+      protocol: uc2-rest
+      transport:
+        baudrate: 115200
+        port_pattern: /dev/ttyUSB*
+        type: serial
+    firmware:
+      name: esp32-uc2-standalone-4
+      version: v2026.0.0-beta.3
+    manufacturer: openUC2
+    mapping:
+      laser-1:
+        id: 0
+        pwm_max: 0
+        subid: 0
+        type: serial-laser
+      laser-2:
+        id: 1
+        pwm_max: 0
+        subid: 0
+        type: serial-laser
+      laser-3:
+        id: 2
+        pwm_max: 0
+        subid: 0
+        type: serial-laser
+      led-ring:
+        id: 30
+        pwm_max: 0
+        subid: 0
+        type: canopen-led
+    name: UC2-Mainboard-v4
+    type: controller
+newswitch_version: v1.0.2

@@ -1,0 +1,29 @@
+optikit-version: v0.1.0-alpha.1
+
+design:
+  description: A two-cube-wide LED ring
+  tags:
+    - composition/cube-compatible
+
+inputs:
+  newswitch-device-id:
+    description: A short unique name for the device in NewSwitch, which can be referenced from other parts of the overall NewSwitch config
+    kind: string
+    tags:
+      - config/newswitch/device-id
+
+components:
+  drivers:
+    kind: primitive
+    primitive:
+      kind: static
+      static-models:
+        # Warning: the contents of this file are fictional; they're only provided to simulate the shape of what NewSwitch expects as its config!
+        newswitch-device: led-ring.newswitch-device.yml
+    results:
+      newswitch-device-id: ~ inputs['newswitch-device-id'].value
+
+assemblies:
+  wiring:
+    children:
+      drivers: {}
