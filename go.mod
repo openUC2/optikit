@@ -1,6 +1,6 @@
 module github.com/openuc2/optikit
 
-go 1.27.1
+go 1.27.3
 
 require (
 	github.com/bmatcuk/doublestar/v4 v4.10.2
@@ -539,4 +539,8 @@ tool (
 	github.com/goreleaser/goreleaser/v2 // not needed because we use goreleaser-cross as a Docker image
 	github.com/shenwei356/rush
 	mvdan.cc/gofumpt
+)
+
+ignore (
+	./examples
 )
