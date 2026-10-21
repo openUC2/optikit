@@ -111,7 +111,7 @@ components:
     design: cube-mounted/fiber-holder.dsn
   blue-laser:
     kind: design
-    design: primitives/laser.dsn
+    design: primitives/lasers/boison-488.dsn
     instantiation:
       inputs:
         newswitch-device-id: hotlaser123

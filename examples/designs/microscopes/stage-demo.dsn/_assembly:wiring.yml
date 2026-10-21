@@ -2,7 +2,7 @@ optikit-version: v0.1.0-dev
 components:
 - id: blue-laser
   kind: design
-  design: primitives/laser.dsn
+  design: primitives/lasers/boison-488.dsn
   instantiation:
     inputs:
       newswitch-device-id: hotlaser123
@@ -13,7 +13,7 @@ components:
 - id: blue-laser/drivers
   kind: primitive/static
   static-models:
-    newswitch-device: primitives/laser.dsn/laser.newswitch-device.yml
+    newswitch-device: primitives/lasers/boison-488.dsn/laser.newswitch-device.yml
   results:
     newswitch-device-id: hotlaser123
   position: [0.0, 0.0, 0.0]
