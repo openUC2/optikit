@@ -33,7 +33,7 @@ components:
         newswitch-device-id: laser-3
   standalone-board:
     kind: design
-    design: primitives/electronics-mainboard.dsn
+    design: primitives/controllers/standalone-board.dsn
     instantiation:
       inputs:
         newswitch-device-id: standalone-board

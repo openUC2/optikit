@@ -1,0 +1,338 @@
+optikit-version: v0.1.0-dev
+components:
+- id: laser
+  kind: design
+  design: primitives/lasers/boison-488.dsn
+  instantiation:
+    inputs:
+      newswitch-device-id: laser
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: laser/drivers
+  kind: primitive/static
+  static-models:
+    newswitch-device: primitives/lasers/boison-488.dsn/laser.newswitch-device.yml
+  results:
+    newswitch-device-id: laser
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: led-ring
+  kind: design
+  design: cube-mounted/led-ring.dsn
+  instantiation:
+    inputs:
+      newswitch-device-id: led-ring
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: led-ring/drivers
+  kind: primitive/static
+  static-models:
+    newswitch-device: cube-mounted/led-ring.dsn/led-ring.newswitch-device.yml
+  results:
+    newswitch-device-id: led-ring
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: mapping-axis-a
+  kind: design
+  design: primitives/controller-mapping.dsn
+  instantiation:
+    inputs:
+      id: "0"
+      newswitch-controller-id: standalone-board
+      newswitch-mapping-type: serial-motor
+      newswitch-peripheral-id: xyz-stage/a
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: mapping-axis-a/mapping
+  kind: results
+  results:
+    newswitch-device-config:
+      mapping:
+        xyz-stage/a:
+          id: 0
+          pwm_max: 0
+          subid: 0
+          type: serial-motor
+    newswitch-device-id: standalone-board
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: mapping-axis-x
+  kind: design
+  design: primitives/controller-mapping.dsn
+  instantiation:
+    inputs:
+      id: "1"
+      newswitch-controller-id: standalone-board
+      newswitch-mapping-type: serial-motor
+      newswitch-peripheral-id: xyz-stage/x
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: mapping-axis-x/mapping
+  kind: results
+  results:
+    newswitch-device-config:
+      mapping:
+        xyz-stage/x:
+          id: 1
+          pwm_max: 0
+          subid: 0
+          type: serial-motor
+    newswitch-device-id: standalone-board
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: mapping-axis-y
+  kind: design
+  design: primitives/controller-mapping.dsn
+  instantiation:
+    inputs:
+      id: "2"
+      newswitch-controller-id: standalone-board
+      newswitch-mapping-type: serial-motor
+      newswitch-peripheral-id: xyz-stage/y
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: mapping-axis-y/mapping
+  kind: results
+  results:
+    newswitch-device-config:
+      mapping:
+        xyz-stage/y:
+          id: 2
+          pwm_max: 0
+          subid: 0
+          type: serial-motor
+    newswitch-device-id: standalone-board
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: mapping-axis-z
+  kind: design
+  design: primitives/controller-mapping.dsn
+  instantiation:
+    inputs:
+      id: "3"
+      newswitch-controller-id: standalone-board
+      newswitch-mapping-type: serial-motor
+      newswitch-peripheral-id: slider/axis
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: mapping-axis-z/mapping
+  kind: results
+  results:
+    newswitch-device-config:
+      mapping:
+        slider/axis:
+          id: 3
+          pwm_max: 0
+          subid: 0
+          type: serial-motor
+    newswitch-device-id: standalone-board
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: mapping-laser
+  kind: design
+  design: primitives/controller-mapping.dsn
+  instantiation:
+    inputs:
+      id: "1"
+      newswitch-controller-id: standalone-board
+      newswitch-mapping-type: serial-laser
+      newswitch-peripheral-id: laser
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: mapping-laser/mapping
+  kind: results
+  results:
+    newswitch-device-config:
+      mapping:
+        laser:
+          id: 1
+          pwm_max: 0
+          subid: 0
+          type: serial-laser
+    newswitch-device-id: standalone-board
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: mapping-led-ring
+  kind: design
+  design: primitives/controller-mapping.dsn
+  instantiation:
+    inputs:
+      id: "30"
+      newswitch-controller-id: standalone-board
+      newswitch-mapping-type: canopen-led
+      newswitch-peripheral-id: led-ring
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: mapping-led-ring/mapping
+  kind: results
+  results:
+    newswitch-device-config:
+      mapping:
+        led-ring:
+          id: 30
+          pwm_max: 0
+          subid: 0
+          type: canopen-led
+    newswitch-device-id: standalone-board
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: slider
+  kind: design
+  design: primitives/linear-stage.dsn
+  instantiation:
+    inputs:
+      newswitch-device-id-axis: slider/axis
+      newswitch-device-id-stage: slider
+      newswitch-input-variable: stage-z
+      position: 0.0
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: slider/axis-driver
+  kind: primitive/static
+  static-models:
+    newswitch-device: primitives/linear-stage.dsn/axis.newswitch-device.yml
+  results:
+    newswitch-device-config:
+      optikit_dsn_variable: stage-z
+    newswitch-device-id: slider/axis
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: slider/stage-driver
+  kind: primitive/static
+  static-models:
+    newswitch-device: primitives/linear-stage.dsn/stage.newswitch-device.yml
+  results:
+    newswitch-device-config:
+      axes:
+        x: slider/axis
+    newswitch-device-id: slider
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: standalone-board
+  kind: design
+  design: primitives/controllers/standalone-board.dsn
+  instantiation:
+    inputs:
+      newswitch-device-id: standalone-board
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: standalone-board/drivers
+  kind: primitive/static
+  static-models:
+    newswitch-device: primitives/controllers/standalone-board.dsn/mainboard.newswitch-device.yml
+  results:
+    newswitch-device-id: standalone-board
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: xyz-stage
+  kind: design
+  design: primitives/xyz-stage.dsn
+  instantiation:
+    inputs:
+      newswitch-device-id: xyz-stage
+      newswitch-device-id-x: xyz-stage/x
+      newswitch-device-id-y: xyz-stage/y
+      newswitch-device-id-z: xyz-stage/a
+      newswitch-input-variable-x: stage-x
+      newswitch-input-variable-y: stage-y
+      newswitch-input-variable-z: stage-a
+      position-x: 0.0
+      position-y: 0.0
+      position-z: 0.0
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: xyz-stage/stage-drivers
+  kind: primitive/static
+  static-models:
+    newswitch-device: primitives/xyz-stage.dsn/stage.newswitch-device.yml
+  results:
+    newswitch-device-config:
+      axes:
+        x: xyz-stage/x
+        "y": xyz-stage/y
+        z: xyz-stage/a
+    newswitch-device-id: xyz-stage
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: xyz-stage/x-axis-driver
+  kind: primitive/static
+  static-models:
+    newswitch-device: primitives/xyz-stage.dsn/axis.newswitch-device.yml
+  results:
+    newswitch-device-config:
+      optikit_dsn_variable: stage-x
+    newswitch-device-id: xyz-stage/x
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: xyz-stage/y-axis-driver
+  kind: primitive/static
+  static-models:
+    newswitch-device: primitives/xyz-stage.dsn/axis.newswitch-device.yml
+  results:
+    newswitch-device-config:
+      optikit_dsn_variable: stage-y
+    newswitch-device-id: xyz-stage/y
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: xyz-stage/z-axis-driver
+  kind: primitive/static
+  static-models:
+    newswitch-device: primitives/xyz-stage.dsn/axis.newswitch-device.yml
+  results:
+    newswitch-device-config:
+      optikit_dsn_variable: stage-a
+    newswitch-device-id: xyz-stage/a
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy

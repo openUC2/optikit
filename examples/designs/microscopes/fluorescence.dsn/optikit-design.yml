@@ -88,7 +88,7 @@ components:
     design: cube-mounted/slide-holder.dsn/mounted-holder.dsn
   electronics-controller:
     kind: design
-    design: primitives/electronics-mainboard.dsn
+    design: primitives/controllers/standalone-board.dsn
     instantiation:
       inputs:
         newswitch-device-id: my-favorite-mainboard
