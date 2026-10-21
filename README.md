@@ -28,6 +28,66 @@ make generate
 make test
 ```
 
+### Generating NewSwitch configs
+
+#### Download/install `optikit`
+
+First, you will need to download the `optikit` tool, which is available as a single self-contained
+executable file. You should visit this repository's
+[releases page](https://github.com/openUC2/optikit/releases/latest) and download an archive
+file for your platform and CPU architecture; for example, on a Raspberry Pi 4, you should probably
+download the archive named `optikit_{version number}_linux_arm64.tar.gz` (where the version number
+should be substituted). You can extract the `optikit` binary from the archive using a command like:
+```bash
+tar -xzf optikit_{version number}_{os}_{cpu architecture}.tar.gz optikit
+```
+
+Then you may need to move the `optikit` binary into a directory in your system path, or you can just
+run the `optikit` binary by its absolute/relative path (in which case you should replace `optikit`
+with the absolute/relative path of the binary in the example commands listed below).
+
+#### Clone the optikit repo
+
+Next, you will need to clone this repo to your computer, e.g.:
+
+```bash
+git clone https://github.com/openUC2/optikit.git
+```
+
+This will serve two purposes:
+1. It provides an example DSN model you can use for generating a NewSwitch config
+2. It provides a Python script which is used as part of the NewSwitch config-generation process
+
+Now we will install the dependencies needed for the Python script. In the repo, run:
+
+```bash
+uv sync
+```
+
+#### Generate an assembly report
+
+Now we will generate an assembly report from a DSN model. For this example, we will use
+[examples/designs/microscopes/fluorescence.dsn](./examples/designs/microscopes/fluorescence.dsn/).
+Run:
+
+```bash
+cd examples/designs/microscopes/fluorescence.dsn
+optikit dev dsn geom report-assm --assembly wiring --format yaml your-output-assembly-report-file.yml
+```
+
+This will create the file `your-output-assembly-report-file.yml`.
+
+#### Generate a NewSwitch config
+
+Now we will generate a NewSwitch config from the assembly report. Still in the `fluorescence.dsn`
+directory, run:
+
+```bash
+uv run poe config your-output-assembly-report-file.yml your-output-newswitch-config.yml
+```
+
+This will create the file `your-output-newswitch-config.yml`, which is the NewSwitch config.
+
 ## Licensing
 
 We have chosen the following licenses in order to give away our work for free, so that you can
