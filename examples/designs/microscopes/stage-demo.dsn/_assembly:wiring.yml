@@ -192,7 +192,7 @@ components:
     order: zxy
 - id: standalone-board-1
   kind: design
-  design: primitives/electronics-mainboard.dsn
+  design: primitives/controllers/standalone-board.dsn
   instantiation:
     inputs:
       newswitch-device-id: mainboard-1
@@ -315,7 +315,7 @@ components:
 - id: standalone-board-1/drivers
   kind: primitive/static
   static-models:
-    newswitch-device: primitives/electronics-mainboard.dsn/mainboard.newswitch-device.yml
+    newswitch-device: primitives/controllers/standalone-board.dsn/mainboard.newswitch-device.yml
   results:
     newswitch-device-id: mainboard-1
   position: [0.0, 0.0, 0.0]
@@ -324,7 +324,7 @@ components:
     order: zxy
 - id: standalone-board-2
   kind: design
-  design: primitives/electronics-mainboard.dsn
+  design: primitives/controllers/standalone-board.dsn
   instantiation:
     inputs:
       newswitch-device-id: mainboard-2
@@ -419,7 +419,7 @@ components:
 - id: standalone-board-2/drivers
   kind: primitive/static
   static-models:
-    newswitch-device: primitives/electronics-mainboard.dsn/mainboard.newswitch-device.yml
+    newswitch-device: primitives/controllers/standalone-board.dsn/mainboard.newswitch-device.yml
   results:
     newswitch-device-id: mainboard-2
   position: [0.0, 0.0, 0.0]

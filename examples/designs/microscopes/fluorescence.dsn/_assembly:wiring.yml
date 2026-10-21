@@ -52,7 +52,7 @@ components:
     order: zxy
 - id: electronics-controller
   kind: design
-  design: primitives/electronics-mainboard.dsn
+  design: primitives/controllers/standalone-board.dsn
   instantiation:
     inputs:
       newswitch-device-id: my-favorite-mainboard
@@ -175,7 +175,7 @@ components:
 - id: electronics-controller/drivers
   kind: primitive/static
   static-models:
-    newswitch-device: primitives/electronics-mainboard.dsn/mainboard.newswitch-device.yml
+    newswitch-device: primitives/controllers/standalone-board.dsn/mainboard.newswitch-device.yml
   results:
     newswitch-device-id: my-favorite-mainboard
   position: [0.0, 0.0, 0.0]

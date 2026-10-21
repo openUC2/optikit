@@ -23,7 +23,7 @@ devices:
     spec_shape: gauss
     type: lightsource
     wavelength_nm: 488
-  led-ring:
+  led:
     channels: 1
     type: lightsource
   standalone-board:
@@ -53,7 +53,7 @@ devices:
         pwm_max: 0
         subid: 0
         type: serial-laser
-      led-ring:
+      led:
         id: 30
         pwm_max: 0
         subid: 0

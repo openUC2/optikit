@@ -1,0 +1,187 @@
+optikit-version: v0.1.0-alpha.1
+
+design:
+  description: An x-y-z stage
+  tags:
+    - composition/cube-compatible
+    - in/kit/light-sheet-box
+
+inputs:
+  newswitch-device-id-sample:
+    description: A short unique name for the device's sample stage in NewSwitch, which can be referenced from other parts of the overall NewSwitch config
+    kind: string
+    tags:
+      - config/newswitch/device-id
+  newswitch-device-id-sample-x:
+    description: A short unique name for the device's x-axis device in NewSwitch, which can be referenced from other parts of the overall NewSwitch config
+    kind: string
+    tags:
+      - config/newswitch/device-id
+  position-x:
+    description: Extension of the sample stage's x-axis actuator
+    kind: float64
+    units: mm
+    min: 0
+    max: 25
+    tags:
+      - pose/actuator/translation
+      - adjustment/electronic
+  newswitch-input-variable-sample-x:
+    description: The name of the top-level Optikit design's input variable providing the value of the x-axis input variable
+    kind: string
+    tags:
+      - config/newswitch/input-variable-binding
+  newswitch-device-id-sample-y:
+    description: A short unique name for the device's y-axis device in NewSwitch, which can be referenced from other parts of the overall NewSwitch config
+    kind: string
+    tags:
+      - config/newswitch/device-id
+  position-sample-y:
+    description: Extension of the sample stage's y-axis actuator
+    kind: float64
+    units: mm
+    min: 0
+    max: 25
+    tags:
+      - pose/actuator/translation
+      - adjustment/electronic
+  newswitch-input-variable-sample-y:
+    description: The name of the top-level Optikit design's input variable providing the value of the y-axis input variable
+    kind: string
+    tags:
+      - config/newswitch/input-variable-binding
+  newswitch-device-id-sample-z:
+    description: A short unique name for the device's z-axis device in NewSwitch, which can be referenced from other parts of the overall NewSwitch config
+    kind: string
+    tags:
+      - config/newswitch/device-id
+  position-sample-z:
+    description: Extension of the sample stage's z-axis actuator
+    kind: float64
+    units: mm
+    min: 0
+    max: 25
+    tags:
+      - pose/actuator/translation
+      - adjustment/electronic
+  newswitch-input-variable-sample-z:
+    description: The name of the top-level Optikit design's input variable providing the value of the z-axis input variable
+    kind: string
+    tags:
+      - config/newswitch/input-variable-binding
+  newswitch-device-id-objective:
+    description: A short unique name for the device's objective stage in NewSwitch, which can be referenced from other parts of the overall NewSwitch config
+    kind: string
+    tags:
+      - config/newswitch/device-id
+  newswitch-device-id-objective-a:
+    description: A short unique name for the device's a-axis device in NewSwitch, which can be referenced from other parts of the overall NewSwitch config
+    kind: string
+    tags:
+      - config/newswitch/device-id
+  position-objective-a:
+    description: Extension of the objective stage's a-axis actuator
+    kind: float64
+    units: mm
+    min: 0
+    max: 25
+    tags:
+      - pose/actuator/translation
+      - adjustment/electronic
+  newswitch-input-variable-objective-a:
+    description: The name of the top-level Optikit design's input variable providing the value of the a-axis input variable
+    kind: string
+    tags:
+      - config/newswitch/input-variable-binding
+
+components:
+  x-axis-driver:
+    kind: primitive
+    primitive:
+      kind: static
+      static-models:
+        newswitch-device: xy-axis.newswitch-device.yml
+    results:
+      newswitch-device-id: ~ inputs['newswitch-device-id-sample-x'].value
+      newswitch-device-config: >
+        ~ {
+          optikit_dsn_variable: inputs['newswitch-input-variable-sample-x'].value
+        }
+  y-axis-driver:
+    kind: primitive
+    primitive:
+      kind: static
+      static-models:
+        newswitch-device: xy-axis.newswitch-device.yml
+    results:
+      newswitch-device-id: ~ inputs['newswitch-device-id-sample-y'].value
+      newswitch-device-config: >
+        ~ {
+          optikit_dsn_variable: inputs['newswitch-input-variable-sample-y'].value
+        }
+  z-axis-driver:
+    kind: primitive
+    primitive:
+      kind: static
+      static-models:
+        newswitch-device: z-axis.newswitch-device.yml
+    results:
+      newswitch-device-id: ~ inputs['newswitch-device-id-sample-z'].value
+      newswitch-device-config: >
+        ~ {
+          optikit_dsn_variable: inputs['newswitch-input-variable-sample-z'].value
+        }
+  a-axis-driver:
+    kind: primitive
+    primitive:
+      kind: static
+      static-models:
+        newswitch-device: objective-axis.newswitch-device.yml
+    results:
+      newswitch-device-id: ~ inputs['newswitch-device-id-objective-a'].value
+      newswitch-device-config: >
+        ~ {
+          optikit_dsn_variable: inputs['newswitch-input-variable-objective-a'].value
+        }
+  sample-stage-driver:
+    kind: primitive
+    primitive:
+      kind: static
+      static-models:
+        newswitch-device: sample-stage.newswitch-device.yml
+    results:
+      newswitch-device-id: ~ inputs['newswitch-device-id-sample'].value
+      newswitch-device-config: >
+        ~ {
+          axes: {
+            x: inputs['newswitch-device-id-sample-x'].value,
+            y: inputs['newswitch-device-id-sample-y'].value,
+            z: inputs['newswitch-device-id-sample-z'].value,
+          }
+        }
+  objective-stage-driver:
+    kind: primitive
+    primitive:
+      kind: static
+      static-models:
+        newswitch-device: objective-stage.newswitch-device.yml
+    results:
+      newswitch-device-id: ~ inputs['newswitch-device-id-objective'].value
+      newswitch-device-config: >
+        ~ {
+          axes: {
+            a: inputs['newswitch-device-id-objective-a'].value,
+          }
+        }
+
+assemblies:
+  wiring:
+    children:
+      sample-stage-driver:
+        children:
+          x-axis-driver: {}
+          y-axis-driver: {}
+          z-axis-driver: {}
+      objective-stage-driver:
+        children:
+          a-axis-driver: {}

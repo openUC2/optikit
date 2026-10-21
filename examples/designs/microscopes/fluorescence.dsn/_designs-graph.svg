@@ -114,22 +114,22 @@
 <!-- &#45;&gt;primitives/controller&#45;mapping.dsn -->
 <g id="edge10" class="edge">
 <title>&#45;&gt;primitives/controller&#45;mapping.dsn</title>
-<path fill="none" stroke="black" d="M1740.79,-282.99C1862.26,-281.01 2349.51,-271.64 2371.55,-248.4 2376.68,-242.98 2376.46,-237.22 2371.55,-231.6 2362.52,-221.27 2304.01,-212.86 2244.99,-206.88"/>
-<polygon fill="black" stroke="black" points="2245.39,-203.4 2235.1,-205.9 2244.7,-210.37 2245.39,-203.4"/>
+<path fill="none" stroke="black" d="M1740.79,-282.99C1862.26,-281.01 2349.51,-271.64 2371.55,-248.4 2376.68,-242.98 2376.46,-237.22 2371.55,-231.6 2366.61,-225.95 2297.35,-216.74 2231.84,-209.19"/>
+<polygon fill="black" stroke="black" points="2232.36,-205.72 2222.02,-208.07 2231.56,-212.68 2232.36,-205.72"/>
 <text text-anchor="middle" x="2506.31" y="-235.8" font-family="Times,serif" font-size="14.00">electronics&#45;controller&#45;mapping&#45;sample&#45;stage&#45;z</text>
 </g>
-<!-- primitives/electronics&#45;mainboard.dsn -->
+<!-- primitives/controllers/standalone&#45;board.dsn -->
 <g id="node16" class="node">
-<title>primitives/electronics&#45;mainboard.dsn</title>
-<ellipse fill="none" stroke="black" cx="2486.55" cy="-195.6" rx="155.05" ry="18"/>
-<text text-anchor="middle" x="2486.55" y="-191.4" font-family="Times,serif" font-size="14.00">primitives/electronics&#45;mainboard.dsn</text>
+<title>primitives/controllers/standalone&#45;board.dsn</title>
+<ellipse fill="none" stroke="black" cx="2462.55" cy="-195.6" rx="179.19" ry="18"/>
+<text text-anchor="middle" x="2462.55" y="-191.4" font-family="Times,serif" font-size="14.00">primitives/controllers/standalone&#45;board.dsn</text>
 </g>
-<!-- &#45;&gt;primitives/electronics&#45;mainboard.dsn -->
+<!-- &#45;&gt;primitives/controllers/standalone&#45;board.dsn -->
 <g id="edge11" class="edge">
-<title>&#45;&gt;primitives/electronics&#45;mainboard.dsn</title>
-<path fill="none" stroke="black" d="M1740.78,-283.42C1890.65,-283.42 2609.5,-281.68 2641.55,-248.4 2659.62,-229.64 2644.79,-217.67 2618.33,-210.04"/>
-<polygon fill="black" stroke="black" points="2619.26,-206.66 2608.7,-207.59 2617.53,-213.44 2619.26,-206.66"/>
-<text text-anchor="middle" x="2709.31" y="-235.8" font-family="Times,serif" font-size="14.00">electronics&#45;controller</text>
+<title>&#45;&gt;primitives/controllers/standalone&#45;board.dsn</title>
+<path fill="none" stroke="black" d="M1740.78,-283.42C1890.65,-283.42 2609.5,-281.68 2641.55,-248.4 2660.42,-228.8 2647.58,-216.49 2621.82,-208.8"/>
+<polygon fill="black" stroke="black" points="2622.95,-205.47 2612.4,-206.35 2621.19,-212.25 2622.95,-205.47"/>
+<text text-anchor="middle" x="2710.35" y="-235.8" font-family="Times,serif" font-size="14.00">electronics&#45;controller</text>
 </g>
 <!-- primitives/hikcamera&#45;with&#45;objective.dsn -->
 <g id="node17" class="node">
@@ -140,9 +140,9 @@
 <!-- &#45;&gt;primitives/hikcamera&#45;with&#45;objective.dsn -->
 <g id="edge12" class="edge">
 <title>&#45;&gt;primitives/hikcamera&#45;with&#45;objective.dsn</title>
-<path fill="none" stroke="black" d="M1740.76,-283.05C1901.79,-280.92 2724.58,-269.03 2773.55,-248.4 2786.69,-242.86 2798.5,-232.54 2807.7,-222.56"/>
-<polygon fill="black" stroke="black" points="2810.2,-225.01 2814.08,-215.15 2804.9,-220.44 2810.2,-225.01"/>
-<text text-anchor="middle" x="2817.43" y="-235.8" font-family="Times,serif" font-size="14.00">camera</text>
+<path fill="none" stroke="black" d="M1740.79,-283.06C1901.99,-280.97 2725.63,-269.28 2774.55,-248.4 2787.54,-242.85 2799.14,-232.53 2808.15,-222.55"/>
+<polygon fill="black" stroke="black" points="2810.62,-225.06 2814.4,-215.16 2805.27,-220.54 2810.62,-225.06"/>
+<text text-anchor="middle" x="2818.08" y="-235.8" font-family="Times,serif" font-size="14.00">camera</text>
 </g>
 <!-- primitives/lasers/boison&#45;488.dsn -->
 <g id="node22" class="node">
@@ -153,9 +153,9 @@
 <!-- &#45;&gt;primitives/lasers/boison&#45;488.dsn -->
 <g id="edge13" class="edge">
 <title>&#45;&gt;primitives/lasers/boison&#45;488.dsn</title>
-<path fill="none" stroke="black" d="M1740.6,-283.06C1890.26,-281.09 2618.05,-270.5 2841.55,-248.4 2918.75,-240.77 3005.84,-225.56 3067.84,-213.59"/>
-<polygon fill="black" stroke="black" points="3068.48,-217.03 3077.63,-211.68 3067.14,-210.16 3068.48,-217.03"/>
-<text text-anchor="middle" x="2988.6" y="-235.8" font-family="Times,serif" font-size="14.00">blue&#45;laser</text>
+<path fill="none" stroke="black" d="M1740.62,-283.06C1890.42,-281.1 2618.86,-270.57 2842.55,-248.4 2919.5,-240.77 3006.31,-225.56 3068.11,-213.59"/>
+<polygon fill="black" stroke="black" points="3068.72,-217.04 3077.86,-211.69 3067.37,-210.17 3068.72,-217.04"/>
+<text text-anchor="middle" x="2989.21" y="-235.8" font-family="Times,serif" font-size="14.00">blue&#45;laser</text>
 </g>
 <!-- primitives/xyz&#45;stage.dsn -->
 <g id="node24" class="node">

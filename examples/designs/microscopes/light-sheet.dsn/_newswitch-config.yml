@@ -7,7 +7,7 @@ devices:
     spec_shape: gauss
     type: lightsource
     wavelength_nm: 488
-  led-ring:
+  led:
     channels: 1
     type: lightsource
   slider:
@@ -49,11 +49,11 @@ devices:
         pwm_max: 0
         subid: 0
         type: serial-laser
-      led-ring:
-        id: 30
+      led:
+        id: 0
         pwm_max: 0
         subid: 0
-        type: canopen-led
+        type: serial-led
       slider/axis:
         id: 3
         pwm_max: 0

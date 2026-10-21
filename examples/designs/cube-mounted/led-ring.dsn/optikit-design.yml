@@ -1,29 +1,46 @@
 optikit-version: v0.1.0-alpha.1
 
 design:
-  description: A two-cube-wide LED ring
+  description: A two-cube-wide LED ring with a single bright LED and an annular LED matrix
   tags:
     - composition/cube-compatible
 
 inputs:
-  newswitch-device-id:
-    description: A short unique name for the device in NewSwitch, which can be referenced from other parts of the overall NewSwitch config
+  newswitch-device-id-led:
+    description: A short unique name for the single LED in NewSwitch, which can be referenced from other parts of the overall NewSwitch config
+    kind: string
+    tags:
+      - config/newswitch/device-id
+  newswitch-device-id-matrix:
+    description: A short unique name for the LED matrix in NewSwitch, which can be referenced from other parts of the overall NewSwitch config
     kind: string
     tags:
       - config/newswitch/device-id
 
 components:
-  drivers:
+  led-driver:
     kind: primitive
     primitive:
       kind: static
       static-models:
         # Warning: the contents of this file are fictional; they're only provided to simulate the shape of what NewSwitch expects as its config!
-        newswitch-device: led-ring.newswitch-device.yml
+        newswitch-device: led.newswitch-device.yml
     results:
-      newswitch-device-id: ~ inputs['newswitch-device-id'].value
+      newswitch-device-id: ~ inputs['newswitch-device-id-led'].value
+  led-matrix-driver:
+    kind: primitive
+    primitive:
+      kind: static
+      static-models:
+        # Warning: the contents of this file are fictional; they're only provided to simulate the shape of what NewSwitch expects as its config!
+        newswitch-device: led-matrix.newswitch-device.yml
+    results:
+      newswitch-device-id: ~ inputs['newswitch-device-id-matrix'].value
 
 assemblies:
   wiring:
     children:
-      drivers: {}
+      led-driver:
+        disabled: ~ inputs['newswitch-device-id-led'].value == ''
+      led-matrix-driver:
+        disabled: ~ inputs['newswitch-device-id-matrix'].value == ''

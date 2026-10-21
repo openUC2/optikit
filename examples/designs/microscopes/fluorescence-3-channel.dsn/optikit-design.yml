@@ -7,12 +7,12 @@ design:
     - instrument/microscope
 
 components:
-  led-ring:
+  led:
     kind: design
     design: cube-mounted/led-ring.dsn
     instantiation:
       inputs:
-        newswitch-device-id: led-ring
+        newswitch-device-id-led: led
   laser-1:
     kind: design
     design: primitives/lasers/boison-488.dsn
@@ -37,13 +37,13 @@ components:
     instantiation:
       inputs:
         newswitch-device-id: standalone-board
-  mapping-led-ring:
+  mapping-led:
     kind: design
     design: primitives/controller-mapping.dsn
     instantiation:
       inputs:
         newswitch-controller-id: standalone-board
-        newswitch-peripheral-id: led-ring
+        newswitch-peripheral-id: led
         newswitch-mapping-type: canopen-led
         id: 30
   mapping-laser-1:
@@ -77,7 +77,7 @@ components:
 assemblies:
   wiring:
     children:
-      led-ring:
+      led:
         assembly: wiring
       laser-1:
         assembly: wiring
@@ -88,7 +88,7 @@ assemblies:
       standalone-board:
         assembly: wiring
         children:
-          mapping-led-ring:
+          mapping-led:
             assembly: wiring
           mapping-laser-1:
             assembly: wiring

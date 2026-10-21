@@ -183,7 +183,7 @@ components:
         id: 2
   standalone-board-2:
     kind: design
-    design: primitives/electronics-mainboard.dsn
+    design: primitives/controllers/standalone-board.dsn
     instantiation:
       inputs:
         newswitch-device-id: mainboard-2

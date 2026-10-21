@@ -1,0 +1,4 @@
+newswitch_version: v1.0.2 # minimum allowed newswitch version for this config file; earlier versions of newswitch may be unable to correctly handle this file
+
+type: lightsource
+channels: 1

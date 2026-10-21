@@ -1099,7 +1099,7 @@ components:
     order: zxy
 - id: standalone-board-1
   kind: design
-  design: primitives/electronics-mainboard.dsn
+  design: primitives/controllers/standalone-board.dsn
   instantiation:
     inputs:
       newswitch-device-id: mainboard-1
@@ -1110,8 +1110,8 @@ components:
 - id: standalone-board-1/case-base
   kind: primitive/static
   static-models:
-    gltf: "primitives/electronics-mainboard.dsn/PRT - 1009 - CASMAIBRD2X2BAS - B.glb"
-    step: "primitives/electronics-mainboard.dsn/PRT - 1009 - CASMAIBRD2X2BAS - B.stp"
+    gltf: "primitives/controllers/standalone-board.dsn/PRT - 1009 - CASMAIBRD2X2BAS - B.glb"
+    step: "primitives/controllers/standalone-board.dsn/PRT - 1009 - CASMAIBRD2X2BAS - B.stp"
   position: [25.0, -25.0, 9.0]
   rotation:
     kind: extrinsic
@@ -1119,8 +1119,8 @@ components:
 - id: standalone-board-1/case-lid
   kind: primitive/static
   static-models:
-    gltf: "primitives/electronics-mainboard.dsn/PRT - 1010 - CASMAIBRD2X2LID - B.glb"
-    step: "primitives/electronics-mainboard.dsn/PRT - 1010 - CASMAIBRD2X2LID - B.stp"
+    gltf: "primitives/controllers/standalone-board.dsn/PRT - 1010 - CASMAIBRD2X2LID - B.glb"
+    step: "primitives/controllers/standalone-board.dsn/PRT - 1010 - CASMAIBRD2X2LID - B.stp"
   position: [25.0, -25.0, 9.0]
   rotation:
     kind: extrinsic
@@ -1133,7 +1133,7 @@ components:
     order: zxy
 - id: standalone-board-2
   kind: design
-  design: primitives/electronics-mainboard.dsn
+  design: primitives/controllers/standalone-board.dsn
   instantiation:
     inputs:
       newswitch-device-id: mainboard-2
@@ -1144,8 +1144,8 @@ components:
 - id: standalone-board-2/case-base
   kind: primitive/static
   static-models:
-    gltf: "primitives/electronics-mainboard.dsn/PRT - 1009 - CASMAIBRD2X2BAS - B.glb"
-    step: "primitives/electronics-mainboard.dsn/PRT - 1009 - CASMAIBRD2X2BAS - B.stp"
+    gltf: "primitives/controllers/standalone-board.dsn/PRT - 1009 - CASMAIBRD2X2BAS - B.glb"
+    step: "primitives/controllers/standalone-board.dsn/PRT - 1009 - CASMAIBRD2X2BAS - B.stp"
   position: [25.0, -25.0, 34.0]
   rotation:
     kind: extrinsic
@@ -1153,8 +1153,8 @@ components:
 - id: standalone-board-2/case-lid
   kind: primitive/static
   static-models:
-    gltf: "primitives/electronics-mainboard.dsn/PRT - 1010 - CASMAIBRD2X2LID - B.glb"
-    step: "primitives/electronics-mainboard.dsn/PRT - 1010 - CASMAIBRD2X2LID - B.stp"
+    gltf: "primitives/controllers/standalone-board.dsn/PRT - 1010 - CASMAIBRD2X2LID - B.glb"
+    step: "primitives/controllers/standalone-board.dsn/PRT - 1010 - CASMAIBRD2X2LID - B.stp"
   position: [25.0, -25.0, 34.0]
   rotation:
     kind: extrinsic

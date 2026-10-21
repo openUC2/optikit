@@ -20,22 +20,22 @@ components:
   rotation:
     kind: extrinsic
     order: zxy
-- id: led-ring
+- id: led
   kind: design
   design: cube-mounted/led-ring.dsn
   instantiation:
     inputs:
-      newswitch-device-id: led-ring
+      newswitch-device-id-led: led
   position: [0.0, 0.0, 0.0]
   rotation:
     kind: extrinsic
     order: zxy
-- id: led-ring/drivers
+- id: led/led-driver
   kind: primitive/static
   static-models:
-    newswitch-device: cube-mounted/led-ring.dsn/led-ring.newswitch-device.yml
+    newswitch-device: cube-mounted/led-ring.dsn/led.newswitch-device.yml
   results:
-    newswitch-device-id: led-ring
+    newswitch-device-id: led
   position: [0.0, 0.0, 0.0]
   rotation:
     kind: extrinsic
@@ -180,29 +180,28 @@ components:
   rotation:
     kind: extrinsic
     order: zxy
-- id: mapping-led-ring
+- id: mapping-led
   kind: design
   design: primitives/controller-mapping.dsn
   instantiation:
     inputs:
-      id: "30"
       newswitch-controller-id: standalone-board
-      newswitch-mapping-type: canopen-led
-      newswitch-peripheral-id: led-ring
+      newswitch-mapping-type: serial-led
+      newswitch-peripheral-id: led
   position: [0.0, 0.0, 0.0]
   rotation:
     kind: extrinsic
     order: zxy
-- id: mapping-led-ring/mapping
+- id: mapping-led/mapping
   kind: results
   results:
     newswitch-device-config:
       mapping:
-        led-ring:
-          id: 30
+        led:
+          id: 0
           pwm_max: 0
           subid: 0
-          type: canopen-led
+          type: serial-led
     newswitch-device-id: standalone-board
   position: [0.0, 0.0, 0.0]
   rotation:

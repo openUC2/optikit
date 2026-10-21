@@ -277,7 +277,7 @@ components:
     order: zxy
 - id: electronics-controller
   kind: design
-  design: primitives/electronics-mainboard.dsn
+  design: primitives/controllers/standalone-board.dsn
   instantiation:
     inputs:
       newswitch-device-id: my-favorite-mainboard
@@ -291,8 +291,8 @@ components:
 - id: electronics-controller/case-base
   kind: primitive/static
   static-models:
-    gltf: "primitives/electronics-mainboard.dsn/PRT - 1009 - CASMAIBRD2X2BAS - B.glb"
-    step: "primitives/electronics-mainboard.dsn/PRT - 1009 - CASMAIBRD2X2BAS - B.stp"
+    gltf: "primitives/controllers/standalone-board.dsn/PRT - 1009 - CASMAIBRD2X2BAS - B.glb"
+    step: "primitives/controllers/standalone-board.dsn/PRT - 1009 - CASMAIBRD2X2BAS - B.stp"
   position: [25.0, 25.0, -34.0]
   rotation:
     kind: extrinsic
@@ -303,8 +303,8 @@ components:
 - id: electronics-controller/case-lid
   kind: primitive/static
   static-models:
-    gltf: "primitives/electronics-mainboard.dsn/PRT - 1010 - CASMAIBRD2X2LID - B.glb"
-    step: "primitives/electronics-mainboard.dsn/PRT - 1010 - CASMAIBRD2X2LID - B.stp"
+    gltf: "primitives/controllers/standalone-board.dsn/PRT - 1010 - CASMAIBRD2X2LID - B.glb"
+    step: "primitives/controllers/standalone-board.dsn/PRT - 1010 - CASMAIBRD2X2LID - B.stp"
   position: [25.0, 25.0, -34.0]
   rotation:
     kind: extrinsic
