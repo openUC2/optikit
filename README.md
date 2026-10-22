@@ -67,12 +67,13 @@ uv sync
 #### Generate an assembly report
 
 Now we will generate an assembly report from a DSN model. For this example, we will use
-[examples/designs/microscopes/fluorescence.dsn](./examples/designs/microscopes/fluorescence.dsn/).
+[examples/designs/microscopes/fluorescence.dsn](./examples/designs/microscopes/fluorescence.dsn/),
+whose NewSwitch config components are in the `wiring` assembly.
 Run:
 
 ```bash
 cd examples/designs/microscopes/fluorescence.dsn
-optikit dev dsn geom report-assm --assembly wiring --format yaml your-output-assembly-report-file.yml
+optikit dev dsn comp report-assm --assembly wiring your-output-assembly-report-file.yml
 ```
 
 This will create the file `your-output-assembly-report-file.yml`.

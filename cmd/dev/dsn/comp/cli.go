@@ -38,9 +38,25 @@ func makeReportCmds(versions compat.Versions) []*cli.Command {
 			Usage:     "Generate a flattened report of all components in the design",
 			ArgsUsage: argsUsageOutputFile,
 			Flags: []cli.Flag{
-				makeRenderOutputFormatFlag("json", "yaml", "yml"),
+				makeRenderOutputFormatFlag("yml", "yaml", "json"),
 			},
 			Action: reportCompA(versions),
+		},
+		{
+			Name:    "report-assm",
+			Aliases: []string{"report-assembly"},
+			Usage: "Generate a report of the model files and results of all components in the " +
+				"specified assembly",
+			ArgsUsage: argsUsageOutputFile,
+			Flags: []cli.Flag{
+				&cli.StringFlag{
+					Name:    "assembly",
+					Aliases: []string{"a"},
+					Usage:   "Select design assembly",
+				},
+				makeRenderOutputFormatFlag("yml", "yaml", "json"),
+			},
+			Action: reportAssmA(versions),
 		},
 	}
 }

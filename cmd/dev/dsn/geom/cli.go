@@ -40,11 +40,11 @@ func makeReportCmds(versions compat.Versions) []*cli.Command {
 		{
 			Name:    "report-assm",
 			Aliases: []string{"report-assembly"},
-			Usage: "Generate a report of the model files and poses of all components in the " +
-				"specified assembly",
+			Usage: "Generate a report of the model files and poses and results of all components in " +
+				"the specified assembly",
 			ArgsUsage: argsUsageOutputFile,
 			Flags: []cli.Flag{
-				makeRenderOutputFormatFlag("json", "yaml", "yml"),
+				makeRenderOutputFormatFlag("yml", "yaml", "json"),
 			},
 			Action: reportAssmA(versions),
 		},

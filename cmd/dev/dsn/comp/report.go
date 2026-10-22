@@ -38,3 +38,35 @@ func reportCompA(versions compat.Versions) cli.ActionFunc {
 		return produceOutput(c.Args().First(), serialized)
 	}
 }
+
+func reportAssmA(versions compat.Versions) cli.ActionFunc {
+	return func(ctx context.Context, c *cli.Command) error {
+		inputs, err := parseInputVars(c.StringSlice("input"))
+		if err != nil {
+			return errors.Wrap(err, "couldn't parse input variables")
+		}
+		design, err := optikit.LoadFSDesign(
+			ctx, c.String("cwd"), inputs, false,
+		)
+		if err != nil {
+			return err
+		}
+
+		format := c.String("format")
+		if format == "yml" {
+			format = "yaml"
+		}
+		report, err := optikit.ReportAssembly(
+			ctx, design, designs.AssmID(c.String("assembly")), designs.UC2GridSpacings, versions.Tool,
+		)
+		if err != nil {
+			return err
+		}
+		serialized, err := optikit.SerializeReport(ctx, report, format)
+		if err != nil {
+			return err
+		}
+
+		return produceOutput(c.Args().First(), serialized)
+	}
+}
