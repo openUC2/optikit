@@ -1,0 +1,326 @@
+optikit-version: v0.1.0-dev
+components:
+- id: frame-chassis
+  kind: design
+  design: assemblies/frame-chassis.dsn
+  instantiation:
+    inputs:
+      newswitch-device-id-objective: frame-chassis/objective
+      newswitch-device-id-objective-a: frame-chassis/objective/a
+      newswitch-device-id-sample: frame-chassis/sample
+      newswitch-device-id-sample-x: frame-chassis/sample/x
+      newswitch-device-id-sample-y: frame-chassis/sample/y
+      newswitch-device-id-sample-z: frame-chassis/sample/z
+      newswitch-input-variable-objective-a: objective-a
+      newswitch-input-variable-sample-x: sample-x
+      newswitch-input-variable-sample-y: sample-y
+      newswitch-input-variable-sample-z: sample-z
+      position-a: 0.0
+      position-x: 0.0
+      position-y: 0.0
+      position-z: 0.0
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: frame-chassis/a-axis-driver
+  kind: primitive/static
+  static-models:
+    newswitch-device: assemblies/frame-chassis.dsn/objective-axis.newswitch-device.yml
+  results:
+    newswitch-device-config:
+      optikit_dsn_variable: objective-a
+    newswitch-device-id: frame-chassis/objective/a
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: frame-chassis/objective-stage-driver
+  kind: primitive/static
+  static-models:
+    newswitch-device: assemblies/frame-chassis.dsn/objective-stage.newswitch-device.yml
+  results:
+    newswitch-device-config:
+      axes:
+        a: frame-chassis/objective/a
+    newswitch-device-id: frame-chassis/objective
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: frame-chassis/sample-stage-driver
+  kind: primitive/static
+  static-models:
+    newswitch-device: assemblies/frame-chassis.dsn/sample-stage.newswitch-device.yml
+  results:
+    newswitch-device-config:
+      axes:
+        x: frame-chassis/sample/x
+        "y": frame-chassis/sample/y
+        z: frame-chassis/sample/z
+    newswitch-device-id: frame-chassis/sample
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: frame-chassis/x-axis-driver
+  kind: primitive/static
+  static-models:
+    newswitch-device: assemblies/frame-chassis.dsn/xy-axis.newswitch-device.yml
+  results:
+    newswitch-device-config:
+      optikit_dsn_variable: sample-x
+    newswitch-device-id: frame-chassis/sample/x
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: frame-chassis/y-axis-driver
+  kind: primitive/static
+  static-models:
+    newswitch-device: assemblies/frame-chassis.dsn/xy-axis.newswitch-device.yml
+  results:
+    newswitch-device-config:
+      optikit_dsn_variable: sample-y
+    newswitch-device-id: frame-chassis/sample/y
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: frame-chassis/z-axis-driver
+  kind: primitive/static
+  static-models:
+    newswitch-device: assemblies/frame-chassis.dsn/z-axis.newswitch-device.yml
+  results:
+    newswitch-device-config:
+      optikit_dsn_variable: sample-z
+    newswitch-device-id: frame-chassis/sample/z
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: hat-plus
+  kind: design
+  design: primitives/controllers/hat-plus.dsn
+  instantiation:
+    inputs:
+      connection-type: can
+      newswitch-device-id: hat-plus
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: hat-plus/driver-can
+  kind: primitive/static
+  static-models:
+    newswitch-device: primitives/controllers/hat-plus.dsn/mainboard-can.newswitch-device.yml
+  results:
+    newswitch-device-id: hat-plus
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: led-ring
+  kind: design
+  design: cube-mounted/led-ring.dsn
+  instantiation:
+    inputs:
+      newswitch-device-id-led: led-ring/led
+      newswitch-device-id-matrix: led-ring/matrix
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: led-ring/led-driver
+  kind: primitive/static
+  static-models:
+    newswitch-device: cube-mounted/led-ring.dsn/led.newswitch-device.yml
+  results:
+    newswitch-device-id: led-ring/led
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: led-ring/led-matrix-driver
+  kind: primitive/static
+  static-models:
+    newswitch-device: cube-mounted/led-ring.dsn/led-matrix.newswitch-device.yml
+  results:
+    newswitch-device-id: led-ring/matrix
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: mapping-axis-a
+  kind: design
+  design: primitives/controller-mapping.dsn
+  instantiation:
+    inputs:
+      id: "10"
+      newswitch-controller-id: hat-plus
+      newswitch-mapping-type: canopen-motor
+      newswitch-peripheral-id: frame-chassis/a
+      subid: "1"
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: mapping-axis-a/mapping
+  kind: results
+  results:
+    newswitch-device-config:
+      mapping:
+        frame-chassis/a:
+          id: 10
+          pwm_max: 0
+          subid: 1
+          type: canopen-motor
+    newswitch-device-id: hat-plus
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: mapping-axis-x
+  kind: design
+  design: primitives/controller-mapping.dsn
+  instantiation:
+    inputs:
+      id: "11"
+      newswitch-controller-id: hat-plus
+      newswitch-mapping-type: canopen-motor
+      newswitch-peripheral-id: frame-chassis/x
+      subid: "1"
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: mapping-axis-x/mapping
+  kind: results
+  results:
+    newswitch-device-config:
+      mapping:
+        frame-chassis/x:
+          id: 11
+          pwm_max: 0
+          subid: 1
+          type: canopen-motor
+    newswitch-device-id: hat-plus
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: mapping-axis-y
+  kind: design
+  design: primitives/controller-mapping.dsn
+  instantiation:
+    inputs:
+      id: "12"
+      newswitch-controller-id: hat-plus
+      newswitch-mapping-type: canopen-motor
+      newswitch-peripheral-id: frame-chassis/y
+      subid: "1"
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: mapping-axis-y/mapping
+  kind: results
+  results:
+    newswitch-device-config:
+      mapping:
+        frame-chassis/y:
+          id: 12
+          pwm_max: 0
+          subid: 1
+          type: canopen-motor
+    newswitch-device-id: hat-plus
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: mapping-axis-z
+  kind: design
+  design: primitives/controller-mapping.dsn
+  instantiation:
+    inputs:
+      id: "13"
+      newswitch-controller-id: hat-plus
+      newswitch-mapping-type: canopen-motor
+      newswitch-peripheral-id: frame-chassis/z
+      subid: "1"
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: mapping-axis-z/mapping
+  kind: results
+  results:
+    newswitch-device-config:
+      mapping:
+        frame-chassis/z:
+          id: 13
+          pwm_max: 0
+          subid: 1
+          type: canopen-motor
+    newswitch-device-id: hat-plus
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: mapping-led
+  kind: design
+  design: primitives/controller-mapping.dsn
+  instantiation:
+    inputs:
+      id: "20"
+      newswitch-controller-id: hat-plus
+      newswitch-mapping-type: canopen-led
+      newswitch-peripheral-id: led-ring/led
+      subid: "4"
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: mapping-led-matrix
+  kind: design
+  design: primitives/controller-mapping.dsn
+  instantiation:
+    inputs:
+      id: "30"
+      newswitch-controller-id: hat-plus
+      newswitch-mapping-type: canopen-led
+      newswitch-peripheral-id: led-ring/matrix
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: mapping-led-matrix/mapping
+  kind: results
+  results:
+    newswitch-device-config:
+      mapping:
+        led-ring/matrix:
+          id: 30
+          pwm_max: 0
+          subid: 0
+          type: canopen-led
+    newswitch-device-id: hat-plus
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: mapping-led/mapping
+  kind: results
+  results:
+    newswitch-device-config:
+      mapping:
+        led-ring/led:
+          id: 20
+          pwm_max: 0
+          subid: 4
+          type: canopen-led
+    newswitch-device-id: hat-plus
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy

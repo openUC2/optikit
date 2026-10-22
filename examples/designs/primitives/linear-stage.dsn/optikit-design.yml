@@ -1,0 +1,68 @@
+optikit-version: v0.1.0-alpha.1
+
+design:
+  description: An x-y-z stage
+  tags:
+    - composition/cube-compatible
+    - in/kit/light-sheet-box
+
+inputs:
+  newswitch-device-id-stage:
+    description: A short unique name for the device in NewSwitch, which can be referenced from other parts of the overall NewSwitch config
+    kind: string
+    tags:
+      - config/newswitch/device-id
+  newswitch-device-id-axis:
+    description: A short unique name for the device's axis device in NewSwitch, which can be referenced from other parts of the overall NewSwitch config
+    kind: string
+    tags:
+      - config/newswitch/device-id
+  position:
+    description: Extension of the actuator
+    kind: float64
+    units: mm
+    min: 0
+    max: 25
+    tags:
+      - pose/actuator/translation
+      - adjustment/electronic
+  newswitch-input-variable:
+    description: The name of the top-level Optikit design's input variable providing the value of the position input variable
+    kind: string
+    tags:
+      - config/newswitch/input-variable-binding
+
+components:
+  axis-driver:
+    kind: primitive
+    primitive:
+      kind: static
+      static-models:
+        newswitch-device: axis.newswitch-device.yml
+    results:
+      newswitch-device-id: ~ inputs['newswitch-device-id-axis'].value
+      newswitch-device-config: >
+        ~ {
+          optikit_dsn_variable: inputs['newswitch-input-variable'].value
+        }
+  stage-driver:
+    kind: primitive
+    primitive:
+      kind: static
+      static-models:
+        newswitch-device: stage.newswitch-device.yml
+    results:
+      newswitch-device-id: ~ inputs['newswitch-device-id-stage'].value
+      newswitch-device-config: >
+        ~ {
+          axes: {
+            x: inputs['newswitch-device-id-axis'].value,
+          }
+        }
+
+assemblies:
+  wiring:
+    children:
+      stage-driver:
+        children:
+          axis-driver: {}

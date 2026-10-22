@@ -111,7 +111,7 @@ components:
     design: cube-mounted/fiber-holder.dsn
   blue-laser:
     kind: design
-    design: primitives/laser.dsn
+    design: primitives/lasers/boison-488.dsn
     instantiation:
       inputs:
         newswitch-device-id: hotlaser123
@@ -141,7 +141,7 @@ components:
     design: cube-mounted/slide-holder.dsn/mounted-holder.dsn
   standalone-board-1:
     kind: design
-    design: primitives/electronics-mainboard.dsn
+    design: primitives/controllers/standalone-board.dsn
     instantiation:
       inputs:
         newswitch-device-id: mainboard-1
@@ -183,7 +183,7 @@ components:
         id: 2
   standalone-board-2:
     kind: design
-    design: primitives/electronics-mainboard.dsn
+    design: primitives/controllers/standalone-board.dsn
     instantiation:
       inputs:
         newswitch-device-id: mainboard-2

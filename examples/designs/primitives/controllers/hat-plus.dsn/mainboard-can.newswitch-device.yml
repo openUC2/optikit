@@ -1,0 +1,12 @@
+newswitch_version: v1.0.2 # minimum allowed newswitch version for this config file; earlier versions of newswitch may be unable to correctly handle this file
+
+type: controller
+name: HAT+ via CAN
+manufacturer: openUC2
+connection:
+  protocol: can-bus
+  transport:
+    type: can
+    interface: socketcan
+    channel: can0
+    bitrate: 500000

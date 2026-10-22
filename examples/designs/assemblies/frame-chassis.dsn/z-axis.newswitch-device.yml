@@ -1,0 +1,14 @@
+newswitch_version: v1.0.2 # minimum allowed newswitch version for this config file; earlier versions of newswitch may be unable to correctly handle this file
+
+type: axis
+name: frame-z
+manufacturer: openUC2
+steps_per_um: 8.0
+homing_required: true
+pos:
+  min: 0.0
+  max: 10000.0
+  unit: um
+vel:
+  value: 5000.0
+  unit: um/s

@@ -28,12 +28,12 @@ generate-prim-glb: ## go generate
 
 .PHONY: generate
 generate: ## generate outside CI
-generate: generate-prim-glb generate-go
+generate: generate-prim-glb generate-example-outputs
 
-.PHONY: generate-go
-generate-go: ## go generate
+.PHONY: generate-outputs
+generate-example-outputs:
 	$(call print-target)
-	go generate ./...
+	./tools/examples/run-all.sh ./examples generate
 
 .PHONY: generate-unreproducible
 generate-unreproducible: ## generate outside CI

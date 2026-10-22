@@ -1,0 +1,162 @@
+optikit-version: v0.1.0-alpha.1
+
+design:
+  description: A FRAME configured as a histology scanner
+  tags:
+    - instrument
+    - instrument/microscope
+
+inputs:
+  sample-x:
+    description: Extension of the sample stage's x-axis actuator
+    kind: float64
+    units: mm
+    min: 0
+    max: 25
+    tags:
+      - pose/actuator/translation
+      - adjustment/electronic
+  sample-y:
+    description: Extension of the sample stage's y-axis actuator
+    kind: float64
+    units: mm
+    min: 0
+    max: 25
+    tags:
+      - pose/actuator/translation
+      - adjustment/electronic
+  sample-z:
+    description: Extension of the sample stage's z-axis actuator
+    kind: float64
+    units: mm
+    min: 0
+    max: 25
+    tags:
+      - pose/actuator/translation
+      - adjustment/electronic
+  objective-a:
+    description: Extension of the objective changer's a-axis actuator
+    kind: float64
+    units: mm
+    min: 0
+    max: 25
+    tags:
+      - pose/actuator/translation
+      - adjustment/electronic
+
+components:
+  led-ring:
+    kind: design
+    design: cube-mounted/led-ring.dsn
+    instantiation:
+      inputs:
+        newswitch-device-id-led: led-ring/led
+        newswitch-device-id-matrix: led-ring/matrix
+  frame-chassis:
+    kind: design
+    design: assemblies/frame-chassis.dsn
+    instantiation:
+      inputs:
+        newswitch-device-id-sample: frame-chassis/sample
+        newswitch-device-id-sample-x: frame-chassis/sample/x
+        newswitch-device-id-sample-y: frame-chassis/sample/y
+        newswitch-device-id-sample-z: frame-chassis/sample/z
+        newswitch-device-id-objective: frame-chassis/objective
+        newswitch-device-id-objective-a: frame-chassis/objective/a
+        newswitch-input-variable-sample-x: sample-x
+        newswitch-input-variable-sample-y: sample-y
+        newswitch-input-variable-sample-z: sample-z
+        newswitch-input-variable-objective-a: objective-a
+        position-x: ~ inputs['sample-x'].value
+        position-y: ~ inputs['sample-y'].value
+        position-z: ~ inputs['sample-z'].value
+        position-a: ~ inputs['objective-a'].value
+  hat-plus:
+    kind: design
+    design: primitives/controllers/hat-plus.dsn
+    instantiation:
+      inputs:
+        newswitch-device-id: hat-plus
+        connection-type: can
+  mapping-led:
+    kind: design
+    design: primitives/controller-mapping.dsn
+    instantiation:
+      inputs:
+        newswitch-controller-id: hat-plus
+        newswitch-peripheral-id: led-ring/led
+        newswitch-mapping-type: canopen-led
+        id: 20
+        subid: 4
+  mapping-led-matrix:
+    kind: design
+    design: primitives/controller-mapping.dsn
+    instantiation:
+      inputs:
+        newswitch-controller-id: hat-plus
+        newswitch-peripheral-id: led-ring/matrix
+        newswitch-mapping-type: canopen-led
+        id: 30
+  mapping-axis-x:
+    kind: design
+    design: primitives/controller-mapping.dsn
+    instantiation:
+      inputs:
+        newswitch-controller-id: hat-plus
+        newswitch-peripheral-id: frame-chassis/x
+        newswitch-mapping-type: canopen-motor
+        id: 11
+        subid: 1
+  mapping-axis-y:
+    kind: design
+    design: primitives/controller-mapping.dsn
+    instantiation:
+      inputs:
+        newswitch-controller-id: hat-plus
+        newswitch-peripheral-id: frame-chassis/y
+        newswitch-mapping-type: canopen-motor
+        id: 12
+        subid: 1
+  mapping-axis-z:
+    kind: design
+    design: primitives/controller-mapping.dsn
+    instantiation:
+      inputs:
+        newswitch-controller-id: hat-plus
+        newswitch-peripheral-id: frame-chassis/z
+        newswitch-mapping-type: canopen-motor
+        id: 13
+        subid: 1
+  mapping-axis-a:
+    kind: design
+    design: primitives/controller-mapping.dsn
+    instantiation:
+      inputs:
+        newswitch-controller-id: hat-plus
+        newswitch-peripheral-id: frame-chassis/a
+        newswitch-mapping-type: canopen-motor
+        id: 10
+        subid: 1
+
+assemblies:
+  wiring:
+    children:
+      led-ring:
+        assembly: wiring
+      frame-chassis:
+        assembly: wiring
+      hat-plus:
+        assembly: wiring
+        children:
+          mapping-led:
+            assembly: wiring
+          mapping-led-matrix:
+            assembly: wiring
+          mapping-axis-x:
+            assembly: wiring
+          mapping-axis-y:
+            assembly: wiring
+          mapping-axis-z:
+            assembly: wiring
+          mapping-axis-a:
+            assembly: wiring

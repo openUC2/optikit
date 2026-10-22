@@ -1,0 +1,126 @@
+devices:
+  frame-chassis/objective:
+    axes:
+      a: frame-chassis/objective/a
+    homing_order:
+    - a
+    manufacturer: openUC2
+    name: frame-objective
+    type: stage
+  frame-chassis/objective/a:
+    homing_required: true
+    manufacturer: openUC2
+    name: objective-changer
+    optikit_dsn_variable: objective-a
+    pos:
+      max: 10000.0
+      min: 0.0
+      unit: um
+    steps_per_um: 8.0
+    type: axis
+    vel:
+      unit: um/s
+      value: 5000.0
+  frame-chassis/sample:
+    axes:
+      x: frame-chassis/sample/x
+      y: frame-chassis/sample/y
+      z: frame-chassis/sample/z
+    homing_order:
+    - z
+    - y
+    - x
+    manufacturer: openUC2
+    name: frame-sample
+    type: stage
+  frame-chassis/sample/x:
+    homing_required: true
+    manufacturer: openUC2
+    name: frame-xy
+    optikit_dsn_variable: sample-x
+    pos:
+      max: 5000000.0
+      min: 0.0
+      unit: um
+    steps_per_um: 8.0
+    type: axis
+    vel:
+      unit: um/s
+      value: 10000.0
+  frame-chassis/sample/y:
+    homing_required: true
+    manufacturer: openUC2
+    name: frame-xy
+    optikit_dsn_variable: sample-y
+    pos:
+      max: 5000000.0
+      min: 0.0
+      unit: um
+    steps_per_um: 8.0
+    type: axis
+    vel:
+      unit: um/s
+      value: 10000.0
+  frame-chassis/sample/z:
+    homing_required: true
+    manufacturer: openUC2
+    name: frame-z
+    optikit_dsn_variable: sample-z
+    pos:
+      max: 10000.0
+      min: 0.0
+      unit: um
+    steps_per_um: 8.0
+    type: axis
+    vel:
+      unit: um/s
+      value: 5000.0
+  hat-plus:
+    connection:
+      protocol: can-bus
+      transport:
+        bitrate: 500000
+        channel: can0
+        interface: socketcan
+        type: can
+    manufacturer: openUC2
+    mapping:
+      frame-chassis/a:
+        id: 10
+        pwm_max: 0
+        subid: 1
+        type: canopen-motor
+      frame-chassis/x:
+        id: 11
+        pwm_max: 0
+        subid: 1
+        type: canopen-motor
+      frame-chassis/y:
+        id: 12
+        pwm_max: 0
+        subid: 1
+        type: canopen-motor
+      frame-chassis/z:
+        id: 13
+        pwm_max: 0
+        subid: 1
+        type: canopen-motor
+      led-ring/led:
+        id: 20
+        pwm_max: 0
+        subid: 4
+        type: canopen-led
+      led-ring/matrix:
+        id: 30
+        pwm_max: 0
+        subid: 0
+        type: canopen-led
+    name: HAT+ via CAN
+    type: controller
+  led-ring/led:
+    channels: 1
+    type: lightsource
+  led-ring/matrix:
+    channels: 1
+    type: lightsource
+newswitch_version: v1.0.2

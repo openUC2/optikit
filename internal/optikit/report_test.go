@@ -102,7 +102,6 @@ func TestReportPrims(t *testing.T) {
 }
 
 var fileExts = map[string]string{
-	"json": "json",
 	"yaml": "yml",
 }
 

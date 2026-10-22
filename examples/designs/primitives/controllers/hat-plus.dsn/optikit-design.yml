@@ -1,0 +1,44 @@
+optikit-version: v0.1.0-alpha.1
+
+design:
+  description: A Raspberry Pi HAT with an ESP32 microcontroller
+  tags:
+    - in/kit/electronics-box
+
+inputs:
+  newswitch-device-id:
+    description: A short unique name for the device in NewSwitch, which can be referenced from other parts of the overall NewSwitch config
+    kind: string
+    tags:
+      - config/newswitch/device-id
+  connection-type:
+    description: The way the HAT should be connected (either `can` or `serial`)
+    kind: string
+
+components:
+  driver-can:
+    kind: primitive
+    primitive:
+      kind: static
+      static-models:
+        # Warning: the following schema assumes a device type which is not yet defined in the NewSwitch device config schema!
+        newswitch-device: mainboard-can.newswitch-device.yml
+    results:
+      newswitch-device-id: ~ inputs['newswitch-device-id'].value
+  driver-serial:
+    kind: primitive
+    primitive:
+      kind: static
+      static-models:
+        # Warning: the following schema assumes a device type which is not yet defined in the NewSwitch device config schema!
+        newswitch-device: mainboard-serial.newswitch-device.yml
+    results:
+      newswitch-device-id: ~ inputs['newswitch-device-id'].value
+
+assemblies:
+  wiring:
+    children:
+      driver-can:
+        disabled: ~ inputs['connection-type'].value != 'can'
+      driver-serial:
+        disabled: ~ inputs['connection-type'].value != 'serial'

@@ -1,0 +1,133 @@
+devices:
+  laser:
+    bandwidth: 2.0
+    coherence: coherent
+    manufacturer: Boison
+    name: boison-488
+    spec_shape: gauss
+    type: lightsource
+    wavelength_nm: 488
+  led:
+    channels: 1
+    type: lightsource
+  slider:
+    axes:
+      x: slider/axis
+    homing_order:
+    - x
+    manufacturer: openUC2
+    name: linear-100
+    type: stage
+  slider/axis:
+    homing_required: true
+    manufacturer: openUC2
+    name: linear-100
+    optikit_dsn_variable: stage-z
+    pos:
+      max: 100000.0
+      min: 0.0
+      unit: um
+    steps_per_um: 8.0
+    type: axis
+    vel:
+      unit: um/s
+      value: 5000.0
+  standalone-board:
+    connection:
+      protocol: uc2-rest
+      transport:
+        baudrate: 115200
+        port_pattern: /dev/ttyUSB*
+        type: serial
+    firmware:
+      name: esp32-uc2-standalone-4
+      version: v2026.0.0-beta.3
+    manufacturer: openUC2
+    mapping:
+      laser:
+        id: 1
+        pwm_max: 0
+        subid: 0
+        type: serial-laser
+      led:
+        id: 0
+        pwm_max: 0
+        subid: 0
+        type: serial-led
+      slider/axis:
+        id: 3
+        pwm_max: 0
+        subid: 0
+        type: serial-motor
+      xyz-stage/a:
+        id: 0
+        pwm_max: 0
+        subid: 0
+        type: serial-motor
+      xyz-stage/x:
+        id: 1
+        pwm_max: 0
+        subid: 0
+        type: serial-motor
+      xyz-stage/y:
+        id: 2
+        pwm_max: 0
+        subid: 0
+        type: serial-motor
+    name: UC2-Mainboard-v4
+    type: controller
+  xyz-stage:
+    axes:
+      x: xyz-stage/x
+      y: xyz-stage/y
+      z: xyz-stage/a
+    homing_order:
+    - z
+    - y
+    - x
+    manufacturer: openUC2
+    name: xyz-linear-100
+    type: stage
+  xyz-stage/a:
+    homing_required: true
+    manufacturer: openUC2
+    name: linear-100
+    optikit_dsn_variable: stage-a
+    pos:
+      max: 100000.0
+      min: 0.0
+      unit: um
+    steps_per_um: 8.0
+    type: axis
+    vel:
+      unit: um/s
+      value: 5000.0
+  xyz-stage/x:
+    homing_required: true
+    manufacturer: openUC2
+    name: linear-100
+    optikit_dsn_variable: stage-x
+    pos:
+      max: 100000.0
+      min: 0.0
+      unit: um
+    steps_per_um: 8.0
+    type: axis
+    vel:
+      unit: um/s
+      value: 5000.0
+  xyz-stage/y:
+    homing_required: true
+    manufacturer: openUC2
+    name: linear-100
+    optikit_dsn_variable: stage-y
+    pos:
+      max: 100000.0
+      min: 0.0
+      unit: um
+    steps_per_um: 8.0
+    type: axis
+    vel:
+      unit: um/s
+      value: 5000.0
+newswitch_version: v1.0.2

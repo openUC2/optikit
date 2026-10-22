@@ -1,0 +1,214 @@
+optikit-version: v0.1.0-dev
+components:
+- id: laser-1
+  kind: design
+  design: primitives/lasers/boison-488.dsn
+  instantiation:
+    inputs:
+      newswitch-device-id: laser-1
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: laser-1/drivers
+  kind: primitive/static
+  static-models:
+    newswitch-device: primitives/lasers/boison-488.dsn/laser.newswitch-device.yml
+  results:
+    newswitch-device-id: laser-1
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: laser-2
+  kind: design
+  design: primitives/lasers/boison-488.dsn
+  instantiation:
+    inputs:
+      newswitch-device-id: laser-2
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: laser-2/drivers
+  kind: primitive/static
+  static-models:
+    newswitch-device: primitives/lasers/boison-488.dsn/laser.newswitch-device.yml
+  results:
+    newswitch-device-id: laser-2
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: laser-3
+  kind: design
+  design: primitives/lasers/boison-488.dsn
+  instantiation:
+    inputs:
+      newswitch-device-id: laser-3
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: laser-3/drivers
+  kind: primitive/static
+  static-models:
+    newswitch-device: primitives/lasers/boison-488.dsn/laser.newswitch-device.yml
+  results:
+    newswitch-device-id: laser-3
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: led
+  kind: design
+  design: cube-mounted/led-ring.dsn
+  instantiation:
+    inputs:
+      newswitch-device-id-led: led
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: led/led-driver
+  kind: primitive/static
+  static-models:
+    newswitch-device: cube-mounted/led-ring.dsn/led.newswitch-device.yml
+  results:
+    newswitch-device-id: led
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: mapping-laser-1
+  kind: design
+  design: primitives/controller-mapping.dsn
+  instantiation:
+    inputs:
+      id: "0"
+      newswitch-controller-id: standalone-board
+      newswitch-mapping-type: serial-laser
+      newswitch-peripheral-id: laser-1
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: mapping-laser-1/mapping
+  kind: results
+  results:
+    newswitch-device-config:
+      mapping:
+        laser-1:
+          id: 0
+          pwm_max: 0
+          subid: 0
+          type: serial-laser
+    newswitch-device-id: standalone-board
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: mapping-laser-2
+  kind: design
+  design: primitives/controller-mapping.dsn
+  instantiation:
+    inputs:
+      id: "1"
+      newswitch-controller-id: standalone-board
+      newswitch-mapping-type: serial-laser
+      newswitch-peripheral-id: laser-2
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: mapping-laser-2/mapping
+  kind: results
+  results:
+    newswitch-device-config:
+      mapping:
+        laser-2:
+          id: 1
+          pwm_max: 0
+          subid: 0
+          type: serial-laser
+    newswitch-device-id: standalone-board
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: mapping-laser-3
+  kind: design
+  design: primitives/controller-mapping.dsn
+  instantiation:
+    inputs:
+      id: "2"
+      newswitch-controller-id: standalone-board
+      newswitch-mapping-type: serial-laser
+      newswitch-peripheral-id: laser-3
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: mapping-laser-3/mapping
+  kind: results
+  results:
+    newswitch-device-config:
+      mapping:
+        laser-3:
+          id: 2
+          pwm_max: 0
+          subid: 0
+          type: serial-laser
+    newswitch-device-id: standalone-board
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: mapping-led
+  kind: design
+  design: primitives/controller-mapping.dsn
+  instantiation:
+    inputs:
+      id: "30"
+      newswitch-controller-id: standalone-board
+      newswitch-mapping-type: canopen-led
+      newswitch-peripheral-id: led
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: mapping-led/mapping
+  kind: results
+  results:
+    newswitch-device-config:
+      mapping:
+        led:
+          id: 30
+          pwm_max: 0
+          subid: 0
+          type: canopen-led
+    newswitch-device-id: standalone-board
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: standalone-board
+  kind: design
+  design: primitives/controllers/standalone-board.dsn
+  instantiation:
+    inputs:
+      newswitch-device-id: standalone-board
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: standalone-board/drivers
+  kind: primitive/static
+  static-models:
+    newswitch-device: primitives/controllers/standalone-board.dsn/mainboard.newswitch-device.yml
+  results:
+    newswitch-device-id: standalone-board
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
