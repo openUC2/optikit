@@ -172,6 +172,99 @@ func (d *FSDesignExpr) LoadFSDesignExpr(
 
 // FSDesign
 
+// Check looks for errors in the construction of the design.
+func (d *FSDesign) Check(ctx context.Context) (errs []error) {
+	errs = append(errs, errsWrap(d.Design.Check(), "invalid design")...)
+	checks := make(map[CompID]checkSubdesign)
+	for compID, comp := range d.Decl.Components {
+		if comp.Kind != CompKindDesign {
+			continue
+		}
+
+		subdesign, err := d.LoadCompFSDesign(ctx, compID)
+		if err != nil {
+			errs = append(errs, errors.Wrapf(
+				err, "couldn't load subdesign %s for component %s", comp.Design, compID,
+			))
+			continue
+		}
+		checks[compID] = checkSubdesign{
+			name:   comp.Design,
+			design: subdesign,
+		}
+	}
+	errs = append(errs, errsWrap(
+		d.checkCompInsts(ctx, checks),
+		"failed checks for input variable instantiation values",
+	)...)
+
+	for compID, check := range checks {
+		errs = append(errs, errsWrap(
+			check.design.Check(ctx), // recurse
+			fmt.Sprintf("failed checks for component %s with subdesign %s", compID, check.name),
+		)...)
+	}
+	return errs
+}
+
+type checkSubdesign struct {
+	name   string
+	design *FSDesign
+}
+
+func (d *FSDesign) checkCompInsts(
+	ctx context.Context, checks map[CompID]checkSubdesign,
+) (errs []error) {
+	for compID, comp := range d.Decl.Components {
+		if comp.Kind != CompKindDesign {
+			continue
+		}
+
+		if comp.Design == "" {
+			errs = append(errs, errors.Errorf("component %s has an undefined subdesign", compID))
+			continue
+		}
+
+		check, ok := checks[compID]
+		if !ok {
+			errs = append(errs, errors.Errorf(
+				"couldn't find component %s's subdesign %s among pre-loaded subdesigns", compID, check.name,
+			))
+			continue
+		}
+
+		errs = append(errs, d.checkCompInst(ctx, compID, comp, check)...)
+	}
+	return errs
+}
+
+func (d *FSDesign) checkCompInst(
+	ctx context.Context, compID CompID, comp CompSpec, check checkSubdesign,
+) (errs []error) {
+	inputVars := check.design.Design.Decl.Inputs
+	for varName, value := range comp.Instantiation.Inputs {
+		inputVar, ok := inputVars[varName]
+		if !ok {
+			errs = append(errs, errors.Errorf(
+				"input variable %s was not defined in subdesign %s", varName, check.name,
+			))
+			continue
+		}
+
+		typedValue, err := convertTo(value, inputVar.Kind)
+		if err != nil {
+			errs = append(errs, errors.Wrapf(
+				err, "couldn't convert value %+v to kind %s", value, inputVar.Kind,
+			))
+		}
+		errs = append(errs, errsWrap(
+			inputVar.CheckValue(typedValue),
+			fmt.Sprintf("failed checks in component %s for input variable %s", compID, varName),
+		)...)
+	}
+	return errs
+}
+
 // Exists checks whether the design actually exists on the OS's filesystem.
 func (d *FSDesign) Exists() bool {
 	return ffs.DirExists(d.FS.Path())
@@ -599,7 +692,7 @@ func (d *FSDesign) LoadCompFSDesign(
 			component.Design, compID, component.Instantiation,
 		)
 	}
-	if errs = subdesign.Check(); len(errs) > 0 {
+	if errs = subdesign.Check(ctx); len(errs) > 0 {
 		return nil, gerrors.Join(errs...)
 	}
 	return subdesign, nil

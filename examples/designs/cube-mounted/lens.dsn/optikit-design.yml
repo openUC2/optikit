@@ -11,8 +11,8 @@ inputs:
     description: Translation of mounted-lens along its normal vector
     kind: float64
     units: mm
-    min: -11
-    max: 7
+    min: -11.0
+    max: 7.0
     tags:
       - pose/insert/translation
       - adjustment/manual-assembly

@@ -81,8 +81,8 @@ type (
 
 var varKindZeroValues = map[VarKind]any{
 	VarKindBool:       false,
-	VarKindInt:        0,
-	VarKindFloat64:    0,
+	VarKindInt:        int(0),
+	VarKindFloat64:    float64(0),
 	VarKindString:     "",
 	VarKindQuaternion: quaternion.T{},
 }
@@ -98,8 +98,10 @@ type InputVarSpec struct {
 	// Units is a string indicating the expected units of the variable, to be shown to users.
 	Units string `json:"units,omitzero" yaml:"units,omitempty"`
 	// Min is the minimum allowed value of the variable. It should be either an int or a float64.
+	// It's ignored if both Min and Max are zero.
 	Min any `json:"min,omitzero" yaml:"min,omitempty"`
 	// Max is the maximum allowed value of the variable. It should be either an int or a float64.
+	// It's ignored if both Min and Max are zero.
 	Max any `json:"max,omitzero" yaml:"max,omitempty"`
 	// Tags is a list of human-readable string tags for describing the input variable to software.
 	Tags Tags `json:"tags,omitempty" yaml:"tags,omitempty"`
@@ -507,7 +509,7 @@ func LoadDesignDecl(ctx context.Context, fsys ffs.PathedFS, filePath string) (De
 // Check looks for errors in the construction of the design configuration.
 func (d DesignDecl) Check() (errs []error) {
 	errs = append(errs, errsWrap(d.Design.Check(), "invalid design spec")...)
-	// TODO: make the components check account for declared input variables
+	errs = append(errs, errsWrap(d.Inputs.Check(), "invalid inputs spec")...)
 	errs = append(errs, errsWrap(d.Components.Check(), "invalid components spec")...)
 	// TODO: make the assemblies check account for declared input variables
 	errs = append(errs, errsWrap(d.Assemblies.Check(), "invalid assemblies spec")...)
