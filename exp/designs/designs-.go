@@ -194,7 +194,7 @@ func (d *FSDesign) Check(ctx context.Context) (errs []error) {
 		}
 	}
 	errs = append(errs, errsWrap(
-		d.checkCompInsts(ctx, checks),
+		d.checkCompInsts(checks),
 		"failed checks for input variable instantiation values",
 	)...)
 
@@ -212,9 +212,7 @@ type checkSubdesign struct {
 	design *FSDesign
 }
 
-func (d *FSDesign) checkCompInsts(
-	ctx context.Context, checks map[CompID]checkSubdesign,
-) (errs []error) {
+func (d *FSDesign) checkCompInsts(checks map[CompID]checkSubdesign) (errs []error) {
 	for compID, comp := range d.Decl.Components {
 		if comp.Kind != CompKindDesign {
 			continue
@@ -233,15 +231,15 @@ func (d *FSDesign) checkCompInsts(
 			continue
 		}
 
-		errs = append(errs, d.checkCompInst(ctx, compID, comp, check)...)
+		errs = append(errs, d.checkCompInst(compID, comp, check)...)
 	}
 	return errs
 }
 
 func (d *FSDesign) checkCompInst(
-	ctx context.Context, compID CompID, comp CompSpec, check checkSubdesign,
+	compID CompID, comp CompSpec, check checkSubdesign,
 ) (errs []error) {
-	inputVars := check.design.Design.Decl.Inputs
+	inputVars := check.design.Decl.Inputs
 	for varName, value := range comp.Instantiation.Inputs {
 		inputVar, ok := inputVars[varName]
 		if !ok {

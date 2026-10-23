@@ -91,8 +91,6 @@ func (s InputVarSpec) Check() (errs []error) {
 	return errs
 }
 
-const varConstraintErrFmt = "constraint %v of type %T not allowed for variable of kind %s"
-
 // CheckValue checks the specified value against the InputSpec. value is assumed to already exactly
 // match the type associated with the InputVarSpec's kind, i.e. it's already been type-converted
 // via the ConvertTo function (if necessary).
