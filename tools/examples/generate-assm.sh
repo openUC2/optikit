@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -eu
 
 script="$(realpath "$BASH_SOURCE")"
 
@@ -63,4 +63,5 @@ done <<<"$assemblies" |
 
 if [[ "$?" != 0 ]]; then
   echo "An assembly couldn't be generated; you can find error messages above by searching for [ERRO]"
+  exit 1
 fi

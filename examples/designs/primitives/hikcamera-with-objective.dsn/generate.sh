@@ -1,3 +1,5 @@
+#!/bin/bash -eu
+
 py() { uv run poe "$@"; }
 
 pwd
