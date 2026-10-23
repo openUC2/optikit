@@ -15,10 +15,10 @@ components:
       newswitch-input-variable-sample-x: sample-x
       newswitch-input-variable-sample-y: sample-y
       newswitch-input-variable-sample-z: sample-z
-      position-a: 0.0
-      position-x: 0.0
-      position-y: 0.0
-      position-z: 0.0
+      position-objective-a: 0.0
+      position-sample-x: 0.0
+      position-sample-y: 0.0
+      position-sample-z: 0.0
   position: [0.0, 0.0, 0.0]
   rotation:
     kind: extrinsic

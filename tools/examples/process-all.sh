@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -eu
 
 run_dir="$1"
 lister="$2.sh"

@@ -27,9 +27,6 @@ components:
   objective-lens-insert:
     kind: design
     design: cube-mounted/lens.dsn/mounted-lens.dsn
-    instantiation:
-      inputs:
-        offset: 5
   objective-lens-skeleton:
     kind: design
     design: primitives/cube-skeleton.dsn

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -eu
 
 run_dir="$1"
 generator="$2.sh"
@@ -12,6 +12,6 @@ find "$run_dir" -name "$generator" | while read -r script; do
   (
     cd "$(dirname "$script")"
     echo "$script"
-    "./$generator" $args
+    "./$generator" "$args"
   )
 done

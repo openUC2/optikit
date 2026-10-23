@@ -42,7 +42,7 @@ func LoadFSDesign(
 	}); err != nil {
 		return d, errors.Wrapf(err, "couldn't instantiate with inputs %+v", i)
 	}
-	if errs = d.Check(); len(errs) > 0 {
+	if errs = d.Check(ctx); len(errs) > 0 {
 		return d, gerrors.Join(errs...)
 	}
 

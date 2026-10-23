@@ -17,7 +17,7 @@ inputs:
     kind: string
     tags:
       - config/newswitch/device-id
-  position-x:
+  position-sample-x:
     description: Extension of the sample stage's x-axis actuator
     kind: float64
     units: mm

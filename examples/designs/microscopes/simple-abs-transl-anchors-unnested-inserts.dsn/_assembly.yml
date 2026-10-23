@@ -18,9 +18,6 @@ components:
 - id: objective-lens-insert
   kind: design
   design: cube-mounted/lens.dsn/mounted-lens.dsn
-  instantiation:
-    inputs:
-      offset: "5"
   position: [55.0, 0.0, 0.0]
   rotation:
     kind: extrinsic

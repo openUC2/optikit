@@ -67,10 +67,10 @@ components:
         newswitch-input-variable-sample-y: sample-y
         newswitch-input-variable-sample-z: sample-z
         newswitch-input-variable-objective-a: objective-a
-        position-x: ~ inputs['sample-x'].value
-        position-y: ~ inputs['sample-y'].value
-        position-z: ~ inputs['sample-z'].value
-        position-a: ~ inputs['objective-a'].value
+        position-sample-x: ~ inputs['sample-x'].value
+        position-sample-y: ~ inputs['sample-y'].value
+        position-sample-z: ~ inputs['sample-z'].value
+        position-objective-a: ~ inputs['objective-a'].value
   hat-plus:
     kind: design
     design: primitives/controllers/hat-plus.dsn
