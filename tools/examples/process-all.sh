@@ -16,4 +16,4 @@ while read -r script; do
   new_files="$(cd "$(dirname "$script")" && "./$lister")"
   input_files="$(cat <<<"$input_files" && cat <<<"$new_files")"
 done < <(find "$run_dir" -name "$lister")
-"$process_command" <<<"$input_files"
+$process_command <<<"$input_files"
