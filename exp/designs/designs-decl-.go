@@ -93,16 +93,21 @@ type InputVarSpec struct {
 	// Description is a short description of the variable to be shown to users.
 	Description string `json:"description,omitzero" yaml:"description,omitempty"`
 	// Kind is a string indicating the expected type of the variable, for type-checking. Allowed
-	// values are: bool, int, float64, string
+	// values are: bool, int, float64, string, quaternion
 	Kind VarKind `json:"kind,omitzero" yaml:"kind,omitempty"`
 	// Units is a string indicating the expected units of the variable, to be shown to users.
 	Units string `json:"units,omitzero" yaml:"units,omitempty"`
-	// Min is the minimum allowed value of the variable. It should be either an int or a float64.
-	// It's ignored if both Min and Max are zero.
+	// Min is the minimum allowed value of the variable. It should be either a nil or a numeric type
+	// which can be converted to int (for Kind int) or float64 (for Kind float64).
+	// It's ignored if it's nil.
 	Min any `json:"min,omitzero" yaml:"min,omitempty"`
-	// Max is the maximum allowed value of the variable. It should be either an int or a float64.
-	// It's ignored if both Min and Max are zero.
+	// Max is the maximum allowed value of the variable. It should be either a nil or a numeric type
+	// which can be converted to int (for Kind int) or float64 (for Kind float64).
+	// It's ignored if it's nil.
 	Max any `json:"max,omitzero" yaml:"max,omitempty"`
+	// Enum is a complete list of all allowed values for the variable; values not on this list are
+	// prohibited. It's ignored if it's empty or if Kind is bool.
+	Enum []any `json:"enum,omitempty" yaml:"enum,omitempty"`
 	// Tags is a list of human-readable string tags for describing the input variable to software.
 	Tags Tags `json:"tags,omitempty" yaml:"tags,omitempty"`
 }

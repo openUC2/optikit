@@ -69,59 +69,43 @@ func (s InputVarSpec) Check() (errs []error) {
 		break
 	}
 
-	switch s.Min.(type) {
-	default:
-		errs = append(errs, fmt.Errorf("unsupported type %T for min constraint", s.Min))
-	case nil:
-		break // i.e. unspecified min
-	case int, int64, uint64, float64:
-		if err := checkVarConstraintType(s.Kind, s.Min); err != nil {
-			errs = append(errs, errors.Wrap(err, "type error for min constraint"))
-		}
+	if _, err := ConvertTo(s.Min, s.Kind); s.Min != nil && err != nil {
+		errs = append(errs, errors.Wrap(err, "type error for min constraint"))
+	}
+	if _, err := ConvertTo(s.Max, s.Kind); s.Max != nil && err != nil {
+		errs = append(errs, errors.Wrap(err, "type error for max constraint"))
 	}
 
-	switch s.Max.(type) {
-	default:
-		errs = append(errs, fmt.Errorf("unsupported type %T for max constraint", s.Max))
-	case nil:
-		break // i.e. unspecified max
-	case int, int64, uint64, float64:
-		if err := checkVarConstraintType(s.Kind, s.Max); err != nil {
-			errs = append(errs, errors.Wrap(err, "type error for max constraint"))
-		}
+	if s.Kind == VarKindBool {
+		// Note: the Enum field is ignored for variable kind bool, so we don't check enum values.
+		return errs
 	}
 
+	for _, value := range s.Enum {
+		if _, err := ConvertTo(value, s.Kind); err != nil {
+			errs = append(errs, errors.Wrapf(
+				err, "couldn't convert enum value %v of type %T to kind %s", value, value, s.Kind,
+			))
+		}
+	}
 	return errs
 }
 
-func checkVarConstraintType(kind VarKind, constraint any) error {
-	switch constraint.(type) {
-	default:
-		return fmt.Errorf("unsupported type %T for constraint %+v", constraint, constraint)
-	case float64:
-		if kind != VarKindFloat64 {
-			return fmt.Errorf(varConstraintErrFmt, constraint, constraint, kind)
-		}
-	case int, int64, uint64:
-		if kind != VarKindInt && kind != VarKindFloat64 {
-			return fmt.Errorf(varConstraintErrFmt, constraint, constraint, kind)
-		}
-	}
-	return nil
-}
+const varConstraintErrFmt = "constraint %v of type %T not allowed for variable of kind %s"
 
-const varConstraintErrFmt = "constraint %+v of type %T not allowed for variable of kind %s"
-
-// CheckValue checks the specified value against the InputSpec.
+// CheckValue checks the specified value against the InputSpec. value is assumed to already exactly
+// match the type associated with the InputVarSpec's kind, i.e. it's already been type-converted
+// via the ConvertTo function (if necessary).
 func (s InputVarSpec) CheckValue(value any) (errs []error) {
 	switch v := value.(type) {
 	default:
 		errs = append(errs, fmt.Errorf(varValueErrFmt, value, value, s.Kind))
+		return errs
 	case bool:
 		if s.Kind != VarKindBool {
 			errs = append(errs, fmt.Errorf(varValueErrFmt, value, value, s.Kind))
 		}
-		return errs
+		return errs // we won't check enum values!
 	case int:
 		if s.Kind != VarKindInt {
 			errs = append(errs, fmt.Errorf(varValueErrFmt, value, value, s.Kind))
@@ -143,20 +127,38 @@ func (s InputVarSpec) CheckValue(value any) (errs []error) {
 			errs = append(errs, fmt.Errorf(varValueErrFmt, value, value, s.Kind))
 		}
 	}
+
+	if len(s.Enum) == 0 {
+		return errs
+	}
+	for _, enumValue := range s.Enum {
+		convertedEnumValue, err := ConvertTo(enumValue, s.Kind)
+		if err != nil {
+			errs = append(errs, fmt.Errorf("can't convert enum value %v to kind %s", enumValue, s.Kind))
+			continue
+		}
+
+		if convertedEnumValue == value {
+			return errs
+		}
+	}
+	errs = append(errs, fmt.Errorf(
+		"value %v doesn't match any allowed enum values (%+v)", value, s.Enum,
+	))
 	return errs
 }
 
 const varValueErrFmt = "value %v of type %T not allowed for variable of kind %s"
 
 func (s InputVarSpec) checkValueRange[T cmp.Ordered](value T) (errs []error) {
-	min, err := convertTo(s.Min, s.Kind)
-	if err != nil {
+	min, err := ConvertTo(s.Min, s.Kind)
+	if s.Min != nil && err != nil {
 		errs = append(errs, errors.Wrapf(
 			err, "couldn't convert min constraint %v of type %T to kind %s", s.Min, s.Min, s.Kind,
 		))
 	}
-	max, err := convertTo(s.Max, s.Kind)
-	if err != nil {
+	max, err := ConvertTo(s.Max, s.Kind)
+	if s.Max != nil && err != nil {
 		errs = append(errs, errors.Wrapf(
 			err, "couldn't convert max constraint %v of type %T to kind %s", s.Max, s.Max, s.Kind,
 		))
@@ -176,17 +178,13 @@ func (s InputVarSpec) checkValueRange[T cmp.Ordered](value T) (errs []error) {
 	if len(errs) > 0 {
 		return errs
 	}
-	zero := varKindZeroValues[s.Kind]
-	if typedMin == zero && typedMax == zero {
-		return nil
-	}
 
-	if value < typedMin {
+	if s.Min != nil && value < typedMin {
 		errs = append(errs, errors.Errorf(
 			"value %v is less than the minimum constraint %v", value, typedMin,
 		))
 	}
-	if value > typedMax {
+	if s.Max != nil && value > typedMax {
 		errs = append(errs, errors.Errorf(
 			"value %v is greater than the maximum constraint %v", value, typedMax,
 		))

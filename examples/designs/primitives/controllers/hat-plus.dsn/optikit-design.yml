@@ -12,8 +12,11 @@ inputs:
     tags:
       - config/newswitch/device-id
   connection-type:
-    description: The way the HAT should be connected (either `can` or `serial`)
+    description: The way the HAT should be connected
     kind: string
+    enum:
+      - can
+      - serial
 
 components:
   driver-can:

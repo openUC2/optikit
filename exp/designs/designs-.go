@@ -251,7 +251,7 @@ func (d *FSDesign) checkCompInst(
 			continue
 		}
 
-		typedValue, err := convertTo(value, inputVar.Kind)
+		typedValue, err := ConvertTo(value, inputVar.Kind)
 		if err != nil {
 			errs = append(errs, errors.Wrapf(
 				err, "couldn't convert value %+v to kind %s", value, inputVar.Kind,

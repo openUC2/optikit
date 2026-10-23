@@ -2,6 +2,7 @@ package designs
 
 import (
 	"fmt"
+	"math"
 	"reflect"
 	"strconv"
 	"strings"
@@ -43,7 +44,7 @@ func MakeExprEnv(
 		if input.Value, ok = inputValues[name]; !ok {
 			input.Value = varKindZeroValues[spec.Kind]
 		}
-		if input.Value, err = convertTo(input.Value, spec.Kind); err != nil {
+		if input.Value, err = ConvertTo(input.Value, spec.Kind); err != nil {
 			return result, errors.Wrapf(
 				err, "couldn't ensure that %+v is of kind %s", input.Value, spec.Kind,
 			)
@@ -54,39 +55,23 @@ func MakeExprEnv(
 	return result, nil
 }
 
-func convertTo(value any, kind VarKind) (result any, err error) {
+// ConvertTo attempts to convert the provided value to exactly match the variable type associated
+// with the specified kind.
+func ConvertTo(value any, kind VarKind) (result any, err error) {
 	switch kind {
 	case VarKindBool:
 		switch r := value.(type) {
 		default:
-			return result, errors.Errorf("can't convert %+v from %T to bool", r, r)
+			return result, errors.Errorf("can't convert %v from %T to bool", r, r)
 		case bool:
 			result = r
 		case string:
 			return strconv.ParseBool(r)
 		}
 	case VarKindInt:
-		switch r := value.(type) {
-		default:
-			return result, errors.Errorf("can't convert %+v from %T to int", r, r)
-		case int:
-			result = r
-		case string:
-			const base = 10
-			return strconv.ParseInt(r, base, strconv.IntSize)
-		}
+		return convertToInt(value)
 	case VarKindFloat64:
-		switch r := value.(type) {
-		default:
-			return result, errors.Errorf("can't convert %+v from %T to float64", r, r)
-		case float64:
-			result = r
-		case int:
-			result = float64(r)
-		case string:
-			const bitsize = 64
-			return strconv.ParseFloat(r, bitsize)
-		}
+		return convertToFloat64(value)
 	case VarKindString:
 		if r, ok := value.(string); ok {
 			result = r
@@ -95,6 +80,59 @@ func convertTo(value any, kind VarKind) (result any, err error) {
 		result = fmt.Sprintf("%s", value)
 	case VarKindQuaternion:
 		return convertToQuaternion(value)
+	}
+	return result, nil
+}
+
+func convertToInt(value any) (result int, err error) {
+	switch r := value.(type) {
+	default:
+		return result, errors.Errorf("can't convert %v from %T to int", r, r)
+	case int:
+		result = r
+	case int64:
+		if r < int64(math.MinInt) || r > int64(math.MaxInt) {
+			return result, errors.Errorf("conversion of %v from int64 to int would overflow", r)
+		}
+		result = int(r)
+	case uint64:
+		if r > uint64(math.MaxInt) {
+			return result, errors.Errorf("conversion of %v from uint64 to int would overflow", r)
+		}
+		result = int(r)
+	case uint:
+		if r > uint(math.MaxInt) {
+			return result, errors.Errorf("conversion of %v from uint to int would overflow", r)
+		}
+		result = int(r)
+	case string:
+		const base = 10
+		parsed, err := strconv.ParseInt(r, base, strconv.IntSize)
+		if err != nil {
+			return result, errors.Errorf("couldn't parse string %s as int", r)
+		}
+		return convertToInt(parsed)
+	}
+	return result, nil
+}
+
+func convertToFloat64(value any) (result float64, err error) {
+	switch r := value.(type) {
+	default:
+		return result, errors.Errorf("can't convert %v from %T to float64", r, r)
+	case float64:
+		result = r
+	case int:
+		result = float64(r)
+	case int64:
+		result = float64(r)
+	case uint:
+		result = float64(r)
+	case uint64:
+		result = float64(r)
+	case string:
+		const bitsize = 64
+		return strconv.ParseFloat(r, bitsize)
 	}
 	return result, nil
 }
@@ -113,7 +151,7 @@ func convertToQuaternion(value any) (result quaternion.T, err error) {
 		return quaternion.T(r), nil
 	case [quatLength]any:
 		for i, elem := range r {
-			raw, err := convertTo(elem, VarKindFloat64)
+			raw, err := ConvertTo(elem, VarKindFloat64)
 			if err != nil {
 				return result, errors.Wrapf(
 					err, "couldn't convert elem %d of %+v from %T to float64 for quaternion", i, r, elem,
@@ -132,7 +170,7 @@ func convertToQuaternion(value any) (result quaternion.T, err error) {
 			return result, errors.Errorf("can't convert %d-element slice into 4-element quaternion", l)
 		}
 		for i, elem := range r {
-			raw, err := convertTo(elem, VarKindFloat64)
+			raw, err := ConvertTo(elem, VarKindFloat64)
 			if err != nil {
 				return result, errors.Wrapf(
 					err, "couldn't convert elem %d of %+v from %T to float64 for quaternion", i, r, elem,

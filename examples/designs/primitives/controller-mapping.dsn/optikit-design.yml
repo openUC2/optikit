@@ -19,21 +19,31 @@ inputs:
   newswitch-mapping-type:
     description: The kind of connection to the peripheral device
     kind: string
+    enum:
+      - canopen-laser
+      - serial-laser
+      - canopen-led
+      - serial-led
+      - canopen-motor
+      - serial-motor
     tags:
       - config/newswitch/controller-mapping-type
   id:
     description: ID of the peripheral device
     kind: int
+    min: 0
     tags:
       - config/newswitch/firmware-id
   subid:
     description: Sub-ID of the peripheral device
     kind: int
+    min: 0
     tags:
       - config/newswitch/firmware-subid
   pwm-max:
     description: PWM resolution for the peripheral device, if the device mapping type supports it
     kind: int
+    min: 0
 
 components:
   mapping:

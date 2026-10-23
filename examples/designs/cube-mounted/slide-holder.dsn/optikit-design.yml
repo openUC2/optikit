@@ -11,8 +11,8 @@ inputs:
     description: Translation of mounted-slide-holder along its normal vector
     kind: float64
     units: mm
-    min: -12.0
-    max: 7.0
+    min: -12
+    max: 7
     tags:
       - pose/insert/translation
       - adjustment/manual-assembly
