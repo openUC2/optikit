@@ -1,5 +1,9 @@
+newswitch_version: v1.0.2
 devices:
   bigcamera42:
+    type: detector
+    name: MV-CA023-10UM
+    manufacturer: HIK ROBOTICS
     binning: 1
     channels: 1
     exposure_time_ms:
@@ -19,8 +23,6 @@ devices:
       min: 0.0
       unit: dB
       value: 0.0
-    manufacturer: HIK ROBOTICS
-    name: MV-CA023-10UM
     pixelcount:
     - 1920
     - 1200
@@ -32,70 +34,10 @@ devices:
     trigger:
       edge: rising
       type: hardware
-    type: detector
-  hotlaser123:
-    bandwidth: 2.0
-    coherence: coherent
-    manufacturer: Boison
-    name: boison-488
-    spec_shape: gauss
-    type: lightsource
-    wavelength_nm: 488
-  just-some-boring-stage:
-    axes:
-      x: just-some-boring-stage/x
-      y: just-some-boring-stage/y
-      z: just-some-boring-stage/z
-    homing_order:
-    - z
-    - y
-    - x
-    manufacturer: openUC2
-    name: xyz-linear-100
-    type: stage
-  just-some-boring-stage/x:
-    homing_required: true
-    manufacturer: openUC2
-    name: linear-100
-    optikit_dsn_variable: sample-x
-    pos:
-      max: 100000.0
-      min: 0.0
-      unit: um
-    steps_per_um: 8.0
-    type: axis
-    vel:
-      unit: um/s
-      value: 5000.0
-  just-some-boring-stage/y:
-    homing_required: true
-    manufacturer: openUC2
-    name: linear-100
-    optikit_dsn_variable: sample-y
-    pos:
-      max: 100000.0
-      min: 0.0
-      unit: um
-    steps_per_um: 8.0
-    type: axis
-    vel:
-      unit: um/s
-      value: 5000.0
-  just-some-boring-stage/z:
-    homing_required: true
-    manufacturer: openUC2
-    name: linear-100
-    optikit_dsn_variable: sample-z
-    pos:
-      max: 100000.0
-      min: 0.0
-      unit: um
-    steps_per_um: 8.0
-    type: axis
-    vel:
-      unit: um/s
-      value: 5000.0
   my-favorite-mainboard:
+    type: controller
+    name: UC2-Mainboard-v4
+    manufacturer: openUC2
     connection:
       protocol: uc2-rest
       transport:
@@ -105,28 +47,79 @@ devices:
     firmware:
       name: esp32-uc2-standalone-4
       version: v2026.0.0-beta.3
-    manufacturer: openUC2
     mapping:
       hotlaser123:
+        type: serial-laser
         id: 0
         pwm_max: 1023
-        subid: 0
-        type: serial-laser
       just-some-boring-stage/x:
+        type: serial-motor
         id: 0
-        pwm_max: 0
-        subid: 0
-        type: serial-motor
       just-some-boring-stage/y:
+        type: serial-motor
         id: 1
-        pwm_max: 0
-        subid: 0
-        type: serial-motor
       just-some-boring-stage/z:
-        id: 2
-        pwm_max: 0
-        subid: 0
         type: serial-motor
-    name: UC2-Mainboard-v4
-    type: controller
-newswitch_version: v1.0.2
+        id: 2
+  hotlaser123:
+    type: lightsource
+    name: boison-488
+    manufacturer: Boison
+    bandwidth: 2.0
+    coherence: coherent
+    spec_shape: gauss
+    wavelength_nm: 488
+  just-some-boring-stage:
+    type: stage
+    name: xyz-linear-100
+    manufacturer: openUC2
+    axes:
+      x: just-some-boring-stage/x
+      y: just-some-boring-stage/y
+      z: just-some-boring-stage/z
+    homing_order:
+    - z
+    - y
+    - x
+  just-some-boring-stage/x:
+    type: axis
+    name: linear-100
+    manufacturer: openUC2
+    homing_required: true
+    optikit_dsn_variable: sample-x
+    pos:
+      max: 100000.0
+      min: 0.0
+      unit: um
+    steps_per_um: 8.0
+    vel:
+      unit: um/s
+      value: 5000.0
+  just-some-boring-stage/y:
+    type: axis
+    name: linear-100
+    manufacturer: openUC2
+    homing_required: true
+    optikit_dsn_variable: sample-y
+    pos:
+      max: 100000.0
+      min: 0.0
+      unit: um
+    steps_per_um: 8.0
+    vel:
+      unit: um/s
+      value: 5000.0
+  just-some-boring-stage/z:
+    type: axis
+    name: linear-100
+    manufacturer: openUC2
+    homing_required: true
+    optikit_dsn_variable: sample-z
+    pos:
+      max: 100000.0
+      min: 0.0
+      unit: um
+    steps_per_um: 8.0
+    vel:
+      unit: um/s
+      value: 5000.0

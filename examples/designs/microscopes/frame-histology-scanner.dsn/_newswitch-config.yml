@@ -1,27 +1,109 @@
+newswitch_version: v1.0.2
 devices:
+  main-camera:
+    type: detector
+    name: MV-CA023-10UM
+    manufacturer: HIK ROBOTICS
+    binning: 1
+    channels: 1
+    exposure_time_ms:
+      inc: 0.001
+      max: 10000.0
+      min: 0.024
+      unit: ms
+      value: 25.0
+    framerate_per_sec:
+      max: 163.0
+      min: 0.5
+      unit: Hz
+      value: 163.0
+    gain_db:
+      inc: 0.01
+      max: 23.98
+      min: 0.0
+      unit: dB
+      value: 0.0
+    pixelcount:
+    - 1920
+    - 1200
+    pixelpitch_um: 10.0
+    tags:
+    - monochrome
+    - global-shutter
+    - gige
+    trigger:
+      edge: rising
+      type: hardware
+  hat-plus:
+    type: controller
+    name: HAT+ via CAN
+    manufacturer: openUC2
+    connection:
+      protocol: can-bus
+      transport:
+        bitrate: 500000
+        channel: can0
+        interface: socketcan
+        type: can
+    mapping:
+      led-ring/led:
+        type: canopen-led
+        id: 20
+        subid: 4
+        pwm_max: 1023
+      led-ring/matrix:
+        type: canopen-led
+        id: 30
+        subid: 0
+        pwm_max: 1023
+      frame-chassis/a:
+        type: canopen-motor
+        id: 10
+        subid: 1
+      frame-chassis/x:
+        type: canopen-motor
+        id: 11
+        subid: 1
+      frame-chassis/y:
+        type: canopen-motor
+        id: 12
+        subid: 1
+      frame-chassis/z:
+        type: canopen-motor
+        id: 13
+        subid: 1
+  led-ring/led:
+    channels: 1
+    type: lightsource
+  led-ring/matrix:
+    channels: 1
+    type: lightsource
   frame-chassis/objective:
+    type: stage
+    name: frame-objective
+    manufacturer: openUC2
     axes:
       a: frame-chassis/objective/a
     homing_order:
     - a
-    manufacturer: openUC2
-    name: frame-objective
-    type: stage
   frame-chassis/objective/a:
-    homing_required: true
-    manufacturer: openUC2
+    type: axis
     name: objective-changer
+    manufacturer: openUC2
+    homing_required: true
     optikit_dsn_variable: objective-a
     pos:
       max: 10000.0
       min: 0.0
       unit: um
     steps_per_um: 8.0
-    type: axis
     vel:
       unit: um/s
       value: 5000.0
   frame-chassis/sample:
+    type: stage
+    name: frame-sample
+    manufacturer: openUC2
     axes:
       x: frame-chassis/sample/x
       y: frame-chassis/sample/y
@@ -30,97 +112,45 @@ devices:
     - z
     - y
     - x
-    manufacturer: openUC2
-    name: frame-sample
-    type: stage
   frame-chassis/sample/x:
-    homing_required: true
-    manufacturer: openUC2
+    type: axis
     name: frame-xy
+    manufacturer: openUC2
+    homing_required: true
     optikit_dsn_variable: sample-x
     pos:
       max: 5000000.0
       min: 0.0
       unit: um
     steps_per_um: 8.0
-    type: axis
     vel:
       unit: um/s
       value: 10000.0
   frame-chassis/sample/y:
-    homing_required: true
-    manufacturer: openUC2
+    type: axis
     name: frame-xy
+    manufacturer: openUC2
+    homing_required: true
     optikit_dsn_variable: sample-y
     pos:
       max: 5000000.0
       min: 0.0
       unit: um
     steps_per_um: 8.0
-    type: axis
     vel:
       unit: um/s
       value: 10000.0
   frame-chassis/sample/z:
-    homing_required: true
-    manufacturer: openUC2
+    type: axis
     name: frame-z
+    manufacturer: openUC2
+    homing_required: true
     optikit_dsn_variable: sample-z
     pos:
       max: 10000.0
       min: 0.0
       unit: um
     steps_per_um: 8.0
-    type: axis
     vel:
       unit: um/s
       value: 5000.0
-  hat-plus:
-    connection:
-      protocol: can-bus
-      transport:
-        bitrate: 500000
-        channel: can0
-        interface: socketcan
-        type: can
-    manufacturer: openUC2
-    mapping:
-      frame-chassis/a:
-        id: 10
-        pwm_max: 0
-        subid: 1
-        type: canopen-motor
-      frame-chassis/x:
-        id: 11
-        pwm_max: 0
-        subid: 1
-        type: canopen-motor
-      frame-chassis/y:
-        id: 12
-        pwm_max: 0
-        subid: 1
-        type: canopen-motor
-      frame-chassis/z:
-        id: 13
-        pwm_max: 0
-        subid: 1
-        type: canopen-motor
-      led-ring/led:
-        id: 20
-        pwm_max: 1023
-        subid: 4
-        type: canopen-led
-      led-ring/matrix:
-        id: 30
-        pwm_max: 1023
-        subid: 0
-        type: canopen-led
-    name: HAT+ via CAN
-    type: controller
-  led-ring/led:
-    channels: 1
-    type: lightsource
-  led-ring/matrix:
-    channels: 1
-    type: lightsource
-newswitch_version: v1.0.2
