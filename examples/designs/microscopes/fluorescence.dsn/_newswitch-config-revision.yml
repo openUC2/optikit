@@ -1,0 +1,137 @@
+newswitch_version: v1.0.2
+devices:
+  root: # Note: The root device is the top-level controller, and corresponds to the computer running NewSwitch
+    type: controller
+    connections: # Note: `mapping` is renamed to `connections`.
+      my-favorite-mainboard:
+        protocol: uc2-rest # Note: `mapping.<devKey>.type` is merged into `protocol`.
+        transport:
+          type: serial
+          selectors: # Note: `selectors` contains device identifiers used for binding to hardware
+            port_pattern: /dev/ttyUSB*
+          baudrate: 115200
+      bigcamera42:
+        protocol: usb3-vision
+        selectors: # Note: `selectors` would contain serial_number, user_defined_name, and index
+          serial_number: null # Note: here null means "automatically detect the required serial ID if it's not already specified in the NewSwitch persistent state"
+  bigcamera42:
+    type: detector
+    name: MV-CA023-10UM
+    manufacturer: HIK ROBOTICS
+    binning: 1
+    channels: 1
+    exposure_time_ms:
+      inc: 0.001
+      max: 10000.0
+      min: 0.024
+      unit: ms
+      value: 25.0
+    framerate_per_sec:
+      max: 163.0
+      min: 0.5
+      unit: Hz
+      value: 163.0
+    gain_db:
+      inc: 0.01
+      max: 23.98
+      min: 0.0
+      unit: dB
+      value: 0.0
+    pixelcount:
+    - 1920
+    - 1200
+    pixelpitch_um: 10.0
+    tags:
+    - monochrome
+    - global-shutter
+    - gige
+    trigger:
+      edge: rising
+      type: hardware
+  my-favorite-mainboard:
+    type: controller
+    name: UC2-Mainboard-v4
+    manufacturer: openUC2
+    firmware:
+      name: esp32-uc2-standalone-4
+      version: v2026.0.0-beta.3
+    connections:
+      hotlaser123:
+        type: direct-pwm # Note: or we could call this "direct" instead
+        selectors:
+          id: 0
+        pwm_max: 1023
+      just-some-boring-stage/x:
+        type: direct-stepper # Note: or we could call this "direct" instead
+        selectors:
+          id: 0
+      just-some-boring-stage/y:
+        type: direct-stepper # Note: or we could call this "direct" instead
+        selectors:
+          id: 1
+      just-some-boring-stage/z:
+        type: direct-stepper # Note: or we could call this "direct" instead
+        selectors:
+          id: 2
+  hotlaser123:
+    type: lightsource
+    name: boison-488
+    manufacturer: Boison
+    bandwidth: 2.0
+    coherence: coherent
+    spec_shape: gauss
+    wavelength_nm: 488
+  just-some-boring-stage:
+    type: stage
+    name: xyz-linear-100
+    manufacturer: openUC2
+    axes:
+      x: just-some-boring-stage/x
+      y: just-some-boring-stage/y
+      z: just-some-boring-stage/z
+    homing_order:
+    - z
+    - y
+    - x
+  just-some-boring-stage/x:
+    type: axis
+    name: linear-100
+    manufacturer: openUC2
+    homing_required: true
+    optikit_dsn_variable: sample-x
+    pos:
+      max: 100000.0
+      min: 0.0
+      unit: um
+    steps_per_um: 8.0
+    vel:
+      unit: um/s
+      value: 5000.0
+  just-some-boring-stage/y:
+    type: axis
+    name: linear-100
+    manufacturer: openUC2
+    homing_required: true
+    optikit_dsn_variable: sample-y
+    pos:
+      max: 100000.0
+      min: 0.0
+      unit: um
+    steps_per_um: 8.0
+    vel:
+      unit: um/s
+      value: 5000.0
+  just-some-boring-stage/z:
+    type: axis
+    name: linear-100
+    manufacturer: openUC2
+    homing_required: true
+    optikit_dsn_variable: sample-z
+    pos:
+      max: 100000.0
+      min: 0.0
+      unit: um
+    steps_per_um: 8.0
+    vel:
+      unit: um/s
+      value: 5000.0
