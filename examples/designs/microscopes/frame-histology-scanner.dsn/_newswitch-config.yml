@@ -1,5 +1,20 @@
 newswitch_version: v1.0.2
 devices:
+  root: # Note: The root device is the top-level controller, and corresponds to the computer running NewSwitch
+    type: controller
+    connections: # Note: `mapping` is renamed to `connections`.
+      hat-plus:
+        protocol: can-bus # Note: `mapping.<devKey>.type` is merged into `protocol`.
+        transport:
+          type: can
+          interface: socketcan
+          selectors: # Note: `selectors` contains device identifiers used for binding to hardware
+            channel: can0
+          bitrate: 500000
+      main-camera:
+        protocol: usb3-vision
+        selectors: # Note: selectors would contain serial_number, user_defined_name, and index
+          serial_number: null # Note: here null means "automatically detect the required serial ID if it's not already specified in the NewSwitch persistent state"
   main-camera:
     type: detector
     name: MV-CA023-10UM
@@ -38,40 +53,39 @@ devices:
     type: controller
     name: HAT+ via CAN
     manufacturer: openUC2
-    connection:
-      protocol: can-bus
-      transport:
-        bitrate: 500000
-        channel: can0
-        interface: socketcan
-        type: can
-    mapping:
+    connections:
       led-ring/led:
-        type: canopen-led
-        id: 20
-        subid: 4
+        protocol: canopen-pwm # Note: or we could call this "canopen" instead
+        selectors:
+          id: 20
+          subid: 4
         pwm_max: 1023
       led-ring/matrix:
-        type: canopen-led
-        id: 30
-        subid: 0
+        protocol: canopen-pwm # Note: or we could call this "canopen" instead
+        selectors:
+          id: 30
+          subid: 0
         pwm_max: 1023
       frame-chassis/a:
-        type: canopen-motor
-        id: 10
-        subid: 1
+        type: canopen
+        selectors:
+          id: 10
+          subid: 1
       frame-chassis/x:
-        type: canopen-motor
-        id: 11
-        subid: 1
+        type: canopen
+        selectors:
+          id: 11
+          subid: 1
       frame-chassis/y:
-        type: canopen-motor
-        id: 12
-        subid: 1
+        type: canopen
+        selectors:
+          id: 12
+          subid: 1
       frame-chassis/z:
-        type: canopen-motor
-        id: 13
-        subid: 1
+        type: canopen
+        selectors:
+          id: 13
+          subid: 1
   led-ring/led:
     channels: 1
     type: lightsource

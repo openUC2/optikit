@@ -1,5 +1,19 @@
 newswitch_version: v1.0.2
 devices:
+  root: # Note: The root device is the top-level controller, and corresponds to the computer running NewSwitch
+    type: controller
+    connections: # Note: `mapping` is renamed to `connections`.
+      my-favorite-mainboard:
+        protocol: uc2-rest # Note: `mapping.<devKey>.type` is merged into `protocol`.
+        transport:
+          type: serial
+          selectors: # Note: `selectors` contains device identifiers used for binding to hardware
+            port_pattern: /dev/ttyUSB*
+          baudrate: 115200
+      bigcamera42:
+        protocol: usb3-vision
+        selectors: # Note: `selectors` would contain serial_number, user_defined_name, and index
+          serial_number: null # Note: here null means "automatically detect the required serial ID if it's not already specified in the NewSwitch persistent state"
   bigcamera42:
     type: detector
     name: MV-CA023-10UM
@@ -38,29 +52,27 @@ devices:
     type: controller
     name: UC2-Mainboard-v4
     manufacturer: openUC2
-    connection:
-      protocol: uc2-rest
-      transport:
-        baudrate: 115200
-        port_pattern: /dev/ttyUSB*
-        type: serial
     firmware:
       name: esp32-uc2-standalone-4
       version: v2026.0.0-beta.3
-    mapping:
+    connections:
       hotlaser123:
-        type: serial-laser
-        id: 0
+        type: direct-pwm # Note: or we could call this "direct" instead
+        selectors:
+          id: 0
         pwm_max: 1023
       just-some-boring-stage/x:
-        type: serial-motor
-        id: 0
+        type: direct-stepper # Note: or we could call this "direct" instead
+        selectors:
+          id: 0
       just-some-boring-stage/y:
-        type: serial-motor
-        id: 1
+        type: direct-stepper # Note: or we could call this "direct" instead
+        selectors:
+          id: 1
       just-some-boring-stage/z:
-        type: serial-motor
-        id: 2
+        type: direct-stepper # Note: or we could call this "direct" instead
+        selectors:
+          id: 2
   hotlaser123:
     type: lightsource
     name: boison-488
