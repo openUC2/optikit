@@ -67,22 +67,22 @@ devices:
           subid: 0
         pwm_max: 1023
       frame-chassis/a:
-        type: canopen
+        protocol: canopen
         selectors:
           id: 10
           subid: 1
       frame-chassis/x:
-        type: canopen
+        protocol: canopen
         selectors:
           id: 11
           subid: 1
       frame-chassis/y:
-        type: canopen
+        protocol: canopen
         selectors:
           id: 12
           subid: 1
       frame-chassis/z:
-        type: canopen
+        protocol: canopen
         selectors:
           id: 13
           subid: 1

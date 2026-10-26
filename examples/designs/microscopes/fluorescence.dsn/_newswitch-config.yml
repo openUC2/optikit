@@ -57,20 +57,20 @@ devices:
       version: v2026.0.0-beta.3
     connections:
       hotlaser123:
-        type: direct-pwm # Note: or we could call this "direct" instead
+        protocol: direct-pwm # Note: or we could call this "direct" instead
         selectors:
           id: 0
         pwm_max: 1023
       just-some-boring-stage/x:
-        type: direct-stepper # Note: or we could call this "direct" instead
+        protocol: direct-stepper # Note: or we could call this "direct" instead
         selectors:
           id: 0
       just-some-boring-stage/y:
-        type: direct-stepper # Note: or we could call this "direct" instead
+        protocol: direct-stepper # Note: or we could call this "direct" instead
         selectors:
           id: 1
       just-some-boring-stage/z:
-        type: direct-stepper # Note: or we could call this "direct" instead
+        protocol: direct-stepper # Note: or we could call this "direct" instead
         selectors:
           id: 2
   hotlaser123:
