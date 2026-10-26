@@ -276,6 +276,7 @@ components:
       newswitch-controller-id: hat-plus
       newswitch-mapping-type: canopen-led
       newswitch-peripheral-id: led-ring/led
+      pwm-max: "1023"
       subid: "4"
   position: [0.0, 0.0, 0.0]
   rotation:
@@ -290,6 +291,7 @@ components:
       newswitch-controller-id: hat-plus
       newswitch-mapping-type: canopen-led
       newswitch-peripheral-id: led-ring/matrix
+      pwm-max: "1023"
   position: [0.0, 0.0, 0.0]
   rotation:
     kind: extrinsic
@@ -301,7 +303,7 @@ components:
       mapping:
         led-ring/matrix:
           id: 30
-          pwm_max: 0
+          pwm_max: 1023
           subid: 0
           type: canopen-led
     newswitch-device-id: hat-plus
@@ -316,7 +318,7 @@ components:
       mapping:
         led-ring/led:
           id: 20
-          pwm_max: 0
+          pwm_max: 1023
           subid: 4
           type: canopen-led
     newswitch-device-id: hat-plus

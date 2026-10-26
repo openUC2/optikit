@@ -107,12 +107,12 @@ devices:
         type: canopen-motor
       led-ring/led:
         id: 20
-        pwm_max: 0
+        pwm_max: 1023
         subid: 4
         type: canopen-led
       led-ring/matrix:
         id: 30
-        pwm_max: 0
+        pwm_max: 1023
         subid: 0
         type: canopen-led
     name: HAT+ via CAN

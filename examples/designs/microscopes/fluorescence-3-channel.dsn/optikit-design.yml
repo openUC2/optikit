@@ -46,6 +46,7 @@ components:
         newswitch-peripheral-id: led
         newswitch-mapping-type: canopen-led
         id: 30
+        pwm-max: 1023
   mapping-laser-1:
     kind: design
     design: primitives/controller-mapping.dsn
@@ -55,6 +56,7 @@ components:
         newswitch-peripheral-id: laser-1
         newswitch-mapping-type: serial-laser
         id: 0
+        pwm-max: 1023
   mapping-laser-2:
     kind: design
     design: primitives/controller-mapping.dsn
@@ -64,6 +66,7 @@ components:
         newswitch-peripheral-id: laser-2
         newswitch-mapping-type: serial-laser
         id: 1
+        pwm-max: 1023
   mapping-laser-3:
     kind: design
     design: primitives/controller-mapping.dsn
@@ -73,6 +76,7 @@ components:
         newswitch-peripheral-id: laser-3
         newswitch-mapping-type: serial-laser
         id: 2
+        pwm-max: 1023
 
 assemblies:
   wiring:

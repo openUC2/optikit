@@ -95,6 +95,7 @@ components:
         newswitch-controller-id: standalone-board
         newswitch-peripheral-id: led
         newswitch-mapping-type: serial-led
+        pwm-max: 1023
   mapping-laser:
     kind: design
     design: primitives/controller-mapping.dsn
@@ -104,6 +105,7 @@ components:
         newswitch-peripheral-id: laser
         newswitch-mapping-type: serial-laser
         id: 1
+        pwm-max: 1023
   mapping-axis-x:
     kind: design
     design: primitives/controller-mapping.dsn

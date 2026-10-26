@@ -88,6 +88,7 @@ components:
         newswitch-mapping-type: canopen-led
         id: 20
         subid: 4
+        pwm-max: 1023
   mapping-led-matrix:
     kind: design
     design: primitives/controller-mapping.dsn
@@ -97,6 +98,7 @@ components:
         newswitch-peripheral-id: led-ring/matrix
         newswitch-mapping-type: canopen-led
         id: 30
+        pwm-max: 1023
   mapping-axis-x:
     kind: design
     design: primitives/controller-mapping.dsn

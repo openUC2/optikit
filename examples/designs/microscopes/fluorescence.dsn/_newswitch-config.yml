@@ -109,7 +109,7 @@ devices:
     mapping:
       hotlaser123:
         id: 0
-        pwm_max: 0
+        pwm_max: 1023
         subid: 0
         type: serial-laser
       just-some-boring-stage/x:

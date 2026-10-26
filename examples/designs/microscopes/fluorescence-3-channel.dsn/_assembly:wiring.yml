@@ -89,6 +89,7 @@ components:
       newswitch-controller-id: standalone-board
       newswitch-mapping-type: serial-laser
       newswitch-peripheral-id: laser-1
+      pwm-max: "1023"
   position: [0.0, 0.0, 0.0]
   rotation:
     kind: extrinsic
@@ -100,7 +101,7 @@ components:
       mapping:
         laser-1:
           id: 0
-          pwm_max: 0
+          pwm_max: 1023
           subid: 0
           type: serial-laser
     newswitch-device-id: standalone-board
@@ -117,6 +118,7 @@ components:
       newswitch-controller-id: standalone-board
       newswitch-mapping-type: serial-laser
       newswitch-peripheral-id: laser-2
+      pwm-max: "1023"
   position: [0.0, 0.0, 0.0]
   rotation:
     kind: extrinsic
@@ -128,7 +130,7 @@ components:
       mapping:
         laser-2:
           id: 1
-          pwm_max: 0
+          pwm_max: 1023
           subid: 0
           type: serial-laser
     newswitch-device-id: standalone-board
@@ -145,6 +147,7 @@ components:
       newswitch-controller-id: standalone-board
       newswitch-mapping-type: serial-laser
       newswitch-peripheral-id: laser-3
+      pwm-max: "1023"
   position: [0.0, 0.0, 0.0]
   rotation:
     kind: extrinsic
@@ -156,7 +159,7 @@ components:
       mapping:
         laser-3:
           id: 2
-          pwm_max: 0
+          pwm_max: 1023
           subid: 0
           type: serial-laser
     newswitch-device-id: standalone-board
@@ -173,6 +176,7 @@ components:
       newswitch-controller-id: standalone-board
       newswitch-mapping-type: canopen-led
       newswitch-peripheral-id: led
+      pwm-max: "1023"
   position: [0.0, 0.0, 0.0]
   rotation:
     kind: extrinsic
@@ -184,7 +188,7 @@ components:
       mapping:
         led:
           id: 30
-          pwm_max: 0
+          pwm_max: 1023
           subid: 0
           type: canopen-led
     newswitch-device-id: standalone-board

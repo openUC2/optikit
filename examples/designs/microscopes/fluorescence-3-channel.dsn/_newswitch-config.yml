@@ -40,22 +40,22 @@ devices:
     mapping:
       laser-1:
         id: 0
-        pwm_max: 0
+        pwm_max: 1023
         subid: 0
         type: serial-laser
       laser-2:
         id: 1
-        pwm_max: 0
+        pwm_max: 1023
         subid: 0
         type: serial-laser
       laser-3:
         id: 2
-        pwm_max: 0
+        pwm_max: 1023
         subid: 0
         type: serial-laser
       led:
         id: 30
-        pwm_max: 0
+        pwm_max: 1023
         subid: 0
         type: canopen-led
     name: UC2-Mainboard-v4

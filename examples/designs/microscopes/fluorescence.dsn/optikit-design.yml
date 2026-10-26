@@ -101,6 +101,7 @@ components:
         newswitch-peripheral-id: hotlaser123
         newswitch-mapping-type: serial-laser
         id: 0
+        pwm-max: 1023
   electronics-controller-mapping-sample-stage-x:
     kind: design
     design: primitives/controller-mapping.dsn

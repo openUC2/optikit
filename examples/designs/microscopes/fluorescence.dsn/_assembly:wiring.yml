@@ -69,6 +69,7 @@ components:
       newswitch-controller-id: my-favorite-mainboard
       newswitch-mapping-type: serial-laser
       newswitch-peripheral-id: hotlaser123
+      pwm-max: "1023"
   position: [0.0, 0.0, 0.0]
   rotation:
     kind: extrinsic
@@ -80,7 +81,7 @@ components:
       mapping:
         hotlaser123:
           id: 0
-          pwm_max: 0
+          pwm_max: 1023
           subid: 0
           type: serial-laser
     newswitch-device-id: my-favorite-mainboard
