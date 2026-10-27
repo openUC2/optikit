@@ -83,8 +83,6 @@ components:
       id: "0"
       newswitch-controller-id: standalone-board-1
       newswitch-peripheral-id: laser
-      protocol: direct-pwm
-      pwm-max: "1023"
   position: [0.0, 0.0, 0.0]
   rotation:
     kind: extrinsic
@@ -95,10 +93,10 @@ components:
     newswitch-device-config:
       connections:
         laser:
-          pwm_max: 1023
+          protocol: direct
           selectors:
             id: 0
-          type: direct-pwm
+            subid: 0
     newswitch-device-id: standalone-board-1
   position: [0.0, 0.0, 0.0]
   rotation:
@@ -112,7 +110,6 @@ components:
       id: "0"
       newswitch-controller-id: standalone-board-1
       newswitch-peripheral-id: optics-stage/x
-      protocol: direct
   position: [0.0, 0.0, 0.0]
   rotation:
     kind: extrinsic
@@ -123,10 +120,10 @@ components:
     newswitch-device-config:
       connections:
         optics-stage/x:
-          pwm_max: null
+          protocol: direct
           selectors:
             id: 0
-          type: direct
+            subid: 0
     newswitch-device-id: standalone-board-1
   position: [0.0, 0.0, 0.0]
   rotation:
@@ -140,7 +137,6 @@ components:
       id: "1"
       newswitch-controller-id: standalone-board-1
       newswitch-peripheral-id: optics-stage/y
-      protocol: direct
   position: [0.0, 0.0, 0.0]
   rotation:
     kind: extrinsic
@@ -151,10 +147,10 @@ components:
     newswitch-device-config:
       connections:
         optics-stage/y:
-          pwm_max: null
+          protocol: direct
           selectors:
             id: 1
-          type: direct
+            subid: 0
     newswitch-device-id: standalone-board-1
   position: [0.0, 0.0, 0.0]
   rotation:
@@ -168,7 +164,6 @@ components:
       id: "2"
       newswitch-controller-id: standalone-board-1
       newswitch-peripheral-id: optics-stage/z
-      protocol: direct
   position: [0.0, 0.0, 0.0]
   rotation:
     kind: extrinsic
@@ -179,10 +174,10 @@ components:
     newswitch-device-config:
       connections:
         optics-stage/z:
-          pwm_max: null
+          protocol: direct
           selectors:
             id: 2
-          type: direct
+            subid: 0
     newswitch-device-id: standalone-board-1
   position: [0.0, 0.0, 0.0]
   rotation:
@@ -196,7 +191,6 @@ components:
       id: "0"
       newswitch-controller-id: standalone-board-2
       newswitch-peripheral-id: sample-stage/x
-      protocol: direct
   position: [0.0, 0.0, 0.0]
   rotation:
     kind: extrinsic
@@ -207,10 +201,10 @@ components:
     newswitch-device-config:
       connections:
         sample-stage/x:
-          pwm_max: null
+          protocol: direct
           selectors:
             id: 0
-          type: direct
+            subid: 0
     newswitch-device-id: standalone-board-2
   position: [0.0, 0.0, 0.0]
   rotation:
@@ -224,7 +218,6 @@ components:
       id: "1"
       newswitch-controller-id: standalone-board-2
       newswitch-peripheral-id: sample-stage/y
-      protocol: direct
   position: [0.0, 0.0, 0.0]
   rotation:
     kind: extrinsic
@@ -235,10 +228,10 @@ components:
     newswitch-device-config:
       connections:
         sample-stage/y:
-          pwm_max: null
+          protocol: direct
           selectors:
             id: 1
-          type: direct
+            subid: 0
     newswitch-device-id: standalone-board-2
   position: [0.0, 0.0, 0.0]
   rotation:
@@ -252,7 +245,6 @@ components:
       id: "2"
       newswitch-controller-id: standalone-board-2
       newswitch-peripheral-id: sample-stage/z
-      protocol: direct
   position: [0.0, 0.0, 0.0]
   rotation:
     kind: extrinsic
@@ -263,10 +255,10 @@ components:
     newswitch-device-config:
       connections:
         sample-stage/z:
-          pwm_max: null
+          protocol: direct
           selectors:
             id: 2
-          type: direct
+            subid: 0
     newswitch-device-id: standalone-board-2
   position: [0.0, 0.0, 0.0]
   rotation:

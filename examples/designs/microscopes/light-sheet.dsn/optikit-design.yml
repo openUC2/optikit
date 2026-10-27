@@ -89,8 +89,6 @@ components:
       inputs:
         newswitch-controller-id: standalone-board
         newswitch-peripheral-id: led
-        protocol: direct-pwm
-        pwm-max: 1023
   laser:
     kind: design
     design: primitives/lasers/boison-488.dsn
@@ -104,9 +102,7 @@ components:
       inputs:
         newswitch-controller-id: standalone-board
         newswitch-peripheral-id: laser
-        protocol: direct-pwm
         id: 1
-        pwm-max: 1023
   xyz-stage:
     kind: design
     design: primitives/xyz-stage.dsn
@@ -129,7 +125,6 @@ components:
       inputs:
         newswitch-controller-id: standalone-board
         newswitch-peripheral-id: xyz-stage/x
-        protocol: direct
         id: 1
   connection-axis-y:
     kind: design
@@ -138,7 +133,6 @@ components:
       inputs:
         newswitch-controller-id: standalone-board
         newswitch-peripheral-id: xyz-stage/y
-        protocol: direct
         id: 2
   connection-axis-a:
     kind: design
@@ -147,7 +141,6 @@ components:
       inputs:
         newswitch-controller-id: standalone-board
         newswitch-peripheral-id: xyz-stage/a
-        protocol: direct
         id: 0
   slider:
     kind: design
@@ -165,7 +158,6 @@ components:
       inputs:
         newswitch-controller-id: standalone-board
         newswitch-peripheral-id: slider/axis
-        protocol: direct
         id: 3
 
 assemblies:

@@ -83,35 +83,35 @@ devices:
   standalone-board:
     connections:
       laser:
-        pwm_max: 1023
+        protocol: direct
         selectors:
           id: 1
-        type: direct-pwm
+          subid: 0
       led:
-        pwm_max: 1023
+        protocol: direct
         selectors:
           id: 0
-        type: direct-pwm
+          subid: 0
       slider/axis:
-        pwm_max: null
+        protocol: direct
         selectors:
           id: 3
-        type: direct
+          subid: 0
       xyz-stage/a:
-        pwm_max: null
+        protocol: direct
         selectors:
           id: 0
-        type: direct
+          subid: 0
       xyz-stage/x:
-        pwm_max: null
+        protocol: direct
         selectors:
           id: 1
-        type: direct
+          subid: 0
       xyz-stage/y:
-        pwm_max: null
+        protocol: direct
         selectors:
           id: 2
-        type: direct
+          subid: 0
     firmware:
       name: esp32-uc2-standalone-4
       version: v2026.0.0-beta.3

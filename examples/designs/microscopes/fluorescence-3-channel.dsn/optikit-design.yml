@@ -46,14 +46,12 @@ components:
         newswitch-device-id-led: led
   connection-led:
     kind: design
-    design: primitives/connections/canopen-peripheral.dsn
+    design: primitives/connections/direct.dsn
     instantiation:
       inputs:
         newswitch-controller-id: standalone-board
         newswitch-peripheral-id: led
-        protocol: canopen-pwm
         id: 30
-        pwm-max: 1023
   laser-1:
     kind: design
     design: primitives/lasers/boison-488.dsn
@@ -62,14 +60,12 @@ components:
         newswitch-device-id: laser-1
   connection-laser-1:
     kind: design
-    design: primitives/connections/canopen-peripheral.dsn
+    design: primitives/connections/direct.dsn
     instantiation:
       inputs:
         newswitch-controller-id: standalone-board
         newswitch-peripheral-id: laser-1
-        protocol: canopen-pwm
         id: 0
-        pwm-max: 1023
   laser-2:
     kind: design
     design: primitives/lasers/boison-488.dsn
@@ -78,14 +74,12 @@ components:
         newswitch-device-id: laser-2
   connection-laser-2:
     kind: design
-    design: primitives/connections/canopen-peripheral.dsn
+    design: primitives/connections/direct.dsn
     instantiation:
       inputs:
         newswitch-controller-id: standalone-board
         newswitch-peripheral-id: laser-2
-        protocol: canopen-pwm
         id: 1
-        pwm-max: 1023
   laser-3:
     kind: design
     design: primitives/lasers/boison-488.dsn
@@ -94,14 +88,12 @@ components:
         newswitch-device-id: laser-3
   connection-laser-3:
     kind: design
-    design: primitives/connections/canopen-peripheral.dsn
+    design: primitives/connections/direct.dsn
     instantiation:
       inputs:
         newswitch-controller-id: standalone-board
         newswitch-peripheral-id: laser-3
-        protocol: canopen-pwm
         id: 2
-        pwm-max: 1023
 
 assemblies:
   wiring:

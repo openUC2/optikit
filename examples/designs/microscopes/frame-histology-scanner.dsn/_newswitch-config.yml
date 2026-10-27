@@ -112,38 +112,32 @@ devices:
   hat-plus:
     connections:
       frame-chassis/a:
-        protocol: canopen
-        pwm_max: null
+        protocol: direct
         selectors:
           id: 10
           subid: 1
       frame-chassis/x:
-        protocol: canopen
-        pwm_max: null
+        protocol: direct
         selectors:
           id: 11
           subid: 1
       frame-chassis/y:
-        protocol: canopen
-        pwm_max: null
+        protocol: direct
         selectors:
           id: 12
           subid: 1
       frame-chassis/z:
-        protocol: canopen
-        pwm_max: null
+        protocol: direct
         selectors:
           id: 13
           subid: 1
       led-ring/led:
-        protocol: canopen-pwm
-        pwm_max: 1023
+        protocol: direct
         selectors:
-          id: 20
-          subid: 4
+          id: 21
+          subid: 0
       led-ring/matrix:
-        protocol: canopen-pwm
-        pwm_max: 1023
+        protocol: direct
         selectors:
           id: 30
           subid: 0
@@ -166,9 +160,9 @@ devices:
         protocol: canopen
         transport:
           bitrate: 500000
+          interface: socketcan
           selectors:
             channel: can0
-            interface: socketcan
           type: can
     type: controller
 newswitch_version: v1.0.2

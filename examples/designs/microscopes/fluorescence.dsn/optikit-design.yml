@@ -94,9 +94,7 @@ components:
       inputs:
         newswitch-controller-id: standalone-board
         newswitch-peripheral-id: laser
-        protocol: direct-pwm
         id: 0
-        pwm-max: 1023
   sample-mirror:
     kind: design
     design: cube-mounted/mirror-diagonal.dsn
@@ -128,8 +126,6 @@ components:
       inputs:
         newswitch-controller-id: standalone-board
         newswitch-peripheral-id: sample-stage/x
-        protocol: direct
-        id: 0
   connection-sample-stage-y:
     kind: design
     design: primitives/connections/direct.dsn
@@ -137,7 +133,6 @@ components:
       inputs:
         newswitch-controller-id: standalone-board
         newswitch-peripheral-id: sample-stage/y
-        protocol: direct
         id: 1
   connection-sample-stage-z:
     kind: design
@@ -146,7 +141,6 @@ components:
       inputs:
         newswitch-controller-id: standalone-board
         newswitch-peripheral-id: sample-stage/z
-        protocol: direct
         id: 2
 
 assemblies:

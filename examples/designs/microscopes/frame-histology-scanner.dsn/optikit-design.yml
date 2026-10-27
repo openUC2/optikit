@@ -86,25 +86,21 @@ components:
         newswitch-device-id-matrix: led-ring/matrix
   connection-led:
     kind: design
-    design: primitives/connections/canopen-peripheral.dsn
+    design: primitives/connections/direct.dsn
     instantiation:
       inputs:
         newswitch-controller-id: hat-plus
         newswitch-peripheral-id: led-ring/led
-        protocol: canopen-pwm
-        id: 20
-        subid: 4
-        pwm-max: 1023
+        id: 21
+        subid: 0
   connection-led-matrix:
     kind: design
-    design: primitives/connections/canopen-peripheral.dsn
+    design: primitives/connections/direct.dsn
     instantiation:
       inputs:
         newswitch-controller-id: hat-plus
         newswitch-peripheral-id: led-ring/matrix
-        protocol: canopen-pwm
         id: 30
-        pwm-max: 1023
   frame-chassis:
     kind: design
     design: assemblies/frame-chassis.dsn
@@ -126,42 +122,38 @@ components:
         position-objective-a: ~ inputs['objective-a'].value
   connection-axis-x:
     kind: design
-    design: primitives/connections/canopen-peripheral.dsn
+    design: primitives/connections/direct.dsn
     instantiation:
       inputs:
         newswitch-controller-id: hat-plus
         newswitch-peripheral-id: frame-chassis/x
-        protocol: canopen
         id: 11
         subid: 1
   connection-axis-y:
     kind: design
-    design: primitives/connections/canopen-peripheral.dsn
+    design: primitives/connections/direct.dsn
     instantiation:
       inputs:
         newswitch-controller-id: hat-plus
         newswitch-peripheral-id: frame-chassis/y
-        protocol: canopen
         id: 12
         subid: 1
   connection-axis-z:
     kind: design
-    design: primitives/connections/canopen-peripheral.dsn
+    design: primitives/connections/direct.dsn
     instantiation:
       inputs:
         newswitch-controller-id: hat-plus
         newswitch-peripheral-id: frame-chassis/z
-        protocol: canopen
         id: 13
         subid: 1
   connection-axis-a:
     kind: design
-    design: primitives/connections/canopen-peripheral.dsn
+    design: primitives/connections/direct.dsn
     instantiation:
       inputs:
         newswitch-controller-id: hat-plus
         newswitch-peripheral-id: frame-chassis/a
-        protocol: canopen
         id: 10
         subid: 1
 

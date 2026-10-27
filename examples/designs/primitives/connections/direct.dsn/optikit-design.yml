@@ -1,7 +1,7 @@
 optikit-version: v0.1.0-alpha.1
 
 design:
-  description: A direct connection from a controller to an arbitrary peripheral device
+  description: A connection from a controller to a CANopen peripheral device over a shared CAN bus
   tags:
     - config/newswitch/device-relation
 
@@ -16,24 +16,18 @@ inputs:
     kind: string
     tags:
       - config/newswitch/device-id
-  protocol:
-    description: The kind of connection to the peripheral device
-    kind: string
-    enum:
-      - direct
-      - direct-pwm
-    tags:
-      - config/newswitch/controller-connection-type
   id:
     description: ID of the peripheral device
     kind: int
     min: 0
     tags:
       - config/newswitch/firmware-id
-  pwm-max:
-    description: PWM resolution for the peripheral device, if the protocol supports it
+  subid:
+    description: Sub-ID of the peripheral device, if applicable
     kind: int
     min: 0
+    tags:
+      - config/newswitch/firmware-subid
 
 components:
   connection:
@@ -44,11 +38,11 @@ components:
         ~ {
           connections: fromPairs([
             [inputs['newswitch-peripheral-id'].value, {
-              type: inputs['protocol'].value,
+              protocol: "direct",
               selectors: {
                 id: inputs['id'].value,
+                subid: inputs['subid'].value,
               },
-              pwm_max: inputs['protocol'].value == 'direct-pwm' ? inputs['pwm-max'].value : nil,
             }],
           ]),
         }

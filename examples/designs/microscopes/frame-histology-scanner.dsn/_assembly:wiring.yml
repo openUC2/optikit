@@ -32,13 +32,12 @@ components:
     order: zxy
 - id: connection-axis-a
   kind: design
-  design: primitives/connections/canopen-peripheral.dsn
+  design: primitives/connections/direct.dsn
   instantiation:
     inputs:
       id: "10"
       newswitch-controller-id: hat-plus
       newswitch-peripheral-id: frame-chassis/a
-      protocol: canopen
       subid: "1"
   position: [0.0, 0.0, 0.0]
   rotation:
@@ -50,8 +49,7 @@ components:
     newswitch-device-config:
       connections:
         frame-chassis/a:
-          protocol: canopen
-          pwm_max: null
+          protocol: direct
           selectors:
             id: 10
             subid: 1
@@ -62,13 +60,12 @@ components:
     order: zxy
 - id: connection-axis-x
   kind: design
-  design: primitives/connections/canopen-peripheral.dsn
+  design: primitives/connections/direct.dsn
   instantiation:
     inputs:
       id: "11"
       newswitch-controller-id: hat-plus
       newswitch-peripheral-id: frame-chassis/x
-      protocol: canopen
       subid: "1"
   position: [0.0, 0.0, 0.0]
   rotation:
@@ -80,8 +77,7 @@ components:
     newswitch-device-config:
       connections:
         frame-chassis/x:
-          protocol: canopen
-          pwm_max: null
+          protocol: direct
           selectors:
             id: 11
             subid: 1
@@ -92,13 +88,12 @@ components:
     order: zxy
 - id: connection-axis-y
   kind: design
-  design: primitives/connections/canopen-peripheral.dsn
+  design: primitives/connections/direct.dsn
   instantiation:
     inputs:
       id: "12"
       newswitch-controller-id: hat-plus
       newswitch-peripheral-id: frame-chassis/y
-      protocol: canopen
       subid: "1"
   position: [0.0, 0.0, 0.0]
   rotation:
@@ -110,8 +105,7 @@ components:
     newswitch-device-config:
       connections:
         frame-chassis/y:
-          protocol: canopen
-          pwm_max: null
+          protocol: direct
           selectors:
             id: 12
             subid: 1
@@ -122,13 +116,12 @@ components:
     order: zxy
 - id: connection-axis-z
   kind: design
-  design: primitives/connections/canopen-peripheral.dsn
+  design: primitives/connections/direct.dsn
   instantiation:
     inputs:
       id: "13"
       newswitch-controller-id: hat-plus
       newswitch-peripheral-id: frame-chassis/z
-      protocol: canopen
       subid: "1"
   position: [0.0, 0.0, 0.0]
   rotation:
@@ -140,8 +133,7 @@ components:
     newswitch-device-config:
       connections:
         frame-chassis/z:
-          protocol: canopen
-          pwm_max: null
+          protocol: direct
           selectors:
             id: 13
             subid: 1
@@ -198,9 +190,9 @@ components:
           protocol: canopen
           transport:
             bitrate: 500000
+            interface: socketcan
             selectors:
               channel: can0
-              interface: socketcan
             type: can
     newswitch-device-id: root
   position: [0.0, 0.0, 0.0]
@@ -209,29 +201,25 @@ components:
     order: zxy
 - id: connection-led
   kind: design
-  design: primitives/connections/canopen-peripheral.dsn
+  design: primitives/connections/direct.dsn
   instantiation:
     inputs:
-      id: "20"
+      id: "21"
       newswitch-controller-id: hat-plus
       newswitch-peripheral-id: led-ring/led
-      protocol: canopen-pwm
-      pwm-max: "1023"
-      subid: "4"
+      subid: "0"
   position: [0.0, 0.0, 0.0]
   rotation:
     kind: extrinsic
     order: zxy
 - id: connection-led-matrix
   kind: design
-  design: primitives/connections/canopen-peripheral.dsn
+  design: primitives/connections/direct.dsn
   instantiation:
     inputs:
       id: "30"
       newswitch-controller-id: hat-plus
       newswitch-peripheral-id: led-ring/matrix
-      protocol: canopen-pwm
-      pwm-max: "1023"
   position: [0.0, 0.0, 0.0]
   rotation:
     kind: extrinsic
@@ -242,8 +230,7 @@ components:
     newswitch-device-config:
       connections:
         led-ring/matrix:
-          protocol: canopen-pwm
-          pwm_max: 1023
+          protocol: direct
           selectors:
             id: 30
             subid: 0
@@ -258,11 +245,10 @@ components:
     newswitch-device-config:
       connections:
         led-ring/led:
-          protocol: canopen-pwm
-          pwm_max: 1023
+          protocol: direct
           selectors:
-            id: 20
-            subid: 4
+            id: 21
+            subid: 0
     newswitch-device-id: hat-plus
   position: [0.0, 0.0, 0.0]
   rotation:

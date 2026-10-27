@@ -77,26 +77,22 @@ devices:
   standalone-board:
     connections:
       laser-1:
-        protocol: canopen-pwm
-        pwm_max: 1023
+        protocol: direct
         selectors:
           id: 0
           subid: 0
       laser-2:
-        protocol: canopen-pwm
-        pwm_max: 1023
+        protocol: direct
         selectors:
           id: 1
           subid: 0
       laser-3:
-        protocol: canopen-pwm
-        pwm_max: 1023
+        protocol: direct
         selectors:
           id: 2
           subid: 0
       led:
-        protocol: canopen-pwm
-        pwm_max: 1023
+        protocol: direct
         selectors:
           id: 30
           subid: 0
