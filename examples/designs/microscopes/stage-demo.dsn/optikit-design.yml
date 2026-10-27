@@ -63,10 +63,43 @@ inputs:
       - adjustment/electronic
 
 components:
+  root-controller:
+    kind: design
+    design: primitives/controllers/root.dsn
   stack:
     kind: location
     tags:
       - subkind/group
+  standalone-board-1:
+    kind: design
+    design: primitives/controllers/standalone-board.dsn
+    instantiation:
+      inputs:
+        newswitch-device-id: standalone-board-1
+  connection-standalone-board-1:
+    kind: design
+    design: primitives/connections/uc2-rest-serial.dsn
+    instantiation:
+      inputs:
+        newswitch-controller-id: root
+        newswitch-peripheral-id: standalone-board-1
+        port-pattern: /dev/ttyUSB*
+        baudrate: 115200
+  standalone-board-2:
+    kind: design
+    design: primitives/controllers/standalone-board.dsn
+    instantiation:
+      inputs:
+        newswitch-device-id: standalone-board-2
+  connection-standalone-board-2:
+    kind: design
+    design: primitives/connections/uc2-rest-serial.dsn
+    instantiation:
+      inputs:
+        newswitch-controller-id: root
+        newswitch-peripheral-id: standalone-board-2
+        port-pattern: /dev/ttyUSB*
+        baudrate: 115200
   optics-stage:
     kind: design
     design: primitives/xyz-stage.dsn
@@ -85,6 +118,33 @@ components:
         # position-x: 4
         # position-y: 8
         # position-z: 16
+  connection-optics-stage-x:
+    kind: design
+    design: primitives/connections/direct.dsn
+    instantiation:
+      inputs:
+        newswitch-controller-id: standalone-board-1
+        newswitch-peripheral-id: optics-stage/x
+        protocol: direct
+        id: 0
+  connection-optics-stage-y:
+    kind: design
+    design: primitives/connections/direct.dsn
+    instantiation:
+      inputs:
+        newswitch-controller-id: standalone-board-1
+        newswitch-peripheral-id: optics-stage/y
+        protocol: direct
+        id: 1
+  connection-optics-stage-z:
+    kind: design
+    design: primitives/connections/direct.dsn
+    instantiation:
+      inputs:
+        newswitch-controller-id: standalone-board-1
+        newswitch-peripheral-id: optics-stage/z
+        protocol: direct
+        id: 2
   optics:
     kind: location
     tags:
@@ -94,7 +154,14 @@ components:
     design: primitives/hikcamera-with-objective.dsn
     instantiation:
       inputs:
-        newswitch-device-id: bigcamera42
+        newswitch-device-id: camera
+  connection-camera:
+    kind: design
+    design: primitives/connections/usb3-vision.dsn
+    instantiation:
+      inputs:
+        newswitch-controller-id: root
+        newswitch-peripheral-id: camera
   dichroic:
     kind: design
     design: cube-mounted/dichroic-mirror.dsn
@@ -114,7 +181,17 @@ components:
     design: primitives/lasers/boison-488.dsn
     instantiation:
       inputs:
-        newswitch-device-id: hotlaser123
+        newswitch-device-id: laser
+  connection-laser:
+    kind: design
+    design: primitives/connections/direct.dsn
+    instantiation:
+      inputs:
+        newswitch-controller-id: standalone-board-1
+        newswitch-peripheral-id: laser
+        protocol: direct-pwm
+        id: 0
+        pwm-max: 1023
   sample-mirror:
     kind: design
     design: cube-mounted/mirror-diagonal.dsn
@@ -139,81 +216,32 @@ components:
   slide-holder:
     kind: design
     design: cube-mounted/slide-holder.dsn/mounted-holder.dsn
-  standalone-board-1:
+  connection-sample-stage-x:
     kind: design
-    design: primitives/controllers/standalone-board.dsn
+    design: primitives/connections/direct.dsn
     instantiation:
       inputs:
-        newswitch-device-id: mainboard-1
-  standalone-board-1-mapping-laser:
-    kind: design
-    design: primitives/controller-mapping.dsn
-    instantiation:
-      inputs:
-        newswitch-controller-id: mainboard-1
-        newswitch-peripheral-id: hotlaser123
-        newswitch-mapping-type: serial-laser
-        id: 0
-        pwm-max: 1023
-  standalone-board-1-mapping-optics-stage-x:
-    kind: design
-    design: primitives/controller-mapping.dsn
-    instantiation:
-      inputs:
-        newswitch-controller-id: mainboard-1
-        newswitch-peripheral-id: optics-stage/x
-        newswitch-mapping-type: serial-motor
-        id: 0
-  standalone-board-1-mapping-optics-stage-y:
-    kind: design
-    design: primitives/controller-mapping.dsn
-    instantiation:
-      inputs:
-        newswitch-controller-id: mainboard-1
-        newswitch-peripheral-id: optics-stage/y
-        newswitch-mapping-type: serial-motor
-        id: 1
-  standalone-board-1-mapping-optics-stage-z:
-    kind: design
-    design: primitives/controller-mapping.dsn
-    instantiation:
-      inputs:
-        newswitch-controller-id: mainboard-1
-        newswitch-peripheral-id: optics-stage/z
-        newswitch-mapping-type: serial-motor
-        id: 2
-  standalone-board-2:
-    kind: design
-    design: primitives/controllers/standalone-board.dsn
-    instantiation:
-      inputs:
-        newswitch-device-id: mainboard-2
-  standalone-board-2-mapping-sample-stage-x:
-    kind: design
-    design: primitives/controller-mapping.dsn
-    instantiation:
-      inputs:
-        newswitch-controller-id: mainboard-2
+        newswitch-controller-id: standalone-board-2
         newswitch-peripheral-id: sample-stage/x
-        newswitch-mapping-type: serial-motor
+        protocol: direct
         id: 0
-  standalone-board-2-mapping-sample-stage-y:
+  connection-sample-stage-y:
     kind: design
-    design: primitives/controller-mapping.dsn
+    design: primitives/connections/direct.dsn
     instantiation:
       inputs:
-        newswitch-controller-id: mainboard-2
+        newswitch-controller-id: standalone-board-2
         newswitch-peripheral-id: sample-stage/y
-        newswitch-mapping-type: serial-motor
+        protocol: direct
         id: 1
-  standalone-board-2-mapping-sample-stage-z:
+  connection-sample-stage-z:
     kind: design
-    design: primitives/controller-mapping.dsn
+    design: primitives/connections/direct.dsn
     instantiation:
       inputs:
-        newswitch-controller-id: mainboard-2
+        newswitch-controller-id: standalone-board-2
         newswitch-peripheral-id: sample-stage/z
-        newswitch-mapping-type: serial-motor
+        protocol: direct
         id: 2
 
 assemblies:
@@ -316,31 +344,40 @@ assemblies:
                 offset-mm: {z: 3}
   wiring:
     children:
+      root-controller:
+        assembly: wiring
+        children:
+          connection-camera:
+            assembly: wiring
+          connection-standalone-board-1:
+            assembly: wiring
+          connection-standalone-board-2:
+            assembly: wiring
       camera:
         assembly: wiring
       standalone-board-1:
         assembly: wiring
         children:
-          standalone-board-1-mapping-laser:
+          connection-laser:
             assembly: wiring
-          standalone-board-1-mapping-optics-stage-x:
+          connection-optics-stage-x:
             assembly: wiring
-          standalone-board-1-mapping-optics-stage-y:
+          connection-optics-stage-y:
             assembly: wiring
-          standalone-board-1-mapping-optics-stage-z:
+          connection-optics-stage-z:
             assembly: wiring
       blue-laser:
         assembly: wiring
-      sample-stage:
+      optics-stage:
         assembly: wiring
       standalone-board-2:
         assembly: wiring
         children:
-          standalone-board-2-mapping-sample-stage-x:
+          connection-sample-stage-x:
             assembly: wiring
-          standalone-board-2-mapping-sample-stage-y:
+          connection-sample-stage-y:
             assembly: wiring
-          standalone-board-2-mapping-sample-stage-z:
+          connection-sample-stage-z:
             assembly: wiring
-      optics-stage:
+      sample-stage:
         assembly: wiring

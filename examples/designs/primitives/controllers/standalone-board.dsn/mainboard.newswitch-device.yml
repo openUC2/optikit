@@ -3,12 +3,6 @@ newswitch_version: v1.0.2 # minimum allowed newswitch version for this config fi
 type: controller
 name: UC2-Mainboard-v4
 manufacturer: openUC2
-connection:
-  protocol: uc2-rest
-  transport:
-    type: serial
-    port_pattern: '/dev/ttyUSB*'
-    baudrate: 115200
 firmware:
   name: esp32-uc2-standalone-4
   version: v2026.0.0-beta.3

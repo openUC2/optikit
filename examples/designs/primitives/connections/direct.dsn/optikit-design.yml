@@ -1,7 +1,7 @@
 optikit-version: v0.1.0-alpha.1
 
 design:
-  description: A mapping from a controller board to an arbitrary peripheral device
+  description: A direct connection from a controller to an arbitrary peripheral device
   tags:
     - config/newswitch/device-relation
 
@@ -16,48 +16,39 @@ inputs:
     kind: string
     tags:
       - config/newswitch/device-id
-  newswitch-mapping-type:
+  protocol:
     description: The kind of connection to the peripheral device
     kind: string
     enum:
-      - canopen-laser
-      - serial-laser
-      - canopen-led
-      - serial-led
-      - canopen-motor
-      - serial-motor
+      - direct
+      - direct-pwm
     tags:
-      - config/newswitch/controller-mapping-type
+      - config/newswitch/controller-connection-type
   id:
     description: ID of the peripheral device
     kind: int
     min: 0
     tags:
       - config/newswitch/firmware-id
-  subid:
-    description: Sub-ID of the peripheral device
-    kind: int
-    min: 0
-    tags:
-      - config/newswitch/firmware-subid
   pwm-max:
-    description: PWM resolution for the peripheral device, if the device mapping type supports it
+    description: PWM resolution for the peripheral device, if the protocol supports it
     kind: int
     min: 0
 
 components:
-  mapping:
+  connection:
     kind: results
     results:
       newswitch-device-id: ~ inputs['newswitch-controller-id'].value
       newswitch-device-config: >
         ~ {
-          mapping: fromPairs([
+          connections: fromPairs([
             [inputs['newswitch-peripheral-id'].value, {
-              type: inputs['newswitch-mapping-type'].value,
-              id: inputs['id'].value,
-              subid: inputs['subid'].value,
-              pwm_max: inputs['pwm-max'].value,
+              type: inputs['protocol'].value,
+              selectors: {
+                id: inputs['id'].value,
+              },
+              pwm_max: inputs['protocol'].value == 'direct-pwm' ? inputs['pwm-max'].value : nil,
             }],
           ]),
         }
@@ -65,4 +56,4 @@ components:
 assemblies:
   wiring:
     children:
-      mapping: {}
+      connection: {}

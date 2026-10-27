@@ -1,0 +1,43 @@
+optikit-version: v0.1.0-alpha.1
+
+design:
+  description: A connection to a camera using the usb3-vision protocol
+  tags:
+    - config/newswitch/device-connection
+
+inputs:
+  newswitch-controller-id:
+    description: The ID of the controller device in NewSwitch
+    kind: string
+    tags:
+      - config/newswitch/device-id
+  newswitch-peripheral-id:
+    description: The ID of the peripheral device in NewSwitch
+    kind: string
+    tags:
+      - config/newswitch/device-id
+  name:
+    description: Selector for a user-assigned device name stored in the camera
+    kind: string
+
+components:
+  connection:
+    kind: results
+    results:
+      newswitch-device-id: ~ inputs['newswitch-controller-id'].value
+      newswitch-device-config: >
+        ~ {
+          connections: fromPairs([
+            [inputs['newswitch-peripheral-id'].value, {
+              protocol: 'usb3-vision',
+              selectors: {
+                user_defined_name: inputs['name'].value,
+              },
+            }],
+          ]),
+        }
+
+assemblies:
+  wiring:
+    children:
+      connection: {}

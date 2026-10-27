@@ -133,7 +133,7 @@ components:
       - structure/fastener/washer
       - procurement/buy
       - in/kit/electronics-box
-  drivers:
+  driver:
     kind: primitive
     primitive:
       kind: static
@@ -156,4 +156,4 @@ assemblies:
           case-lid: {}
   wiring:
     children:
-      drivers: {}
+      driver: {}

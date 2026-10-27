@@ -36,17 +36,17 @@
 <path fill="none" stroke="black" d="M1344.52,-954.81C1344.52,-947.23 1344.52,-938.1 1344.52,-929.54"/>
 <polygon fill="black" stroke="black" points="1348.02,-929.54 1344.52,-919.54 1341.02,-929.54 1348.02,-929.54"/>
 </g>
-<!-- electronics&#45;controller -->
-<g id="node28" class="node">
-<title>electronics&#45;controller</title>
-<ellipse fill="none" stroke="black" cx="2628.52" cy="-900" rx="93.62" ry="18"/>
-<text text-anchor="middle" x="2628.52" y="-895.8" font-family="Times,serif" font-size="14.00">electronics&#45;controller</text>
+<!-- standalone&#45;board -->
+<g id="node85" class="node">
+<title>standalone&#45;board</title>
+<ellipse fill="none" stroke="black" cx="2619.52" cy="-900" rx="77.54" ry="18"/>
+<text text-anchor="middle" x="2619.52" y="-895.8" font-family="Times,serif" font-size="14.00">standalone&#45;board</text>
 </g>
-<!-- &#45;&gt;electronics&#45;controller -->
+<!-- &#45;&gt;standalone&#45;board -->
 <g id="edge3" class="edge">
-<title>&#45;&gt;electronics&#45;controller</title>
-<path fill="none" stroke="black" d="M1371.63,-970.5C1522.14,-962.18 2257.9,-921.49 2528.44,-906.53"/>
-<polygon fill="black" stroke="black" points="2528.51,-910.04 2538.3,-905.99 2528.12,-903.05 2528.51,-910.04"/>
+<title>&#45;&gt;standalone&#45;board</title>
+<path fill="none" stroke="black" d="M1371.74,-970.48C1524.39,-961.98 2276.49,-920.1 2533.35,-905.8"/>
+<polygon fill="black" stroke="black" points="2533.54,-909.29 2543.33,-905.24 2533.15,-902.3 2533.54,-909.29"/>
 </g>
 <!-- blue&#45;laser/root -->
 <g id="node8" class="node">
@@ -266,7 +266,7 @@
 <polygon fill="black" stroke="black" points="3561.02,-752.32 3557.52,-742.32 3554.02,-752.32 3561.02,-752.32"/>
 </g>
 <!-- laser&#45;mirror -->
-<g id="node39" class="node">
+<g id="node35" class="node">
 <title>laser&#45;mirror</title>
 <ellipse fill="none" stroke="black" cx="3980.52" cy="-722.4" rx="57.15" ry="18"/>
 <text text-anchor="middle" x="3980.52" y="-718.2" font-family="Times,serif" font-size="14.00">laser&#45;mirror</text>
@@ -279,7 +279,7 @@
 <text text-anchor="middle" x="3837.04" y="-762.6" font-family="Times,serif" font-size="14.00">:xy rel&#45;pos</text>
 </g>
 <!-- objective -->
-<g id="node47" class="node">
+<g id="node43" class="node">
 <title>objective</title>
 <ellipse fill="none" stroke="black" cx="5368.52" cy="-722.4" rx="46.43" ry="18"/>
 <text text-anchor="middle" x="5368.52" y="-718.2" font-family="Times,serif" font-size="14.00">objective</text>
@@ -363,705 +363,705 @@
 <path fill="none" stroke="black" d="M3582.08,-704.87C3601.82,-691.59 3629.79,-672.77 3651.82,-657.95"/>
 <polygon fill="black" stroke="black" points="3653.56,-660.99 3659.9,-652.51 3649.65,-655.19 3653.56,-660.99"/>
 </g>
-<!-- electronics&#45;controller/root -->
-<g id="node31" class="node">
-<title>electronics&#45;controller/root</title>
-<ellipse fill="none" stroke="black" cx="5566.52" cy="-811.2" rx="111.85" ry="18"/>
-<text text-anchor="middle" x="5566.52" y="-807" font-family="Times,serif" font-size="14.00">electronics&#45;controller/root</text>
-</g>
-<!-- electronics&#45;controller&#45;&gt;electronics&#45;controller/root -->
-<g id="edge30" class="edge">
-<title>electronics&#45;controller&#45;&gt;electronics&#45;controller/root</title>
-<path fill="none" stroke="black" d="M2720.48,-896.28C3150.24,-883.59 4960.15,-830.11 5446.03,-815.76"/>
-<polygon fill="black" stroke="black" points="5445.86,-819.27 5455.75,-815.47 5445.65,-812.27 5445.86,-819.27"/>
-</g>
-<!-- electronics&#45;controller/case&#45;base -->
-<g id="node29" class="node">
-<title>electronics&#45;controller/case&#45;base</title>
-<ellipse fill="none" stroke="black" cx="5566.52" cy="-722.4" rx="133.29" ry="18"/>
-<text text-anchor="middle" x="5566.52" y="-718.2" font-family="Times,serif" font-size="14.00">electronics&#45;controller/case&#45;base</text>
-</g>
-<!-- electronics&#45;controller/case&#45;lid -->
-<g id="node30" class="node">
-<title>electronics&#45;controller/case&#45;lid</title>
-<ellipse fill="none" stroke="black" cx="5844.52" cy="-722.4" rx="126.33" ry="18"/>
-<text text-anchor="middle" x="5844.52" y="-718.2" font-family="Times,serif" font-size="14.00">electronics&#45;controller/case&#45;lid</text>
-</g>
-<!-- electronics&#45;controller/root&#45;&gt;electronics&#45;controller/case&#45;base -->
-<g id="edge31" class="edge">
-<title>electronics&#45;controller/root&#45;&gt;electronics&#45;controller/case&#45;base</title>
-<path fill="none" stroke="black" d="M5566.52,-793.05C5566.52,-781.36 5566.52,-765.59 5566.52,-752.02"/>
-<polygon fill="black" stroke="black" points="5570.02,-752.32 5566.52,-742.32 5563.02,-752.32 5570.02,-752.32"/>
-</g>
-<!-- electronics&#45;controller/root&#45;&gt;electronics&#45;controller/case&#45;lid -->
-<g id="edge32" class="edge">
-<title>electronics&#45;controller/root&#45;&gt;electronics&#45;controller/case&#45;lid</title>
-<path fill="none" stroke="black" d="M5616.22,-794.68C5662.92,-780.1 5732.95,-758.23 5783.13,-742.57"/>
-<polygon fill="black" stroke="black" points="5783.89,-746 5792.39,-739.67 5781.8,-739.31 5783.89,-746"/>
-</g>
 <!-- fiber&#45;holder -->
-<g id="node32" class="node">
+<g id="node28" class="node">
 <title>fiber&#45;holder</title>
 <ellipse fill="none" stroke="black" cx="3882.52" cy="-633.6" rx="57.15" ry="18"/>
 <text text-anchor="middle" x="3882.52" y="-629.4" font-family="Times,serif" font-size="14.00">fiber&#45;holder</text>
 </g>
 <!-- fiber&#45;holder/mounted&#45;fiber&#45;holder -->
-<g id="node33" class="node">
+<g id="node29" class="node">
 <title>fiber&#45;holder/mounted&#45;fiber&#45;holder</title>
 <ellipse fill="none" stroke="black" cx="2938.52" cy="-544.8" rx="142.96" ry="18"/>
 <text text-anchor="middle" x="2938.52" y="-540.6" font-family="Times,serif" font-size="14.00">fiber&#45;holder/mounted&#45;fiber&#45;holder</text>
 </g>
 <!-- fiber&#45;holder&#45;&gt;fiber&#45;holder/mounted&#45;fiber&#45;holder -->
-<g id="edge33" class="edge">
+<g id="edge30" class="edge">
 <title>fiber&#45;holder&#45;&gt;fiber&#45;holder/mounted&#45;fiber&#45;holder</title>
 <path fill="none" stroke="black" d="M3840.94,-620.81C3832.58,-618.79 3823.81,-616.92 3815.52,-615.6 3697.62,-596.84 3666.55,-606.66 3547.52,-597.6 3379.89,-584.84 3186.5,-568.04 3063.43,-557.08"/>
 <polygon fill="black" stroke="black" points="3063.89,-553.61 3053.62,-556.2 3063.27,-560.58 3063.89,-553.61"/>
 </g>
 <!-- fiber&#45;holder/skeleton -->
-<g id="node36" class="node">
+<g id="node32" class="node">
 <title>fiber&#45;holder/skeleton</title>
 <ellipse fill="none" stroke="black" cx="3298.52" cy="-544.8" rx="92.02" ry="18"/>
 <text text-anchor="middle" x="3298.52" y="-540.6" font-family="Times,serif" font-size="14.00">fiber&#45;holder/skeleton</text>
 </g>
 <!-- fiber&#45;holder&#45;&gt;fiber&#45;holder/skeleton -->
-<g id="edge34" class="edge">
+<g id="edge31" class="edge">
 <title>fiber&#45;holder&#45;&gt;fiber&#45;holder/skeleton</title>
 <path fill="none" stroke="black" d="M3840.52,-621.11C3832.27,-619.09 3823.65,-617.14 3815.52,-615.6 3632.41,-580.88 3583.89,-590.01 3399.52,-562.8 3392.13,-561.71 3384.45,-560.52 3376.77,-559.29"/>
 <polygon fill="black" stroke="black" points="3377.48,-555.86 3367.04,-557.72 3376.36,-562.77 3377.48,-555.86"/>
 </g>
 <!-- fiber&#45;holder/mounted&#45;fiber&#45;holder/insert -->
-<g id="node34" class="node">
+<g id="node30" class="node">
 <title>fiber&#45;holder/mounted&#45;fiber&#45;holder/insert</title>
 <ellipse fill="none" stroke="black" cx="2546.52" cy="-471.8" rx="167.1" ry="18"/>
 <text text-anchor="middle" x="2546.52" y="-467.6" font-family="Times,serif" font-size="14.00">fiber&#45;holder/mounted&#45;fiber&#45;holder/insert</text>
 </g>
 <!-- fiber&#45;holder/mounted&#45;fiber&#45;holder&#45;&gt;fiber&#45;holder/mounted&#45;fiber&#45;holder/insert -->
-<g id="edge35" class="edge">
+<g id="edge32" class="edge">
 <title>fiber&#45;holder/mounted&#45;fiber&#45;holder&#45;&gt;fiber&#45;holder/mounted&#45;fiber&#45;holder/insert</title>
 <path fill="none" stroke="black" d="M2859.19,-529.43C2795.93,-517.97 2707.18,-501.9 2640.39,-489.8"/>
 <polygon fill="black" stroke="black" points="2641.4,-486.43 2630.93,-488.09 2640.15,-493.32 2641.4,-486.43"/>
 </g>
 <!-- fiber&#45;holder/mounted&#45;fiber&#45;holder/threaded&#45;holder -->
-<g id="node35" class="node">
+<g id="node31" class="node">
 <title>fiber&#45;holder/mounted&#45;fiber&#45;holder/threaded&#45;holder</title>
 <ellipse fill="none" stroke="black" cx="2938.52" cy="-471.8" rx="206.77" ry="18"/>
 <text text-anchor="middle" x="2938.52" y="-467.6" font-family="Times,serif" font-size="14.00">fiber&#45;holder/mounted&#45;fiber&#45;holder/threaded&#45;holder</text>
 </g>
 <!-- fiber&#45;holder/mounted&#45;fiber&#45;holder&#45;&gt;fiber&#45;holder/mounted&#45;fiber&#45;holder/threaded&#45;holder -->
-<g id="edge36" class="edge">
+<g id="edge33" class="edge">
 <title>fiber&#45;holder/mounted&#45;fiber&#45;holder&#45;&gt;fiber&#45;holder/mounted&#45;fiber&#45;holder/threaded&#45;holder</title>
 <path fill="none" stroke="black" d="M2938.52,-526.61C2938.52,-519.03 2938.52,-509.9 2938.52,-501.34"/>
 <polygon fill="black" stroke="black" points="2942.02,-501.34 2938.52,-491.34 2935.02,-501.34 2942.02,-501.34"/>
 </g>
 <!-- fiber&#45;holder/skeleton/lower&#45;half -->
-<g id="node37" class="node">
+<g id="node33" class="node">
 <title>fiber&#45;holder/skeleton/lower&#45;half</title>
 <ellipse fill="none" stroke="black" cx="3298.52" cy="-471.8" rx="134.92" ry="18"/>
 <text text-anchor="middle" x="3298.52" y="-467.6" font-family="Times,serif" font-size="14.00">fiber&#45;holder/skeleton/lower&#45;half</text>
 </g>
 <!-- fiber&#45;holder/skeleton&#45;&gt;fiber&#45;holder/skeleton/lower&#45;half -->
-<g id="edge37" class="edge">
+<g id="edge34" class="edge">
 <title>fiber&#45;holder/skeleton&#45;&gt;fiber&#45;holder/skeleton/lower&#45;half</title>
 <path fill="none" stroke="black" d="M3298.52,-526.61C3298.52,-519.03 3298.52,-509.9 3298.52,-501.34"/>
 <polygon fill="black" stroke="black" points="3302.02,-501.34 3298.52,-491.34 3295.02,-501.34 3302.02,-501.34"/>
 </g>
 <!-- fiber&#45;holder/skeleton/upper&#45;half -->
-<g id="node38" class="node">
+<g id="node34" class="node">
 <title>fiber&#45;holder/skeleton/upper&#45;half</title>
 <ellipse fill="none" stroke="black" cx="3586.52" cy="-471.8" rx="134.92" ry="18"/>
 <text text-anchor="middle" x="3586.52" y="-467.6" font-family="Times,serif" font-size="14.00">fiber&#45;holder/skeleton/upper&#45;half</text>
 </g>
 <!-- fiber&#45;holder/skeleton&#45;&gt;fiber&#45;holder/skeleton/upper&#45;half -->
-<g id="edge38" class="edge">
+<g id="edge35" class="edge">
 <title>fiber&#45;holder/skeleton&#45;&gt;fiber&#45;holder/skeleton/upper&#45;half</title>
 <path fill="none" stroke="black" d="M3354.04,-530.11C3399.33,-518.95 3463.67,-503.08 3513.19,-490.88"/>
 <polygon fill="black" stroke="black" points="3513.82,-494.33 3522.69,-488.54 3512.14,-487.53 3513.82,-494.33"/>
 </g>
 <!-- laser&#45;mirror&#45;&gt;fiber&#45;holder -->
-<g id="edge39" class="edge">
+<g id="edge36" class="edge">
 <title>laser&#45;mirror&#45;&gt;fiber&#45;holder</title>
 <path fill="none" stroke="black" d="M3962.08,-705.07C3947.16,-691.86 3925.95,-673.07 3909.17,-658.21"/>
 <polygon fill="black" stroke="black" points="3911.81,-655.87 3902,-651.86 3907.16,-661.11 3911.81,-655.87"/>
 <text text-anchor="middle" x="3966.93" y="-673.8" font-family="Times,serif" font-size="14.00">:x rel&#45;pos</text>
 </g>
 <!-- laser&#45;mirror/mounted&#45;mirror -->
-<g id="node40" class="node">
+<g id="node36" class="node">
 <title>laser&#45;mirror/mounted&#45;mirror</title>
 <ellipse fill="none" stroke="black" cx="4079.52" cy="-633.6" rx="121.52" ry="18"/>
 <text text-anchor="middle" x="4079.52" y="-629.4" font-family="Times,serif" font-size="14.00">laser&#45;mirror/mounted&#45;mirror</text>
 </g>
 <!-- laser&#45;mirror&#45;&gt;laser&#45;mirror/mounted&#45;mirror -->
-<g id="edge40" class="edge">
+<g id="edge37" class="edge">
 <title>laser&#45;mirror&#45;&gt;laser&#45;mirror/mounted&#45;mirror</title>
 <path fill="none" stroke="black" d="M3999.14,-705.07C4013.92,-692.11 4034.83,-673.78 4051.61,-659.06"/>
 <polygon fill="black" stroke="black" points="4053.61,-661.97 4058.82,-652.74 4049,-656.7 4053.61,-661.97"/>
 </g>
 <!-- laser&#45;mirror/skeleton -->
-<g id="node44" class="node">
+<g id="node40" class="node">
 <title>laser&#45;mirror/skeleton</title>
 <ellipse fill="none" stroke="black" cx="4537.52" cy="-633.6" rx="92.02" ry="18"/>
 <text text-anchor="middle" x="4537.52" y="-629.4" font-family="Times,serif" font-size="14.00">laser&#45;mirror/skeleton</text>
 </g>
 <!-- laser&#45;mirror&#45;&gt;laser&#45;mirror/skeleton -->
-<g id="edge41" class="edge">
+<g id="edge38" class="edge">
 <title>laser&#45;mirror&#45;&gt;laser&#45;mirror/skeleton</title>
 <path fill="none" stroke="black" d="M4030.93,-713.54C4127.47,-698.5 4339.2,-665.5 4456.05,-647.29"/>
 <polygon fill="black" stroke="black" points="4456.57,-650.76 4465.91,-645.76 4455.49,-643.84 4456.57,-650.76"/>
 </g>
 <!-- laser&#45;mirror/mounted&#45;mirror/adhesive&#45;pad -->
-<g id="node41" class="node">
+<g id="node37" class="node">
 <title>laser&#45;mirror/mounted&#45;mirror/adhesive&#45;pad</title>
 <ellipse fill="none" stroke="black" cx="3583.52" cy="-544.8" rx="175.14" ry="18"/>
 <text text-anchor="middle" x="3583.52" y="-540.6" font-family="Times,serif" font-size="14.00">laser&#45;mirror/mounted&#45;mirror/adhesive&#45;pad</text>
 </g>
 <!-- laser&#45;mirror/mounted&#45;mirror&#45;&gt;laser&#45;mirror/mounted&#45;mirror/adhesive&#45;pad -->
-<g id="edge42" class="edge">
+<g id="edge39" class="edge">
 <title>laser&#45;mirror/mounted&#45;mirror&#45;&gt;laser&#45;mirror/mounted&#45;mirror/adhesive&#45;pad</title>
 <path fill="none" stroke="black" d="M4003.1,-619.23C3916.54,-604.08 3775.27,-579.36 3680.88,-562.84"/>
 <polygon fill="black" stroke="black" points="3681.55,-559.4 3671.09,-561.13 3680.34,-566.3 3681.55,-559.4"/>
 </g>
 <!-- laser&#45;mirror/mounted&#45;mirror/insert -->
-<g id="node42" class="node">
+<g id="node38" class="node">
 <title>laser&#45;mirror/mounted&#45;mirror/insert</title>
 <ellipse fill="none" stroke="black" cx="3922.52" cy="-544.8" rx="145.65" ry="18"/>
 <text text-anchor="middle" x="3922.52" y="-540.6" font-family="Times,serif" font-size="14.00">laser&#45;mirror/mounted&#45;mirror/insert</text>
 </g>
 <!-- laser&#45;mirror/mounted&#45;mirror&#45;&gt;laser&#45;mirror/mounted&#45;mirror/insert -->
-<g id="edge43" class="edge">
+<g id="edge40" class="edge">
 <title>laser&#45;mirror/mounted&#45;mirror&#45;&gt;laser&#45;mirror/mounted&#45;mirror/insert</title>
 <path fill="none" stroke="black" d="M4049.24,-615.86C4024.75,-602.32 3990.03,-583.13 3963.12,-568.25"/>
 <polygon fill="black" stroke="black" points="3965,-565.29 3954.55,-563.51 3961.61,-571.41 3965,-565.29"/>
 </g>
 <!-- laser&#45;mirror/mounted&#45;mirror/mirror -->
-<g id="node43" class="node">
+<g id="node39" class="node">
 <title>laser&#45;mirror/mounted&#45;mirror/mirror</title>
 <ellipse fill="none" stroke="black" cx="4235.52" cy="-544.8" rx="148.87" ry="18"/>
 <text text-anchor="middle" x="4235.52" y="-540.6" font-family="Times,serif" font-size="14.00">laser&#45;mirror/mounted&#45;mirror/mirror</text>
 </g>
 <!-- laser&#45;mirror/mounted&#45;mirror&#45;&gt;laser&#45;mirror/mounted&#45;mirror/mirror -->
-<g id="edge44" class="edge">
+<g id="edge41" class="edge">
 <title>laser&#45;mirror/mounted&#45;mirror&#45;&gt;laser&#45;mirror/mounted&#45;mirror/mirror</title>
 <path fill="none" stroke="black" d="M4109.59,-615.86C4133.93,-602.32 4168.43,-583.13 4195.17,-568.25"/>
 <polygon fill="black" stroke="black" points="4196.64,-571.44 4203.67,-563.52 4193.23,-565.32 4196.64,-571.44"/>
 </g>
 <!-- laser&#45;mirror/skeleton/lower&#45;half -->
-<g id="node45" class="node">
+<g id="node41" class="node">
 <title>laser&#45;mirror/skeleton/lower&#45;half</title>
 <ellipse fill="none" stroke="black" cx="4537.52" cy="-544.8" rx="134.92" ry="18"/>
 <text text-anchor="middle" x="4537.52" y="-540.6" font-family="Times,serif" font-size="14.00">laser&#45;mirror/skeleton/lower&#45;half</text>
 </g>
 <!-- laser&#45;mirror/skeleton&#45;&gt;laser&#45;mirror/skeleton/lower&#45;half -->
-<g id="edge45" class="edge">
+<g id="edge42" class="edge">
 <title>laser&#45;mirror/skeleton&#45;&gt;laser&#45;mirror/skeleton/lower&#45;half</title>
 <path fill="none" stroke="black" d="M4537.52,-615.45C4537.52,-603.76 4537.52,-587.99 4537.52,-574.42"/>
 <polygon fill="black" stroke="black" points="4541.02,-574.72 4537.52,-564.72 4534.02,-574.72 4541.02,-574.72"/>
 </g>
 <!-- laser&#45;mirror/skeleton/upper&#45;half -->
-<g id="node46" class="node">
+<g id="node42" class="node">
 <title>laser&#45;mirror/skeleton/upper&#45;half</title>
 <ellipse fill="none" stroke="black" cx="4825.52" cy="-544.8" rx="134.92" ry="18"/>
 <text text-anchor="middle" x="4825.52" y="-540.6" font-family="Times,serif" font-size="14.00">laser&#45;mirror/skeleton/upper&#45;half</text>
 </g>
 <!-- laser&#45;mirror/skeleton&#45;&gt;laser&#45;mirror/skeleton/upper&#45;half -->
-<g id="edge46" class="edge">
+<g id="edge43" class="edge">
 <title>laser&#45;mirror/skeleton&#45;&gt;laser&#45;mirror/skeleton/upper&#45;half</title>
 <path fill="none" stroke="black" d="M4586.05,-617.97C4634.24,-603.45 4708.39,-581.1 4761.41,-565.12"/>
 <polygon fill="black" stroke="black" points="4762.37,-568.49 4770.93,-562.25 4760.35,-561.78 4762.37,-568.49"/>
 </g>
 <!-- objective/mounted&#45;lens -->
-<g id="node48" class="node">
+<g id="node44" class="node">
 <title>objective/mounted&#45;lens</title>
 <ellipse fill="none" stroke="black" cx="5368.52" cy="-633.6" rx="101.68" ry="18"/>
 <text text-anchor="middle" x="5368.52" y="-629.4" font-family="Times,serif" font-size="14.00">objective/mounted&#45;lens</text>
 </g>
 <!-- objective&#45;&gt;objective/mounted&#45;lens -->
-<g id="edge47" class="edge">
+<g id="edge44" class="edge">
 <title>objective&#45;&gt;objective/mounted&#45;lens</title>
 <path fill="none" stroke="black" d="M5368.52,-704.25C5368.52,-692.56 5368.52,-676.79 5368.52,-663.22"/>
 <polygon fill="black" stroke="black" points="5372.02,-663.52 5368.52,-653.52 5365.02,-663.52 5372.02,-663.52"/>
 </g>
 <!-- objective/skeleton -->
-<g id="node52" class="node">
+<g id="node48" class="node">
 <title>objective/skeleton</title>
 <ellipse fill="none" stroke="black" cx="5882.52" cy="-633.6" rx="81.29" ry="18"/>
 <text text-anchor="middle" x="5882.52" y="-629.4" font-family="Times,serif" font-size="14.00">objective/skeleton</text>
 </g>
 <!-- objective&#45;&gt;objective/skeleton -->
-<g id="edge48" class="edge">
+<g id="edge45" class="edge">
 <title>objective&#45;&gt;objective/skeleton</title>
 <path fill="none" stroke="black" d="M5403.26,-710.01C5410.25,-707.96 5417.58,-705.97 5424.52,-704.4 5554.03,-675.03 5707,-654.51 5799.3,-643.64"/>
 <polygon fill="black" stroke="black" points="5799.49,-647.14 5809.02,-642.51 5798.68,-640.19 5799.49,-647.14"/>
 </g>
 <!-- sample&#45;mirror -->
-<g id="node55" class="node">
+<g id="node51" class="node">
 <title>sample&#45;mirror</title>
 <ellipse fill="none" stroke="black" cx="6581.52" cy="-633.6" rx="66.28" ry="18"/>
 <text text-anchor="middle" x="6581.52" y="-629.4" font-family="Times,serif" font-size="14.00">sample&#45;mirror</text>
 </g>
 <!-- objective&#45;&gt;sample&#45;mirror -->
-<g id="edge49" class="edge">
+<g id="edge46" class="edge">
 <title>objective&#45;&gt;sample&#45;mirror</title>
 <path fill="none" stroke="black" d="M5402.56,-709.68C5409.74,-707.6 5417.31,-705.69 5424.52,-704.4 5530.24,-685.44 6264.37,-649.55 6505.19,-638.16"/>
 <polygon fill="black" stroke="black" points="6505.29,-641.66 6515.11,-637.7 6504.96,-634.67 6505.29,-641.66"/>
 <text text-anchor="middle" x="5916.28" y="-673.8" font-family="Times,serif" font-size="14.00">:_z rel&#45;pos</text>
 </g>
 <!-- objective/mounted&#45;lens/insert -->
-<g id="node49" class="node">
+<g id="node45" class="node">
 <title>objective/mounted&#45;lens/insert</title>
 <ellipse fill="none" stroke="black" cx="5104.52" cy="-544.8" rx="125.82" ry="18"/>
 <text text-anchor="middle" x="5104.52" y="-540.6" font-family="Times,serif" font-size="14.00">objective/mounted&#45;lens/insert</text>
 </g>
 <!-- objective/mounted&#45;lens&#45;&gt;objective/mounted&#45;lens/insert -->
-<g id="edge50" class="edge">
+<g id="edge47" class="edge">
 <title>objective/mounted&#45;lens&#45;&gt;objective/mounted&#45;lens/insert</title>
 <path fill="none" stroke="black" d="M5321.62,-617.18C5277.63,-602.72 5211.66,-581.03 5163.99,-565.36"/>
 <polygon fill="black" stroke="black" points="5165.24,-562.08 5154.64,-562.28 5163.05,-568.73 5165.24,-562.08"/>
 </g>
 <!-- objective/mounted&#45;lens/lens -->
-<g id="node50" class="node">
+<g id="node46" class="node">
 <title>objective/mounted&#45;lens/lens</title>
 <ellipse fill="none" stroke="black" cx="5368.52" cy="-544.8" rx="119.92" ry="18"/>
 <text text-anchor="middle" x="5368.52" y="-540.6" font-family="Times,serif" font-size="14.00">objective/mounted&#45;lens/lens</text>
 </g>
 <!-- objective/mounted&#45;lens&#45;&gt;objective/mounted&#45;lens/lens -->
-<g id="edge51" class="edge">
+<g id="edge48" class="edge">
 <title>objective/mounted&#45;lens&#45;&gt;objective/mounted&#45;lens/lens</title>
 <path fill="none" stroke="black" d="M5368.52,-615.45C5368.52,-603.76 5368.52,-587.99 5368.52,-574.42"/>
 <polygon fill="black" stroke="black" points="5372.02,-574.72 5368.52,-564.72 5365.02,-574.72 5372.02,-574.72"/>
 </g>
 <!-- objective/mounted&#45;lens/nut -->
-<g id="node51" class="node">
+<g id="node47" class="node">
 <title>objective/mounted&#45;lens/nut</title>
 <ellipse fill="none" stroke="black" cx="5623.52" cy="-544.8" rx="116.7" ry="18"/>
 <text text-anchor="middle" x="5623.52" y="-540.6" font-family="Times,serif" font-size="14.00">objective/mounted&#45;lens/nut</text>
 </g>
 <!-- objective/mounted&#45;lens&#45;&gt;objective/mounted&#45;lens/nut -->
-<g id="edge52" class="edge">
+<g id="edge49" class="edge">
 <title>objective/mounted&#45;lens&#45;&gt;objective/mounted&#45;lens/nut</title>
 <path fill="none" stroke="black" d="M5414.1,-617.08C5456.68,-602.59 5520.38,-580.91 5566.34,-565.26"/>
 <polygon fill="black" stroke="black" points="5567.26,-568.65 5575.6,-562.11 5565,-562.02 5567.26,-568.65"/>
 </g>
 <!-- objective/skeleton/lower&#45;half -->
-<g id="node53" class="node">
+<g id="node49" class="node">
 <title>objective/skeleton/lower&#45;half</title>
 <ellipse fill="none" stroke="black" cx="5882.52" cy="-544.8" rx="124.19" ry="18"/>
 <text text-anchor="middle" x="5882.52" y="-540.6" font-family="Times,serif" font-size="14.00">objective/skeleton/lower&#45;half</text>
 </g>
 <!-- objective/skeleton&#45;&gt;objective/skeleton/lower&#45;half -->
-<g id="edge53" class="edge">
+<g id="edge50" class="edge">
 <title>objective/skeleton&#45;&gt;objective/skeleton/lower&#45;half</title>
 <path fill="none" stroke="black" d="M5882.52,-615.45C5882.52,-603.76 5882.52,-587.99 5882.52,-574.42"/>
 <polygon fill="black" stroke="black" points="5886.02,-574.72 5882.52,-564.72 5879.02,-574.72 5886.02,-574.72"/>
 </g>
 <!-- objective/skeleton/upper&#45;half -->
-<g id="node54" class="node">
+<g id="node50" class="node">
 <title>objective/skeleton/upper&#45;half</title>
 <ellipse fill="none" stroke="black" cx="6148.52" cy="-544.8" rx="124.19" ry="18"/>
 <text text-anchor="middle" x="6148.52" y="-540.6" font-family="Times,serif" font-size="14.00">objective/skeleton/upper&#45;half</text>
 </g>
 <!-- objective/skeleton&#45;&gt;objective/skeleton/upper&#45;half -->
-<g id="edge54" class="edge">
+<g id="edge51" class="edge">
 <title>objective/skeleton&#45;&gt;objective/skeleton/upper&#45;half</title>
 <path fill="none" stroke="black" d="M5926.74,-618.17C5971.1,-603.69 6039.71,-581.3 6088.87,-565.26"/>
 <polygon fill="black" stroke="black" points="6089.81,-568.64 6098.23,-562.21 6087.64,-561.98 6089.81,-568.64"/>
 </g>
 <!-- sample&#45;mirror/mounted&#45;mirror -->
-<g id="node56" class="node">
+<g id="node52" class="node">
 <title>sample&#45;mirror/mounted&#45;mirror</title>
 <ellipse fill="none" stroke="black" cx="6421.52" cy="-544.8" rx="130.64" ry="18"/>
 <text text-anchor="middle" x="6421.52" y="-540.6" font-family="Times,serif" font-size="14.00">sample&#45;mirror/mounted&#45;mirror</text>
 </g>
 <!-- sample&#45;mirror&#45;&gt;sample&#45;mirror/mounted&#45;mirror -->
-<g id="edge55" class="edge">
+<g id="edge52" class="edge">
 <title>sample&#45;mirror&#45;&gt;sample&#45;mirror/mounted&#45;mirror</title>
 <path fill="none" stroke="black" d="M6552.91,-617.08C6527.77,-603.44 6490.9,-583.44 6462.6,-568.09"/>
 <polygon fill="black" stroke="black" points="6464.39,-565.08 6453.94,-563.39 6461.06,-571.23 6464.39,-565.08"/>
 </g>
 <!-- sample&#45;mirror/skeleton -->
-<g id="node60" class="node">
+<g id="node56" class="node">
 <title>sample&#45;mirror/skeleton</title>
 <ellipse fill="none" stroke="black" cx="6741.52" cy="-544.8" rx="101.14" ry="18"/>
 <text text-anchor="middle" x="6741.52" y="-540.6" font-family="Times,serif" font-size="14.00">sample&#45;mirror/skeleton</text>
 </g>
 <!-- sample&#45;mirror&#45;&gt;sample&#45;mirror/skeleton -->
-<g id="edge56" class="edge">
+<g id="edge53" class="edge">
 <title>sample&#45;mirror&#45;&gt;sample&#45;mirror/skeleton</title>
 <path fill="none" stroke="black" d="M6610.12,-617.08C6635.42,-603.36 6672.61,-583.18 6700.97,-567.8"/>
 <polygon fill="black" stroke="black" points="6702.53,-570.93 6709.65,-563.09 6699.19,-564.78 6702.53,-570.93"/>
 </g>
 <!-- sample&#45;stage -->
-<g id="node63" class="node">
+<g id="node59" class="node">
 <title>sample&#45;stage</title>
 <ellipse fill="none" stroke="black" cx="7052.52" cy="-544.8" rx="61.45" ry="18"/>
 <text text-anchor="middle" x="7052.52" y="-540.6" font-family="Times,serif" font-size="14.00">sample&#45;stage</text>
 </g>
 <!-- sample&#45;mirror&#45;&gt;sample&#45;stage -->
-<g id="edge57" class="edge">
+<g id="edge54" class="edge">
 <title>sample&#45;mirror&#45;&gt;sample&#45;stage</title>
 <path fill="none" stroke="black" d="M6635.09,-622.73C6722.92,-606.54 6897.1,-574.44 6990.28,-557.27"/>
 <polygon fill="black" stroke="black" points="6990.81,-560.73 7000.01,-555.48 6989.54,-553.85 6990.81,-560.73"/>
 <text text-anchor="middle" x="6878.64" y="-585" font-family="Times,serif" font-size="14.00">rel&#45;pos</text>
 </g>
 <!-- sample&#45;mirror/mounted&#45;mirror/adhesive&#45;pad -->
-<g id="node57" class="node">
+<g id="node53" class="node">
 <title>sample&#45;mirror/mounted&#45;mirror/adhesive&#45;pad</title>
 <ellipse fill="none" stroke="black" cx="5733.52" cy="-471.8" rx="184.27" ry="18"/>
 <text text-anchor="middle" x="5733.52" y="-467.6" font-family="Times,serif" font-size="14.00">sample&#45;mirror/mounted&#45;mirror/adhesive&#45;pad</text>
 </g>
 <!-- sample&#45;mirror/mounted&#45;mirror&#45;&gt;sample&#45;mirror/mounted&#45;mirror/adhesive&#45;pad -->
-<g id="edge58" class="edge">
+<g id="edge55" class="edge">
 <title>sample&#45;mirror/mounted&#45;mirror&#45;&gt;sample&#45;mirror/mounted&#45;mirror/adhesive&#45;pad</title>
 <path fill="none" stroke="black" d="M6327.04,-532.03C6311.82,-530.22 6296.24,-528.42 6281.52,-526.8 6143.71,-511.65 5986.18,-496.33 5875.49,-485.9"/>
 <polygon fill="black" stroke="black" points="5876.05,-482.44 5865.76,-484.99 5875.39,-489.41 5876.05,-482.44"/>
 </g>
 <!-- sample&#45;mirror/mounted&#45;mirror/insert -->
-<g id="node58" class="node">
+<g id="node54" class="node">
 <title>sample&#45;mirror/mounted&#45;mirror/insert</title>
 <ellipse fill="none" stroke="black" cx="6090.52" cy="-471.8" rx="154.78" ry="18"/>
 <text text-anchor="middle" x="6090.52" y="-467.6" font-family="Times,serif" font-size="14.00">sample&#45;mirror/mounted&#45;mirror/insert</text>
 </g>
 <!-- sample&#45;mirror/mounted&#45;mirror&#45;&gt;sample&#45;mirror/mounted&#45;mirror/insert -->
-<g id="edge59" class="edge">
+<g id="edge56" class="edge">
 <title>sample&#45;mirror/mounted&#45;mirror&#45;&gt;sample&#45;mirror/mounted&#45;mirror/insert</title>
 <path fill="none" stroke="black" d="M6352.93,-529.09C6300.76,-517.9 6228.75,-502.45 6173.36,-490.57"/>
 <polygon fill="black" stroke="black" points="6174.15,-487.16 6163.64,-488.48 6172.68,-494 6174.15,-487.16"/>
 </g>
 <!-- sample&#45;mirror/mounted&#45;mirror/mirror -->
-<g id="node59" class="node">
+<g id="node55" class="node">
 <title>sample&#45;mirror/mounted&#45;mirror/mirror</title>
 <ellipse fill="none" stroke="black" cx="6421.52" cy="-471.8" rx="157.99" ry="18"/>
 <text text-anchor="middle" x="6421.52" y="-467.6" font-family="Times,serif" font-size="14.00">sample&#45;mirror/mounted&#45;mirror/mirror</text>
 </g>
 <!-- sample&#45;mirror/mounted&#45;mirror&#45;&gt;sample&#45;mirror/mounted&#45;mirror/mirror -->
-<g id="edge60" class="edge">
+<g id="edge57" class="edge">
 <title>sample&#45;mirror/mounted&#45;mirror&#45;&gt;sample&#45;mirror/mounted&#45;mirror/mirror</title>
 <path fill="none" stroke="black" d="M6421.52,-526.61C6421.52,-519.03 6421.52,-509.9 6421.52,-501.34"/>
 <polygon fill="black" stroke="black" points="6425.02,-501.34 6421.52,-491.34 6418.02,-501.34 6425.02,-501.34"/>
 </g>
 <!-- sample&#45;mirror/skeleton/lower&#45;half -->
-<g id="node61" class="node">
+<g id="node57" class="node">
 <title>sample&#45;mirror/skeleton/lower&#45;half</title>
 <ellipse fill="none" stroke="black" cx="6741.52" cy="-471.8" rx="144.04" ry="18"/>
 <text text-anchor="middle" x="6741.52" y="-467.6" font-family="Times,serif" font-size="14.00">sample&#45;mirror/skeleton/lower&#45;half</text>
 </g>
 <!-- sample&#45;mirror/skeleton&#45;&gt;sample&#45;mirror/skeleton/lower&#45;half -->
-<g id="edge61" class="edge">
+<g id="edge58" class="edge">
 <title>sample&#45;mirror/skeleton&#45;&gt;sample&#45;mirror/skeleton/lower&#45;half</title>
 <path fill="none" stroke="black" d="M6741.52,-526.61C6741.52,-519.03 6741.52,-509.9 6741.52,-501.34"/>
 <polygon fill="black" stroke="black" points="6745.02,-501.34 6741.52,-491.34 6738.02,-501.34 6745.02,-501.34"/>
 </g>
 <!-- sample&#45;mirror/skeleton/upper&#45;half -->
-<g id="node62" class="node">
+<g id="node58" class="node">
 <title>sample&#45;mirror/skeleton/upper&#45;half</title>
 <ellipse fill="none" stroke="black" cx="7047.52" cy="-471.8" rx="144.04" ry="18"/>
 <text text-anchor="middle" x="7047.52" y="-467.6" font-family="Times,serif" font-size="14.00">sample&#45;mirror/skeleton/upper&#45;half</text>
 </g>
 <!-- sample&#45;mirror/skeleton&#45;&gt;sample&#45;mirror/skeleton/upper&#45;half -->
-<g id="edge62" class="edge">
+<g id="edge59" class="edge">
 <title>sample&#45;mirror/skeleton&#45;&gt;sample&#45;mirror/skeleton/upper&#45;half</title>
 <path fill="none" stroke="black" d="M6801.24,-529.94C6849.47,-518.75 6917.69,-502.92 6970.1,-490.76"/>
 <polygon fill="black" stroke="black" points="6970.61,-494.24 6979.56,-488.57 6969.03,-487.42 6970.61,-494.24"/>
 </g>
 <!-- sample&#45;stage/base -->
-<g id="node64" class="node">
+<g id="node60" class="node">
 <title>sample&#45;stage/base</title>
 <ellipse fill="none" stroke="black" cx="7290.52" cy="-471.8" rx="81.29" ry="18"/>
 <text text-anchor="middle" x="7290.52" y="-467.6" font-family="Times,serif" font-size="14.00">sample&#45;stage/base</text>
 </g>
 <!-- sample&#45;stage&#45;&gt;sample&#45;stage/base -->
-<g id="edge63" class="edge">
+<g id="edge60" class="edge">
 <title>sample&#45;stage&#45;&gt;sample&#45;stage/base</title>
 <path fill="none" stroke="black" d="M7094.52,-531.27C7132.94,-519.81 7190.14,-502.75 7232.84,-490.01"/>
 <polygon fill="black" stroke="black" points="7233.6,-493.43 7242.18,-487.22 7231.6,-486.72 7233.6,-493.43"/>
 </g>
 <!-- sample&#45;stage/base/cube&#45;base -->
-<g id="node65" class="node">
+<g id="node61" class="node">
 <title>sample&#45;stage/base/cube&#45;base</title>
 <ellipse fill="none" stroke="black" cx="6782.52" cy="-398.8" rx="122.58" ry="18"/>
 <text text-anchor="middle" x="6782.52" y="-394.6" font-family="Times,serif" font-size="14.00">sample&#45;stage/base/cube&#45;base</text>
 </g>
 <!-- sample&#45;stage/base&#45;&gt;sample&#45;stage/base/cube&#45;base -->
-<g id="edge64" class="edge">
+<g id="edge61" class="edge">
 <title>sample&#45;stage/base&#45;&gt;sample&#45;stage/base/cube&#45;base</title>
 <path fill="none" stroke="black" d="M7231.54,-459.15C7221.22,-457.26 7210.57,-455.4 7200.52,-453.8 7196.6,-453.18 7006.08,-428.61 6883.63,-412.83"/>
 <polygon fill="black" stroke="black" points="6884.24,-409.38 6873.87,-411.57 6883.34,-416.32 6884.24,-409.38"/>
 </g>
 <!-- sample&#45;stage/base/motor -->
-<g id="node66" class="node">
+<g id="node62" class="node">
 <title>sample&#45;stage/base/motor</title>
 <ellipse fill="none" stroke="black" cx="7030.52" cy="-398.8" rx="107.04" ry="18"/>
 <text text-anchor="middle" x="7030.52" y="-394.6" font-family="Times,serif" font-size="14.00">sample&#45;stage/base/motor</text>
 </g>
 <!-- sample&#45;stage/base&#45;&gt;sample&#45;stage/base/motor -->
-<g id="edge65" class="edge">
+<g id="edge62" class="edge">
 <title>sample&#45;stage/base&#45;&gt;sample&#45;stage/base/motor</title>
 <path fill="none" stroke="black" d="M7240.69,-457.19C7199.64,-445.98 7141.09,-430 7096.21,-417.74"/>
 <polygon fill="black" stroke="black" points="7097.14,-414.37 7086.57,-415.11 7095.3,-421.12 7097.14,-414.37"/>
 </g>
 <!-- sample&#45;stage/base/motor&#45;holder -->
-<g id="node67" class="node">
+<g id="node63" class="node">
 <title>sample&#45;stage/base/motor&#45;holder</title>
 <ellipse fill="none" stroke="black" cx="7290.52" cy="-398.8" rx="134.93" ry="18"/>
 <text text-anchor="middle" x="7290.52" y="-394.6" font-family="Times,serif" font-size="14.00">sample&#45;stage/base/motor&#45;holder</text>
 </g>
 <!-- sample&#45;stage/base&#45;&gt;sample&#45;stage/base/motor&#45;holder -->
-<g id="edge66" class="edge">
+<g id="edge63" class="edge">
 <title>sample&#45;stage/base&#45;&gt;sample&#45;stage/base/motor&#45;holder</title>
 <path fill="none" stroke="black" d="M7290.52,-453.61C7290.52,-446.03 7290.52,-436.9 7290.52,-428.34"/>
 <polygon fill="black" stroke="black" points="7294.02,-428.34 7290.52,-418.34 7287.02,-428.34 7294.02,-428.34"/>
 </g>
 <!-- sample&#45;stage/base/x&#45;rail&#45;base -->
-<g id="node69" class="node">
+<g id="node65" class="node">
 <title>sample&#45;stage/base/x&#45;rail&#45;base</title>
 <ellipse fill="none" stroke="black" cx="7568.52" cy="-398.8" rx="125.26" ry="18"/>
 <text text-anchor="middle" x="7568.52" y="-394.6" font-family="Times,serif" font-size="14.00">sample&#45;stage/base/x&#45;rail&#45;base</text>
 </g>
 <!-- sample&#45;stage/base&#45;&gt;sample&#45;stage/base/x&#45;rail&#45;base -->
-<g id="edge67" class="edge">
+<g id="edge64" class="edge">
 <title>sample&#45;stage/base&#45;&gt;sample&#45;stage/base/x&#45;rail&#45;base</title>
 <path fill="none" stroke="black" d="M7342.48,-457.53C7386.36,-446.32 7449.62,-430.17 7498.06,-417.79"/>
 <polygon fill="black" stroke="black" points="7498.8,-421.22 7507.62,-415.35 7497.07,-414.43 7498.8,-421.22"/>
 </g>
 <!-- sample&#45;stage/xy&#45;plate -->
-<g id="node71" class="node">
+<g id="node67" class="node">
 <title>sample&#45;stage/xy&#45;plate</title>
 <ellipse fill="none" stroke="black" cx="7856.52" cy="-398.8" rx="95.77" ry="18"/>
 <text text-anchor="middle" x="7856.52" y="-394.6" font-family="Times,serif" font-size="14.00">sample&#45;stage/xy&#45;plate</text>
 </g>
 <!-- sample&#45;stage/base&#45;&gt;sample&#45;stage/xy&#45;plate -->
-<g id="edge68" class="edge">
+<g id="edge65" class="edge">
 <title>sample&#45;stage/base&#45;&gt;sample&#45;stage/xy&#45;plate</title>
 <path fill="none" stroke="black" d="M7359.92,-462.09C7462.37,-449.24 7654.13,-425.19 7767.03,-411.03"/>
 <polygon fill="black" stroke="black" points="7767.38,-414.51 7776.87,-409.79 7766.51,-407.56 7767.38,-414.51"/>
 </g>
 <!-- sample&#45;stage/base/motor/motor -->
-<g id="node68" class="node">
+<g id="node64" class="node">
 <title>sample&#45;stage/base/motor/motor</title>
 <ellipse fill="none" stroke="black" cx="7006.52" cy="-325.8" rx="132.79" ry="18"/>
 <text text-anchor="middle" x="7006.52" y="-321.6" font-family="Times,serif" font-size="14.00">sample&#45;stage/base/motor/motor</text>
 </g>
 <!-- sample&#45;stage/base/motor&#45;&gt;sample&#45;stage/base/motor/motor -->
-<g id="edge69" class="edge">
+<g id="edge66" class="edge">
 <title>sample&#45;stage/base/motor&#45;&gt;sample&#45;stage/base/motor/motor</title>
 <path fill="none" stroke="black" d="M7024.71,-380.61C7022.05,-372.76 7018.84,-363.27 7015.86,-354.46"/>
 <polygon fill="black" stroke="black" points="7019.27,-353.62 7012.76,-345.26 7012.64,-355.86 7019.27,-353.62"/>
 </g>
 <!-- sample&#45;stage/stage&#45;center -->
-<g id="node70" class="node">
+<g id="node66" class="node">
 <title>sample&#45;stage/stage&#45;center</title>
 <ellipse fill="none" stroke="black" cx="9244.52" cy="-164" rx="110.77" ry="18"/>
 <text text-anchor="middle" x="9244.52" y="-159.8" font-family="Times,serif" font-size="14.00">sample&#45;stage/stage&#45;center</text>
 </g>
 <!-- slide&#45;holder -->
-<g id="node86" class="node">
+<g id="node82" class="node">
 <title>slide&#45;holder</title>
 <ellipse fill="none" stroke="black" cx="9244.52" cy="-91" rx="57.16" ry="18"/>
 <text text-anchor="middle" x="9244.52" y="-86.8" font-family="Times,serif" font-size="14.00">slide&#45;holder</text>
 </g>
 <!-- sample&#45;stage/stage&#45;center&#45;&gt;slide&#45;holder -->
-<g id="edge70" class="edge">
+<g id="edge67" class="edge">
 <title>sample&#45;stage/stage&#45;center&#45;&gt;slide&#45;holder</title>
 <path fill="none" stroke="black" d="M9244.52,-145.81C9244.52,-138.23 9244.52,-129.1 9244.52,-120.54"/>
 <polygon fill="black" stroke="black" points="9248.02,-120.54 9244.52,-110.54 9241.02,-120.54 9248.02,-120.54"/>
 </g>
 <!-- sample&#45;stage/xy&#45;plate/motor -->
-<g id="node72" class="node">
+<g id="node68" class="node">
 <title>sample&#45;stage/xy&#45;plate/motor</title>
 <ellipse fill="none" stroke="black" cx="7278.52" cy="-325.8" rx="121.52" ry="18"/>
 <text text-anchor="middle" x="7278.52" y="-321.6" font-family="Times,serif" font-size="14.00">sample&#45;stage/xy&#45;plate/motor</text>
 </g>
 <!-- sample&#45;stage/xy&#45;plate&#45;&gt;sample&#45;stage/xy&#45;plate/motor -->
-<g id="edge71" class="edge">
+<g id="edge68" class="edge">
 <title>sample&#45;stage/xy&#45;plate&#45;&gt;sample&#45;stage/xy&#45;plate/motor</title>
 <path fill="none" stroke="black" d="M7776.95,-388.4C7687.54,-377.79 7538.07,-359.91 7409.52,-343.8 7399.49,-342.54 7389.03,-341.22 7378.59,-339.88"/>
 <polygon fill="black" stroke="black" points="7379.16,-336.42 7368.79,-338.62 7378.26,-343.37 7379.16,-336.42"/>
 </g>
 <!-- sample&#45;stage/xy&#45;plate/motor&#45;holder -->
-<g id="node73" class="node">
+<g id="node69" class="node">
 <title>sample&#45;stage/xy&#45;plate/motor&#45;holder</title>
 <ellipse fill="none" stroke="black" cx="7567.52" cy="-325.8" rx="149.41" ry="18"/>
 <text text-anchor="middle" x="7567.52" y="-321.6" font-family="Times,serif" font-size="14.00">sample&#45;stage/xy&#45;plate/motor&#45;holder</text>
 </g>
 <!-- sample&#45;stage/xy&#45;plate&#45;&gt;sample&#45;stage/xy&#45;plate/motor&#45;holder -->
-<g id="edge72" class="edge">
+<g id="edge69" class="edge">
 <title>sample&#45;stage/xy&#45;plate&#45;&gt;sample&#45;stage/xy&#45;plate/motor&#45;holder</title>
 <path fill="none" stroke="black" d="M7799.76,-383.86C7754.76,-372.8 7691.47,-357.25 7642.33,-345.18"/>
 <polygon fill="black" stroke="black" points="7643.45,-341.85 7632.9,-342.86 7641.78,-348.65 7643.45,-341.85"/>
 </g>
 <!-- sample&#45;stage/xy&#45;plate/stop&#45;bracket -->
-<g id="node75" class="node">
+<g id="node71" class="node">
 <title>sample&#45;stage/xy&#45;plate/stop&#45;bracket</title>
 <ellipse fill="none" stroke="black" cx="7881.52" cy="-325.8" rx="146.18" ry="18"/>
 <text text-anchor="middle" x="7881.52" y="-321.6" font-family="Times,serif" font-size="14.00">sample&#45;stage/xy&#45;plate/stop&#45;bracket</text>
 </g>
 <!-- sample&#45;stage/xy&#45;plate&#45;&gt;sample&#45;stage/xy&#45;plate/stop&#45;bracket -->
-<g id="edge73" class="edge">
+<g id="edge70" class="edge">
 <title>sample&#45;stage/xy&#45;plate&#45;&gt;sample&#45;stage/xy&#45;plate/stop&#45;bracket</title>
 <path fill="none" stroke="black" d="M7862.57,-380.61C7865.33,-372.76 7868.67,-363.27 7871.78,-354.46"/>
 <polygon fill="black" stroke="black" points="7875,-355.85 7875.02,-345.26 7868.39,-353.53 7875,-355.85"/>
 </g>
 <!-- sample&#45;stage/xy&#45;plate/xy&#45;plate -->
-<g id="node76" class="node">
+<g id="node72" class="node">
 <title>sample&#45;stage/xy&#45;plate/xy&#45;plate</title>
 <ellipse fill="none" stroke="black" cx="8175.52" cy="-325.8" rx="130.09" ry="18"/>
 <text text-anchor="middle" x="8175.52" y="-321.6" font-family="Times,serif" font-size="14.00">sample&#45;stage/xy&#45;plate/xy&#45;plate</text>
 </g>
 <!-- sample&#45;stage/xy&#45;plate&#45;&gt;sample&#45;stage/xy&#45;plate/xy&#45;plate -->
-<g id="edge74" class="edge">
+<g id="edge71" class="edge">
 <title>sample&#45;stage/xy&#45;plate&#45;&gt;sample&#45;stage/xy&#45;plate/xy&#45;plate</title>
 <path fill="none" stroke="black" d="M7916.52,-384.45C7967.87,-373.02 8042.13,-356.49 8097.98,-344.06"/>
 <polygon fill="black" stroke="black" points="8098.42,-347.55 8107.42,-341.96 8096.9,-340.71 8098.42,-347.55"/>
 </g>
 <!-- sample&#45;stage/yz&#45;plate -->
-<g id="node77" class="node">
+<g id="node73" class="node">
 <title>sample&#45;stage/yz&#45;plate</title>
 <ellipse fill="none" stroke="black" cx="8435.52" cy="-325.8" rx="95.23" ry="18"/>
 <text text-anchor="middle" x="8435.52" y="-321.6" font-family="Times,serif" font-size="14.00">sample&#45;stage/yz&#45;plate</text>
 </g>
 <!-- sample&#45;stage/xy&#45;plate&#45;&gt;sample&#45;stage/yz&#45;plate -->
-<g id="edge75" class="edge">
+<g id="edge72" class="edge">
 <title>sample&#45;stage/xy&#45;plate&#45;&gt;sample&#45;stage/yz&#45;plate</title>
 <path fill="none" stroke="black" d="M7937.25,-388.83C8028.8,-378.53 8182.5,-360.85 8314.52,-343.8 8325.99,-342.32 8338.08,-340.69 8349.98,-339.06"/>
 <polygon fill="black" stroke="black" points="8350.4,-342.53 8359.82,-337.7 8349.44,-335.6 8350.4,-342.53"/>
 </g>
 <!-- sample&#45;stage/xy&#45;plate/motor/motor -->
-<g id="node74" class="node">
+<g id="node70" class="node">
 <title>sample&#45;stage/xy&#45;plate/motor/motor</title>
 <ellipse fill="none" stroke="black" cx="7269.52" cy="-252.8" rx="147.27" ry="18"/>
 <text text-anchor="middle" x="7269.52" y="-248.6" font-family="Times,serif" font-size="14.00">sample&#45;stage/xy&#45;plate/motor/motor</text>
 </g>
 <!-- sample&#45;stage/xy&#45;plate/motor&#45;&gt;sample&#45;stage/xy&#45;plate/motor/motor -->
-<g id="edge76" class="edge">
+<g id="edge73" class="edge">
 <title>sample&#45;stage/xy&#45;plate/motor&#45;&gt;sample&#45;stage/xy&#45;plate/motor/motor</title>
 <path fill="none" stroke="black" d="M7276.34,-307.61C7275.36,-299.94 7274.19,-290.69 7273.1,-282.04"/>
 <polygon fill="black" stroke="black" points="7276.59,-281.81 7271.86,-272.33 7269.65,-282.69 7276.59,-281.81"/>
 </g>
 <!-- sample&#45;stage/yz&#45;plate/motor -->
-<g id="node78" class="node">
+<g id="node74" class="node">
 <title>sample&#45;stage/yz&#45;plate/motor</title>
 <ellipse fill="none" stroke="black" cx="7555.52" cy="-252.8" rx="120.98" ry="18"/>
 <text text-anchor="middle" x="7555.52" y="-248.6" font-family="Times,serif" font-size="14.00">sample&#45;stage/yz&#45;plate/motor</text>
 </g>
 <!-- sample&#45;stage/yz&#45;plate&#45;&gt;sample&#45;stage/yz&#45;plate/motor -->
-<g id="edge77" class="edge">
+<g id="edge74" class="edge">
 <title>sample&#45;stage/yz&#45;plate&#45;&gt;sample&#45;stage/yz&#45;plate/motor</title>
 <path fill="none" stroke="black" d="M8363.33,-313.68C8347.29,-311.49 8330.35,-309.38 8314.52,-307.8 8035.85,-280.07 7964.31,-297.19 7685.52,-270.8 7674.72,-269.78 7663.45,-268.55 7652.24,-267.22"/>
 <polygon fill="black" stroke="black" points="7652.93,-263.78 7642.58,-266.05 7652.09,-270.73 7652.93,-263.78"/>
 </g>
 <!-- sample&#45;stage/yz&#45;plate/motor&#45;holder -->
-<g id="node79" class="node">
+<g id="node75" class="node">
 <title>sample&#45;stage/yz&#45;plate/motor&#45;holder</title>
 <ellipse fill="none" stroke="black" cx="7843.52" cy="-252.8" rx="148.86" ry="18"/>
 <text text-anchor="middle" x="7843.52" y="-248.6" font-family="Times,serif" font-size="14.00">sample&#45;stage/yz&#45;plate/motor&#45;holder</text>
 </g>
 <!-- sample&#45;stage/yz&#45;plate&#45;&gt;sample&#45;stage/yz&#45;plate/motor&#45;holder -->
-<g id="edge78" class="edge">
+<g id="edge75" class="edge">
 <title>sample&#45;stage/yz&#45;plate&#45;&gt;sample&#45;stage/yz&#45;plate/motor&#45;holder</title>
 <path fill="none" stroke="black" d="M8361.65,-314.12C8346.09,-311.95 8329.77,-309.75 8314.52,-307.8 8195.26,-292.59 8058.76,-277.16 7963.52,-266.71"/>
 <polygon fill="black" stroke="black" points="7963.94,-263.23 7953.62,-265.62 7963.18,-270.19 7963.94,-263.23"/>
 </g>
 <!-- sample&#45;stage/yz&#45;plate/stop&#45;bracket -->
-<g id="node81" class="node">
+<g id="node77" class="node">
 <title>sample&#45;stage/yz&#45;plate/stop&#45;bracket</title>
 <ellipse fill="none" stroke="black" cx="8156.52" cy="-252.8" rx="145.64" ry="18"/>
 <text text-anchor="middle" x="8156.52" y="-248.6" font-family="Times,serif" font-size="14.00">sample&#45;stage/yz&#45;plate/stop&#45;bracket</text>
 </g>
 <!-- sample&#45;stage/yz&#45;plate&#45;&gt;sample&#45;stage/yz&#45;plate/stop&#45;bracket -->
-<g id="edge79" class="edge">
+<g id="edge76" class="edge">
 <title>sample&#45;stage/yz&#45;plate&#45;&gt;sample&#45;stage/yz&#45;plate/stop&#45;bracket</title>
 <path fill="none" stroke="black" d="M8380.39,-310.77C8337.17,-299.77 8276.63,-284.37 8229.41,-272.35"/>
 <polygon fill="black" stroke="black" points="8230.34,-268.98 8219.79,-269.9 8228.62,-275.76 8230.34,-268.98"/>
 </g>
 <!-- sample&#45;stage/yz&#45;plate/y&#45;plate -->
-<g id="node82" class="node">
+<g id="node78" class="node">
 <title>sample&#45;stage/yz&#45;plate/y&#45;plate</title>
 <ellipse fill="none" stroke="black" cx="8444.52" cy="-252.8" rx="124.72" ry="18"/>
 <text text-anchor="middle" x="8444.52" y="-248.6" font-family="Times,serif" font-size="14.00">sample&#45;stage/yz&#45;plate/y&#45;plate</text>
 </g>
 <!-- sample&#45;stage/yz&#45;plate&#45;&gt;sample&#45;stage/yz&#45;plate/y&#45;plate -->
-<g id="edge80" class="edge">
+<g id="edge77" class="edge">
 <title>sample&#45;stage/yz&#45;plate&#45;&gt;sample&#45;stage/yz&#45;plate/y&#45;plate</title>
 <path fill="none" stroke="black" d="M8437.69,-307.61C8438.67,-299.94 8439.84,-290.69 8440.94,-282.04"/>
 <polygon fill="black" stroke="black" points="8444.38,-282.69 8442.17,-272.33 8437.44,-281.81 8444.38,-282.69"/>
 </g>
 <!-- sample&#45;stage/yz&#45;plate/z&#45;bracket -->
-<g id="node83" class="node">
+<g id="node79" class="node">
 <title>sample&#45;stage/yz&#45;plate/z&#45;bracket</title>
 <ellipse fill="none" stroke="black" cx="8721.52" cy="-252.8" rx="133.83" ry="18"/>
 <text text-anchor="middle" x="8721.52" y="-248.6" font-family="Times,serif" font-size="14.00">sample&#45;stage/yz&#45;plate/z&#45;bracket</text>
 </g>
 <!-- sample&#45;stage/yz&#45;plate&#45;&gt;sample&#45;stage/yz&#45;plate/z&#45;bracket -->
-<g id="edge81" class="edge">
+<g id="edge78" class="edge">
 <title>sample&#45;stage/yz&#45;plate&#45;&gt;sample&#45;stage/yz&#45;plate/z&#45;bracket</title>
 <path fill="none" stroke="black" d="M8491.68,-310.86C8536.5,-299.73 8599.65,-284.05 8648.41,-271.95"/>
 <polygon fill="black" stroke="black" points="8649.2,-275.36 8658.06,-269.55 8647.51,-268.57 8649.2,-275.36"/>
 </g>
 <!-- sample&#45;stage/yz&#45;plate/z&#45;rotator -->
-<g id="node84" class="node">
+<g id="node80" class="node">
 <title>sample&#45;stage/yz&#45;plate/z&#45;rotator</title>
 <ellipse fill="none" stroke="black" cx="9004.52" cy="-252.8" rx="131.15" ry="18"/>
 <text text-anchor="middle" x="9004.52" y="-248.6" font-family="Times,serif" font-size="14.00">sample&#45;stage/yz&#45;plate/z&#45;rotator</text>
 </g>
 <!-- sample&#45;stage/yz&#45;plate&#45;&gt;sample&#45;stage/yz&#45;plate/z&#45;rotator -->
-<g id="edge82" class="edge">
+<g id="edge79" class="edge">
 <title>sample&#45;stage/yz&#45;plate&#45;&gt;sample&#45;stage/yz&#45;plate/z&#45;rotator</title>
 <path fill="none" stroke="black" d="M8513.44,-315.08C8613.34,-302.61 8786.97,-280.95 8898.74,-267"/>
 <polygon fill="black" stroke="black" points="8899.05,-270.49 8908.53,-265.78 8898.18,-263.54 8899.05,-270.49"/>
 </g>
 <!-- sample&#45;stage/z&#45;plate -->
-<g id="node85" class="node">
+<g id="node81" class="node">
 <title>sample&#45;stage/z&#45;plate</title>
 <ellipse fill="none" stroke="black" cx="9244.52" cy="-252.8" rx="90.4" ry="18"/>
 <text text-anchor="middle" x="9244.52" y="-248.6" font-family="Times,serif" font-size="14.00">sample&#45;stage/z&#45;plate</text>
 </g>
 <!-- sample&#45;stage/yz&#45;plate&#45;&gt;sample&#45;stage/z&#45;plate -->
-<g id="edge83" class="edge">
+<g id="edge80" class="edge">
 <title>sample&#45;stage/yz&#45;plate&#45;&gt;sample&#45;stage/z&#45;plate</title>
 <path fill="none" stroke="black" d="M8527,-320.54C8662.32,-313.62 8923.66,-297.92 9144.52,-270.8 9152.24,-269.85 9160.27,-268.72 9168.28,-267.51"/>
 <polygon fill="black" stroke="black" points="9168.72,-270.98 9178.06,-265.97 9167.64,-264.07 9168.72,-270.98"/>
 </g>
 <!-- sample&#45;stage/yz&#45;plate/motor/motor -->
-<g id="node80" class="node">
+<g id="node76" class="node">
 <title>sample&#45;stage/yz&#45;plate/motor/motor</title>
 <ellipse fill="none" stroke="black" cx="7555.52" cy="-164" rx="146.73" ry="18"/>
 <text text-anchor="middle" x="7555.52" y="-159.8" font-family="Times,serif" font-size="14.00">sample&#45;stage/yz&#45;plate/motor/motor</text>
 </g>
 <!-- sample&#45;stage/yz&#45;plate/motor&#45;&gt;sample&#45;stage/yz&#45;plate/motor/motor -->
-<g id="edge84" class="edge">
+<g id="edge81" class="edge">
 <title>sample&#45;stage/yz&#45;plate/motor&#45;&gt;sample&#45;stage/yz&#45;plate/motor/motor</title>
 <path fill="none" stroke="black" d="M7555.52,-234.65C7555.52,-222.96 7555.52,-207.19 7555.52,-193.62"/>
 <polygon fill="black" stroke="black" points="7559.02,-193.92 7555.52,-183.92 7552.02,-193.92 7559.02,-193.92"/>
 </g>
 <!-- sample&#45;stage/z&#45;plate&#45;&gt;sample&#45;stage/stage&#45;center -->
-<g id="edge85" class="edge">
+<g id="edge82" class="edge">
 <title>sample&#45;stage/z&#45;plate&#45;&gt;sample&#45;stage/stage&#45;center</title>
 <path fill="none" stroke="black" d="M9244.52,-234.65C9244.52,-222.96 9244.52,-207.19 9244.52,-193.62"/>
 <polygon fill="black" stroke="black" points="9248.02,-193.92 9244.52,-183.92 9241.02,-193.92 9248.02,-193.92"/>
 <text text-anchor="middle" x="9263.95" y="-204.2" font-family="Times,serif" font-size="14.00">rel&#45;pos</text>
 </g>
 <!-- slide&#45;holder/clip -->
-<g id="node87" class="node">
+<g id="node83" class="node">
 <title>slide&#45;holder/clip</title>
 <ellipse fill="none" stroke="black" cx="9157.52" cy="-18" rx="74.33" ry="18"/>
 <text text-anchor="middle" x="9157.52" y="-13.8" font-family="Times,serif" font-size="14.00">slide&#45;holder/clip</text>
 </g>
 <!-- slide&#45;holder&#45;&gt;slide&#45;holder/clip -->
-<g id="edge86" class="edge">
+<g id="edge83" class="edge">
 <title>slide&#45;holder&#45;&gt;slide&#45;holder/clip</title>
 <path fill="none" stroke="black" d="M9224.77,-73.89C9213.48,-64.67 9199.1,-52.94 9186.54,-42.68"/>
 <polygon fill="black" stroke="black" points="9188.92,-40.11 9178.96,-36.5 9184.49,-45.53 9188.92,-40.11"/>
 </g>
 <!-- slide&#45;holder/insert -->
-<g id="node88" class="node">
+<g id="node84" class="node">
 <title>slide&#45;holder/insert</title>
 <ellipse fill="none" stroke="black" cx="9331.52" cy="-18" rx="81.3" ry="18"/>
 <text text-anchor="middle" x="9331.52" y="-13.8" font-family="Times,serif" font-size="14.00">slide&#45;holder/insert</text>
 </g>
 <!-- slide&#45;holder&#45;&gt;slide&#45;holder/insert -->
-<g id="edge87" class="edge">
+<g id="edge84" class="edge">
 <title>slide&#45;holder&#45;&gt;slide&#45;holder/insert</title>
 <path fill="none" stroke="black" d="M9264.26,-73.89C9275.47,-64.74 9289.73,-53.1 9302.22,-42.9"/>
 <polygon fill="black" stroke="black" points="9304.24,-45.78 9309.77,-36.75 9299.81,-40.36 9304.24,-45.78"/>
+</g>
+<!-- standalone&#45;board/root -->
+<g id="node88" class="node">
+<title>standalone&#45;board/root</title>
+<ellipse fill="none" stroke="black" cx="5550.52" cy="-811.2" rx="95.78" ry="18"/>
+<text text-anchor="middle" x="5550.52" y="-807" font-family="Times,serif" font-size="14.00">standalone&#45;board/root</text>
+</g>
+<!-- standalone&#45;board&#45;&gt;standalone&#45;board/root -->
+<g id="edge85" class="edge">
+<title>standalone&#45;board&#45;&gt;standalone&#45;board/root</title>
+<path fill="none" stroke="black" d="M2696.03,-896.73C3099.31,-884.79 4977.25,-829.18 5444.86,-815.33"/>
+<polygon fill="black" stroke="black" points="5444.9,-818.83 5454.79,-815.03 5444.69,-811.83 5444.9,-818.83"/>
+</g>
+<!-- standalone&#45;board/case&#45;base -->
+<g id="node86" class="node">
+<title>standalone&#45;board/case&#45;base</title>
+<ellipse fill="none" stroke="black" cx="5550.52" cy="-722.4" rx="117.21" ry="18"/>
+<text text-anchor="middle" x="5550.52" y="-718.2" font-family="Times,serif" font-size="14.00">standalone&#45;board/case&#45;base</text>
+</g>
+<!-- standalone&#45;board/case&#45;lid -->
+<g id="node87" class="node">
+<title>standalone&#45;board/case&#45;lid</title>
+<ellipse fill="none" stroke="black" cx="5795.52" cy="-722.4" rx="110.25" ry="18"/>
+<text text-anchor="middle" x="5795.52" y="-718.2" font-family="Times,serif" font-size="14.00">standalone&#45;board/case&#45;lid</text>
+</g>
+<!-- standalone&#45;board/root&#45;&gt;standalone&#45;board/case&#45;base -->
+<g id="edge86" class="edge">
+<title>standalone&#45;board/root&#45;&gt;standalone&#45;board/case&#45;base</title>
+<path fill="none" stroke="black" d="M5550.52,-793.05C5550.52,-781.36 5550.52,-765.59 5550.52,-752.02"/>
+<polygon fill="black" stroke="black" points="5554.02,-752.32 5550.52,-742.32 5547.02,-752.32 5554.02,-752.32"/>
+</g>
+<!-- standalone&#45;board/root&#45;&gt;standalone&#45;board/case&#45;lid -->
+<g id="edge87" class="edge">
+<title>standalone&#45;board/root&#45;&gt;standalone&#45;board/case&#45;lid</title>
+<path fill="none" stroke="black" d="M5594.03,-794.78C5634.81,-780.34 5695.94,-758.68 5740.17,-743.01"/>
+<polygon fill="black" stroke="black" points="5741.06,-746.41 5749.32,-739.77 5738.72,-739.81 5741.06,-746.41"/>
 </g>
 </g>
 </svg>

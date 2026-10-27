@@ -5,7 +5,7 @@ components:
   design: primitives/lasers/boison-488.dsn
   instantiation:
     inputs:
-      newswitch-device-id: hotlaser123
+      newswitch-device-id: laser
   position: [0.0, -50.0, 80.0]
   rotation:
     kind: extrinsic
@@ -80,7 +80,7 @@ components:
   design: primitives/hikcamera-with-objective.dsn
   instantiation:
     inputs:
-      newswitch-device-id: bigcamera42
+      newswitch-device-id: camera
   position: [-4.0, 4.0, 160.6]
   rotation:
     kind: extrinsic
@@ -90,7 +90,7 @@ components:
   design: primitives/hikcamera-with-objective.dsn/camera.dsn
   instantiation:
     inputs:
-      newswitch-device-id: bigcamera42
+      newswitch-device-id: camera
   position: [-56.2, 4.0, 160.6]
   rotation:
     kind: extrinsic
@@ -1102,7 +1102,7 @@ components:
   design: primitives/controllers/standalone-board.dsn
   instantiation:
     inputs:
-      newswitch-device-id: mainboard-1
+      newswitch-device-id: standalone-board-1
   position: [25.0, -25.0, 5.0]
   rotation:
     kind: extrinsic
@@ -1136,7 +1136,7 @@ components:
   design: primitives/controllers/standalone-board.dsn
   instantiation:
     inputs:
-      newswitch-device-id: mainboard-2
+      newswitch-device-id: standalone-board-2
   position: [25.0, -25.0, 30.0]
   rotation:
     kind: extrinsic

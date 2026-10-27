@@ -5,7 +5,7 @@ components:
   design: primitives/lasers/boison-488.dsn
   instantiation:
     inputs:
-      newswitch-device-id: hotlaser123
+      newswitch-device-id: laser
   position: [0.0, 0.0, 0.0]
   rotation:
     kind: extrinsic
@@ -15,7 +15,7 @@ components:
   static-models:
     newswitch-device: primitives/lasers/boison-488.dsn/laser.newswitch-device.yml
   results:
-    newswitch-device-id: hotlaser123
+    newswitch-device-id: laser
   position: [0.0, 0.0, 0.0]
   rotation:
     kind: extrinsic
@@ -25,7 +25,7 @@ components:
   design: primitives/hikcamera-with-objective.dsn
   instantiation:
     inputs:
-      newswitch-device-id: bigcamera42
+      newswitch-device-id: camera
   position: [0.0, 0.0, 0.0]
   rotation:
     kind: extrinsic
@@ -35,7 +35,7 @@ components:
   design: primitives/hikcamera-with-objective.dsn/camera.dsn
   instantiation:
     inputs:
-      newswitch-device-id: bigcamera42
+      newswitch-device-id: camera
   position: [0.0, 0.0, 0.0]
   rotation:
     kind: extrinsic
@@ -45,140 +45,192 @@ components:
   static-models:
     newswitch-device: primitives/hikcamera-with-objective.dsn/camera.dsn/hikcamera.newswitch-device.yml
   results:
-    newswitch-device-id: bigcamera42
+    newswitch-device-id: camera
   position: [0.0, 0.0, 0.0]
   rotation:
     kind: extrinsic
     order: zxy
-- id: electronics-controller
+- id: connection-camera
   kind: design
-  design: primitives/controllers/standalone-board.dsn
+  design: primitives/connections/usb3-vision.dsn
   instantiation:
     inputs:
-      newswitch-device-id: my-favorite-mainboard
+      newswitch-controller-id: root
+      newswitch-peripheral-id: camera
   position: [0.0, 0.0, 0.0]
   rotation:
     kind: extrinsic
     order: zxy
-- id: electronics-controller-mapping-laser
+- id: connection-camera/connection
+  kind: results
+  results:
+    newswitch-device-config:
+      connections:
+        camera:
+          protocol: usb3-vision
+          selectors:
+            user_defined_name: ""
+    newswitch-device-id: root
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: connection-laser
   kind: design
-  design: primitives/controller-mapping.dsn
+  design: primitives/connections/direct.dsn
   instantiation:
     inputs:
       id: "0"
-      newswitch-controller-id: my-favorite-mainboard
-      newswitch-mapping-type: serial-laser
-      newswitch-peripheral-id: hotlaser123
+      newswitch-controller-id: standalone-board
+      newswitch-peripheral-id: laser
+      protocol: direct-pwm
       pwm-max: "1023"
   position: [0.0, 0.0, 0.0]
   rotation:
     kind: extrinsic
     order: zxy
-- id: electronics-controller-mapping-laser/mapping
+- id: connection-laser/connection
   kind: results
   results:
     newswitch-device-config:
-      mapping:
-        hotlaser123:
-          id: 0
+      connections:
+        laser:
           pwm_max: 1023
-          subid: 0
-          type: serial-laser
-    newswitch-device-id: my-favorite-mainboard
+          selectors:
+            id: 0
+          type: direct-pwm
+    newswitch-device-id: standalone-board
   position: [0.0, 0.0, 0.0]
   rotation:
     kind: extrinsic
     order: zxy
-- id: electronics-controller-mapping-sample-stage-x
+- id: connection-sample-stage-x
   kind: design
-  design: primitives/controller-mapping.dsn
+  design: primitives/connections/direct.dsn
   instantiation:
     inputs:
       id: "0"
-      newswitch-controller-id: my-favorite-mainboard
-      newswitch-mapping-type: serial-motor
-      newswitch-peripheral-id: just-some-boring-stage/x
+      newswitch-controller-id: standalone-board
+      newswitch-peripheral-id: sample-stage/x
+      protocol: direct
   position: [0.0, 0.0, 0.0]
   rotation:
     kind: extrinsic
     order: zxy
-- id: electronics-controller-mapping-sample-stage-x/mapping
+- id: connection-sample-stage-x/connection
   kind: results
   results:
     newswitch-device-config:
-      mapping:
-        just-some-boring-stage/x:
-          id: 0
-          pwm_max: 0
-          subid: 0
-          type: serial-motor
-    newswitch-device-id: my-favorite-mainboard
+      connections:
+        sample-stage/x:
+          pwm_max: null
+          selectors:
+            id: 0
+          type: direct
+    newswitch-device-id: standalone-board
   position: [0.0, 0.0, 0.0]
   rotation:
     kind: extrinsic
     order: zxy
-- id: electronics-controller-mapping-sample-stage-y
+- id: connection-sample-stage-y
   kind: design
-  design: primitives/controller-mapping.dsn
+  design: primitives/connections/direct.dsn
   instantiation:
     inputs:
       id: "1"
-      newswitch-controller-id: my-favorite-mainboard
-      newswitch-mapping-type: serial-motor
-      newswitch-peripheral-id: just-some-boring-stage/y
+      newswitch-controller-id: standalone-board
+      newswitch-peripheral-id: sample-stage/y
+      protocol: direct
   position: [0.0, 0.0, 0.0]
   rotation:
     kind: extrinsic
     order: zxy
-- id: electronics-controller-mapping-sample-stage-y/mapping
+- id: connection-sample-stage-y/connection
   kind: results
   results:
     newswitch-device-config:
-      mapping:
-        just-some-boring-stage/y:
-          id: 1
-          pwm_max: 0
-          subid: 0
-          type: serial-motor
-    newswitch-device-id: my-favorite-mainboard
+      connections:
+        sample-stage/y:
+          pwm_max: null
+          selectors:
+            id: 1
+          type: direct
+    newswitch-device-id: standalone-board
   position: [0.0, 0.0, 0.0]
   rotation:
     kind: extrinsic
     order: zxy
-- id: electronics-controller-mapping-sample-stage-z
+- id: connection-sample-stage-z
   kind: design
-  design: primitives/controller-mapping.dsn
+  design: primitives/connections/direct.dsn
   instantiation:
     inputs:
       id: "2"
-      newswitch-controller-id: my-favorite-mainboard
-      newswitch-mapping-type: serial-motor
-      newswitch-peripheral-id: just-some-boring-stage/z
+      newswitch-controller-id: standalone-board
+      newswitch-peripheral-id: sample-stage/z
+      protocol: direct
   position: [0.0, 0.0, 0.0]
   rotation:
     kind: extrinsic
     order: zxy
-- id: electronics-controller-mapping-sample-stage-z/mapping
+- id: connection-sample-stage-z/connection
   kind: results
   results:
     newswitch-device-config:
-      mapping:
-        just-some-boring-stage/z:
-          id: 2
-          pwm_max: 0
-          subid: 0
-          type: serial-motor
-    newswitch-device-id: my-favorite-mainboard
+      connections:
+        sample-stage/z:
+          pwm_max: null
+          selectors:
+            id: 2
+          type: direct
+    newswitch-device-id: standalone-board
   position: [0.0, 0.0, 0.0]
   rotation:
     kind: extrinsic
     order: zxy
-- id: electronics-controller/drivers
+- id: connection-standalone-board
+  kind: design
+  design: primitives/connections/uc2-rest-serial.dsn
+  instantiation:
+    inputs:
+      baudrate: "115200"
+      newswitch-controller-id: root
+      newswitch-peripheral-id: standalone-board
+      port-pattern: /dev/ttyUSB*
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: connection-standalone-board/connection
+  kind: results
+  results:
+    newswitch-device-config:
+      connections:
+        standalone-board:
+          protocol: uc2-rest
+          transport:
+            baudrate: 115200
+            selectors:
+              port_pattern: /dev/ttyUSB*
+            type: serial
+    newswitch-device-id: root
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: root-controller
+  kind: design
+  design: primitives/controllers/root.dsn
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: root-controller/driver
   kind: primitive/static
   static-models:
-    newswitch-device: primitives/controllers/standalone-board.dsn/mainboard.newswitch-device.yml
+    newswitch-device: primitives/controllers/root.dsn/root.newswitch-device.yml
   results:
-    newswitch-device-id: my-favorite-mainboard
+    newswitch-device-id: root
   position: [0.0, 0.0, 0.0]
   rotation:
     kind: extrinsic
@@ -188,10 +240,10 @@ components:
   design: primitives/xyz-stage.dsn
   instantiation:
     inputs:
-      newswitch-device-id: just-some-boring-stage
-      newswitch-device-id-x: just-some-boring-stage/x
-      newswitch-device-id-y: just-some-boring-stage/y
-      newswitch-device-id-z: just-some-boring-stage/z
+      newswitch-device-id: sample-stage
+      newswitch-device-id-x: sample-stage/x
+      newswitch-device-id-y: sample-stage/y
+      newswitch-device-id-z: sample-stage/z
       newswitch-input-variable-x: sample-x
       newswitch-input-variable-y: sample-y
       newswitch-input-variable-z: sample-z
@@ -209,10 +261,10 @@ components:
   results:
     newswitch-device-config:
       axes:
-        x: just-some-boring-stage/x
-        "y": just-some-boring-stage/y
-        z: just-some-boring-stage/z
-    newswitch-device-id: just-some-boring-stage
+        x: sample-stage/x
+        "y": sample-stage/y
+        z: sample-stage/z
+    newswitch-device-id: sample-stage
   position: [0.0, 0.0, 0.0]
   rotation:
     kind: extrinsic
@@ -224,7 +276,7 @@ components:
   results:
     newswitch-device-config:
       optikit_dsn_variable: sample-x
-    newswitch-device-id: just-some-boring-stage/x
+    newswitch-device-id: sample-stage/x
   position: [0.0, 0.0, 0.0]
   rotation:
     kind: extrinsic
@@ -236,7 +288,7 @@ components:
   results:
     newswitch-device-config:
       optikit_dsn_variable: sample-y
-    newswitch-device-id: just-some-boring-stage/y
+    newswitch-device-id: sample-stage/y
   position: [0.0, 0.0, 0.0]
   rotation:
     kind: extrinsic
@@ -248,7 +300,27 @@ components:
   results:
     newswitch-device-config:
       optikit_dsn_variable: sample-z
-    newswitch-device-id: just-some-boring-stage/z
+    newswitch-device-id: sample-stage/z
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: standalone-board
+  kind: design
+  design: primitives/controllers/standalone-board.dsn
+  instantiation:
+    inputs:
+      newswitch-device-id: standalone-board
+  position: [0.0, 0.0, 0.0]
+  rotation:
+    kind: extrinsic
+    order: zxy
+- id: standalone-board/driver
+  kind: primitive/static
+  static-models:
+    newswitch-device: primitives/controllers/standalone-board.dsn/mainboard.newswitch-device.yml
+  results:
+    newswitch-device-id: standalone-board
   position: [0.0, 0.0, 0.0]
   rotation:
     kind: extrinsic
