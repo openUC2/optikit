@@ -91,8 +91,6 @@ components:
       inputs:
         newswitch-controller-id: hat-plus
         newswitch-peripheral-id: led-ring/led
-        id: 21
-        subid: 0
   connection-led-matrix:
     kind: design
     design: primitives/connections/direct.dsn
@@ -100,7 +98,6 @@ components:
       inputs:
         newswitch-controller-id: hat-plus
         newswitch-peripheral-id: led-ring/matrix
-        id: 30
   frame-chassis:
     kind: design
     design: assemblies/frame-chassis.dsn
@@ -127,8 +124,7 @@ components:
       inputs:
         newswitch-controller-id: hat-plus
         newswitch-peripheral-id: frame-chassis/x
-        id: 11
-        subid: 1
+        id: 1
   connection-axis-y:
     kind: design
     design: primitives/connections/direct.dsn
@@ -136,8 +132,7 @@ components:
       inputs:
         newswitch-controller-id: hat-plus
         newswitch-peripheral-id: frame-chassis/y
-        id: 12
-        subid: 1
+        id: 2
   connection-axis-z:
     kind: design
     design: primitives/connections/direct.dsn
@@ -145,8 +140,7 @@ components:
       inputs:
         newswitch-controller-id: hat-plus
         newswitch-peripheral-id: frame-chassis/z
-        id: 13
-        subid: 1
+        id: 3
   connection-axis-a:
     kind: design
     design: primitives/connections/direct.dsn
@@ -154,8 +148,7 @@ components:
       inputs:
         newswitch-controller-id: hat-plus
         newswitch-peripheral-id: frame-chassis/a
-        id: 10
-        subid: 1
+        id: 0
 
 assemblies:
   wiring:

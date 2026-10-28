@@ -180,17 +180,17 @@ devices:
       optics-stage/x:
         protocol: direct
         selectors:
-          id: 0
+          id: 1
           subid: 0
       optics-stage/y:
         protocol: direct
         selectors:
-          id: 1
+          id: 2
           subid: 0
       optics-stage/z:
         protocol: direct
         selectors:
-          id: 2
+          id: 3
           subid: 0
     firmware:
       name: esp32-uc2-standalone-4
@@ -203,17 +203,17 @@ devices:
       sample-stage/x:
         protocol: direct
         selectors:
-          id: 0
+          id: 1
           subid: 0
       sample-stage/y:
         protocol: direct
         selectors:
-          id: 1
+          id: 2
           subid: 0
       sample-stage/z:
         protocol: direct
         selectors:
-          id: 2
+          id: 3
           subid: 0
     firmware:
       name: esp32-uc2-standalone-4

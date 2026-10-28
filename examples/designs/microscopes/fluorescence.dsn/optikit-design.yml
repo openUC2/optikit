@@ -126,6 +126,7 @@ components:
       inputs:
         newswitch-controller-id: standalone-board
         newswitch-peripheral-id: sample-stage/x
+        id: 1
   connection-sample-stage-y:
     kind: design
     design: primitives/connections/direct.dsn
@@ -133,7 +134,7 @@ components:
       inputs:
         newswitch-controller-id: standalone-board
         newswitch-peripheral-id: sample-stage/y
-        id: 1
+        id: 2
   connection-sample-stage-z:
     kind: design
     design: primitives/connections/direct.dsn
@@ -141,7 +142,7 @@ components:
       inputs:
         newswitch-controller-id: standalone-board
         newswitch-peripheral-id: sample-stage/z
-        id: 2
+        id: 3
 
 assemblies:
   '':

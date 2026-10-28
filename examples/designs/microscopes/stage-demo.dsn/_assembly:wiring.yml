@@ -107,7 +107,7 @@ components:
   design: primitives/connections/direct.dsn
   instantiation:
     inputs:
-      id: "0"
+      id: "1"
       newswitch-controller-id: standalone-board-1
       newswitch-peripheral-id: optics-stage/x
   position: [0.0, 0.0, 0.0]
@@ -122,7 +122,7 @@ components:
         optics-stage/x:
           protocol: direct
           selectors:
-            id: 0
+            id: 1
             subid: 0
     newswitch-device-id: standalone-board-1
   position: [0.0, 0.0, 0.0]
@@ -134,7 +134,7 @@ components:
   design: primitives/connections/direct.dsn
   instantiation:
     inputs:
-      id: "1"
+      id: "2"
       newswitch-controller-id: standalone-board-1
       newswitch-peripheral-id: optics-stage/y
   position: [0.0, 0.0, 0.0]
@@ -149,7 +149,7 @@ components:
         optics-stage/y:
           protocol: direct
           selectors:
-            id: 1
+            id: 2
             subid: 0
     newswitch-device-id: standalone-board-1
   position: [0.0, 0.0, 0.0]
@@ -161,7 +161,7 @@ components:
   design: primitives/connections/direct.dsn
   instantiation:
     inputs:
-      id: "2"
+      id: "3"
       newswitch-controller-id: standalone-board-1
       newswitch-peripheral-id: optics-stage/z
   position: [0.0, 0.0, 0.0]
@@ -176,7 +176,7 @@ components:
         optics-stage/z:
           protocol: direct
           selectors:
-            id: 2
+            id: 3
             subid: 0
     newswitch-device-id: standalone-board-1
   position: [0.0, 0.0, 0.0]
@@ -188,7 +188,7 @@ components:
   design: primitives/connections/direct.dsn
   instantiation:
     inputs:
-      id: "0"
+      id: "1"
       newswitch-controller-id: standalone-board-2
       newswitch-peripheral-id: sample-stage/x
   position: [0.0, 0.0, 0.0]
@@ -203,7 +203,7 @@ components:
         sample-stage/x:
           protocol: direct
           selectors:
-            id: 0
+            id: 1
             subid: 0
     newswitch-device-id: standalone-board-2
   position: [0.0, 0.0, 0.0]
@@ -215,7 +215,7 @@ components:
   design: primitives/connections/direct.dsn
   instantiation:
     inputs:
-      id: "1"
+      id: "2"
       newswitch-controller-id: standalone-board-2
       newswitch-peripheral-id: sample-stage/y
   position: [0.0, 0.0, 0.0]
@@ -230,7 +230,7 @@ components:
         sample-stage/y:
           protocol: direct
           selectors:
-            id: 1
+            id: 2
             subid: 0
     newswitch-device-id: standalone-board-2
   position: [0.0, 0.0, 0.0]
@@ -242,7 +242,7 @@ components:
   design: primitives/connections/direct.dsn
   instantiation:
     inputs:
-      id: "2"
+      id: "3"
       newswitch-controller-id: standalone-board-2
       newswitch-peripheral-id: sample-stage/z
   position: [0.0, 0.0, 0.0]
@@ -257,7 +257,7 @@ components:
         sample-stage/z:
           protocol: direct
           selectors:
-            id: 2
+            id: 3
             subid: 0
     newswitch-device-id: standalone-board-2
   position: [0.0, 0.0, 0.0]

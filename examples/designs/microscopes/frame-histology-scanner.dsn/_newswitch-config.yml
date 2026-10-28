@@ -114,32 +114,32 @@ devices:
       frame-chassis/a:
         protocol: direct
         selectors:
-          id: 10
-          subid: 1
+          id: 0
+          subid: 0
       frame-chassis/x:
         protocol: direct
         selectors:
-          id: 11
-          subid: 1
+          id: 1
+          subid: 0
       frame-chassis/y:
         protocol: direct
         selectors:
-          id: 12
-          subid: 1
+          id: 2
+          subid: 0
       frame-chassis/z:
         protocol: direct
         selectors:
-          id: 13
-          subid: 1
+          id: 3
+          subid: 0
       led-ring/led:
         protocol: direct
         selectors:
-          id: 21
+          id: 0
           subid: 0
       led-ring/matrix:
         protocol: direct
         selectors:
-          id: 30
+          id: 0
           subid: 0
     manufacturer: openUC2
     name: HAT+

@@ -94,7 +94,7 @@ devices:
       led:
         protocol: direct
         selectors:
-          id: 30
+          id: 0
           subid: 0
     firmware:
       name: esp32-uc2-standalone-4

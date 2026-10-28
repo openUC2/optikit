@@ -51,7 +51,6 @@ components:
       inputs:
         newswitch-controller-id: standalone-board
         newswitch-peripheral-id: led
-        id: 30
   laser-1:
     kind: design
     design: primitives/lasers/boison-488.dsn

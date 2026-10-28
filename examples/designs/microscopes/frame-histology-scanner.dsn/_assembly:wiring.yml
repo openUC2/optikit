@@ -35,10 +35,9 @@ components:
   design: primitives/connections/direct.dsn
   instantiation:
     inputs:
-      id: "10"
+      id: "0"
       newswitch-controller-id: hat-plus
       newswitch-peripheral-id: frame-chassis/a
-      subid: "1"
   position: [0.0, 0.0, 0.0]
   rotation:
     kind: extrinsic
@@ -51,8 +50,8 @@ components:
         frame-chassis/a:
           protocol: direct
           selectors:
-            id: 10
-            subid: 1
+            id: 0
+            subid: 0
     newswitch-device-id: hat-plus
   position: [0.0, 0.0, 0.0]
   rotation:
@@ -63,10 +62,9 @@ components:
   design: primitives/connections/direct.dsn
   instantiation:
     inputs:
-      id: "11"
+      id: "1"
       newswitch-controller-id: hat-plus
       newswitch-peripheral-id: frame-chassis/x
-      subid: "1"
   position: [0.0, 0.0, 0.0]
   rotation:
     kind: extrinsic
@@ -79,8 +77,8 @@ components:
         frame-chassis/x:
           protocol: direct
           selectors:
-            id: 11
-            subid: 1
+            id: 1
+            subid: 0
     newswitch-device-id: hat-plus
   position: [0.0, 0.0, 0.0]
   rotation:
@@ -91,10 +89,9 @@ components:
   design: primitives/connections/direct.dsn
   instantiation:
     inputs:
-      id: "12"
+      id: "2"
       newswitch-controller-id: hat-plus
       newswitch-peripheral-id: frame-chassis/y
-      subid: "1"
   position: [0.0, 0.0, 0.0]
   rotation:
     kind: extrinsic
@@ -107,8 +104,8 @@ components:
         frame-chassis/y:
           protocol: direct
           selectors:
-            id: 12
-            subid: 1
+            id: 2
+            subid: 0
     newswitch-device-id: hat-plus
   position: [0.0, 0.0, 0.0]
   rotation:
@@ -119,10 +116,9 @@ components:
   design: primitives/connections/direct.dsn
   instantiation:
     inputs:
-      id: "13"
+      id: "3"
       newswitch-controller-id: hat-plus
       newswitch-peripheral-id: frame-chassis/z
-      subid: "1"
   position: [0.0, 0.0, 0.0]
   rotation:
     kind: extrinsic
@@ -135,8 +131,8 @@ components:
         frame-chassis/z:
           protocol: direct
           selectors:
-            id: 13
-            subid: 1
+            id: 3
+            subid: 0
     newswitch-device-id: hat-plus
   position: [0.0, 0.0, 0.0]
   rotation:
@@ -204,10 +200,8 @@ components:
   design: primitives/connections/direct.dsn
   instantiation:
     inputs:
-      id: "21"
       newswitch-controller-id: hat-plus
       newswitch-peripheral-id: led-ring/led
-      subid: "0"
   position: [0.0, 0.0, 0.0]
   rotation:
     kind: extrinsic
@@ -217,7 +211,6 @@ components:
   design: primitives/connections/direct.dsn
   instantiation:
     inputs:
-      id: "30"
       newswitch-controller-id: hat-plus
       newswitch-peripheral-id: led-ring/matrix
   position: [0.0, 0.0, 0.0]
@@ -232,7 +225,7 @@ components:
         led-ring/matrix:
           protocol: direct
           selectors:
-            id: 30
+            id: 0
             subid: 0
     newswitch-device-id: hat-plus
   position: [0.0, 0.0, 0.0]
@@ -247,7 +240,7 @@ components:
         led-ring/led:
           protocol: direct
           selectors:
-            id: 21
+            id: 0
             subid: 0
     newswitch-device-id: hat-plus
   position: [0.0, 0.0, 0.0]

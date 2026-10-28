@@ -125,7 +125,7 @@ components:
       inputs:
         newswitch-controller-id: standalone-board-1
         newswitch-peripheral-id: optics-stage/x
-        id: 0
+        id: 1
   connection-optics-stage-y:
     kind: design
     design: primitives/connections/direct.dsn
@@ -133,7 +133,7 @@ components:
       inputs:
         newswitch-controller-id: standalone-board-1
         newswitch-peripheral-id: optics-stage/y
-        id: 1
+        id: 2
   connection-optics-stage-z:
     kind: design
     design: primitives/connections/direct.dsn
@@ -141,7 +141,7 @@ components:
       inputs:
         newswitch-controller-id: standalone-board-1
         newswitch-peripheral-id: optics-stage/z
-        id: 2
+        id: 3
   optics:
     kind: location
     tags:
@@ -218,7 +218,7 @@ components:
       inputs:
         newswitch-controller-id: standalone-board-2
         newswitch-peripheral-id: sample-stage/x
-        id: 0
+        id: 1
   connection-sample-stage-y:
     kind: design
     design: primitives/connections/direct.dsn
@@ -226,7 +226,7 @@ components:
       inputs:
         newswitch-controller-id: standalone-board-2
         newswitch-peripheral-id: sample-stage/y
-        id: 1
+        id: 2
   connection-sample-stage-z:
     kind: design
     design: primitives/connections/direct.dsn
@@ -234,7 +234,7 @@ components:
       inputs:
         newswitch-controller-id: standalone-board-2
         newswitch-peripheral-id: sample-stage/z
-        id: 2
+        id: 3
 
 assemblies:
   '':

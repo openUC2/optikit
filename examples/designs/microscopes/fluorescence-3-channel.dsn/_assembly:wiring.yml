@@ -141,7 +141,6 @@ components:
   design: primitives/connections/direct.dsn
   instantiation:
     inputs:
-      id: "30"
       newswitch-controller-id: standalone-board
       newswitch-peripheral-id: led
   position: [0.0, 0.0, 0.0]
@@ -156,7 +155,7 @@ components:
         led:
           protocol: direct
           selectors:
-            id: 30
+            id: 0
             subid: 0
     newswitch-device-id: standalone-board
   position: [0.0, 0.0, 0.0]
