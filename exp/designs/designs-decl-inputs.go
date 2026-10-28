@@ -77,14 +77,14 @@ func (s InputVarSpec) Check() (errs []error) {
 	}
 
 	if s.Kind == VarKindBool {
-		// Note: the Enum field is ignored for variable kind bool, so we don't check enum values.
+		// Note: the Choices field is ignored for variable kind bool, so we don't check choices values.
 		return errs
 	}
 
-	for _, value := range s.Enum {
+	for _, value := range s.Choices {
 		if _, err := ConvertTo(value, s.Kind); err != nil {
 			errs = append(errs, errors.Wrapf(
-				err, "couldn't convert enum value %v of type %T to kind %s", value, value, s.Kind,
+				err, "couldn't convert choices value %v of type %T to kind %s", value, value, s.Kind,
 			))
 		}
 	}
@@ -103,7 +103,7 @@ func (s InputVarSpec) CheckValue(value any) (errs []error) {
 		if s.Kind != VarKindBool {
 			errs = append(errs, fmt.Errorf(varValueErrFmt, value, value, s.Kind))
 		}
-		return errs // we won't check enum values!
+		return errs // we won't check choices values!
 	case int:
 		if s.Kind != VarKindInt {
 			errs = append(errs, fmt.Errorf(varValueErrFmt, value, value, s.Kind))
@@ -126,22 +126,24 @@ func (s InputVarSpec) CheckValue(value any) (errs []error) {
 		}
 	}
 
-	if len(s.Enum) == 0 {
+	if len(s.Choices) == 0 {
 		return errs
 	}
-	for _, enumValue := range s.Enum {
-		convertedEnumValue, err := ConvertTo(enumValue, s.Kind)
+	for _, choicesValue := range s.Choices {
+		convertedChoicesValue, err := ConvertTo(choicesValue, s.Kind)
 		if err != nil {
-			errs = append(errs, fmt.Errorf("can't convert enum value %v to kind %s", enumValue, s.Kind))
+			errs = append(errs, fmt.Errorf(
+				"can't convert choices value %v to kind %s", choicesValue, s.Kind,
+			))
 			continue
 		}
 
-		if convertedEnumValue == value {
+		if convertedChoicesValue == value {
 			return errs
 		}
 	}
 	errs = append(errs, fmt.Errorf(
-		"value %v doesn't match any allowed enum values (%+v)", value, s.Enum,
+		"value %v doesn't match any allowed choices values (%+v)", value, s.Choices,
 	))
 	return errs
 }

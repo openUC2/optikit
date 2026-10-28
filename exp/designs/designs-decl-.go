@@ -105,9 +105,9 @@ type InputVarSpec struct {
 	// which can be converted to int (for Kind int) or float64 (for Kind float64).
 	// It's ignored if it's nil.
 	Max any `json:"max,omitzero" yaml:"max,omitempty"`
-	// Enum is a complete list of all allowed values for the variable; values not on this list are
+	// Choices is a complete list of all allowed values for the variable; values not on this list are
 	// prohibited. It's ignored if it's empty or if Kind is bool.
-	Enum []any `json:"enum,omitempty" yaml:"enum,omitempty"`
+	Choices []any `json:"choices,omitempty" yaml:"choices,omitempty"`
 	// Tags is a list of human-readable string tags for describing the input variable to software.
 	Tags Tags `json:"tags,omitempty" yaml:"tags,omitempty"`
 }

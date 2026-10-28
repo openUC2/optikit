@@ -19,7 +19,7 @@ inputs:
   interface:
     description: Bus channel
     kind: string
-    enum:
+    choices:
       - socketcan
       - pcan
       - kvaser

@@ -22,7 +22,7 @@ inputs:
   baudrate:
     description: Baudrate of the serial transport
     kind: int
-    enum:
+    choices:
       - 1200
       - 1800
       - 2400
