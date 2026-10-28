@@ -1,11 +1,5 @@
 devices:
   '':
-    connection:
-      protocol: uc2-rest
-      transport:
-        baudrate: 115200
-        port_pattern: /dev/ttyUSB*
-        type: serial
     firmware:
       name: esp32-uc2-standalone-4
       version: v2026.0.0-beta.3

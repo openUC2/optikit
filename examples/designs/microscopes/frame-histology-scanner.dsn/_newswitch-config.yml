@@ -1,4 +1,38 @@
 devices:
+  camera:
+    binning: 1
+    channels: 1
+    exposure_time_ms:
+      inc: 0.001
+      max: 10000.0
+      min: 0.024
+      unit: ms
+      value: 25.0
+    framerate_per_sec:
+      max: 163.0
+      min: 0.5
+      unit: Hz
+      value: 163.0
+    gain_db:
+      inc: 0.01
+      max: 23.98
+      min: 0.0
+      unit: dB
+      value: 0.0
+    manufacturer: HIK ROBOTICS
+    name: MV-CA023-10UM
+    pixelcount:
+    - 1920
+    - 1200
+    pixelpitch_um: 10.0
+    tags:
+    - monochrome
+    - global-shutter
+    - gige
+    trigger:
+      edge: rising
+      type: hardware
+    type: detector
   frame-chassis/objective:
     axes:
       a: frame-chassis/objective/a
@@ -76,46 +110,39 @@ devices:
       unit: um/s
       value: 5000.0
   hat-plus:
-    connection:
-      protocol: can-bus
-      transport:
-        bitrate: 500000
-        channel: can0
-        interface: socketcan
-        type: can
-    manufacturer: openUC2
-    mapping:
+    connections:
       frame-chassis/a:
-        id: 10
-        pwm_max: 0
-        subid: 1
-        type: canopen-motor
+        protocol: direct
+        selectors:
+          id: 0
+          subid: 0
       frame-chassis/x:
-        id: 11
-        pwm_max: 0
-        subid: 1
-        type: canopen-motor
+        protocol: direct
+        selectors:
+          id: 1
+          subid: 0
       frame-chassis/y:
-        id: 12
-        pwm_max: 0
-        subid: 1
-        type: canopen-motor
+        protocol: direct
+        selectors:
+          id: 2
+          subid: 0
       frame-chassis/z:
-        id: 13
-        pwm_max: 0
-        subid: 1
-        type: canopen-motor
+        protocol: direct
+        selectors:
+          id: 3
+          subid: 0
       led-ring/led:
-        id: 20
-        pwm_max: 1023
-        subid: 4
-        type: canopen-led
+        protocol: direct
+        selectors:
+          id: 0
+          subid: 0
       led-ring/matrix:
-        id: 30
-        pwm_max: 1023
-        subid: 0
-        type: canopen-led
-    name: HAT+ via CAN
+        protocol: direct
+        selectors:
+          id: 0
+          subid: 0
+    manufacturer: openUC2
+    name: HAT+
     type: controller
   led-ring/led:
     channels: 1
@@ -123,4 +150,19 @@ devices:
   led-ring/matrix:
     channels: 1
     type: lightsource
+  root:
+    connections:
+      camera:
+        protocol: usb3-vision
+        selectors:
+          user_defined_name: ''
+      hat-plus:
+        protocol: canopen
+        transport:
+          bitrate: 500000
+          interface: socketcan
+          selectors:
+            channel: can0
+          type: can
+    type: controller
 newswitch_version: v1.0.2

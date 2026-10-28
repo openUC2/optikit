@@ -1,0 +1,66 @@
+optikit-version: v0.1.0-alpha.1
+
+design:
+  description: A connection to a controller board using the uc2-rest protocol over a serial transport
+  tags:
+    - config/newswitch/device-connection
+
+inputs:
+  newswitch-controller-id:
+    description: The ID of the controller device in NewSwitch
+    kind: string
+    tags:
+      - config/newswitch/device-id
+  newswitch-peripheral-id:
+    description: The ID of the peripheral device in NewSwitch
+    kind: string
+    tags:
+      - config/newswitch/device-id
+  port-pattern:
+    description: Glob-based selector for the port of the serial device
+    kind: string
+  baudrate:
+    description: Baudrate of the serial transport
+    kind: int
+    enum:
+      - 1200
+      - 1800
+      - 2400
+      - 4800
+      - 9600
+      - 19200
+      - 28800
+      - 38400
+      - 57600
+      - 76800
+      - 115200
+      - 230400
+      - 460800
+      - 576000
+      - 921600
+
+components:
+  connection:
+    kind: results
+    results:
+      newswitch-device-id: ~ inputs['newswitch-controller-id'].value
+      newswitch-device-config: >
+        ~ {
+          connections: fromPairs([
+            [inputs['newswitch-peripheral-id'].value, {
+              protocol: 'uc2-rest',
+              transport: {
+                type: 'serial',
+                selectors: {
+                  port_pattern: inputs['port-pattern'].value,
+                },
+                baudrate: inputs['baudrate'].value,
+              },
+            }],
+          ]),
+        }
+
+assemblies:
+  wiring:
+    children:
+      connection: {}

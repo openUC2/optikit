@@ -1,0 +1,19 @@
+optikit-version: v0.1.0-alpha.1
+
+design:
+  description: The root NewSwitch controller device
+
+components:
+  driver:
+    kind: primitive
+    primitive:
+      kind: static
+      static-models:
+        newswitch-device: root.newswitch-device.yml
+    results:
+      newswitch-device-id: root
+
+assemblies:
+  wiring:
+    children:
+      driver: {}

@@ -7,80 +7,116 @@ design:
     - instrument/microscope
 
 components:
-  led:
+  root-controller:
     kind: design
-    design: cube-mounted/led-ring.dsn
+    design: primitives/controllers/root.dsn
+  camera:
+    kind: design
+    design: primitives/hikcamera-with-objective.dsn
     instantiation:
       inputs:
-        newswitch-device-id-led: led
-  laser-1:
+        newswitch-device-id: camera
+  connection-camera:
     kind: design
-    design: primitives/lasers/boison-488.dsn
+    design: primitives/connections/usb3-vision.dsn
     instantiation:
       inputs:
-        newswitch-device-id: laser-1
-  laser-2:
-    kind: design
-    design: primitives/lasers/boison-488.dsn
-    instantiation:
-      inputs:
-        newswitch-device-id: laser-2
-  laser-3:
-    kind: design
-    design: primitives/lasers/boison-488.dsn
-    instantiation:
-      inputs:
-        newswitch-device-id: laser-3
+        newswitch-controller-id: root
+        newswitch-peripheral-id: camera
   standalone-board:
     kind: design
     design: primitives/controllers/standalone-board.dsn
     instantiation:
       inputs:
         newswitch-device-id: standalone-board
-  mapping-led:
+  connection-standalone-board:
     kind: design
-    design: primitives/controller-mapping.dsn
+    design: primitives/connections/uc2-rest-serial.dsn
+    instantiation:
+      inputs:
+        newswitch-controller-id: root
+        newswitch-peripheral-id: standalone-board
+        port-pattern: /dev/ttyUSB*
+        baudrate: 115200
+  led:
+    kind: design
+    design: cube-mounted/led-ring.dsn
+    instantiation:
+      inputs:
+        newswitch-device-id-led: led
+  connection-led:
+    kind: design
+    design: primitives/connections/direct.dsn
     instantiation:
       inputs:
         newswitch-controller-id: standalone-board
         newswitch-peripheral-id: led
-        newswitch-mapping-type: canopen-led
-        id: 30
-        pwm-max: 1023
-  mapping-laser-1:
+  laser-1:
     kind: design
-    design: primitives/controller-mapping.dsn
+    design: primitives/lasers/boison-488.dsn
+    instantiation:
+      inputs:
+        newswitch-device-id: laser-1
+  connection-laser-1:
+    kind: design
+    design: primitives/connections/direct.dsn
     instantiation:
       inputs:
         newswitch-controller-id: standalone-board
         newswitch-peripheral-id: laser-1
-        newswitch-mapping-type: serial-laser
         id: 0
-        pwm-max: 1023
-  mapping-laser-2:
+  laser-2:
     kind: design
-    design: primitives/controller-mapping.dsn
+    design: primitives/lasers/boison-488.dsn
+    instantiation:
+      inputs:
+        newswitch-device-id: laser-2
+  connection-laser-2:
+    kind: design
+    design: primitives/connections/direct.dsn
     instantiation:
       inputs:
         newswitch-controller-id: standalone-board
         newswitch-peripheral-id: laser-2
-        newswitch-mapping-type: serial-laser
         id: 1
-        pwm-max: 1023
-  mapping-laser-3:
+  laser-3:
     kind: design
-    design: primitives/controller-mapping.dsn
+    design: primitives/lasers/boison-488.dsn
+    instantiation:
+      inputs:
+        newswitch-device-id: laser-3
+  connection-laser-3:
+    kind: design
+    design: primitives/connections/direct.dsn
     instantiation:
       inputs:
         newswitch-controller-id: standalone-board
         newswitch-peripheral-id: laser-3
-        newswitch-mapping-type: serial-laser
         id: 2
-        pwm-max: 1023
 
 assemblies:
   wiring:
     children:
+      root-controller:
+        assembly: wiring
+        children:
+          connection-camera:
+            assembly: wiring
+          connection-standalone-board:
+            assembly: wiring
+      camera:
+        assembly: wiring
+      standalone-board:
+        assembly: wiring
+        children:
+          connection-led:
+            assembly: wiring
+          connection-laser-1:
+            assembly: wiring
+          connection-laser-2:
+            assembly: wiring
+          connection-laser-3:
+            assembly: wiring
       led:
         assembly: wiring
       laser-1:
@@ -89,14 +125,3 @@ assemblies:
         assembly: wiring
       laser-3:
         assembly: wiring
-      standalone-board:
-        assembly: wiring
-        children:
-          mapping-led:
-            assembly: wiring
-          mapping-laser-1:
-            assembly: wiring
-          mapping-laser-2:
-            assembly: wiring
-          mapping-laser-3:
-            assembly: wiring

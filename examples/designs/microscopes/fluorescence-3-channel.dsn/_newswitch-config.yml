@@ -1,4 +1,38 @@
 devices:
+  camera:
+    binning: 1
+    channels: 1
+    exposure_time_ms:
+      inc: 0.001
+      max: 10000.0
+      min: 0.024
+      unit: ms
+      value: 25.0
+    framerate_per_sec:
+      max: 163.0
+      min: 0.5
+      unit: Hz
+      value: 163.0
+    gain_db:
+      inc: 0.01
+      max: 23.98
+      min: 0.0
+      unit: dB
+      value: 0.0
+    manufacturer: HIK ROBOTICS
+    name: MV-CA023-10UM
+    pixelcount:
+    - 1920
+    - 1200
+    pixelpitch_um: 10.0
+    tags:
+    - monochrome
+    - global-shutter
+    - gige
+    trigger:
+      edge: rising
+      type: hardware
+    type: detector
   laser-1:
     bandwidth: 2.0
     coherence: coherent
@@ -26,38 +60,46 @@ devices:
   led:
     channels: 1
     type: lightsource
+  root:
+    connections:
+      camera:
+        protocol: usb3-vision
+        selectors:
+          user_defined_name: ''
+      standalone-board:
+        protocol: uc2-rest
+        transport:
+          baudrate: 115200
+          selectors:
+            port_pattern: /dev/ttyUSB*
+          type: serial
+    type: controller
   standalone-board:
-    connection:
-      protocol: uc2-rest
-      transport:
-        baudrate: 115200
-        port_pattern: /dev/ttyUSB*
-        type: serial
+    connections:
+      laser-1:
+        protocol: direct
+        selectors:
+          id: 0
+          subid: 0
+      laser-2:
+        protocol: direct
+        selectors:
+          id: 1
+          subid: 0
+      laser-3:
+        protocol: direct
+        selectors:
+          id: 2
+          subid: 0
+      led:
+        protocol: direct
+        selectors:
+          id: 0
+          subid: 0
     firmware:
       name: esp32-uc2-standalone-4
       version: v2026.0.0-beta.3
     manufacturer: openUC2
-    mapping:
-      laser-1:
-        id: 0
-        pwm_max: 1023
-        subid: 0
-        type: serial-laser
-      laser-2:
-        id: 1
-        pwm_max: 1023
-        subid: 0
-        type: serial-laser
-      laser-3:
-        id: 2
-        pwm_max: 1023
-        subid: 0
-        type: serial-laser
-      led:
-        id: 30
-        pwm_max: 1023
-        subid: 0
-        type: canopen-led
     name: UC2-Mainboard-v4
     type: controller
 newswitch_version: v1.0.2

@@ -45,6 +45,38 @@ inputs:
       - adjustment/electronic
 
 components:
+  root-controller:
+    kind: design
+    design: primitives/controllers/root.dsn
+  camera:
+    kind: design
+    design: primitives/hikcamera-with-objective.dsn
+    instantiation:
+      inputs:
+        newswitch-device-id: camera
+  connection-camera:
+    kind: design
+    design: primitives/connections/usb3-vision.dsn
+    instantiation:
+      inputs:
+        newswitch-controller-id: root
+        newswitch-peripheral-id: camera
+  hat-plus:
+    kind: design
+    design: primitives/controllers/hat-plus.dsn
+    instantiation:
+      inputs:
+        newswitch-device-id: hat-plus
+  connection-hat-plus:
+    kind: design
+    design: primitives/connections/canopen-canbus.dsn
+    instantiation:
+      inputs:
+        newswitch-controller-id: root
+        newswitch-peripheral-id: hat-plus
+        interface: socketcan
+        channel: can0
+        bitrate: 500000
   led-ring:
     kind: design
     design: cube-mounted/led-ring.dsn
@@ -52,6 +84,20 @@ components:
       inputs:
         newswitch-device-id-led: led-ring/led
         newswitch-device-id-matrix: led-ring/matrix
+  connection-led:
+    kind: design
+    design: primitives/connections/direct.dsn
+    instantiation:
+      inputs:
+        newswitch-controller-id: hat-plus
+        newswitch-peripheral-id: led-ring/led
+  connection-led-matrix:
+    kind: design
+    design: primitives/connections/direct.dsn
+    instantiation:
+      inputs:
+        newswitch-controller-id: hat-plus
+        newswitch-peripheral-id: led-ring/matrix
   frame-chassis:
     kind: design
     design: assemblies/frame-chassis.dsn
@@ -71,94 +117,67 @@ components:
         position-sample-y: ~ inputs['sample-y'].value
         position-sample-z: ~ inputs['sample-z'].value
         position-objective-a: ~ inputs['objective-a'].value
-  hat-plus:
+  connection-axis-x:
     kind: design
-    design: primitives/controllers/hat-plus.dsn
-    instantiation:
-      inputs:
-        newswitch-device-id: hat-plus
-        connection-type: can
-  mapping-led:
-    kind: design
-    design: primitives/controller-mapping.dsn
-    instantiation:
-      inputs:
-        newswitch-controller-id: hat-plus
-        newswitch-peripheral-id: led-ring/led
-        newswitch-mapping-type: canopen-led
-        id: 20
-        subid: 4
-        pwm-max: 1023
-  mapping-led-matrix:
-    kind: design
-    design: primitives/controller-mapping.dsn
-    instantiation:
-      inputs:
-        newswitch-controller-id: hat-plus
-        newswitch-peripheral-id: led-ring/matrix
-        newswitch-mapping-type: canopen-led
-        id: 30
-        pwm-max: 1023
-  mapping-axis-x:
-    kind: design
-    design: primitives/controller-mapping.dsn
+    design: primitives/connections/direct.dsn
     instantiation:
       inputs:
         newswitch-controller-id: hat-plus
         newswitch-peripheral-id: frame-chassis/x
-        newswitch-mapping-type: canopen-motor
-        id: 11
-        subid: 1
-  mapping-axis-y:
+        id: 1
+  connection-axis-y:
     kind: design
-    design: primitives/controller-mapping.dsn
+    design: primitives/connections/direct.dsn
     instantiation:
       inputs:
         newswitch-controller-id: hat-plus
         newswitch-peripheral-id: frame-chassis/y
-        newswitch-mapping-type: canopen-motor
-        id: 12
-        subid: 1
-  mapping-axis-z:
+        id: 2
+  connection-axis-z:
     kind: design
-    design: primitives/controller-mapping.dsn
+    design: primitives/connections/direct.dsn
     instantiation:
       inputs:
         newswitch-controller-id: hat-plus
         newswitch-peripheral-id: frame-chassis/z
-        newswitch-mapping-type: canopen-motor
-        id: 13
-        subid: 1
-  mapping-axis-a:
+        id: 3
+  connection-axis-a:
     kind: design
-    design: primitives/controller-mapping.dsn
+    design: primitives/connections/direct.dsn
     instantiation:
       inputs:
         newswitch-controller-id: hat-plus
         newswitch-peripheral-id: frame-chassis/a
-        newswitch-mapping-type: canopen-motor
-        id: 10
-        subid: 1
+        id: 0
 
 assemblies:
   wiring:
     children:
-      led-ring:
+      root-controller:
         assembly: wiring
-      frame-chassis:
+        children:
+          connection-camera:
+            assembly: wiring
+          connection-hat-plus:
+            assembly: wiring
+      camera:
         assembly: wiring
       hat-plus:
         assembly: wiring
         children:
-          mapping-led:
+          connection-led:
             assembly: wiring
-          mapping-led-matrix:
+          connection-led-matrix:
             assembly: wiring
-          mapping-axis-x:
+          connection-axis-x:
             assembly: wiring
-          mapping-axis-y:
+          connection-axis-y:
             assembly: wiring
-          mapping-axis-z:
+          connection-axis-z:
             assembly: wiring
-          mapping-axis-a:
+          connection-axis-a:
             assembly: wiring
+      led-ring:
+        assembly: wiring
+      frame-chassis:
+        assembly: wiring

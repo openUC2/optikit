@@ -1,7 +1,7 @@
 optikit-version: v0.1.0-alpha.1
 
 design:
-  description: A mapping from a controller board to an arbitrary peripheral device
+  description: A connection from a controller to a CANopen peripheral device over a shared CAN bus
   tags:
     - config/newswitch/device-relation
 
@@ -16,18 +16,6 @@ inputs:
     kind: string
     tags:
       - config/newswitch/device-id
-  newswitch-mapping-type:
-    description: The kind of connection to the peripheral device
-    kind: string
-    enum:
-      - canopen-laser
-      - serial-laser
-      - canopen-led
-      - serial-led
-      - canopen-motor
-      - serial-motor
-    tags:
-      - config/newswitch/controller-mapping-type
   id:
     description: ID of the peripheral device
     kind: int
@@ -35,29 +23,26 @@ inputs:
     tags:
       - config/newswitch/firmware-id
   subid:
-    description: Sub-ID of the peripheral device
+    description: Sub-ID of the peripheral device, if applicable
     kind: int
     min: 0
     tags:
       - config/newswitch/firmware-subid
-  pwm-max:
-    description: PWM resolution for the peripheral device, if the device mapping type supports it
-    kind: int
-    min: 0
 
 components:
-  mapping:
+  connection:
     kind: results
     results:
       newswitch-device-id: ~ inputs['newswitch-controller-id'].value
       newswitch-device-config: >
         ~ {
-          mapping: fromPairs([
+          connections: fromPairs([
             [inputs['newswitch-peripheral-id'].value, {
-              type: inputs['newswitch-mapping-type'].value,
-              id: inputs['id'].value,
-              subid: inputs['subid'].value,
-              pwm_max: inputs['pwm-max'].value,
+              protocol: "direct",
+              selectors: {
+                id: inputs['id'].value,
+                subid: inputs['subid'].value,
+              },
             }],
           ]),
         }
@@ -65,4 +50,4 @@ components:
 assemblies:
   wiring:
     children:
-      mapping: {}
+      connection: {}

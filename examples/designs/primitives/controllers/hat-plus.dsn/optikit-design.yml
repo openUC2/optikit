@@ -11,37 +11,19 @@ inputs:
     kind: string
     tags:
       - config/newswitch/device-id
-  connection-type:
-    description: The way the HAT should be connected
-    kind: string
-    enum:
-      - can
-      - serial
 
 components:
-  driver-can:
+  driver:
     kind: primitive
     primitive:
       kind: static
       static-models:
         # Warning: the following schema assumes a device type which is not yet defined in the NewSwitch device config schema!
-        newswitch-device: mainboard-can.newswitch-device.yml
-    results:
-      newswitch-device-id: ~ inputs['newswitch-device-id'].value
-  driver-serial:
-    kind: primitive
-    primitive:
-      kind: static
-      static-models:
-        # Warning: the following schema assumes a device type which is not yet defined in the NewSwitch device config schema!
-        newswitch-device: mainboard-serial.newswitch-device.yml
+        newswitch-device: hat-plus.newswitch-device.yml
     results:
       newswitch-device-id: ~ inputs['newswitch-device-id'].value
 
 assemblies:
   wiring:
     children:
-      driver-can:
-        disabled: ~ inputs['connection-type'].value != 'can'
-      driver-serial:
-        disabled: ~ inputs['connection-type'].value != 'serial'
+      driver: {}

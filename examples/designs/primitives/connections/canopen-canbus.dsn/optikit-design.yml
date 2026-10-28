@@ -1,0 +1,61 @@
+optikit-version: v0.1.0-alpha.1
+
+design:
+  description: A connection to a CAN bus via a CANopen device
+  tags:
+    - config/newswitch/device-connection
+
+inputs:
+  newswitch-controller-id:
+    description: The ID of the controller device in NewSwitch
+    kind: string
+    tags:
+      - config/newswitch/device-id
+  newswitch-peripheral-id:
+    description: The ID of the CAN bus transceiver in NewSwitch
+    kind: string
+    tags:
+      - config/newswitch/device-id
+  interface:
+    description: Bus channel
+    kind: string
+    enum:
+      - socketcan
+      - pcan
+      - kvaser
+      - slcan
+      - gs_usb
+      - virtual
+  channel:
+    description: Bus channel
+    kind: string
+  bitrate:
+    description: Bitrate of the bus
+    kind: int
+
+components:
+  connection:
+    kind: results
+    results:
+      newswitch-device-id: ~ inputs['newswitch-controller-id'].value
+      newswitch-device-config: >
+        ~ {
+          connections: fromPairs([
+            [inputs['newswitch-peripheral-id'].value, {
+              protocol: 'canopen',
+              transport: {
+                type: 'can',
+                interface: inputs['interface'].value,
+                selectors: {
+                  channel: inputs['channel'].value,
+                },
+                bitrate: inputs['bitrate'].value,
+              },
+            }],
+          ]),
+        }
+
+assemblies:
+  wiring:
+    children:
+      connection: {}

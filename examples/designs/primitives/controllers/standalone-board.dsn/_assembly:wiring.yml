@@ -1,6 +1,6 @@
 optikit-version: v0.1.0-dev
 components:
-- id: drivers
+- id: driver
   kind: primitive/static
   static-models:
     newswitch-device: mainboard.newswitch-device.yml
