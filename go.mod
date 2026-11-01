@@ -3,7 +3,7 @@ module github.com/openuc2/optikit
 go 1.27.3
 
 require (
-	github.com/bmatcuk/doublestar/v4 v4.10.2
+	github.com/bmatcuk/doublestar/v4 v4.10.4
 	github.com/carlmjohnson/versioninfo v0.22.5
 	github.com/expr-lang/expr v1.17.8
 	github.com/go-viper/mapstructure/v2 v2.5.0
@@ -14,7 +14,7 @@ require (
 	github.com/pkg/errors v0.9.1
 	github.com/qmuntal/gltf v0.29.0
 	github.com/ungerik/go3d v0.0.0-20251020194721-1bde1320d420
-	github.com/urfave/cli/v3 v3.13.0
+	github.com/urfave/cli/v3 v3.14.0
 	golang.org/x/mod v0.42.0
 )
 
